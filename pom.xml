@@ -13,9 +13,9 @@
 	</properties>
 
 	<modules>		
-		<!-- 
+		
 		<module>jun_datasource</module>
-		<module>jun_dbutil</module>
+		<!-- <module>jun_dbutil</module>
 		<module>jun_designpattern</module>
 		<module>jun_email</module>
 		<module>jun_executor</module>
