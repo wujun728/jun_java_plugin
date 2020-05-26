@@ -1,0 +1,1 @@
+﻿这个项目是介绍spring整合kaptcha的两种方式。已测试通过。笔记见简书《spring整合kaptcha验证码》。链接：https://www.jianshu.com/p/e5ffa123cda4

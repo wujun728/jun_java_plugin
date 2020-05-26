@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<bookstore>
+
+	<book category="武侠">
+		<title lang="zh">天龙八部</title>
+		<author>金庸</author>
+		<year>1965</year>
+		<price>65.00</price>
+	</book>
+	
+	<book category="武侠">
+		<title lang="zh">天涯明月刀</title>
+		<author>古龙</author>
+		<year>1976</year>
+		<price>40.00</price>
+	</book>
+
+	<book category="科幻">
+		<title lang="en">Harry Potter</title>
+		<author>J K. Rowling</author>
+		<year>2005</year>
+		<price>29.99</price>
+	</book>
+
+	<book category="WEB">
+		<title lang="en">XQuery Kick Start</title>
+		<author>James McGovern</author>
+		<author>Per Bothner</author>
+		<author>Kurt Cagle</author>
+		<author>James Linn</author>
+		<author>Vaidyanathan Nagarajan</author>
+		<year>2003</year>
+		<price>49.99</price>
+	</book>
+
+	<book category="WEB">
+		<title lang="en">Learning XML</title>
+		<author>Erik T. Ray</author>
+		<year>2003</year>
+		<price>39.95</price>
+	</book>
+
+</bookstore>

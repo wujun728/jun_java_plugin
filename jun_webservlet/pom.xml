@@ -1,0 +1,190 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.jun.base</groupId>
+    <artifactId>jun_base</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>com.jun.base</groupId>
+  <artifactId>jun_webservlet</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+	<properties>
+		<!-- 主要依赖库的版本定义 -->
+		<junit.version>4.10</junit.version>
+	</properties>
+
+	<dependencies>
+ 		<dependency>
+			<groupId>com.jun.base</groupId>
+		  	<artifactId>jun_utils</artifactId>
+		  	<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+<!-- 			<version>${junit.version}</version> -->
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	
+	<profiles>
+		<profile>
+			<id>release</id>
+			<distributionManagement>
+				<snapshotRepository>
+					<id>oss</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+				</snapshotRepository>
+				<repository>
+					<id>oss</id>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
+			</distributionManagement>
+			<build>
+				<plugins>
+					<!-- Source -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>3.0.1</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Javadoc -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.10.4</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Gpg Signature -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	
+	
+	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory >src/test/java</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/labs/java</directory>
+				<includes>
+				<include>**/*.hbm.xml</include>
+				</includes>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
+		
+		
+		<plugins>
+			<plugin>
+                <!-- <groupId>org.codehaus.mojo</groupId>
+                <artifactId>tomcat-maven-plugin</artifactId>
+                <version>1.1</version>
+                <configuration>
+                    <path>/jun_plugin_webservlet</path>
+                    <port>8080</port>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <url>http://localhost:8080/manager/html</url>
+                    <server>tomcat6</server>
+                </configuration> -->
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <port>8080</port>
+                    <path>/jun_webservlet</path>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <finalName>jun_webservlet</finalName>
+                    <server>tomcat7</server>
+                </configuration>
+            </plugin>
+            <!-- tomcat:deploy	部署一个web war包
+			tomcat:reload	重新加载web war包
+			tomcat:start
+			启动tomcat
+			tomcat:stop
+			停止tomcat
+			tomcat:undeploy
+			停止一个war包
+			tomcat:run	启动嵌入式tomcat ，并运行当前项目 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<!-- build-helper-maven-plugin, 设置多个源文件夹 -->  
+	        <plugin>  
+	            <groupId>org.codehaus.mojo</groupId>  
+	            <artifactId>build-helper-maven-plugin</artifactId>  
+	            <version>1.4</version>  
+	            <executions>  
+	                <execution>  
+	                    <id>add-source</id>  
+	                    <phase>generate-sources</phase>  
+	                    <goals>  
+	                        <goal>add-source</goal>  
+	                    </goals>  
+	                    <configuration>  
+	                        <sources>  
+	                            <source>${basedir}/src/main/java</source>
+<!-- 	                            <source>${basedir}/src/test/core</source> -->
+	                            <!-- 我们可以通过在这里添加多个source节点，来添加任意多个源文件夹 -->  
+	                        </sources>  
+	                    </configuration>  
+	                </execution>  
+	            </executions>  
+	        </plugin>  
+		</plugins> 
+	</build>
+</project>

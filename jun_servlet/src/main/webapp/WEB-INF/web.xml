@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>HeadFirstJspServletChap05</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+    <servlet>
+  	<servlet-name>init</servlet-name>
+  	<jsp-file>/sysInit.jsp</jsp-file>
+  	<init-param>
+  		<param-name>jdbcName</param-name>
+  		<param-value>com.mysql.jdbc.Driver</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>dbUrl</param-name>
+  		<param-value>jdbc:mysql://localhost:3306/db_xx</param-value>
+  	</init-param>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>init</servlet-name>
+  	<url-pattern>/init</url-pattern>
+  </servlet-mapping>
+  
+  <context-param>
+		<param-name>username</param-name>
+		<param-value>朴乾</param-value>
+	</context-param>
+	<context-param>
+		<param-name>password</param-name>
+		<param-value>123</param-value>
+	</context-param>
+	
+	
+  <servlet>
+    <servlet-name>MyFirstServlet</servlet-name>
+    <servlet-class>com.itheima.MyFirstServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo1Servlet</servlet-name>
+    <servlet-class>com.itheima.Demo1Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SConfigServlet</servlet-name>
+    <servlet-class>com.itheima.SConfigServlet</servlet-class>
+    <init-param>
+		<param-name>name1</param-name>
+		<param-value>value1</param-value>
+    </init-param>
+    <init-param>
+    	<param-name>encode</param-name>
+		<param-value>utf-8</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo2Servlet</servlet-name>
+    <servlet-class>com.itheima.Demo2Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo3Servlet</servlet-name>
+    <servlet-class>com.itheima.Demo3Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo4Servlet</servlet-name>
+    <servlet-class>com.itheima.Demo4Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo5Servlet</servlet-name>
+    <servlet-class>com.itheima.Demo5Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo6Servlet</servlet-name>
+    <servlet-class>com.itheima.Demo6Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo7Servlet</servlet-name>
+    <servlet-class>com.itheima.Demo7Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo8Servlet</servlet-name>
+    <servlet-class>com.itheima.Demo8Servlet</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+ <!-- 
+	  <servlet-mapping>
+	    <servlet-name>MyFirstServlet</servlet-name>
+	    <url-pattern>/servlet/MyFirstServlet</url-pattern>
+	  </servlet-mapping>
+	  <servlet-mapping>
+	    <servlet-name>MyFirstServlet</servlet-name>
+	    <url-pattern>/MyFirstServlet</url-pattern>
+	  </servlet-mapping>
+	  <servlet-mapping>
+	    <servlet-name>MyFirstServlet</servlet-name>
+	    <url-pattern>/servlet/My/*</url-pattern>
+	  </servlet-mapping>
+	  <servlet-mapping>
+	    <servlet-name>MyFirstServlet</servlet-name>
+	    <url-pattern>*.my</url-pattern>
+	  </servlet-mapping>
+   -->
+  <servlet-mapping>
+    <servlet-name>MyFirstServlet</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo1Servlet</servlet-name>
+    <url-pattern>/servlet/Demo1Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SConfigServlet</servlet-name>
+    <url-pattern>/servlet/SConfigServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo2Servlet</servlet-name>
+    <url-pattern>/servlet/Demo2Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo3Servlet</servlet-name>
+    <url-pattern>/servlet/Demo3Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo4Servlet</servlet-name>
+    <url-pattern>/servlet/Demo4Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo5Servlet</servlet-name>
+    <url-pattern>/servlet/Demo5Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo6Servlet</servlet-name>
+    <url-pattern>/servlet/Demo6Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo7Servlet</servlet-name>
+    <url-pattern>/servlet/Demo7Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo8Servlet</servlet-name>
+    <url-pattern>/servlet/Demo8Servlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>loginServlet</servlet-name>
+  	<servlet-class>com.java1234.web.LoginServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>gradeListServlet</servlet-name>
+  	<servlet-class>com.java1234.web.GradeListServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>gradeComboListServlet</servlet-name>
+  	<servlet-class>com.java1234.web.GradeComboListServlet</servlet-class>
+  </servlet>
+  
+   <servlet>
+  	<servlet-name>studentListServlet</servlet-name>
+  	<servlet-class>com.java1234.web.StudentListServlet</servlet-class>
+  </servlet>
+  
+   <servlet>
+  	<servlet-name>gradeSaveServlet</servlet-name>
+  	<servlet-class>com.java1234.web.GradeSaveServlet</servlet-class>
+  </servlet>
+  
+   <servlet>
+  	<servlet-name>studentSaveServlet</servlet-name>
+  	<servlet-class>com.java1234.web.StudentSaveServlet</servlet-class>
+  </servlet>
+  
+   <servlet>
+  	<servlet-name>gradeDeleteServlet</servlet-name>
+  	<servlet-class>com.java1234.web.GradeDeleteServlet</servlet-class>
+  </servlet>
+  
+   <servlet>
+  	<servlet-name>studentDeleteServlet</servlet-name>
+  	<servlet-class>com.java1234.web.StudentDeleteServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>loginServlet</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>gradeListServlet</servlet-name>
+  	<url-pattern>/gradeList</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>gradeComboListServlet</servlet-name>
+  	<url-pattern>/gradeComboList</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>studentListServlet</servlet-name>
+  	<url-pattern>/studentList</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>gradeDeleteServlet</servlet-name>
+  	<url-pattern>/gradeDelete</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>studentDeleteServlet</servlet-name>
+  	<url-pattern>/studentDelete</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>gradeSaveServlet</servlet-name>
+  	<url-pattern>/gradeSave</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>studentSaveServlet</servlet-name>
+  	<url-pattern>/studentSave</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>init</servlet-name>
+  	<jsp-file>/sysInit.jsp</jsp-file>
+  	<init-param>
+  		<param-name>jdbcName</param-name>
+  		<param-value>com.mysql.jdbc.Driver</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>dbUrl</param-name>
+  		<param-value>jdbc:mysql://localhost:3306/db_xx</param-value>
+  	</init-param>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>init</servlet-name>
+  	<url-pattern>/init</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>helloWorldServlet</servlet-name>
+  	<servlet-class>com.java1234.web.HelloWorldServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>helloWorldServlet</servlet-name>
+  	<url-pattern>/helloWorld</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>lifeServlet</servlet-name>
+  	<servlet-class>com.java1234.web.LifeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>lifeServlet</servlet-name>
+  	<url-pattern>/life</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>redirectServlet</servlet-name>
+  	<servlet-class>com.java1234.web.RedirectServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>redirectServlet</servlet-name>
+  	<url-pattern>/redirect</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>forwardServlet</servlet-name>
+  	<servlet-class>com.java1234.web.ForwardServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>forwardServlet</servlet-name>
+  	<url-pattern>/forward</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>loginServlet</servlet-name>
+  	<servlet-class>com.java1234.web.LoginServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>loginServlet</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>logoutServlet</servlet-name>
+  	<servlet-class>com.java1234.web.LogoutServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>logoutServlet</servlet-name>
+  	<url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+  	<filter-name>loginFilter</filter-name>
+  	<filter-class>com.java1234.filter.LoginFilter</filter-class>
+  </filter>
+  
+  <servlet>
+    <servlet-name>OutServlet</servlet-name>
+    <servlet-class>com.itheima.response.OutServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DownServlet</servlet-name>
+    <servlet-class>com.itheima.response.DownServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RefreshServlet</servlet-name>
+    <servlet-class>com.itheima.response.RefreshServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>NoCacheServlet</servlet-name>
+    <servlet-class>com.itheima.response.NoCacheServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CacheServlet</servlet-name>
+    <servlet-class>com.itheima.response.CacheServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RedirectServlet</servlet-name>
+    <servlet-class>com.itheima.response.RedirectServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo1</servlet-name>
+    <servlet-class>com.itheima.response.Demo1</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo2</servlet-name>
+    <servlet-class>com.itheima.response.Demo2</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ValiImg</servlet-name>
+    <servlet-class>com.itheima.response.ValiImg</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CustInfoServlet</servlet-name>
+    <servlet-class>com.itheima.request.CustInfoServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>HeaderServlet</servlet-name>
+    <servlet-class>com.itheima.request.HeaderServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FengjieServlet</servlet-name>
+    <servlet-class>com.itheima.request.FengjieServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ParamServlet</servlet-name>
+    <servlet-class>com.itheima.request.ParamServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo3</servlet-name>
+    <servlet-class>com.itheima.request.Demo3</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo4</servlet-name>
+    <servlet-class>com.itheima.request.Demo4</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo5</servlet-name>
+    <servlet-class>com.itheima.request.Demo5</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo6</servlet-name>
+    <servlet-class>com.itheima.request.Demo6</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo7</servlet-name>
+    <servlet-class>com.itheima.request.Demo7</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo8</servlet-name>
+    <servlet-class>com.itheima.request.Demo8</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Demo9</servlet-name>
+    <servlet-class>com.itheima.request.Demo9</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>OutServlet</servlet-name>
+    <url-pattern>/servlet/OutServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DownServlet</servlet-name>
+    <url-pattern>/servlet/DownServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RefreshServlet</servlet-name>
+    <url-pattern>/servlet/RefreshServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NoCacheServlet</servlet-name>
+    <url-pattern>/servlet/NoCacheServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CacheServlet</servlet-name>
+    <url-pattern>/servlet/CacheServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RedirectServlet</servlet-name>
+    <url-pattern>/servlet/RedirectServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo1</servlet-name>
+    <url-pattern>/servlet/Demo1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo2</servlet-name>
+    <url-pattern>/servlet/Demo2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ValiImg</servlet-name>
+    <url-pattern>/servlet/ValiImg</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CustInfoServlet</servlet-name>
+    <url-pattern>/servlet/CustInfoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HeaderServlet</servlet-name>
+    <url-pattern>/servlet/HeaderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FengjieServlet</servlet-name>
+    <url-pattern>/servlet/FengjieServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ParamServlet</servlet-name>
+    <url-pattern>/servlet/ParamServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo3</servlet-name>
+    <url-pattern>/servlet/Demo3</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo4</servlet-name>
+    <url-pattern>/servlet/Demo4</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo5</servlet-name>
+    <url-pattern>/servlet/Demo5</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo6</servlet-name>
+    <url-pattern>/servlet/Demo6</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo7</servlet-name>
+    <url-pattern>/servlet/Demo7</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo8</servlet-name>
+    <url-pattern>/servlet/Demo8</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Demo9</servlet-name>
+    <url-pattern>/servlet/Demo9</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <filter-mapping>
+  	<filter-name>loginFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <listener>
+  	<listener-class>
+  		com.java1234.listener.SessionAttributeListener
+  	</listener-class>
+  </listener>
+</web-app>

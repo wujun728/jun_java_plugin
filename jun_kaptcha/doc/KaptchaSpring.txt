@@ -1,0 +1,61 @@
+1) create html form
+
+  <form action="/web/register" method='POST'>
+    <p>
+      email: <input id='start' type='text' name='email' value=''>
+    </p>
+    <p>
+      Password: <input id="password" type='password' name='password' />
+    </p>
+    <p>
+      Again Password: <input id="password-check" type='password' name='password_again' />
+    </p>
+    <p>
+      <img src="<c:url value='/captcha.jpg' />" />
+    </p>
+    <p>
+      <input name="captcha" type="text" />
+    </p>
+    <input id="submit" name="submit" type="submit" value="submit" />
+  </form>
+
+2) create spring @Controller and extend KaptchaExtend and annotatec captcha() method with RequestMapping
+
+@Controller
+public class RegisterKaptchaController extends KaptchaExtend {
+
+    @Autowired
+    RemoteFactory remotefactory;
+
+    @RequestMapping(value = "/captcha.jpg", method = RequestMethod.GET)
+    public void captcha(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.captcha(req, resp);
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public ModelAndView registerGet(@RequestParam(value = "error", required = false) boolean failed,
+            HttpServletRequest request) {
+        ModelAndView model = new ModelAndView("register-get");
+        return model;
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ModelAndView registerPost(@RequestParam(value = "email", required = true) String email,
+            @RequestParam(value = "password", required = true) String password, HttpServletRequest request) {
+        ModelAndView model = new ModelAndView("register-post");
+
+        if (email.isEmpty())
+            throw new RuntimeException("email empty");
+
+        if (password.isEmpty())
+            throw new RuntimeException("empty password");
+
+        String captcha = request.getParameter("captcha");
+
+        if(!captcha.equals(getGeneratedKey(request)))
+            throw new RuntimeException("bad captcha");
+        
+        return model;
+    }
+
+}

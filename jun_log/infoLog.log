@@ -1,0 +1,6 @@
+2020-05-24 23:24:07.871 INFO  com.xubobo.log4j2Demo.Main 15 main - 打印info级别日志
+2020-05-24 23:24:07.871 WARN  com.xubobo.log4j2Demo.Main 16 main - 打印warn级别日志
+2020-05-24 23:24:07.871 ERROR com.xubobo.log4j2Demo.Main 17 main - 打印error级别日志
+2020-05-24 23:28:30.351 INFO  com.jun.base.log.log4j2.demo.Main 15 main - 打印info级别日志
+2020-05-24 23:28:30.351 WARN  com.jun.base.log.log4j2.demo.Main 16 main - 打印warn级别日志
+2020-05-24 23:28:30.351 ERROR com.jun.base.log.log4j2.demo.Main 17 main - 打印error级别日志

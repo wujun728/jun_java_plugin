@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+	<user>
+		<name id="n1">张三</name>
+		<birthday>2011-1-1</birthday>
+	</user>
+	<user>
+		<name id="n2">王五</name>
+		<birthday>2011-1-2</birthday>
+	</user>
+	<user>
+		<name id="n3">赵六</name>
+		<birthday>2011-1-3</birthday>
+	</user>
+</users>

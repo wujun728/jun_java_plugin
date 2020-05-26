@@ -1,0 +1,3 @@
+.icon-export{
+	background:url('icons/edit_export.png') no-repeat center center;
+}
