@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.jun.base</groupId>
-	<artifactId>jun_base</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>com.jun.plugin</groupId>
+	<artifactId>jun_plugin</artifactId>
+	<version>1.0</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -13,9 +13,8 @@
 	</properties>
 
 	<modules>		
-		
 		<module>jun_datasource</module>
-		<!-- <module>jun_dbutil</module>
+		<module>jun_dbutil</module>
 		<module>jun_designpattern</module>
 		<module>jun_email</module>
 		<module>jun_executor</module>
@@ -28,11 +27,8 @@
 		<module>jun_json</module>
 		<module>jun_jsonp</module>
 		<module>jun_jsoup</module>
-		-->
 		<module>jun_kaptcha</module>
-		<!--
-		<module>jun_log</module>
-		<module>jun_nio</module>
+		<module>jun_log</module> 
 		<module>jun_poi</module>
 		<module>jun_qrcode</module>
 		<module>jun_rpc</module>
@@ -44,7 +40,7 @@
 		<module>jun_webservlet</module>
 		<module>jun_websocket</module>
 		<module>jun_xml</module> 
-		 -->
+		<!-- -->
   </modules>
 
 	<dependencies>

@@ -3,11 +3,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.jun.base</groupId>
-    <artifactId>jun_base</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.jun.plugin</groupId>
+	<artifactId>jun_plugin</artifactId>
+	<version>1.0</version>
   </parent>
-  <groupId>com.jun.base</groupId>
+  <groupId>com.jun.plugin</groupId>
   <artifactId>jun_jdk</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
