@@ -1,4 +1,4 @@
-package com.jun.base.jdbc2.test;
+package com.jun.base.jdbc2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

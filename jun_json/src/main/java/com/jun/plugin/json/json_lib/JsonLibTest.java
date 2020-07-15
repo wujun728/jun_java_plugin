@@ -13,15 +13,6 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class JsonLibTest {
-	/*
-	 * ��ͨ���͡�List��Collection�ȶ�����JSONArray����
-	 * 
-	 * Map���Զ�����������JSONObject���� ���Խ�Map����һ�����������key/value�Կ������ɶ��������?/����ֵ ��{key1:value1,key2,value2......}
-	 * 
-	 * 1.JSONObject��һ��name:values���ϣ�ͨ�����get(key)����ȡ�õ���key���Ӧ��value����(�ַ�) ͨ�����getJSONObject(key)����ȡ��һ��JSONObject��--> ת����map,
-	 * ͨ�����getJSONArray(key) ����ȡ��һ��JSONArray ��
-	 */
-	// һ������ת����JSON
 	@Test
 	public void testArrayToJSON() {
 		boolean[] boolArray = new boolean[] { true, false, true };
@@ -30,7 +21,6 @@ public class JsonLibTest {
 		// prints [true,false,true]
 	}
 
-	// Collection����ת����JSON
 	@Test
 	public void testListToJSON() {
 		List list = new ArrayList();
@@ -41,7 +31,6 @@ public class JsonLibTest {
 		// prints ["first","second"]
 	}
 
-	// �ַ�jsonת����json�� ����������JSONArray��JSONObject
 	@Test
 	public void testJsonStrToJSON() {
 		JSONArray jsonArray = JSONArray.fromObject("['json','is','easy']");
@@ -49,7 +38,6 @@ public class JsonLibTest {
 		// prints ["json","is","easy"]
 	}
 
-	// Mapת����json�� ����jsonObject
 	@Test
 	public void testMapToJSON() {
 		Map map = new HashMap();
@@ -62,7 +50,6 @@ public class JsonLibTest {
 		System.out.println(jsonObject);
 	}
 
-	// ��������beanת�ɳ�json
 	@Test
 	public void testBeadToJSON() {
 		MyBean bean = new MyBean();
@@ -79,7 +66,6 @@ public class JsonLibTest {
 		System.out.println(jsonObject);
 	}
 
-	// ��ͨ���͵�jsonת���ɶ���
 	/*
 	 * @Test public void testJSONToObject() throws Exception{ String json =
 	 * "{name=\"json\",bool:true,int:1,double:2.2,func:function(a){ return a; },array:[1,2]}"; JSONObject jsonObject = JSONObject.fromObject( json );
@@ -95,7 +81,6 @@ public class JsonLibTest {
 	 * 
 	 * }
 	 */
-	// ��json�����ɸ������Ͷ���, ��List
 	@Test
 	public void testJSONToBeanHavaList() {
 		String json = "{list:[{name:'test1'},{name:'test2'}],map:{test1:{name:'test1'},test2:{name:'test2'}}}";
@@ -113,15 +98,12 @@ public class JsonLibTest {
 		}
 	}
 
-	// ��json�����ɸ������Ͷ���, ��Map
 	/*@Test
 	public void testJSONToBeanHavaMap() {
-		// ��Map����һ������
 		String json = "{list:[{name:'test1'},{name:'test2'}],map:{testOne:{name:'test1'},testTwo:{name:'test2'}}}";
 		Map classMap = new HashMap();
 		classMap.put("list", Person.class);
 		classMap.put("map", Map.class);
-		// ʹ�ð�ʾ��ֱ�ӽ�json����Ϊָ���Զ����������List��ȫ����,Mapû����ȫ����
 		MyBeanWithPerson diyBean = (MyBeanWithPerson) JSONObject.toBean(JSONObject.fromObject(json), MyBeanWithPerson.class, classMap);
 		System.out.println(diyBean);
 		System.out.println("do the list release");

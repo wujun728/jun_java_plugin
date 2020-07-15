@@ -15,7 +15,7 @@ import net.sf.json.JSONObject;
 
 
 /**
- * 解析数据工具�?
+ * 解析数据工具
  * 
  * @author ab030087
  *
@@ -34,7 +34,7 @@ public class ParserData {
 	}
 	
 	/**    
-	* 从一个JSON数组得到�?个java对象集合    
+	* 从一个JSON数组得到�?个java对象集合    
 	* @param object    
 	* @param clazz    
 	* @return    
@@ -68,11 +68,11 @@ public class ParserData {
 
 	public static Map<String, Object> parseJSON2Map(String jsonStr) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		// �?外层解析
+		// �?外层解析
 		JSONObject json = JSONObject.fromObject(jsonStr);
 		for (Object k : json.keySet()) {
 			Object v = json.get(k);
-			// 如果内层还是数组的话，继续解�?
+			// 如果内层还是数组的话，继续解�?
 			if (v instanceof JSONArray) {
 				List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 				Iterator<JSONObject> it = ((JSONArray) v).iterator();
