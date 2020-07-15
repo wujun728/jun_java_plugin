@@ -19,6 +19,16 @@
 			<version>4.13</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.jun.plugin</groupId> 
+			<artifactId>jun_datasource</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jun.plugin</groupId> 
+			<artifactId>jun_utils</artifactId>
+			<version>1.0</version>
+		</dependency>
 		
 		<!-- POI -->
 		<dependency>
@@ -37,8 +47,6 @@
 			<version>3.14</version>
 		</dependency>
 		
-		
-		
 		<!-- servlet -->
 		<dependency>
 		<groupId>javax.servlet</groupId>
@@ -46,8 +54,6 @@
 		<version>3.0-alpha-1</version>
 		<scope>provided</scope>
 		</dependency>
-		
-		
 		
 		<dependency>
 		<groupId>javax.servlet</groupId>

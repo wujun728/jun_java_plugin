@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class LogUtil {
 
-//	private static Logger logger = Logger.getLogger(LogUtil.class);
+	private static Logger logger =  Logger.getLogger("");
 
 	/**
 	 * @param args
@@ -23,7 +23,7 @@ public class LogUtil {
 //	@Test
 	public void Test() {
 //		logger.debug("DEBUG_MSG");
-//		logger.info("INFO_MSG");
+		logger.info("INFO_MSG");
 //		logger.warn("WARN_MSG");
 //		logger.error("ERROR_MSG");
 //		logger.fatal("FATAL_MSG");
@@ -362,6 +362,16 @@ public class LogUtil {
 		logPrint.println(new Date() + ": " + msg);
 		e.printStackTrace(logPrint);
 	}
+
+	public static void warn(String message) {
+		log("DEBUG", message);
+	}
+
+	public static void error(String message, String message2) {
+		log("DEBUG", message);
+		log("DEBUG", message2);
+	}
+
 	
 	
 	
