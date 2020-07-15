@@ -1,4 +1,4 @@
-package com.jun.plugin.jdom;
+package com.jun.plugin.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;

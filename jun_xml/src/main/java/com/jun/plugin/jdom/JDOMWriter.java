@@ -1,4 +1,4 @@
-package com.jun.xml;
+package com.jun.plugin.jdom;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -36,7 +36,7 @@ public class JDOMWriter {
 		out.setFormat(out.getFormat().setEncoding("UTF-8"));
 		
 		try {
-			out.output(document, new FileOutputStream("src/main/java/user2.xml"));
+			out.output(document, new FileOutputStream("src/main/resources/jdomwriter.xml"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.jun.xml;
+package com.jun.plugin.dom4j;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -22,14 +22,14 @@ public class DOM4Writer {
 		Element name=userElement.addElement("name");
 		name.setText("张三111");
 		Element sex=userElement.addElement("sex");
-		sex.setText("233322");
+		sex.setText("test123445");
 		Element age=userElement.addElement("age");
-		age.setText("20111");
+		age.setText("2020");
 		
 		OutputFormat format=OutputFormat.createPrettyPrint();
 		format.setEncoding("UTF-8");
 		try {
-			XMLWriter writer=new XMLWriter(new FileOutputStream("src/main/java/user3.xml"),format);
+			XMLWriter writer=new XMLWriter(new FileOutputStream("src/main/java/dom4jwrite.xml"),format);
 			writer.write(document);
 			writer.close();
 		} catch (UnsupportedEncodingException e) {

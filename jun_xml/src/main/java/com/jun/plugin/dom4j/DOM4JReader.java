@@ -1,4 +1,4 @@
-package com.jun.xml;
+package com.jun.plugin.dom4j;
 
 import java.util.Iterator;
 
@@ -10,7 +10,7 @@ public class DOM4JReader {
 
 	public static void main(String[] args) throws Exception{
 		SAXReader saxReader=new SAXReader();
-		Document document=saxReader.read("src/main/java/users.xml");
+		Document document=saxReader.read("src/main/resources/dom4j.xml");
 		Element rootElement=document.getRootElement();
 		Iterator iter=rootElement.elementIterator();
 		while(iter.hasNext()){

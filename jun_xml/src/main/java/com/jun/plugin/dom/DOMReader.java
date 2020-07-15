@@ -1,4 +1,4 @@
-package com.jun.xml;
+package com.jun.plugin.dom;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,7 +13,7 @@ public class DOMReader {
 		DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder=factory.newDocumentBuilder();
-			Document doc=builder.parse("src/main/java/user.xml");
+			Document doc=builder.parse("src/main/resources/dom.xml");
 			NodeList nodeList=doc.getElementsByTagName("user");
 			Element e=(Element)nodeList.item(0);
 			System.out.println("name"+e.getElementsByTagName("name").item(0).getFirstChild().getNodeValue());

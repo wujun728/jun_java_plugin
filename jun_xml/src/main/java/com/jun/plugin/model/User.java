@@ -1,4 +1,4 @@
-package com.jun.model;
+package com.jun.plugin.model;
 
 public class User {
 

@@ -1,4 +1,4 @@
-package com.jun.xml;
+package com.jun.plugin.jdom;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class JDOMReader {
 
 	public static void main(String[] args) throws Exception{
 		SAXBuilder builder=new SAXBuilder();
-		Document document=builder.build("src/main/java/users.xml");
+		Document document=builder.build("src/main/resources/dom4j.xml");
 		Element users=document.getRootElement();
 		List userList=users.getChildren("user");
 		for(int i=0;i<userList.size();i++){

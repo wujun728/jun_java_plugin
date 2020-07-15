@@ -1,4 +1,4 @@
-package com.jun.xml;
+package com.jun.plugin.sax;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.jun.model.User;
+import com.jun.plugin.model.User;
 
 public class SAXReader2 extends DefaultHandler{
 	private List<User> users=null;
@@ -67,7 +67,7 @@ public class SAXReader2 extends DefaultHandler{
 		SAXParserFactory factory=SAXParserFactory.newInstance();
 		SAXParser parser=factory.newSAXParser();
 		SAXReader2 sax02=new SAXReader2();
-		parser.parse("src/main/java/users.xml", sax02);
+		parser.parse("src/main/resources/dom4j.xml", sax02);
 		for(User s:sax02.users){
 			System.out.println(s);
 		}

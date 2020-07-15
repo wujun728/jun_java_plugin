@@ -1,4 +1,4 @@
-package com.jun.xml;
+package com.jun.plugin.sax;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -16,7 +16,7 @@ public class SAXReader extends DefaultHandler{
 
 	@Override
 	public void endDocument() throws SAXException {
-		System.out.print("\n ɨ���ĵ�����");
+		System.out.print("\n end  ...");
 	}
 
 	@Override
@@ -49,6 +49,6 @@ public class SAXReader extends DefaultHandler{
 	public static void main(String[] args) throws Exception{
 		SAXParserFactory factory=SAXParserFactory.newInstance();
 		SAXParser parser=factory.newSAXParser();
-		parser.parse("src/main/java/user.xml", new SAXReader());
+		parser.parse("src/main/resources/dom.xml", new SAXReader());
 	}
 }
