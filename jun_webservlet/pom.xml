@@ -18,9 +18,9 @@
 
 	<dependencies>
  		<dependency>
-			<groupId>com.jun.base</groupId>
+			<groupId>com.jun.plugin</groupId>
 		  	<artifactId>jun_utils</artifactId>
-		  	<version>0.0.1-SNAPSHOT</version>
+		  	<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
