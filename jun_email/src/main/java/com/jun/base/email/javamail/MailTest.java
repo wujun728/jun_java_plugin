@@ -18,7 +18,7 @@ public class MailTest {
 		// 139邮箱 13077403326@139.com
 
 		String userName = "jsjs9494@163.com"; // 用户邮箱地址
-		String password = "********"; // 密码或者授权码
+		String password = "password.jsjs"; // 密码或者授权码
 		String targetAddress = "245783660@qq.com"; // 接受者邮箱地址
 
 		// 设置邮件内容

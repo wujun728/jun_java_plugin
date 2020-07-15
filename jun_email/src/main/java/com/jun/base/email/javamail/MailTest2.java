@@ -39,7 +39,7 @@ public class MailTest2 {
             // Test Data  
             host = "smtp.163.com";  
             username = "jsjs9494@163.com";  
-            password = "password.jsjs";  
+            password = "      ";  
             from = "jsjs9494@163.com";  
             nick = "测试admin";  
             // nick + from 组成邮箱的发件人信息  

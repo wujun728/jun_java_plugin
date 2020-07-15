@@ -219,7 +219,4 @@ public static void main(String[] args) {
         }
     }
 ```
-
-## 源码
-
-码云路径：[https://gitee.com/lhblearn/ThreadPool](https://gitee.com/lhblearn/ThreadPool)
+ 

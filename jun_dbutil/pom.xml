@@ -8,7 +8,7 @@
 	<version>1.0</version>
   </parent>
   <groupId>com.jun.plugin</groupId>
-  <artifactId>jun_dbutil</artifactId>
+  <artifactId>jun_dbutils</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
@@ -23,7 +23,7 @@
   	<dependency>
 		<groupId>com.jun.base</groupId>
 		<artifactId>jun_datasource</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/commons-dbutils/commons-dbutils -->
 	<dependency>
