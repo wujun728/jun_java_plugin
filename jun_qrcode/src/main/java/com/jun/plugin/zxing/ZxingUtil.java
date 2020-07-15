@@ -52,7 +52,7 @@ public class ZxingUtil {
     
     
     public static void main(String[] args) throws Exception {  
-        String text = "ZXING CODEZXING CODEZXING CODEZXING CODEZXING CODE "; // 二维码内容  
+        String text = "http：//www.baidu.com/zhidao/help"; // 二维码内容  
         int width = 300; // 二维码图片宽度  
         int height = 300; // 二维码图片高度  
         String format = "gif";// 二维码的图片格式  
@@ -62,7 +62,7 @@ public class ZxingUtil {
           
         BitMatrix bitMatrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height, hints);  
         // 生成二维码  
-        File outputFile = new File("d:" + File.separator + "new.gif");  
+        File outputFile = new File("d:" + File.separator + "1234.jpg");  
         ZxingUtil.writeToFile(bitMatrix, format, outputFile);  
     }  
 }  

@@ -7,7 +7,6 @@
 	<artifactId>jun_plugin</artifactId>
 	<version>1.0</version>
   </parent>
-  <groupId>com.jun.plugin</groupId>
   <artifactId>jun_qrcode</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
@@ -32,11 +31,12 @@
 	    <version>3.4.0</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/QRCode/QRCode_swetake -->
-	<dependency>
-	    <groupId>QRCode</groupId>
-	    <artifactId>QRCode_swetake</artifactId>
-	    <version>3.0.0</version>
-	</dependency>
+<!-- <dependency> -->
+<!--     <groupId>QRCode</groupId> -->
+<!--     <artifactId>QRCode_swetake</artifactId> -->
+<!--     <version>3.0.0</version> -->
+<!-- </dependency> -->
+
 		
 	    
     <!-- 目标数据库，这里采用mysql -->
