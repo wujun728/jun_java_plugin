@@ -25,14 +25,13 @@
 		<module>jun_fileupload</module><!-- 文件上传下载 -->
 		<module>jun_freemarker</module><!-- freemarker模板引擎 -->
 		<module>jun_httpclient</module><!-- httpclient网络工具 -->
-		<module>jun_image</module><!-- 图片处理 -->
+<!-- 		<module>jun_image</module>图片处理 -->
 		<module>jun_jdbc</module><!-- jdbc处理工具 -->
 		<module>jun_jdk</module><!-- jdk深入 -->
 		<module>jun_json</module><!-- json工具 -->
-		<module>jun_jsonp</module><!-- jsonp跨域请求 html解析工具 -->
+<!-- 		<module>jun_jsonp</module>jsonp跨域请求 html解析工具 -->
 		<module>jun_jsoup</module><!-- jsoup html解析工具 -->
-		<module>jun_kaptcha</module><!-- 验证码工具 -->
-		<module>jun_log</module><!-- 日志工具 -->
+<!-- 		<module>jun_kaptcha</module>验证码工具 -->
 		<module>jun_poi</module><!-- 导入导出-->
 		<module>jun_qrcode</module><!-- 二维码-->
 		<module>jun_rpc</module><!-- RPC-->

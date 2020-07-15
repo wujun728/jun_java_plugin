@@ -1,6 +1,6 @@
 package com.jun.plugin.poi.learn.test;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 import com.jun.plugin.poi.learn.ExcelExportHelper;
 import com.jun.plugin.poi.learn.ExcelExportHelper.ExcelType;
@@ -8,7 +8,7 @@ import com.jun.plugin.poi.learn.ExcelExportHelper.ExcelType;
 
 public class ExcelExportUitlsTest {
 
-	@Test
+//	@Test
 	public void test2003() {
 		ExcelExportHelper excelExportHelper = new ExcelExportHelper();
 		
@@ -21,7 +21,7 @@ public class ExcelExportUitlsTest {
 		excelExportHelper.export("d:/test2003.xlsx");
 	}
 	
-	@Test
+//	@Test
 	public void test2007() {
 		ExcelExportHelper excelExportHelper = new ExcelExportHelper(ExcelType.XLSX);
 		
@@ -34,7 +34,7 @@ public class ExcelExportUitlsTest {
 		excelExportHelper.export("d:/test2007_2.xlsx");
 	}
 	
-	@Test
+//	@Test
 	public void test2007_2() {
 		ExcelExportHelper excelExportHelper = new ExcelExportHelper("d:/test2007_2.xlsx");
 		
@@ -47,7 +47,7 @@ public class ExcelExportUitlsTest {
 		excelExportHelper.export("d:/test2007_2_1.xlsx");
 	}
 	
-	@Test
+//	@Test
 	public void testCellStyles() {
 		ExcelExportHelper excelExportHelper = new ExcelExportHelper();
 		

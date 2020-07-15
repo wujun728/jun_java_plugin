@@ -20,7 +20,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.junit.Test;
+//import org.junit.Test;
 
 import com.jun.base.datasource.DataSourceUtil;
 
@@ -135,7 +135,7 @@ public class TestPoi {
 		wb.write(new FileOutputStream("D:/poi.xls"));
 	}
 	
-	@Test
+//	@Test
 	public void createXls() throws Exception{
 		//声明一个工作薄
 		HSSFWorkbook wb = new HSSFWorkbook();
@@ -154,7 +154,7 @@ public class TestPoi {
 	    fileOut.close();
 	}
 	
-	@Test
+//	@Test
 	public void export() throws Exception{
 		//声明需要导出的数据库
 		String dbName = "focus";

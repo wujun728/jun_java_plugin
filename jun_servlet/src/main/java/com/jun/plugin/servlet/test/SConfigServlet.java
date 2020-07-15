@@ -1,4 +1,4 @@
-package com.itheima;
+package com.jun.plugin.servlet.test;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -14,10 +14,10 @@ public class SConfigServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ServletConfig config = this.getServletConfig();
-		//--获取当前Servlet 在web.xml中配置的名称
+		//--锟斤拷取锟斤拷前Servlet 锟斤拷web.xml锟斤拷锟斤拷锟矫碉拷锟斤拷锟斤拷
 //		String sName = config.getServletName();
 //		System.out.println(sName);
-		//--获取当前Servlet中配置的初始化参数
+		//--锟斤拷取锟斤拷前Servlet锟斤拷锟斤拷锟矫的筹拷始锟斤拷锟斤拷锟斤拷
 //		String value = config.getInitParameter("name2");
 //		System.out.println(value);
 		
@@ -27,7 +27,7 @@ public class SConfigServlet extends HttpServlet {
 //			String value = config.getInitParameter(name);
 //			System.out.println(name+":"+value);
 //		}
-		//--获取ServletContext对象
+		//--锟斤拷取ServletContext锟斤拷锟斤拷
 		ServletContext context = config.getServletContext();
 		this.getServletContext();
 	}
