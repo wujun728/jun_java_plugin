@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title onclick="">example</title>
+</head>
+<body>
+<input type="text" id="name">
+<input type="text" id="value">
+<br><br>
+<button onclick="testExecute('get','http://localhost:8080/get')">testGet</button>
+<button onclick="testExecute('put','http://localhost:8080/put')">testPut</button>
+<button onclick="testExecute('post','http://localhost:8080/post')">testPost</button>
+<button onclick="testExecute('delete','http://localhost:8080/delete')">testDelete</button>
+<br><br>
+<button onclick="testGet()">testGet</button>
+<button onclick="testPut()">testPut</button>
+<button onclick="testPost()">testPost</button>
+<button onclick="testDelete()">testDelete</button>
+
+<br><br>
+<button onclick="dataFormat()">testDataFornatHandler</button>
+
+<br><br>
+<button onclick="testJson()">testResultAsJson</button>
+<button onclick="testOther()">testResultAsOther</button>
+<button onclick="testError()">testError</button>
+<script src="XhrRequest.js"></script>
+<script>
+
+  /**
+   * 通用方法请求方法
+   * @param method 请求的类型
+   * @param url 请求的URL
+   */
+  function testExecute(method, url) {
+    var name = document.getElementById('name').value;
+    var value = document.getElementById('value').value;
+    var data = {'name': name, 'value': value};
+    XhrRequest.execute({
+      'url': url,
+      'method': method,
+      'dataType': 'text',
+      'data': data,
+      'headers': {'x-token': 'token'},
+      'successHandler': function (res) {
+        console.log(res);
+      },
+      'errorHandler': function (err) {
+        console.log(err);
+      }
+    });
+  }
+
+  function testGet() {
+    XhrRequest.get('http://localhost:8080/getJson',function (res) {
+      console.log(res);
+    },function (xhr) {
+      console.log(xhr)
+    });
+  }
+
+  function testPost() {
+    var name = document.getElementById('name').value;
+    var value = document.getElementById('value').value;
+    var data = {'name': name, 'value': value};
+    XhrRequest.post('http://localhost:8080/post',data,function (res) {
+      console.log(res);
+    },function (xhr) {
+      console.log(xhr)
+    });
+  }
+
+  function testPut() {
+    var name = document.getElementById('name').value;
+    var value = document.getElementById('value').value;
+    var data = {'name': name, 'value': value};
+    XhrRequest.put('http://localhost:8080/put',data,function (res) {
+      console.log(res);
+    },function (xhr) {
+      console.log(xhr)
+    });
+  }
+
+  function testDelete() {
+    var name = document.getElementById('name').value;
+    var value = document.getElementById('value').value;
+    var data = {'name': name, 'value': value};
+    XhrRequest.deletes('http://localhost:8080/get',data,function (res) {
+      console.log(res);
+    },function (xhr) {
+      console.log(xhr)
+    });
+  }
+
+
+  /**
+   * 测试请求与响应结果格式化,
+   * 当处于IE8以下不支持JSON的浏览器就可以通过这两个方法格式化请求以做到兼容效果
+   */
+  function dataFormat() {
+    var name = document.getElementById('name').value;
+    var value = document.getElementById('value').value;
+    var data = {'name': name, 'value': value};
+    XhrRequest.execute({
+      'url': 'http://localhost:8080/post',
+      'method': 'post',
+      'data': data,
+      'successHandler': function (res) {
+        console.log(res);
+      },
+      'errorHandler': function (err) {
+        console.log(err);
+      },
+      'requestFormatHandler': function (_data) {
+        var array = new Array();
+        for (var key in _data) {
+          array.push("'" + key + "':" + "'" + _data[key] + "'")
+        }
+        var result = '{' + array.join(',') + '}'
+        console.log('request-format:' + result);
+        return result;
+      },
+      'resultFormatHandler': function (type, text) {
+        console.log('result-format:' + type + '-' + text);
+        return text;
+      }
+    });
+  }
+
+  /**
+   * 获取json
+   */
+  function testJson() {
+    var name = document.getElementById('name').value;
+    var value = document.getElementById('value').value;
+    var data = {'name': name, 'value': value};
+    XhrRequest.execute({
+      'url': 'http://localhost:8080/getJson',
+      'data': data,
+      'successHandler': function (res) {
+        console.log(res);
+      },
+      'errorHandler': function (err) {
+        console.log(err);
+      }
+    });
+
+
+  }
+
+  /**
+   * 测试其他
+   */
+  function testOther() {
+    var name = document.getElementById('name').value;
+    var value = document.getElementById('value').value;
+    var data = {'name': name, 'value': value};
+    XhrRequest.execute({
+      'url': 'http://localhost:8080/getXML',
+      'method': 'get',
+      'dataType': 'xml',
+      'data': data,
+      'successHandler': function (res) {
+        console.log(res);
+      },
+      'errorHandler': function (err) {
+        console.log(err);
+      }
+    });
+  }
+
+  /**
+   * 测试异常
+   */
+  function testError() {
+    XhrRequest.execute({
+      'url': 'http://localhost:8080/getss',
+      'method': 'get',
+      'successHandler': function (res) {
+        console.log(res);
+      },
+      'errorHandler': function (err) {
+        console.log(err);
+      }
+    });
+  }
+
+</script>
+</body>
+</html>
