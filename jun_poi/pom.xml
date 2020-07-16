@@ -24,11 +24,11 @@
 			<artifactId>jun_datasource</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.jun.plugin</groupId> 
 			<artifactId>jun_utils</artifactId>
 			<version>1.0</version>
-		</dependency>
+		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
 		    <groupId>com.google.guava</groupId>
@@ -50,6 +50,17 @@
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-scratchpad</artifactId>
 			<version>3.14</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
 		</dependency>
 		
 		<!-- servlet -->
