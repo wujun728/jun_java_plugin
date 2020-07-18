@@ -1,0 +1,103 @@
+<#include "/macro.include"/>
+<#assign className = table.className>   
+<#assign classNameFirstLower = table.classNameFirstLower>   
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<#assign idJavaType = table.idColumn.javaType>
+<#macro mapperEl value>${r"#{"}${value}}</#macro>
+<#macro namespace>${basepackage}.${persistence}</#macro>
+
+<mapper namespace="${basepackage}.${persistence}.mapper.${className}Mapper">
+	<resultMap id="rm" type="${basepackage}.${persistence}.beans.${className}">
+		<#list table.columns as column>
+		<result property="${column.columnNameFirstLower}" jdbcType="${column.jdbcType}" column="${column.sqlName}"/>
+		</#list>
+	</resultMap>
+	<sql id="Base_Column_List">
+		<#list table.columns as _column>
+		${_column.sqlName}<#if _column_has_next>,</#if>
+		</#list>
+	</sql>
+	<select id="load" parameterType="${idJavaType}" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM ${table.sqlName} 
+		WHERE 
+			<#list table.compositeIdColumns as column>
+			${column.sqlName} = <@mapperEl 'id'/> <#if column_has_next> AND </#if>
+			</#list>	
+	</select>
+	<!-- 查询所有的ID -->
+	<select id="findAllIds" resultType="${idJavaType}">
+		SELECT ${table.idColumn.sqlName} FROM ${table.sqlName}
+	</select>
+
+	<!-- 按Id删除 -->
+	<delete id="delete" parameterType="${idJavaType}">
+		DELETE FROM ${table.sqlName} WHERE
+		<#list table.compositeIdColumns as column>
+		${column.sqlName} = <@mapperEl 'id'/> <#if column_has_next> AND </#if>
+		</#list>
+	</delete>
+	 <!-- 插入 -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="${table.idColumn.columnNameFirstLower}">
+		INSERT INTO ${table.sqlName} (
+		<#list table.columns as column>
+			${column.sqlName}<#if column_has_next>,</#if>
+		</#list>
+		) VALUES (
+		<#list table.columns as column>
+			<@mapperEl column.columnNameFirstLower/><#if column_has_next>,</#if>
+		</#list>		
+		)
+	</insert>
+	
+	<select id="countAll" resultType="java.lang.Integer">
+		SELECT count(${table.idColumn.sqlName}) FROM ${table.sqlName}	
+	</select>
+	
+	<select id="findAll" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM ${table.sqlName}
+	</select>
+	
+	<!-- 更新 -->
+	<update id="updateSelective" parameterType="${basepackage}.${persistence}.beans.${className}">
+		UPDATE ${table.sqlName} 
+			<set>
+				<#list table.notPkColumns as column>
+				<if test="${column.columnNameFirstLower}!=null">
+				${column.sqlName} = <@mapperEl column.columnNameFirstLower/><#if column_has_next>,</#if>
+				</if>
+				</#list>
+			</set>
+		WHERE 
+			<#list table.compositeIdColumns as column>
+			${column.sqlName} = <@mapperEl column.columnNameFirstLower/><#if column_has_next> AND </#if>
+			</#list>			
+	</update>
+	
+	<update id="update" parameterType="${basepackage}.${persistence}.beans.${className}">
+		UPDATE ${table.sqlName} SET
+			<#list table.notPkColumns as column>
+			${column.sqlName} = <@mapperEl column.columnNameFirstLower/><#if column_has_next>,</#if>
+			</#list>
+		WHERE 
+			<#list table.compositeIdColumns as column>
+			${column.sqlName} = <@mapperEl column.columnNameFirstLower/> <#if column_has_next> AND </#if>
+			</#list>			
+	</update>
+	
+	<#list table.columns as column>
+	<#if (column.unique && !column.pk)>
+	<select id="findBy${column.columnName}" parameterType="${column.javaType}"
+		resultMap="rm">
+		select 
+			<include refid="Base_Column_List" />
+		from ${table.sqlName} where ${column.sqlName} = <@mapperEl column.columnNameFirstLower/>
+	</select>
+	</#if>
+	</#list>
+</mapper>
+
