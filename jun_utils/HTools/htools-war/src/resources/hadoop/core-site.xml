@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+	<property>
+		<name>hadoop.tmp.dir</name>
+		<value>/home/hadoop/tmp</value>
+	</property>
+	
+	<property>
+		<name>fs.default.name</name>
+		<value>hdfs://192.168.16.130:9000</value>
+	</property>
+	
+	<property> 
+		<name>fs.checkpoint.period</name> 
+		<value>3600</value> 
+	</property> 
+
+	<property> 
+		<name>fs.checkpoint.size</name> 
+		<value>67108864</value> 
+	</property>
+	
+</configuration>

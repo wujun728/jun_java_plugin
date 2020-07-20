@@ -1,0 +1,90 @@
+package com.jun.plugin.core.utils.db.ds.jndi;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import javax.sql.DataSource;
+
+import com.jun.plugin.core.utils.db.DbRuntimeException;
+import com.jun.plugin.core.utils.db.DbUtil;
+import com.jun.plugin.core.utils.db.ds.DSFactory;
+import com.jun.plugin.core.utils.setting.Setting;
+import com.jun.plugin.core.utils.util.StrUtil;
+
+/**
+ * JNDI数据源工厂类<br>
+ * Setting配置样例：<br>
+ * ---------------------<br>
+ * [group]<br>
+ * jndi = jdbc/TestDB<br>
+ * ---------------------<br>
+ * 
+ * @author Looly
+ *
+ */
+public class JndiDSFactory extends DSFactory {
+	
+	private Setting setting;
+	/** 数据源池 */
+	private Map<String, DataSource> dsMap;
+	
+	public JndiDSFactory() {
+		this(null);
+	}
+	
+	public JndiDSFactory(Setting setting) {
+		super("JNDI Datasource");
+		if(null == setting){
+			setting = new Setting(DEFAULT_DB_SETTING_PATH, true);
+		}
+		this.setting = setting;
+		this.dsMap = new ConcurrentHashMap<>();
+	}
+
+	@Override
+	public DataSource getDataSource(String group) {
+		if (group == null) {
+			group = StrUtil.EMPTY;
+		}
+		
+		// 如果已经存在已有数据源（连接池）直接返回
+		final DataSource existedDataSource = dsMap.get(group);
+		if (existedDataSource != null) {
+			return existedDataSource;
+		}
+
+		final DataSource ds = createDataSource(group);
+		// 添加到数据源池中，以备下次使用
+		dsMap.put(group, ds);
+		return ds;
+	}
+
+	@Override
+	public void close(String group) {
+		//JNDI Datasource not support destroy method
+	}
+
+	@Override
+	public void destroy() {
+		//JNDI Datasource not support destroy method
+	}
+
+	/**
+	 * 创建数据源
+	 * @param group JNDI名
+	 * @return 数据源 {@link DataSource}
+	 */
+	private DataSource createDataSource(String group){
+		if (group == null) {
+			group = StrUtil.EMPTY;
+		}
+		
+		String jndiName = setting.getByGroup("jndi", group);
+		if(StrUtil.isEmpty(jndiName)){
+			throw new DbRuntimeException("No setting name [jndi] for group [{}]", group);
+		}
+		DataSource ds = DbUtil.getJndiDs(jndiName);
+		
+		return ds;
+	}
+}

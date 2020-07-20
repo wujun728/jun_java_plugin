@@ -1,0 +1,33 @@
+package klg.db.utils;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import klg.common.utils.MyPrinter;
+import klg.db.info.model.Column;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
+import org.junit.Test;
+
+public class DbUtilsTest {
+	public static void main(String[] args) throws SQLException {
+		toMap();
+	}
+	
+	
+	public static void toMap() throws SQLException{
+		String sql="select * from information_schema.`COLUMNS` WHERE TABLE_SCHEMA=\"testtt\"";
+		 List<Map<String, Object>>  map=new QueryRunner().query(DBAccess.getConn(),sql, new MapListHandler());
+		MyPrinter.print(map);
+	}
+	
+	@Test
+	public void toBean() throws SQLException{
+		String sql="select * from information_schema.`COLUMNS` WHERE TABLE_SCHEMA=\"test\" and TABLE_NAME=\"user\"  and COLUMN_NAME=\"userName\"";
+		 List<Column>  beanList=new QueryRunner().query(DBAccess.getConn(),sql, new BeanListHandler(Column.class));
+		MyPrinter.print(beanList);		
+	}
+}

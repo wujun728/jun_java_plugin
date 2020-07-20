@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/klg_test/!svn/ver/16/Xutils/src/main/java/klg/db/utils
+END
+DbUtilsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/klg_test/!svn/ver/9/Xutils/src/main/java/klg/db/utils/DbUtilsTest.java
+END
+DBmeta.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/klg_test/!svn/ver/9/Xutils/src/main/java/klg/db/utils/DBmeta.java
+END
+DbAlter.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/klg_test/!svn/ver/16/Xutils/src/main/java/klg/db/utils/DbAlter.java
+END
+jdbc.properties
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/klg_test/!svn/ver/20/Xutils/src/main/java/klg/db/utils/jdbc.properties
+END
+DBAccess.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/klg_test/!svn/ver/9/Xutils/src/main/java/klg/db/utils/DBAccess.java
+END
