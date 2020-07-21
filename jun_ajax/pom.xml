@@ -37,11 +37,12 @@
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
-<dependency>
-    <groupId>net.sf.json-lib</groupId>
-    <artifactId>json-lib</artifactId>
-    <version>2.4</version>
-</dependency>
+		<dependency>
+		    <groupId>com.hynnet</groupId>
+		    <artifactId>json-lib</artifactId>
+		    <version>2.4</version>
+		</dependency>
+
         
 
         <!--用于与slf4j保持桥接，slf4j到log4j2的适配层 -->

@@ -36,6 +36,11 @@ public class GetAjaxInfoServlet extends HttpServlet{
 		}else if("jsonNested".equals(action)){
 			this.getJsonNested(request, response);
 		}
+		if("checkUserName".equals(action)){
+			this.checkUserName(request, response);
+		}else if("ejld".equals(action)){
+			this.ejld(request, response);
+		}
 		
 	}
 
@@ -122,32 +127,7 @@ public class GetAjaxInfoServlet extends HttpServlet{
 	}
 	
 	
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		this.doPost(request, response);
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		response.setContentType("text/html;charset=utf-8");
-		String action=request.getParameter("action");
-		if("checkUserName".equals(action)){
-			this.checkUserName(request, response);
-		}else if("ejld".equals(action)){
-			this.ejld(request, response);
-		}
-		
-	}
-
-	
+	 
 	private void checkUserName(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
