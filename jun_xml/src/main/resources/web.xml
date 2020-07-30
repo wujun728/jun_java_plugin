@@ -1,0 +1,14 @@
+<web-app>
+    <servlet>
+        <servlet-name>action</servlet-name>
+        <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+        <init-param>
+            <param-name>application</param-name>
+            <param-value>org.apache.struts.example.ApplicationResources</param-value>
+        </init-param>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>/WEB-INF/struts-config.xml</param-value>
+        </init-param>
+    </servlet>
+</web-app>

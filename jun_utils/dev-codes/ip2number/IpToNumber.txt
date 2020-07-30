@@ -1,0 +1,36 @@
+    /**
+     * IP转换成数字
+     * @param ipAddress 192.168.1.1
+     * @return 返回数字
+     */
+    public static long ipToLong(String ipAddress) {
+
+        long result = 0;
+
+        String[] ipAddressInArray = ipAddress.split("\\.");
+
+        for (int i = 3; i >= 0; i--) {
+
+            long ip = Long.parseLong(ipAddressInArray[3 - i]);
+
+            // left shifting 24,16,8,0 and bitwise OR
+
+            // 1. 192 << 24
+            // 1. 168 << 16
+            // 1. 1 << 8
+            // 1. 2 << 0
+            result |= ip << (i * 8);
+
+        }
+        return result;
+    }
+
+    /**
+     * 数字转成ip
+     * @param ip 
+     * @return 返回ip,如:192.168.1.1
+     */
+    public static String longToIp(long ip) {
+
+        return ((ip >> 24) & 0xFF) + "." + ((ip >> 16) & 0xFF) + "." + ((ip >> 8) & 0xFF) + "." + (ip & 0xFF);
+    }
