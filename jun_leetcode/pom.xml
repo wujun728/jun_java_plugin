@@ -6,8 +6,7 @@
 	<artifactId>jun_plugin</artifactId>
 	<version>1.0</version>
   </parent>
-  <groupId>com.jun.plugin</groupId> 
-	<artifactId>jun_leetcode</artifactId>
+  <artifactId>jun_leetcode</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
    
