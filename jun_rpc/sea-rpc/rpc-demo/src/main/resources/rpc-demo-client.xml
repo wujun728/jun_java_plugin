@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:sea-rpc="http://com.github.ghsea/schema/rpc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+http://com.github.ghsea/schema/rpc
+http://com.github.ghsea/schema/rpc/sea-rpc.xsd">
+
+	<sea-rpc:client id="helloClient" targetService="hello"
+		targetInterface="com.github.ghsea.rpc.demo.server.service.Hello" poolName="groupon-data"
+		groupName="mobile" version="1.0-ghsea" timeoutMs="20000" retryTimes="5"
+		callType="SYNC" />
+
+</beans>

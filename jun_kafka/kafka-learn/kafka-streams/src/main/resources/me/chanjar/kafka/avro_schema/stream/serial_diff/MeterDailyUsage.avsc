@@ -1,0 +1,11 @@
+{"namespace": "me.chanjar.kafka.stream.model",
+ "type": "record",
+ "name": "MeterDailyUsage",
+ "fields": [
+     {"name": "meterId", "type": "string"},
+     {"name": "bucket", "type": "string"},
+     {"name": "prevNumber", "type": ["null", "double"]},
+     {"name": "currNumber", "type": "double"},
+     {"name": "usage", "type": ["null", "double"]}
+ ]
+}

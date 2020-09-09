@@ -1,0 +1,201 @@
+def profile = System.getProperty("profile") ?: "dev"
+println(profile)
+configure(allprojects) { project ->
+	group = PROJ_GROUP
+	version = PROJ_VERSION
+
+	apply plugin: "java"
+	apply plugin: "maven-publish"
+	apply plugin: "eclipse"
+	apply plugin: "idea"
+	apply plugin: "signing"
+	apply plugin: "maven"
+	eclipse {
+		jdt {
+			//if you want to alter the java versions (by default they are configured with gradle java plugin settings):
+			sourceCompatibility = SOURCE_COMPILER_LEVEL
+			targetCompatibility = TARGET_COMPILER_LEVEL
+			//javaRuntimeName = "../../org.eclipse.jdt.launching.JRE_CONTAINER"
+
+		}
+	}
+
+	tasks.withType(JavaCompile) {
+
+		sourceCompatibility = SOURCE_COMPILER_LEVEL
+		targetCompatibility = TARGET_COMPILER_LEVEL
+		options.encoding = 'UTF-8'
+	}
+
+	tasks.withType(Javadoc) {
+		sourceCompatibility = JAVADOC_SOURCE_LEVEL
+		targetCompatibility = JAVADOC_COMPILER_LEVEL
+		options.encoding = 'UTF-8'
+		// disable the crazy super-strict doclint tool in Java 8
+        // noinspection SpellCheckingInspection
+		if (JavaVersion.current().isJava8Compatible()) {
+			options.addStringOption('Xdoclint:none', '-quiet')
+		}
+	}
+
+	task sourcesJar(type: Jar) {
+		classifier = "sources"
+		from sourceSets.main.allJava
+	}
+
+	task javaDocJar(type: Jar, dependsOn: javadoc) {
+		classifier = "javadoc"
+		from javadoc.destinationDir
+	}
+	artifacts {
+		archives sourcesJar, javaDocJar
+	}
+
+	jar {
+		manifest {
+			attributes (
+					'Implementation': version,
+					'Specification-Version': version,
+					'Implementation-Vendor': 'bbossgroups',
+					'Implementation-ProductID': project.name,
+					'Compile-Timestamp': new Date().format('yyyy-MM-dd HH:mm:ss'),
+					'Compile-User': DEVELOPER_NAME
+			)
+		}
+	}
+
+
+
+
+	repositories {
+		mavenLocal()
+		 maven {
+	        url "http://maven.aliyun.com/nexus/content/groups/public"
+	    }
+		 maven {
+	        url "https://artifacts.elastic.co/maven"
+	    } 
+		mavenCentral()
+
+	}
+	if(project.getProperty('skipTest').equals("true"))
+	{
+		compileTestJava.enabled=false
+		processTestResources.enabled=false
+		testClasses.enabled = false
+		test.enabled = false
+	}
+
+	sourceSets {
+		main {
+			java {
+				srcDir 'src/main/java'
+
+			}
+			if(profile == "dev") {
+				resources {
+					srcDir 'src/main/resources'
+					srcDir 'src/main/java' exclude '**/*.java'
+				}
+			}
+			else{
+				resources {
+					srcDir 'src/main/resources' exclude '**/*'
+					srcDir 'src/main/java' exclude '**/*.java'
+				}
+			}
+
+
+//			compileClasspath = configurations.compile + configurations.runtime
+		}
+		test {
+			java {
+				srcDir 'src/test/java'
+
+			}
+			resources {
+				srcDir 'src/test/resources'
+				srcDir 'src/test/java'  exclude '**/*.java'
+			}
+
+		}
+
+	}
+
+
+	configurations {
+		//屏蔽log4j
+	    compile.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+	}
+	dependencies {
+		testCompile 'junit:junit:4.12'
+		//采用log4j2记录日志
+		compile(
+			[group: 'org.apache.logging.log4j', name: 'log4j-api', version: "${log4j2_version}", transitive: false],
+	        [group: 'org.apache.logging.log4j', name: 'log4j-core', version: "${log4j2_version}", transitive: false],        
+			[group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: "${log4j2_version}", transitive: true],
+				[group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: "${log4j2_version}", transitive: true]
+		)
+		compile(
+				[group: 'com.bbossgroups.plugins', name: 'bboss-elasticsearch-rest-kafka1x', version: "${bboss_es_version}", transitive: true],
+		)
+//		compile 'org.apache-extras.beanshell:bsh:2.0b6'
+		compile 'org.xerial:sqlite-jdbc:3.23.1'
+
+		compile (
+				[group: 'com.bbossgroups', name: 'bboss-rt', version: "${bboss_version}", transitive: false],
+		)
+
+	}
+
+
+
+	task copyJarFiles(type: Sync,dependsOn:'jar'){		
+		from configurations.compile
+		from jar.outputs
+		exclude { details -> details.file.name.startsWith('bboss-rt')  }
+		into 'build/dist/lib'
+
+	}
+
+	task copyRTJarFiles(type: Copy,dependsOn:'copyJarFiles'){
+
+		from configurations.compile
+		include { details -> details.file.name.startsWith('bboss-rt')  }
+		 into 'build/dist'
+	     rename ("bboss-rt-${bboss_version}.jar", "${project.name}-${bboss_version}.jar")
+	}
+	task copyToolFiles(type: Copy ,dependsOn:'copyRTJarFiles')  {
+		
+		from ('runfiles')
+			{
+				expand(
+						bboss_version:"${bboss_version}",
+                        project:"${project.name}"
+						)
+
+			}		
+		filteringCharset = 'UTF-8'
+		into 'build/dist/'
+
+
+
+	}
+	task copyResourcesfiles(type: Sync )  {
+		from fileTree(dir: 'src/main/resources')
+		filteringCharset = 'UTF-8'
+		into 'build/dist/resources'
+	}
+
+	task releaseVersion(type: Zip,dependsOn:['copyToolFiles','copyResourcesfiles']) {
+
+		//appendix = 'wrapper'
+		classifier = 'released'
+		from 'build/dist/'
+
+	}
+
+}
+
+
+

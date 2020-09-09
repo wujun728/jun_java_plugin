@@ -1,0 +1,9 @@
+{"namespace": "me.chanjar.kafka.stream.model",
+ "type": "record",
+ "name": "MeterNumber",
+ "fields": [
+     {"name": "meterId", "type": "string"},
+     {"name": "number", "type": "double"},
+     {"name": "timestamp", "type": "long"}
+ ]
+}

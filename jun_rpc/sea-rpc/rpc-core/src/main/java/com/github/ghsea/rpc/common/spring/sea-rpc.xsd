@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://com.github.ghsea/schema/rpc"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:beans="http://www.springframework.org/schema/beans"
+	targetNamespace="http://com.github.ghsea/schema/rpc"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xsd:import namespace="http://www.springframework.org/schema/beans" />
+
+	<xsd:element name="provider">
+		<xsd:complexType>
+			<xsd:attribute name="id" use="required" type="xsd:string" />
+			<xsd:attribute name="interface" use="required" type="xsd:string" />
+			<xsd:attribute name="pool" use="required" type="xsd:string" />
+			<xsd:attribute name="ref" use="required" type="xsd:string" />
+			<xsd:attribute name="version" use="required" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="client">
+		<xsd:complexType>
+			<xsd:attribute name="id" use="required" type="xsd:string" />
+			<xsd:attribute name="poolName" use="required" type="xsd:string" />
+			<xsd:attribute name="retryTimes" use="required" type="xsd:integer" />
+			<xsd:attribute name="callType" use="required" >
+				<xsd:simpleType >
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="SYNC" />
+						<xsd:enumeration value="ASYNC" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name="groupName" use="required" type="xsd:string" />
+			<xsd:attribute name="targetInterface" use="required"
+				type="xsd:string" />
+			<xsd:attribute name="targetService" use="required"
+				type="xsd:string" />
+			<xsd:attribute name="timeoutMs" use="required" type="xsd:integer" />
+			<xsd:attribute name="version" use="required" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>
+

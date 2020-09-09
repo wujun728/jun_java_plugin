@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<properties>
+    <description>
+        <![CDATA[
+            配置数据导入sql
+         ]]>
+    </description>
+
+    <!--
+    插入数据sql,建表sql如下：
+    CREATE TABLE
+    bboss.mongodb2db
+    (
+        id VARCHAR(100),
+        userAccount VARCHAR(200),
+        testVO VARCHAR(2000),
+        privateAttr VARCHAR(2000),
+        referip VARCHAR(1000),
+        requesturi VARCHAR(1000),
+        secure INT(4),
+        sessionid VARCHAR(100),
+        host VARCHAR(100),
+        httpOnly INT(4),
+        lastAccessedHostIP VARCHAR(1000),
+        lastAccessedTime DECIMAL(20),
+        lastAccessedUrl VARCHAR(1000),
+        local VARCHAR(1000),
+        maxInactiveInterval DECIMAL(20),
+        appKey VARCHAR(100),
+        creationTime DECIMAL(20),
+        extfiled INT(10),
+        extfiled2 INT(10),
+        PRIMARY KEY (id)
+    )
+    ENGINE=InnoDB DEFAULT CHARSET=utf8
+    -->
+    <property name="insertSQLnew">
+        <![CDATA[INSERT INTO mongodb2db (id, userAccount, testVO, privateAttr, referip, requesturi, secure, sessionid,
+        host, httpOnly, lastAccessedHostIP, lastAccessedTime, lastAccessedUrl, local, maxInactiveInterval, appKey, creationTime, extfiled,extfiled2)
+        VALUES (#[_id], #[userAccount], #[testVO], #[privateAttr], #[referip], #[requesturi], #[secure], #[sessionid],
+        #[host], #[httpOnly], #[lastAccessedHostIP], #[lastAccessedTime], #[lastAccessedUrl], #[local], #[maxInactiveInterval], #[appKey], #[creationTime], #[extfiled],#[extfiled2]);
+
+]]>
+    </property>
+</properties>

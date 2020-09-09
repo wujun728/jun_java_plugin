@@ -1,0 +1,70 @@
+<properties>
+	<property name="productorPropes">
+		<propes>
+			
+			<property name="value.serializer" value="org.apache.kafka.common.serialization.StringSerializer">
+				<description> <![CDATA[ 指定序列化处理类，默认为kafka.serializer.DefaultEncoder,即byte[] ]]></description>
+			</property>
+			<property name="key.serializer" value="org.apache.kafka.common.serialization.LongSerializer">
+				<description> <![CDATA[ 指定序列化处理类，默认为kafka.serializer.DefaultEncoder,即byte[] ]]></description>
+			</property>
+					
+			<property name="compression.type" value="gzip">
+				<description> <![CDATA[ 是否压缩，默认0表示不压缩，1表示用gzip压缩，2表示用snappy压缩。压缩后消息中会有头来指明消息压缩类型，故在消费者端消息解压是透明的无需指定]]></description>
+			</property>
+			<property name="bootstrap.servers" value="10.19.85.65:19092">
+				<description> <![CDATA[ 指定kafka节点列表，用于获取metadata(元数据)，不必全部指定]]></description>
+			</property>
+			<property name="batch.size" value="10000">
+				<description> <![CDATA[ 批处理消息大小：
+				the producer will attempt to batch records together into fewer requests whenever multiple records are being sent to the same partition. This helps performance on both the client and the server. This configuration controls the default batch size in bytes.
+No attempt will be made to batch records larger than this size.
+
+Requests sent to brokers will contain multiple batches, one for each partition with data available to be sent.
+
+A small batch size will make batching less common and may reduce throughput (a batch size of zero will disable batching entirely). A very large batch size may use memory a bit more wastefully as we will always allocate a buffer of the specified batch size in anticipation of additional records.
+				]]></description>
+			</property>
+
+			<property name="linger.ms" value="10000">
+				<description> <![CDATA[
+				 <p>
+ * The producer maintains buffers of unsent records for each partition. These buffers are of a size specified by
+ * the <code>batch.size</code> config. Making this larger can result in more batching, but requires more memory (since we will
+ * generally have one of these buffers for each active partition).
+ * <p>
+ * By default a buffer is available to send immediately even if there is additional unused space in the buffer. However if you
+ * want to reduce the number of requests you can set <code>linger.ms</code> to something greater than 0. This will
+ * instruct the producer to wait up to that number of milliseconds before sending a request in hope that more records will
+ * arrive to fill up the same batch. This is analogous to Nagle's algorithm in TCP. For example, in the code snippet above,
+ * likely all 100 records would be sent in a single request since we set our linger time to 1 millisecond. However this setting
+ * would add 1 millisecond of latency to our request waiting for more records to arrive if we didn't fill up the buffer. Note that
+ * records that arrive close together in time will generally batch together even with <code>linger.ms=0</code> so under heavy load
+ * batching will occur regardless of the linger configuration; however setting this to something larger than 0 can lead to fewer, more
+ * efficient requests when not under maximal load at the cost of a small amount of latency.
+ * <p>
+ * The <code>buffer.memory</code> controls the total amount of memory available to the producer for buffering. If records
+ * are sent faster than they can be transmitted to the server then this buffer space will be exhausted. When the buffer space is
+ * exhausted additional send calls will block. The threshold for time to block is determined by <code>max.block.ms</code> after which it throws
+ * a TimeoutException.
+ * <p>]]></description>
+			</property>
+			<property name="buffer.memory" value="10000">
+				<description> <![CDATA[ 批处理消息大小：
+				The <code>buffer.memory</code> controls the total amount of memory available to the producer for buffering. If records
+ * are sent faster than they can be transmitted to the server then this buffer space will be exhausted. When the buffer space is
+ * exhausted additional send calls will block. The threshold for time to block is determined by <code>max.block.ms</code> after which it throws
+ * a TimeoutException.]]></description>
+			</property>
+
+		</propes>
+	</property>
+	<property name="workerThreadSize" value="100"/>
+	<property name="workerThreadQueueSize" value="10240"/>
+	<property name="kafkaproductor" 
+		class="org.frameworkset.plugin.kafka.KafkaProductor"
+		init-method="init"
+		f:sendDatatoKafka="true"
+		f:productorPropes="attr:productorPropes"/>
+		
+</properties>

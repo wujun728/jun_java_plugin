@@ -1,0 +1,31 @@
+{
+  "name": "aliyun-oss-upload-stream-examples-client-to-server",
+  "version": "1.1.0",
+  "description": "aliyun-oss-upload-stream examples client-to-server",
+  "main": "./app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/berwin/aliyun-oss-upload-stream.git"
+  },
+  "keywords": [
+    "aliyun",
+    "oss",
+    "upload",
+    "pipe",
+    "stream"
+  ],
+  "author": "Berwin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/berwin/aliyun-oss-upload-stream/issues"
+  },
+  "homepage": "https://github.com/berwin/aliyun-oss-upload-stream#readme",
+  "dependencies": {
+    "aliyun-sdk": "^1.9.1",
+    "busboy": "^0.2.13"
+  }
+}

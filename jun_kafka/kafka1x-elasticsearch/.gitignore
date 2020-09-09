@@ -1,0 +1,17 @@
+/bin/
+/build/
+/.classpath
+/.gradle/
+/.idea/
+/.svn/
+/.project
+/.settings/
+/elktask.iml
+/out/
+
+es.log
+*.bak
+/.gradle/
+/gradle/
+/out/
+/build/
