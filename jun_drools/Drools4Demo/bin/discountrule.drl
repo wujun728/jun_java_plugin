@@ -1,0 +1,43 @@
+package demo.order  
+  
+#list any import classes here.  
+import demo.order.Order;  
+
+#declare any global variables here 
+rule "First0 Rule"  
+    when  
+        #conditions  
+        order:Order(sumprice>0,sumprice<=30);
+    then   
+        #actions  
+        order.setDiscountPercent(99);  
+end  
+
+rule "First Rule"  
+    when  
+        #conditions  
+        order:Order(sumprice>30,sumprice<=50);  
+    then   
+        #actions  
+        order.setDiscountPercent(98);  
+end  
+  
+rule "Second Rule"  
+    #include attributes such as "salience" here...  
+    when  
+        #conditions  
+        order:Order(sumprice>50,sumprice<=100);  
+    then   
+        #actions  
+        order.setDiscountPercent(95);  
+end  
+  
+rule "third Rule"  
+    #include attributes such as "salience" here...  
+    when  
+        #conditions  
+        order:Order(sumprice>100);         
+    then   
+        #actions          
+        order.setDiscountPercent(90);  
+end  

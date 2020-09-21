@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="logHome" value="@LOG.HOME@"/>
+    <property name="appName" value="@APP.NAME@"/>
+    
+    <!-- 控制台输出日志 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>[${appName}]%d{MM-dd HH:mm:ss} [%thread] %-5level %logger{36}:%L - %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <!-- 慢日志  -->
+    <appender name="FILE_SLOW"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logHome}/${appName}_slow.log</file>
+        <encoder>
+            <pattern>${appName} %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36}:%L - %msg%n
+            </pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${logHome}/${appName}_slow.%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <maxHistory>15</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+            <CleanHistoryOnStart>true</CleanHistoryOnStart>
+        </rollingPolicy>
+    </appender>
+    
+    <!-- 异常日志   -->
+    <appender name="FILE_EXCEPTION" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logHome}/${appName}_exception.log</file>
+        <encoder>
+            <pattern>${appName} %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36}:%L - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${logHome}/${appName}_exception.%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <maxHistory>15</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+            <CleanHistoryOnStart>true</CleanHistoryOnStart>
+        </rollingPolicy>
+    </appender>
+    
+    <!-- task小程序日志   -->
+    <appender name="FILE_TASK" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logHome}/${appName}_task.log</file>
+        <encoder>
+            <pattern>${appName} %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36}:%L - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${logHome}/${appName}_task.%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <maxHistory>15</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+            <CleanHistoryOnStart>true</CleanHistoryOnStart>
+        </rollingPolicy>
+    </appender>
+
+	<!-- 总日志 -->
+    <appender name="FILE_ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logHome}/${appName}_file.log</file>
+        <encoder>
+            <pattern>${appName} %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36}:%L - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${logHome}/${appName}_all.%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <maxHistory>15</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+            <CleanHistoryOnStart>true</CleanHistoryOnStart>
+        </rollingPolicy>
+    </appender>
+    
+	<logger name="org.springframework" level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="slowLog" level="DEBUG" additivity="false">
+        <appender-ref ref="FILE_SLOW"/>
+    </logger>
+    
+    <logger name="exceptionLog" level="ERROR" additivity="false">
+        <appender-ref ref="FILE_EXCEPTION"/>
+    </logger>
+
+	<!-- 控制台打印SQL语句 -->
+    <logger name="com.chentongwei.dao" level="DEBUG">
+    	<appender-ref ref="STDOUT"/> 
+    </logger>
+    
+    <logger name="com.chentongwei.task" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE_TASK"/>
+    </logger>
+    
+    <logger name="com.chentongwei.service" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE_ALL"/>
+    </logger>
+    
+    <logger name="com.chentongwei.controller" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    
+	<!-- Application启动时打印SpringBoot启动成功这句话会执行这个root -->
+	<root level="INFO">
+		<appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE_ALL"/>
+	</root>
+</configuration>

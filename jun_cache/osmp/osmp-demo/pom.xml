@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.osmp.baseweb</groupId>
+		<artifactId>osmp-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>osmp-demo</artifactId>
+	<packaging>bundle</packaging>
+	<name>osmp-demo</name>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Export-Package></Export-Package>
+						<Import-Package>
+							org.springframework.aop,
+							org.springframework.aop.framework,
+							org.springframework.cglib,
+							org.springframework.cglib.proxy,
+							org.springframework.cglib.core,
+							org.springframework.cglib.reflect,
+							org.aopalliance.aop,
+							org.aopalliance.intercept,
+							*;resolution:=optional
+						</Import-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.osmp.baseweb</groupId>
+			<artifactId>osmp-intf-define</artifactId>
+			<version>${osmp.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.osmp.baseweb</groupId>
+			<artifactId>osmp-jdbc</artifactId>
+			<version>${osmp.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.osmp.baseweb</groupId>
+			<artifactId>osmp-cache-osgi</artifactId>
+			<version>${osmp.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-core</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+		</dependency>
+	</dependencies>
+</project>

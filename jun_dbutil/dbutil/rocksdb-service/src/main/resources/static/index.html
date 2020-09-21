@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="UTF-8" />
+    <title>RocksDb Service111</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+</head>
+<body>
+
+<a href="/rocksdb/status">
+mydb监控
+</a>
+
+<br/>
+
+<a href="http://172.16.16.79:9008/api/mydb/abc">
+    获取 key = abc 的数据
+</a>
+<br/>
+<a href="http://172.16.16.79:9008/api/mydb?pre=a">
+    获取 key 前缀 = a 的数据
+</a>
+
+<br/>
+put:curl -XPUT "http://172.16.16.79:9008/api/mydb/abc" -d '{"a"=12,"b"=c}'
+<br/>
+get:curl http://172.16.16.79:9008/api/mydb/abc
+<br/>
+del:curl -XDELETE "http://172.16.16.79:9008/api/mydb/abc"
+<br/>
+
+
+批量数据处理
+<br/>
+post: curl -XPOST "http://172.16.16.79:9008/api/mydb" -d  '{a:{"a":1},b:{b:1}}'
+<br/>
+get:  curl "http://172.16.16.79:9008/api/mydb?pre=a"  根据前缀查询 key
+
+</body>
+</html>

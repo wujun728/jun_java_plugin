@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+                        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+                        http://www.springframework.org/schema/mvc  
+                        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+    <!-- 这个配置用于junit测试.正式访问项目的时候，可以注释掉,因为springmvc已经配置好 -->
+    <!-- 加上这句配置，自动扫描，则测试的时候才输出aop日志信息， -->
+    <context:component-scan base-package="com.zb" />
+
+
+    <!-- 引入配置 -->
+    <import resource="classpath:/spring/spring-activemq-queue.xml" />
+    <import resource="classpath:/spring/spring-activemq-topic.xml" />
+    
+    <!-- 另外最好还要加入DefaultAnnotationHandlerMapping，不然会被 XML或其它的映射覆盖！ DefaultAnnotationHandlerMapping:决定使用哪一个handler来处理请求。 
+        AnnotationMethodHandlerAdapter：上一个类决定了handler，但没有具体到对应的方法上，这个类的作用是决定哪一个方法处理当前请求，并处理@RequestParam之类的注解，负责参数绑定。 
+        DefaultAnnotationHandlerMapping的作用： 将扫描当前所有已经注册的spring beans中的@requestmapping标注以找出url和 
+        handler method处理函数的关系并予以关联 -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+
+</beans>

@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="12306,12306抢票,抢票软件,云抢票,抢票平台,专业抢票,分流抢票,火车抢票,黄牛抢票软件,在线抢票,黄牛,12306验证码识别,12306接口,吾易抢票,心蓝抢票,斗鱼抢票">
+	<meta name="description" content="12306,12306抢票,抢票软件,云抢票,抢票平台,专业抢票,分流抢票,火车抢票,黄牛抢票软件,在线抢票,黄牛,12306验证码识别,12306接口,吾易抢票,心蓝抢票,斗鱼抢票">
+    <link rel="icon" href="#(ctx)/assets/img/favicon.ico" type="image/x-icon" />
+    <title>12306验证码识别接口</title>
+</head>
+<style>
+    #base {
+        border: 1px solid #ccc;
+        width: 297px;
+        height: 190px;
+        position: relative;
+        text-align: center;
+        line-height: 190px;
+    }
+    .donation .title{
+    	font-size: 30px;
+    }
+    .donation img{
+    	width: 300px;
+    	
+    }
+</style>
+<body style="margin:0px 10px;padding:0px">
+<div>
+     <form  enctype="text/plain" target="frm" id="request_form" action="https://check.huochepiao.360.cn/img_vcode" method="post">
+        <input type="hidden" id="json" name='' value='":""}'/>
+    </form> 
+    <input type="text" style="display: none;" id="check">
+    <ul>
+        <li><h1 style="color: red; ">免费识别12306验证码</h1></li>
+        <li><div id="base"><image id="img" src="#(ctx)/assets/img/loading.gif"/></div></li>
+        <li>
+            <div class="reg_btn">
+                <button id="btnGetImg" onClick="getImg();" type="button">刷新图片</button>
+                <button id="btnGetResult" onClick="getCheck();" type="button">识别图片</button>
+            </div>
+        </li>
+        <li><iframe id="frm" name="frm"></iframe></li>
+        
+        <li class="count"></li>
+        <li>直接识别地址（利用机器学习）：<a href="#(ctx)/12306">#(ctx)/12306</a></li>
+    </ul>
+    
+     
+    <hr>
+    
+     <div style="padding-top: 30px;">免责声明：
+
+<p>1. 本服务并不针对任何人,任何机构,任何网站。</p>
+
+<p>2. 本服务仅用于个人学习图像识别技术，图片打标签，文字识别研究等，请勿用于非法用途。</p>
+<p>若因使用本服务引起各类民事，刑事纠纷，属服务使用者的个人行为，与本服务作者无关。</p>
+
+<p>3. 从你开始使用本服务，默认接受使用条款.</p></div>
+     
+   
+   <div class="donation">
+  		<div class="title"> 如果帮到了您，请支持我！赞助将用于服务器费用</div>
+   		<img src="https://i.loli.net/2019/04/13/5cb1e8157c2e3.jpg" />
+   		<img src="https://i.loli.net/2019/04/13/5cb1e82666cf1.png" />
+   </div>
+    
+</div>
+
+
+<script type="text/javascript" src="https://s5.cnzz.com/z_stat.php?id=1276767139&web_id=1276767139"></script>
+<script type="text/javascript" src="https://cdn.jiedanba.cn/lib/jquery/1.8.3/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    getImg();
+    
+   
+});
+var base64;
+function getImg() {
+    $.ajax({
+        url: 'https://kyfw.12306.cn/passport/captcha/captcha-image64?login_site=E&module=login&rand=sjrand&'+Math.random(),
+        type: "get",
+        dataType: 'jsonp',
+        contentType: "application/json",
+        success: function (res) {
+            if(res.result_code) {
+                $("#img").attr("src","data:img/jpg;base64,"+res.image);
+                base64 = res.image;
+            }else{
+                alert(res.result_message);
+            }
+        }
+    });
+}
+
+function getCheck() {
+    $.ajax({
+        url: '#(ctx)/api/v2/getCheck',
+        data: JSON.stringify({base64:base64}),
+        type: "POST",
+        dataType: 'json',
+        contentType: "application/json",
+        success: function (res) {
+            if(res.success) {
+              
+                getCode(base64, res.data.check);
+            }else{
+                alert(res.msg);
+            }
+        }
+    });
+}
+
+function getCode(base64,check) {
+    var data = {
+        img_buf: base64,
+        type: 'D',
+        logon: 1,
+        check:check
+    };
+     document.getElementById("json").name=JSON.stringify(data).replace('}', ',"');
+    document.getElementById("request_form").submit(); 
+   
+   
+}
+
+
+</script>
+
+</body>
+</html>

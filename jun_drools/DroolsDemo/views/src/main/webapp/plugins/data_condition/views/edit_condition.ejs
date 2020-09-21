@@ -1,0 +1,103 @@
+<table class="width100" id="data_condition_edit">
+	<tr class="filterTypeTitle">
+ 	 	<td class="td-center"><label data-i18n="DEFECT.search_filter_name"></label></td>
+  		<td class="td-center"><label data-i18n="DEFECT.search_filter_condition"></label></td>
+  		<td class="td-center"><label data-i18n="DEFECT.search_filter_value"></label></td>
+  		<td class="td-center"><label data-i18n="DEFECT.search_filter_operate"></label></td>
+	</tr>
+	<%if (conditions.length==0){%>
+	<tr>
+ 	<td class="td-center">
+  	 	<select name="filterName" class="conditionfieldname dfinput">
+  	 	    <option data-i18n="common.choose" value="0"></option>
+   			<%for (var i=0;i<filterNames.length;i++){%>
+				<option value="<%=filterNames[i]%>" data-i18n="<%=tableName%>.<%=filterNames[i]%>"></option>  	   					
+   			<%}%> 
+ 		</select>
+  	</td>
+   	<td class="td-center">
+   	 	<select name="filterCondition" class="dfinput">
+	   		<option data-i18n="common.choose" value="0"></option>
+  		</select>
+   	</td>
+    <td class="td-center">
+   		<input type="text" name="filterValue" class="dfinput" />
+   	</td>
+   	<td class="td-center">
+   	 	<input type="hidden" name="filterJoin" value="AND"/>
+   	 	<div class="addconditionand addItem" data-i18n="[title]common.and"></div>
+   	 	<div class="addconditionor addItem" data-i18n="[title]common.or"></div>
+   	</td>
+</tr>
+	<%}for (var n=0;n<conditions.length;n++){%>
+	<%if (n>0){ if(conditions[n].condition.filterJoin=="AND"){%>
+		<tr class="filterTypeTitle">
+			<td class="td-center" colspan="4" data-i18n="DEFECT.and"></td>
+		</tr>
+	<%}else{%>
+		<tr class="filterTypeTitle">
+			<td class="td-center" colspan="4" data-i18n="DEFECT.or"></td>
+		</tr>
+	<%}}%>
+    <tr>
+    	<td class="td-center">
+   	 		<select name="filterName" class="conditionfieldname dfinput">
+   	 		    <option data-i18n="common.choose" value="0"></option>
+   				<%for (var i=0;i<filterNames.length;i++){ %>
+				<option value="<%=filterNames[i]%>" data-i18n="<%=tableName%>.<%=filterNames[i]%>" 
+				<%=filterNames[i]==conditions[n].condition.filterName?selected='selected':""%>></option>  	   					
+   				<%}%> 
+			</select>
+   	 	</td>
+   	 	<td class="td-center">
+   	 		<select name="filterCondition" class="dfinput">
+   	 		    <option data-i18n="common.choose" value="0"></option>
+   				<%for (var i=0;i<conditions[n].filterConditions.length;i++){%>
+					<option value="<%=conditions[n].filterConditions[i]%>" 
+					data-i18n="select.filter_conditions.<%=conditions[n].filterConditions[i]%>" 
+					<%=conditions[n].condition.filterCondition==conditions[n].filterConditions[i]?selected='selected':""%>></option>  	   					
+   				<%}%> 
+			</select>
+   	 	</td>
+   	 	<td class="td-center">
+   	 		<%if(conditions[n].flag==0){%>
+   	 			<input type="text" name="filterValue" class="dfinput" value="<%=conditions[n].condition.filterValue%>"/>
+ 	 		<%}%> 
+   	 		<%if(conditions[n].flag==1){%>
+   	 		<select name="filterValue" class="dfinput">
+   	 			<%for (var i=0;i<conditions[n].filterValues.length;i++){%>
+					<option value="<%=conditions[n].filterValues[i]%>" 
+					<%=conditions[n].condition.filterValue==conditions[n].filterValues[i]?selected='selected':""%>>
+					<%=conditions[n].filterValues[i]%></option>				    	 			
+    	 		<%}%>
+   	 		</select>
+			<%}%>
+			<%if(conditions[n].flag==2){%>
+				<div name="filterValue" class="filterValues_date"></div>						
+			<%}%> 
+			<%if(conditions[n].flag==3){%>
+				<input type="hidden" name="filterValue" value="<%=conditions[n].condition.filterValue%>"/>
+				<input type="text" class="dfinput filterValue_user" value="<%=conditions[n].filterValues[0]%>"/>
+			<%}%> 
+			<%if(conditions[n].flag==4){%>
+   	 		<select name="filterValue" class="dfinput">
+   	 			<%for (var i=0;i<conditions[n].filterValues.length;i++){%>
+					<option value="<%=conditions[n].filterValues[i]%>" 
+					data-i18n="<%=tableName%>.<%=tableName%>.<%=conditions[n].condition.filterName%>.<%=conditions[n].filterValues[i]%>" 
+					<%=conditions[n].condition.filterValue==conditions[n].filterValues[i]?selected='selected':""%>>
+					</option>				    	 			
+    	 		<%}%>
+   	 		</select>
+			<%}%>
+   	 	</td>
+   	 	<td class="td-center">
+   	 		<input type="hidden" name="filterJoin" value="<%=conditions[n].condition.filterJoin%>"/>
+   	 		<div class="addconditionand addItem" data-i18n="[title]common.and"></div>
+   	 		<div class="addconditionor addItem" data-i18n="[title]common.or"></div>
+   	 		<%if (n>0){%>
+   	 		<div class="addconditionremove removeItem" data-i18n="[title]common.remove"></div>
+   	 		<%}%>
+   	 	</td>
+   	 </tr>
+   	 <%}%>
+</table>

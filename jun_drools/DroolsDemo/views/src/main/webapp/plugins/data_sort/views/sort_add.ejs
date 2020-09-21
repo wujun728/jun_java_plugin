@@ -1,0 +1,19 @@
+<tr>
+	<td class="td-center">
+		<select name="sortName" class="dfinput">
+  				<%for (var i=0;i<sortCols.length;i++){%>
+				<option value="<%=sortCols[i]%>" data-i18n="<%=tableName%>.<%=sortCols[i]%>"></option>	
+			<%}%>
+		</select>
+	</td>
+	<td class="td-center">
+		<select name="sortWay" class="dfinput">
+			<option value="ASC" data-i18n="select.sort_way.asc"></option>
+			<option value="DESC" data-i18n="select.sort_way.desc"></option>
+		</select>
+	</td>
+	<td class="td-center">
+		<div class="addsortway addItem" data-i18n="[title]common.and"></div>
+		<div class="removesortway removeItem" data-i18n="[title]common.remove"></div>
+	</td>
+</tr>

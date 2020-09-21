@@ -1,0 +1,38 @@
+<%var body = function(_fieldList, _checkable, _radioable, _editable, _rows){
+	var _fieldList = _fieldList;
+	for(var n=0;n<_rows;n++){%>
+<tr>
+<%if (_checkable && n==0){%>
+<th><input type="checkbox"></th>
+<%}
+if (_radioable && n==0){%>
+<th></th>
+<%}%>
+<%for (var i=1;i<_fieldList.length;i++){
+	if("fieldList" ==_fieldList[i].fieldName ){
+		_fieldList = _fieldList[i].fieldList;
+		continue;
+	}
+      var hideColumn="";
+      var colspan = _fieldList[i].colspan?_fieldList[i].colspan:1;
+      var rowspan =  _fieldList[i].rowspan?_fieldList[i].rowspan:1;
+      if (_fieldList[i].hide){
+         hideColumn="hide";
+      }   %>
+    <th class="<%=hideColumn%>" colspan="<%=colspan%>" rowspan="<%=rowspan%>">
+    <label id="header_<%=_fieldList[i].fieldName%>" value="<%=$.t(_fieldList[i].fieldTitle)%>"><%=$.t(_fieldList[i].fieldTitle)%></label>  
+    <%if (_fieldList[i].sortType){%>
+        &nbsp;&nbsp;<input data-type="sort" type="button"  class="table-btn table-btn-sorting table-btn-nth"  sortname="<%=_fieldList[i].sortName?_fieldList[i].sortName:_fieldList[i].fieldName%>" sorttype="<%=_fieldList[i].sortType%>" />
+    <%}%>
+    <%if (_fieldList[i].filterList){%>
+        &nbsp;&nbsp;<input  data-type="filter"  type="button"  class="table-btn table-btn-filter table-btn-nth"  id="filter_<%=_fieldList[i].fieldName%>"  data-value="<%=_fieldList[i].fieldName%>" />
+        <div id="filter<%=_fieldList[i].fieldName%>_content" class="hide"></div> 
+    <%}%>
+    </th>
+<%}%>
+<%if (_editable && n==0){%>
+<th class="columns-th" data-i18n="common.operation"  rowspan="<%=_rows%>"</th>
+<%}%>
+</tr>
+<%}%>
+<%}; body(fieldList, checkable, radioable, editable, rows);%>

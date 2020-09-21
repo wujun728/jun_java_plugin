@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chentongwei.dao.common.IFeedbackDAO">
+
+	<sql id="list_column">
+		id,
+		title,
+		content,
+		creator,
+		ip,
+		status,
+		create_time AS createTime
+	</sql>
+
+	<select id="list" resultType="feedbackVO">
+		SELECT
+			<include refid="list_column" />
+		FROM
+			dt_feedback
+	</select>
+
+	<insert id="save" parameterType="feedbackIO" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO 
+			dt_feedback
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != title and '' != title">
+				title,
+			</if>
+			<if test="null != content and '' != content">
+				content,
+			</if>
+			<if test="null != creatorId">
+				creator_id,
+			</if>
+			<if test="null != creator and '' != creator">
+				creator,
+			</if>
+			<if test="null != ip and '' != ip">
+				ip,
+			</if>
+		</trim>
+		
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			<if test="null != title and '' != title">
+				#{title},
+			</if>
+			<if test="null != content and '' != content">
+				#{content},
+			</if>
+			<if test="null != creatorId">
+				#{creatorId},
+			</if>
+			<if test="null != creator and '' != creator">
+				#{creator},
+			</if>
+			<if test="null != ip and '' != ip">
+				#{ip},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="editStatus" parameterType="statusIO">
+		UPDATE
+			dt_feedback
+		SET
+			status = #{status}
+		WHERE
+			id = #{id}
+	</update>
+</mapper>

@@ -1,0 +1,72 @@
+#wpomain {
+  height: auto !important;
+  height: 1%;
+  overflow: hidden;
+  max-width: 980px;
+}
+
+#wpomenu, #wpomenu ul, #wpomenu ul li, #wpomenu ul li a { background: none !important; }
+#wpomenu ul li, #wpomenu ul li a { float: none; display: block; }
+#wpomenu ul li.current a { color: #C4542A; }
+
+#wpomenu { 
+  margin: 5px 0;
+  float: left;
+  width: 160px;
+  height: 0;
+}
+
+#wpomenu a { text-decoration: none; }
+
+#wpomenu div { 
+  padding: 0;
+}
+
+#wpocontent {
+  margin-left: 170px;
+  min-height: 200px;
+  height: auto !important;
+  height: 200px;
+}
+
+#wpocontent .wrap { margin-top: 0; }
+#wpocontent .wrap h2 { margin-top: 0; margin-bottom: 10px; }
+#wpocontent .wrap .error, #wpocontent .wrap .updated { margin-bottom: 10px; }
+
+#setup_steps {  
+  border: none;
+  padding: 0;
+}
+
+#setup_steps li {
+  background-color: #EAF3FA;
+  padding: 5px 20px;
+  margin-bottom: 20px;
+}
+
+.command {
+  background: white;
+}
+
+div#setup_buttons { padding-top: 10px; }
+
+#edit_campaign #edit_buttons { border-top: none; padding-top: 0; }
+#edit_buttons a { font-size: 11px; color: #2583AD; }
+#edit_buttons input { padding-top: 1px; padding-bottom: 1px; }
+#edit_tabs a { text-decoration: none; }
+
+#logs_pages { padding-top: 5px; }
+#wpocontent .wrap #clean_logs { float: right; border-top: none; margin-top: 0; padding-top: 0; }
+
+#options li, #edit_sections div.section div.checkbox, #edit_sections div.section div.text, #edit_sections div.section div.inlinetext, #edit_sections div.section div.radio, #edit_sections div.section div.longtext, #edit_sections div.section div.multipletext, #edit_sections div.section div.btn, #export_campaigns, #importoptions { border-bottom: none; background-color: #EAF3FA; padding: 10px 15px; margin-bottom: 10px; }
+
+#export_campaigns, #importoptions { border-top: none; }
+#edit_sections div.section div.section_warn { float: none; width: auto; margin-bottom: 10px; }
+#section_categories #categories .input_text { display: inline; width: 130px; }
+#edit_sections .section { background: none; padding-left: 0; }
+.import_submit .button { margin-top: 0; }
+#edit_submit { margin-bottom: 0; }
+
+#edit_words .word { width: 320px; }
+
+tr.highlight { background: #ffffe0; }

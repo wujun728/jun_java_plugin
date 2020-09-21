@@ -1,0 +1,51 @@
+<tr class="filterTypeTitle">
+	<td class="td-center" colspan="4"><%=filterTypeTitle%></td>
+</tr>
+<tr>
+ 	<td class="td-center">
+  	 	<select name="filterName" class="conditionfieldname dfinput">
+   			<%for (var i=0;i<filterNames.length;i++){%>
+				<option value="<%=filterNames[i]%>" data-i18n="<%=tableName%>.<%=filterNames[i]%>"></option>  	   					
+   			<%}%> 
+ 		</select>
+  	</td>
+   	<td class="td-center">
+   	 	<select name="filterCondition" class="dfinput">
+	   		<%for (var i=0;i<filterConditions.length;i++){%>
+			<option value="<%=filterConditions[i]%>" data-i18n="<%=tableName%>.<%=filterConditions[i]%>"></option>  	   					
+	   		<%}%> 
+  		</select>
+   	</td>
+    <td class="td-center">
+   		<%if(result==0){%>
+ 	 		<input type="text" name="filterValue" class="dfinput" />
+	 		<%}%> 
+  	 		<%if(result==1){%>
+  	 		<select name="filterValue" class="dfinput">
+  	 			<%for (var i=0;i<filterValues.length;i++){%>
+				<option value="<%=filterValues[i]%>"><%=filterValues[i]%></option>				    	 			
+   	 		<%}%>
+  	 		</select>
+		<%}%>
+		<%if(result==2){%>
+			<div name="filterValue" class="filterValue_date"></div>						
+		<%}%> 
+		<%if(result==3){%>
+			<input type="hidden" name="filterValue" value="<%=user.id%>"/>
+			<input type="text" class="dfinput filterValue_user" value="<%=user.name%>(<%=user.username%>)"/>
+		<%}%>  
+		<%if(result==4){%>
+  	 		<select name="filterValue" class="dfinput">
+ 	 		<%for (var i=0;i<filterValues.length;i++){%>
+			<option value="<%=filterValues[i]%>" data-i18n="<%=tableName.tableName.fieldName.filterValues[i]%>"></option>				    	 			
+  	 		<%}%>
+ 	 	</select>
+ 	 	<%}%> 
+   	</td>
+   	<td class="td-center">
+   	 	<input type="hidden" name="filterJoin" value="<%=filtertype%>"/>
+   	 	<div class="addconditionand addItem" data-i18n="[title]common.and"></div>
+   	 	<div class="addconditionor addItem" data-i18n="[title]common.or"></div>
+   	 	<div class="addconditionremove removeItem" data-i18n="[title]common.remove"></div>
+   	</td>
+</tr>

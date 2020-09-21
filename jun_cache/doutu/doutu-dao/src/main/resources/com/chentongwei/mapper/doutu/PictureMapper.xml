@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chentongwei.dao.doutu.IPictureDAO">
+
+	<sql id="base_column">
+		id, 
+		url, 
+		catalog_id AS catalogId 
+	</sql>
+	
+	<sql id="list_column">
+		picture.id,
+		picture.url,
+		picture.width,
+		picture.height,
+		picture.catalog_id AS catalogId,
+		COUNT(upvote.picture_id) AS count
+	</sql>
+
+	<sql id="list_picture_admin_column">
+		picture.id AS pictureId,
+		picture.url AS pictureUrl,
+		picture.create_time AS createTime,
+		picture.is_delete AS isDelete,
+		catalog.name AS catalogName,
+		user.login_name AS loginName
+	</sql>
+
+	<sql id="list_picture_admin_clause">
+		<!-- 两个是一对，少传一个就视为条件失效 -->
+		<if test="'' != beginDate and null != beginDate and '' != endDate and null != endDate">
+			AND picture.create_time BETWEEN #{beginDate} AND #{endDate}
+		</if>
+		<if test="null != catalogId and -1 != catalogId">
+			AND picture.catalog_id = #{catalogId}
+		</if>
+		<if test="null != creator and '' != creator">
+			AND user.login_name LIKE CONCAT('%','${creator}','%')
+		</if>
+		<if test="null != deleteStatus and -1 != deleteStatus">
+			AND picture.is_delete = #{deleteStatus}
+		</if>
+	</sql>
+	
+	<select id="getByID" parameterType="long" resultType="pictureDetailVO">
+		SELECT
+			<include refid="base_column" />
+		FROM
+			dt_picture
+		WHERE
+			is_delete = 1
+		AND 
+			id = #{id}
+	</select>
+	
+	<select id="getByIDForCache" parameterType="long" resultType="pictureListVO">
+		SELECT
+			<include refid="list_column" />
+		FROM
+			dt_picture picture
+		LEFT JOIN dt_report report ON report.picture_id = picture.id
+		LEFT JOIN dt_picture_upvote upvote ON picture.id = upvote.picture_id
+		WHERE
+			picture.is_delete = 1
+		AND 
+			report.id = #{reportId}
+	</select>
+
+	<select id="existsHash" parameterType="String" resultType="int">
+		SELECT 
+			COUNT(1) 
+		FROM 
+			dt_picture 
+		WHERE 
+			hash = #{hex}
+	</select>
+
+	<select id="listByCatalogId" parameterType="integer" resultType="pictureListVO">
+		SELECT
+			<include refid="list_column" />
+		FROM
+			dt_picture picture
+		LEFT JOIN dt_picture_upvote upvote ON picture.id = upvote.picture_id
+		WHERE
+			picture.is_delete = 1
+		AND 
+			picture.catalog_id = #{catalogId}
+		GROUP BY
+			picture.id
+		ORDER BY
+			picture.id DESC
+	</select>
+
+	<select id="listPictureAdmin" parameterType="pictureListAdminIO" resultType="pictureListAdminVO">
+		SELECT
+			<include refid="list_picture_admin_column" />
+		FROM
+			dt_picture picture
+		LEFT JOIN dt_catalog catalog ON picture.catalog_id = catalog.id
+		LEFT JOIN dt_user user ON picture.catalog_id = user.id
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<include refid="list_picture_admin_clause" />
+		</trim>
+		ORDER BY
+			picture.id DESC
+	</select>
+
+	<select id="list" resultType="pictureListVO">
+		SELECT
+			<include refid="list_column" />
+		FROM
+			dt_picture picture
+		LEFT JOIN dt_picture_upvote upvote ON picture.id = upvote.picture_id
+		WHERE
+			picture.is_delete = 1
+		GROUP BY
+			picture.id
+		ORDER BY
+			picture.id DESC
+	</select>
+
+	<insert id="save" parameterType="pictureIO" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+			dt_picture
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != catalogId">
+				catalog_id,
+			</if>
+			<if test="null != hash and '' != hash">
+				hash,
+			</if>
+			<if test="null != url and '' != url">
+				url,
+			</if>
+			<if test="null != creatorId">
+				creator_id,
+			</if>
+			<if test="null != status">
+				status,
+			</if>
+		</trim>
+		
+		<trim prefix=" VALUES(" suffix=")" suffixOverrides=",">
+			<if test="null != catalogId">
+				#{catalogId},
+			</if>
+			<if test="null != hash and '' != hash">
+				#{hash},
+			</if>
+			<if test="null != url and '' != url">
+				#{url},
+			</if>
+			<if test="null != creatorId">
+				#{creatorId},
+			</if>
+			<if test="null != status">
+				#{status}
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update">
+		UPDATE dt_picture SET width = #{width}, height = #{height} WHERE id = #{id}
+	</update>
+
+	<update id="obsolete">
+		UPDATE dt_picture SET is_delete = #{status} WHERE id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="long">
+		DELETE FROM dt_picture WHERE id = #{id}
+	</delete>
+</mapper>

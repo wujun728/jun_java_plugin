@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--
+IRedisClusterSlaveDao mybatis
+
+@author liubing
+@date 2017/01/11 12:18
+@version v1.0.0
+-->
+<mapper namespace="com.opensource.nredis.proxy.monitor.dao.IRedisClusterSlaveDao" >
+    <resultMap id="RedisClusterSlaveMap" type="com.opensource.nredis.proxy.monitor.model.RedisClusterSlave">
+        <result property="id" column="id"/>
+        <result property="redisServerHost" column="redis_server_host"/>
+        <result property="redisServerPort" column="redis_server_port"/>
+        <result property="runnerStatus" column="runner_status"/>
+        <result property="redisServerStatus" column="redis_server_status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="redisMasterId" column="redis_master_id"/>
+        <result property="oprateStatus" column="oprate_status"/>
+        <result property="version" column="version"/>
+        <result property="weight" column="weight"/>
+        <result property="path" column="path"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.opensource.nredis.proxy.monitor.model.RedisClusterSlave">
+            <selectKey keyProperty="id" resultType="Integer" order="AFTER">
+                SELECT LAST_INSERT_ID() AS id
+            </selectKey>
+        INSERT INTO redis_cluster_slave (
+        <trim suffixOverrides=",">
+                id,
+                redis_server_host,
+                redis_server_port,
+                runner_status,
+                redis_server_status,
+                create_time,
+                redis_master_id,
+                oprate_status,
+                version,
+                weight,
+                path,
+        </trim>
+        )VALUES(
+        <trim suffixOverrides=",">
+                    #{id},
+                    #{redisServerHost},
+                    #{redisServerPort},
+                    #{runnerStatus},
+                    #{redisServerStatus},
+                    #{createTime},
+                    #{redisMasterId},
+                    #{oprateStatus},
+                    #{version},
+                    #{weight},
+                    #{path},
+        </trim>
+        )
+    </insert>
+
+    <update id="updateById" parameterType="com.opensource.nredis.proxy.monitor.model.RedisClusterSlave">
+        update redis_cluster_slave
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null">id = #{id},</if>
+            <if test="redisServerHost != null">redis_server_host = #{redisServerHost},</if>
+            <if test="redisServerPort != null">redis_server_port = #{redisServerPort},</if>
+            <if test="runnerStatus != null">runner_status = #{runnerStatus},</if>
+            <if test="redisServerStatus != null">redis_server_status = #{redisServerStatus},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="redisMasterId != null">redis_master_id = #{redisMasterId},</if>
+            <if test="oprateStatus != null">oprate_status = #{oprateStatus},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="weight != null">weight = #{weight},</if>
+            <if test="path != null">path = #{path},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="int">
+        delete from redis_cluster_slave where id = #{id}
+    </delete>
+
+    <select id="getById" parameterType="int" resultMap="RedisClusterSlaveMap">
+        select * from redis_cluster_slave where id = #{id}
+    </select>
+
+    <select id="getListByCriteria" resultMap="RedisClusterSlaveMap" parameterType="com.opensource.nredis.proxy.monitor.model.RedisClusterSlave">
+        select * from redis_cluster_slave
+        <include refid="select_where_clause"/>
+        order by id desc
+    </select>
+
+    <sql id="select_where_clause">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null"> AND id = #{id} </if>
+            <if test="redisServerHost != null"> AND redis_server_host = #{redisServerHost} </if>
+            <if test="redisServerPort != null"> AND redis_server_port = #{redisServerPort} </if>
+            <if test="runnerStatus != null"> AND runner_status = #{runnerStatus} </if>
+            <if test="redisServerStatus != null"> AND redis_server_status = #{redisServerStatus} </if>
+            <if test="createTime != null"> AND create_time = #{createTime} </if>
+            <if test="redisMasterId != null"> AND redis_master_id = #{redisMasterId} </if>
+            <if test="oprateStatus != null"> AND oprate_status = #{oprateStatus} </if>
+            <if test="version != null"> AND version = #{version} </if>
+            <if test="weight != null">weight = #{weight}</if>
+            <if test="path != null">path = #{path}</if>
+        </trim>
+    </sql>
+    
+    <select id="queryPageList" resultMap="RedisClusterSlaveMap">
+        select * from redis_cluster_slave
+        <include refid="page_where_clause"/>
+        order by id desc
+        <if test="page!=null">
+            LIMIT #{page.pageSize} OFFSET #{page.begin}
+        </if>
+    </select>
+
+    <select id="count" resultType="int" parameterType="com.opensource.nredis.proxy.monitor.model.RedisClusterSlave">
+        select count(*) from redis_cluster_slave
+        <include refid="page_where_clause"/>
+    </select>
+
+    <sql id="page_where_clause">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="queryObject.id != null"> AND id = #{queryObject.id} </if>
+            <if test="queryObject.redisServerHost != null"> AND redis_server_host = #{queryObject.redisServerHost} </if>
+            <if test="queryObject.redisServerPort != null"> AND redis_server_port = #{queryObject.redisServerPort} </if>
+            <if test="queryObject.runnerStatus != null"> AND runner_status = #{queryObject.runnerStatus} </if>
+            <if test="queryObject.redisServerStatus != null"> AND redis_server_status = #{queryObject.redisServerStatus} </if>
+            <if test="queryObject.createTime != null"> AND create_time = #{queryObject.createTime} </if>
+            <if test="queryObject.redisMasterId != null"> AND redis_master_id = #{queryObject.redisMasterId} </if>
+            <if test="queryObject.oprateStatus != null"> AND oprate_status = #{queryObject.oprateStatus} </if>
+            <if test="queryObject.version != null"> AND version = #{queryObject.version} </if> 
+            <if test="queryObject.weight != null">weight = #{queryObject.weight}</if>
+            <if test="queryObject.path != null">path = #{queryObject.path}</if>
+        </trim>
+    </sql>
+    <!--extension script-->
+    <select id="getListByMasterId" resultMap="RedisClusterSlaveMap" >
+	  select * from redis_cluster_slave where redis_server_status=2 and oprate_status=1 and runner_status=1 and redis_master_id=#{masterId}  order by id asc LIMIT 0 ,50
+	</select>
+	<!--乐观锁  -->
+	<update id="updateVersionByIdAndVersion" parameterType="com.opensource.nredis.proxy.monitor.model.RedisClusterMaster">	  
+		update redis_cluster_slave set version = #{version}+1,oprate_status = #{oprateStatus} where id = #{id} and version = #{version}
+	</update>
+    <!--extension script-->
+</mapper>

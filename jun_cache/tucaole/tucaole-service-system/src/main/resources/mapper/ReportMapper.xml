@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chentongwei.core.system.dao.IReportDAO">
+
+	<!-- 表名称 -->
+	<sql id="table_name">
+		sys_report
+	</sql>
+
+	<!-- 保存举报记录 -->
+	<insert id="save" parameterType="reportIO" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO 
+			<include refid="table_name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != userId">
+				user_id,
+			</if>
+			<if test="null != resourceId">
+				resource_id,
+			</if>
+			<if test="null != remark and '' != remark">
+				remark,
+			</if>
+			<if test="null != reportTypeId">
+				report_type_id,
+			</if>
+			<if test="null != type">
+				type,
+			</if>
+		</trim>
+		
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			<if test="null != userId">
+				#{userId},
+			</if>
+			<if test="null != resourceId">
+				#{resourceId},
+			</if>
+			<if test="null != remark and '' != remark">
+				#{remark},
+			</if>
+			<if test="null != reportTypeId">
+				#{reportTypeId},
+			</if>
+			<if test="null != type">
+				#{type},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 检查每个用户今天是否举报了某篇文章 -->
+	<select id="checkReportCurrentDate" resultType="integer">
+		SELECT
+			1
+		FROM
+			<include refid="table_name" />
+		WHERE resource_id = #{resourceId}
+		AND user_id = #{userId}
+		AND type = #{type}
+		AND DATE(create_time) = CURRENT_DATE();
+	</select>
+	
+</mapper>

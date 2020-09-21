@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:osgi="http://www.springframework.org/schema/osgi" xmlns:osgi-compendium="http://www.springframework.org/schema/osgi-compendium"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi-1.2.xsd
+		http://www.springframework.org/schema/osgi-compendium http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium-1.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<osgi-compendium:cm-properties id="osmp_config" persistent-id="com.osmp.config">
+	</osgi-compendium:cm-properties>
+	<context:property-placeholder properties-ref="osmp_config" />
+
+	<!-- Have not need publish to OSGi context -->
+	<bean id="springBeanUtils" class="com.osmp.tools.commons.SpringBeanUtils" />
+
+	<!-- Thread pool define -->
+	<bean id="executorWrapper" class="com.osmp.tools.commons.impl.ThreadPoolExecutorWrapper">
+		<property name="corePoolSize" value="${osmp.threadpool.size}" />
+	</bean>
+	<osgi:service interface="com.osmp.tools.commons.ExecutorWrapper"
+		ref="executorWrapper" />
+
+	<!-- CXF Webservice client factory -->
+	<bean id="webServiceFactory" class="com.osmp.tools.ws.impl.WebServiceFactoryImpl" />
+	<osgi:service interface="com.osmp.tools.ws.WebServiceFactory"
+		ref="webServiceFactory" />
+
+	<!-- SOAP client factory -->
+	<bean id="soapClientService" class="com.osmp.tools.commons.impl.SOAPClientServiceImpl" />
+	<osgi:service interface="com.osmp.tools.commons.SOAPClientService"
+		ref="soapClientService" />
+</beans>

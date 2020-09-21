@@ -1,0 +1,18 @@
+package org.drools.applicant
+
+import org.drools.applicant.Applicant;
+
+rule "r1"
+when
+    $a : Applicant( age < 18 )
+then
+    $a.setValid( false );
+    //System.out.println($a.getAge());
+end
+/*
+rule "r2"
+when
+    $a : Applicant( age >= 18 )
+then
+    $a.setValid( false );
+end*/

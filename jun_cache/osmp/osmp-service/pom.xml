@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.osmp.baseweb</groupId>
+		<artifactId>osmp-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>osmp-service</artifactId>
+	<packaging>bundle</packaging>
+	<name>osmp-service</name>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<DynamicImport-Package>*;resolution:=optional</DynamicImport-Package>
+						<Import-Package>com.osmp.intf.define.service,
+						    com.osmp.intf.define.service.adapter,
+							com.osmp.intf.define.model,
+							com.osmp.intf.define.factory,
+							com.osmp.jdbc.define,
+                            com.osmp.jdbc.support
+                        </Import-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.osmp.baseweb</groupId>
+			<artifactId>osmp-intf-define</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+            <groupId>com.osmp.baseweb</groupId>
+            <artifactId>osmp-jdbc</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+		<dependency>
+			<groupId>com.osmp.baseweb</groupId>
+			<artifactId>osmp-utils</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.compendium</artifactId>
+		</dependency>
+	</dependencies>
+</project>

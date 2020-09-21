@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chentongwei.dao.doutu.IPictureUpvoteDAO">
+
+	<sql id="list_column">
+		upvote.id,
+		upvote.picture_id AS pictureId,
+		upvote.user_id AS userId,
+		upvote.create_time AS createTime,
+		picture.url AS pictureUrl
+	</sql>
+
+	<select id="findByUserIdAndPicId" resultType="int">
+		SELECT 
+			COUNT(1) 
+		FROM 
+			dt_picture_upvote
+		WHERE  
+			user_id = #{userId}
+		AND picture_id = #{pictureId}
+	</select>
+
+	<select id="listByUserID" parameterType="pictureUpvoteListIO" resultType="pictureUpvoteListVO">
+		SELECT
+			<include refid="list_column" />
+		FROM
+			dt_picture_upvote upvote
+		LEFT JOIN dt_picture picture ON upvote.picture_id = picture.id
+		WHERE
+			upvote.user_id = #{userId}
+	</select>
+
+	<insert id="save" parameterType="pictureUpvoteIO" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO 
+			dt_picture_upvote
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != pictureId">
+				picture_id,
+			</if>
+			<if test="null != userId">
+				user_id
+			</if>
+		</trim>
+		
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			<if test="null != pictureId">
+				#{pictureId},
+			</if>
+			<if test="null != userId">
+				#{userId}
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deleteByPictureId" parameterType="long">
+		DELETE FROM dt_picture_upvote WHERE picture_id = #{pictureId}
+	</delete>
+</mapper>

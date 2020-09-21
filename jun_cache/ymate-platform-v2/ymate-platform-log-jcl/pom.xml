@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ymate-platform-parent</artifactId>
+        <groupId>net.ymate.platform</groupId>
+        <version>2</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>ymate-platform-log-jcl</artifactId>
+    <version>2.0.3</version>
+    <packaging>jar</packaging>
+
+    <name>ymate-platform-log-jcl</name>
+    <url>http://www.ymate.net/</url>
+    <description>YMP Log-JCL.</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.ymate.platform</groupId>
+            <artifactId>ymate-platform-log</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chentongwei.dao.doutu.IPictureTagDAO">
+
+	<sql id="picture_column">
+		picture_id AS pictureId, 
+		picture_url AS url,
+		width,
+		height
+	</sql>
+	
+	<sql id="tagName_column">
+		<if test="null != tagName and '' != tagName">
+			tag_name LIKE CONCAT('%', #{tagName} ,'%')
+		</if>
+	</sql>
+	
+	<select id="listByTagName" parameterType="pictureTagListIO" resultType="pictureTagListVO">
+		SELECT 
+			<include refid="picture_column" />
+		FROM 
+			dt_picture_tag 
+		<where>
+			<include refid="tagName_column" />
+		</where>
+		ORDER BY id DESC
+	</select>
+
+	<insert id="save" parameterType="pictureTagIO" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+			dt_picture_tag
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != pictureId">
+				picture_id,
+			</if>
+			<if test="null != tagName and '' != tagName">
+				tag_name,
+			</if>
+			<if test="null != pictureUrl and '' != pictureUrl">
+				picture_url,
+			</if>
+		</trim>
+
+		<trim prefix=" VALUES(" suffix=")" suffixOverrides=",">
+			<if test="null != pictureId">
+				#{pictureId},
+			</if>
+			<if test="null != tagName and '' != tagName">
+				#{tagName},
+			</if>
+			<if test="null != pictureUrl and '' != pictureUrl">
+				#{pictureUrl},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update">
+		UPDATE dt_picture_tag SET width = #{width}, height = #{height} WHERE picture_id = #{id}
+	</update>
+</mapper>

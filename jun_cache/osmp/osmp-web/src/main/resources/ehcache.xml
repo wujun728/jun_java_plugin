@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache updateCheck="false">
+
+	<diskStore path="java.io.tmpdir" />
+
+     <defaultCache 
+     		maxElementsInMemory="10000" 
+     		eternal="false"
+         	timeToIdleSeconds="2" 
+         	timeToLiveSeconds="5" 
+         	overflowToDisk="true"
+         	maxElementsOnDisk="10000000" 
+         	diskPersistent="false"
+         	diskExpiryThreadIntervalSeconds="120" 
+         	memoryStoreEvictionPolicy="LRU" 
+         	/>
+         	
+     <cache 
+     		name="dictCache" 
+     		maxElementsInMemory="10000"
+         	maxElementsOnDisk="1000" 
+         	eternal="false" 
+         	overflowToDisk="false"
+         	diskSpoolBufferSizeMB="20" 
+         	timeToLiveSeconds="1800"
+        	memoryStoreEvictionPolicy="LFU" 
+        	/>
+</ehcache>

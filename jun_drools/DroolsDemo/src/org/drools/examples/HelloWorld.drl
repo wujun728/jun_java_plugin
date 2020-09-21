@@ -1,0 +1,41 @@
+package org.drools.examples
+
+import org.drools.examples.HelloWorldExample.Message;
+import org.drools.examples.StringUtils;
+
+# 静态方法可以直接传入方法 用法: getIs()
+#import org.drools.examples.StringUtils.getIs;
+
+function String getHello(){
+	return StringUtils.getIs();
+}
+
+# 在规则中设置全局变量不合适，在代码中插入workingmemory，全局变量不用于传递数据，而用于提供和接受数据
+#global java.util.List myGlobalList;
+
+#rule 1
+rule "Hello World"
+    dialect "mvel"
+    no-loop true
+    salience 100
+when
+	#not
+	#exists
+   p : Message( status == 0, status < 1, message : message )
+then
+	// JAVA 语义代码
+     System.out.println("符合规则匹配:message="+ message ); 
+     modify ( p ) { message = "Goodbyte cruel world",
+                    status = Message.GOODBYE };
+    System.out.println(  getHello());
+     System.out.println( message );          
+end
+
+#rule 2
+rule "Good Bye"
+    dialect "java"
+when
+   Message( status == Message.GOODBYE, message : message )
+then 
+   System.out.println( message );   
+end

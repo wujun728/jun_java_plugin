@@ -1,0 +1,14 @@
+<%if (checkable || radioable){%>
+<col style="width: 36px">
+<%}%>
+<%if (editable){
+	for (i=0;i<colList.length-1;i++){%>
+    <col style="width: <%=colList[i]%>px">
+	<%}%>
+	<col style="width: <%=colList[colList.length-1]%>px">
+<%}%>
+<%if(!editable){
+	for(i=0;i<colList.length;i++){%>
+		<col style="width: <%=colList[i]%>px">
+	<%}%>
+<%}%>

@@ -1,0 +1,133 @@
+package demo;
+ 
+import demo.Machine;
+import demo.Test;
+import demo.TestDAO;
+import java.util.Calendar;
+import java.sql.Timestamp;
+global TestDAO testDAO;
+
+function void setTestsDueTime(Machine machine, int numberOfDays) {
+	setDueTime(machine, Calendar.DATE, numberOfDays);
+} 
+	
+function void setDueTime(Machine machine, int field, int amount) {
+	Calendar calendar = Calendar.getInstance();
+	calendar.setTime(machine.getCreationTs());
+	calendar.add(field, amount);
+	machine.setTestsDueTime(new Timestamp(calendar.getTimeInMillis()));
+}
+
+rule "Tests for type1 machine"
+salience 100
+when
+	machine : Machine( type == "Type1" )
+then	
+	Test test1 = testDAO.findByKey(Test.TEST1);
+	Test test2 = testDAO.findByKey(Test.TEST2);
+	Test test5 = testDAO.findByKey(Test.TEST5);
+	machine.getTests().add(test1);
+	machine.getTests().add(test2);
+	machine.getTests().add(test5);
+	insert( test1 );
+	insert( test2 );
+	insert( test5 );
+end
+
+rule "Tests for type2, DNS server machine"
+salience 100
+when
+	machine : Machine( type == "Type2", functions contains "DNS Server")
+then	
+	Test test5 = testDAO.findByKey(Test.TEST5);
+	Test test4 = testDAO.findByKey(Test.TEST4);
+	machine.getTests().add(test5);
+	machine.getTests().add(test4);
+	insert( test4 );
+	insert( test5 );		
+end
+
+rule "Tests for type2, DDNS server machine"
+salience 100
+when
+	machine : Machine( type == "Type2", functions contains "DDNS Server")
+then	
+	Test test2 = testDAO.findByKey(Test.TEST2);
+	Test test3 = testDAO.findByKey(Test.TEST3);
+	machine.getTests().add(test2);
+	machine.getTests().add(test3);
+	insert( test2 );
+	insert( test3 );		
+end
+
+rule "Tests for type2, Gateway machine"
+salience 100
+when
+	machine : Machine( type == "Type2", functions contains "Gateway")
+then		
+	Test test3 = testDAO.findByKey(Test.TEST3);
+	Test test4 = testDAO.findByKey(Test.TEST4);
+	machine.getTests().add(test3);
+	machine.getTests().add(test4);
+	insert( test3 );
+insert( test4 );		
+end
+
+rule "Tests for type2, Router machine"
+salience 100
+when
+	machine : Machine( type == "Type2", functions contains "Router")
+then	
+	Test test3 = testDAO.findByKey(Test.TEST3);
+	Test test1 = testDAO.findByKey(Test.TEST1);
+	machine.getTests().add(test3);
+	machine.getTests().add(test1);
+	insert( test1 );
+	insert( test3 );					
+end
+
+rule "Due date for Test 5"
+salience 50
+when
+	machine : Machine()
+	Test( id == Test.TEST5 )
+then	
+	setTestsDueTime(machine, 14);				
+end
+
+rule "Due date for Test 4"
+salience 40
+when
+	machine : Machine()
+	Test( id == Test.TEST4 )
+then	
+	setTestsDueTime(machine, 12);				
+end
+
+rule "Due date for Test 3"
+salience 30
+when
+	machine : Machine()
+	Test( id == Test.TEST3 )
+then	
+	setTestsDueTime(machine, 10);				
+end
+
+rule "Due date for Test 2"
+salience 20
+when
+	machine : Machine()
+	Test( id == Test.TEST2 )
+then	
+	setTestsDueTime(machine, 7);				
+end
+
+rule "Due date for Test 1"
+salience 10
+when
+	machine : Machine()
+	Test( id == Test.TEST1 )
+then	
+	setTestsDueTime(machine, 3);				
+end
+

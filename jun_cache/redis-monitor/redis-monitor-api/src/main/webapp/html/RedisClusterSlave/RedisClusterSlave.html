@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>html</title>
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../js/selfcss/demo.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+</head>
+	<body class="easyui-layout" fit="true" id="body" >
+        <div data-options="region:'north',title:'查询条件',hideCollapsedContent:false,collapsed:false" style="height:80px;" id="north">
+          <div style="width: 65%;float:left;">
+           <form id="ff" style="text-align: center;margin-top: 15px;margin-left: 15px;" method="post"> 
+		    	<table cellpadding="0" cellspacing="0" class="table-striped">
+		    		<tr>
+		    		      <td>运行状态：</td>
+		    		      <td>
+		    			   <input class="easyui-combobox" data-options="
+							valueField: 'label',
+							textField: 'value',
+							url:'../../searchSelectPsDicts?moudle=RUNNING_STATUS'" name="runnerStatus"/>
+		    			 </td>
+		    		   
+		    		      <td>机器状态：</td>
+		    		      <td>
+		    			   <input class="easyui-combobox" data-options="
+							valueField: 'label',
+							textField: 'value',
+							url:'../../searchSelectPsDicts?moudle=STATUS'" name="redisServerStatus"/>
+		    			 </td>
+		    		</tr>
+		    	</table>
+		    </form>
+          </div>
+          <div style="width: 30%;float:right;margin-top: 15px;">
+            <a href="javascript:Handler.searchData()" class="easyui-linkbutton"  style="width:80px">查询</a>
+            <a href="javascript:Handler.resetFormData()" class="easyui-linkbutton"  style="width:80px">重置</a>
+          </div>
+        </div>
+        
+        <div data-options="region:'center',split:false" >
+			<table id="tablelist" class="easyui-datagrid"  style="width:auto;" fitcolumns="true" fit="true" 
+			data-options="singleSelect:true,pagination:true,url:'../../searchRedisClusterSlaves',method:'get',toolbar:toolbar">
+				<thead>
+					<tr>					   
+					    <th data-options="field:'ck',checkbox:true"></th>
+					    <th data-options="field:'redisMasterHost',width:100,align:'center'">主Server主机</th>
+						<th data-options="field:'redisMasterPort',width:100,align:'center'">主Server端口号</th>
+						
+						<th data-options="field:'redisServerHost',width:100,align:'center'">redis主机</th>
+						<th data-options="field:'redisServerPort',width:100,align:'center'">redis端口号</th>
+						<th data-options="field:'path',width:100,align:'center'">zk路径</th>
+						<th data-options="field:'weight',width:100,align:'center'">权重</th>
+						<th data-options="field:'runnerStatusString',width:100,align:'center'">运行状态</th>
+						<th data-options="field:'redisServerStatusString',width:100,align:'center'">机器状态</th>
+						<th data-options="field:'createTimeString',width:100,align:'center'">创建时间</th>
+						
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="formwin" class="easyui-window"  data-options="iconCls:'icon-save',closed:true" >
+		   <form id="infoForm" method="post" style="text-align: center;margin-top: 20px;margin-left: 50px;">
+			    <input type="hidden" id="id" name="id" />
+			  	<table class="common-table" style="border-collapse:separate; border-spacing:15px;" cellspacing="15" cellpadding="0">
+			  	  <tr>
+			  	    <th>redis主机：</th>
+			  	     <td>
+		    			  <input name="redisServerHost" id="redisServerHost" type="text" class="easyui-validatebox txt"/>
+			  	     </td>
+			  	    <th>redis端口号：</th>
+			  	     <td>
+		    			  <input name="redisServerPort" id="redisServerPort" type="text" class="easyui-validatebox txt"/>
+			  	     </td>
+			  	    </tr>
+			  	  <tr>
+			  	    <th>运行状态：</th>
+			  	     <td>
+		    			   <input class="easyui-combobox" data-options="
+							valueField: 'label',
+							textField: 'value',
+							url:'../../searchSelectPsDicts?moudle=RUNNING_STATUS'" name="runnerStatus" disabled="disabled"/>
+			  	     </td>
+			  	    <th>机器状态：</th>
+			  	     <td>
+		    			   <input class="easyui-combobox" data-options=" 
+							valueField: 'label',
+							textField: 'value',
+							url:'../../searchSelectPsDicts?moudle=STATUS'" name="redisServerStatus" disabled="disabled"/>
+			  	     </td>
+			  	    </tr>
+			  	  <tr>
+			  	    <th>路径：</th>
+			  	     <td>
+						 	<input id="path" type="text" class="easyui-validatebox txt" name="path" disabled="disabled">
+			  	     </td>
+			  	     <th>权重：</th>
+			  	     <td>
+						 	<input id="weight" type="text" class="easyui-validatebox txt" name="weight" >
+			  	     </td>
+			  	    </tr>
+			  	</table>
+  			</form>
+  			<div id="dlg-buttons2" style="text-align: center;vertical-align: middle;margin-top: 20px;">
+				
+				<a href="javascript:void(0)" class="easyui-linkbutton c5"
+					onclick="javascript:$('#formwin').window('close');"
+					style="width: 90px">关闭</a>					
+				<a href="javascript:void(0)" class="easyui-linkbutton c6"
+					 onclick="javascript:Handler.saveData();" style="width: 90px">保存</a>	
+			</div>
+    	</div>
+    	<div id="datalist" class="easyui-window"  data-options="iconCls:'icon-save',closed:true" >
+    		 <div class="easyui-datalist"  style="width:100%;height:95%" data-options="" id="redisconfig"></div>
+    	</div>
+		<script type="text/javascript">
+        var toolbar = [{
+            text:'编辑',
+            iconCls:'icon-save',
+            handler:function(){Handler.editData()}
+        },'-',{
+            text:'设为新主',
+            iconCls:'icon-save',
+            handler:function(){Handler.setNewClusterData()}
+        },'-',{
+            text:'查询',
+            iconCls:'icon-search',
+            handler:function(){Handler.searchDataById()}
+        },'-',{
+            text:'查询配置',
+            iconCls:'icon-search',
+            handler:function(){Handler.searchRedisInfoById()}
+        },'-',{
+        	text:'性能报表',
+            iconCls:'icon-large-shapes',
+        	handler:function(){Handler.performanceData()}
+        }];
+      //设置分页控件  
+      $(document).ready(function() {
+    	  var p = $('#tablelist').datagrid('getPager');  
+          p.pagination({  
+              pageSize: 10,//每页显示的记录条数，默认为10  
+              pageList: [10, 20, 50],//可以设置每页记录条数的列表  
+              beforePageText: '第',//页数文本框前显示的汉字  
+              afterPageText: '页    共 {pages} 页',  
+              displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录'  
+          });  
+      });
+      var Handler = {
+    		  setNewClusterData: function(){ 
+      			  var rowsChecked = $('#tablelist').datagrid('getChecked');
+      			  $.messager.confirm('信息提示', '确认是否设为新的主?', function(r){
+      	                if (r){
+      	                	$.post("../../setRedisClusterSlaveToMaster",{id:rowsChecked[0].id},function(data,state){
+      	    					 if(state=="success" && data.status==200){
+      	    						 $('#tablelist').datagrid('reload'); 
+      	    						 $('#ff').form('clear');
+      	    					 }else{
+      	    						 $.messager.alert('失败信息',data.message,'error');
+      	    					 }	
+      	  					},"json");
+      	                }
+      	            }); 
+      			},
+      			performanceData: function(){
+          			var rowsChecked = $('#tablelist').datagrid('getChecked');
+          			if(rowsChecked[0].runnerStatus&&rowsChecked[0].runnerStatus!=1){//失败
+         				 $.messager.alert('警告信息',"RedisServer没有运行，不能查看性能报表",'error');
+         			}else if(rowsChecked[0].runnerStatus==1){
+              			location.href='RedisSlavePerformance.html?id='+rowsChecked[0].id;
+         			}
+          		},  	
+      		  resetFormData: function(){
+      			$('#ff').form('clear');
+      		  },
+      		  searchData: function(){
+      			  var params=getFormData("ff");
+      			  $('#tablelist').datagrid('load',params);
+      		  },
+      		searchRedisInfoById: function(){
+    			var rowsChecked = $('#tablelist').datagrid('getChecked');
+    			var url="../../"+rowsChecked[0].id+"/searchSlaveRedisInfoElement";
+    			var title="Redis服务器:"+rowsChecked[0].redisServerHost+":"+rowsChecked[0].redisServerPort;
+    			$.get(url, function(data){
+  				if(data.status==200){
+  					 $('#redisconfig').datalist({
+  				        data: data.data,
+  				        title:title,
+  				        textField:'text',
+  				        valueField:'text',
+  				        checkbox: false,
+  				        groupField:'group',
+  				        lines: true
+  				    });
+  				}
+  			},"json");
+    			openInfoWindow("datalist","Redis配置页面","icon-search");
+  		  },    
+      		searchDataById: function(){
+      			var rowsChecked = $('#tablelist').datagrid('getChecked');
+      			var url="../../"+rowsChecked[0].id+"/searchRedisClusterSlave";
+      			$.get(url, function(data){
+    				if(data.status==200){
+    					$('#infoForm').form('load', data.data);
+    					$("#dlg-buttons2").css('display','none');
+    				}
+    			},"json");
+      			openWindow("formwin","查询页面","icon-search");
+    		  },
+      		
+      		editData: function(){
+      			$('#infoForm').form('clear');
+      			var rowsChecked = $('#tablelist').datagrid('getChecked');
+      			var url="../../"+rowsChecked[0].id+"/searchRedisClusterSlave";
+      			$.get(url, function(data){
+    				if(data.status==200){
+    					$('#infoForm').form('load', data.data);
+    					$("#dlg-buttons2").css('display','block');
+    				}
+    			},"json");
+      			openWindow("formwin","编辑页面","icon-edit");
+      		  },
+       		 saveData: function(){
+       			 var params=getFormData("infoForm");
+       			 var url="";
+       			 if(params.id){//存在
+       				url="../../editRedisClusterSlave";
+       			 }else{
+       				 url="../../redisClusterSlave";
+       			 }
+       			 $.post(url,params,function(data,state){
+					 if(state=="success" && data.status==200){
+						 $('#infoForm').form('clear');
+						 $('#formwin').window('close');
+						 var params=getFormData("ff");
+		      			 $('#tablelist').datagrid('load',params);
+					 }else{
+						 $.messager.alert('失败信息',data.message,'error');
+						 $('#infoForm').form('clear');
+					 }	
+					},"json");
+       		  }
+      };
+      function getFormData(id){
+    	    var data = $("#"+id).serializeArray();
+    		var item,key,value,newData={};
+    		for(var i=0;i<data.length;i++){
+    			item = data[i];
+    			key = item.name;
+    			if(item.value){
+    				value = item.value;
+        			newData[key] = value;
+    			}
+    		}	
+    		return newData;
+    	}
+      
+      function openWindow(id,title,iconcls){
+    	  $('#'+id).window({
+			    width:850,
+			    height:400,
+			    top:($("#body").height() - 400) * 0.5,   
+              	left:($("#body").width() - 800) * 0.5,
+              	shadow: true,
+              	collapsible:false,
+              	minimizable:false,
+              	maximizable:false,
+              	iconCls:iconcls,
+			    title:title,
+			    modal:true
+			});
+			 $('#'+id).window('open');
+      }
+      function openInfoWindow(id,title,iconcls){
+    	  $('#'+id).window({
+			    width:650,
+			    height:450,
+			    top:($("#body").height() - 450) * 0.5,   
+              	left:($("#body").width() - 650) * 0.5,
+              	shadow: true,
+              	collapsible:false,
+              	minimizable:false,
+              	maximizable:false,
+              	iconCls:iconcls,
+			    title:title,
+			    modal:true
+			});
+			 $('#'+id).window('open');
+      }
+    </script>
+		
+	</body>
+	
+</html>

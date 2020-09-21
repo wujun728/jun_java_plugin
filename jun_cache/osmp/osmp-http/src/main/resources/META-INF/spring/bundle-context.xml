@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:osgi="http://www.springframework.org/schema/osgi" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi-1.2.xsd">
+
+     
+    <bean id="sfManager" class="com.osmp.http.service.ServiceFactoryManager"></bean>
+    <bean id="msManager" class="com.osmp.http.service.MessageManager"></bean>
+    
+    <osgi:reference id="serviceFactoryRefer" interface="com.osmp.intf.define.factory.ServiceFactory"
+                    cardinality="0..1">
+        <osgi:listener ref="sfManager" bind-method="bind" unbind-method="unbind"></osgi:listener>
+    </osgi:reference>
+    <osgi:reference id="messageRefer" interface="com.osmp.intf.define.service.MessageService"
+                    cardinality="0..1">
+        <osgi:listener ref="msManager" bind-method="bind" unbind-method="unbind"></osgi:listener>
+    </osgi:reference>
+    
+      <bean id="exceptionHandleProvider" class="com.osmp.http.tool.ExceptionHandleProvider">
+               <property name="messageManager" ref="msManager"></property>
+     </bean>
+        
+    <bean id="webserver" class="com.osmp.http.transport.RestPlatformTransport">
+        <property name="serviceFactoryManager" ref="sfManager"></property>
+        <property name="exceptionHandle" ref="exceptionHandleProvider"></property>
+    </bean>
+    
+    <bean id="soapServer" class="com.osmp.http.transport.SoapPlatformTransport">
+        <property name="serviceFactoryManager" ref="sfManager"></property>
+    </bean>
+    
+    <bean id="requestParser" class="com.osmp.http.interceptors.RequestParseInterceptor">
+    </bean>
+    
+</beans>

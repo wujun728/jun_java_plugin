@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:osgi="http://www.springframework.org/schema/osgi"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi-1.2.xsd
+		">
+
+
+	<bean id="cacheManagerServiceImpl" class="com.osmp.cache.osgi.core.CacheManagerServiceImpl">
+	</bean>
+	
+	<bean id="cacheApiServiceImpl" class="com.osmp.cache.osgi.api.impl.CacheApiServiceImpl" >
+		<property name="cacheService" ref="cacheManagerServiceImpl"></property>
+	</bean>
+
+	<osgi:service id="cacheManagerService"
+		interface="com.osmp.cache.define.core.CacheManagerService" ref="cacheManagerServiceImpl">
+	</osgi:service>
+	
+	<osgi:service id="cacheApiService" interface="com.osmp.intf.define.service.ConfigService" ref="cacheApiServiceImpl"></osgi:service>
+
+</beans>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chentongwei.dao.common.IFriendLinkDAO">
+
+	<sql id="all_column">
+		id,
+		name,
+		url,
+		owner,
+		top_num AS topNum,
+		create_time AS createTime
+	</sql>
+
+	<select id="getByID" parameterType="integer" resultType="friendLinkVO">
+		SELECT
+			<include refid="all_column" />
+		FROM
+			dt_friend_link
+		WHERE
+			id = #{id}
+	</select>
+
+	<select id="list" resultType="friendLinkVO">
+		SELECT
+			<include refid="all_column" />
+		FROM
+			dt_friend_link
+		ORDER BY
+			top_num DESC
+	</select>
+
+	<insert id="save" parameterType="friendLinkIO" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO 
+			dt_friend_link
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != name and '' != name">
+				name,
+			</if>
+			<if test="null != url and '' != url">
+				url,
+			</if>
+			<if test="null != owner and '' != owner">
+				owner,
+			</if>
+			<if test="null != topNum">
+				top_num,
+			</if>
+		</trim>
+		
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			<if test="null != name and '' != name">
+				#{name},
+			</if>
+			<if test="null != url and '' != url">
+				#{url},
+			</if>
+			<if test="null != owner and '' != owner">
+				#{owner},
+			</if>
+			<if test="null != topNum">
+				#{topNum},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="edit" parameterType="friendLinkIO">
+		UPDATE
+			dt_friend_link
+		<set>
+			<if test="null != name and '' != name">
+				name = #{name},
+			</if>
+			<if test="null != url and '' != url">
+				url = #{url},
+			</if>
+			<if test="null != owner and '' != owner">
+				owner = #{owner},
+			</if>
+			<if test="null != topNum">
+				top_num = #{topNum},
+			</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="integer">
+		DELETE FROM dt_friend_link WHERE id = #{id}
+	</delete>
+</mapper>

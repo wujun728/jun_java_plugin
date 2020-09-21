@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<properties>
+    <description>
+        <![CDATA[
+	配置数据导入的sql
+ ]]>
+    </description>
+    <property name="demoexport"><![CDATA[select * from td_sm_log where log_id > #[log_id]]]></property>
+    <property name="demoexportFull"><![CDATA[select * from td_sm_log ]]></property>
+
+    <!--
+    插入数据sql
+    -->
+    <property name="insertSql">
+        <![CDATA[INSERT INTO batchtest ( name, author, content, title, optime, oper, subtitle, collecttime,ipinfo)
+                VALUES ( #[OPER_MODULE],  ## 来源dbdemo索引中的 operModule字段
+                         #[author], ## 通过datarefactor增加的字段
+                         #[LOG_CONTENT], ## 来源dbdemo索引中的 logContent字段
+                         #[title], ## 通过datarefactor增加的字段
+                         #[logOpertime], ## 来源dbdemo索引中的 logOpertime字段
+                         #[LOG_OPERUSER],  ## 来源dbdemo索引中的 logOperuser字段
+                         #[subtitle], ## 通过datarefactor增加的字段
+                         #[collecttime], ## 通过datarefactor增加的字段
+                         #[ipinfo]) ## 通过datarefactor增加的地理位置信息字段
+]]>
+    </property>
+
+</properties>

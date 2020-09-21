@@ -1,0 +1,82 @@
+<%if (pageNav.showPages){%>
+<div class="pagin">
+	<div class="pagin-message">
+		<p data-i18n="common.total" class="message-text"></p>
+    <p class="message-text" name="total_records_label" ><%=pageNav.totalRecords%></p>
+    <p data-i18n="common.record" class="message-text"></p>&nbsp;<p class="message-text" name="currentpage"><%=pageNav.currentPageNo%></p> <p data-i18n="common.page" class="message-text"></p>
+    <p data-i18n="common.per_page" class="message-text"></p>
+    <div class="select-box">
+	    <select name="page_size_select" class="select message-page">
+		    <option <%=pageNav.pageSize==10?"selected='selected'":""%>>10</option>
+		    <option <%=pageNav.pageSize==20?"selected='selected'":""%>>20</option>
+		    <option <%=pageNav.pageSize==30?"selected='selected'":""%>>30</option>
+		    <option <%=pageNav.pageSize==40?"selected='selected'":""%>>40</option>
+		    <option <%=pageNav.pageSize==50?"selected='selected'":""%>>50</option>
+		 </select>
+	 </div>
+    <p data-i18n="common.per_page_record" class="message-text"></p>
+	</div>
+    <%if (pageNav.totalPages>1){%>
+    <ul class="paginlist">
+    <li class="paginItem"><a class="paginItem-a"  href="javascript:void(0)"><span class="pagepre" prev="<%=pageNav.canPrev?'1':'0'%>"></span></a></li> 
+    <%
+    if (pageNav.totalPages<=5){
+    for (i=1;i<=pageNav.totalPages;i++){%>
+        <li type="page" class="paginItem <%=(pageNav.currentPageNo==i)?"current":"cursor-hand"%>">
+            <a value="<%=i%>" class="paginItem-a <%=(pageNav.currentPageNo==i)?'paginItem-click':''%>"  href="javascript:void(0)">
+                <%=i%>
+            </a>
+        </li>
+    <%}
+    }
+    else{
+    %>
+        <li type="page" class="paginItem <%=(pageNav.currentPageNo==1)?"current":"cursor-hand"%>">
+            <a class="paginItem-a"  value="1" href="javascript:void(0)">
+                1
+            </a>
+        </li>
+        <%if (pageNav.currentPageNo>3){%>
+        <li class="paginItem more"><a>..</a></li>
+        <%}%>
+    <%  if ((pageNav.currentPageNo-1)<3){
+            for (i=2;i<=4;i++){%>
+                <li type="page" class="paginItem <%=(pageNav.currentPageNo==i)?"current":"cursor-hand"%>">
+                    <a value="<%=i%>" class="paginItem-a" href="javascript:void(0)">
+                    <%=i%>
+                    </a>
+                </li>
+    <%      }
+        }
+        else if ((pageNav.currentPageNo+1)>=pageNav.totalPages){
+            for (i=pageNav.totalPages-3;i<pageNav.totalPages;i++){%>
+                <li type="page" class="paginItem <%=(pageNav.currentPageNo==i)?"current":"cursor-hand"%>">
+                    <a value="<%=i%>" class="paginItem-a" href="javascript:void(0)">
+                    <%=i%>
+                    </a>
+                </li>
+    <%      }
+        }
+        else{
+            for (i=pageNav.currentPageNo-1;i<=pageNav.currentPageNo+1;i++){%>
+                <li type="page" class="paginItem <%=(pageNav.currentPageNo==i)?"current":"cursor-hand"%>">
+                    <a value="<%=i%>" class="paginItem-a" href="javascript:void(0)">
+                    <%=i%>
+                    </a>
+                </li>
+    <%      }
+        }
+        if (pageNav.currentPageNo<(pageNav.totalPages-2)){%>
+        <li class="paginItem more"><a>..</a></li>
+        <%}%>
+        <li type="page" class="paginItem <%=(pageNav.currentPageNo==pageNav.totalPages)?"current":"cursor-hand"%>">
+            <a value="<%=pageNav.totalPages%>" class="paginItem-a" href="javascript:void(0)">
+                <%=pageNav.totalPages%>
+            </a>
+        </li>        
+    <%}%>
+    <li class="paginItem"><a class="paginItem-a" href="javascript:void(0)"><span class="pagenxt" next="<%=pageNav.canNext?'1':'0'%>"></span></a></li>
+   </ul>   
+   <%}%>
+</div>
+<%}%>

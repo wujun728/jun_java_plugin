@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.osmp.web.system.interceptorMapping.dao.InterceptorMappingMapper">
+    <resultMap type="com.osmp.web.system.interceptorMapping.entity.InterceptorMapping" id="dsMapping">
+        <result column="bundle" property="serviceBundle"/>
+        <result column="version" property="serviceVersion"/>
+        <result column="name" property="serviceName"/>
+        <result column="mark" property="mark"/>
+    </resultMap>
+    
+    <resultMap type="com.osmp.web.system.interceptorMapping.entity.InterceptorMapping" id="icMapping">
+        <result column="bundle" property="interceptorBundle"/>
+        <result column="version" property="interceptorVersion"/>
+        <result column="name" property="interceptorName"/>
+        <result column="mark" property="mark"/>
+    </resultMap>
+    
+    <resultMap type="com.osmp.web.system.interceptorMapping.entity.InterceptorMapping" id="icdsMapping">
+        <result column="serviceBundle" property="serviceBundle"/>
+        <result column="serviceVersion" property="serviceVersion"/>
+        <result column="serviceName" property="serviceName"/>
+    </resultMap>
+
+    <select id="getAllServiceList" resultMap="dsMapping">
+        select bundle,version,name,mark from dataServices order by bundle,version,name
+    </select>
+    
+    <select id="getAllInterceptorList" resultMap="icMapping">
+        select bundle,version,name,mark from interceptors order by bundle,version,name
+    </select>
+    
+    <select id="getServiceListByInterceptor" resultMap="icdsMapping" parameterType="String">
+        select serviceBundle,serviceVersion,serviceName from interceptorMapping 
+            where concat(interceptorBundle,'(',interceptorVersion,')','-',interceptorName) = #{value}
+            order by serviceBundle,serviceVersion,serviceName
+    </select>
+    
+    <delete id="deleteMapping" parameterType="map">
+        delete from interceptorMapping where 
+            concat(interceptorBundle,'(',interceptorVersion,')','-',interceptorName) = #{interceptor}
+            and concat(serviceBundle,'(',serviceVersion,')','-',serviceName) in
+            <foreach collection="services" item= "item" index ="index"
+	            open= "(" close =")" separator=",">
+	            #{item}
+            </foreach >
+    </delete>
+    
+    <insert id="insertMapping" parameterType="list">
+        insert into interceptorMapping(interceptorBundle,interceptorVersion,interceptorName,
+            serviceBundle,serviceVersion,serviceName) values
+            <foreach collection="list" item= "item" index ="index" separator=",">
+                (#{item.interceptorBundle},#{item.interceptorVersion},#{item.interceptorName},
+                #{item.serviceBundle},#{item.serviceVersion},#{item.serviceName})
+            </foreach >
+    </insert>
+</mapper>

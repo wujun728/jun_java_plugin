@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN" "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+
+<module name="checkstyle.itkk.org">
+	<property name="severity" value="warning" />
+
+	<!-- Duplicate code - 冗余代码检查 -->
+	<!-- 冗余代码检查可检测通过复制/粘贴产生的重复代码 -->
+	<!-- <module name="StrictDuplicateCode">
+		<property name="min" value="15" />
+	</module> -->
+
+	<!-- 检测文件头注释是否符合规范 -->
+	<!--
+	<module name="RegexpHeader">
+		<property name="headerFile" value="${samedir}file_header_java_regexp.txt" />
+		<property name="fileExtensions" value="java" />
+	</module>
+	-->
+
+	<!-- 检测文件不超过2500行 -->
+	<module name="FileLength">
+		<property name="max" value="2500" />
+	</module>
+	
+	<!-- 不允许使用tab -->
+	<module name="FileTabCharacter"></module>
+
+	<!-- Miscellaneous - 杂项 -->
+	<!-- 检测文件是否以一个新行结束 -->
+	<!--
+	<module name="NewlineAtEndOfFile">
+		<property name="fileExtensions" value="java, properties, xml, xsd" />
+		<property name="lineSeparator" value="lf" />
+	</module>
+	-->
+	<!-- 检测国际化配置的关键字是否一致 -->
+	<module name="Translation">
+		<property name="severity" value="error" />
+	</module>
+
+	<!-- <module name="FileTabCharacter"> <property name="eachLine" value="true" 
+		/> </module> <module name="SuppressionFilter"> -->
+	<!-- <property name="file" value="${samedir}suppressions.xml" /> </module> -->
+	<!-- <module name="SeverityMatchFilter"> <property name="severity" value="warning" 
+		/> </module> -->
+		
+	<module name="TreeWalker">
+	
+		<!-- Block Checks - 对区域的检查 -->
+		<!-- 检测catch/finally代码块，要求其内部必须有文本内容（代码或注释） -->
+		<module name="EmptyBlock">
+			<property name="severity" value="error" />
+			<property name="option" value="text" />
+			<property name="tokens" value="LITERAL_CATCH,LITERAL_FINALLY" />
+		</module>
+		<!-- 检测"{"在代码块中的位置，规范为eol（与代码同行） -->
+		<module name="LeftCurly">
+			<property name="severity" value="error" />
+			<property name="option" value="eol" />
+			<property name="maxLineLength" value="120" />
+		</module>
+		<!-- 检测并要求if/else/while/for/do的代码主体必须在"{}"之内 -->
+		<module name="NeedBraces">
+			<property name="severity" value="error" />
+		</module>
+		<!-- 检测并提示多余的"{}"，允许在switch中使用以提高代码可读性 -->
+		<module name="AvoidNestedBlocks">
+			<property name="allowInSwitchCase" value="true" />
+		</module>
+
+		<!-- Class Design - 类设计 -->
+		<!-- 检测变量可见性，除static final的变量为public，其它均为private -->
+		<!-- <module name="VisibilityModifier"> <property name="protectedAllowed" 
+			value="true" /> </module> -->
+		<!-- <module name="FinalClass"></module> -->
+		<!--<module name="HideUtilityClassConstructor"></module> -->
+		<!-- <module name="MutableException"></module> -->
+		<!-- 限制抛出异常的种类数量 -->
+		<module name="ThrowsCount">
+			<property name="severity" value="info" />
+			<property name="max" value="5" />
+		</module>
+
+		<!-- coding 代码规范 -->
+		<!-- 检测并防止空代码行，仅有";" -->
+		<module name="EmptyStatement">
+			<property name="severity" value="error" />
+		</module>
+		<!-- 检测字符串比较中，要求比较参考值置于equals左侧，以避免null值报错 -->
+		<module name="EqualsAvoidNull">
+			<property name="severity" value="error" />
+		</module>
+		<!-- <module name="EqualsHashCode"></module> -->
+		<!-- 检测值未变化的局部变量应当申明为final -->
+		<!-- <module name="FinalLocalVariable"></module> -->
+		<!-- 检测局部变量和参数未发生同名覆盖 -->
+		<module name="HiddenField">
+			<property name="ignoreConstructorParameter" value="true" />
+			<property name="ignoreSetter" value="true" />
+			<property name="ignoreAbstractMethods" value="true" />
+		</module>
+		<!-- <module name="IllegalToken"><property name="tokens" value="LITERAL_SWITCH"/></module> -->
+		<!-- 检测并防止内部赋值 -->
+		<module name="InnerAssignment"></module>
+		<!-- 检测并防止魔法数 -->
+		<module name="MagicNumber">
+			<property name="severity" value="warning" />
+			<property name="tokens" value="NUM_INT" />
+			<property name="ignoreNumbers" value="-1, 0, 1" />
+			<property name="ignoreHashCodeMethod" value="true" />
+			<property name="ignoreAnnotation" value="true" />
+		</module>
+	
+		<!-- 检测并防止switch的default方法缺失 -->
+		<module name="MissingSwitchDefault">
+			<property name="severity" value="error" />
+		</module>
+		<!-- 检测并防止循环控制参数不在循环内部 -->
+		<module name="ModifiedControlVariable"></module>
+		<!-- 检测冗余的异常 -->
+		<!--<module name="RedundantThrows"> 
+			<property name="allowUnchecked" value="true" /> 
+			<property name="allowSubclasses" value="true" /> 
+		</module>-->
+		<!-- 检测并提醒复杂的布尔表达式 -->
+		<module name="SimplifyBooleanExpression">
+			<property name="severity" value="info" />
+		</module>
+		<!-- 检测并提醒复杂的布尔返回值 -->
+		<module name="SimplifyBooleanReturn">
+			<property name="severity" value="info" />
+		</module>
+		<!-- 检测并防止String使用"=="或"!="进行值比较，建议使用equals -->
+		<module name="StringLiteralEquality"></module>
+		<!-- 规定For循环的嵌套深度 -->
+		<module name="NestedForDepth">
+			<property name="max" value="5" />
+		</module>
+		<!-- 规定If语句的嵌套深度 -->
+		<module name="NestedIfDepth">
+			<property name="max" value="5" />
+		</module>
+		<!-- 规定Try语句的嵌套深度 -->
+		<module name="NestedTryDepth">
+			<property name="max" value="5" />
+		</module>
+		<!-- <module name="SuperClone"><property name="severity" value="info"/></module> -->
+		<!-- <module name="SuperFinalize"><property name="severity" value="info"/></module> -->
+		<!-- 检测并防止直接catch以下异常 -->
+		<!--
+		<module name="IllegalCatch">
+			<property name="severity" value="error" />
+			<property name="illegalClassNames" value="java.lang.Exception,java.lang.RuntimeException" />
+		</module>
+		-->
+		<!-- 检测并防止Throws以下异常 -->
+		<!--
+		<module name="IllegalThrows"> 
+			<property name="severity" value="error" /> 
+			<property name="illegalClassNames" value="java.lang.Exception,java.lang.RuntimeException" /> 
+		</module>
+		-->
+		<!-- 检测并确保每个类都有包申明 -->
+		<module name="PackageDeclaration">
+			<property name="severity" value="error" />
+		</module>
+		<!-- 检测并防止一个方法中多过的返回值 -->
+		<module name="ReturnCount">
+			<property name="max" value="5" />
+			<property name="format" value="^$" />
+		</module>
+		<!-- 检测类成员的申明顺序 -->
+		<module name="DeclarationOrder">
+			<property name="severity" value="info" />
+		</module>
+		<!-- <module name="ParameterAssignment" /> -->
+		<!-- 检测switch语句中default在所有case语句之后，更有可读性 -->
+		<module name="DefaultComesLast"></module>
+		<!-- 检测类是否自定义了构造函数，而不是只有默认构造函数 -->
+		<!-- <module name="MissingCtor"></module> -->
+		<!-- 检测switch的case事件中有无break/continue/return/throw语句 -->
+		<module name="FallThrough"></module>
+		<!-- 检测规范限制之外的重复代码 -->
+		<module name="MultipleStringLiterals">
+			<property name="allowedDuplicates" value="5" />
+			<property name="ignoreStringsRegexp" value='^(("")|(", "))$' />
+		</module>
+		<!-- 检测一行代码仅允许一个变量申明 -->
+		<module name="MultipleVariableDeclarations"></module>
+		<!-- 检测并防止利用":this."对全局变量进行操作 -->
+		<module name="RequireThis">
+			<property name="checkMethods" value="false" />
+		</module>
+		<!-- 检测一行一句代码 -->
+		<module name="OneStatementPerLine">
+			<property name="severity" value="error" />
+		</module>
+
+		<!-- Header - 文件头检查 -->
+		<!-- 禁止使用System.out.println -->
+		<module name="Regexp">
+			<property name="severity" value="error" />
+			<property name="format" value="System\.out\.println" />
+			<property name="illegalPattern" value="true" />
+		</module>
+
+		<!-- Imports - 引入包检查 -->
+		<!-- 检测并禁止*包的引用 -->
+		<!--
+		<module name="AvoidStarImport">
+			<property name="severity" value="error" />
+		</module>
+		-->
+		<!-- 检测重复引用 -->
+		<module name="RedundantImport">
+			<property name="severity" value="error" />
+		</module>
+		<!-- 检测未使用的引用 -->
+		<module name="UnusedImports">
+			<property name="severity" value="error" />
+		</module>
+	
+		<!-- Javadoc Comments - javadoc内容检查 -->
+		<module name="JavadocStyle">
+			<property name="severity" value="error" />
+			<property name="id" value="StyleJavadocPrivate" />
+			<property name="checkFirstSentence" value="false" />
+			<property name="checkEmptyJavadoc" value="true" />
+			<property name="tokens" value="INTERFACE_DEF,CLASS_DEF,METHOD_DEF,CTOR_DEF" />
+		</module>
+		<module name="JavadocStyle">
+			<property name="severity" value="error" />
+			<property name="id" value="StyleJavadocPackage" />
+			<property name="scope" value="package" />
+			<property name="checkFirstSentence" value="false" />
+			<property name="checkEmptyJavadoc" value="true" />
+			<property name="tokens" value="INTERFACE_DEF,CLASS_DEF,METHOD_DEF,CTOR_DEF" />
+		</module>
+		<module name="JavadocType">
+			<property name="severity" value="error" />
+			<property name="id" value="TypeJavadocPrivate" />
+			<property name="allowMissingParamTags" value="true" />
+		</module>
+		<module name="JavadocType">
+			<property name="severity" value="error" />
+			<property name="id" value="TypeJavadocPackage" />
+			<property name="scope" value="package" />
+			<property name="allowMissingParamTags" value="true" />
+		</module>
+		<module name="JavadocMethod">
+			<property name="severity" value="error" />
+			<property name="id" value="MethodJavadocPrivate" />
+			<property name="allowUndeclaredRTE" value="true" />
+			<property name="allowMissingPropertyJavadoc" value="true" />
+			<property name="suppressLoadErrors" value="true" />
+		</module>
+		<module name="JavadocMethod">
+			<property name="severity" value="error" />
+			<property name="id" value="MethodJavadocPackage" />
+			<property name="scope" value="package" />
+			<property name="allowUndeclaredRTE" value="true" />
+			<property name="allowMissingPropertyJavadoc" value="true" />
+			<property name="suppressLoadErrors" value="true" />
+		</module>
+		<module name="JavadocVariable">
+			<property name="severity" value="error" />
+			<property name="id" value="VariableJavadocPrivate" />
+		</module>
+		<module name="JavadocVariable">
+			<property name="severity" value="error" />
+			<property name="id" value="VariableJavadocPackage" />
+			<property name="scope" value="package" />
+		</module>
+	
+		<!-- Miscellaneous - 其它 -->
+		<!-- 检测main方法已注释失效 -->
+		<!--
+		<module name="UncommentedMain">
+			<property name="severity" value="error" />
+		</module>
+		-->
+		<!-- 检测数组申明为java风格 -->
+		<module name="ArrayTypeStyle"></module>
+		<!-- 检测代码缩进 -->
+		<module name="Indentation">
+			<property name="basicOffset" value="4" />
+			<property name="braceAdjustment" value="0" />
+			<property name="caseIndent" value="4" />
+		</module>
+		<!-- <module name="TrailingComment"><property name="format" value="^\\s*$"/></module> -->
+
+		<!-- Modifiers - 修饰语 -->
+		<!-- 检测申明顺序 -->
+		<module name="ModifierOrder">
+			<property name="severity" value="info" />
+		</module>
+		<!-- <module name="RedundantModifier"><property name="tokens" value="METHOD_DEF,VARIABLE_DEF"/></module> -->
+	
+		<!-- Naming Conventions - 命名规范 -->
+		<!-- 包命名规范 -->
+		<!--<module name="PackageName">
+			<property name="severity" value="error" />
+			<property name="format" value="^com\.svw(\.[a-z][a-z0-9]*)*$" />
+		</module>-->
+		<!-- 类命名规范 -->
+		<module name="TypeName">
+			<property name="severity" value="error" />
+			<property name="format" value="^([A-Z][A-Za-z0-9]+)+$" />
+			<property name="tokens" value="CLASS_DEF" />
+		</module>
+		<!-- 接口命名规范 -->
+		<module name="TypeName">
+			<property name="severity" value="error" />
+			<property name="format" value="^I([A-Z][A-Za-z0-9]+)+$" />
+			<property name="tokens" value="INTERFACE_DEF" />
+		</module>
+		<!-- 抽象类命名规范 -->
+		<module name="AbstractClassName">
+			<property name="format" value="^Abstract([A-Z][A-Za-z0-9]+)+$" />
+		</module>
+		<!-- 方法命名规范 -->
+		<module name="MethodName">
+			<property name="severity" value="error" />
+			<property name="format" value="^[a-z0-9_]+([_A-Z0-9][_a-z0-9]+)*$" />
+		</module>
+		<!-- 参数命名规范 -->
+		<module name="ParameterName">
+			<property name="severity" value="error" />
+			<property name="format" value="^[a-z0-9_]+([_A-Z0-9][_a-z0-9]+)*$" />
+		</module>
+		<!-- 常量命名规范 -->
+		<module name="ConstantName">
+			<property name="severity" value="error" />
+			<property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$" />
+		</module>
+		<!-- 类变量命名规范 -->
+		<module name="MemberName">
+			<property name="severity" value="error" />
+			<property name="format" value="^[a-z0-9_]+([_A-Z0-9][_a-z0-9]+)*$" />
+		</module>
+		<!-- final局部变量命名规范 -->
+		<module name="LocalFinalVariableName">
+			<property name="severity" value="error" />
+			<property name="format" value="^[a-z][a-zA-Z0-9]*$" />
+		</module>
+		<!-- 局部变量命名规范 -->
+		<module name="LocalVariableName">
+			<property name="severity" value="error" />
+			<property name="format" value="^[a-z0-9_]+([_A-Z0-9][_a-z0-9]+)*$" />
+		</module>
+		<!-- 静态变量命名规范 -->
+		<module name="StaticVariableName">
+			<property name="severity" value="error" />
+			<property name="format" value="^[a-z0-9_]+([_A-Z0-9][_a-z0-9]+)*$" />
+		</module>
+	
+		<!-- Size Violations - 代码度量 -->
+		<!-- 检测一行代码不超过120个字符 -->
+		<!--
+		<module name="LineLength">
+			<property name="max" value="120" />
+			<property name="tabWidth" value="2" />
+		</module>
+		-->
+		<!-- 检测一个方法内代码不超过200行 -->
+		<module name="MethodLength">
+			<property name="max" value="200" />
+			<property name="tokens" value="METHOD_DEF" />
+		</module>
+		<!-- 检测内部类的代码不超过60行 -->
+		<!-- <module name="AnonInnerLength"> <property name="severity" value="info" 
+			/> <property name="max" value="60" /> </module> -->
+		<!-- 检测方法参数不超过15个 -->
+		<module name="ParameterNumber">
+			<property name="max" value="15" />
+			<property name="tokens" value="METHOD_DEF" />
+		</module>
+		<!-- 检测布尔复杂度 -->
+		<!--<module name="BooleanExpressionComplexity">
+			<property name="severity" value="info" />
+			<property name="max" value="5" />
+		</module>-->
+		<!-- 检测循环复杂度 -->
+		<!--<module name="CyclomaticComplexity">
+			<property name="severity" value="info" />
+			<property name="max" value="7" />
+		</module>-->
+		<!-- 检测分支复杂度 -->
+		<!--<module name="NPathComplexity">
+			<property name="severity" value="info" />
+			<property name="max" value="40" />
+		</module>-->
+	
+		<!-- Whitespace - 空格规范 -->
+		<!--如果方法定义，构造函数定义等方法与左括号在同一行，检查是否他们之间有无空格。 -->
+		<module name="MethodParamPad">
+			<property name="severity" value="error" />
+		</module>
+		<!-- 不允许左圆括号右边有空格，不允许右圆括号左边有空格 -->
+		<module name="ParenPad">
+			<property name="severity" value="error" />
+		</module>
+		<!-- 类型转换时，不允许左圆括号右边有空格，不允许右圆括号左边有空格 -->
+		<module name="TypecastParenPad">
+			<property name="severity" value="error" />
+		</module>
+		<!-- 逻辑运算符和二元运算符的空格规范 -->
+		<module name="WhitespaceAround"></module>
+		<!-- 逗号或者分号必须紧接着空格或者换行符 -->
+		<module name="WhitespaceAfter">
+			<property name="severity" value="error" />
+			<property name="tokens" value="COMMA,SEMI" />
+		</module>
+
+		<!-- <module name="NoWhitespaceAfter"> <property name="severity" value="error" 
+			/> </module> -->
+		<!-- <module name="NoWhitespaceBefore"> <property name="severity" value="error"/> 
+			</module> -->
+	
+	</module>
+</module>

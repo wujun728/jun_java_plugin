@@ -1,0 +1,21 @@
+package org.drools.mydemo.employee
+
+import org.drools.mydemo.employee.Employ;
+
+rule "Bachelor"
+       ruleflow-group "basic_salary"
+when
+   emp: Employ(eduInfo == "bachelor" );
+then
+   System.out.println( "exec rule Bachelor ... " );
+   emp.setBasicSalary(1500);
+end
+
+rule "Master"
+       ruleflow-group "basic_salary"
+when
+   emp: Employ(eduInfo == "master" )
+then
+   System.out.println( "exec rule Master ... " );
+   emp.setBasicSalary(2500);
+end

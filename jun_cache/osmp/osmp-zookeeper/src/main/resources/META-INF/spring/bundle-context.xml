@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:osgi="http://www.springframework.org/schema/osgi"
+	xmlns:osgi-compendium="http://www.springframework.org/schema/osgi-compendium"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi-1.2.xsd
+		http://www.springframework.org/schema/osgi-compendium http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium-1.2.xsd
+		">
+
+	<osgi-compendium:cm-properties id="osmp_config" persistent-id="com.osmp.config">
+	    </osgi-compendium:cm-properties>
+	<context:property-placeholder properties-ref="osmp_config" />
+
+	<bean id="osmp.zkservice" class="com.osmp.zookeeper.service.ZookeeperServiceImpl" init-method="init" destroy-method="close">
+		<property name="url" value="${zookeeper.url}"></property>
+	</bean>
+	<osgi:service interface="com.osmp.intf.define.service.ZookeeperService" ref="osmp.zkservice">
+		<osgi:service-properties>
+			<entry key="name" value="osmp.zkservice" />
+			<entry key="mark" value="zookeeper服务类"/>
+		</osgi:service-properties>
+	</osgi:service>
+
+</beans>

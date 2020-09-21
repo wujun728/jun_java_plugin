@@ -1,0 +1,21 @@
+    <div id="filter_blk_<%=key%>" class="hide" type="filter">              
+                <ul class="ui-menu ui-widget ui-widget-content ui-corner-all">
+                    <li class="ui-menu-item" value="detail" role="presentation">
+                       <a class="ui-corner-all ui-state-focus" filter="-1" data-i18n="common.all" role="menuitem"></a>
+                    </li>
+                    <%for (var f=0;f<filterList.length;f++){%>
+                    <%
+                        var showSelected="hide";
+                        for (var s=0;s<selectedFilter.length;s++){
+                           if (selectedFilter[s].fieldName==key && selectedFilter[s].filedValue!="-1" && selectedFilter[s].filedValue==filterList[f].value){
+                              showSelected="show";
+                              break;
+                           }
+                        }       
+                    %>
+                    <li class="ui-menu-item" value="detail" role="presentation">
+                    <a class="ui-corner-all" filter="<%=filterList[f].value%>" role="menuitem"><%=filterList[f].name%>&nbsp;&nbsp;<img src="../img/alert-active.png" class="<%=showSelected%>"/>  </a>
+                    </li>                  
+                <%}%>
+                </ul>      
+    </div>

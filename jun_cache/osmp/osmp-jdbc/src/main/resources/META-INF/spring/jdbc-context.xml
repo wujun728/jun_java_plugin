@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:osgi="http://www.springframework.org/schema/osgi" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:osgi-compendium="http://www.springframework.org/schema/osgi-compendium"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi-1.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+		http://www.springframework.org/schema/osgi-compendium http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium-1.2.xsd">
+
+    <osgi-compendium:cm-properties id="osmp_config" persistent-id="com.osmp.config">
+    </osgi-compendium:cm-properties>
+    <context:property-placeholder properties-ref="osmp_config" />
+
+	
+	<bean id="basicSqlStatement" class="com.osmp.jdbc.service.SqlStatementManager" />
+	
+	<osgi:reference id="executorWrapper"
+        interface="com.osmp.tools.commons.ExecutorWrapper" cardinality="1..1">
+    </osgi:reference>
+	
+	
+	<bean class="com.osmp.jdbc.service.SqlStatementMonitor">
+       <property name="sqlStatementManager" ref="basicSqlStatement"></property>
+       <property name="executor" ref="executorWrapper"></property>
+       <property name="sqlDir" value="${osmp.sqlDir}"></property>
+    </bean>
+	
+	<bean id="templateManager" class="com.osmp.jdbc.service.JdbcTemplateManager">
+    </bean>
+	
+	<bean id="dsManager" class="com.osmp.jdbc.service.DataSourceManager">
+	   <property name="templateManager" ref="templateManager"></property>
+	</bean>
+	
+	<bean id="dsMonitor" class="com.osmp.jdbc.service.DataSourceMonitor">
+       <property name="dataSourceDir" value="${osmp.dataSource}"></property>
+       <property name="dataSourceManager" ref="dsManager"></property>
+    </bean>
+	
+	<bean id="osmp.JdbcFinderManager"
+		class="com.osmp.jdbc.support.template.JdbcFinderManagerImpl">
+		<property name="jdbcTemplateManager" ref="templateManager" />
+		<property name="sqlStatementManager" ref="basicSqlStatement"></property>
+	</bean>
+	<osgi:service interface="com.osmp.jdbc.support.JdbcFinderManager"
+		ref="osmp.JdbcFinderManager">
+	</osgi:service>
+    
+</beans>

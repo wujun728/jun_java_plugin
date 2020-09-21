@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cn.skynethome</groupId>
+	<artifactId>redisx-core</artifactId>
+	<version>1.0.5</version>
+	<packaging>jar</packaging>
+	<name>${project.groupId}:${project.artifactId}</name>
+	<description>RedisX - Redis all thread pools</description>
+	<url>https://git.oschina.net/websterlu/redisx</url>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>luwenbin</name>
+			<email>luwenbin006@163.com</email>
+			<organization>skynethome</organization>
+			<organizationUrl>http://www.skynethome.cn</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>
+         scm:git:https://git.oschina.net/websterlu/redisx.git
+      </connection>
+		<developerConnection>
+         scm:git:https://git.oschina.net/websterlu/redisx.git
+      </developerConnection>
+		<url>https://git.oschina.net/websterlu/redisx</url>
+		<tag>redisx-core-1.0.5</tag>
+	</scm>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>lib</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<additionalparam>-Xdoclint:none</additionalparam>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+	<dependencies>
+
+	  <dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.19</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.22</version>
+		</dependency>
+
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+ 		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+
+
+		
+		<dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.6.11</version>
+        </dependency>
+      
+      <dependency>
+            <groupId>org.jgroups</groupId>
+            <artifactId>jgroups</artifactId>
+            <version>3.6.6.Final</version>
+       </dependency>
+       
+       <dependency>
+            <groupId>cn.skynethome</groupId>
+            <artifactId>redisx-cacheclient</artifactId>
+            <version>1.0.5</version>
+            <exclusions>
+            
+        	<exclusion>
+        		<groupId>org.slf4j</groupId>
+        		<artifactId>slf4j-api</artifactId>
+        	</exclusion>
+        	<exclusion>
+        		<groupId>org.slf4j</groupId>
+        		<artifactId>jcl-over-slf4j</artifactId>
+        	</exclusion>
+        	<exclusion>
+        		<groupId>org.slf4j</groupId>
+        		<artifactId>log4j-over-slf4j</artifactId>
+        	</exclusion>
+        	<exclusion>
+        		<groupId>ch.qos.logback</groupId>
+        		<artifactId>logback-classic</artifactId>
+        	</exclusion>
+        	<exclusion>
+        		<groupId>ch.qos.logback</groupId>
+        		<artifactId>logback-core</artifactId>
+        	</exclusion>
+        	<exclusion>
+        		<groupId>org.slf4j</groupId>
+        		<artifactId>jul-to-slf4j</artifactId>
+        	</exclusion>
+        	<exclusion>
+        		<groupId>ch.qos.logback</groupId>
+        		<artifactId>logback-access</artifactId>
+        	</exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+        <groupId>cn.skynethome</groupId>
+        <artifactId>redisx-common</artifactId>
+        <version>1.0.5</version>
+       </dependency>
+        
+        
+	</dependencies>
+
+
+	<!-- <repositories> <repository> <snapshots> <enabled>true</enabled> </snapshots> 
+		<id>public</id> <name>Public Repositories</name> <url>http://192.168.0.8:8081/nexus/content/groups/public/</url> 
+		</repository> </repositories> <pluginRepositories> <pluginRepository> <id>public</id> 
+		<name>Public Repositories</name> <url>http://192.168.0.8:8081/nexus/content/groups/public/</url> 
+		</pluginRepository> </pluginRepositories> -->
+
+	<!-- <distributionManagement> <repository> <id>releases</id> <name>Local 
+		Nexus Repository</name> <url>http://192.168.0.8:8081/nexus/content/repositories/releases/</url> 
+		</repository> <snapshotRepository> <id>Snapshots</id> <name>Local Nexus Repository</name> 
+		<url>http://192.168.0.8:8081/nexus/content/repositories/snapshots</url> </snapshotRepository> 
+		</distributionManagement> -->
+
+
+	 <distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://192.168.1.16:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://192.168.1.16:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement> 
+
+
+<!-- 
+ <distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement> 
+
+-->
+
+</project>
+

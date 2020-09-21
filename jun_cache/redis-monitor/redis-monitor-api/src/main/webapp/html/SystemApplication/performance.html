@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title></title>
+		<script type="text/javascript" src="../../js/selfjs/echarts.min.js"></script>
+		<link rel="stylesheet" href="../../js/layui/layui/css/layui.css" media="all" />		
+		<link rel="stylesheet" href="../../js/selfcss/main.css" />
+		<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/bootstrap/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+		<link rel="stylesheet" type="text/css" href="../../js/selfcss/demo.css">
+		<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>	
+		<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script> 
+	</head>
+
+	<body>
+		<div class="layui-field-box" style="width:90%;height:30px;" id="button1">
+    		 <a href="javascript:history.go(-1)" class="easyui-linkbutton" data-options="toggle:true" >返回</a>	
+  		 </div> 
+		<fieldset class="layui-elem-field">
+		 <legend>CPU 监控</legend>
+		 <div class="layui-field-box" style="width:90%;height:200px;" id="cpu">
+    			
+  		 </div>
+		</fieldset>
+		<fieldset class="layui-elem-field">
+  		<legend>JVM内存监控</legend>
+  		<div class="layui-field-box" style="width:90%;height:200px;" id="jvmheap">
+    			
+  		</div>
+  		<div class="layui-field-box" style="width:90%;height:200px;" id="jvminfo">
+    			
+  		</div>
+  		<div class="layui-field-box" style="width:90%;height:80px;" id="jvmGarbage">
+    		<table id="tablelist1" class="easyui-datagrid"  style="width:auto;" fitcolumns="true" fit="true" 
+			data-options="pagination:false,method:'get'">
+				<thead>
+					<tr>
+						<th data-options="field:'youngCollectionCount',width:80,align:'center'">年轻代回收次数</th>
+						<th data-options="field:'youngCollectionTime',width:100,align:'center'">年轻代回收时间(ms)</th>
+						<th data-options="field:'oldCollectionCount',width:100,align:'center'">老年代回收次数</th>
+						<th data-options="field:'oldCollectionTime',width:100,align:'center'">老年代回收时间(ms)</th>
+					</tr>
+				</thead>
+			</table>	
+  		</div>
+  		</fieldset>
+  		
+  		<fieldset class="layui-elem-field">
+  		<legend>JVM线程监控</legend>
+  		<div class="layui-field-box" style="width:90%;height:200px;" id="jvmThread">
+    			
+  		</div>
+  		</fieldset>
+  		<fieldset class="layui-elem-field">
+  		<legend>JVM CassLoader监控</legend>
+  		<div class="layui-field-box" style="width:90%;height:200px;" id="jvmCassLoader">
+    			
+  		</div>
+  		</fieldset>
+		<fieldset class="layui-elem-field" id="tomcatThread">
+  		<legend>TOMCAT监控</legend>
+  		<div class="layui-field-box" style="width:90%;height:200px;float: left" id="thread">
+    			
+  		</div>
+
+  		</fieldset>
+  		<fieldset class="layui-elem-field" id="quartzMonitor">
+  		<legend>QUARTZ 监控</legend>
+  		<div class="layui-field-box" style="width:90%;height:200px;float: left" id="zookeeper">
+    		<table id="tablelist" class="easyui-datagrid"  style="width:auto;" fitcolumns="true" fit="true" 
+			data-options="pagination:false,method:'get'">
+				<thead>
+					<tr>
+						<th data-options="field:'schedulerInstanceId',width:80,align:'center'">schedulerInstanceId</th>
+						<th data-options="field:'schedulerName',width:100,align:'center'">schedulerName</th>
+						<th data-options="field:'threadPoolClassName',width:100,align:'center'">threadPoolClassName</th>
+						<th data-options="field:'threadPoolSize',width:100,align:'center'">threadPoolSize</th>
+						<th data-options="field:'statusName',width:100,align:'center'">statusName</th>
+						<th data-options="field:'version',width:150,align:'center'">version</th>
+					</tr>
+				</thead>
+			</table>	
+  		</div>
+  		</fieldset>
+  		<script type="text/javascript">
+  		var quartz=0;
+  		var tomcat=0;
+  		var applicationId;
+        var threadChart = echarts.init(document.getElementById('thread'));
+        var jvmthreadChart = echarts.init(document.getElementById('jvmThread'));
+        var jvmCassLoaderChart = echarts.init(document.getElementById('jvmCassLoader'));
+        var cpuChart = echarts.init(document.getElementById('cpu'));
+        var jvmheapChart = echarts.init(document.getElementById('jvmheap'));
+        var jvminfoChart=echarts.init(document.getElementById('jvminfo'))
+        // 使用刚指定的配置项和数据显示图表。
+		function setData(){
+        	 	if(applicationId){
+        	 		var url="../../"+applicationId+"/searchEChartsObject";
+        	 		$.getJSON(url, function (data) {  
+    		            if (data) {  
+    		            	jvmthreadChart.setOption(data.jvmThreadOption,true);
+    		            	jvmCassLoaderChart.setOption(data.jvmClassLoaderOption,true); 
+    		            	jvmheapChart.setOption(data.jvmUsedOption,true);  
+    		            	jvminfoChart.setOption(data.jvmInfoOption,true);
+    		            	cpuChart.setOption(data.cpuUsedOption,true); 
+    		            	if(tomcat==1){
+        		            	threadChart.setOption(data.tomcatThreadOption,true);
+        		            	
+    		            	}
+    		            	if(quartz==1){
+    		            		
+    		            		$('#tablelist').datagrid({
+        		            		data:data.quartzRuntimeDataGridObject 
+        		            	});
+    		            	}
+    		            	
+    		            	$('#tablelist1').datagrid({
+    		            		data:data.heapMemroryGarbageObject 
+    		            	});
+    		            } 
+    		        });
+        	 	}
+				
+
+			}
+			window.onload=function(){
+				applicationId=getUrlParam("id");
+				var url="../../"+applicationId+"/searchSystemComponentObject";
+				$.getJSON(url, function (data) {  
+		            if (data) {
+		            	if(data.data.quartz){
+		            		quartz=data.data.quartz;
+		            		$("#quartzMonitor").css('display','block');
+		            		
+		            	}else{
+		            		$("#quartzMonitor").css('display','none');
+		            		
+		            	}
+		            	if(data.data.tomcat){
+			            	tomcat=data.data.tomcat;
+			            	$("#tomcatThread").css('display','block');
+		            	}else{
+		            		$("#tomcatThread").css('display','none');
+		            	}
+		            } 
+		        });
+				
+				setInterval(setData,5000);
+			}
+			
+			function getUrlParam(name) {
+	            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+	            if (r != null) return unescape(r[2]); return null; //返回参数值
+	        }
+		</script>	
+	</body>
+	
+</html>

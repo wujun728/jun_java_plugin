@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:osgi="http://www.springframework.org/schema/osgi"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi-1.2.xsd">
+   
+    <bean id="jdbcDao" class="com.osmp.jdbc.support.JdbcDao"></bean>
+
+    <bean id="dao" class="com.osmp.service.dao.ServiceRegistDao">
+        <property name="jdbcDao" ref="jdbcDao"></property>
+    </bean>
+    
+    <bean id="serviceFactoryImpl" class="com.osmp.service.factory.ServiceFactoryImpl"></bean>
+    
+    <bean id="stateManager" class="com.osmp.service.manager.ServiceStateManager">
+        <property name="serviceDao" ref="dao"></property>
+    </bean>
+    
+    <bean id="configManager" class="com.osmp.service.manager.ServiceConfigManager">
+        <property name="serviceDao" ref="dao"></property>
+    </bean>
+    
+    <osgi:reference id="zookeeperService"
+		interface="com.osmp.intf.define.service.ZookeeperService" cardinality="1..1">
+	</osgi:reference>
+    
+    <bean id="serviceWatcher" class="com.osmp.service.watch.ServiceWatcher">
+        <property name="serviceStateManager" ref="stateManager"></property>
+        <property name="serviceFactoryImpl" ref="serviceFactoryImpl"></property>
+        <property name="zookeeper" ref = "zookeeperService"></property>
+    </bean>
+    
+    <bean id="configService" class="com.osmp.service.config.ConfigServiceImpl">
+        <property name="serviceConfigManager" ref="configManager"></property>
+    </bean>
+    
+    <osgi:service interface="com.osmp.intf.define.factory.ServiceFactory" ranking="0">
+        <ref bean="serviceFactoryImpl" />
+    </osgi:service>
+    
+    <osgi:service interface="com.osmp.intf.define.service.ConfigService" ranking="0">
+        <ref bean="configService"/>
+    </osgi:service>
+    
+    <!-- 动态注册拦截器配置接口 -->
+    <bean id="configIntceptorImpl" class="com.osmp.service.config.ConfigIntceptorImpl"></bean>
+    
+    <osgi:service interface="com.osmp.intf.define.service.ConfigService" ranking="0">
+        <ref bean="configIntceptorImpl"/>
+    </osgi:service>
+</beans>

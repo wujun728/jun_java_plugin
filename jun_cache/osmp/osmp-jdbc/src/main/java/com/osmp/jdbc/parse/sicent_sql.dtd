@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!ELEMENT sqls (sql* | insert* | update* | delete* | select* )+>
+<!ATTLIST sqls
+xmlns:fo CDATA #IMPLIED
+namespace CDATA #IMPLIED
+>
+
+<!ELEMENT select (#PCDATA | where | choose | if | orders | include)*>
+<!ATTLIST select
+id CDATA #REQUIRED
+>
+
+<!ELEMENT insert (#PCDATA | where | choose | if | orders | include)*>
+<!ATTLIST insert
+id CDATA #REQUIRED
+>
+
+<!ELEMENT update (#PCDATA | where | choose | if | orders | include)*>
+<!ATTLIST update
+id CDATA #REQUIRED
+>
+
+<!ELEMENT delete (#PCDATA | where | choose | if | orders | include)*>
+<!ATTLIST delete
+id CDATA #REQUIRED
+>
+
+<!ELEMENT sql (#PCDATA | where | choose | if | orders | include)*>
+<!ATTLIST sql
+id CDATA #REQUIRED
+>
+<!-- Dynamic -->
+
+<!ELEMENT where (#PCDATA | choose | if | orders | advanced | in | include)*>
+
+<!ELEMENT choose (when* , otherwise?)>
+<!ELEMENT when (#PCDATA | where | choose | if | orders | include)*>
+<!ATTLIST when
+test CDATA #REQUIRED
+>
+<!ELEMENT otherwise (#PCDATA | where | choose | if | orders | include)*>
+
+<!ELEMENT if (#PCDATA | where | choose | if | orders | include)*>
+<!ATTLIST if
+test CDATA #REQUIRED
+>
+
+<!ELEMENT orders (orderby)* >
+<!ELEMENT orderby (#PCDATA)* >
+<!ATTLIST orderby
+orderColumn CDATA #REQUIRED
+orderTypeVar CDATA ""
+orderType (asc|desc) "desc"
+>
+
+<!ELEMENT advanced (#PCDATA)* >
+<!ATTLIST advanced
+advancedProperty CDATA #REQUIRED
+separator CDATA #REQUIRED
+>
+
+<!ELEMENT in (#PCDATA)* >
+<!ATTLIST in
+inProperty CDATA #REQUIRED
+separator CDATA #REQUIRED
+>
+
+<!ELEMENT include (#PCDATA)* >
+<!ATTLIST include
+sql IDREF #REQUIRED
+>

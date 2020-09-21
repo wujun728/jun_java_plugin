@@ -1,0 +1,58 @@
+<div class="inner">
+<div class="tiptop"> 
+    <span data-i18n="DEFECT.search_defect"></span> 
+    <a class="close-button"></a> 
+</div> 
+<div id="customquery_condition_table_edit" class="formbody"> 
+	<div>
+	     <table class="formtable width">
+	     	 <tr>
+	     	 	<td class="td-center"><label data-i18n="DEFECT.query_type"></label></td>
+				<td class="td-3" colspan="3">
+					<select id="queryType_edit" class="dfinput">
+						<option value="PRIVATE" data-i18n="DEFECT.custom_query_type.PRIVETE" <%=queryType=="PRIVATE"?selected='selected':""%>></option>
+						<%if (defectCustomqueryPublic){%>
+							<option value="PUBLIC" data-i18n="DEFECT.custom_query_type.PUBLIC" <%=queryType=="PUBLIC"?selected='selected':""%>></option>
+						<%}%>					
+					</select>
+				</td>
+	     	 </tr>
+	     	 <tr>
+	     	 	<td class="td-center"><label data-i18n="DEFECT.self_search_name"></label></td>
+				<td class="td-3" colspan="3">
+					<input type="hidden" id="customqueryid_edit" value="<%=customQueryId%>" />
+					<input type="text" id="selfsearchname_edit" class="dfinput" value="<%=queryName%>" required/>
+   					<label class="required">*</label>
+				</td>	     	 
+	     	 </tr>
+	     	 <tr>
+	     	 	<td class="td-center"><label data-i18n="DEFECT.self_search_desc"></label></td>
+				<td class="td-3" colspan="3">
+					<textarea id="selfsearchdesc_edit" class="textinput"><%=queryDesc%></textarea>
+				</td>	     	 
+	     	 </tr>
+	     	 <tr>
+	     	 	<td colspan="4"><label data-i18n="DEFECT.select_display_field_name"></label></td>
+	     	 </tr>
+	    	 <tr>
+	    	 	<td colspan="4"><div id="selectCols_edit"></div></td>
+	    	 </tr>
+	    	 <tr>
+	     	 	<td colspan="4"><label data-i18n="DEFECT.select_condition_field_name"></label></td>
+	     	 </tr>
+	    	 <tr>
+	    	 	<td colspan="4"><div id="selectConditions_edit"></div></td>
+	    	 </tr>
+	    	 <tr>
+	     	 	<td colspan="4"><label data-i18n="DEFECT.select_sort_field_name"></label></td>
+	     	 </tr>
+	    	 <tr>
+	    	 	<td colspan="4"><div id="selectSorts_edit"></div></td>
+	    	 </tr>
+	   	 </table>
+	</div>
+</div>
+<div class="formfooter">
+   <input id="customquery_condition_save_button_edit" type="button" class="btnsave" data-i18n="[value]button.save"/> 
+   <input id="customquery_condition_cancel_button_edit" type="button" class="btn" data-i18n="[value]button.close" /> 
+</div</div>

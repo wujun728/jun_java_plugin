@@ -1,0 +1,12 @@
+package com.hanke.hbrid.template.drools
+
+import org.drools.applicant.SoilAnalysisData;
+
+rule "hydropenia highly"
+	when 
+		$data : SoilAnalysisData(
+			agroType==SoilAnalysisData.AgroType.SANDY_SOIL
+			)
+	then
+		System.out.println($data.getAgroType());
+end

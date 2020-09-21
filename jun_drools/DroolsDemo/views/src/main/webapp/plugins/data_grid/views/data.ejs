@@ -1,0 +1,53 @@
+    <%if (radioable){%>
+    <td>
+        <input type="radio" name="select_relation_radio" value="<%=id%>" cate="radioRow">
+    </td>
+    <%} 
+    if (checkable){%>
+    <td>
+        <input type="checkbox" value="<%=id%>" cate="row">
+    </td>
+    <%} 
+    var body = function(_fieldList){ for (j=1;j<_fieldList.length;j++){
+    	var colspan = _fieldList[j].colspan?_fieldList[j].colspan:1;
+    	if("2" == colspan) continue;
+    	if("fieldList" ==_fieldList[j].fieldName ){
+		return body(_fieldList[j].fieldList);
+	}
+         var fieldName=_fieldList[j].fieldName;
+         var fieldValue=rowData[fieldName];   
+         var hideColumn="";
+         if (_fieldList[j].hide){
+            hideColumn="hide";
+         }           
+    %>
+    <td class="<%=hideColumn%>">
+              
+         <%if (fieldList[j].tree){        
+              if (fieldList[j].hasChild==false){ %>
+                 <span fieldName="<%=fieldName%>" <%=rowData.isRead==false?"class=unread":""%> style="padding-left:<%=parseInt(padLeft)+10%>px">  
+                 <%=fieldValue%>           
+         <%   }
+              else{%>
+                 <span fieldName="<%=fieldName%>" <%=rowData.isRead==false?"class=unread":""%> style="padding-left:<%=parseInt(padLeft)+10%>px">  
+                 <span class="dynatree-expander"></span><%=fieldValue%>
+         <%   }
+         }else{%>
+         <span fieldName="<%=fieldName%>" <%=rowData.isRead==false?"class=unread":""%>>  
+         <%=fieldValue%>
+         <%}%>
+         </span>         
+    </td>
+    <%}}; body(fieldList);%> 
+    <%if (editable){%>
+        <td class="edit-area">
+            <%if (useEditBtn){%>
+            <div name="grid_button"></div>
+            <%}else{%>
+              <%for (var l=0;l<actions.length;l++){%>
+                <a class="tablelink" value="<%=rowData.id%>" type="<%=actions[l].type%>" data-i18n="button.<%=actions[l].type%>">            
+                </a><label class="<%=(l==actions.length-1)?"hide":""%>"> | </label>        
+            <%}%>
+            <%}%>
+        </td>      
+    <%}%>

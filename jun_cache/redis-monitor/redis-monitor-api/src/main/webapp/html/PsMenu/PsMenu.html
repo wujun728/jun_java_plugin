@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>html</title>
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../js/selfcss/demo.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+</head>
+	<body class="easyui-layout" fit="true" id="body" >
+        
+        
+        <div data-options="region:'center',split:false" >
+			<table id="tablelist" class="easyui-treegrid"  style="width:auto;" fitcolumns="true" fit="true" 
+			data-options="url:'../../searchMenus',idField: 'id',treeField: 'title',toolbar:toolbar">
+				<thead>
+					<tr>					   
+						<th data-options="field:'title',width:100,align:'center'">标题</th>
+						<th data-options="field:'href',width:100,align:'center'">链接</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="formwin" class="easyui-window"  data-options="iconCls:'icon-save',closed:true" >
+		  <form id="infoForm" method="post" style="text-align: center;margin-top: 20px;margin-left: 50px;">
+			    <input type="hidden" id="id" name="id" />
+			  	<table class="common-table" style="border-collapse:separate; border-spacing:15px;" cellspacing="30" cellpadding="0">
+			  	  <tr>
+			  	    <th>标题：</th>
+			  	     <td>
+		    			  <input name="title" id="title" type="text" class="easyui-validatebox txt"/>
+			  	     </td>
+			  	    <th>图标：</th>
+			  	     <td>
+		    			  <input name="icon" id="icon" type="text" class="easyui-validatebox txt"/>
+			  	     </td>
+			  	    </tr>
+			  	  <tr>
+			  	    <th>链接：</th>
+			  	     <td>
+		    			  <input name="href" id="href" type="text" class="easyui-validatebox txt"/>
+			  	     </td>
+			  	    <th>父节点：</th>
+			  	     <td>
+							<input class="easyui-combotreegrid" data-options="
+					width:'100%',
+					panelWidth:200,
+					url:'../../searchMenus',
+					idField:'id',
+					treeField:'title',
+					columns:[[
+						{field:'title',title:'title',width:200}
+					]]" name="parentId"/>
+			  	     </td>
+			  	    </tr>
+			  	  <tr>
+			  	    <th>是否子节点：</th>
+			  	     <td>
+		    			   <input class="easyui-combobox" data-options="
+							valueField: 'label',
+							textField: 'value',
+							url:'../../searchSelectPsDicts?moudle=YESNO'" name="isLeaf"/>
+			  	     </td>
+			  	    <th>是否展开：</th>
+			  	     <td>
+		    			   <input class="easyui-combobox" data-options="
+							valueField: 'label',
+							textField: 'value',
+							url:'../../searchSelectPsDicts?moudle=YESNO'" name="spread"/>
+			  	     </td>
+			  	    </tr>
+			  	</table>
+  			</form> 
+  			<div id="dlg-buttons2" style="text-align: center;vertical-align: middle;margin-top: 20px;">
+				
+				<a href="javascript:void(0)" class="easyui-linkbutton c5"
+					onclick="javascript:$('#formwin').window('close');"
+					style="width: 90px">关闭</a>					
+				<a href="javascript:void(0)" class="easyui-linkbutton c6"
+					 onclick="javascript:Handler.saveData();" style="width: 90px">保存</a>	
+			</div>
+    	</div>
+    	<div id="formwin1" class="easyui-window"  data-options="iconCls:'icon-save',closed:true" >
+		  
+			<table id="tablelist1" class="easyui-datagrid"  style="width:auto;" fitcolumns="true" fit="true" 
+			data-options="singleSelect:false,pagination:true,method:'get',toolbar:toolbar1">
+				<thead>
+					<tr>					   
+					    <th data-options="field:'ck',checkbox:true"></th>
+						<th data-options="field:'username',width:100,align:'center'">用户名</th>
+						<th data-options="field:'userEmail',width:100,align:'center'">用户邮箱</th>
+					</tr>
+				</thead>
+			</table>
+    	</div>
+    	
+    	
+		<script type="text/javascript">
+        var toolbar = [{
+            text:'新增',
+            iconCls:'icon-add',
+            handler:function(){Handler.addData()}
+        },'-',{
+            text:'删除',
+            iconCls:'icon-cut',
+            handler:function(){Handler.deleteData()}
+        },'-',{
+            text:'编辑',
+            iconCls:'icon-save',
+            handler:function(){Handler.editData()}
+        },'-',{
+            text:'授权',
+            iconCls:'icon-save',
+            handler:function(){Handler.authData()}
+        },'-',{
+            text:'查询',
+            iconCls:'icon-search',
+            handler:function(){Handler.searchDataById()}
+        }];
+        var toolbar1 = [{
+            text:'关联用户',
+            iconCls:'icon-save',
+            handler:function(){Handler.linkData()}
+        }];
+      //设置分页控件  
+      $(document).ready(function() {
+    	  var p = $('#tablelist1').datagrid('getPager');  
+          p.pagination({  
+              pageSize: 10,//每页显示的记录条数，默认为10  
+              pageList: [10, 20, 50],//可以设置每页记录条数的列表  
+              beforePageText: '第',//页数文本框前显示的汉字  
+              afterPageText: '页    共 {pages} 页',  
+              displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录'  
+          });
+          $('#tablelist1').datagrid({onLoadSuccess : function(data){
+        	  var rowData = data.rows;
+              $.each(rowData, function (index, value) {
+            	  var rowsChecked = $('#tablelist').treegrid('getSelected');
+            	  var url="../../searchSelectUserByMenuIdAndUserId?menuId="+rowsChecked.id+"&userId="+value.id;
+        			$.get(url, function(data){
+      				if(data.status==200){
+      					$("#tablelist1").datagrid("checkRow", index);
+      				}
+      			 },"json");
+            	  
+              });
+        	}});
+      });
+      var Handler = {
+    			deleteData: function(){ 
+      			  var rowsChecked = $('#tablelist').treegrid('getSelected');
+      			  $.messager.confirm('信息提示', '确认是否删除数据?', function(r){
+      	                if (r){
+      	                	$.post("../../removeMenu",{id:rowsChecked.id},function(data,state){
+      	    					 if(state=="success" && data.status==200){
+      	    						 $('#tablelist').treegrid('load');
+      	    					 }else{
+      	    						 $.messager.alert('失败信息',data.message,'error');
+      	    					 }	
+      	  					},"json");
+      	                }
+      	            }); 
+      			},
+      			linkData: function(){ 
+        			  var rowsChecked = $('#tablelist').treegrid('getSelected');
+        			  var rows = $('#tablelist1').datagrid('getChecked');
+        			  var ids = [];
+					  for(var index in rows){
+							 var r = rows[index];
+				             	ids.push(r.id);
+							}
+					  var userIds = ids.join(','); 	
+        			  $.messager.confirm('信息提示', '确认是否关联用户?', function(r){
+        	                if (r){
+        	                	$.post("../../link",{menuId:rowsChecked.id,userIds:userIds},function(data,state){
+        	    					 if(state=="success" && data.status==200){
+        	    						 $('#formwin1').window('close');
+        	    						 $('#tablelist').treegrid('load');
+        	    					 }else{
+        	    						 $.messager.alert('失败信息',data.message,'error');
+        	    					 }	
+        	  					},"json");
+        	                }
+        	            }); 
+        			},	
+      		searchDataById: function(){
+      			var rowsChecked = $('#tablelist').treegrid('getSelected');
+      			var url="../../"+rowsChecked.id+"/searchMenu";
+      			$.get(url, function(data){
+    				if(data.status==200){
+    					$('#infoForm').form('load', data.data);
+    					$("#dlg-buttons2").css('display','none');
+    				}
+    			},"json");
+      			openWindow("formwin","查询页面","icon-search");
+    		  },
+      		 addData: function(){
+      			$('#infoForm').form('clear');
+      			$("#dlg-buttons2").css('display','block');
+      			openWindow("formwin","新增页面","icon-add");
+      		  },
+      	     authData: function(){
+      	    	$('#tablelist1').datagrid({url : '../../searchPsUsers'}); 
+      			openWindow("formwin1","授权页面","icon-edit");
+      		  },  
+      		editData: function(){
+      			$('#infoForm').form('clear');
+      			var rowsChecked = $('#tablelist').treegrid('getSelected');
+      			var url="../../"+rowsChecked.id+"/searchMenu";
+      			$.get(url, function(data){
+    				if(data.status==200){
+    					$('#infoForm').form('load', data.data);
+    					$("#dlg-buttons2").css('display','block');
+    				}
+    			},"json");
+      			openWindow("formwin","编辑页面","icon-edit");
+      		  },
+       		 saveData: function(){
+       			 var params=getFormData("infoForm");
+       			 var url="";
+       			 if(params.id){//存在
+       				url="../../editMenu";
+       			 }else{
+       				 url="../../menu";
+       			 }
+       			 $.post(url,params,function(data,state){
+					 if(state=="success" && data.status==200){
+						 $('#infoForm').form('clear');
+						 $('#formwin').window('close');
+						 
+		      			 $('#tablelist').treegrid('load');
+					 }else{
+						 $.messager.alert('失败信息',data.message,'error');
+						 $('#infoForm').form('clear');
+					 }	
+					},"json");
+       		  }
+      };
+      function getFormData(id){
+    	    var data = $("#"+id).serializeArray();
+    		var item,key,value,newData={};
+    		for(var i=0;i<data.length;i++){
+    			item = data[i];
+    			key = item.name;
+    			if(item.value){
+    				value = item.value;
+        			newData[key] = value;
+    			}
+    		}	
+    		return newData;
+    	}
+      
+      function openWindow(id,title,iconcls){
+    	  $('#'+id).window({
+			    width:850,
+			    height:400,
+			    top:($("#body").height() - 400) * 0.5,   
+              	left:($("#body").width() - 800) * 0.5,
+              	shadow: true,
+              	collapsible:false,
+              	minimizable:false,
+              	maximizable:false,
+              	iconCls:iconcls,
+			    title:title,
+			    modal:true
+			});
+			 $('#'+id).window('open');
+      }
+    </script>
+		
+	</body>
+	
+</html>

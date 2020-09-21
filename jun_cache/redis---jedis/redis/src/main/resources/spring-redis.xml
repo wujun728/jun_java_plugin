@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns='http://www.springframework.org/schema/beans'
+	    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	    xmlns:context='http://www.springframework.org/schema/context'
+	    xmlns:c='http://www.springframework.org/schema/c'
+	    xmlns:p='http://www.springframework.org/schema/p'
+	    xmlns:cache='http://www.springframework.org/schema/cache'
+	    xsi:schemaLocation='
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd'>  
+    
+     <context:property-placeholder location="classpath:redis.properties" />  
+  
+  		<context:property-placeholder location="classpath:redis.properties" />
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="1000"/>
+		 <property name="maxIdle" value="10"/>
+		 <property name="minIdle" value="1"/>
+		 <property name="maxWaitMillis" value="30000"/>
+		 <property name="testOnBorrow" value="true"/>
+		 <property name="testOnReturn" value="true"/>
+		 <property name="testWhileIdle" value="true"/>
+	</bean>
+	<bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1">
+			<list>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis1.ip}" />
+					<constructor-arg index="1" value="${redis1.port}" type="int" />
+					<constructor-arg value="instance:01"/>
+				</bean>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis2.ip}" />
+					<constructor-arg index="1" value="${redis2.port}" type="int" />
+					<constructor-arg value="instance:02"/>
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="redisTemplate" class="com.zttx.redis.core.RedisTemplate" >
+		<constructor-arg>
+			<ref bean="shardedJedisPool" />
+		</constructor-arg>
+	</bean>
+	
+</beans>

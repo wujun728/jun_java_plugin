@@ -1,0 +1,15 @@
+# **************************************************************
+# ----- Setting File with UTF8-----
+# ----- 样例配置文件 -----
+# **************************************************************
+
+bool.key = true
+char.key = A
+string1 = String of value
+string2 = ${string1} other
+
+[group1]
+bool.key = true
+char.key = B
+string1 = String of value with group
+string2 = ${group1.string1} append string

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chentongwei.dao.doutu.IDemoDAO">
+ 	<select id="getByID" parameterType="int" resultType="demoVO">
+		select * from staffs where id = #{id}
+	</select>
+	
+	<select id="list" parameterType="demoIO" resultType="demoVO">
+		select * from staffs
+	</select>
+
+	<insert id="save" parameterType="demoIO">
+		INSERT INTO staffs(name, age, pos) VALUES(#{name}, #{age}, #{pos})
+	</insert>
+</mapper>

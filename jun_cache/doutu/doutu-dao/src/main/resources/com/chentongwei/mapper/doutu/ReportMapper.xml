@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chentongwei.dao.doutu.IReportDAO">
+
+	<sql id="listByStatus_column">
+		report.id,
+		report.picture_id AS pictureId,
+		report.user_id AS userId,
+		report.status,
+		report.feedback,
+		report.remark,
+		report.create_time AS createTime,
+		picture.url AS pictureUrl
+	</sql>
+	
+	<select id="getCatalogID" parameterType="long" resultType="int">
+		SELECT
+			picture.catalog_id
+		FROM
+			dt_report report
+		LEFT JOIN dt_picture picture ON report.picture_id = picture.id
+		WHERE 
+			report.id = #{id}
+	</select>
+
+	<select id="listByStatus" parameterType="integer" resultType="reportVO">
+		SELECT
+			<include refid="listByStatus_column" />
+		FROM
+			dt_report report
+		LEFT JOIN dt_picture picture ON report.picture_id = picture.id
+		WHERE 
+			report.status = #{status}
+	</select>
+
+	<select id="checkReportStatus" parameterType="long" resultType="integer">
+		SELECT 
+			status
+		FROM 
+			dt_report 
+		WHERE 
+			id = #{id}
+	</select>
+
+	<select id="checkIsReport" resultType="int">
+		SELECT 
+			count(1) 
+		FROM 
+			dt_report 
+		WHERE 
+			picture_id = #{pictureId}
+		AND 
+			user_id = #{userId}
+	</select>
+
+	<insert id="save" parameterType="reportIO" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+			dt_report
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != pictureId">
+				picture_id,
+			</if>
+			<if test="null != userId">
+				user_id,
+			</if>
+			<if test="null != remark and '' != remark">
+				remark,
+			</if>
+		</trim>
+		
+		<trim prefix=" VALUES(" suffix=")" suffixOverrides=",">
+			<if test="null != pictureId">
+				#{pictureId},
+			</if>
+			<if test="null != userId">
+				#{userId},
+			</if>
+			<if test="null != remark and '' != remark">
+				#{remark},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="editStatus" parameterType="reportStatusIO">
+		UPDATE 
+			dt_report
+		<set>
+            <if test="null != status">
+                status = #{status},
+            </if>
+            <if test="null != feedback and '' != feedback">
+            	feedback = #{feedback},
+            </if>
+		</set>
+		WHERE 
+			id = #{id}
+	</update>
+</mapper>

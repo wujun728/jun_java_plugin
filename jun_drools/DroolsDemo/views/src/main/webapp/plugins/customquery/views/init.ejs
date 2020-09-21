@@ -1,0 +1,57 @@
+<div class="inner">
+<div class="title-margin"></div>
+ 	<div class="tiptop">
+		<%=$.t("DEFECT.custom_query")%>
+		<div></div>
+		<input class="close-button"  type="button">
+	</div> 	
+	<div  id="customquery_condition_table" class="formbody"> 
+     <table class="formtable">
+     	 <tr>
+     	 	<td width="300px"><label data-i18n="DEFECT.query_type"></label>:</td>
+			<td width="300px">
+				<select id="queryType" class="dfinput">
+					<option value="PRIVATE" data-i18n="DEFECT.custom_query_type.PRIVETE"></option>
+					<%if (defectCustomqueryPublic){%>
+						<option value="PUBLIC" data-i18n="DEFECT.custom_query_type.PUBLIC"></option>
+					<%}%>					
+				</select>
+			</td>
+     	 </tr>
+     	 <tr>
+     	 	<td><label data-i18n="DEFECT.self_search_name"></label>(*):</td>
+			<td>
+				<input type="text" id="selfsearchname" class="dfinput" required/>  					
+			</td>	     	 
+     	 </tr>
+     	 <tr>
+     	 	<td><label data-i18n="DEFECT.self_search_desc"></label></td>
+			<td>
+				<textarea id="selfsearchdesc" class="textinput"></textarea>
+			</td>	     	 
+     	 </tr>
+     	 <tr>
+     	 	<td colspan="2"><label data-i18n="DEFECT.select_display_field_name"></label></td>
+     	 </tr>
+    	 <tr>
+    	 	<td colspan="2"><div id="selectCols"></div></td>
+    	 </tr>
+    	 <tr>
+     	 	<td colspan="2"><label data-i18n="DEFECT.select_condition_field_name"></label></td>
+     	 </tr>
+    	 <tr>
+    	 	<td colspan="2"><div id="selectConditions"></div></td>
+    	 </tr>
+    	 <tr>
+     	 	<td colspan="2"><label data-i18n="DEFECT.select_sort_field_name"></label></td>
+     	 </tr>
+    	 <tr>
+    	 	<td colspan="2"><div id="selectSorts"></div></td>
+    	 </tr>
+   	 </table>
+</div>
+<div class="formfooter">
+   <input id="customquery_condition_save_button" type="button" class="btn btn-blue btn-save" data-i18n="[value]button.save"/> 
+   <input id="customquery_condition_cancel_button" type="button" class="btn btn-yellow btn-close" data-i18n="[value]button.close" /> 
+</div>
+</div>

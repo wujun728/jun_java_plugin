@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chentongwei.dao.common.ISysLogDAO">
+
+    <sql id="list_column">
+        id,
+        operator_id AS operatorId,
+        operator,
+        menu,
+        sub_menu AS subMenu,
+        content,
+        client_ip AS clientIp,
+        create_time AS createTime
+    </sql>
+
+    <select id="list" resultType="sysLogListVO">
+        SELECT
+            <include refid="list_column" />
+        FROM
+            dt_sys_log
+    </select>
+
+	<insert id="save" parameterType="sysLogIO" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO 
+			dt_sys_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != operatorId">
+				operator_id,
+			</if>
+			<if test="null != operator and '' != operator">
+				operator,
+			</if>
+			<if test="null != menu and '' != menu">
+				menu,
+			</if>
+			<if test="null != subMenu and '' != subMenu">
+				sub_menu,
+			</if>
+			<if test="null != content and '' != content">
+				content,
+			</if>
+			<if test="null != clientIp and '' != clientIp">
+				client_ip,
+			</if>
+		</trim>
+		
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			<if test="null != operatorId">
+				#{operatorId},
+			</if>
+			<if test="null != operator and '' != operator">
+				#{operator},
+			</if>
+			<if test="null != menu and '' != menu">
+				#{menu},
+			</if>
+			<if test="null != subMenu and '' != subMenu">
+				#{subMenu},
+			</if>
+			<if test="null != content and '' != content">
+				#{content},
+			</if>
+			<if test="null != clientIp and '' != clientIp">
+				#{clientIp},
+			</if>
+		</trim>
+	</insert>
+
+</mapper>

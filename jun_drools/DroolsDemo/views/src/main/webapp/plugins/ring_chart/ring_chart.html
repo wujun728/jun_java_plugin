@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Main.Controllers.Home.Controllers.RingChart</title>
+		<script type='text/javascript' 
+                src='http://localhost:8080/hbird/steal/steal.js'>
+        </script>
+        <script type="text/javascript" src="http://localhost:8080/hbird/js/html5shiv.min.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/hbird/js/excanvas.compiled.js"></script>
+        <style type='text/css'>
+            body {font-family: verdana}
+            .error {border: solid 1px red;}
+            .error_text { color: red; font-size: 10px;}
+            td {padding: 3px;}
+        </style>
+	</head>
+	<body>
+	    <h1>Main.Controllers.Home.Controllers.RingChart Demo</h1>
+		<div id='ring_chart'></div>			
+		<script type='text/javascript'>
+		steal('plugins/ring_chart',function(){				
+				$('#ring_chart').plugins_ring_chart({elementId:"cv"});
+			})
+		
+		</script>
+	</body>
+</html>

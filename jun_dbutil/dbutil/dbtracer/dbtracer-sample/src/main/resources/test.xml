@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tables>
+
+	<table name="intercepted_log" key ="id">
+		<field nameEN="ip" nameCN="客户端ip" />
+		<field nameEN="times" nameCN="访问次数" />
+		<field nameEN="update_time" nameCN="更新时间" />
+		<field nameEN="expire_time" nameCN="过期时间" />
+		<field nameEN="is_deleted" nameCN="逻辑删除">
+			<property value="0" description="未删除" />
+			<property value="1" description="已删除" />
+		</field>
+	</table>
+
+</tables>

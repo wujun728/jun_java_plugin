@@ -1,0 +1,180 @@
+package org.drools.examples
+
+import org.drools.examples.HelloWorldExample.Message;
+import org.drools.examples.HelloWorldExample.Order;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
+import org.drools.examples.StringUtils;
+
+// 定义FACT对象
+declare Address
+	@author(quzishen) // 元数据，仅用于描述信息，无执行功能
+	@createTime(2011-1-24)
+	city : String @maxLengh(100)
+	postno : int
+end
+
+function void addOrders(Message message){
+	message.getNames().add("addOrders");
+}
+
+// p1
+rule p1
+	salience 100
+	// 当前规则使用insert、modify等操作的时候，会再次触发当前规则，仅用于当前规则，
+	// 其他规则发生上述操作如果只执行一次，使用lock-on-active true
+	no-loop  false
+	activation-group "goup1" //具有相同group名称的规则只有一个会执行，可以用salience控制
+	when
+		eval(true)
+	then
+		System.out.println("p1 测试LHS");
+end
+
+// p2
+rule p2
+	salience 99
+	no-loop true
+	when
+		// 传入FACT必须是Message类型并且其中的status=0为条件，$message为当前条件指针
+		$message:Message((status==0 || status == 1) && message=="Hello World")
+	then
+		System.out.println($message.getFromDB());
+		System.out.println("p2 测试多条件"+$message.getStatus());
+end
+
+// p3
+rule p3
+	salience 98
+	no-loop true
+	when 
+		// 这里需要的每一个fact都必须外部传入. Order + Message
+		$order:Order(name=="qu")
+		$message:Message(status==0 && orders contains $order && $order.name=="qu")
+	then
+		System.out.println("p3 测试 contains 对象"+$message.getStatus());
+end
+
+// p4
+rule p4
+	salience 97
+	no-loop true
+	when
+		$message:Message(status==0 && names contains "网易" && names.size >= 1)
+	then
+		System.out.println("p4 测试 contains 字符串值"+$message.getNames());
+end
+
+// p5
+rule p5
+	salience 0
+	no-loop true
+	when 
+		eval(true)
+	then
+		Message m = new Message();
+		m.setStatus(1);
+		m.setMessage("new Message");
+		// 这里insert一个，working memory中将有2个了
+		insert(m);
+		System.out.println("p5测试 insert (修改了working memory的message，会再次触发p6规则)");
+end
+
+// p6
+rule p6
+	salience 95
+	date-expires "2011-01-31 23:59:59" // 在此之前有效
+	when
+		// 会一直被触发直到条件不满足
+		$message:Message(status < 10)
+	then
+		$message.setStatus($message.getStatus()+1);
+		update($message);
+		System.out.println("p6测试 update");
+end
+
+// p7
+rule p7
+	date-effective "2011-01-21 16:11:40" // 到了时间才会触发
+	no-loop true
+	when
+		$message:Message()
+	then
+		modify($message){
+			setMessage("新的message");
+		}
+		System.out.println("p7测试 modify");
+end
+
+// p8
+rule p8
+	no-loop true
+	salience 94
+	when
+		$message : Message()
+	then
+		System.out.println("p8 测试  function");
+		addOrders($message);
+		
+		System.out.println($message.getNames());
+end
+
+// p9
+rule p9
+	no-loop true
+	salience 93
+	when
+		eval(true)
+	then
+		Address address = new Address();
+		address.setCity("杭州");
+		address.setPostno(111);
+		insert(address);
+		System.out.println("p9 测试FACT对象定义"+address.getCity());
+end
+
+// p10
+rule p10
+	no-loop true
+	salience 92
+	when
+		eval(true)
+	then
+		// 调用的方法必须是静态的方法
+		System.out.println("p10测试方法"+StringUtils.getCount());
+end
+
+// p11
+declare ComparedTime 
+	ct:Date
+end
+
+rule p111
+	no-loop true
+	salience 91
+	when
+		eval(true)
+	then
+		ComparedTime ct = new ComparedTime();
+		ct.setCt(new Date());
+		insert(ct);
+end
+
+rule p11
+	no-loop true
+	salience 90
+	when
+		$ct:ComparedTime()
+		$message:Message(time < $ct.ct)
+	then
+		System.out.println("p11 测试时间类型字段"+$ct.getCt());
+end
+
+query "pcount"
+	Message() || Address()
+end
+
+query "pc2" (int $status)
+	Message(status <= $status)
+end

@@ -1,0 +1,20 @@
+*.DS_Store
+*.class
+*.settings/
+*.idea/
+
+*.project
+*.classpath
+*.iml
+
+bin/
+lib/
+target/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+/build.num
+/MANIFEST.MF

@@ -1,0 +1,64 @@
+package com.drools.demo.point
+
+import com.drools.demo.point.PointDomain;
+
+rule birthdayPoint
+	// 过生日，则加10分，并且将当月交易比数翻倍后再计算积分
+	salience 100
+	lock-on-active true
+	when
+		$pointDomain : PointDomain(birthDay == true)
+	then
+		$pointDomain.setPoint($pointDomain.getPoint()+10);
+		$pointDomain.setBuyNums($pointDomain.getBuyNums()*2);
+		$pointDomain.setBuyMoney($pointDomain.getBuyMoney()*2);
+		$pointDomain.setBillThisMonth($pointDomain.getBillThisMonth()*2);
+		
+		$pointDomain.recordPointLog($pointDomain.getUserName(),"birthdayPoint");
+end
+
+rule billThisMonthPoint
+	// 2011-01-08 - 2011-08-08每月信用卡还款3次以上，每满3笔赠送30分
+	salience 99
+	lock-on-active true
+	date-effective "2011-01-08 23:59:59"
+	date-expires "2011-08-08 23:59:59"
+	when
+		$pointDomain : PointDomain(billThisMonth >= 3)
+	then
+		$pointDomain.setPoint($pointDomain.getPoint()+$pointDomain.getBillThisMonth()/3*30);
+		$pointDomain.recordPointLog($pointDomain.getUserName(),"billThisMonthPoint");
+end
+
+rule buyMoneyPoint
+	// 当月购物总金额100以上，每100元赠送10分
+	salience 98
+	lock-on-active true
+	when
+		$pointDomain : PointDomain(buyMoney >= 100)
+	then
+		$pointDomain.setPoint($pointDomain.getPoint()+ (int)$pointDomain.getBuyMoney()/100 * 10);
+		$pointDomain.recordPointLog($pointDomain.getUserName(),"buyMoneyPoint");
+end
+
+rule buyNumsPoint
+	// 当月购物次数5次以上，每五次赠送50分
+	salience 97
+	lock-on-active true
+	when
+		$pointDomain : PointDomain(buyNums >= 5)
+	then
+		$pointDomain.setPoint($pointDomain.getPoint()+$pointDomain.getBuyNums()/5 * 50);
+		$pointDomain.recordPointLog($pointDomain.getUserName(),"buyNumsPoint");
+end
+
+rule allFitPoint
+	// 特别的，如果全部满足了要求，则额外奖励100分
+	salience 96
+	lock-on-active true
+	when
+		$pointDomain:PointDomain(buyNums >= 5 && billThisMonth >= 3 && buyMoney >= 100)
+	then
+		$pointDomain.setPoint($pointDomain.getPoint()+ 100);
+		$pointDomain.recordPointLog($pointDomain.getUserName(),"allFitPoint");
+end

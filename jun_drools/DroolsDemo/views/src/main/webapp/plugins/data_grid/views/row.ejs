@@ -1,0 +1,10 @@
+<%for (i=0;i<dataList.length;i++){   
+    var rowData=dataList[i];
+    var id=fieldList[0].fieldName;    
+    id=rowData[id];
+    var sequence=pageNav.pageSize*(pageNav.currentPageNo-1)+i+1;
+%>
+<tr value="<%=id%>" parent="<%=parent%>" sequence="<%=sequence%>" class="<%=i %2==0 ?'rows-normal':'rows-striped'%>">
+<%== $.View('//plugins/data_grid/views/data.ejs',{padLeft:padLeft,id:id,rowData:rowData,parent:parent,fieldList:fieldList,editable:editable,radioable:radioable,checkable:checkable,useEditBtn:useEditBtn,actions:actions})%>
+</tr>
+<%}%>

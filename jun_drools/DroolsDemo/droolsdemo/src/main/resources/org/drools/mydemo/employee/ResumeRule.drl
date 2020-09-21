@@ -1,0 +1,21 @@
+package org.drools.mydemo.employee
+
+import org.drools.mydemo.employee.Employ;
+
+rule "Technician"
+        ruleflow-group "duty_salary"
+when
+   emp: Employ(resume== "tech" )
+then
+   System.out.println( "exec rule Technician ... " );
+   emp.setDutySalary(2000);
+end
+
+rule "Manager"
+       ruleflow-group "duty_salary"
+when
+   emp: Employ(awardPunish== "manager" )
+then
+   System.out.println( "exec rule manager ... " );
+   emp.setDutySalary(4500);
+end

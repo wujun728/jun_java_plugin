@@ -1,0 +1,6 @@
+<select class="dfinput" name="select_list">
+<option value="0" data-i18n="common.choose"></option>
+<%for (var i=0;i<listData.length;i++){%>
+<option value="<%=listData[i].itemId%>" <%=listData[i].itemId==defaultItem?"selected":""%>><%=listData[i].itemName%></option>
+<%}%>
+<select>

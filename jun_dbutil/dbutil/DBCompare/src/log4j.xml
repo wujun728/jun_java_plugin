@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- ERROR、WARN、INFO、DEBUG -->
+	<!-- ERROR 表示只打開ERROR級別的日誌 -->
+	<!-- WARN 表示打開ERROR、WARN級別的日誌 -->
+	<!-- INFO 表示打開ERROR、WARN、INFO級別的日誌 -->
+	<!-- DEBUG 表示打開ERROR、WARN、INFO、DEBUG級別的日誌 -->
+
+	<!-- 文件記錄日誌信息，ERROR、WARN、INFO -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Encoding" value="UTF-8" />
+	
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH\:mm\:ss}][%5p][%l]%n => [%t]：%m%n" />
+		</layout>
+	</appender>
+
+	<!-- 顯示org.myhkzhen包下的所有日誌信息 -->
+	<logger name="com.yinsin">
+		<level value="debug" />
+	</logger>
+
+	<root>
+		<!-- 關閉所有信息，然後按照自定義的方式顯示要顯示的日誌 -->
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</root>
+
+</log4j:configuration>

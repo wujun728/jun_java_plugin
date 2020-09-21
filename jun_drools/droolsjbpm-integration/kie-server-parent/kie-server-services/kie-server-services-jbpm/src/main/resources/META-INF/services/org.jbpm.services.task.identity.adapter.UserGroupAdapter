@@ -1,0 +1,2 @@
+org.kie.server.services.jbpm.security.JMSUserGroupAdapter
+org.kie.server.services.jbpm.security.TomcatUserGroupAdapter

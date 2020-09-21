@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.chentongwei</groupId>
+	<artifactId>doutu</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>doutu</name>
+	<url>http://maven.apache.org</url>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<parent>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-parent</artifactId>
+	    <version>1.5.3.RELEASE</version>
+	     <!--<version>1.4.5.RELEASE</version>-->
+	</parent>
+
+	<dependencies>
+		<!-- junit start -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- junit end -->
+		
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+        <!-- 
+        	json
+        	没放到service层的原因是 doutu_common的统一异常处理也需要用，所以放到了parent下 
+        -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.29</version>
+        </dependency>
+        
+        <!-- logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+        </dependency>
+        <!-- 
+        	目前spring还不支持logback，所以需要 logback-ext-spring,
+        	它的作用就相当于log4j中的Log4jConfigListener，是一个监听器。
+        -->
+        <dependency>
+            <groupId>org.logback-extensions</groupId>
+            <artifactId>logback-ext-spring</artifactId>
+            <version>0.1.4</version>
+        </dependency>
+		<!-- 
+			用来把Spring源代码中大量使用到的commons-logging替换成slf4j，
+			只有在添加了这个依赖之后才能看到Spring框架本身打印的日志，
+			否则只能看到开发者自己打印的日志
+		 -->
+		<dependency>
+		    <groupId>org.slf4j</groupId>  
+		    <artifactId>jcl-over-slf4j</artifactId>  
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>doutu</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>utf-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+	</build>
+	
+	<modules>
+		<module>doutu-entity</module>
+		<module>doutu-dao</module>
+        <module>doutu-cache</module>
+        <module>doutu-service</module>
+        <module>doutu-controller</module>
+        <module>doutu-util</module>
+        <module>doutu-common</module>
+        <module>manager-controller</module>
+    </modules>
+</project>

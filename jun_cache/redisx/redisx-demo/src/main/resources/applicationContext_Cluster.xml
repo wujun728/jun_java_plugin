@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <!-- 直接使用redisx线程池 -->
+	<bean id="redisXCluster"
+		class="cn.skynethome.redisx.spring.RedisXCluster">
+		<!-- <property name="configFlag" value="false"></property> --> <!-- 可不配置或false  -->
+		<property name="open_level_one_cache" value="true"></property> <!-- 开启本地ehcache缓存 -->
+		<property name="ehcache_shared" value="true"></property> <!-- 开启ehcache分布式缓存服务 开启前请启动 redisx-cacheserver -->
+		<property name="ehcache_server" value="10.0.1.41:8888"></property> <!-- redis-cacheserver地址 -->
+		<property name="clusterNodes" value="10.0.1.46:6379,10.0.1.46:6381,10.0.1.46:6380"></property>
+		<property name="TEST_WHILE_IDLE" value="false"></property>
+		<property name="TEST_ON_BORROW" value="false"></property>
+		<property name="TEST_ON_RETURN" value="false"></property>
+		<property name="TEST_ON_CREATE" value="false"></property>
+		<property name="idleTimeMillis" value="1800000"></property>
+		<property name="numTestsPerEvictionRun" value="5"></property>
+		<property name="softMinEvictableIdleTimeMillis" value="60000"></property>
+		<property name="timeBetweenEvictionRunsMillis" value="3000"></property>
+		<property name="maxRedirections" value="100"></property>
+		<property name="MAX_ACTIVE" value="200"></property>
+		<property name="MAX_IDLE" value="20"></property>
+		<property name="MIN_IDLE" value="0"></property>
+		<property name="MAX_WAIT" value="2000"></property>
+		<property name="TIMEOUT" value="10000"></property>
+	</bean>
+    
+    
+    <!-- 指定配置文件配置redisx线程池 -->
+	<bean id="redisXClusterOfConfig"
+		class="cn.skynethome.redisx.spring.RedisXCluster">
+		<property name="configFlag" value="true"></property>
+		<property name="configPath" value="properties/redis_cluster.properties"></property>
+	</bean> 
+	
+</beans>

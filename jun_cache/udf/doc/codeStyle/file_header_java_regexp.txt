@@ -1,0 +1,6 @@
+^/\*\*$
+^ \* ([A-Z][A-Za-z0-9]+)+\.java$
+^ \* Created at \d\d\d\d\-\d\d\-\d\d$
+^ \* Created by [a-zA-Z]*$
+^ \* Copyright \(C\) \d\d\d\d itkk.org, All rights reserved\.$
+^ \*/$

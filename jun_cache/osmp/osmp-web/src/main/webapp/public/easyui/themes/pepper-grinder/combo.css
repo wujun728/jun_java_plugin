@@ -1,0 +1,36 @@
+.combo{
+	display:inline-block;
+	white-space:nowrap;
+	font-size:12px;
+	margin:0;
+	padding:0;
+	border:1px solid #D9D6C4;
+	background:#fff;
+}
+.combo-text{
+	font-size:12px;
+	border:0px;
+	line-height:20px;
+	height:20px;
+	padding:0px;
+	*height:18px;
+	*line-height:18px;
+	_height:18px;
+	_line-height:18px;
+}
+.combo-arrow{
+	background:#eceadf url('images/ui-icons_b83400_256x240.png') no-repeat -63px -14px;
+	width:18px;
+	height:20px;
+	overflow:hidden;
+	display:inline-block;
+	vertical-align:top;
+	cursor:pointer;
+}
+.combo-arrow-hover{
+	background-color:#654b24;
+}
+.combo-panel{
+	background:#eceadf url('images/ui-bg_fine-grain_10_eceadf_60x60.png') repeat;
+	overflow:auto;
+}

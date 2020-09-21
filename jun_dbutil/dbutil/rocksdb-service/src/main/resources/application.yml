@@ -1,0 +1,17 @@
+ratpack:
+  port: 9008
+
+dropwizard:
+  jmx: true
+  slf4j:
+    enabled: true
+    interval: 10
+
+server:
+  port: 9000
+management:
+  port: 9001
+  address: 127.0.0.1
+
+db:
+  file: data/

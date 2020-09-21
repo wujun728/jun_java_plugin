@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--
+IRedisClusterMonitorLogDao mybatis
+
+@author liubing
+@date 2017/01/11 12:18
+@version v1.0.0
+-->
+<mapper namespace="com.opensource.nredis.proxy.monitor.dao.IRedisClusterMonitorLogDao" >
+    <resultMap id="RedisClusterMonitorLogMap" type="com.opensource.nredis.proxy.monitor.model.RedisClusterMonitorLog">
+        <result property="id" column="id"/>
+        <result property="redisServerHost" column="redis_server_host"/>
+        <result property="redisServerPort" column="redis_server_port"/>
+        <result property="remark" column="remark"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.opensource.nredis.proxy.monitor.model.RedisClusterMonitorLog">
+            <selectKey keyProperty="id" resultType="Integer" order="AFTER">
+                SELECT LAST_INSERT_ID() AS id
+            </selectKey>
+        INSERT INTO redis_cluster_monitor_log (
+        <trim suffixOverrides=",">
+                id,
+                redis_server_host,
+                redis_server_port,
+                remark,
+                create_time,
+        </trim>
+        )VALUES(
+        <trim suffixOverrides=",">
+                    #{id},
+                    #{redisServerHost},
+                    #{redisServerPort},
+                    #{remark},
+                    #{createTime},
+        </trim>
+        )
+    </insert>
+
+    <update id="updateById" parameterType="com.opensource.nredis.proxy.monitor.model.RedisClusterMonitorLog">
+        update redis_cluster_monitor_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null">id = #{id},</if>
+            <if test="redisServerHost != null">redis_server_host = #{redisServerHost},</if>
+            <if test="redisServerPort != null">redis_server_port = #{redisServerPort},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="int">
+        delete from redis_cluster_monitor_log where id = #{id}
+    </delete>
+
+    <select id="getById" parameterType="int" resultMap="RedisClusterMonitorLogMap">
+        select * from redis_cluster_monitor_log where id = #{id}
+    </select>
+
+    <select id="getListByCriteria" resultMap="RedisClusterMonitorLogMap" parameterType="com.opensource.nredis.proxy.monitor.model.RedisClusterMonitorLog">
+        select * from redis_cluster_monitor_log
+        <include refid="select_where_clause"/>
+        order by id desc
+    </select>
+
+    <sql id="select_where_clause">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null"> AND id = #{id} </if>
+            <if test="redisServerHost != null"> AND redis_server_host = #{redisServerHost} </if>
+            <if test="redisServerPort != null"> AND redis_server_port = #{redisServerPort} </if>
+            <if test="remark != null"> AND remark = #{remark} </if>
+            <if test="createTime != null"> AND create_time = #{createTime} </if>
+        </trim>
+    </sql>
+    
+    <select id="queryPageList" resultMap="RedisClusterMonitorLogMap">
+        select * from redis_cluster_monitor_log
+        <include refid="page_where_clause"/>
+        order by id desc
+        <if test="page!=null">
+            LIMIT #{page.pageSize} OFFSET #{page.begin}
+        </if>
+    </select>
+
+    <select id="count" resultType="int" parameterType="com.opensource.nredis.proxy.monitor.model.RedisClusterMonitorLog">
+        select count(*) from redis_cluster_monitor_log
+        <include refid="page_where_clause"/>
+    </select>
+
+    <sql id="page_where_clause">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="queryObject.id != null"> AND id = #{queryObject.id} </if>
+            <if test="queryObject.redisServerHost != null"> AND redis_server_host = #{queryObject.redisServerHost} </if>
+            <if test="queryObject.redisServerPort != null"> AND redis_server_port = #{queryObject.redisServerPort} </if>
+            <if test="queryObject.remark != null"> AND remark = #{queryObject.remark} </if>
+            <if test="queryObject.createTime != null"> AND create_time = #{queryObject.createTime} </if>
+
+           
+        </trim>
+    </sql>
+
+    <!--extension script-->
+</mapper>

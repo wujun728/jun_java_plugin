@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--
+ISystemComponentDao mybatis
+
+@author liubing
+@date 2017/01/02 15:27
+@version v1.0.0
+-->
+<mapper namespace="com.opensource.nredis.proxy.monitor.dao.ISystemComponentDao" >
+    <resultMap id="SystemComponentMap" type="com.opensource.nredis.proxy.monitor.model.SystemComponent">
+        <result property="id" column="id"/>
+        <result property="componentKey" column="component_key"/>
+        <result property="componentValue" column="component_value"/>
+        <result property="keyConfig" column="key_config"/>
+        <result property="createUserName" column="create_user_name"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.opensource.nredis.proxy.monitor.model.SystemComponent">
+            <selectKey keyProperty="id" resultType="Integer" order="AFTER">
+                SELECT LAST_INSERT_ID() AS id
+            </selectKey>
+        INSERT INTO system_component (
+        <trim suffixOverrides=",">
+                id,
+                component_key,
+                component_value,
+                key_config,
+                create_user_name,
+                create_time,
+        </trim>
+        )VALUES(
+        <trim suffixOverrides=",">
+                    #{id},
+                    #{componentKey},
+                    #{componentValue},
+                    #{keyConfig},
+                    #{createUserName},
+                    #{createTime},
+        </trim>
+        )
+    </insert>
+
+    <update id="updateById" parameterType="com.opensource.nredis.proxy.monitor.model.SystemComponent">
+        update system_component
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null">id = #{id},</if>
+            <if test="componentKey != null">component_key = #{componentKey},</if>
+            <if test="componentValue != null">component_value = #{componentValue},</if>
+            <if test="keyConfig != null">key_config = #{keyConfig},</if>
+            <if test="createUserName != null">create_user_name = #{createUserName},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="int">
+        delete from system_component where id = #{id}
+    </delete>
+
+    <select id="getById" parameterType="int" resultMap="SystemComponentMap">
+        select * from system_component where id = #{id}
+    </select>
+
+    <select id="getListByCriteria" resultMap="SystemComponentMap" parameterType="com.opensource.nredis.proxy.monitor.model.SystemComponent">
+        select * from system_component
+        <include refid="select_where_clause"/>
+        order by id desc
+    </select>
+	
+	<select id="getListByApplicationId" resultMap="SystemComponentMap" parameterType="int">
+        SELECT component.* FROM system_component component , system_application_component appcomponent 
+			where component.id=appcomponent.component_id and appcomponent.application_id=#{applicationId};
+    </select>
+	
+    <sql id="select_where_clause">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null"> AND id = #{id} </if>
+            <if test="componentKey != null"> AND component_key = #{componentKey} </if>
+            <if test="componentValue != null"> AND component_value = #{componentValue} </if>
+            <if test="keyConfig != null"> AND key_config = #{keyConfig} </if>
+            <if test="createUserName != null"> AND create_user_name = #{createUserName} </if>
+            <if test="createTime != null"> AND create_time = #{createTime} </if>
+        </trim>
+    </sql>
+    
+    <select id="queryPageList" resultMap="SystemComponentMap">
+        select * from system_component
+        <include refid="page_where_clause"/>
+        order by id desc
+        <if test="page!=null">
+            LIMIT #{page.pageSize} OFFSET #{page.begin}
+        </if>
+    </select>
+
+    <select id="count" resultType="int" parameterType="com.opensource.nredis.proxy.monitor.model.SystemComponent">
+        select count(*) from system_component
+        <include refid="page_where_clause"/>
+    </select>
+
+    <sql id="page_where_clause">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="queryObject.id != null"> AND id = #{queryObject.id} </if>
+            <if test="queryObject.componentKey != null"> AND component_key = #{queryObject.componentKey} </if>
+            <if test="queryObject.componentValue != null"> AND component_value = #{queryObject.componentValue} </if>
+            <if test="queryObject.keyConfig != null"> AND key_config = #{queryObject.keyConfig} </if>
+            <if test="queryObject.createUserName != null"> AND create_user_name = #{queryObject.createUserName} </if>
+            <if test="queryObject.createTime != null"> AND create_time = #{queryObject.createTime} </if>
+
+           
+        </trim>
+    </sql>
+
+    <!--extension script-->
+</mapper>
