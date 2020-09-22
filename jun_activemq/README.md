@@ -1,4 +1,4 @@
-ActiveMQ的Topic及Queue及JMS消费者及生产者的使用订阅，包括docker环境安装等
+ActiveMQ的Topic及Queue及JMS消费者及生产者的使用订阅，包括docker环境安装等，修改readme
 
 安装docker，推荐
 
