@@ -16,7 +16,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 /** 
  * 
  * @author Wujun
- * 队列创建，带监听的
+ * 队列消费，带监听的
  */
 public class JMSConsumer2 implements MessageListener {
 
