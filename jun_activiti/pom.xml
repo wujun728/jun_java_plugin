@@ -1,20 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-	  <groupId>com.jun.plugin</groupId>
-	  <artifactId>jun_plugin</artifactId>
-	  <version>1.0</version>
-  </parent>
-  <artifactId>jun_activiti</artifactId>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
-  <dependencies>
+  <groupId>com.java1234.activiti</groupId>
+  <artifactId>HelloWorld</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
   
-     
+  
+  <dependencies>
      <dependency>
         <groupId>org.activiti</groupId>
         <artifactId>activiti-engine</artifactId>
@@ -39,15 +30,12 @@
         <version>5.1.38</version>
     </dependency>
     
-	
     <dependency>
 	    <groupId>junit</groupId>
 	    <artifactId>junit</artifactId>
 	    <version>4.11</version>
-<!--       <scope>test</scope> -->
+      <scope>test</scope>
     </dependency>
-    
-    
-    
-  </dependencies>
+     
+	</dependencies>
 </project>

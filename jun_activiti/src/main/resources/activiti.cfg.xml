@@ -5,10 +5,10 @@
  
   <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
  
-    <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/activiti5" />
+    <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/db_activiti" />
     <property name="jdbcDriver" value="com.mysql.jdbc.Driver" />
     <property name="jdbcUsername" value="root" />
-    <property name="jdbcPassword" value="mysqladmin" />
+    <property name="jdbcPassword" value="123456" />
  
     <property name="databaseSchemaUpdate" value="true" />
  

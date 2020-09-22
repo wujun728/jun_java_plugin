@@ -1,1 +1,1 @@
-Activiti5，待补充
+Activiti5，初始化Activiti需要的25表，其他待补充
