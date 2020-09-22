@@ -4,19 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zccoder</groupId>
-    <artifactId>jun_jvm</artifactId>
+    <groupId>com.jun.plugin</groupId>
+    <artifactId>jun_books</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
-    <url>https://github.com/zccodere/space</url>
-    <description>Java 学习源码空间</description>
 
     <modules>
         <module>book01</module>
         <module>book02</module>
         <module>book03</module>
-        <module>004-interview</module>
+        <module>book04-interview</module>
+        <module>book05-concurrent-programming</module>
     </modules>
 
     <dependencies>
