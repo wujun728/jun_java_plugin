@@ -1,0 +1,17 @@
+bin
+build
+out
+target
+.settings
+.classpath
+.project
+.gradle
+.DS_Store
+*.iml
+*.ipr
+*.iws
+*.log
+.idea
+
+*.conf
+*.PNG
