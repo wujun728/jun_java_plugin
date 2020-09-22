@@ -1,4 +1,4 @@
-## algorithm
+## jun_algorithm,常用数据结构及算法
 
 1. 八大排序 二分查找
 2. 实现自己的List和ArrayList
