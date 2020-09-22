@@ -1,1 +1,1 @@
-Ajax，待补充
+Ajax，XMLHttpRequest+Servlet的Ajax实现
