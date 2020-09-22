@@ -2,11 +2,10 @@ package com.jun.plugin.activemq_spring;
 
 import java.io.Serializable;
 
-/**
- * 实体bean
+/** 
  * 
- * 作者: zhoubang 
- * 日期：2015年9月28日 上午10:11:33
+ * @author Wujun
+ * 实体bean 
  */
 public class PersonInfo implements Serializable {
 

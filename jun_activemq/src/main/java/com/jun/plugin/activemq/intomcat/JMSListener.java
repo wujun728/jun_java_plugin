@@ -1,4 +1,4 @@
-package com.jun.plugin.activemq.activemq3.intomcat;
+package com.jun.plugin.activemq.intomcat;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

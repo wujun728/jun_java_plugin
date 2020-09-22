@@ -1,4 +1,4 @@
-package com.jun.plugin.activemq.activemq2;
+package com.jun.plugin.activemq.topic;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -6,17 +6,18 @@ import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
 /**
- * ��Ϣ����-������һ
- * @author Administrator
+ * 
+ * @author Wujun
  *
  */
+
 public class Listener implements MessageListener{
 
 	@Override
 	public void onMessage(Message message) {
 		// TODO Auto-generated method stub
 		try {
-			System.out.println("������һ�յ�����Ϣ��"+((TextMessage)message).getText());
+			System.out.println(" Listener "+((TextMessage)message).getText());
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

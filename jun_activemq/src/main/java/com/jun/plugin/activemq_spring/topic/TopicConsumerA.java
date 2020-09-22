@@ -4,11 +4,10 @@ import javax.jms.JMSException;
 
 import com.jun.plugin.activemq_spring.PersonInfo;
 
-/**
+/** 
  * topic消息消费者A
- * 
- * 作者: zhoubang 
- * 日期：2015年9月28日 下午1:19:56
+ * @author Wujun
+ *
  */
 public class TopicConsumerA {
 

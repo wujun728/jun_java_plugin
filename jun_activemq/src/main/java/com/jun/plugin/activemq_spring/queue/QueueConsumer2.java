@@ -6,11 +6,10 @@ import javax.jms.MessageListener;
 
 import org.apache.activemq.command.ActiveMQObjectMessage;
 
-/**
+/** 
  * 点对点消息消费者  2
- * 
- * 作者: zhoubang 
- * 日期：2015年9月28日 上午10:10:49
+ * @author Wujun
+ *
  */
 public class QueueConsumer2 implements MessageListener {
 

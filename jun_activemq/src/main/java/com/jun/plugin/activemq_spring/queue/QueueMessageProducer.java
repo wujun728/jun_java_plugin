@@ -8,11 +8,10 @@ import org.springframework.stereotype.Component;
 
 import com.jun.plugin.activemq_spring.PersonInfo;
 
-/**
+/** 
  * 点对点消息生产者
- * 
- * 作者: zhoubang 
- * 日期：2015年9月28日 上午10:07:56
+ * @author Wujun
+ *
  */
 @Component
 public class QueueMessageProducer {
@@ -31,10 +30,6 @@ public class QueueMessageProducer {
 
     /**
      * 发送消息
-     * 
-     * 作者: zhoubang 
-     * 日期：2015年9月28日 上午10:18:54
-     * @param personInfo
      */
     public void sendQueueMessage(PersonInfo personInfo) {
         // getJmsTemplate().convertAndSend(personInfo);//如果配置文件中指定了目的地，可以使用这句话发送消息。

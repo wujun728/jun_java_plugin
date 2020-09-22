@@ -1,4 +1,4 @@
-package com.jun.plugin.activemq.activemq3.p2p;
+package com.jun.plugin.activemq.p2p;
 
 import javax.jms.Connection;
 import javax.jms.Destination;
@@ -16,7 +16,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * activeMQ:http://localhost:8161/admin/queues.jsp
+ * activeMQ:http://localhost:8161/admin/queues.jsp 
+ * 消费者，createQueue --> setMessageListener(this)
  */
 public class ReceiveMessage implements MessageListener {
 	private String user = ActiveMQConnection.DEFAULT_USER;
@@ -36,17 +37,16 @@ public class ReceiveMessage implements MessageListener {
 	private MessageConsumer consumer = null;
 
 	private static final Log log = LogFactory.getLog(ReceiveMessage.class);
-	
+
 	private String name;
-	
+
 	public ReceiveMessage(String name) {
 		this.name = name;
 	}
 
 	// 初始化
 	private void initialize() throws JMSException, Exception {
-		ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
-				user, password, url);
+		ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user, password, url);
 		connection = connectionFactory.createConnection();
 		session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 		destination = session.createQueue(subject);
@@ -56,9 +56,11 @@ public class ReceiveMessage implements MessageListener {
 	// 消费消息
 	public void consumeMessage() throws JMSException, Exception {
 		initialize();
-		// 开始监听
+		// 开始监听，设置Listener为自己
 		consumer.setMessageListener(this);
-		// Message message = consumer.receive();
+//		Message message = consumer.receive();
+//		String msg = ((TextMessage) message).getText();
+//		log.info(name + ":->Received: " + msg);
 		connection.start();
 
 		log.info(name + ":->Begin listening...");
@@ -78,7 +80,7 @@ public class ReceiveMessage implements MessageListener {
 		}
 	}
 
-	// 消息处理函数
+	// 消息处理函数,implements MessageListener
 	public void onMessage(Message message) {
 		try {
 			if (message instanceof TextMessage) {

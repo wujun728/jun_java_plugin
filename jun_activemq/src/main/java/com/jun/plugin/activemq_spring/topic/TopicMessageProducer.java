@@ -8,11 +8,9 @@ import org.springframework.stereotype.Component;
 
 import com.jun.plugin.activemq_spring.PersonInfo;
 
-/**
+/** 
  * PUB-SUB消息生产者
- * 
- * 作者: zhoubang 
- * 日期：2015年9月28日 下午2:45:10
+ * @author Wujun
  */
 @Component
 public class TopicMessageProducer {

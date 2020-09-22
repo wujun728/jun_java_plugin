@@ -1,4 +1,4 @@
-package com.jun.plugin.activemq.activemq3.p2p;
+package com.jun.plugin.activemq.p2p;
 
 
 import java.io.Serializable;

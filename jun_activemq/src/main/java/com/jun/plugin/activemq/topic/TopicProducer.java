@@ -11,7 +11,7 @@
  * </pre>
  **/
  
-package com.ketayao.learn.activemq.topic;
+package com.jun.plugin.activemq.topic;
 
 import javax.jms.Connection;
 import javax.jms.DeliveryMode;
@@ -22,13 +22,11 @@ import javax.jms.Session;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
-/** 
- * 	
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
- * Version  1.1.0
- * @since   2012-11-26 下午3:27:32 
+/**
+ * 
+ * @author Wujun
+ *
  */
-
 public class TopicProducer {
 	private Connection connection;
 	private Session session;

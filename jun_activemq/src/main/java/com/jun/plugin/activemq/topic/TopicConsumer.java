@@ -1,17 +1,5 @@
-/**
- * <pre>
- * Copyright:		Copyright(C) 2011-2012, ketayao.com
- * Filename:		com.ketayao.learn.activemq.topic.TopicConsumer.java
- * Class:			TopicConsumer
- * Date:			2012-11-26
- * Author:			<a href="mailto:ketayao@gmail.com">ketayao</a>
- * Version          1.1.0
- * Description:		
- *
- * </pre>
- **/
  
-package com.jun.plugin.activemq.activemq3.topic;
+package com.jun.plugin.activemq.topic;
 
 import javax.jms.Connection;
 import javax.jms.Destination;
@@ -24,7 +12,11 @@ import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
-
+/**
+ * 
+ * @author Wujun
+ *
+ */
 public class TopicConsumer implements MessageListener {
 	private Connection connection;
 	private Session session;

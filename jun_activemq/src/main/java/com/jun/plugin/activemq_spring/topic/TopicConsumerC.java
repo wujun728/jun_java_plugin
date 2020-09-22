@@ -6,11 +6,10 @@ import javax.jms.MessageListener;
 import org.apache.activemq.command.ActiveMQObjectMessage;
 
 
-/**
+/** 
  * topic消息消费者C
- * 
- * 作者: zhoubang 
- * 日期：2015年9月28日 下午1:20:14
+ * @author Wujun
+ *
  */
 public class TopicConsumerC implements MessageListener{
 

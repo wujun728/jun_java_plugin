@@ -1,4 +1,4 @@
-package com.jun.plugin.activemq.activemq3.p2p;
+package com.jun.plugin.activemq.p2p;
 
 import javax.jms.Connection;
 import javax.jms.DeliveryMode;
@@ -15,7 +15,9 @@ import org.apache.commons.logging.LogFactory;
 
 
 /**
- * @author chenchao
+ * 
+ * @author Wujun
+ * 生产者，createQueue
  */
 public class SendMessage {
 	private String user = ActiveMQConnection.DEFAULT_USER;
@@ -49,11 +51,11 @@ public class SendMessage {
     // 发送消息
     public void produceMessage() throws JMSException, Exception {
         initialize();
-        Student student = new Student("zhm",25,"male","深圳");
+        Student student = new Student("zhansan",25,"male","深圳");
         String msg = null;
         int i = 0 ;
         //while(true){
-        	msg = "大家好，我是ketayao，第" + i++ + "次学ActiveMQ";
+        	msg = "hello，第" + i++ + "次，ActiveMQ";
         	student.setMsg(msg);
             ObjectMessage objectMessage = session.createObjectMessage(student);
             log.info("Producer:->Sending message: " + student.toString());
@@ -73,7 +75,7 @@ public class SendMessage {
         if (connection != null)
             connection.close();
     }
-
+	 
     public static void main(String[] args) throws JMSException, Exception {
         SendMessage sendMessage = new SendMessage();
         sendMessage.produceMessage();
