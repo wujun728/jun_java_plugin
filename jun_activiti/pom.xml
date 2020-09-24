@@ -3,8 +3,6 @@
   <groupId>com.java1234.activiti</groupId>
   <artifactId>HelloWorld</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
-  
   <dependencies>
      <dependency>
         <groupId>org.activiti</groupId>
