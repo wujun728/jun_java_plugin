@@ -12,6 +12,6 @@
     <root level="DEBUG">
         <appender-ref ref="STDOUT" />
     </root>
-    <logger name="com.github" level="DEBUG" />
+    <logger name="com.jun.plugin" level="DEBUG" />
     <logger name="org" level="DEBUG"/>
 </configuration>
