@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: test
+  redis:
+    host: kancy.top
+    port: 6379
+    password: root123
+management:
+  endpoints:
+   web:
+     exposure:
+       include: '*'

@@ -1,2 +1,0 @@
-# kafka-learn
-Learning kafka

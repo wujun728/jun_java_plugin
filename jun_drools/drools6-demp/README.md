@@ -1,1 +1,0 @@
-#drools6-demp

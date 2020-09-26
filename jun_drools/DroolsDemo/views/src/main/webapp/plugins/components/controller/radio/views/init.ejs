@@ -1,7 +1,0 @@
-<p class="add-defect-p add-defect-p2">
-	<%for(var i=0;i<radios.length;i++){%>
-		<input id="radio<%=(i+1)%>" class="radio-class" name="<%=groupName%>"  type="radio" value="<%=radios[i].value%>">
-    	<label id="label<%=(i+1)%>"   
-    	 class="radio-label-class <%=defaultValue?(defaultValue==radios[i].value?'radio-selected':''):''%>"><%=radios[i].name%></label>
-	<%}%>
-</p>

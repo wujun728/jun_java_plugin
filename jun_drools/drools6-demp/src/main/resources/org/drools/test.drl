@@ -1,9 +1,0 @@
-package org.drools.test
-import com.drools.entity.Message
-rule "GoodBye"
-    when
-        Message( status == Message.GOODBYE, printMsg : message )
-    then
-        System.out.println("\nGoodBye --------------------------------------");
-        System.out.println("rule \"GoodBye printMsg\":" + printMsg );
-    end

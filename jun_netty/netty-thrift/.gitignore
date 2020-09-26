@@ -1,7 +1,0 @@
-.settings
-.project
-*/.settings
-*/.project
-*/.classpath
-/target
-*/target

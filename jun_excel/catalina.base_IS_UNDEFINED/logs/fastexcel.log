@@ -1,0 +1,70 @@
+2020-09-26 20:03:35.961 [main] WARN  com.github.sd4324530.fastexcel.FastExcel - 文件:D:/data.xlsx 不存在！创建此文件！
+2020-09-26 20:03:36.196 [main] ERROR com.github.sd4324530.fastexcel.FastExcel - 其他异常
+java.lang.RuntimeException: sheetName:活动信息数据 is not exist
+	at com.github.sd4324530.fastexcel.FastExcel.parse(FastExcel.java:161)
+	at com.github.sd4324530.fastexcel.ExcelTest.createExcel(ExcelTest.java:33)
+	at com.github.sd4324530.fastexcel.ExcelTest.test(ExcelTest.java:22)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:89)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:41)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:542)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:770)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:464)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+2020-09-26 20:03:36.196 [main] DEBUG com.github.sd4324530.fastexcel.ExcelTest - 没有结果
+2020-09-26 20:04:31.491 [main] WARN  com.github.sd4324530.fastexcel.FastExcel - 文件:‪D:\workspace\github\jun_plugin\jun_excel\src\test\resources\data.xlsx 不存在！创建此文件！
+2020-09-26 20:04:31.495 [main] ERROR com.github.sd4324530.fastexcel.ExcelTest - 异常
+java.io.IOException: 文件名、目录名或卷标语法不正确。
+	at java.io.WinNTFileSystem.createFileExclusively(Native Method)
+	at java.io.File.createNewFile(File.java:1012)
+	at com.github.sd4324530.fastexcel.FastExcel.createWorkbook(FastExcel.java:242)
+	at com.github.sd4324530.fastexcel.FastExcel.<init>(FastExcel.java:47)
+	at com.github.sd4324530.fastexcel.ExcelTest.createExcel(ExcelTest.java:31)
+	at com.github.sd4324530.fastexcel.ExcelTest.test(ExcelTest.java:22)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:89)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:41)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:542)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:770)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:464)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+2020-09-26 20:05:00.862 [main] DEBUG com.github.sd4324530.fastexcel.FastExcel - cell:STRING, field:name, type:java.lang.String
+2020-09-26 20:05:00.865 [main] DEBUG com.github.sd4324530.fastexcel.FastExcel - cell:NUMERIC, field:phone, type:java.lang.String
+2020-09-26 20:05:00.869 [main] DEBUG com.github.sd4324530.fastexcel.FastExcel - cell:STRING, field:address, type:java.lang.String
+2020-09-26 20:05:00.870 [main] DEBUG com.github.sd4324530.fastexcel.FastExcel - cell:NUMERIC, field:type, type:int
+2020-09-26 20:05:00.870 [main] DEBUG com.github.sd4324530.fastexcel.FastExcel - cell:NUMERIC, field:lat, type:double
+2020-09-26 20:05:00.870 [main] DEBUG com.github.sd4324530.fastexcel.ExcelTest - 记录:MyTest{name='测试名称', phone='110', address='测试地址', type=1, lat=23.4234}
+2020-09-26 20:05:00.871 [main] WARN  com.github.sd4324530.fastexcel.FastExcel - 文件:D:/data2.xlsx 不存在！创建此文件！
+2020-09-26 20:05:00.957 [main] DEBUG com.github.sd4324530.fastexcel.ExcelTest - 结果:true
