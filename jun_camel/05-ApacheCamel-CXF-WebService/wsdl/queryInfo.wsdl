@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://query.service.org/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http"
+	name="QueryServiceService" targetNamespace="http://query.service.org/">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://query.service.org/" elementFormDefault="unqualified"
+			targetNamespace="http://query.service.org/" version="1.0">
+			<xs:element name="queryCarInfomation" type="tns:queryCarInfomation" />
+			<xs:element name="queryCarInfomationResponse" type="tns:queryCarInfomationResponse" />
+			<xs:element name="queryPersonnelInformation" type="tns:queryPersonnelInformation" />
+			<xs:element name="queryPersonnelInformationResponse" type="tns:queryPersonnelInformationResponse" />
+			<xs:complexType name="queryCarInfomation">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="carParam" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="queryCarInfomationResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="queryPersonnelInformation">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="peopleParam" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="queryPersonnelInformationResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="queryCarInfomation">
+		<wsdl:part element="tns:queryCarInfomation" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="queryCarInfomationResponse">
+		<wsdl:part element="tns:queryCarInfomationResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="queryPersonnelInformation">
+		<wsdl:part element="tns:queryPersonnelInformation" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="queryPersonnelInformationResponse">
+		<wsdl:part element="tns:queryPersonnelInformationResponse"
+			name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="QueryServiceInter">
+		<wsdl:operation name="queryCarInfomation">
+			<wsdl:input message="tns:queryCarInfomation" name="queryCarInfomation">
+			</wsdl:input>
+			<wsdl:output message="tns:queryCarInfomationResponse"
+				name="queryCarInfomationResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="queryPersonnelInformation">
+			<wsdl:input message="tns:queryPersonnelInformation" name="queryPersonnelInformation">
+			</wsdl:input>
+			<wsdl:output message="tns:queryPersonnelInformationResponse"
+				name="queryPersonnelInformationResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="QueryServiceServiceSoapBinding" type="tns:QueryServiceInter">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="queryCarInfomation">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="queryCarInfomation">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="queryCarInfomationResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="queryPersonnelInformation">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="queryPersonnelInformation">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="queryPersonnelInformationResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="QueryServiceService">
+		<wsdl:port binding="tns:QueryServiceServiceSoapBinding"
+			name="QueryServicePort">
+			<soap:address location="http://localhost:9098/service/queryInfo" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

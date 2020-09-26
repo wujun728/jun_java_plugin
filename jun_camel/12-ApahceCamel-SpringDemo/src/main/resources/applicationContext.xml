@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring/camel-spring.xsd">-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <bean id="fileConverter" class="com.server.process.FileConvertProcessor"/>
+
+    <camelContext id="testCamelContext" xmlns="http://camel.apache.org/schema/spring"><!--new DefaultCamelContext();-->
+        <route><!--camelContext.addRoutes(new APPHelloWorld01());-->
+            <from uri="file:D:\\A\\inbox?delay=2000&amp;noop=true&amp;idempotent=false&amp;delete=false"/>
+            <process ref="fileConverter"/>
+            <to uri="file:D:\\A\\outbox"/>
+        </route>
+    </camelContext>
+
+</beans>
