@@ -1,3 +1,32 @@
+fastdfs-client-java 源码，也可使用下面依赖
+
+<dependency>
+    <groupId>cn.aghost</groupId>
+    <artifactId>fastdfs-client-java</artifactId>
+    <version>1.29.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.csource/fastdfs-client-java -->
+<dependency>
+    <groupId>org.csource</groupId>
+    <artifactId>fastdfs-client-java</artifactId>
+    <version>1.27-RELEASE</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/net.oschina.zcx7878/fastdfs-client-java -->
+<dependency>
+    <groupId>net.oschina.zcx7878</groupId>
+    <artifactId>fastdfs-client-java</artifactId>
+    <version>1.27.0.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.roncoo/fastdfs-client-java -->
+<dependency>
+    <groupId>com.roncoo</groupId>
+    <artifactId>fastdfs-client-java</artifactId>
+    <version>1.29</version>
+</dependency>
+
 Copyright (C) 2008 Happy Fish / YuQing
 
 FastDFS Java Client API may be copied only under the terms of
