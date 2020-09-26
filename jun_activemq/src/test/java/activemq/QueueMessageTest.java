@@ -14,8 +14,6 @@ import com.jun.plugin.activemq_spring.queue.QueueMessageProducer;
 /**
  * 测试点对点消息发送
  * 
- * 作者: zhoubang 
- * 日期：2015年9月28日 上午10:17:47
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:/spring/applicationContext.xml")
@@ -35,8 +33,6 @@ public class QueueMessageTest {
      *  PTP消息，可以保证消息一定会到达消费者的手中。
      *  消息接收成功后，会通知容器进行下一步处理。
      * 
-     * 作者: zhoubang 
-     * 日期：2015年9月28日 上午10:18:45
      * @throws JMSException
      */
     @Test
