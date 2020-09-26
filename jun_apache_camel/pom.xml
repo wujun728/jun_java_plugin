@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jun.plugin</groupId>
-    <artifactId>jun_camel</artifactId>
+    <artifactId>jun_apache_camel</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
@@ -15,9 +15,7 @@
 		<module>02-ApacheCamelServer</module>
 		<module>03-ApacheCamel-FTP</module>
 		<module>04-ApacheCamel-CXF-WebService</module>
-		<module>04-ApacheCamel-CXF-WebService-Client</module>
 		<module>05-ApacheCamel-CXF-WebService</module>
-		<module>05-ApacheCamel-CXF-WebService-Client</module>
 		<module>06-ApacheCamel-JMS-ActiveMQ</module>
 		<module>07-ApacheCamel-JMS-ActiveMQ</module>
 		<module>08-ApacheCamel-Jetty</module>
@@ -25,9 +23,6 @@
 		<module>10-ApacheCamel-JDBC</module>
 		<module>11-ApacheCamel-JDBC</module>
 		<module>12-ApahceCamel-SpringDemo</module>
-		<module>ApacheCamelCXFClient</module>
-		<module>ApacheCamelDemoTest</module>
-		<module>ApacheCamelExampleCXFClient</module>
     </modules>
 
     <dependencies>
