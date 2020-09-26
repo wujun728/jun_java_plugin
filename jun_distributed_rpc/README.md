@@ -1,5 +1,4 @@
-# fastrpc
-基于java AIO实现的RPC调用框架
+# jun_distributed_rpc，基于java AIO实现的RPC调用框架，示例如下
 
 ###  RPC服务端初始化
 ```Java
