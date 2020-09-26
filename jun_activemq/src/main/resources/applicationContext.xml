@@ -17,7 +17,7 @@
 
     <!-- 这个配置用于junit测试.正式访问项目的时候，可以注释掉,因为springmvc已经配置好 -->
     <!-- 加上这句配置，自动扫描，则测试的时候才输出aop日志信息， -->
-    <context:component-scan base-package="com.zb" />
+    <context:component-scan base-package="com.jun.plugin" />
 
 
     <!-- 引入配置 -->
