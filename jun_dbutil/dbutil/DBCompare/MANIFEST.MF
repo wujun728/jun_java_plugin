@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: com.yisin.cf.StartApp 
-Class-Path: ./ ./lib/commons-logging-1.1.jar ./lib/log4j-1.2.16.jar 
-  ./lib/slf4j-api-1.6.1.jar ./lib/slf4j-log4j12-1.6.1.jar 
-  ./lib/mysql-connector-java-5.1.18.jar ./lib/beautyeye_lnf.jar  
-  ./lib/YsDevKit-1.5.jar
