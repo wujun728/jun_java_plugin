@@ -17,18 +17,16 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 
 /**
- * @Author:Yolanda
- * @Date: 2020/5/9 9:51
+ * 
+ * @author Wujun
+ *
  */
+
 public class AESUtils {
     private static final String GZIP_ENCODE_UTF_8 = "UTF-8";
 
-    private static byte[] keyValue = new byte[] {       //用户密钥
-            22,25,-35,-45,25,98,-55,-45,10,35,-45,25,
-            26,-95,25,-65,-78,-99,85,45,-62,10,-0,11,
-            -35,48,-98,65,-32,14,-78,25,36,-56,-45,-45,
-            12,15,-35,-75,15,-14,62,-25,33,-45,55,68,-88
-    };
+    //用户密钥
+    private static byte[] keyValue = String.valueOf("123").getBytes();
     private static byte[] iv = new byte[] {             //算法参数
             -12,35,-25,65,45,-87,95,-22,-15,45,55,-66,32,5-4,84,55
     };
