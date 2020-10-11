@@ -26,7 +26,7 @@ public class AESUtils {
     private static final String GZIP_ENCODE_UTF_8 = "UTF-8";
 
     //用户密钥
-    private static byte[] keyValue = String.valueOf("123").getBytes();
+    private static byte[] keyValue = String.valueOf("abcde@12345").getBytes();
     private static byte[] iv = new byte[] {             //算法参数
             -12,35,-25,65,45,-87,95,-22,-15,45,55,-66,32,5-4,84,55
     };
