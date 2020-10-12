@@ -78,7 +78,8 @@
 		<module>jun_websocket</module>
 		<module>jun_xml</module>
 		<module>jun_zxing</module>
-		 
+
+		<module>jun_file</module>
 	</modules>
 
 	<dependencies>
