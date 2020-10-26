@@ -4,11 +4,12 @@ JavaEE
   jun_spring
   jun_code_generator
   jun_springboot
-  jun_springcloud 
-  jun_test
-  jun_linux
+  jun_springcloud  
   jun_bigdata
   jun_frontend 
+  
+  jun_linux
+  jun_test
 微服务
   jedp_boot
   jedp_cloud   
@@ -17,60 +18,8 @@ JavaEE
   jedp_product   
   jun_project 
 移动APP
-  jun_weixin 
+  jun_wechat 
   jedp_app
-
-
-JavaEE
-  mvn_template
-  jun_plugin
-  jun_spring
-  jun_code_generator
-  jun_springboot
-  jun_springcloud 
-  jun_test
-
-环境部署
-  jun_linux 
-微服务
-  jedp_boot
-  jedp_cloud   
-产品中心
-  jedp_framework
-  jedp_product   
-  jun_project
-大数据
-  jun_bigdata
-
-前端
-  jun_frontend
-
-移动APP
-  jun_weixin 
-  jedp_app
-
-
-
-   
-jun_spring\spring_dbutil\README.md  优化步骤文档
-    
-com.jun.plugin
- 	  
-spring_s2sh     调整  ssh2
-spring_security
-spring_security_demo  干掉
-spring_security_demo 2  干掉
-spring_security2  干掉
-spring_servers  干掉
-spring_servlet  干掉，合入到springmvc
-spring_servlet3  干掉，合入到springmvc
-spring_session_demo  
-
-Jun_fontend
-https://github.com/Soliman/jqGrid.bootstrap
-treegrid
-
-
 
 
 分布式锁
@@ -193,6 +142,30 @@ https://github.com/TommyLemon/APIAuto
 
 Android
 https://github.com/TommyLemon/Android-ZBLibrary
+
+
+
+ 
+   
+jun_spring\spring_dbutil\README.md  优化步骤文档
+    
+com.jun.plugin
+ 	  
+spring_s2sh     调整  ssh2
+spring_security
+spring_security_demo  干掉
+spring_security_demo 2  干掉
+spring_security2  干掉
+spring_servers  干掉
+spring_servlet  干掉，合入到springmvc
+spring_servlet3  干掉，合入到springmvc
+spring_session_demo  
+
+Jun_fontend
+https://github.com/Soliman/jqGrid.bootstrap
+treegrid
+
+
 
 
 
