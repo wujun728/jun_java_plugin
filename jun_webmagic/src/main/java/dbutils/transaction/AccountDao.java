@@ -9,7 +9,7 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 
 import dbutils.DBUtils;
 
-/*account测试表
+/*account娴嬭瘯琛�
 create table account(
     id int primary key auto_increment,
     name varchar(40),
@@ -24,14 +24,13 @@ insert into account(name,money) values('C',1000);
 
 /**
 * @ClassName: AccountDao
-* @Description: 针对Account对象的CRUD
-* @author: 孤傲苍狼
-* @date: 2014-10-6 下午4:00:42
+* @Description: 閽堝Account瀵硅薄鐨凜RUD
+* @author: 瀛ゅ偛鑻嶇嫾
+* @date: 2014-10-6 涓嬪崍4:00:42
 *
 */ 
 public class AccountDao {
 
-    //接收service层传递过来的Connection对象
     private Connection conn = null;
     
     public AccountDao(Connection conn){
@@ -44,8 +43,8 @@ public class AccountDao {
     
     /**
     * @Method: update
-    * @Description:更新
-    * @Anthor:孤傲苍狼
+    * @Description:鏇存柊
+    * @Anthor:瀛ゅ偛鑻嶇嫾
     *
     * @param account
     * @throws SQLException
@@ -55,15 +54,15 @@ public class AccountDao {
         QueryRunner qr = new QueryRunner();
         String sql = "update account set name=?,money=? where id=?";
         Object params[] = {account.getName(),account.getMoney(),account.getId()};
-        //使用service层传递过来的Connection对象操作数据库
+        //浣跨敤service灞備紶閫掕繃鏉ョ殑Connection瀵硅薄鎿嶄綔鏁版嵁搴�
         qr.update(conn,sql, params);
         
     }
     
     /**
     * @Method: find
-    * @Description:查找
-    * @Anthor:孤傲苍狼
+    * @Description:鏌ユ壘
+    * @Anthor:瀛ゅ偛鑻嶇嫾
     *
     * @param id
     * @return
@@ -72,17 +71,17 @@ public class AccountDao {
     public Account find(int id) throws SQLException{
         QueryRunner qr = new QueryRunner();
         String sql = "select * from account where id=?";
-        //使用service层传递过来的Connection对象操作数据库
+        //浣跨敤service灞備紶閫掕繃鏉ョ殑Connection瀵硅薄鎿嶄綔鏁版嵁搴�
         return (Account) qr.query(conn,sql, id, new BeanHandler(Account.class));
     }
     
     /**
      * @Method: transfer
-     * @Description:这个方法是用来处理两个用户之间的转账业务
-     * 在开发中，DAO层的职责应该只涉及到CRUD，
-     * 而这个transfer方法是处理两个用户之间的转账业务的，已经涉及到具体的业务操作，应该在业务层中做，不应该出现在DAO层的
-     * 所以在开发中DAO层出现这样的业务处理方法是完全错误的
-     * @Anthor:孤傲苍狼
+     * @Description:杩欎釜鏂规硶鏄敤鏉ュ鐞嗕袱涓敤鎴蜂箣闂寸殑杞处涓氬姟
+     * 鍦ㄥ紑鍙戜腑锛孌AO灞傜殑鑱岃矗搴旇鍙秹鍙婂埌CRUD锛�
+     * 鑰岃繖涓猼ransfer鏂规硶鏄鐞嗕袱涓敤鎴蜂箣闂寸殑杞处涓氬姟鐨勶紝宸茬粡娑夊強鍒板叿浣撶殑涓氬姟鎿嶄綔锛屽簲璇ュ湪涓氬姟灞備腑鍋氾紝涓嶅簲璇ュ嚭鐜板湪DAO灞傜殑
+     * 鎵�浠ュ湪寮�鍙戜腑DAO灞傚嚭鐜拌繖鏍风殑涓氬姟澶勭悊鏂规硶鏄畬鍏ㄩ敊璇殑
+     * @Anthor:瀛ゅ偛鑻嶇嫾
      *
      * @param sourceName
      * @param targetName
@@ -93,11 +92,11 @@ public class AccountDao {
          Connection conn = null;
          try{
              conn = DBUtils.getConnection();
-             //开启事务
+             //寮�鍚簨鍔�
              conn.setAutoCommit(false);
              /**
-              * 在创建QueryRunner对象时，不传递数据源给它，是为了保证这两条SQL在同一个事务中进行，
-              * 我们手动获取数据库连接，然后让这两条SQL使用同一个数据库连接执行
+              * 鍦ㄥ垱寤篞ueryRunner瀵硅薄鏃讹紝涓嶄紶閫掓暟鎹簮缁欏畠锛屾槸涓轰簡淇濊瘉杩欎袱鏉QL鍦ㄥ悓涓�涓簨鍔′腑杩涜锛�
+              * 鎴戜滑鎵嬪姩鑾峰彇鏁版嵁搴撹繛鎺ワ紝鐒跺悗璁╄繖涓ゆ潯SQL浣跨敤鍚屼竴涓暟鎹簱杩炴帴鎵ц
               */
              QueryRunner runner = new QueryRunner();
              String sql1 = "update account set money=money-100 where name=?";
@@ -105,19 +104,19 @@ public class AccountDao {
              Object[] paramArr1 = {sourceName};
              Object[] paramArr2 = {targetName};
              runner.update(conn,sql1,paramArr1);
-             //模拟程序出现异常让事务回滚
+             //妯℃嫙绋嬪簭鍑虹幇寮傚父璁╀簨鍔″洖婊�
              int x = 1/0;
              runner.update(conn,sql2,paramArr2);
-             //sql正常执行之后就提交事务
+             //sql姝ｅ父鎵ц涔嬪悗灏辨彁浜や簨鍔�
              conn.commit();
          }catch (Exception e) {
              e.printStackTrace();
              if(conn!=null){
-                 //出现异常之后就回滚事务
+                 //鍑虹幇寮傚父涔嬪悗灏卞洖婊氫簨鍔�
                  conn.rollback();
              }
          }finally{
-             //关闭数据库连接
+             //鍏抽棴鏁版嵁搴撹繛鎺�
              conn.close();
          }
      }

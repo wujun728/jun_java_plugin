@@ -5,18 +5,18 @@ JavaEE
   jun_code_generator
   jun_springboot
   jun_springcloud  
-  jun_bigdata
   jun_frontend 
-  
+  jun_project 
   jun_linux
   jun_test
+  
 微服务
   jedp_boot
   jedp_cloud   
 产品中心
   jedp_framework
   jedp_product   
-  jun_project 
+  jun_bigdata
 移动APP
   jun_wechat 
   jedp_app
