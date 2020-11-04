@@ -9,14 +9,14 @@ JavaEE
   jun_project 
   jun_linux
   jun_test
-  
-微服务
-  jedp_boot
-  jedp_cloud   
+  jun_bigdata
+
 产品中心
+  jedp_boot
+  jedp_cloud  
   jedp_framework
   jedp_product   
-  jun_bigdata
+
 移动APP
   jun_wechat 
   jedp_app
