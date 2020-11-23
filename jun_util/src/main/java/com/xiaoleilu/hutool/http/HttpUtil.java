@@ -34,7 +34,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * Http请求工具类
  * 
- * @author xiaoleilu
+ * @author Wujun
  */
 public class HttpUtil {
 

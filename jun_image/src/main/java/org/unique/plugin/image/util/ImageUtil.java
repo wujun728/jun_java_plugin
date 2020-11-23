@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 /**
  * 图片工具类
  * 
- * @author rex
+ * @author Wujun
  */
 public class ImageUtil {
 

@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 /**
  * 不带虚拟结点的一致性Hash算法
- * @author 哓哓
+ * @author Wujun
  *
  */
 public class ConsistentHashWithoutVN {

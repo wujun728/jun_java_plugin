@@ -11,7 +11,7 @@ import com.jun.plugin.commons.util.apiext.ReflectAsset;
 /****
  * 当线程被拒绝时采取的策略，如果线程实现cn.rjzjh.commons.util.thread.ICancelHandle接口则调用
  * 
- * @author Administrator
+ * @author Wujun
  * 
  */
 public class RejectedExecutionForLog implements RejectedExecutionHandler {

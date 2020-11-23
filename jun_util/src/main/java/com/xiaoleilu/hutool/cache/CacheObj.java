@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.cache;
 
 /**
  * 缓存对象
- * @author Looly
+ * @author Wujun
  *
  * @param <K>
  * @param <V>

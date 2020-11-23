@@ -10,7 +10,7 @@ import com.xiaoleilu.hutool.log.level.WarnLog;
 /**
  * 日志统一接口
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public interface Log extends TraceLog, DebugLog, InfoLog, WarnLog, ErrorLog {

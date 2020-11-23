@@ -6,7 +6,7 @@ import net.oschina.j2cache.CacheException;
 import java.util.List;
 
 /**
- * @author FY
+ * @author Wujun
  */
 public class MapCache implements Cache {
 

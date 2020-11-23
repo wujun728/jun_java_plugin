@@ -25,7 +25,7 @@ import java.net.SocketException;
  * <p></p>
  * <p>Copyright (c) 2018</p>
  * @Date 2018/12/18 22:04
- * @author biaoping.yin
+ * @author Wujun
  * @version 1.0
  */
 public class ConnectionResetHttpRequestRetryHandler extends DefaultHttpRequestRetryHandler{

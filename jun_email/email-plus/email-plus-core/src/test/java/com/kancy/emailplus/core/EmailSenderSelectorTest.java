@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * EmailSenderSelectorTest
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 3:04
  */
 public class EmailSenderSelectorTest {

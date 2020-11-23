@@ -4,7 +4,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 带有状态码的异常
- * @author xiaoleilu
+ * @author Wujun
  *
  */
 public class StatefulException extends Exception{

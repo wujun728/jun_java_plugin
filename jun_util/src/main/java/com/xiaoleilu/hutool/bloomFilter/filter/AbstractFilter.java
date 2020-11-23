@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.bloomFilter.bitMap.LongMap;
 /**
  * 抽象Bloom过滤器
  * 
- * @author loolly
+ * @author Wujun
  *
  */
 public abstract class AbstractFilter implements BloomFilter {

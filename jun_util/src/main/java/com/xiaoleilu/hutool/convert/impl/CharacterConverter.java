@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 字符转换器
- * @author Looly
+ * @author Wujun
  *
  */
 public class CharacterConverter extends AbstractConverter<Character>{

@@ -32,7 +32,7 @@ import com.jun.plugin.poi.test.utils.ReflectDependencyFactory;
 /**
  * 创建时间：2015-12-11下午8:33:01 项目名称：excel
  * 
- * @author shizhongtao
+ * @author Wujun
  * @version 1.0
  * @since JDK 1.7 文件名称：AnnotationMapper.java 类说明：
  */

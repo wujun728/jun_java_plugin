@@ -19,7 +19,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
  * jndi = jdbc/TestDB<br>
  * ---------------------<br>
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class JndiDSFactory extends DSFactory {

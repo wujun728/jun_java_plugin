@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.db.sql.Wrapper;
 
 /**
  * SqlLite3方言
- * @author loolly
+ * @author Wujun
  *
  */
 public class Sqlite3Dialect extends AnsiSqlDialect{

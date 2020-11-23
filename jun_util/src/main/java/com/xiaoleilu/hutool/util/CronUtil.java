@@ -13,7 +13,7 @@ import it.sauronsoftware.cron4j.Task;
 
 /**
  * 定时任务工具类
- * @author xiaoleilu
+ * @author Wujun
  *
  */
 public class CronUtil {

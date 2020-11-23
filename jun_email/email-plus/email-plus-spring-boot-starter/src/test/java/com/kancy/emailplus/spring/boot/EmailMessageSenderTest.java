@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * SenderTest
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/21 1:45
  */
 @ActiveProfiles({"test"})

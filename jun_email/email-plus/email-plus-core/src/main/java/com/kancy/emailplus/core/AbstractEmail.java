@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * AbstractEmail
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/21 2:18
  */
 public abstract class AbstractEmail implements Email {

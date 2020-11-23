@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.log;
 
 /**
  * 抽象定位感知日志实现<br>
- * @author Looly
+ * @author Wujun
  *
  */
 public abstract class AbstractLocationAwareLog extends AbstractLog implements LocationAwareLog{

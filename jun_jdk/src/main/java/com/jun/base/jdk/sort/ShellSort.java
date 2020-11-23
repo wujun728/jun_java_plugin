@@ -50,7 +50,7 @@ d=5
     三趟结果  
     04 13 27 38 49* 49 55 65 76 97  
 --------------------------------------------------------------------- 
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since   2014年1月23日 下午4:56:56 
  */
 public class ShellSort extends Sort {

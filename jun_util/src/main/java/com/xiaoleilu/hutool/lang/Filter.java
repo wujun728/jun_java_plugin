@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.lang;
 
 /**
  * 过滤器接口
- * @author Looly
+ * @author Wujun
  *
  */
 public interface Filter<T> {

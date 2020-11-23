@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.system.SystemUtil;
 
 /**
  * 文件类型判断Demo
- * @author Looly
+ * @author Wujun
  *
  */
 public class FileTypeUtilDemo {

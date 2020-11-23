@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * 
  * 因为需要被持久化,只能在每次调度时从QuartzJobBean注入的applicationContext中动态 取出.<br/>
  * 
- * @author ZhaoXinGuo
+ * @author Wujun
  * 
  * @createdate 2016-08-15 18:46
  * 

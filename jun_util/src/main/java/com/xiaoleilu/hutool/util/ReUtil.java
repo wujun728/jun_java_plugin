@@ -13,7 +13,7 @@ import com.xiaoleilu.hutool.lang.Validator;
 /**
  * 正则相关工具类
  * 
- * @author xiaoleilu
+ * @author Wujun
  */
 public class ReUtil {
 	

@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * RefreshEmailSenderEvent
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/21 21:44
  */
 public class RefreshEmailSenderEvent extends ApplicationEvent {

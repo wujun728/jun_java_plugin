@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 数据库表的列信息
- * @author loolly
+ * @author Wujun
  *
  */
 public class Column implements Cloneable{

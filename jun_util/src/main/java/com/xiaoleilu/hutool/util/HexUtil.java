@@ -9,7 +9,7 @@ import java.nio.charset.Charset;
  * 
  * 参考：https://my.oschina.net/xinxingegeya/blog/287476
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class HexUtil {

@@ -11,7 +11,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * Java的System类封装工具类。
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class SystemUtil {

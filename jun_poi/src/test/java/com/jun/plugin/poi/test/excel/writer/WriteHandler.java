@@ -7,7 +7,7 @@ import com.jun.plugin.poi.test.excel.vo.ListLine;
 
 /**
  * 目前的三个实现不是线程安全的
- * @author shizhongtao
+ * @author Wujun
  *
  */
 public interface WriteHandler {

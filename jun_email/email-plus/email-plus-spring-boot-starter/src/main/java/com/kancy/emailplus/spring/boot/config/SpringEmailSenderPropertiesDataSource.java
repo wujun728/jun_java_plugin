@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * SpringMailPropertiesDataSource
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/21 1:16
  */
 @Order(Integer.MIN_VALUE + 10)

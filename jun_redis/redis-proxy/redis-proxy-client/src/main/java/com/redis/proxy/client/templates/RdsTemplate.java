@@ -19,7 +19,7 @@ import java.util.Set;
 /**
  * redis操作模板父类
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 public abstract class RdsTemplate {
 

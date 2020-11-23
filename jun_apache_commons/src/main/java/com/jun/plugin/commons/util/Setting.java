@@ -25,7 +25,7 @@ import com.jun.plugin.commons.util.net.URLUtil;
 /**
  * 设置工具类。 用于支持设置文件 1、支持变量，默认变量命名为
  * 
- * @author Luxiaolei
+ * @author Wujun
  * 
  */
 public class Setting extends HashMap<String, String> {

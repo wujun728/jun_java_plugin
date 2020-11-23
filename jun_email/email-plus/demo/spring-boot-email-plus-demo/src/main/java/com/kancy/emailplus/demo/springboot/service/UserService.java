@@ -3,7 +3,7 @@ package com.kancy.emailplus.demo.springboot.service;
 /**
  * UserService
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/22 22:38
  */
 public interface UserService {

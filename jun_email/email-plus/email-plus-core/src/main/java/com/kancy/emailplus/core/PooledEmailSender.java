@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * PooledEmailSender
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 2:50
  */
 public class PooledEmailSender extends AbstractEmailSender implements EmailSenderRefreshCapable, EmailSender {

@@ -11,7 +11,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * Setting抽象类
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public abstract class AbsSetting extends OptNullBasicTypeFromObjectGetter<String> {

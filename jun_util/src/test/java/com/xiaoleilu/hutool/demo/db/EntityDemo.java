@@ -5,14 +5,14 @@ import com.xiaoleilu.hutool.db.Entity;
 
 /**
  * 实体使用样例
- * @author Looly
+ * @author Wujun
  *
  */
 public class EntityDemo {
 	
 	/**
 	 * pojo类
-	 * @author Looly
+	 * @author Wujun
 	 *
 	 */
 	public static class DemoPojo {

@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 public class TestVo implements Serializable{
         

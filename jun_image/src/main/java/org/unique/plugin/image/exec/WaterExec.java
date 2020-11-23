@@ -2,7 +2,7 @@ package org.unique.plugin.image.exec;
 
 /**
  * 水印处理
- * @author rex
+ * @author Wujun
  *
  */
 public class WaterExec {

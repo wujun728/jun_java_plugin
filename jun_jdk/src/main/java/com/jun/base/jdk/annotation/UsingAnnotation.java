@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 /**
  * 一个实例程序应用前面定义的Annotation：AnnotationDefineForTestFunction
  * 
- * @author cleverpig
+ * @author Wujun
  * 
  */
 public class UsingAnnotation {

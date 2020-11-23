@@ -16,7 +16,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 全功能引擎类，支持Compilable和Invocable
- * @author Looly
+ * @author Wujun
  *
  */
 public class FullSupportScriptEngine implements ScriptEngine, Compilable, Invocable{

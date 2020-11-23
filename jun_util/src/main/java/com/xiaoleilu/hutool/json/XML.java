@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * 提供静态方法在XML和JSONObject之间转换
  * 
- * @author JSON.org
+ * @author Wujun
  */
 public class XML {
 

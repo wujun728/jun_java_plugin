@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * EmailProperties
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 2:26
  */
 public class EmailplusProperties {

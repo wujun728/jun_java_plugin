@@ -17,7 +17,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * MySQL方言
- * @author loolly
+ * @author Wujun
  *
  */
 public class MysqlDialect extends AnsiSqlDialect{

@@ -21,7 +21,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
  * 		<li><code>java.math.BigInteger</code></li>
  * </ul>
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class NumberConverter extends AbstractConverter<Number> {

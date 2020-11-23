@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * 多媒体相关信息
  * 	
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since   2013年7月26日 下午4:46:37
  */
 public abstract class Multimedia {

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 /**
  * 参数处理
- * @author gson
+ * @author Wujun
  *
  */
 public interface ParamsHandler {

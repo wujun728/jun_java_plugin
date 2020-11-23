@@ -3,7 +3,7 @@ package com.kancy.emailplus.core;
 /**
  * EmailSenderRefreshCapable
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/21 22:09
  */
 public interface EmailSenderRefreshCapable {

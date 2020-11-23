@@ -14,7 +14,7 @@ import com.xiaoleilu.hutool.util.ClassUtil;
 
 /**
  * 外部Jar的类加载器
- * @author Looly
+ * @author Wujun
  *
  */
 public class JarClassLoader extends URLClassLoader{

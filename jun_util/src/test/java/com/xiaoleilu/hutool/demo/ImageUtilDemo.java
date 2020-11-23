@@ -9,7 +9,7 @@ import com.xiaoleilu.hutool.util.ImageUtil;
 
 /**
  * 图像工具类样例
- * @author Looly
+ * @author Wujun
  *
  */
 public class ImageUtilDemo {

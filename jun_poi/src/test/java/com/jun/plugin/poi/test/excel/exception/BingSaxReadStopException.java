@@ -3,7 +3,7 @@ package com.jun.plugin.poi.test.excel.exception;
 import org.xml.sax.SAXException;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  *
  * @date 2016-2-2
  * Description:  this only a mark exception ，when you want to stop the sax

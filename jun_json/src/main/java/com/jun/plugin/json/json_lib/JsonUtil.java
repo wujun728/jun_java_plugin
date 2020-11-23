@@ -238,7 +238,7 @@ public class JsonUtil {
 	 * //是否有子节点 "ChildNodes":[{},{}], //子节点集�? "showcheck":true, //是否显示checkbox
 	 * "complete":false //是否已加载子节点 }
 	 * 
-	 * @author Lanxiaowei
+	 * @author Wujun
 	 * @createTime 2011-9-1 下午08:50:14
 	 */
 

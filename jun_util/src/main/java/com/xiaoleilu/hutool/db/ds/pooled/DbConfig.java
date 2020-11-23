@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.db.DbUtil;
 
 /**
  * 数据库配置
- * @author Looly
+ * @author Wujun
  *
  */
 public class DbConfig {

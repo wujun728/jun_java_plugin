@@ -2,7 +2,7 @@ package memento;
 
 /**
  * 原发器对象
- * @author Asus
+ * @author Wujun
  *
  */
 public class Originator {
@@ -22,7 +22,7 @@ public class Originator {
 	/**
 	 * 真正的备忘录对象，实现备忘录接口
 	 * 实现成似有内部类，不让外部访问
-	 * @author Asus
+	 * @author Wujun
 	 *
 	 */
 	private static class MementoImp implements Memento {

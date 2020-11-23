@@ -2,7 +2,7 @@ package com.jun.plugin.poi.test.excel.exception;
 
 /**
  * 当用户定义model不符合需要时候抛出异常
- * @author shizhongtao
+ * @author Wujun
  * @time 
  */
 public class IllegalEntityException extends RuntimeException {

@@ -3,7 +3,7 @@ package com.jun.plugin.commons.util.constant;
 /***
  * 数学方面转换的类型
  * 
- * @author Administrator
+ * @author Wujun
  * 
  */
 public enum MathConvertType {

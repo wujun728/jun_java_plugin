@@ -20,7 +20,7 @@ package org.frameworkset.spi.remote.http.proxy;
  * <p></p>
  * <p>Copyright (c) 2018</p>
  * @Date 2019/6/17 15:46
- * @author biaoping.yin
+ * @author Wujun
  * @version 1.0
  */
 public class ProxyConstants {

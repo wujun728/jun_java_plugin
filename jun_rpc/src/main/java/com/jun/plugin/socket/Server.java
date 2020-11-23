@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * @author ZhangHao 
+ * @author Wujun
  * @date  2013-4-12
  * 多线程通讯服务端
  */

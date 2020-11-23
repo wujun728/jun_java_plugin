@@ -12,7 +12,7 @@ import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 /**
  * 配置JobFactory使得QuartzJob可以@Autowired注入spring托管的实例
  * 
- * @author ZhaoXinGuo
+ * @author Wujun
  * 
  * @createdate 2016-08-15 18:46
  * 

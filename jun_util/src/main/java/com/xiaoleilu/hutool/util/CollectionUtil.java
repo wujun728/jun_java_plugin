@@ -27,7 +27,7 @@ import com.xiaoleilu.hutool.lang.Editor;
 /**
  * 集合相关工具类，包括数组
  * 
- * @author xiaoleilu
+ * @author Wujun
  * 
  */
 public class CollectionUtil {
@@ -1670,7 +1670,7 @@ public class CollectionUtil {
 	
 	/**
 	 * 针对一个参数做相应的操作
-	 * @author Looly
+	 * @author Wujun
 	 *
 	 *@param <T> 处理参数类型
 	 */
@@ -1685,7 +1685,7 @@ public class CollectionUtil {
 	
 	/**
 	 * 针对两个参数做相应的操作，例如Map中的KEY和VALUE
-	 * @author Looly
+	 * @author Wujun
 	 *
 	 * @param <K> KEY类型
 	 * @param <V> VALUE类型

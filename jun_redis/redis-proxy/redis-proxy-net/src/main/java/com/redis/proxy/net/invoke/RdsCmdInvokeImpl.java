@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 /**
  * redis命令调用包裹实现
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 public class RdsCmdInvokeImpl implements RdsCmdInvoke {
 

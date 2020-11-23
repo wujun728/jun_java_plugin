@@ -20,7 +20,7 @@ import org.junit.Test;
 
 /**
  * 3. ��ͼƬ��Դ�Լ��������ʼ�
- * @author Jie.Yuan
+ * @author Wujun
  *
  */
 public class App_3ImgAndAtta {

@@ -1,7 +1,7 @@
 package memento;
 
 /**
- * @author Asus
+ * @author Wujun
  *
  */
 public interface Memento {

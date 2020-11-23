@@ -20,7 +20,7 @@ import java.util.*;
 /**
  * 快速简单操作Excel的工具
  *
- * @author peiyu
+ * @author Wujun
  */
 public final class FastExcel implements Closeable {
 

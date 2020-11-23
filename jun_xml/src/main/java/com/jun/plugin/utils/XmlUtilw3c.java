@@ -2,7 +2,7 @@ package com.jun.plugin.utils;
 
 /* 
  * <p>Company: ������ www.elingke.com </p> 
- * @author liubaojun 
+ * @author Wujun
  * @version 1.0 
  * Created on 2004-11-29 
  * ��Դ�� elinkBSP ����Դ���� 

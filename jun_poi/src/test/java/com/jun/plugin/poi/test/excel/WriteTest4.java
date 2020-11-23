@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  */
 public class WriteTest4 {
     BingExcelEvent bing;

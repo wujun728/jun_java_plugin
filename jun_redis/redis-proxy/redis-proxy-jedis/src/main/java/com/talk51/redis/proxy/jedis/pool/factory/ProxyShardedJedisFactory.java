@@ -21,7 +21,7 @@ import redis.clients.util.Hashing;
 
 /**
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 public class ProxyShardedJedisFactory implements PooledObjectFactory<ShardedJedis> {
 

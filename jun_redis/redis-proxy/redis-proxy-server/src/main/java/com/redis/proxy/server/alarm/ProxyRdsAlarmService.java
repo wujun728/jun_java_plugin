@@ -14,7 +14,7 @@ import redis.clients.jedis.Jedis;
 /**
  * 代理服务集群的redis报警接口
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 @Service
 public class ProxyRdsAlarmService implements RedisAlarm {

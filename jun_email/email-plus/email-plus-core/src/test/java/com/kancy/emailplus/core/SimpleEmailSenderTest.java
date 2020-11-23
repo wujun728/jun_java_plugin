@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * SimpleEmailSenderTest
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 1:36
  */
 public class SimpleEmailSenderTest {

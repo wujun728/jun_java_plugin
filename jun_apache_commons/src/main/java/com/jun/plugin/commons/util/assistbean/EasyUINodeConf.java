@@ -10,7 +10,7 @@ import com.jun.plugin.commons.util.callback.IConvertValue;
 /****
  * 用户对象与EasyUINode的转换器
  * 
- * @author Administrator
+ * @author Wujun
  * 
  */
 public class EasyUINodeConf {

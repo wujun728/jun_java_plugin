@@ -35,7 +35,7 @@ import com.xiaoleilu.hutool.io.IoUtil;
  * XML工具类<br>
  * 此工具使用w3c dom工具，不需要依赖第三方包。<br>
  * 
- * @author xiaoleilu
+ * @author Wujun
  * 
  */
 public class XmlUtil {

@@ -35,22 +35,22 @@ import de.erichseifert.vectorgraphics2d.SVGGraphics2D;
 
 /**
  * @version v1.0
- * @author frogchou
- * ZxingµÄÒ»¸ö¹ÜÀíÀà£¬ÓÃÓÚÀ©Õ¹ZxingµÄÒ»Ð©¹¦ÄÜ¡£
+ * @author Wujun
+ * Zxingï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹Zxingï¿½ï¿½Ò»Ð©ï¿½ï¿½ï¿½Ü¡ï¿½
  * */
 public class ZxingHandler {
 	private static final int BLACK = 0xFF000000;
 	private static final int WHITE = 0xFFFFFFFF;
 
 	/**
-	 * ·µ»ØÒ»¸ö²ÊÉ«¶¨Î»µÄ BufferedImage
-	 * @param matrix ÊäÈëÒ»¸öÒÑÓÐµÄBitMatrix ¶ÔÏó£¬Õâ¸ö¶ÔÏóÖÐÒÑ¾­´æ·ÅÁËÒ»¸ö¶þÎ¬Âë
-	 * @return BufferedImage Êä³öÒ»¸ö½ø¹ý´¦ÀíµÄBufferedImage
+	 * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½Î»ï¿½ï¿½ BufferedImage
+	 * @param matrix ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½BitMatrix ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ï¿½
+	 * @return BufferedImage ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½BufferedImage
 	 * */
 	public static BufferedImage toBufferedImageWithColor(BitMatrix matrix) {
 		int H = matrix.getHeight();
 		int W = matrix.getWidth();
-		int L = getFinderParttenWidth(matrix) + 3;  //»ñÈ¡¶¨Î»·û±ß³¤
+		int L = getFinderParttenWidth(matrix) + 3;  //ï¿½ï¿½È¡ï¿½ï¿½Î»ï¿½ï¿½ï¿½ß³ï¿½
 		int[] pixels = new int[W * H];
 		Color redColor = new Color(182, 0, 5);
 		int redColorInt = redColor.getRGB();
@@ -60,7 +60,7 @@ public class ZxingHandler {
 		int blueColorInt = blueColor.getRGB();
 		for (int y = 0; y < H; y++) {
 			for (int x = 0; x < W; x++) {
-				// ²éÕÒ¶¨Î»·û£¬²¢»»³É²ÊÉ«µÄ¡£
+				// ï¿½ï¿½ï¿½Ò¶ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É²ï¿½É«ï¿½Ä¡ï¿½
 				if (x > 0 && x < L && y > 0 && y < L) {
 					pixels[y * W + x] = matrix.get(x, y) ? redColorInt : WHITE;
 				} else if (x > (W - L) && x < H && y > 0 && y < L) {
@@ -80,9 +80,9 @@ public class ZxingHandler {
 	}
 
 	/**
-	 * ·µ»ØÒ»¸öºÚ°×µÄ BufferedImage
-	 * @param matrix ÊäÈëÒ»¸öÒÑÓÐµÄBitMatrix ¶ÔÏó£¬Õâ¸ö¶ÔÏóÖÐÒÑ¾­´æ·ÅÁËÒ»¸ö¶þÎ¬Âë
-	 * @return BufferedImage Êä³öÒ»¸ö½ø¹ý´¦ÀíµÄBufferedImage
+	 * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ú°×µï¿½ BufferedImage
+	 * @param matrix ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½BitMatrix ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ï¿½
+	 * @return BufferedImage ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½BufferedImage
 	 * */
 	public static BufferedImage toBufferedImage(BitMatrix matrix) {
 		int width = matrix.getWidth();
@@ -98,10 +98,10 @@ public class ZxingHandler {
 	}
 
 	/**
-	 * ½«ºÚ°×¶þÎ¬ÂëÍ¼Æ¬Êä³öµ½Ò»¸öÖ¸¶¨µÄÎÄ¼þÖÐ
-	 * @param matrix ÊäÈëÒ»¸öÒÑÓÐµÄBitMatrix ¶ÔÏó£¬Õâ¸ö¶ÔÏóÖÐÒÑ¾­´æ·ÅÁËÒ»¸ö¶þÎ¬Âë
-	 * @param format ÎÄ¼þÀàÐÍ ½öÏÞÓÚÍ¼Æ¬ÎÄ¼þÀàÐÍ
-	 * @param file Ö¸¶¨Êä³öµÄÄ¿±êÎÄ¼þ
+	 * ï¿½ï¿½ï¿½Ú°×¶ï¿½Î¬ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
+	 * @param matrix ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½BitMatrix ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ï¿½
+	 * @param format ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param file Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Ä¼ï¿½
 	 * */
 	public static void writeToFile(BitMatrix matrix, String format, File file)
 			throws IOException {
@@ -113,10 +113,10 @@ public class ZxingHandler {
 	}
 
 	/**
-	 * ½«²ÊÉ«¶þÎ¬ÂëÍ¼Æ¬Êä³öµ½Ò»¸öÖ¸¶¨µÄÎÄ¼þÖÐ
-	 * @param matrix ÊäÈëÒ»¸öÒÑÓÐµÄBitMatrix ¶ÔÏó£¬Õâ¸ö¶ÔÏóÖÐÒÑ¾­´æ·ÅÁËÒ»¸ö¶þÎ¬Âë
-	 * @param format ÎÄ¼þÀàÐÍ ½öÏÞÓÚÍ¼Æ¬ÎÄ¼þÀàÐÍ
-	 * @param file Ö¸¶¨Êä³öµÄÄ¿±êÎÄ¼þ
+	 * ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½Î¬ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
+	 * @param matrix ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½BitMatrix ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ï¿½
+	 * @param format ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param file Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Ä¼ï¿½
 	 * */
 	public static void writeToFileWithColor(BitMatrix matrix, String format,
 			File file) throws IOException {
@@ -128,10 +128,10 @@ public class ZxingHandler {
 	}
 
 	/**
-	 *½«ºÚ°×¶þÎ¬ÂëÍ¼Æ¬ ·Åµ½Ò»¸öÊä³öÁ÷ÖÐ
-	 * @param matrix ÊäÈëÒ»¸öÒÑÓÐµÄBitMatrix ¶ÔÏó£¬Õâ¸ö¶ÔÏóÖÐÒÑ¾­´æ·ÅÁËÒ»¸ö¶þÎ¬Âë
-	 * @param format ÎÄ¼þÀàÐÍ ½öÏÞÓÚÍ¼Æ¬ÎÄ¼þÀàÐÍ
-	 * @param stream Ö¸¶¨Êä³öÁ÷
+	 *ï¿½ï¿½ï¿½Ú°×¶ï¿½Î¬ï¿½ï¿½Í¼Æ¬ ï¿½Åµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param matrix ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½BitMatrix ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ï¿½
+	 * @param format ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param stream Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	public static void writeToStream(BitMatrix matrix, String format,
 			OutputStream stream) throws IOException {
@@ -143,7 +143,7 @@ public class ZxingHandler {
 	}
 
 	/**
-	 * ²éÕÒ²ÊÉ«¶¨Î»·û
+	 * ï¿½ï¿½ï¿½Ò²ï¿½É«ï¿½ï¿½Î»ï¿½ï¿½
 	 * */
 	private static int getFinderParttenWidth(BitMatrix matrix) {
 		int W = matrix.getWidth();
@@ -166,8 +166,8 @@ public class ZxingHandler {
 	}
 	
 	/**
-	 * Ê¶±ðÍ¼Æ¬ÖÐµÄ¶þÎ¬Âë£¬·µ»ØÂëÄÚÈÝ¡£
-	 * @param BufferedImage Ò»¸öbufferedImageÀïÃæ°üº¬Ò»¸ö¶þÎ¬Âë¡£
+	 * Ê¶ï¿½ï¿½Í¼Æ¬ï¿½ÐµÄ¶ï¿½Î¬ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½
+	 * @param BufferedImage Ò»ï¿½ï¿½bufferedImageï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ë¡£
 	 * */
 	public static String getQrcodeFromPic(BufferedImage bufferedImage){
 		String retStr=null;
@@ -254,8 +254,8 @@ public class ZxingHandler {
 		MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 		Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();
 		hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-		hints.put(EncodeHintType.MARGIN, 1); // ¿ØÖÆÂëÍ¼°×±ß
-		hints.put(EncodeHintType.ERROR_CORRECTION, errorCorrectionLevel); // ÈÝ´íÂÊ
+		hints.put(EncodeHintType.MARGIN, 1); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½×±ï¿½
+		hints.put(EncodeHintType.ERROR_CORRECTION, errorCorrectionLevel); // ï¿½Ý´ï¿½ï¿½ï¿½
 		bitMatrix = multiFormatWriter.encode(content, BarcodeFormat.QR_CODE, size, size, hints);
 		return bitMatrix;
 	}

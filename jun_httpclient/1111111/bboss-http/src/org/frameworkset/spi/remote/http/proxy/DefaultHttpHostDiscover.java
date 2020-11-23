@@ -26,7 +26,7 @@ import java.util.List;
  * <p></p>
  * <p>Copyright (c) 2018</p>
  * @Date 2019/6/20 12:41
- * @author biaoping.yin
+ * @author Wujun
  * @version 1.0
  */
 public class DefaultHttpHostDiscover extends HttpHostDiscover {

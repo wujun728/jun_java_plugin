@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.lang.Console;
 
 /**
  * DFA关键词查找Demo
- * @author Looly
+ * @author Wujun
  *
  */
 public class DfaDemo {

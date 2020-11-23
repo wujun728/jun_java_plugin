@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * listrow 对象
  * 
- * @author shizhongtao
+ * @author Wujun
  * 
  * @date 2016-2-17 Description:
  */

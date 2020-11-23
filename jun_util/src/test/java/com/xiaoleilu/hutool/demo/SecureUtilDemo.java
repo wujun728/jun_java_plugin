@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.lang.Base64;
 
 /**
  * 安全工具类Demo
- * @author Looly
+ * @author Wujun
  *
  */
 public class SecureUtilDemo {

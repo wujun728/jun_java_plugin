@@ -4,7 +4,7 @@
 package simplefactory;
 
 /**
- * @author Asus
+ * @author Wujun
  *
  */
 public class ApiImpA implements Api {

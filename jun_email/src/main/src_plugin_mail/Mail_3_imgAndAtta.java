@@ -19,7 +19,7 @@ import org.junit.Test;
 
 /**
  * ��ͼƬ��Դ���ʼ� + ����
- * @author AdminTH
+ * @author Wujun
  *
  */
 public class Mail_3_imgAndAtta {

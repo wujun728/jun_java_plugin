@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * 随机策略
  * RandomEmailSenderSelector
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 2:58
  */
 public class RandomEmailSenderSelector implements EmailSenderSelector {

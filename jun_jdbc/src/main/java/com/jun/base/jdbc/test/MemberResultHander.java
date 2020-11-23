@@ -10,7 +10,7 @@ import com.jun.base.jdbc.ResultHandler;
 
 /**
  * 会员参数处理器
- * @author 郭华
+ * @author Wujun
  *
  */
 public class MemberResultHander implements ResultHandler<Member> {

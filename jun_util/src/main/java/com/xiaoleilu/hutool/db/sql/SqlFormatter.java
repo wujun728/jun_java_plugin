@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 /**
  * SQL格式化器 from Hibernate
- * @author looly
+ * @author Wujun
  */
 public class SqlFormatter {
 	private static final Set<String> BEGIN_CLAUSES = new HashSet<String>();

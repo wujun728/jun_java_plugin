@@ -17,7 +17,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * Oracle 方言
- * @author loolly
+ * @author Wujun
  *
  */
 public class OracleDialect extends AnsiSqlDialect{

@@ -25,7 +25,7 @@ import com.jun.plugin.commons.util.net.SocketUtil;
 /**
  * 封装Druid数据源
  * 
- * @author Luxiaolei
+ * @author Wujun
  * 
  */
 public class DruidDs {

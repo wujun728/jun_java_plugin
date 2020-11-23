@@ -5,7 +5,7 @@ package com.xiaoleilu.hutool.lang;
  * 此编辑器两个作用：<br>
  * 1、如果返回值为<code>null</code>，表示此值被抛弃
  * 2、对对象做修改
- * @author Looly
+ * @author Wujun
  *
  * @param <T>
  */

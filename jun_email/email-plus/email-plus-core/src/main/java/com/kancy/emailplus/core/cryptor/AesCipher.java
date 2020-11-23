@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * 密码持有类
  *
- * @author kancy
+ * @author Wujun
  */
 public abstract class AesCipher {
 

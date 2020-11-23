@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 钝化时间超时处理
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 public class ServerIdleHandler extends IdleStateHandler {
 

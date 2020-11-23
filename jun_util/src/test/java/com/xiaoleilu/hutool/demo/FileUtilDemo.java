@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.io.FileUtil;
 
 /**
  * 文件工具类样例
- * @author Looly
+ * @author Wujun
  *
  */
 public class FileUtilDemo {

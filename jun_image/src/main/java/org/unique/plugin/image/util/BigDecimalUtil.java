@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.text.NumberFormat;
 
 /**
- * @author Benoit Xhenseval
+ * @author Wujun
  */
 public final class BigDecimalUtil {
 

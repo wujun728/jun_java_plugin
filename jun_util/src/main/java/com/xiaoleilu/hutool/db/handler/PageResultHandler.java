@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.db.PageResult;
 
 /**
  * 分页结果集处理类 ，处理出的结果为PageResult
- * @author loolly
+ * @author Wujun
  *
  */
 public class PageResultHandler implements RsHandler<PageResult<Entity>>{

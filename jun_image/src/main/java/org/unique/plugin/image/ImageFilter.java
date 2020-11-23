@@ -18,7 +18,7 @@ import org.unique.plugin.image.util.ImageUtil;
 /**
  * 图片处理核心过滤器
  * 
- * @author rex
+ * @author Wujun
  * 
  */
 @WebFilter(urlPatterns = "/upload/*", asyncSupported = true)

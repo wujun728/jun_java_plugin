@@ -24,7 +24,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
  *<pre>
  * myString = new JSONObject().put(&quot;JSON&quot;, &quot;Hello, World!&quot;).toString();
  * </pre>
- * @author looly
+ * @author Wujun
  */
 public class JSONObject extends JSONGetter<String> implements JSON, Map<String, Object> {
 

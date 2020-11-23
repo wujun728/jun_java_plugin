@@ -26,7 +26,7 @@ import com.jun.plugin.poi.test.excel.vo.OutValue;
 import com.jun.plugin.poi.test.excel.vo.OutValue.OutType;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  *
  */
 public class TypeAdapterConverter<T> implements ModelAdapter,

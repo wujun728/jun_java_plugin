@@ -6,7 +6,7 @@ package com.jun.plugin.poi.test.excel.converter;
  * <p>Description: ConverterMatcher is the base interface of any converter</p>
  * <p>Company: bing</p> 
  * 
- * @author zhongtao.shi
+ * @author Wujun
  * @date 2015-12-14
   */
 public interface ConverterMatcher {

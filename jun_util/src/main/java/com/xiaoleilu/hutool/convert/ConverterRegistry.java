@@ -43,7 +43,7 @@ import com.xiaoleilu.hutool.date.DateTime;
 /**
  * 转换器登记
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class ConverterRegistry {

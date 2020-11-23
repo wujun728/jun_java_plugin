@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 轮询计数电子邮件通知触发器
  * PollingCountEmailNoticeTrigger
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/23 18:11
  */
 public class PollingCountEmailNoticeTrigger implements EmailNoticeTrigger{

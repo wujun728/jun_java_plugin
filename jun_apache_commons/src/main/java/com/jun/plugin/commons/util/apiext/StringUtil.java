@@ -14,7 +14,7 @@ import com.jun.plugin.commons.util.callback.ValueEncoder;
 /**
  * @ClassName: StringUtil
  * @Description: TODO(这里用一句话描述这个类的作用)
- * @author 周俊辉
+ * @author Wujun
  * @date 2010-10-29 下午01:36:36
  *
  */

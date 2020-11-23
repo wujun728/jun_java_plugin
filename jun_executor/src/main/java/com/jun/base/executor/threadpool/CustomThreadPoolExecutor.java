@@ -5,7 +5,7 @@ import java.util.concurrent.*;
 /**
  * 描述: 自定义线程池
  *
- * @author : lhb
+ * @author Wujun
  * @date : 2020-02-01 19:14
  */
 public class CustomThreadPoolExecutor {

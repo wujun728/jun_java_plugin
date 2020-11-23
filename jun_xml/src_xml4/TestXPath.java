@@ -19,7 +19,7 @@ import org.xml.sax.SAXException;
 /**
  * 
  * 普通DOM与XPath
- * @author licheng
+ * @author Wujun
  *
  */
 public class TestXPath {

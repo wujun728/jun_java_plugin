@@ -7,7 +7,7 @@ import java.util.Map;
 import com.alibaba.fastjson.JSON;
 /**
  * json工具类
- * @author rex
+ * @author Wujun
  *
  */
 @SuppressWarnings("unchecked")

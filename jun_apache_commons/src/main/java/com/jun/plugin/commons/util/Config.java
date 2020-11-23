@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 读取配置文件的类
- * @author Luxiaolei
+ * @author Wujun
  */
 public final class Config {
 	private static Logger logger = LoggerFactory.getLogger(Config.class);

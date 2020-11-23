@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 轮询策略
  * PollingEmailSenderSelector
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 3:11
  */
 public class PollingEmailSenderSelector implements EmailSenderSelector {

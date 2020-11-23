@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 /**
  * 阻塞式I/O创建的客户端
- * @author yangtao__anxpp.com
+ * @author Wujun
  * @version 1.0
  */
 public class Client {

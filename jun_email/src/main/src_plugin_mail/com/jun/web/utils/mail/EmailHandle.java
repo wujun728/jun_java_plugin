@@ -19,7 +19,7 @@ import javax.mail.internet.MimeUtility;
 
 /**
  * �ʼ����ʹ�������
- * @author jiang.li
+ * @author Wujun
  * @date 2013-12-19 14:08
  */
 public class EmailHandle {

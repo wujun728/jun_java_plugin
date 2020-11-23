@@ -28,7 +28,7 @@ import redis.clients.jedis.ShardedJedis;
 /**
  * redis命令实现类
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 @Service
 public class RedisCmdHandler extends RdsMsgHandler {

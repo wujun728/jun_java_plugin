@@ -6,7 +6,7 @@ import com.xiaoleilu.hutool.convert.AbstractConverter;
 
 /**
  * TimeZone转换器
- * @author Looly
+ * @author Wujun
  *
  */
 public class TimeZoneConverter extends AbstractConverter<TimeZone>{

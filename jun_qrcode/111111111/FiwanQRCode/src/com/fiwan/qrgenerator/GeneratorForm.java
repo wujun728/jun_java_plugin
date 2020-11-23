@@ -53,18 +53,18 @@ import java.awt.Component;
 import java.awt.ComponentOrientation;
 
 /**
- * Éú³ÉÆ÷´°ÌåÀà
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @version v.1.0
- * @author frogchou
+ * @author Wujun
  */
 @SuppressWarnings("serial")
 public class GeneratorForm extends javax.swing.JFrame {
 	Settings setting = Settings.getInstance();
-	Toolkit kit = Toolkit.getDefaultToolkit(); // ¶¨Òå¹¤¾ß°ü
-	Dimension screenSize = kit.getScreenSize(); // »ñÈ¡ÆÁÄ»µÄ³ß´ç
-	int screenWidth = screenSize.width; // »ñÈ¡ÆÁÄ»µÄ¿í
-	int screenHeight = screenSize.height; // »ñÈ¡ÆÁÄ»µÄ¸ß
+	Toolkit kit = Toolkit.getDefaultToolkit(); // ï¿½ï¿½ï¿½å¹¤ï¿½ß°ï¿½
+	Dimension screenSize = kit.getScreenSize(); // ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½Ä³ß´ï¿½
+	int screenWidth = screenSize.width; // ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½Ä¿ï¿½
+	int screenHeight = screenSize.height; // ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½Ä¸ï¿½
 	String filePath="";
 
 	public GeneratorForm() {
@@ -72,9 +72,9 @@ public class GeneratorForm extends javax.swing.JFrame {
 		this.setResizable(false);
 		this.settextArea();
 		savePicButton.setEnabled(false);
-		int windowWidth = this.getWidth(); // »ñµÃ´°¿Ú¿í
-		int windowHeight = this.getHeight(); // »ñµÃ´°¿Ú¸ß
-		this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// ÉèÖÃ´°¿Ú¾ÓÖÐÏÔÊ¾
+		int windowWidth = this.getWidth(); // ï¿½ï¿½Ã´ï¿½ï¿½Ú¿ï¿½
+		int windowHeight = this.getHeight(); // ï¿½ï¿½Ã´ï¿½ï¿½Ú¸ï¿½
+		this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// ï¿½ï¿½ï¿½Ã´ï¿½ï¿½Ú¾ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 	}
 
 	// GEN-BEGIN:initComponents
@@ -106,7 +106,7 @@ public class GeneratorForm extends javax.swing.JFrame {
 		jTextArea1 = new javax.swing.JTextArea();
 		
 		/**
-		 * ¸øÎÄ±¾Óò¼ÓÒ»¸öÄÚÈÝ¸Ä±ä¼àÌýÊÂ¼þ£¬¸Ä±äÁ¢¿ÌÖØÐÂÉú³ÉÂë
+		 * ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ý¸Ä±ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		 * */
 		jTextArea1.getDocument().addDocumentListener(new DocumentListener() {
 			
@@ -185,10 +185,10 @@ public class GeneratorForm extends javax.swing.JFrame {
 				try {
 					new ScanCode(jTextArea1);
 				} catch (Exception e1) {
-					new Dialog1("ÎÞ·¨´ò¿ªÉãÏñÍ·¡£").jd.setVisible(true);
+					new Dialog1("ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½").jd.setVisible(true);
 					e1.printStackTrace();
 				} catch (InterruptedException e1) {
-					new Dialog1("ÎÞ·¨´ò¿ªÉãÏñÍ·¡£").jd.setVisible(true);
+					new Dialog1("ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½").jd.setVisible(true);
 					e1.printStackTrace();
 				}
 			}
@@ -199,7 +199,7 @@ public class GeneratorForm extends javax.swing.JFrame {
 		
 		getClipboardButton = new JButton();
 		/**
-		 * Ê¶±ð¼ôÇÐ°åÖÐµÄÄÚÈÝ
+		 * Ê¶ï¿½ï¿½ï¿½ï¿½Ð°ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
 		 * */
 		getClipboardButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -209,13 +209,13 @@ public class GeneratorForm extends javax.swing.JFrame {
 				try {
 					image=Utils.getImageFromClipboard();
 				} catch (java.lang.Exception e1) {
-					new Dialog1("ÎÞ·¨¶ÁÈ¡¼ôÇÐ°åµÄÄÚÈÝ¡£").jd.setVisible(true);
+					new Dialog1("ï¿½Þ·ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½").jd.setVisible(true);
 				}
 				if (image!=null)
 				{
 				rstStr=ZxingHandler.getQrcodeFromPic(Utils.toBufferedImage(image));
 				}else{
-					new Dialog1("ÎÞ·¨¶ÁÈ¡¼ôÇÐ°åµÄÄÚÈÝ¡£").jd.setVisible(true);
+					new Dialog1("ï¿½Þ·ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½").jd.setVisible(true);
 					return;
 				}
 				if (rstStr!=null || !"".equals(rstStr)){
@@ -223,10 +223,10 @@ public class GeneratorForm extends javax.swing.JFrame {
 					try {
 						crateQRcode();
 					} catch (WriterException e1) {
-						new Dialog1("ÎÞ·¨Ê¶±ð¼ôÇÐ°åÖÐµÄÍ¼Æ¬¡£").jd.setVisible(true);
+						new Dialog1("ï¿½Þ·ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ð°ï¿½ï¿½Ðµï¿½Í¼Æ¬ï¿½ï¿½").jd.setVisible(true);
 					}
 				}else{
-					new Dialog1("ÎÞ·¨Ê¶±ð¼ôÇÐ°åÖÐµÄÍ¼Æ¬¡£").jd.setVisible(true);
+					new Dialog1("ï¿½Þ·ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½Ð°ï¿½ï¿½Ðµï¿½Í¼Æ¬ï¿½ï¿½").jd.setVisible(true);
 				}
 			}
 		});
@@ -268,7 +268,7 @@ public class GeneratorForm extends javax.swing.JFrame {
 
 		setRateLable.setText("\u5bb9\u9519\u7387");
 
-		setColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "²ÊÉ«", "ºÚ°×" }));
+		setColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ï¿½ï¿½É«", "ï¿½Ú°ï¿½" }));
 		setColorComboBox.addItemListener(new java.awt.event.ItemListener() {
 			public void itemStateChanged(java.awt.event.ItemEvent evt) {
 				jComboBox1ItemStateChanged(evt);
@@ -283,7 +283,7 @@ public class GeneratorForm extends javax.swing.JFrame {
 		});
 
 		setTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(
-				new String[] { "png", "jpg", "bmp", "gif", "eps(Ê¸Á¿)", "pdf(Ê¸Á¿)", "svg(Ê¸Á¿)" }));
+				new String[] { "png", "jpg", "bmp", "gif", "eps(Ê¸ï¿½ï¿½)", "pdf(Ê¸ï¿½ï¿½)", "svg(Ê¸ï¿½ï¿½)" }));
 		setTypeComboBox.addItemListener(new java.awt.event.ItemListener() {
 			public void itemStateChanged(java.awt.event.ItemEvent evt) {
 				jComboBox3ItemStateChanged(evt);
@@ -416,17 +416,17 @@ public class GeneratorForm extends javax.swing.JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JFileChooser jChooser = new JFileChooser();  
-				//ÉèÖÃÄ¬ÈÏµÄ´ò¿ªÄ¿Â¼, 
+				//ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ÏµÄ´ï¿½Ä¿Â¼, 
 				jChooser.setCurrentDirectory(null);  
 				jChooser.setFileFilter(new FileFilter());
-				//´ò¿ªÒ»¸ö¶Ô»°¿ò  
-				int index = jChooser.showDialog(null, "´ò¿ªÎÄ¼þ");  
+				//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ô»ï¿½ï¿½ï¿½  
+				int index = jChooser.showDialog(null, "ï¿½ï¿½ï¿½Ä¼ï¿½");  
 				if (index == JFileChooser.APPROVE_OPTION) {  
 				 filePath=jChooser.getSelectedFile().getAbsolutePath(); 
 				 showPathLabel.setText(new File(filePath).getName());
 				}  else
 				{
-					 showPathLabel.setText("Ã»ÓÐÑ¡ÔñÎÄ¼þ");
+					 showPathLabel.setText("Ã»ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½Ä¼ï¿½");
 				}
 			}
 		});
@@ -454,7 +454,7 @@ public class GeneratorForm extends javax.swing.JFrame {
 		panel_1.add(showPathLabel);
 		
 		JLabel label = new JLabel("\u4E8C\u7EF4\u7801\u751F\u6210\u5668");
-		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 16));
+		label.setFont(new Font("Î¢ï¿½ï¿½ï¿½Åºï¿½", Font.BOLD, 16));
 		panel.add(label);
 		getContentPane().setLayout(layout);
 
@@ -475,7 +475,7 @@ public class GeneratorForm extends javax.swing.JFrame {
 			}
 
 		}
-		new Dialog1("ÒÑ¾­½«Í¼Æ¬¸´ÖÆµ½Õ³Ìù°åÁË¡£").jd.setVisible(true);
+		new Dialog1("ï¿½Ñ¾ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½Æµï¿½Õ³ï¿½ï¿½ï¿½ï¿½ï¿½Ë¡ï¿½").jd.setVisible(true);
 	}
 
 	private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {
@@ -563,10 +563,10 @@ public class GeneratorForm extends javax.swing.JFrame {
 	}
 
 	/**
-	 * ½«Éú³ÉµÄÍ¼Æ¬±£´æµ½±¾µØ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½Í¼Æ¬ï¿½ï¿½ï¿½æµ½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {
-		if (((JButton) evt.getSource()).isEnabled()) { // ÅÐ¶Ï°´Å¥µ±Ç°×´Ì¬£¬²»¿ÉÓÃÊ±£¬ÊÂ¼þ²»Ö´ÐÐ
+		if (((JButton) evt.getSource()).isEnabled()) { // ï¿½Ð¶Ï°ï¿½Å¥ï¿½ï¿½Ç°×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Ö´ï¿½ï¿½
 			String filename = "FiwanQR" + System.currentTimeMillis();
 			String filepath = Utils.CreateFile(setting.getQrcodeFiletype(), filename);
 			File file = new File(filepath);
@@ -625,7 +625,7 @@ public class GeneratorForm extends javax.swing.JFrame {
 			} catch (WriterException e) {
 				e.printStackTrace();
 			}
-			new Dialog1("ÒÑ¾­±£´æµ½±¾µØ£¬Çëµã»÷´ò¿ª°´Å¥²é¿´¡£").jd.setVisible(true);
+			new Dialog1("ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½æµ½ï¿½ï¿½ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò¿ª°ï¿½Å¥ï¿½é¿´ï¿½ï¿½").jd.setVisible(true);
 		}
 	}
 
@@ -661,12 +661,12 @@ public class GeneratorForm extends javax.swing.JFrame {
 	}
 
 	private void settextArea() {
-		jTextArea1.setLineWrap(true); // ¼¤»î×Ô¶¯»»ÐÐ¹¦ÄÜ
-		jTextArea1.setWrapStyleWord(true); // ¼¤»î¶ÏÐÐ²»¶Ï×Ö¹¦ÄÜ
+		jTextArea1.setLineWrap(true); // ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½
+		jTextArea1.setWrapStyleWord(true); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½
 	}
 
 	/**
-	 * ¸ù¾ÝÎÄ±¾ÓòÖÐµÄÄÚÈÝºÍsettingÉú³ÉÒ»¸ö¶þÎ¬Âë£¬ÏÔÊ¾ÔÚÍ¼Æ¬ÏÔÊ¾ÇøÓòÄÚ¡£
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½Ýºï¿½settingï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ë£¬ï¿½ï¿½Ê¾ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ú¡ï¿½
 	 * */
 	public void crateQRcode() throws WriterException {
 		String str = jTextArea1.getText();
@@ -687,8 +687,8 @@ public class GeneratorForm extends javax.swing.JFrame {
 		MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 		Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();
 		hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-		hints.put(EncodeHintType.MARGIN, 1); // ¿ØÖÆÂëÍ¼°×±ß
-		hints.put(EncodeHintType.ERROR_CORRECTION, setting.getQrcodeErrorRate()); // ÈÝ´íÂÊ
+		hints.put(EncodeHintType.MARGIN, 1); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½×±ï¿½
+		hints.put(EncodeHintType.ERROR_CORRECTION, setting.getQrcodeErrorRate()); // ï¿½Ý´ï¿½ï¿½ï¿½
 		bitMatrix = multiFormatWriter.encode(content, BarcodeFormat.QR_CODE, size, size, hints);
 		return bitMatrix;
 	}
@@ -699,10 +699,10 @@ public class GeneratorForm extends javax.swing.JFrame {
 		// BufferedImage image= ZxingHandler.toBufferedImage(
 		// GetBitMatrix(content,size));
 		if (setting.getQrcodeColor() == 0) {
-			image = ZxingHandler.toBufferedImageWithColor(GetBitMatrix(content, size)); // Éú³É²ÊÉ«
+			image = ZxingHandler.toBufferedImageWithColor(GetBitMatrix(content, size)); // ï¿½ï¿½ï¿½É²ï¿½É«
 		}
 		if (setting.getQrcodeColor() == 1) {
-			image = ZxingHandler.toBufferedImage(GetBitMatrix(content, size)); // Éú³ÉºÚ°×
+			image = ZxingHandler.toBufferedImage(GetBitMatrix(content, size)); // ï¿½ï¿½ï¿½ÉºÚ°ï¿½
 		}
 		return image;
 	}
@@ -713,13 +713,13 @@ public class GeneratorForm extends javax.swing.JFrame {
 
 		Dialog1(String msg) {
 			jd.setSize(300, 160);
-			jd.setTitle("ÌáÊ¾");
+			jd.setTitle("ï¿½ï¿½Ê¾");
 			Container c2 = jd.getContentPane();
 			c2.setLayout(null);
 			jd.setLocation(screenWidth / 2 - jd.getWidth() / 2, screenHeight / 2 - jd.getHeight() / 2);
 			JLabel jl = new JLabel(msg);
 			jl.setBounds(20, -20, 250, 100);
-			JButton jbb = new JButton("È·¶¨");
+			JButton jbb = new JButton("È·ï¿½ï¿½");
 			jbb.setBounds(100, 70, 60, 30);
 			c2.add(jl);
 			c2.add(jbb);
@@ -744,7 +744,7 @@ public class GeneratorForm extends javax.swing.JFrame {
 			 
 		  } 
 		  public String getDescription(){
-		    return ".csv »ò .txt";
+		    return ".csv ï¿½ï¿½ .txt";
 		  }
 	}
 

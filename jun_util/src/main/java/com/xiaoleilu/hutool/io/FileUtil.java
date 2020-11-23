@@ -43,7 +43,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * 文件工具类
  * 
- * @author xiaoleilu
+ * @author Wujun
  *
  */
 public class FileUtil {
@@ -1748,7 +1748,7 @@ public class FileUtil {
 	/**
 	 * Reader处理接口
 	 * 
-	 * @author Luxiaolei
+	 * @author Wujun
 	 *
 	 * @param <T>
 	 */

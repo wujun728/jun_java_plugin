@@ -11,7 +11,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * 字段验证器
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class Validator {

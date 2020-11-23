@@ -24,7 +24,7 @@ import java.security.cert.X509Certificate;
  * <p></p>
  * <p>Copyright (c) 2018</p>
  * @Date 2020/1/15 10:28
- * @author biaoping.yin
+ * @author Wujun
  * @version 1.0
  */
 public class EmptyArrays {

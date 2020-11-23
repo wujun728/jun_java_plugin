@@ -4,7 +4,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * SQL排序对象
- * @author Looly
+ * @author Wujun
  *
  */
 public class Order {

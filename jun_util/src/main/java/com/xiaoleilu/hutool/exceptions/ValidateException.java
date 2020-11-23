@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * 验证异常
  * 
- * @author xiaoleilu
+ * @author Wujun
  */
 public class ValidateException extends StatefulException {
 	private static final long serialVersionUID = 6057602589533840889L;

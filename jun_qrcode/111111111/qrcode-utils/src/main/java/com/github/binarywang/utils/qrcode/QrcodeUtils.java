@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * <pre>
  * Created by Binary Wang on 2017-01-05.
- * @author <a href="https://github.com/binarywang">binarywang(Binary Wang)</a>
+ * @author Wujun
  * </pre>
  */
 public class QrcodeUtils {

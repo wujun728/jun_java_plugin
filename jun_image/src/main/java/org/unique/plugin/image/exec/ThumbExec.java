@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 /**
  * 缩略图处理器
  * 
- * @author rex
+ * @author Wujun
  */
 public class ThumbExec {
 

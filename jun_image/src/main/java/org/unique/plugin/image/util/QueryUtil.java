@@ -8,7 +8,7 @@ import org.unique.plugin.image.Const;
 
 /**
  * 参数转换类
- * @author rex
+ * @author Wujun
  *
  */
 public class QueryUtil {

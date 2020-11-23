@@ -11,7 +11,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * <a href="http://logging.apache.org/log4j/2.x/index.html">Apache Log4J 2</a> log.<br>
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class Log4j2Log extends AbstractLocationAwareLog {

@@ -19,7 +19,7 @@ import org.xml.sax.SAXException;
 
 /**
  * 忽略Text的空白   测试无效
- * @author licheng
+ * @author Wujun
  *
  */
 public class JAXPAttr {

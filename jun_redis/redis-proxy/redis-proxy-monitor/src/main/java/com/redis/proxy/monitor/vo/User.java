@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 public class User {
 

@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * @author Asus
+ * @author Wujun
  *
  */
 public class ApiFactory {

@@ -2,7 +2,7 @@ package com.redis.proxy.net.exceptions;
 
 /**
  * 
- * @author zhanggaofeng
+ * @author Wujun
  */
 public class RedisException extends Exception {
   public RedisException() {

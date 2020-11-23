@@ -4,7 +4,7 @@ import com.xiaoleilu.hutool.convert.AbstractConverter;
 
 /**
  * 波尔转换器
- * @author Looly
+ * @author Wujun
  *
  */
 public class BooleanConverter extends AbstractConverter<Boolean>{

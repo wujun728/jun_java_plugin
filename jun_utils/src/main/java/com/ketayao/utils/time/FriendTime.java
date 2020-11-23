@@ -14,7 +14,7 @@ import java.util.Date;
 
 /** 
  * 实现友好的时间显示方式（例如:2小时前）	
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since   2013年7月26日 下午3:53:40 
  */
 public class FriendTime {

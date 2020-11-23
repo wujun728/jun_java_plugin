@@ -7,7 +7,7 @@ import okhttp3.RequestBody;
 
 /**
  * 
- * @author icecooly
+ * @author Wujun
  *
  */
 public class GetRequest extends OkHttpRequest {

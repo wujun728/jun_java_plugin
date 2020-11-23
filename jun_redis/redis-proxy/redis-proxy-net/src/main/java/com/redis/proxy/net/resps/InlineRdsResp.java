@@ -7,7 +7,7 @@ import java.io.IOException;
 
 /**
  * 
- * @author zhanggaofeng
+ * @author Wujun
  */
 public class InlineRdsResp extends RdsResp<Object> {
 

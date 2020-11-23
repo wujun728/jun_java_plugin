@@ -16,7 +16,7 @@ import com.xiaoleilu.hutool.lang.Base64;
 /**
  * 安全相关工具类
  * 
- * @author xiaoleilu
+ * @author Wujun
  *
  */
 public class SecureUtil {

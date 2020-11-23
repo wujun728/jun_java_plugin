@@ -14,7 +14,7 @@ import com.jun.plugin.commons.util.threads.SyncQueue;
  * 1、队列满阻塞生产者，队列空阻塞消费者<br/>
  * 2、生产者结束后，关闭生态系统，等队列中的数据全部消费完毕后，消费者结束<br/>
  * 3、消费者若提前结束，则生态系统结束<br/>
- * @author Luxiaolei
+ * @author Wujun
  * @param <E> 生产和消费的产品类型
  *
  */

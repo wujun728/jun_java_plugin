@@ -23,7 +23,7 @@ import com.jun.plugin.algorithm.sort.ShellSort;
 /**
  * 改进的希尔排序效果显著
  *
- * @author 哓哓
+ * @author Wujun
  */
 public class SortPerformanceTest {
     private static final int MAX_SIZE = 10000;

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 /**
  * 
- * @author loolly
+ * @author Wujun
  *
  */
 public class NumberHandler implements RsHandler<Number>{

@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.date.DateUtil;
 
 /**
  * 日期工具Demo
- * @author Looly
+ * @author Wujun
  *
  */
 public class DateUtilDemo {

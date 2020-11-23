@@ -4,7 +4,7 @@ import com.jun.plugin.poi.test.excel.converter.FieldValueConverter;
 
 
 /**
- * @author shizhongtao
+ * @author Wujun
  *
  * @date 2015-12-14  PM 4:44:52  
  * Description:  

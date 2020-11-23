@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 /**
  * FreemarkerEmailTemplateServiceImpl
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/21 0:11
  */
 public class FreemarkerTemplateServiceImpl implements TemplateService {

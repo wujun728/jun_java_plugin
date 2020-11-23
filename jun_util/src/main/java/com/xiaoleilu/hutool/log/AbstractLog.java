@@ -9,7 +9,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
  * 抽象日志类<br>
  * 实现了一些通用的接口
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public abstract class AbstractLog implements Log, Serializable{

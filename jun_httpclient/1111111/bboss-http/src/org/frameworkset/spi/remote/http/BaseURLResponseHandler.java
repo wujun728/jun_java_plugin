@@ -20,7 +20,7 @@ package org.frameworkset.spi.remote.http;
  * <p></p>
  * <p>Copyright (c) 2020</p>
  * @Date 2020/2/27 15:40
- * @author biaoping.yin
+ * @author Wujun
  * @version 1.0
  */
 public abstract class BaseURLResponseHandler<T> implements URLResponseHandler<T> {

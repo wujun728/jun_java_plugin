@@ -14,7 +14,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * http基类
- * @author Looly
+ * @author Wujun
  * @param <T>
  */
 @SuppressWarnings("unchecked")

@@ -26,7 +26,7 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 /**
  * 二维码生成google zxing
  * 
- * @author X-rapido
+ * @author Wujun
  * 
  */
 public class ZXingCodeUtil {

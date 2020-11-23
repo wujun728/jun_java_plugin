@@ -4,7 +4,7 @@ package com.xiaoleilu.hutool.date;
  * 计时器<br>
  * 计算某个过程话费的时间，精确到毫秒
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class TimeInterval {

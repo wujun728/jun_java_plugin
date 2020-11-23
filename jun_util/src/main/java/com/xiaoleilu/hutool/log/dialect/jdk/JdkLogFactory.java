@@ -10,7 +10,7 @@ import com.xiaoleilu.hutool.log.LogFactory;
 /**
  * JDK日志工厂类
  *  <a href="http://java.sun.com/javase/6/docs/technotes/guides/logging/index.html">java.util.logging</a> log.
- * @author Looly
+ * @author Wujun
  *
  */
 public class JdkLogFactory extends LogFactory{

@@ -25,7 +25,7 @@ import com.xiaoleilu.hutool.util.CollectionUtil;
  * 路径监听器<br>
  * 监听器可监听目录或文件
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class WatchMonitor extends Thread implements Closeable{

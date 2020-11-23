@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 线程池工具
- * @author liushiquan,luxiaolei
+ * @author Wujun
  */
 public class Executor {
 	private static Logger logger = LoggerFactory.getLogger(Executor.class);

@@ -12,7 +12,7 @@ import com.xiaoleilu.hutool.log.StaticLog;
 /**
  * 文件类型判断工具类
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class FileTypeUtil {

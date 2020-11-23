@@ -21,7 +21,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
  * 首先拼接SQL语句，值使用 ? 占位<br>
  * 调用getParamValues()方法获得占位符对应的值
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class SqlBuilder {
@@ -62,7 +62,7 @@ public class SqlBuilder {
 	//--------------------------------------------------------------- Enums start
 	/**
 	 * SQL中多表关联用的关键字
-	 * @author Looly
+	 * @author Wujun
 	 *
 	 */
 	public static enum Join{

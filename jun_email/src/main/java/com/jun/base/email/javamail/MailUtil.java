@@ -147,7 +147,7 @@ public class MailUtil {
 	
 	/**
 	 * 创建邮件
-	 * @Author Casper
+	 * @author Wujun
 	 * Create_time:2015年10月17日 下午7:45:57
 	 * description:
 	 */

@@ -11,7 +11,7 @@ import com.xiaoleilu.hutool.util.ReUtil;
 
 /**
  * 正则表达式工具类Demo
- * @author Looly
+ * @author Wujun
  *
  */
 public class ReUtilDemo {

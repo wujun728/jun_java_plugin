@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationEvent;
 /**
  * EmailplusMessage
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 23:33
  */
 public class SendEmailEvent extends ApplicationEvent {

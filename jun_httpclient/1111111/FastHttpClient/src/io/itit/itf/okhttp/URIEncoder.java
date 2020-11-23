@@ -8,7 +8,7 @@ import java.nio.charset.UnsupportedCharsetException;
 
 /**
  * 
- * @author icecooly
+ * @author Wujun
  *
  */
 public final class URIEncoder {

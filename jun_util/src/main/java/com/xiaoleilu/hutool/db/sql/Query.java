@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.util.CollectionUtil;
 
 /**
  * 查询对象，用于传递查询所需的字段值
- * @author Looly
+ * @author Wujun
  *
  */
 public class Query {

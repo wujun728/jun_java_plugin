@@ -3,7 +3,7 @@ package com.kancy.emailplus.core.cryptor;
 /**
  * PasswordCryptor
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 14:37
  */
 public interface PasswordCryptor {

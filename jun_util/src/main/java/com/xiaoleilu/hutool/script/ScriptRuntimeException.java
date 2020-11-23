@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * 脚本运行时异常
  * 
- * @author xiaoleilu
+ * @author Wujun
  */
 public class ScriptRuntimeException extends RuntimeException {
 	private static final long serialVersionUID = 8247610319171014183L;

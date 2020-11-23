@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.log.LogFactory;
 
 /**
  * 通过日志打印方法的执行时间的切面
- * @author Looly
+ * @author Wujun
  *
  */
 public class TimeIntervalAspect extends SimpleAspect{

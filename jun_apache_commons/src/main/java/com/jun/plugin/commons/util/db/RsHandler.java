@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 /**
  * 结果集处理类
- * @author Luxiaolei
+ * @author Wujun
  *
  */
 public interface RsHandler<T> {

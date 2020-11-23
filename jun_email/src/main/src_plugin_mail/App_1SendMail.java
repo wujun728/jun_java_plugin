@@ -14,7 +14,7 @@ import org.junit.Test;
 
 /**
  * 1. ����һ����ͨ�ʼ�
- * @author Jie.Yuan
+ * @author Wujun
  *
  */
 public class App_1SendMail {

@@ -17,7 +17,7 @@ package com.jun.base.jdk.sort;
 第四趟排序：      2          3          3*    【5        6        8        9  】 
 第五趟排序：      2          3      【3*        5        6        8        9  】 
 第六趟排序：      2        【3        3*        5        6        8        9  】 
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since   2014年1月23日 下午3:38:49 
  */
 public class BubbleSort extends Sort{

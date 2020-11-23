@@ -14,7 +14,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 方言工厂类
- * @author loolly
+ * @author Wujun
  *
  */
 public class DialectFactory {

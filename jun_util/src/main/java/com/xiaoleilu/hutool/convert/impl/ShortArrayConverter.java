@@ -6,7 +6,7 @@ import com.xiaoleilu.hutool.util.CollectionUtil;
 
 /**
  * short 类型数组转换器
- * @author Looly
+ * @author Wujun
  *
  */
 public class ShortArrayConverter extends AbstractConverter<short[]>{

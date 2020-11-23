@@ -4,7 +4,7 @@ package com.xiaoleilu.hutool.json;
  * JSON支持<br>
  * 继承此类实现实体类与JSON的相互转换
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class JSONSupport implements JSONString{

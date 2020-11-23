@@ -4,7 +4,7 @@ import java.util.Map;
 
 /**
  * 
- * @author icecooly
+ * @author Wujun
  *
  */
 public class GetBuilder extends OkHttpRequestBuilder<GetBuilder> {

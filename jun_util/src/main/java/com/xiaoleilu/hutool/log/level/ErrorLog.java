@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.log.level;
 
 /**
  * ERROR级别日志接口
- * @author Looly
+ * @author Wujun
  *
  */
 public interface ErrorLog {

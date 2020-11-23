@@ -6,7 +6,7 @@ import com.xiaoleilu.hutool.util.CollectionUtil;
 
 /**
  * char类型数组转换器
- * @author Looly
+ * @author Wujun
  *
  */
 public class CharArrayConverter extends AbstractConverter<char[]>{

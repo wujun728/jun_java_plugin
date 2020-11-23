@@ -10,7 +10,7 @@ import com.jun.plugin.poi.test.excel.vo.ListRow;
 /**  
  * 创建时间：2015-12-15下午2:12:56  
  * 项目名称：excel  
- * @author shizhongtao  
+ * @author Wujun
  * @version 1.0   
  * 文件名称：Convertor.java  
  */

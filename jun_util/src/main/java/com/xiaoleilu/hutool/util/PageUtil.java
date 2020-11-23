@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.log.StaticLog;
 /**
  * 分页工具类
  * 
- * @author xiaoleilu
+ * @author Wujun
  * 
  */
 public class PageUtil {

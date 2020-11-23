@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.util.ClassUtil;
 
 /**
  * 代理工具类
- * @author Looly
+ * @author Wujun
  *
  */
 public class ProxyUtil {

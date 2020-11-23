@@ -4,7 +4,7 @@ package com.kancy.emailplus.core;
  * 网易
  * NeteaseSimpleEmailSender
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 1:59
  */
 public class NeteaseSimpleEmailSender extends SimpleEmailSender {

@@ -8,7 +8,7 @@ import com.jun.plugin.commons.util.LangUtil;
 
 /**
  * 单词树
- * @author Luxiaolei
+ * @author Wujun
  *
  */
 public class Words extends HashMap<Character, Words>{

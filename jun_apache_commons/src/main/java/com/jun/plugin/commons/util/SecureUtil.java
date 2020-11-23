@@ -11,7 +11,7 @@ import com.sun.mail.util.BASE64EncoderStream;
 
 /**
  * 安全相关的工具类，包括各种加密算法
- * @author xiaoleilu
+ * @author Wujun
  *
  */
 public class SecureUtil {
@@ -68,7 +68,7 @@ public class SecureUtil {
 	
 	/**
 	 * 加密算法枚举
-	 * @author xiaoleilu
+	 * @author Wujun
 	 *
 	 */
 	enum ALGORITHM{

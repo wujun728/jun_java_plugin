@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 /**
  * EmailNotice
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/22 20:16
  */
 @Target({ElementType.TYPE, ElementType.METHOD})

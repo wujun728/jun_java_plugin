@@ -7,7 +7,7 @@ import okhttp3.Call;
 
 /**
  * 
- * @author icecooly
+ * @author Wujun
  *
  */
 public abstract class StringCallback extends Callback{

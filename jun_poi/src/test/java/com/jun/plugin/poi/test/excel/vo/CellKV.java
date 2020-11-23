@@ -5,7 +5,7 @@ import javax.management.RuntimeOperationsException;
 import com.google.common.base.MoreObjects;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  *
  * @date 2016-3-1
  * Description:  

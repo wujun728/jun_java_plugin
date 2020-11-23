@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.bloomFilter.bitMap;
 
 /**
  * 过滤器BitMap在64位机器上.这个类能发生更好的效果.一般机器不建议使用
- * @author loolly
+ * @author Wujun
  *
  */
 public class LongMap implements BitMap {

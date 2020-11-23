@@ -4,7 +4,7 @@ package com.kancy.emailplus.core;
  * 腾讯
  * QQSimpleEmailSender
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 1:50
  */
 public class QQSimpleEmailSender extends SimpleEmailSender {

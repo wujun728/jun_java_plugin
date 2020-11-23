@@ -23,7 +23,7 @@ import javax.mail.internet.MimeUtility;
 /** 
  * Java Mail 工具类 
  *  
- * @author XueQi 
+ * @author Wujun
  * @version 1.0 
  *  
  */  

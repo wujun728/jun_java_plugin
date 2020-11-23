@@ -17,7 +17,7 @@ import com.jun.plugin.commons.util.exception.ProjectException;
 /**
  * @ClassName: IOUtil
  * @Description: TODO(这里用一句话描述这个类的作用)
- * @author 周俊辉
+ * @author Wujun
  * @date 2010-11-13 上午11:01:04
  * 
  */

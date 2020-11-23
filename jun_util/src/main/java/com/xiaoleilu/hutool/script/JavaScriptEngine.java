@@ -14,7 +14,7 @@ import javax.script.ScriptException;
 
 /**
  * Javascript引擎类
- * @author Looly
+ * @author Wujun
  *
  */
 public class JavaScriptEngine extends FullSupportScriptEngine{

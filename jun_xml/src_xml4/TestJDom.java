@@ -13,7 +13,7 @@ import org.jdom2.output.XMLOutputter;
 
 /**
  * JDom读写xml
- * @author whwang
+ * @author Wujun
  */
 public class TestJDom {
     public static void main(String[] args) {

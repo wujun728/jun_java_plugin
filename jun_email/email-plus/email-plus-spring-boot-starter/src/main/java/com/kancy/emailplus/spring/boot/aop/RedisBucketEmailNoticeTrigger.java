@@ -14,7 +14,7 @@ import java.util.Objects;
 /**
  * RamBucketEmailNoticeTrigger
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/22 21:23
  */
 public class RedisBucketEmailNoticeTrigger implements EmailNoticeTrigger {

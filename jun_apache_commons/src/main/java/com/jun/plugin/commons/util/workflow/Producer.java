@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 生产者线程
  * 结束条件：1、isFinished() 2、产品插入失败 3、被线程中断
- * @author Luxiaolei
+ * @author Wujun
  * 
  * @param <E> 产品类型
  */

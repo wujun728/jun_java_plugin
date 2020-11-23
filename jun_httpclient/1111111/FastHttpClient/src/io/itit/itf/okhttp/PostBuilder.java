@@ -10,7 +10,7 @@ import io.itit.itf.okhttp.PostRequest.FileInfo;
 
 /**
  * 
- * @author icecooly
+ * @author Wujun
  *
  */
 public class PostBuilder extends OkHttpRequestBuilder<PostBuilder> {

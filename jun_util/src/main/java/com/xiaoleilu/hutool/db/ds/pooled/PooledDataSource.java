@@ -15,7 +15,7 @@ import com.xiaoleilu.hutool.util.ThreadUtil;
 
 /**
  * 池化数据源
- * @author Looly
+ * @author Wujun
  *
  */
 public class PooledDataSource extends AbstractDataSource{

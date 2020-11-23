@@ -4,7 +4,7 @@ import java.io.Writer;
 
 /**
  * JSON接口
- * @author Looly
+ * @author Wujun
  *
  */
 public interface JSON{

@@ -19,7 +19,7 @@ import com.jun.plugin.poi.test.excel.reader.hssf.DefaultHSSFHandler;
 import com.jun.plugin.poi.test.excel.reader.sax.DefaultXSSFSaxHandler;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  *
  * @date 2016-3-1
  * Description:  

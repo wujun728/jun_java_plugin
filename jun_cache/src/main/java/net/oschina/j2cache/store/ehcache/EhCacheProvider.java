@@ -13,7 +13,7 @@ import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author FY
+ * @author Wujun
  */
 public class EhCacheProvider implements CacheProvider {
     private static final Logger logger = LoggerFactory.getLogger(EhCacheProvider.class);

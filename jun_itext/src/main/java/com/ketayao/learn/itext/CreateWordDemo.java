@@ -17,7 +17,7 @@ import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.rtf.RtfWriter2;  
   
 /** 
- * @author  
+ * @author Wujun
  * @email  
  * @createDate  
  */  

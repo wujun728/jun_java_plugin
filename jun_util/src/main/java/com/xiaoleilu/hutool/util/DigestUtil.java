@@ -13,7 +13,7 @@ import com.xiaoleilu.hutool.io.IoUtil;
 /**
  * 摘要算法工具类
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class DigestUtil {
@@ -21,7 +21,7 @@ public class DigestUtil {
 	/**
 	 * 摘要算法类型
 	 * 
-	 * @author Looly
+	 * @author Wujun
 	 *
 	 */
 	public static enum Algorithm {

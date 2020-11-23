@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.db.Entity;
 
 /**
  * 
- * @author loolly
+ * @author Wujun
  *
  */
 public class EntityHandler implements RsHandler<Entity>{

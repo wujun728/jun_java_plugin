@@ -8,7 +8,7 @@ import com.jun.plugin.commons.util.callback.IConvertValue;
 /****
  * commons-util的国际化转换器
  * 
- * @author Administrator
+ * @author Wujun
  * 
  */
 public class ConvertValueMsg implements IConvertValue {

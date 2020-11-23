@@ -13,7 +13,7 @@ import com.xiaoleilu.hutool.log.level.Level;
 
 /**
  * 日志样例
- * @author Looly
+ * @author Wujun
  *
  */
 public class LogDemo {

@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.convert.AbstractConverter;
 
 /**
  * 字符串转换器
- * @author Looly
+ * @author Wujun
  *
  */
 public class URLConverter extends AbstractConverter<URL>{

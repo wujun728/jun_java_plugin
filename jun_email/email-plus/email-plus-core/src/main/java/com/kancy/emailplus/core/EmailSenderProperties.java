@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * EmailSenderProperties
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/19 23:22
  */
 public class EmailSenderProperties implements Serializable, Comparable {

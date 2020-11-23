@@ -14,7 +14,7 @@ public class mail_imap {
 	/**
 	 * 使用imap协议获取未读邮件数
 	 * 
-	 * @author w
+	 * @author Wujun
 	 * 
 	 */
 	public static void main(String[] args) throws Exception {

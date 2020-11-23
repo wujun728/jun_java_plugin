@@ -18,7 +18,7 @@ import java.util.Collections;
 /**
  * RefreshSenderEventListenerTest
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/21 23:42
  */
 @ActiveProfiles({"test"})

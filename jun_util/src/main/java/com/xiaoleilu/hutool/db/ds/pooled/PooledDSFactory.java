@@ -15,7 +15,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 池化数据源工厂类
- * @author Looly
+ * @author Wujun
  *
  */
 public class PooledDSFactory extends DSFactory {

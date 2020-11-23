@@ -7,7 +7,7 @@ import java.io.OutputStream;
 
 
 /**
- * @author shizhongtao
+ * @author Wujun
  *
  */
 public interface BingExcelEvent {

@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
  * 消费者线程<br/>
  * 结束条件：1、isFinished() 2、生态系统中取出null 3、被线程中断
  * 
- * @author Luxiaolei
+ * @author Wujun
  * 
  * @param <E> 产品类型
  */

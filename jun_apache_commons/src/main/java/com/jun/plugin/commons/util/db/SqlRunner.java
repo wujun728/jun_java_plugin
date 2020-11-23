@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 /**
  * SQL执行类
  * 
- * @author Luxiaolei
+ * @author Wujun
  * 
  */
 public class SqlRunner {

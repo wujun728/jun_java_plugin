@@ -7,7 +7,7 @@ import static java.lang.System.err;
 
 /**
  * 命令行工具方法类
- * @author Looly
+ * @author Wujun
  *
  */
 public class Console {

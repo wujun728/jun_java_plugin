@@ -21,7 +21,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 /**.Excel导出工具类
- * @author 赵海龙
+ * @author Wujun
  * @version 1.0
  * @since 2016年5月13日 下午2:40:51
  */

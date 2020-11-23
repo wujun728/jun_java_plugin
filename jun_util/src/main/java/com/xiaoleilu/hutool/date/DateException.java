@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 工具类异常
- * @author xiaoleilu
+ * @author Wujun
  */
 public class DateException extends RuntimeException{
 	private static final long serialVersionUID = 8247610319171014183L;

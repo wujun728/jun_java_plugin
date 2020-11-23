@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * EmailSenderSelector
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 13:17
  */
 public interface EmailSenderSelector {

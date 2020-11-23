@@ -19,7 +19,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  *
  * @date 2016-1-26
  * Description:  解决读取mac上xlsx结尾的excel文件读取中文问题

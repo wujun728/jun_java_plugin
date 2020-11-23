@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.util.CollectionUtil;
 
 /**
  * 抽象转换器，提供通用的转换逻辑，同时通过
- * @author Looly
+ * @author Wujun
  *
  */
 public abstract class AbstractConverter<T> implements Converter<T>{

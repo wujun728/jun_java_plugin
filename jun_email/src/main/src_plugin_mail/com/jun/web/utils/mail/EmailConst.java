@@ -2,7 +2,7 @@ package com.jun.web.utils.mail;
 
 /**
  * �ʼ�������Ҫ�ĳ�������
- * @author jiang.li
+ * @author Wujun
  * @date 2013-12-19 14:54
  */
 public class EmailConst {

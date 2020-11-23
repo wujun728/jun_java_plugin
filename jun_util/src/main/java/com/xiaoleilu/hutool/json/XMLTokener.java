@@ -3,7 +3,7 @@ package com.xiaoleilu.hutool.json;
 /**
  * XML分析器，继承自JSONTokener，提供XML的语法分析
  * 
- * @author JSON.org
+ * @author Wujun
  */
 public class XMLTokener extends JSONTokener {
 

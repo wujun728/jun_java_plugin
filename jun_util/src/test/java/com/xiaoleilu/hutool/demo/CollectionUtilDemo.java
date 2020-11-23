@@ -9,7 +9,7 @@ import com.xiaoleilu.hutool.util.CollectionUtil;
 /**
  * 集合工具类示例
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class CollectionUtilDemo {

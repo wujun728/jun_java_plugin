@@ -8,7 +8,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import com.jun.plugin.poi.demo.DefaultCellStyles;
 
 /** 
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since   2013年9月29日 下午3:22:31 
  */
 public class RedCellStyles extends DefaultCellStyles {

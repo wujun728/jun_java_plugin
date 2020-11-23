@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.io.FileUtil;
 
 /**
  * 使用LFU缓存文件，以解决频繁读取文件引起的性能问题
- * @author Looly,jodd
+ * @author Wujun
  *
  */
 public class FileLFUCache {

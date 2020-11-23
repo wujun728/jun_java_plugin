@@ -9,7 +9,7 @@ import org.junit.Test;
 /**
  * PooledEmailSenderTest
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 5:13
  */
 public class PooledEmailSenderTest {

@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.io;
 
 /**
  * Stream进度条
- * @author Looly
+ * @author Wujun
  *
  */
 public interface StreamProgress {

@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * EmailplusServiceTest
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/21 18:10
  */
 @ActiveProfiles({"test"})

@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 同步队列
  * 
- * @author Luxiaolei
+ * @author Wujun
  * 
  * @param <E>
  */

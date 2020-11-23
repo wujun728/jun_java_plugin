@@ -17,7 +17,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * Http响应类
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class HttpResponse extends HttpBase<HttpResponse> {

@@ -9,7 +9,7 @@ import com.xiaoleilu.hutool.lang.Console;
 
 /**
  * Post请求样例
- * @author Looly
+ * @author Wujun
  *
  */
 public class HttpPostDemo {

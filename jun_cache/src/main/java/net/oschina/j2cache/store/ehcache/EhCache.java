@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 缓存的EhCache实现
  *
- * @author FY
+ * @author Wujun
  */
 public class EhCache implements Cache, CacheEventListener {
 

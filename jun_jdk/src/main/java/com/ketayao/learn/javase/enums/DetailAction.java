@@ -12,7 +12,7 @@ package com.ketayao.learn.javase.enums;
    
    对于每个枚举成员，使用ordinal()方法，依枚举顺序得到位置索引，默认以0开始。
 
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since   2013年9月9日 下午5:24:43
  */
 public enum DetailAction {

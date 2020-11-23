@@ -14,7 +14,7 @@ import com.xiaoleilu.hutool.exceptions.UtilException;
 /**
  * 线程池工具
  * 
- * @author luxiaolei
+ * @author Wujun
  */
 public class ThreadUtil {
 	private static ExecutorService executor = Executors.newCachedThreadPool();

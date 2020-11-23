@@ -7,7 +7,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 /**
  * ApplicationContextHolder
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/21 1:21
  */
 public class ApplicationContextHolder implements ApplicationContextInitializer {

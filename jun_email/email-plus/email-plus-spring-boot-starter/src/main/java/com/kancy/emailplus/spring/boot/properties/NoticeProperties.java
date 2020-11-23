@@ -5,7 +5,7 @@ import java.time.Duration;
 /**
  * NoticeProperties
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/22 21:44
  */
 public class NoticeProperties {

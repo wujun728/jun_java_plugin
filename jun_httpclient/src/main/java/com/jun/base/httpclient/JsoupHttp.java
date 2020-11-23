@@ -19,7 +19,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.helper.HttpConnection.Response;
 /**
  * 
- * @author klguang
+ * @author Wujun
  *
  */
 public class JsoupHttp {

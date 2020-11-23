@@ -23,7 +23,7 @@ import com.jun.plugin.poi.test.excel.exception.ConversionException;
 import com.jun.plugin.poi.test.excel.vo.OutValue;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  *
  * @date 2016-3-24
  * Description:  

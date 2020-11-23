@@ -10,7 +10,7 @@ import java.util.Iterator;
  * 当缓存满时清理过期对象。<br>
  * 清理后依旧满的情况下清除最少访问（访问计数最小）的对象并将其他对象的访问数减去这个最小访问数，以便新对象进入后可以公平计数。
  * 
- * @author Looly,jodd
+ * @author Wujun
  *
  * @param <K> 键类型
  * @param <V> 值类型

@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * CryptorTest
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 15:07
  */
 public class CryptorTest {

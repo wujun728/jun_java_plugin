@@ -18,7 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * 
- * @author <a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since 2013年9月29日 下午3:39:36
  */
 public class ExcelReadUtils {

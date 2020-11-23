@@ -13,7 +13,7 @@ import com.xiaoleilu.hutool.bloomFilter.filter.SDBMFilter;
  * 3.验证<br>
  * 此实现方式可以指定Hash算法
  * 
- * @author Ansj
+ * @author Wujun
  */
 public class BitMapBloomFilter implements BloomFilter{
 

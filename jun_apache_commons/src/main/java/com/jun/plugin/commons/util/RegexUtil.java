@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 /**
  * 正则相关工具类
  * 
- * @author 路小磊 luxiaolei@baijob.com
+ * @author Wujun
  */
 public class RegexUtil {
 

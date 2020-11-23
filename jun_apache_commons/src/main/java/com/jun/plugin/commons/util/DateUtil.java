@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 时间工具类
- * @author 刘世权 路小磊
+ * @author Wujun
  */
 public class DateUtil {
 	private static Logger logger = LoggerFactory.getLogger(DateUtil.class);

@@ -5,7 +5,7 @@ import java.util.Locale;
 
 /**
  * 线程安全的时间格式化器
- * @author Looly
+ * @author Wujun
  *
  */
 public class DatePatternLocal {

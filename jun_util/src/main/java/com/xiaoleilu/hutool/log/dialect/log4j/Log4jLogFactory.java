@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.log.LogFactory;
 
 /**
  * <a href="http://logging.apache.org/log4j/1.2/index.html">Apache Log4J</a> log.<br>
- * @author Looly
+ * @author Wujun
  *
  */
 public class Log4jLogFactory extends LogFactory{

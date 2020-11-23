@@ -26,7 +26,7 @@ import com.xiaoleilu.hutool.util.URLUtil;
  * 分组化的Set集合类<br>
  * 在配置文件中可以用中括号分隔不同的分组，每个分组会放在独立的Set中，用group区别<br>
  * 无分组的集合和`[]`分组集合会合并成员，重名的分组也会合并成员
- * @author Looly
+ * @author Wujun
  *
  */
 public class GroupedSet extends HashMap<String, LinkedHashSet<String>>{

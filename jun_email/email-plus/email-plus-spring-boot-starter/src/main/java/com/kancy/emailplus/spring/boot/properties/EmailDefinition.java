@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * EmailMetadata
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 2:23
  */
 public class EmailDefinition {

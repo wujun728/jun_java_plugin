@@ -9,7 +9,7 @@ import java.util.Objects;
 /**
  * Email
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/19 23:03
  */
 public interface Email {

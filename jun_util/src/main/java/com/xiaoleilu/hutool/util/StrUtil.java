@@ -16,7 +16,7 @@ import com.xiaoleilu.hutool.lang.StrFormatter;
 /**
  * 字符串工具类
  * 
- * @author xiaoleilu
+ * @author Wujun
  *
  */
 public class StrUtil {

@@ -10,7 +10,7 @@ import com.xiaoleilu.hutool.exceptions.NotInitedException;
  * 线程同步结束器<br>
  * 在完成一组正在其他线程中执行的操作之前，它允许一个或多个线程一直等待。<br>
  * 不能保证同时开始
- * @author xiaoleilu
+ * @author Wujun
  *
  */
 public class SyncFinisher{
@@ -64,7 +64,7 @@ public class SyncFinisher{
 	
 	/**
 	 * 工作者，为一个线程
-	 * @author xiaoleilu
+	 * @author Wujun
 	 *
 	 */
 	public abstract class Worker extends Thread {

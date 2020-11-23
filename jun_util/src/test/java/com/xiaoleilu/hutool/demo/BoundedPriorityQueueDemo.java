@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.lang.BoundedPriorityQueue;
 
 /**
  * 有界优先队列Demo
- * @author Looly
+ * @author Wujun
  *
  */
 public class BoundedPriorityQueueDemo {

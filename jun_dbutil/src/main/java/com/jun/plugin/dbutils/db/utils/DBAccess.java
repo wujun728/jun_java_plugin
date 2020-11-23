@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * @author kevin
+ * @author Wujun
  *
  */
 public class DBAccess {

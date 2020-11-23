@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 条件对象<br>
- * @author Looly
+ * @author Wujun
  *
  */
 public class Condition implements Cloneable{

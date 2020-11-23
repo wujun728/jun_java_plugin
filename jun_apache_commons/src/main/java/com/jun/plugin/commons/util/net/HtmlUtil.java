@@ -4,7 +4,7 @@ import com.jun.plugin.commons.util.LangUtil;
 
 /**
  * HTML工具类
- * @author Luxiaolei
+ * @author Wujun
  *
  */
 public class HtmlUtil {

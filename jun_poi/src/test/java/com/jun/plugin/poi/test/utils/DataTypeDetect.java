@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  * 
  * @date 2016-2-17 Description:
  */
@@ -36,7 +36,7 @@ public class DataTypeDetect {
 	private static final Pattern BOOLEAN_PTRN = Pattern.compile("^[01是否真假]$");
 
 	/**
-	 * @author shizhongtao
+	 * @author Wujun
 	 * @param arg
 	 * @return
 	 */
@@ -48,7 +48,7 @@ public class DataTypeDetect {
 	/**
 	 * 如果所给字符串中 时分秒都是0，也返回true
 	 * 
-	 * @author shizhongtao
+	 * @author Wujun
 	 * @return
 	 */
 	public static boolean isYMD(String arg) {

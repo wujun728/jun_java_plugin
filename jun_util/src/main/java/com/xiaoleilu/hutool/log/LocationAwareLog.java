@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.log.level.Level;
 /**
  * 位置感知日志接口，此接口用于通过传入当前全类名的方式来感知日志打印的行号<br>
  * 此方法主要用于在继续封装日志实现的时候行号错误的问题，继续封装时传入封装类的全类名即可解决这个问题
- * @author Looly
+ * @author Wujun
  *
  */
 public interface LocationAwareLog extends Log{

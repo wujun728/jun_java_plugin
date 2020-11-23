@@ -13,7 +13,7 @@ import java.util.List;
 
 /** 
  * 	
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since   2013年8月8日 上午9:13:44 
  */
 public interface IPage<T> extends Iterable<T> {

@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.util.CharsetUtil;
 
 /**
  * 编码对象转换器
- * @author Looly
+ * @author Wujun
  *
  */
 public class CharsetConverter extends AbstractConverter<Charset>{

@@ -16,7 +16,7 @@ import java.util.Objects;
 /**
  * SendEmailEventListener
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 22:57
  */
 public class SendEmailEventListener implements ApplicationListener<SendEmailEvent> {

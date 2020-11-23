@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
  * 根据文本生成图片的工具
  * 在个人空间中，如果你设置了email地址或者msn，那么oschina会将使用图片的方式来显示这个地址，
  * 以防止邮箱地址被爬虫扒到，狂发垃圾邮件。
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since   2013年9月9日 下午2:49:34
  */
 public class TextImageUtils {

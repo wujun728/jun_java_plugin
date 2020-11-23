@@ -3,7 +3,7 @@ package com.jun.plugin.fastexcel.entity;
 import com.jun.plugin.fastexcel.annotation.MapperCell;
 
 /**
- * @author peiyu
+ * @author Wujun
  */
 public class MyTest {
 

@@ -15,7 +15,7 @@ import com.jun.plugin.poi.test.excel.core.BingExcelEventBuilder;
 import com.jun.plugin.poi.test.excel.core.BingWriterHandler;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  */
 public class WriteTest3 {
     BingExcelEvent bing;

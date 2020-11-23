@@ -34,9 +34,9 @@ import java.util.regex.Pattern;
  * 
  * @version 1.6-SNAPSHOT
  *
- * @author Joseph O'Connell
- * @author Cal Hendersen
- * @author Michael Semb Wever
+ * @author Wujun
+ * @author Wujun
+ * @author Wujun
  */
 public final class HTMLFilter {
 

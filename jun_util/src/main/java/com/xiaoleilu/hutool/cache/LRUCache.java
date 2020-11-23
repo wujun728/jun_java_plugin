@@ -11,7 +11,7 @@ import java.util.Iterator;
  * 此缓存基于LinkedHashMap，因此当被缓存的对象每被访问一次，这个对象的key就到链表头部。<br>
  * 这个算法简单并且非常快，他比FIFO有一个显著优势是经常使用的对象不太可能被移除缓存。<br>
  * 缺点是当缓存满时，不能被很快的访问。
- * @author Looly,jodd
+ * @author Wujun
  *
  * @param <K> 键类型
  * @param <V> 值类型

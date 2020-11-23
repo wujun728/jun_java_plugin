@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * SimpleEmail
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/19 23:09
  */
 public class SimpleEmail extends AbstractEmail implements Email, Serializable {

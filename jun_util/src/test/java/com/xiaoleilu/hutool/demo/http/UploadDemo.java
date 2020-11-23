@@ -11,7 +11,7 @@ import com.xiaoleilu.hutool.io.FileUtil;
 /**
  * 上传文件样例
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class UploadDemo {

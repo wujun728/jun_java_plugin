@@ -10,7 +10,7 @@ import com.xiaoleilu.hutool.convert.AbstractConverter;
 
 /**
  * 字符串转换器
- * @author Looly
+ * @author Wujun
  *
  */
 public class PathConverter extends AbstractConverter<Path>{

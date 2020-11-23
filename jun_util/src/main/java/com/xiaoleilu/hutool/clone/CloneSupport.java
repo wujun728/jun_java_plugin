@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.clone;
 
 /**
  * 克隆支持类，提供默认的克隆方法
- * @author Looly
+ * @author Wujun
  *
  * @param <T>
  */

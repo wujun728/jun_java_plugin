@@ -50,7 +50,7 @@ import java.util.Map;
  *       0x31  "text" - Alias for "@"<br/>
  * <p/>
  *
- * @author Yegor Kozlov
+ * @author Wujun
  *
  * Modified 6/17/09 by Stanislav Shor - positive formats don't need starting '('
  * Modified 10/31/13 by Eric Peters - * is a repeating/padding character directive, examples needed a space after the asterix (e.i. Accounting format)

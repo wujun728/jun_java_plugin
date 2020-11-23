@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.http;
 
 /**
  * Http 头域
- * @author Looly
+ * @author Wujun
  *
  */
 public enum Header {

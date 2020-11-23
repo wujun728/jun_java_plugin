@@ -25,7 +25,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 /**
  * 封装Druid数据源
  * 
- * @author Luxiaolei
+ * @author Wujun
  * 
  */
 public class C3p0Ds {

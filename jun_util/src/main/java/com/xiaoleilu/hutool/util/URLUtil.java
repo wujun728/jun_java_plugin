@@ -14,7 +14,7 @@ import com.xiaoleilu.hutool.exceptions.UtilException;
 /**
  * 统一资源定位符相关工具类
  * 
- * @author xiaoleilu
+ * @author Wujun
  * 
  */
 public class URLUtil {

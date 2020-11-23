@@ -11,7 +11,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 数组转换器，包括原始类型数组
- * @author Looly
+ * @author Wujun
  *
  * @param <T>
  */

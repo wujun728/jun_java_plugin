@@ -3,7 +3,7 @@ package com.jun.plugin.poi.test.excel.core;
 
 /**
  * 读取条件类
- * @author shizhongtao
+ * @author Wujun
  * 
  * @date 2016-2-17 Description:
  */

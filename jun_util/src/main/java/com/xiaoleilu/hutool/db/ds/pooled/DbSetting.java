@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.setting.Setting;
 
 /**
  * 数据库配置文件类
- * @author Looly
+ * @author Wujun
  *
  */
 public class DbSetting {

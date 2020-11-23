@@ -22,7 +22,7 @@ import org.frameworkset.spi.remote.http.HttpRuntimeException;
  * <p></p>
  * <p>Copyright (c) 2018</p>
  * @Date 2019/6/19 11:47
- * @author biaoping.yin
+ * @author Wujun
  * @version 1.0
  */
 public class HttpProxyRequestException extends HttpRuntimeException {

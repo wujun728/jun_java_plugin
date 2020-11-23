@@ -222,7 +222,7 @@ public class LangUtil {
 
 	/**
 	 * 基本变量类型的枚举
-	 * @author Luxiaolei
+	 * @author Wujun
 	 *
 	 */
 	private static enum BASIC_TYPE {

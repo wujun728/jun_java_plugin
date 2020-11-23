@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.http.HTMLFilter;
 /**
  * HTML工具类
  * 
- * @author xiaoleilu
+ * @author Wujun
  * 
  */
 public class HtmlUtil {

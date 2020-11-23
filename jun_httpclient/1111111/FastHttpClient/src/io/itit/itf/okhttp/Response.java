@@ -12,7 +12,7 @@ import okhttp3.ResponseBody;
 
 /**
  * 
- * @author icecooly
+ * @author Wujun
  *
  */
 public class Response {

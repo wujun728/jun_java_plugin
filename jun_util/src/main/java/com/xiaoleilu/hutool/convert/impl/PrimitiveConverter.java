@@ -17,7 +17,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
  * 		<li><code>boolean</code></li>
  * </ul>
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class PrimitiveConverter extends AbstractConverter<Object> {

@@ -26,7 +26,7 @@ import com.jun.plugin.poi.test.excel.core.impl.BingExcelImpl.SheetVo;
  * &lt/dependency&gt
  * </p>
  * 
- * @author shizhongtao
+ * @author Wujun
  * 
  *         2015 2015-4-24 下午5:49:55
  * 

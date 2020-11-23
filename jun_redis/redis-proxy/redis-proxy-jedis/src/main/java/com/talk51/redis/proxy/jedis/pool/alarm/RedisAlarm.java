@@ -10,7 +10,7 @@ import redis.clients.jedis.Jedis;
 /**
  * redis服务连接报警接口
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 public interface RedisAlarm {
 

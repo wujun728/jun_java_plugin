@@ -2,7 +2,7 @@
  * @Title: ExceptAll.java
  * @Package rjzjh.tech.common.Exception
  * @Description: TODO(用一句话描述该文件做什么)
- * @author 周俊辉  
+ * @author Wujun
  * @date 2010-10-29 下午01:26:42
  * @version V1.0   
  */
@@ -11,7 +11,7 @@ package com.jun.plugin.commons.util.exception;
 /**
  * @ClassName: ExceptAll
  * @Description: 自定义异常编码与其解释（仅项目用。）
- * @author 周俊辉
+ * @author Wujun
  * @date 2010-10-29 下午01:26:42
  * 
  */

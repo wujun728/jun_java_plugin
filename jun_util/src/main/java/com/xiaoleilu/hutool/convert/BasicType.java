@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * 基本变量类型的枚举<br>
  * 基本类型枚举包括原始类型和包装类型
- * @author xiaoleilu
+ * @author Wujun
  */
 public enum BasicType {
 	BYTE, SHORT, INT, INTEGER, LONG, DOUBLE, FLOAT, BOOLEAN, CHAR, CHARACTER, STRING;

@@ -12,7 +12,7 @@ import java.util.ListIterator;
 
 /**
  * JSON数组
- * @author looly
+ * @author Wujun
  */
 public class JSONArray extends JSONGetter<Integer> implements JSON, List<Object>{
 

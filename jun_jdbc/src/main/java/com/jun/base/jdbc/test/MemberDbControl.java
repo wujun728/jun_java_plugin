@@ -12,7 +12,7 @@ import com.jun.base.jdbc.ParamsHandler;
 /**
  * 会员数据操作
  * 
- * @author 郭华
+ * @author Wujun
  *
  */
 public class MemberDbControl extends MysqlJdbc {

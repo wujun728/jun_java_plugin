@@ -11,7 +11,7 @@ import com.redis.proxy.net.resps.RdsResp;
 /**
  * redis命令调用包裹实现
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 public interface RdsCmdInvoke {
 

@@ -15,7 +15,7 @@ import java.util.Stack;
 
 /**
  * 集合相关工具类，包括数组
- * @author luxiaolei@baijob.com
+ * @author Wujun
  *
  */
 public class CollectionUtil {

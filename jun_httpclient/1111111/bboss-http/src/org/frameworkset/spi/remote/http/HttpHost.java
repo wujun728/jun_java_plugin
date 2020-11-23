@@ -20,7 +20,7 @@ package org.frameworkset.spi.remote.http;
  * <p></p>
  * <p>Copyright (c) 2018</p>
  * @Date 2019/6/19 21:43
- * @author biaoping.yin
+ * @author Wujun
  * @version 1.0
  */
 

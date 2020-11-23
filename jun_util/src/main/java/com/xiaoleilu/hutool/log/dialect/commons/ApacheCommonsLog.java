@@ -9,7 +9,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * Apache Commons Logging
- * @author Looly
+ * @author Wujun
  *
  */
 public class ApacheCommonsLog extends AbstractLog {

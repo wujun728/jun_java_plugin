@@ -9,7 +9,7 @@ import com.xiaoleilu.hutool.log.dialect.slf4j.Slf4jLogFactory;
 
 /**
  * 日志工厂类
- * @author Looly
+ * @author Wujun
  *
  */
 public abstract class LogFactory {

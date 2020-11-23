@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 /**
  * 用于映射实体类和Excel某列名称
  *
- * @author peiyu
+ * @author Wujun
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

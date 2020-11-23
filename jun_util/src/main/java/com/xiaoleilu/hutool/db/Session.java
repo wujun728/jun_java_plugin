@@ -20,7 +20,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
  * 数据库SQL执行会话<br>
  * 一个会话只维护一个连接，推荐在执行完后关闭Session，避免重用<br>
  * 本对象并不是线程安全的，多个线程共用一个Session将会导致不可预知的问题
- * @author loolly
+ * @author Wujun
  *
  */
 public class Session implements Closeable{

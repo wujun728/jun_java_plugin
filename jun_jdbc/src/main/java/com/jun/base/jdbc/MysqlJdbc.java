@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * MySql数据库JDBC操作类封装
  * 
- * @author 郭华
+ * @author Wujun
  *
  */
 public abstract class MysqlJdbc implements Jdbc {

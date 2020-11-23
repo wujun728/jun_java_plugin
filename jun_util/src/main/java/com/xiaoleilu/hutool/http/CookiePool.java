@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  *Cookie池。此池针对所有HTTP请求可用。<br>
  *此Cookie池用于模拟浏览器的Cookie，当访问后站点，记录Cookie，下次再访问这个站点时，一并提交Cookie到站点。
- * @author Looly
+ * @author Wujun
  *
  */
 public class CookiePool {

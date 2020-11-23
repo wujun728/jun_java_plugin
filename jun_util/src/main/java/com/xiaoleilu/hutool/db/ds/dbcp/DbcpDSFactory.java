@@ -17,7 +17,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * DBCP2数据源工厂类
- * @author Looly
+ * @author Wujun
  *
  */
 public class DbcpDSFactory extends DSFactory {

@@ -31,7 +31,7 @@ import com.google.zxing.common.BitMatrix;
 /**
  * AbstractGenerator
  *
- * @author Bosco.Liao
+ * @author Wujun
  * @since 1.0.0
  */
 public abstract class AbstractGenerator {

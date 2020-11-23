@@ -10,7 +10,7 @@ import com.jun.plugin.poi.test.excel.vo.OutValue;
 
 /**
  * 
- * @author shizhongtao
+ * @author Wujun
  * 
  * @date 2016-3-21 Description: thanks for Joe Walnes and David Blevins
  */

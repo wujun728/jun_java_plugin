@@ -23,7 +23,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * Setting文件加载器
- * @author Looly
+ * @author Wujun
  *
  */
 public class SettingLoader {

@@ -13,7 +13,7 @@ import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author ZhangHao 
+ * @author Wujun
  * @date  2013-4-12
  */
 public class ServerHandler implements Runnable {

@@ -26,7 +26,7 @@ import com.jun.plugin.poi.test.excel.vo.CellKV;
 import com.jun.plugin.poi.test.excel.vo.ListRow;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  * 
  * @date 2016-2-2 Description:
  *       读取07excel的sax方法，解析器默认使用org.apache.xerces.parsers.SAXParser

@@ -10,7 +10,7 @@ import com.xiaoleilu.hutool.log.StaticLog;
 
 /**
  * 分组集合Demo
- * @author Looly
+ * @author Wujun
  *
  */
 public class GroupedSetDemo {

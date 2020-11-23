@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 /**
  * 缓存接口
- * @author Looly,jodd
+ * @author Wujun
  *
  * @param <K> 键类型
  * @param <V> 值类型

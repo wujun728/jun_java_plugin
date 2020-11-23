@@ -19,7 +19,7 @@ import com.xiaoleilu.hutool.util.URLUtil;
 
 /**
  * 类扫描器
- * @author Looly
+ * @author Wujun
  *
  */
 public class ClassScaner {

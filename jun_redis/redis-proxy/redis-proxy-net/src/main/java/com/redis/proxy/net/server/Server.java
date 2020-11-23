@@ -19,7 +19,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 /**
  * tcp server
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 public class Server {
 

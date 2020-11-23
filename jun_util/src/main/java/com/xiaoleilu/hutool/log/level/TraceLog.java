@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.log.level;
 
 /**
  * TRACE级别日志接口
- * @author Looly
+ * @author Wujun
  *
  */
 public interface TraceLog {

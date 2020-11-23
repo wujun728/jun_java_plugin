@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.http;
 
 /**
  * Http方法枚举
- * @author Looly
+ * @author Wujun
  *
  */
 public enum Method {

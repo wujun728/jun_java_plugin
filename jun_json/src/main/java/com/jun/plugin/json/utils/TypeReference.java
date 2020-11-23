@@ -4,7 +4,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * @author Linyu Chen
+ * @author Wujun
  */
 public abstract class TypeReference<T> implements Comparable<TypeReference<T>> {
 

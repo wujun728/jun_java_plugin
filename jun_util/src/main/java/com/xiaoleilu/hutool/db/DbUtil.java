@@ -34,7 +34,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * 数据库操作工具类
  * 
- * @author Luxiaolei
+ * @author Wujun
  * 
  */
 public class DbUtil {

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 /**
  * 数字相关工具类
- * @author Looly
+ * @author Wujun
  *
  */
 public class MathUtil {

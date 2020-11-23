@@ -17,7 +17,7 @@ import okhttp3.OkHttpClient;
 
 /**
  * 
- * @author icecooly
+ * @author Wujun
  *
  */
 public class FastHttpClient {

@@ -10,7 +10,7 @@ import io.itit.itf.okhttp.Response;
 
 /**
  * http://lbs.qq.com/webservice_v1/guide-gcoder.html
- * @author icecooly
+ * @author Wujun
  *
  */
 public class QQMapService {

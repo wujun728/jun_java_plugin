@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.io.FileUtil;
 
 /**
  * 下载样例
- * @author Looly
+ * @author Wujun
  *
  */
 public class DownloadDemo {

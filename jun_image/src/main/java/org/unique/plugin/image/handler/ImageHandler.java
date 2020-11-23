@@ -26,7 +26,7 @@ import org.unique.plugin.image.util.QueryUtil;
 /**
  * 图片处理器
  * 
- * @author rex
+ * @author Wujun
  */
 public class ImageHandler {
 
@@ -62,7 +62,7 @@ public class ImageHandler {
 	/**
 	 * 执行器
 	 * 
-	 * @author Rex
+	 * @author Wujun
 	 * @param <T>
 	 */
 	abstract class Executor<T> {

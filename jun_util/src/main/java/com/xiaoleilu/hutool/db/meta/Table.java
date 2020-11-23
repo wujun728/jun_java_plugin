@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * 数据库表信息
- * @author loolly
+ * @author Wujun
  *
  */
 public class Table extends HashMap<String, Column>{

@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * RamBucketEmailNoticeTrigger
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/22 21:23
  */
 public class RamBucketEmailNoticeTrigger implements EmailNoticeTrigger {

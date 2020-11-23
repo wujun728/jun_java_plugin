@@ -6,7 +6,7 @@ import java.util.Arrays;
  * 实现自己的ArrayList
  *
  * @param <E>
- * @author hztaoran
+ * @author Wujun
  */
 public class IArrayList<E> implements IList<E> {
 

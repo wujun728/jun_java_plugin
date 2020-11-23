@@ -6,7 +6,7 @@ import java.math.BigInteger;
 /**
  * 基本类型的getter接口<br>
  * 提供一个统一的接口定义返回不同类型的值（基本类型）<br>
- * @author Looly
+ * @author Wujun
  */
 public interface BasicTypeGetter<K> {
 	/*-------------------------- 基本类型 start -------------------------------*/

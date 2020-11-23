@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * EmailplusService
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 23:27
  */
 public interface EmailplusService {

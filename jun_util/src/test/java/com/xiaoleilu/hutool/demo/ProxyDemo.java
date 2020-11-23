@@ -10,7 +10,7 @@ import com.xiaoleilu.hutool.proxy.aspects.TimeIntervalAspect;
 
 /**
  * 切面样例
- * @author Looly
+ * @author Wujun
  *
  */
 public class ProxyDemo {

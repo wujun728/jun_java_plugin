@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 /**
  * SimplePasswordCryptor
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 14:38
  */
 public class SimplePasswordCryptor extends AesCipher implements PasswordCryptor {

@@ -15,7 +15,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * 类型转换器
  * 
- * @author xiaoleilu
+ * @author Wujun
  * 
  */
 public class Convert {

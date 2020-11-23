@@ -16,7 +16,7 @@ import com.xiaoleilu.hutool.util.CollectionUtil;
 
 /**
  * 1、字典对象，扩充了HashMap中的方法
- * @author loolly
+ * @author Wujun
  *
  */
 public class Dict extends HashMap<String, Object> implements BasicTypeGetter<String>{

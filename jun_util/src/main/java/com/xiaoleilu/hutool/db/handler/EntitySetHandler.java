@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.db.Entity;
 
 /**
  * 结果集处理类 ，处理出的结果为Entity列表
- * @author loolly
+ * @author Wujun
  *
  */
 public class EntitySetHandler implements RsHandler<LinkedHashSet<Entity>>{

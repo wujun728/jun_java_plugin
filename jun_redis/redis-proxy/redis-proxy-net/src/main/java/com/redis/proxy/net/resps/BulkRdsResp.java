@@ -9,7 +9,7 @@ import java.nio.charset.Charset;
 
 /**
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 public class BulkRdsResp extends RdsResp<ByteBuf> {
 

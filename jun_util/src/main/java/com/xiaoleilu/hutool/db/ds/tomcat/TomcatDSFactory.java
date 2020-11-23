@@ -15,7 +15,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * Tomcat-Jdbc-Pool数据源工厂类
- * @author Looly
+ * @author Wujun
  *
  */
 public class TomcatDSFactory extends DSFactory {

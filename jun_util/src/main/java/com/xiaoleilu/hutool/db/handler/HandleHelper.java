@@ -9,7 +9,7 @@ import com.xiaoleilu.hutool.db.Entity;
 
 /**
  * 数据结果集处理辅助类
- * @author loolly
+ * @author Wujun
  *
  */
 public class HandleHelper {

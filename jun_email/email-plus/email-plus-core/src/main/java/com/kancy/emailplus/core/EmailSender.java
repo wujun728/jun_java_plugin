@@ -6,7 +6,7 @@ import com.kancy.emailplus.core.exception.EmailException;
 /**
  * EmailSender
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/19 23:02
  */
 public interface EmailSender {

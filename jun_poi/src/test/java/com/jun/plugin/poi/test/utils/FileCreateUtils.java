@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 /**
  * 文件的创建删除类
- * @author bing
+ * @author Wujun
  *
  */
 public class FileCreateUtils {

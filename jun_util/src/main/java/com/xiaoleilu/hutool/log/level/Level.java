@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.log.level;
 
 /**
  * 日志等级
- * @author Looly
+ * @author Wujun
  *
  */
 public enum Level{

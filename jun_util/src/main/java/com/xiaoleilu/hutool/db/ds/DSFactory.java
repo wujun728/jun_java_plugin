@@ -16,7 +16,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * 数据源工厂类
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public abstract class DSFactory {

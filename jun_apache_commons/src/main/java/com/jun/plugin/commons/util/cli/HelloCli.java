@@ -24,7 +24,7 @@ import org.apache.commons.cli.PosixParser;
 
 /** 
  * 	
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * Version  3.1.0
  * @since   2013年9月4日 下午3:07:20 
  */

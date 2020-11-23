@@ -12,7 +12,7 @@ import com.xiaoleilu.hutool.db.sql.Wrapper;
  * SQL方言，不同的数据库由于在某些SQL上有所区别，故为每种数据库配置不同的方言。<br>
  * 由于不同数据库间SQL语句的差异，导致无法统一拼接SQL，<br>
  * Dialect接口旨在根据不同的数据库，使用不同的方言实现类，来拼接对应的SQL，并将SQL和参数放入PreparedStatement中
- * @author loolly
+ * @author Wujun
  *
  */
 public interface Dialect {

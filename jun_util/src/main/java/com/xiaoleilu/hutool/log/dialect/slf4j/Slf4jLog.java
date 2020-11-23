@@ -12,7 +12,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
  * <a href="http://www.slf4j.org/">SLF4J</a> log.<br>
  * 同样无缝支持 <a href="http://logback.qos.ch/">LogBack</a>
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class Slf4jLog extends AbstractLocationAwareLog {

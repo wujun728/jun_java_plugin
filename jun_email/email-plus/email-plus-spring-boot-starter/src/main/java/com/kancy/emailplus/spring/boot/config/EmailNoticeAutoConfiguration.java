@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import;
 /**
  * EmailNoticeAutoConfiguration
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/22 22:03
  */
 @Import({RedisBucketEmailNoticeTriggerConfiguration.class})

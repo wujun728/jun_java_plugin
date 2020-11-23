@@ -15,7 +15,7 @@ import org.beetl.core.resource.Matcher;
  * http://git.oschina.net/xiandafu/beetl2.0
  * 文档：http://ibeetl.com/guide/beetl.html
  * 
- * @author Looly
+ * @author Wujun
  */
 public class BeetlUtil {
 	
@@ -73,7 +73,7 @@ public class BeetlUtil {
 	
 	/**
 	 * ResourceLoader构建器
-	 * @author Looly
+	 * @author Wujun
 	 *
 	 */
 	public static class ResourceLoaderBuilder{

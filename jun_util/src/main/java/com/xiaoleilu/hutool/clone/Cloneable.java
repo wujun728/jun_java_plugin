@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.clone;
 
 /**
  * 克隆支持接口
- * @author Looly
+ * @author Wujun
  *
  * @param <T>
  */

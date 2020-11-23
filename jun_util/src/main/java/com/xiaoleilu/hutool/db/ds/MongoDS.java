@@ -26,7 +26,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * MongoDB工具类
- * @author xiaoleilu
+ * @author Wujun
  *
  */
 public class MongoDS implements Closeable{

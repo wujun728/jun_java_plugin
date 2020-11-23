@@ -22,7 +22,7 @@ import com.jun.plugin.commons.util.RegexUtil;
 
 /**
  * Http请求工具类
- * @author luxiaolei@baijob.com
+ * @author Wujun
  */
 public class HttpUtil {
 	private static Logger logger = LoggerFactory.getLogger(HttpUtil.class);

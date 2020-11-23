@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * RefreshEmailSenderEndpoint
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/24 19:16
  */
 @Endpoint(id = "refreshEmailSender")

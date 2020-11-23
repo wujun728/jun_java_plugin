@@ -16,7 +16,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * Druid数据源工厂类
- * @author Looly
+ * @author Wujun
  *
  */
 public class C3p0DSFactory extends DSFactory {

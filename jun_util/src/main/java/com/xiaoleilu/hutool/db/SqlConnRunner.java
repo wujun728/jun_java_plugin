@@ -23,7 +23,7 @@ import com.xiaoleilu.hutool.util.CollectionUtil;
  * SQL执行类<br>
  * 此执行类只接受方言参数，不需要数据源，只有在执行方法时需要数据库连接对象<br>
  * 此对象存在的意义在于，可以由使用者自定义数据库连接对象，并执行多个方法，方便事务的统一控制或减少连接对象的创建关闭
- * @author Luxiaolei
+ * @author Wujun
  * 
  */
 public class SqlConnRunner{

@@ -16,7 +16,7 @@ import com.jun.plugin.commons.util.Exceptions.ConnException;
 /**
  * SSH安全连接相关工具类
  * 此工具类用于维护一个到跳板机的通道，并将跳板机可访问的服务器端口映射到本地使用
- * @author luxiaolei@baijob.com
+ * @author Wujun
  */
 public class SSHUtil {
 	private static Logger logger = LoggerFactory.getLogger(SSHUtil.class);

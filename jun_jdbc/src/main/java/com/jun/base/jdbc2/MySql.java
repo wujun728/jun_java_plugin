@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 /**
  * MySql类用于实施MySql数据库操作
- * @author SoFlash - 博客园  http://www.cnblogs.com/longwu
+ * @author Wujun
  */
 public class MySql {
 

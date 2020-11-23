@@ -9,7 +9,7 @@ import com.jun.plugin.poi.test.excel.vo.OutValue;
 import com.jun.plugin.poi.test.excel.vo.OutValue.OutType;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  * 
  * @date 2016-3-10 Description:
  */

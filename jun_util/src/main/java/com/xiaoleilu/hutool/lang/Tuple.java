@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.clone.CloneSupport;
 
 /**
  * 不可变数组类型，用于多值返回
- * @author Looly
+ * @author Wujun
  *
  */
 public class Tuple extends CloneSupport<Tuple> implements Serializable{

@@ -10,7 +10,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * 日期转换器
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class CalendarConverter extends AbstractConverter<Calendar> {

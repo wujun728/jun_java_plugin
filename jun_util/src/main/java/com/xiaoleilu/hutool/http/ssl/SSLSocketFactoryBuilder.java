@@ -14,7 +14,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * SSLSocketFactory构建器
- * @author Looly
+ * @author Wujun
  *
  */
 public class SSLSocketFactoryBuilder{

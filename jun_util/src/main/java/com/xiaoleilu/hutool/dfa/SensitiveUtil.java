@@ -12,7 +12,7 @@ import com.xiaoleilu.hutool.util.ThreadUtil;
 
 /**
  * 敏感词工具类
- * @author Looly
+ * @author Wujun
  *
  */
 public class SensitiveUtil {

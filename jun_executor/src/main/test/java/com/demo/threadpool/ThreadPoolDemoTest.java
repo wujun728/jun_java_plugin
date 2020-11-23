@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * 描述: 测试
  *
- * @author : lhb
+ * @author Wujun
  * @date : 2020-01-28 15:14
  */
 public class ThreadPoolDemoTest {

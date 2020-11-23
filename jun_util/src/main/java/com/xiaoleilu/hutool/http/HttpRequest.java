@@ -25,7 +25,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * http请求类
  * 
- * @author Looly
+ * @author Wujun
  */
 public class HttpRequest extends HttpBase<HttpRequest> {
 	private static final String BOUNDARY = "--------------------Hutool_" + SecureUtil.simpleUUID();

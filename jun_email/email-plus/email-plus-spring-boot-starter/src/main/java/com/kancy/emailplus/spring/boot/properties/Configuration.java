@@ -3,7 +3,7 @@ package com.kancy.emailplus.spring.boot.properties;
 /**
  * Configuration
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/21 3:40
  */
 public class Configuration {

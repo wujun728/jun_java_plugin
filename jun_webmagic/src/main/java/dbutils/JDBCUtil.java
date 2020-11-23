@@ -27,7 +27,7 @@ import com.alibaba.druid.pool.DruidDataSource;
  * 3.执行通用的更新操作
  * 4.执行通用的查询列表操作
  * 5.执行通用的查询单条记录操作
- * @author Luo
+ * @author Wujun
  *
  */
  

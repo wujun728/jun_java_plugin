@@ -21,7 +21,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
  *          /                            <br>
  *        巾                            <br>
  *其中每个节点都是一个WordTree对象，查找时从上向下查找。<br>
- * @author Looly
+ * @author Wujun
  *
  */
 public class WordTree extends HashMap<Character, WordTree>{

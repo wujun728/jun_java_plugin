@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.util.CharsetUtil;
 
 /**
  * GET亲求样例
- * @author Looly
+ * @author Wujun
  *
  */
 public class HttpGetDemo {

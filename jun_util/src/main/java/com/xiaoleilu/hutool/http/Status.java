@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.http;
 
 /**
  * 返回状态码
- * @author Looly
+ * @author Wujun
  *
  */
 public interface Status {

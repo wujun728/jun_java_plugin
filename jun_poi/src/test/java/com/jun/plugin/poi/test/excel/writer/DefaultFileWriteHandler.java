@@ -15,7 +15,7 @@ import com.jun.plugin.poi.test.excel.writer.exception.ExcelOutException;
 
 /**
  * 不是线程安全的
- * @author shizhongtao
+ * @author Wujun
  *
  */
 public class DefaultFileWriteHandler extends AbstractWriteHandler {

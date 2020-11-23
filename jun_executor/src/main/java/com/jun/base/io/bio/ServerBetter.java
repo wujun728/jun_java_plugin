@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 /**
  * BIO服务端源码__伪异步I/O
- * @author yangtao__anxpp.com
+ * @author Wujun
  * @version 1.0
  */
 public final class ServerBetter {

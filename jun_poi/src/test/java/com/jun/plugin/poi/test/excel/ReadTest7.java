@@ -27,7 +27,7 @@ import com.jun.plugin.poi.test.excel.core.impl.BingExcelImpl.SheetVo;
 import com.jun.plugin.poi.test.utils.StringParseUtil;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  * 
  * @date 2016-3-23 Description:
  */

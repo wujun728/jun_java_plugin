@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 数据库异常
- * @author xiaoleilu
+ * @author Wujun
  */
 public class DbRuntimeException extends RuntimeException{
 	private static final long serialVersionUID = 3624487785708765623L;

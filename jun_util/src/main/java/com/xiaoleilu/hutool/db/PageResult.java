@@ -6,7 +6,7 @@ import com.xiaoleilu.hutool.util.PageUtil;
 
 /**
  * 分页数据结果集
- * @author Looly
+ * @author Wujun
  *
  * @param <T> 结果集项的类型
  */

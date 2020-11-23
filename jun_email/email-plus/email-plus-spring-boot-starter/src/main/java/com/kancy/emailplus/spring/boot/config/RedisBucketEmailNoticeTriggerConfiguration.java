@@ -12,7 +12,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 /**
  * RedisBucketEmailNoticeTriggerConfiguration
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/23 1:54
  */
 @ConditionalOnClass({RedisOperations.class, RedisConnectionFactory.class})

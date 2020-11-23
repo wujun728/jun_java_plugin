@@ -9,7 +9,7 @@ import java.util.List;
 import com.google.common.primitives.Primitives;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  * 
  * @date 2016-2-29 Description:
  * 

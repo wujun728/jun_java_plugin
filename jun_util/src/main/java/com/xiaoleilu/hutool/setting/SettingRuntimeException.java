@@ -4,7 +4,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 设置异常
- * @author xiaoleilu
+ * @author Wujun
  */
 public class SettingRuntimeException extends RuntimeException{
 	private static final long serialVersionUID = 7941096116780378387L;

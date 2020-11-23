@@ -33,7 +33,7 @@ import com.xiaoleilu.hutool.watch.WatchMonitor;
  *  		若某个key是name，加上分组后的键相当于group.name
  *  3、注释以#开头，但是空行和不带“=”的行也会被跳过，但是建议加#
  *  4、store方法不会保存注释内容，慎重使用
- * @author xiaoleilu
+ * @author Wujun
  * 
  */
 public class BasicSetting extends AbsSetting implements Map<Object, Object>{

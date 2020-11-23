@@ -5,7 +5,7 @@
 					
 					/**
 					 * 获取相应的SQL语句
-					 * @author dengqin
+					 * @author Wujun
 					 *
 					 */
 					public class GetSQL {

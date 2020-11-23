@@ -4,7 +4,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 监听异常
- * @author Looly
+ * @author Wujun
  *
  */
 public class WatchException extends RuntimeException {

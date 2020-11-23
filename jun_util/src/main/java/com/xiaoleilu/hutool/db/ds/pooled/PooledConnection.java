@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.db.DbUtil;
 
 /**
  * 池化
- * @author Looly
+ * @author Wujun
  *
  */
 public class PooledConnection extends ConnectionWraper{

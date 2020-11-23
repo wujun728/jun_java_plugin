@@ -2,7 +2,7 @@ package org.unique.plugin.image.exception;
 
 /**
  * image exception
- * @author rex
+ * @author Wujun
  *
  */
 public class ImagePluginException extends RuntimeException{

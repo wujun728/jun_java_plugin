@@ -20,7 +20,7 @@ import org.junit.Test;
 
 /**
  * ��ͼƬ��Դ���ʼ�
- * @author Jie.Yuan
+ * @author Wujun
  *
  */
 public class App_2SendWithImg {

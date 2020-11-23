@@ -17,7 +17,7 @@ import net.sf.json.JSONObject;
 /**
  * 解析数据工具
  * 
- * @author ab030087
+ * @author Wujun
  *
  */
 @SuppressWarnings("unchecked")

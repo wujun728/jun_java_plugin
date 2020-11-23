@@ -8,7 +8,7 @@ import javax.script.ScriptException;
 
 /**
  * 脚本工具类
- * @author Looly
+ * @author Wujun
  *
  */
 public class ScriptUtil {

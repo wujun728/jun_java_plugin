@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.lang.Console;
 
 /**
  * 转换工具样例
- * @author Looly
+ * @author Wujun
  *
  */
 public class ConvertDemo {

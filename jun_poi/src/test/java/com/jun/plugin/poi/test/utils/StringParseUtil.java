@@ -15,7 +15,7 @@ import org.apache.poi.ss.usermodel.DateUtil;
 import com.google.common.base.Strings;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  *
  * @date 2016-3-21
  * Description: MayBe is's useful 
@@ -240,7 +240,7 @@ public class StringParseUtil {
 	/**
 	 * 只能用于excel数据类型
 	 * 
-	 * @author shizhongtao
+	 * @author Wujun
 	 * @param date
 	 * @return
 	 */
@@ -281,7 +281,7 @@ public class StringParseUtil {
 	}
 
 	/**
-	 * @author shizhongtao
+	 * @author Wujun
 	 * @param date
 	 * @return
 	 */
@@ -290,7 +290,7 @@ public class StringParseUtil {
 	}
 
 	/**
-	 * @author shizhongtao
+	 * @author Wujun
 	 * @param d
 	 * @return
 	 */
@@ -299,7 +299,7 @@ public class StringParseUtil {
 	}
 
 	/**
-	 * @author shizhongtao
+	 * @author Wujun
 	 * @param l
 	 * @return
 	 */

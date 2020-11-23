@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.proxy.Aspect;
  * 简单切面类，不做任何操作<br>
  * 可以继承此类实现自己需要的方法即可
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class SimpleAspect extends Aspect{

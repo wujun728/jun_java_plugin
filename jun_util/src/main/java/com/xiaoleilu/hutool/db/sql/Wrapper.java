@@ -11,7 +11,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * 包装器<br>
  * 主要用于字段名的包装（在字段名的前后加字符，例如反引号来避免与数据库的关键字冲突）
- * @author Looly
+ * @author Wujun
  *
  */
 public class Wrapper {

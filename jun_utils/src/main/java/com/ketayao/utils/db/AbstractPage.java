@@ -16,7 +16,7 @@ import java.util.List;
 
 /** 
  * 	
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since   2013年8月11日 下午4:28:39 
  */
 public abstract class AbstractPage<T> implements IPage<T>, Serializable{

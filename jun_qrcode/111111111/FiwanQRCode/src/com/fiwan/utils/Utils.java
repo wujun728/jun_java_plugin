@@ -19,25 +19,25 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 
 /**
- * @author frogchou
+ * @author Wujun
  * @version 1.0
- * ¹¤¾ßÀà´æ·ÅÒ»Ð©³£ÓÃµÄ·½·¨
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ð©ï¿½ï¿½ï¿½ÃµÄ·ï¿½ï¿½ï¿½
  * */
 public class Utils {
 	
 	/**
-	 * ·µ»Ø³ÌÐòµ±Ç°±»´æ·ÅµÄÂ·¾¶
-	 * @return String ³ÌÐòµ±Ç°±»´æ·ÅµÄÂ·¾¶
+	 * ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Åµï¿½Â·ï¿½ï¿½
+	 * @return String ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Åµï¿½Â·ï¿½ï¿½
 	 * */
 	public static String getCurrentPath() {
 		return System.getProperty("user.dir")+File.separator+"images";
 	}
 
 	/**
-	 * ´´½¨Ò»¸öÎÄ¼þ£¬²¢·µ»ØÎÄ¼þµÄÂ·¾¶
-	 * @param filetype ÎÄ¼þÀàÐÍ£¨ºó×º£©
-	 * @param filename ÎÄ¼þÃû
-	 * @return String ·µ»ØÎÄ¼þµÄÂ·¾¶
+	 * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½
+	 * @param filetype ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½×ºï¿½ï¿½
+	 * @param filename ï¿½Ä¼ï¿½ï¿½ï¿½
+	 * @return String ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 	 * */
 	public static String CreateFile(String filetype, String filename) {
 		File file = null;
@@ -56,9 +56,9 @@ public class Utils {
 	}
 	
 	/**
-	 * ´´½¨Ò»¸öÄ¿Â¼£¬²¢·µ»ØÄ¿Â¼µÄÂ·¾¶
-	 * @param filePathName ÎÄ¼þÂ·¾¶
-	 * @return String ·µ»ØÎÄ¼þµÄÂ·¾¶
+	 * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½Â·ï¿½ï¿½
+	 * @param filePathName ï¿½Ä¼ï¿½Â·ï¿½ï¿½
+	 * @return String ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 	 * */
 	public static String CreateFilePathAndFile(String filePathName,String filetype, String filename) {
 		File file = null;
@@ -75,28 +75,28 @@ public class Utils {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
-				// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Éµï¿½ catch ï¿½ï¿½
 				e.printStackTrace();
 			}
 		return file.getAbsolutePath();
 	}
 
 	/**
-	 * °Ñ×ªÈëµÄÍ¼Æ¬×ÊÔ´ÉèÖÃµ½¼ôÇÐ°åÉÏ
+	 * ï¿½ï¿½×ªï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Ô´ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ð°ï¿½ï¿½ï¿½
 	 * 
 	 * @param image
-	 *            ¿ÉÒÔÊÇimage »òÕßÊÇBufferedImageÀàÐÍ
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½image ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½BufferedImageï¿½ï¿½ï¿½ï¿½
 	 */
-	// ¸ø¼ôÇÐ°åÉèÖÃÍ¼Æ¬ÐÍÄÚÈÝ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static void setImageClipboard(Image image) {
 		Images imgSel = new Images(image);
-		// ÉèÖÃ
+		// ï¿½ï¿½ï¿½ï¿½
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(imgSel,
 				null);
 	}
 	
     /** 
-     * ´Ó¼ôÇÐ°å»ñµÃÍ¼Æ¬¡£ 
+     * ï¿½Ó¼ï¿½ï¿½Ð°ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ 
      */  
     public static Image getImageFromClipboard() throws Exception {  
         Clipboard sysc = Toolkit.getDefaultToolkit().getSystemClipboard();  
@@ -163,7 +163,7 @@ public class Utils {
     }  
 	
 	public static class Images implements Transferable {
-		private Image image; // µÃµ½Í¼Æ¬»òÕßÍ¼Æ¬Á÷
+		private Image image; // ï¿½Ãµï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½
 		public Images(Image image) {
 			this.image = image;
 		}

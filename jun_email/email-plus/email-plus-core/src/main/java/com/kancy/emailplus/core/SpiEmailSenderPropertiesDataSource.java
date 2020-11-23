@@ -10,7 +10,7 @@ import java.util.*;
  * SpiMailPropertiesDataSource
  * 内部使用
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/22 14:33
  */
 class SpiEmailSenderPropertiesDataSource implements EmailSenderPropertiesDataSource {

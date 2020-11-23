@@ -6,7 +6,7 @@ import com.xiaoleilu.hutool.util.CollectionUtil;
 
 /**
  * long 类型数组转换器
- * @author Looly
+ * @author Wujun
  *
  */
 public class LongArrayConverter extends AbstractConverter<long[]>{

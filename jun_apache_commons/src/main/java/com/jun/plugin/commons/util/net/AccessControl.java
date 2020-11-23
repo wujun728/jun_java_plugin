@@ -21,7 +21,7 @@ import com.jun.plugin.commons.util.XmlUtil;
 
 /**
  * 访问控制对象
- * @author Luxiaolei
+ * @author Wujun
  *
  */
 public class AccessControl{

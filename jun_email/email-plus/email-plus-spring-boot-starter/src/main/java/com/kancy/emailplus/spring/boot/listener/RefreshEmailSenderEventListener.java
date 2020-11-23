@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * RefreshEmailSenderEventListener
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/21 21:44
  */
 public class RefreshEmailSenderEventListener implements ApplicationListener<RefreshEmailSenderEvent> {

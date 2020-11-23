@@ -22,7 +22,7 @@ package org.frameworkset.spi.remote.http;
  * <p>bboss workgroup</p>
  * <p>Copyright (c) 2007</p>
  * @Date 2010-9-16 下午12:33:15
- * @author biaoping.yin
+ * @author Wujun
  * @version 1.0
  */
 public class ConfigHttpRuntimeException extends HttpRuntimeException {

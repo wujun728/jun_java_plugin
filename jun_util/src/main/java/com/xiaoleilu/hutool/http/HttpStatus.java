@@ -3,7 +3,7 @@ package com.xiaoleilu.hutool.http;
 /**
  * HTTP状态码
  * 
- * @author Looly
+ * @author Wujun
  * @see java.net.HttpURLConnection
  *
  */

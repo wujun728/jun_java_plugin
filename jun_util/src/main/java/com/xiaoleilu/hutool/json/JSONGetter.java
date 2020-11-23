@@ -4,7 +4,7 @@ import com.xiaoleilu.hutool.getter.OptNullBasicTypeFromObjectGetter;
 
 /**
  * 用于JSON的Getter类，提供各种类型的Getter方法
- * @author Looly
+ * @author Wujun
  *
  * @param <K>
  */

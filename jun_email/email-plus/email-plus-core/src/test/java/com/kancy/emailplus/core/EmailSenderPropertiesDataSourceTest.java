@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 /**
  * MailPropertiesDataSourceTest
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 5:01
  */
 public class EmailSenderPropertiesDataSourceTest {

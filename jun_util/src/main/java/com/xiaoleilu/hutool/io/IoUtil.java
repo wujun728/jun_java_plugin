@@ -31,7 +31,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * IO工具类
  * 
- * @author xiaoleilu
+ * @author Wujun
  *
  */
 public class IoUtil {

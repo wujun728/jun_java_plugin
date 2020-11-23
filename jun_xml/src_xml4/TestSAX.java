@@ -16,7 +16,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  *
- * @author whwang
+ * @author Wujun
  */
 public class TestSAX {
 

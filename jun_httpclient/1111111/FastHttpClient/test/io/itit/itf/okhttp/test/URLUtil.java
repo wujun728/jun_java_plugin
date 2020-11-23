@@ -12,7 +12,7 @@ import io.itit.itf.okhttp.Response;
 
 /**
  * 
- * @author icecooly
+ * @author Wujun
  *
  */
 public class URLUtil {

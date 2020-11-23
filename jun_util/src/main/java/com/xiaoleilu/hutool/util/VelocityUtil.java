@@ -24,7 +24,7 @@ import com.xiaoleilu.hutool.io.IoUtil;
  * Velocity模板引擎工具类<br>
  * 使用前必须初始化工具类
  * 
- * @author xiaoleilu
+ * @author Wujun
  * 
  */
 public class VelocityUtil {

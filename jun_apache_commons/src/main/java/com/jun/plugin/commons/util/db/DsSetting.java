@@ -12,7 +12,7 @@ import com.jun.plugin.commons.util.net.SSHUtil;
 
 /**
  * 数据库设定，与数据库配置文件对应
- * @author Luxiaolei
+ * @author Wujun
  *
  */
 public class DsSetting {

@@ -13,7 +13,7 @@ import com.xiaoleilu.hutool.log.StaticLog;
 
 /**
  * SQL构建器样例
- * @author Looly
+ * @author Wujun
  *
  */
 public class SqlBuilderDemo {

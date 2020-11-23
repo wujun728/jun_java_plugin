@@ -26,7 +26,7 @@ import com.xiaoleilu.hutool.log.StaticLog;
 /**
  * 压缩工具类
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class ZipUtil {

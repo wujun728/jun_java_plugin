@@ -16,7 +16,7 @@ import java.util.Collection;
 
 /**
  * 文件工具类
- * @author Luxiaolei
+ * @author Wujun
  *
  */
 public class FileUtil {
@@ -221,7 +221,7 @@ public class FileUtil {
 	
 	/**
 	 * Reader处理接口
-	 * @author Luxiaolei
+	 * @author Wujun
 	 *
 	 * @param <T>
 	 */

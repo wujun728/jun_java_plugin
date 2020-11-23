@@ -16,7 +16,7 @@ import com.xiaoleilu.hutool.lang.Validator;
 
 /**
  * 网络相关工具
- * @author xiaoleilu
+ * @author Wujun
  *
  */
 public class NetUtil {

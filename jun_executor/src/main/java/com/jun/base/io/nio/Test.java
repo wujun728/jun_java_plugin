@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 
 /**
  * 测试方法
- * @author yangtao__anxpp.com
+ * @author Wujun
  * @version 1.0
  */
 public class Test {

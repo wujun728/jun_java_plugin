@@ -48,7 +48,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 public abstract class KryoFactory {
 

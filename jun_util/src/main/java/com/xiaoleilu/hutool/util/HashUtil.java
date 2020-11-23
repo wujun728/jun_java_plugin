@@ -4,7 +4,7 @@ package com.xiaoleilu.hutool.util;
  * Hash算法大全<br>
  * 推荐使用FNV1算法
  * 
- * @author Goodzzp 2006-11-20
+ * @author Wujun
  */
 public class HashUtil {
 	

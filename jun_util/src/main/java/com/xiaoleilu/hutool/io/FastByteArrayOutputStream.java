@@ -14,7 +14,7 @@ import java.nio.charset.Charset;
  * <p>
  * 这种设计避免重新分配内存块而是分配新增的缓冲区，缓冲区不会被GC，数据也不会被拷贝到其他缓冲区。
  *
- * @author biezhi
+ * @author Wujun
  */
 public class FastByteArrayOutputStream extends OutputStream {
 

@@ -10,7 +10,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * Apache Commons Logging for Log4j
- * @author Looly
+ * @author Wujun
  *
  */
 public class ApacheCommonsLog4JLog extends AbstractLocationAwareLog {

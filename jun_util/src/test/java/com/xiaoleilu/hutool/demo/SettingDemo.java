@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.util.CharsetUtil;
 
 /**
  * Setting演示样例类
- * @author Looly
+ * @author Wujun
  *
  */
 public class SettingDemo {

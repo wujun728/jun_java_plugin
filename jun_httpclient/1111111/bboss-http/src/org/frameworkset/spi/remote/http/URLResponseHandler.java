@@ -22,7 +22,7 @@ import org.apache.http.client.ResponseHandler;
  * <p></p>
  * <p>Copyright (c) 2020</p>
  * @Date 2020/2/27 15:40
- * @author biaoping.yin
+ * @author Wujun
  * @version 1.0
  */
 public interface URLResponseHandler<T> extends ResponseHandler<T> {

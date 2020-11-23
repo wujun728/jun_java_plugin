@@ -8,7 +8,7 @@ import java.math.BigInteger;
  * 提供一个统一的接口定义返回不同类型的值（基本类型）<br>
  * 在不提供默认值的情况下， 如果值不存在或获取错误，返回null<br>
  * 用户只需实现{@code com.xiaoleilu.hutool.getter.OptBasicTypeGetter}接口即可
- * @author Looly
+ * @author Wujun
  */
 public abstract class OptNullBasicTypeGetter<K> implements BasicTypeGetter<K>, OptBasicTypeGetter<K>{
 	

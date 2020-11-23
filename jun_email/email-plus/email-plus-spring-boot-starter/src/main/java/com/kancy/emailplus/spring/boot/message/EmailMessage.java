@@ -17,7 +17,7 @@ import java.util.Optional;
 /**
  * EmailMessage
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 23:33
  */
 public class EmailMessage extends AbstractEmail {

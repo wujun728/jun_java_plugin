@@ -3,7 +3,7 @@ package com.kancy.emailplus.core.exception;
 /**
  * EmailAuthenticationException
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/19 21:48
  */
 public class EmailAuthenticationException extends EmailException {

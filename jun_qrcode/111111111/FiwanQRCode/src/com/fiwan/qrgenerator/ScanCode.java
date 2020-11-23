@@ -30,9 +30,9 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 /**
- * Ê¹ÓÃjavacv 1.2 »ñÈ¡ÉãÏñÍ·Í¼Ïñ£¬²¢Ê¶±ðÍ¼ÏñÖÐµÄ¶þÎ¬Âë£¬
+ * Ê¹ï¿½ï¿½javacv 1.2 ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Í·Í¼ï¿½ñ£¬²ï¿½Ê¶ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ÐµÄ¶ï¿½Î¬ï¿½ë£¬
  * 
- * @author frogchou
+ * @author Wujun
  * @version 1.0
  */
 public class ScanCode {
@@ -45,15 +45,15 @@ public class ScanCode {
 	private JPanel panel_2;
 	Frame frame = null;
 	String retStr=null;
-	Toolkit kit = Toolkit.getDefaultToolkit(); // ¶¨Òå¹¤¾ß°ü
-	Dimension screenSize = kit.getScreenSize(); // »ñÈ¡ÆÁÄ»µÄ³ß´ç
-	int screenWidth = screenSize.width; // »ñÈ¡ÆÁÄ»µÄ¿í
-	int screenHeight = screenSize.height; // »ñÈ¡ÆÁÄ»µÄ¸ß
+	Toolkit kit = Toolkit.getDefaultToolkit(); // ï¿½ï¿½ï¿½å¹¤ï¿½ß°ï¿½
+	Dimension screenSize = kit.getScreenSize(); // ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½Ä³ß´ï¿½
+	int screenWidth = screenSize.width; // ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½Ä¿ï¿½
+	int screenHeight = screenSize.height; // ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½Ä¸ï¿½
 	private javax.swing.JTextArea jTextArea1;
 	public ScanCode(JTextArea jTextArea1) throws Exception, InterruptedException {
 		this.jTextArea1=jTextArea1;
 		jf = new JDialog();
-		jf.setTitle("É¨Ãè¶þÎ¬Âë");
+		jf.setTitle("É¨ï¿½ï¿½ï¿½Î¬ï¿½ï¿½");
 		jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//jf.setModalityType(ModalityType.APPLICATION_MODAL);
 		//jf.setModal(true); 
@@ -67,9 +67,9 @@ public class ScanCode {
 		jf.setAlwaysOnTop(true);
 		jf.setResizable(false);
 		jf.setSize(430, 415);// (frame.imageWidth, frame.imageHeight);
-		int windowWidth = jf.getWidth(); // »ñµÃ´°¿Ú¿í
-		int windowHeight = jf.getHeight(); // »ñµÃ´°¿Ú¸ß
-		jf.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// ÉèÖÃ´°¿Ú¾ÓÖÐÏÔÊ¾
+		int windowWidth = jf.getWidth(); // ï¿½ï¿½Ã´ï¿½ï¿½Ú¿ï¿½
+		int windowHeight = jf.getHeight(); // ï¿½ï¿½Ã´ï¿½ï¿½Ú¸ï¿½
+		jf.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// ï¿½ï¿½ï¿½Ã´ï¿½ï¿½Ú¾ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 		// jf.add(icolabel);
 		JPanel contentPane = new JPanel();
 		jf.setContentPane(contentPane);
@@ -78,7 +78,7 @@ public class ScanCode {
 		panel = new JPanel();
 		contentPane.add(panel);
 		panel.setLayout(null);
-		JButton close = new JButton("¹Ø±Õ");
+		JButton close = new JButton("ï¿½Ø±ï¿½");
 		close.setBounds(180, 353, 83, 23);
 		panel.add(close);
 
@@ -95,14 +95,14 @@ public class ScanCode {
 			}
 		});
 		grabber = new OpenCVFrameGrabber(0);
-		grabber.start(); // ¿ªÊ¼»ñÈ¡ÉãÏñÍ·Êý¾Ý
+		grabber.start(); // ï¿½ï¿½Ê¼ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½
 		// Frame frame = grabber.grab();
 		jf.setVisible(true);
 		new Thread1().start(); 
 	}
 
 
-/*½ÓÊÜÒ»¸öIplImage ¶ÔÏó£¬×ª»»ÎªBufferedImage
+/*ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½IplImage ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ÎªBufferedImage
  * @param IplImage
  * @return BufferedImage
  * */
@@ -119,13 +119,13 @@ public class ScanCode {
 	}
 
 	/**
-	 * ×Ô¶¨ÒåÒ»¸öThread1£¬´¦ÀíÍ¼ÏñÏÔÊ¾£¬·ÀÖ¹½çÃæ±»¿¨ËÀ
+	 * ï¿½Ô¶ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Thread1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½æ±»ï¿½ï¿½ï¿½ï¿½
 	 * */
 	class Thread1 extends Thread {
 		public void run() {
 			int i=0;
 			while (true) {
-				if (!jf.isDisplayable() || getcontent) {// ´°¿ÚÊÇ·ñ¹Ø±Õ,ÊÇ·ñ»ñÈ¡µ½ÄÚÈÝ£¬ÊÇÔòÍË³öÑ­»·
+				if (!jf.isDisplayable() || getcontent) {// ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Ø±ï¿½,ï¿½Ç·ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½Ñ­ï¿½ï¿½
 					try {
 						grabber.stop();// Í£Ö¹×¥È¡
 					} catch (Exception e) {
@@ -144,7 +144,7 @@ public class ScanCode {
 				BufferedImage bufferedImage = iplToBufImgData(image);
 				
 				
-				/* //²âÊÔIplImage×ªBufferedImageÊÇ·ñ³É¹¦ 
+				/* //ï¿½ï¿½ï¿½ï¿½IplImage×ªBufferedImageï¿½Ç·ï¿½É¹ï¿½ 
 				 try { File file=new File("D://tpm111//"+i+++".jpg");
 				 file.createNewFile();
 				  ImageIO.write(bufferedImage, "jpg", file); } catch 
@@ -152,7 +152,7 @@ public class ScanCode {
 				  e1) { e1.printStackTrace(); }*/
 				
 
-				icolabel.setIcon(new ImageIcon(bufferedImage)); //ÔÚ´°¿ÚÖÐÏÔÊ¾Í¼Ïñ
+				icolabel.setIcon(new ImageIcon(bufferedImage)); //ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Í¼ï¿½ï¿½
 				retStr=ZxingHandler.getQrcodeFromPic(bufferedImage);
 				if (retStr!=null && !"".equals(retStr)){
 					getcontent = true;
@@ -161,7 +161,7 @@ public class ScanCode {
 					break;
 				}
 				try {
-					Thread.sleep(10);// 10ºÁÃëË¢ÐÂÒ»´ÎÍ¼Ïñ
+					Thread.sleep(10);// 10ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½Ò»ï¿½ï¿½Í¼ï¿½ï¿½
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

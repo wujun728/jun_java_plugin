@@ -4,14 +4,14 @@ import com.xiaoleilu.hutool.lang.Singleton;
 
 /**
  * 单例样例
- * @author loolly
+ * @author Wujun
  *
  */
 public class SingletonDemo {
 	
 	/**
 	 * 动物接口
-	 * @author loolly
+	 * @author Wujun
 	 *
 	 */
 	public static interface Animal{
@@ -20,7 +20,7 @@ public class SingletonDemo {
 	
 	/**
 	 * 狗实现
-	 * @author loolly
+	 * @author Wujun
 	 *
 	 */
 	public static class Dog implements Animal{
@@ -32,7 +32,7 @@ public class SingletonDemo {
 	
 	/**
 	 * 猫实现
-	 * @author loolly
+	 * @author Wujun
 	 *
 	 */
 	public static class Cat implements Animal{

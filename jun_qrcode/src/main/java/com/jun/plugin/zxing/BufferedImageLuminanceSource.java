@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 /**
  * 二维码解析使用类
  * 
- * @author X-rapido
+ * @author Wujun
  * 
  */
 public class BufferedImageLuminanceSource extends LuminanceSource {

@@ -4,7 +4,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 排序方式（升序或者降序）
- * @author Looly
+ * @author Wujun
  *
  */
 public enum Direction{

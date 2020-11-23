@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
  * 任务调度类
- * @author luxiaolei@baijob.com
+ * @author Wujun
  */
 public class TaskScheduler extends Timer{
 	private static Logger logger = LoggerFactory.getLogger(TaskScheduler.class);

@@ -19,7 +19,7 @@ import org.w3c.dom.NodeList;
 
 /**
  * 讲XML文件导入到数据库
- * @author licheng
+ * @author Wujun
  *
  */
 public class XMLToDatabaseWithDom {

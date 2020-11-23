@@ -17,7 +17,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 /**
  * 
- * @author icecooly
+ * @author Wujun
  *
  */
 public class FileUtil {

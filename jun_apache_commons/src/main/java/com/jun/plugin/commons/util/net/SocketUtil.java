@@ -12,7 +12,7 @@ import com.jun.plugin.commons.util.RegexUtil;
 /**
  * 套接字相关工具类
  * 
- * @author luxiaolei@baijob.com
+ * @author Wujun
  * 
  */
 public class SocketUtil {

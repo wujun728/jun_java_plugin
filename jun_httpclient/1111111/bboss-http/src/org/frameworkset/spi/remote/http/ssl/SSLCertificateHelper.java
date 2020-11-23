@@ -20,7 +20,7 @@ package org.frameworkset.spi.remote.http.ssl;
  * <p></p>
  * <p>Copyright (c) 2018</p>
  * @Date 2020/1/15 9:57
- * @author biaoping.yin
+ * @author Wujun
  * @version 1.0
  */
 

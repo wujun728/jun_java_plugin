@@ -9,7 +9,7 @@ import java.util.TimerTask;
  * 定时缓存<br>
  * 此缓存没有容量限制，对象只有在过期后才会被移除
  * 
- * @author Looly
+ * @author Wujun
  *
  * @param <K> 键类型
  * @param <V> 值类型

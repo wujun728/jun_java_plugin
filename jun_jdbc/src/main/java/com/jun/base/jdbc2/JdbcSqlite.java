@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 /**
- * @author Tim
+ * @author Wujun
  */
 public class JdbcSqlite {
 	public static void main(String[] args) {

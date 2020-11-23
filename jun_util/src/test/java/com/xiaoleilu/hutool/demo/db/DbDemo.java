@@ -31,7 +31,7 @@ import com.xiaoleilu.hutool.log.LogFactory;
 /**
  * DB使用样例
  * 
- * @author loolly
+ * @author Wujun
  * 
  */
 public class DbDemo {

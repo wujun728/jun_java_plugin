@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.util.ClassUtil;
 
 /**
  * ClassUtil Demo
- * @author Looly
+ * @author Wujun
  *
  */
 public class ClassUtilDemo {

@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * 小写和大写之间用下划线隔开，例如 ForumPost -> forum_post 2. 转成复数形式 forum_post -> forum_posts
  * 主要目的是用来生成类名和表名之间的映射关系，此类扩展自 Hibernate 中的类。
  * 
- * @author chuyeow
+ * @author Wujun
  */
 
 public class Inflector {

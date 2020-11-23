@@ -22,7 +22,7 @@ import java.io.OutputStream;
 /**
  * Generator interface.
  *
- * @author Bosco.Liao
+ * @author Wujun
  * @since 1.0.0
  */
 public interface Generator {

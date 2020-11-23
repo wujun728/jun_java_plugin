@@ -5,7 +5,7 @@ import java.sql.SQLException;
 /**
  * 结果的处理
  * 
- * @author gson
+ * @author Wujun
  *
  */
 public interface ResultHandler<T>{

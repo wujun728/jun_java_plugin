@@ -15,22 +15,22 @@ import java.util.Map.Entry;
 import net.sf.json.JSONArray;
 
 /**
- * jquery-Treeview树形菜单json数据生成工具�?
- * @描述�?
- *       由于jquery_treeview插件�?要的json数据属�?�格式是固定的，无法用json-lib自动生成，除非实体类属�?�与之对�?
- *       采用ajax异步加载子节点方式，初始阶段只加载顶级节�?
- *       生成的json格式如下�?
+ * jquery-Treeview树形菜单json数据生成工具�?
+ * @描述�?
+ *       由于jquery_treeview插件�?要的json数据属�?�格式是固定的，无法用json-lib自动生成，除非实体类属�?�与之对�?
+ *       采用ajax异步加载子节点方式，初始阶段只加载顶级节�?
+ *       生成的json格式如下�?
  *                       {
  *                       "id":"1",           //id
- *                       "text":"aaa",       //显示�?
- *                       "value":"1",        //提交�?
+ *                       "text":"aaa",       //显示�?
+ *                       "value":"1",        //提交�?
  *                       "expanded":true,     //是否展开
  *                       "hasChildren":true,   //是否有子节点
- *                       "ChildNodes":[{},{}], //子节点集�?
+ *                       "ChildNodes":[{},{}], //子节点集�?
  *                       "showcheck":true,  //是否显示checkbox
  *                       "complete":false   //是否已加载子节点
  *                       } 
- * @author       Lanxiaowei
+ * @author Wujun
  * @createTime   2011-9-1 下午08:50:14
  */
 public class JsonUtils {
@@ -183,8 +183,8 @@ public class JsonUtils {
     }
     
     /**
-     * 用字符串构�?�JSON视图
-     * @param str 字符串表示的JSON表达式，�?"success:true,age:32,salary:2000.50,name:'名称'"
+     * 用字符串构�?�JSON视图
+     * @param str 字符串表示的JSON表达式，�?"success:true,age:32,salary:2000.50,name:'名称'"
      */
     public JsonUtils(String str){
         Map<String,Object> map = parseStr(str);
@@ -309,10 +309,10 @@ public class JsonUtils {
 	}
 
 	/**
-	 * 取得对象的属�?
+	 * 取得对象的属�?
 	 * 
 	 * @param obj
-	 * @return 对象属�?�表
+	 * @return 对象属�?�表
 	 */
 	public static Map<String, Object> getAttributes(Object obj) {
 		Class<?> c = obj.getClass();
@@ -326,7 +326,7 @@ public class JsonUtils {
 		}
 		Map<String, Object> attr = new HashMap<String, Object>();
 
-		// 取得�?有公共字�?
+		// 取得�?有公共字�?
 		for (Field f : c.getFields()) {
 			try {
 				Object value = f.get(obj);
@@ -335,7 +335,7 @@ public class JsonUtils {
 			}
 		}
 
-		// 取得�?有本类方�?
+		// 取得�?有本类方�?
 		for (Method m : c.getDeclaredMethods()) {
 			String mname = m.getName();
 			if (mname.equals("getClass")) {
@@ -374,7 +374,7 @@ public class JsonUtils {
 	}
 
 	/**
-	 * 将简单对象转换成JSON�?
+	 * 将简单对象转换成JSON�?
 	 * 
 	 * @param obj
 	 * @return 如果是简单对象则返回JSON，如果是复杂对象则返回null
@@ -431,7 +431,7 @@ public class JsonUtils {
 	}
 
 	/**
-	 * 删除属�?�中类型是List的属�?
+	 * 删除属�?�中类型是List的属�?
 	 * 
 	 * @param map
 	 * @return
@@ -447,7 +447,7 @@ public class JsonUtils {
 	}
 	/**
 	 * 为菜单名称添加超链接
-	 * @描述：便于为菜单添加执行动作�?
+	 * @描述：便于为菜单添加执行动作�?
 	 *       如点击后执行某个action并在target指定目标内显示执行返回的结果
 	 * @param name 菜单名称
 	 * @param url 链接地址
@@ -471,7 +471,7 @@ public class JsonUtils {
 	/** 
 	  * @Title: format 
 	  * @Description: 该方法给集合转变成的JSON串中的各个属性添加变量名 
-	  * @param @param varName 要添加的变量�?
+	  * @param @param varName 要添加的变量�?
 	  * @param @param list 要添加的集合
 	  * @param @param excepts 哪些字段不需要添加变量名
 	  * @param @return

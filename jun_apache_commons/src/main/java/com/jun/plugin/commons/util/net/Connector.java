@@ -2,7 +2,7 @@ package com.jun.plugin.commons.util.net;
 
 /**
  * 连接者对象，提供一些连接的基本信息
- * @author Luxiaolei
+ * @author Wujun
  *
  */
 public class Connector {

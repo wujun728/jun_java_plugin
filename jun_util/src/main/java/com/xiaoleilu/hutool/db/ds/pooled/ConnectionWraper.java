@@ -21,7 +21,7 @@ import java.util.concurrent.Executor;
 
 /**
  * 连接包装，用于丰富功能
- * @author Looly
+ * @author Wujun
  *
  */
 public abstract class ConnectionWraper implements Connection{

@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.db.dialect;
 
 /**
  * 方言名
- * @author Looly
+ * @author Wujun
  *
  */
 public enum DialectName {

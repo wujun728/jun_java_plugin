@@ -3,7 +3,7 @@ package com.kancy.emailplus.core.exception;
 /**
  * TemplateException
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/22 16:25
  */
 public class TemplateException extends RuntimeException {

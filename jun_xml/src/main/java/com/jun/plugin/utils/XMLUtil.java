@@ -31,7 +31,7 @@ import org.dom4j.io.XMLWriter;
 
 /**
  * xml的工具类
- * @author APPle
+ * @author Wujun
  *
  */
 public class XMLUtil {

@@ -10,7 +10,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * SQL日期转换器
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class SqlDateConverter extends AbstractConverter<Date> {

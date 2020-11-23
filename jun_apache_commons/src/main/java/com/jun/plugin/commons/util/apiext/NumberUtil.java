@@ -8,7 +8,7 @@ import com.jun.plugin.commons.util.constant.SimpleDateFormatCase;
 /**
  * @ClassName: NumberUtil
  * @Description: 计算类型的处理
- * @author 周俊辉
+ * @author Wujun
  * @date 2010-10-29 下午01:37:46
  * 
  */

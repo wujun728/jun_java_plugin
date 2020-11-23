@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 /**
  * 创建时间：2015-12-8下午9:41:18 项目名称：excel
  * 
- * @author shizhongtao
+ * @author Wujun
  * @version 1.0
  * @since JDK 1.7 文件名称：BingCell.java 类说明：
  */

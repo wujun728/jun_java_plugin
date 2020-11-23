@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * 过滤词及一些简单处理
  * 
- * @author Looly
+ * @author Wujun
  */
 public class StopChar {
 	/** 不需要处理的词，如标点符号、空格等 */

@@ -9,7 +9,7 @@ import com.jun.plugin.poi.learn.test.RedCellStyles;
 
 
 /** 
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since   2013年9月29日 下午3:05:33 
  */
 public class ExcelExportUitlsTest {

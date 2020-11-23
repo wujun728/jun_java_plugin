@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * EndpointAutoConfiguration
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/24 19:38
  */
 @ConditionalOnClass({Endpoint.class, ReadOperation.class})

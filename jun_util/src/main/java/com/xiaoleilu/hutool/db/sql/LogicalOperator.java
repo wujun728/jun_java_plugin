@@ -2,7 +2,7 @@ package com.xiaoleilu.hutool.db.sql;
 
 /**
  * 逻辑运算符
- * @author Looly
+ * @author Wujun
  *
  */
 public enum LogicalOperator{

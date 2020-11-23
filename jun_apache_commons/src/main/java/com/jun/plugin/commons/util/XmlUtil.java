@@ -22,7 +22,7 @@ import org.xml.sax.SAXException;
 
 /**
  * DOM工具类，处理XML
- * @author luxiaolei@baijob.com
+ * @author Wujun
  */
 public class XmlUtil {
 	/** 在XML中无效的字符 正则 */

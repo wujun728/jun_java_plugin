@@ -20,7 +20,7 @@ import com.xiaoleilu.hutool.util.CollectionUtil;
 
 /**
  * ANSI SQL 方言
- * @author loolly
+ * @author Wujun
  *
  */
 public class AnsiSqlDialect implements Dialect {

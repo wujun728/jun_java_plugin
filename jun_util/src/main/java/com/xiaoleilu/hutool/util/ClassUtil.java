@@ -28,7 +28,7 @@ import com.xiaoleilu.hutool.lang.Singleton;
  * 类工具类 1、扫描指定包下的所有类<br>
  * 参考 http://www.oschina.net/code/snippet_234657_22722
  * 
- * @author seaside_hi, xiaoleilu
+ * @author Wujun
  *
  */
 public class ClassUtil {

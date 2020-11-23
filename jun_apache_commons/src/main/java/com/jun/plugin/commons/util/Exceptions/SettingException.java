@@ -2,7 +2,7 @@ package com.jun.plugin.commons.util.Exceptions;
 
 /**
  * 设置异常
- * @author Luxiaolei
+ * @author Wujun
  */
 public class SettingException extends Exception{
 	private static final long serialVersionUID = -4134588858314744501L;

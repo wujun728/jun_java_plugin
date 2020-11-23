@@ -17,7 +17,7 @@ import com.xiaoleilu.hutool.exceptions.UtilException;
 /**
  * Bean工具类
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class BeanUtil {
@@ -388,7 +388,7 @@ public class BeanUtil {
 	 * 继承或匿名实例化此接口<br>
 	 * 在Bean注入过程中，Bean获得字段名，通过外部方式根据这个字段名查找相应的字段值，然后注入Bean<br>
 	 * 
-	 * @author Looly
+	 * @author Wujun
 	 *
 	 */
 	public static interface ValueProvider {
@@ -408,7 +408,7 @@ public class BeanUtil {
 	 * 2、是否忽略空值，当源对象的值为null时，true: 忽略而不注入此值，false: 注入null<br>
 	 * 3、忽略的属性列表，设置一个属性列表，不拷贝这些属性值<br>
 	 * 
-	 * @author Looly
+	 * @author Wujun
 	 */
 	public static class CopyOptions {
 		/** 限制的类或接口，必须为目标对象的实现接口或父类，用于限制拷贝的属性，例如一个类我只想复制其父类的一些属性，就可以将editable设置为父类 */

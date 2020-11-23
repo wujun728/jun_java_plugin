@@ -18,7 +18,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 /**
  * HikariCP数据源工厂类
- * @author Looly
+ * @author Wujun
  *
  */
 public class HikariDSFactory extends DSFactory {

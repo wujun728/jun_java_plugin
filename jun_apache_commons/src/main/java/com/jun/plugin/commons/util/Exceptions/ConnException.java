@@ -2,7 +2,7 @@ package com.jun.plugin.commons.util.Exceptions;
 
 /**
  * 数据库连接异常
- * @author Luxiaolei
+ * @author Wujun
  */
 public class ConnException extends Exception{
 	private static final long serialVersionUID = -5515153957859362853L;

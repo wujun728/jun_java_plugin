@@ -23,7 +23,7 @@ import com.jun.plugin.poi.test.excel.converter.enums.EnumConVerter;
 
 /**
  * 默认的全局转换类，先静态吧，容我想想
- * @author shizhongtao
+ * @author Wujun
  *
  * @date 2016-3-19
  * Description:  

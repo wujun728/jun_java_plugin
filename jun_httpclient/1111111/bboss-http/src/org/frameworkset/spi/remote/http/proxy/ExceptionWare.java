@@ -22,7 +22,7 @@ import org.apache.http.client.ResponseHandler;
  * <p></p>
  * <p>Copyright (c) 2018</p>
  * @Date 2019/6/19 17:03
- * @author biaoping.yin
+ * @author Wujun
  * @version 1.0
  */
 public interface ExceptionWare {

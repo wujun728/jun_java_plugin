@@ -15,7 +15,7 @@ import com.jun.plugin.poi.test.excel.core.impl.BingExcelEventImpl;
  * <p>
  * Company: bing<／p>
  * 
- * @author zhongtao.shi
+ * @author Wujun
  * @date 2015-12-8
  */
 /**
@@ -26,7 +26,7 @@ import com.jun.plugin.poi.test.excel.core.impl.BingExcelEventImpl;
  * <p>
  * Company: bing<／p>
  * 
- * @author zhongtao.shi
+ * @author Wujun
  * @date 2015-12-8
  */
 public class BingExcelEventBuilder implements Builder<BingExcelEvent> {

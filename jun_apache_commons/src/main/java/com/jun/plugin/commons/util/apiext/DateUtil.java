@@ -22,7 +22,7 @@ import com.jun.plugin.commons.util.exception.ProjectException;
 /**
  * @ClassName: DateUtil
  * @Description: 时间相关的常用用法
- * @author 周俊辉
+ * @author Wujun
  * @date 2010-10-29 下午01:37:06
  * 
  */

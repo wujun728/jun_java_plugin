@@ -10,7 +10,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * SQL时间转换器
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class SqlTimeConverter extends AbstractConverter<Time> {

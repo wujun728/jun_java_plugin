@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.util.ClassUtil;
 
 /**
  * 切面抽象
- * @author Looly
+ * @author Wujun
  *
  */
 public abstract class Aspect implements InvocationHandler{

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 /**
  * 默认参数处理器
  * 
- * @author 郭华
+ * @author Wujun
  *
  */
 public class ObjectsParamsHandler implements ParamsHandler {

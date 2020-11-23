@@ -11,7 +11,7 @@ import java.util.Enumeration;
 /**
  * IP地址常用类
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 public class IpUtil {
 

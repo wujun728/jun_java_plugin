@@ -19,7 +19,7 @@ import org.apache.poi.hwpf.usermodel.Range;
 
 /**
  * 实现java用poi实现对word读取和修改操作
- * @author fengcl
+ * @author Wujun
  *
  */
 public class ReadAndWriteDoc {

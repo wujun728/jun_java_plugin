@@ -16,7 +16,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 简单数据源工厂类
- * @author Looly
+ * @author Wujun
  *
  */
 public class SimpleDSFactory extends DSFactory {

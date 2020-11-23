@@ -19,7 +19,7 @@ import java.util.Objects;
  * redis轮询计数电子邮件通知触发器
  * RedisPollingCountEmailNoticeTrigger
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/23 18:11
  */
 public class RedisPollingCountEmailNoticeTrigger implements EmailNoticeTrigger{

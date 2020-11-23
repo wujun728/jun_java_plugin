@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * SimpleEmailSender
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/19 23:11
  */
 public class SimpleEmailSender extends AbstractEmailSender implements EmailSender {

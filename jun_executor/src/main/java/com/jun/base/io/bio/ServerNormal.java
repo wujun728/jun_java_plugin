@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 /**
  * BIO服务端源码
- * @author yangtao__anxpp.com
+ * @author Wujun
  * @version 1.0
  */
 public final class ServerNormal {

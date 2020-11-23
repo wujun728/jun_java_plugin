@@ -7,7 +7,7 @@ import java.util.List;
  * 数据区间对象 
  * 存放ID最小和最大值
  * 包含一个区间的完整性信息。
- * @author Luxiaolei
+ * @author Wujun
  *
  */
 public class Span {

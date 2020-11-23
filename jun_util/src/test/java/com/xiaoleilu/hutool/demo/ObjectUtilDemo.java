@@ -4,7 +4,7 @@ import com.xiaoleilu.hutool.util.ObjectUtil;
 
 /**
  * Object工具类样例
- * @author Looly
+ * @author Wujun
  *
  */
 public class ObjectUtilDemo {

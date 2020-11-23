@@ -8,7 +8,7 @@ import java.util.TreeMap;
 /**
  * 带虚拟结点的一致性Hash算法
  *
- * @author hztaoran
+ * @author Wujun
  */
 public class ConsistentHashWithVN {
     /**

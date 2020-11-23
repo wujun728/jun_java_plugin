@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * EmailplusAutoConfiguration
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 22:45
  */
 @ImportAutoConfiguration({EmailNoticeAutoConfiguration.class, EndpointAutoConfiguration.class})

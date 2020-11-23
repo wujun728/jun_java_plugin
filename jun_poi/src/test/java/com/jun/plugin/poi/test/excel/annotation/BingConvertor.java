@@ -13,7 +13,7 @@ import com.jun.plugin.poi.test.excel.converter.FieldValueConverter;
 /**
  * 创建时间：2015-12-14下午2:11:27 项目名称：excel
  * 
- * @author shizhongtao
+ * @author Wujun
  * @version 1.0
  * @since JDK 1.7 文件名称：BingConvertor.java 类说明：
  */

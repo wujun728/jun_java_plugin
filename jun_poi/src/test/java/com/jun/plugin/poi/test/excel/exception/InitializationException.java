@@ -1,7 +1,7 @@
 package com.jun.plugin.poi.test.excel.exception;
 
 /**
- * @author shizhongtao
+ * @author Wujun
  *
  */
 public class InitializationException extends RuntimeException {

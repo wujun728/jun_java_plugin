@@ -6,7 +6,7 @@ import com.xiaoleilu.hutool.db.sql.Wrapper;
 
 /**
  * Postgree方言
- * @author loolly
+ * @author Wujun
  *
  */
 public class PostgresqlDialect extends AnsiSqlDialect{

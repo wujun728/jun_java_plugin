@@ -6,7 +6,7 @@ import java.awt.Color;
 /**
  * logo背景配置
  * 
- * @author X-rapido
+ * @author Wujun
  */
 public class LogoConfig {
     public static final Color DEFAULT_BORDERCOLOR = Color.WHITE;    // logo默认边框颜色

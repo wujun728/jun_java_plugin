@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.log.LogFactory;
 
 /**
  *  Apache Commons Logging
- * @author Looly
+ * @author Wujun
  *
  */
 public class ApacheCommonsLogFactory extends LogFactory{

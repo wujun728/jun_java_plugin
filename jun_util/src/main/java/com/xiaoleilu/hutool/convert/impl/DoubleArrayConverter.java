@@ -6,7 +6,7 @@ import com.xiaoleilu.hutool.util.CollectionUtil;
 
 /**
  * double 类型数组转换器
- * @author Looly
+ * @author Wujun
  *
  */
 public class DoubleArrayConverter extends AbstractConverter<double[]>{

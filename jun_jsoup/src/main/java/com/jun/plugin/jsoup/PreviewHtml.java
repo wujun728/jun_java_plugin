@@ -24,7 +24,7 @@ public class PreviewHtml {
 	 * @param content
 	 * @param len
 	 *            字符长度
-	 * @author jimmy
+	 * @author Wujun
 	 */
 	public static String truncateHTML(String content, int len) {
 		Document dirtyDocument = Jsoup.parse(content);
@@ -44,7 +44,7 @@ public class PreviewHtml {
 	 *            过滤后的对象
 	 * @param len
 	 *            截取字符长度
-	 * @author jimmy <br />
+	 * @author Wujun
 	 *         eg.<br />
 	 * 
 	 *         Document dirtyDocument = Jsoup.parse(sb.toString());<br />
@@ -96,7 +96,7 @@ public class PreviewHtml {
 	 * 
 	 * @param sourceEl
 	 * @return
-	 * @author jimmy
+	 * @author Wujun
 	 */
 	private static Element createSafeElement(Element sourceEl) {
 		String sourceTag = sourceEl.tagName();

@@ -91,7 +91,7 @@ public class ResourceUtils {
 	
 	/**
 	 * 重载控制器，每1个小时重载一次
-	 * @author Winter Lau
+	 * @author Wujun
 	 * @date 2010-5-12 下午11:20:02
 	 */
 	private static class MyResourceBundleControl extends ResourceBundle.Control {

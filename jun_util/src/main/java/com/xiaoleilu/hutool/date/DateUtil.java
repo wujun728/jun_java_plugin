@@ -11,7 +11,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * 时间工具类
  * 
- * @author xiaoleilu
+ * @author Wujun
  */
 public class DateUtil {
 	

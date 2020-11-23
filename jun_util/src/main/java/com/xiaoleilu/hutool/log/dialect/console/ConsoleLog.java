@@ -9,7 +9,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 利用System.out.println()打印日志
- * @author Looly
+ * @author Wujun
  *
  */
 public class ConsoleLog extends AbstractLog {

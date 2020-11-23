@@ -9,7 +9,7 @@ import javax.crypto.spec.DESKeySpec;
 
 /**
  * 加解密工具类
- * @author Winter Lau
+ * @author Wujun
  */
 public class CryptUtils {
 

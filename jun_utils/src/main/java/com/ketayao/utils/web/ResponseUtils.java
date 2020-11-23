@@ -3,7 +3,7 @@ package com.ketayao.utils.web;
 import javax.servlet.http.HttpServletResponse;
 
 /** 
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since   2013年9月9日 下午3:30:27 
  */
 public class ResponseUtils {

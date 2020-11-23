@@ -13,7 +13,7 @@ import com.xiaoleilu.hutool.db.handler.RsHandler;
 /**
  * SQL执行器，全部为静态方法，执行查询或非查询的SQL语句<br>
  * 此方法为JDBC的简单封装，与数据库类型无关
- * @author loolly
+ * @author Wujun
  *
  */
 public class SqlExecutor {

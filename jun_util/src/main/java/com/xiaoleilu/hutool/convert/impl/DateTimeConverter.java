@@ -10,7 +10,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * 日期时间转换器
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class DateTimeConverter extends AbstractConverter<DateTime> {

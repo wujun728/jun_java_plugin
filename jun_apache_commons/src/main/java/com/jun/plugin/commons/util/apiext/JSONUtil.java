@@ -20,7 +20,7 @@ import com.jun.plugin.commons.util.callback.IConvertValueDate;
 /**
  * @ClassName: JSONUtil
  * @Description: JSON对象的扩展
- * @author 周俊辉
+ * @author Wujun
  * @date 2010-11-15 上午09:26:25
  * 
  */

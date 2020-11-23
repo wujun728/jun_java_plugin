@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 /**
  * LocalEmailSenderPropertiesDataSource
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/20 4:15
  */
 @Order(Integer.MIN_VALUE)

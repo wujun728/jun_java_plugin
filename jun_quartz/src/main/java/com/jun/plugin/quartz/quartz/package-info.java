@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author XinGuo
+ * @author Wujun
  *
  */
 package com.jun.plugin.quartz.quartz;

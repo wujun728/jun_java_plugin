@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * @author yinbp
+ * @author Wujun
  * @Date:2016-11-20 11:39:59
  */
 public class HttpRequestUtil {

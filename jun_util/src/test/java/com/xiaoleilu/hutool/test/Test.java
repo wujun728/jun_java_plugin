@@ -9,7 +9,7 @@ import com.xiaoleilu.hutool.util.ThreadUtil;
 /**
  * 仅用于临时测试
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class Test {

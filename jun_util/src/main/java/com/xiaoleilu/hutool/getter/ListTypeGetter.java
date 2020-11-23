@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * 列表类型的Get接口
- * @author Looly
+ * @author Wujun
  *
  */
 public interface ListTypeGetter {

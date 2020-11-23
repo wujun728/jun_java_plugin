@@ -22,7 +22,7 @@ import redis.clients.jedis.Jedis;
 /**
  * redis操作模板
  *
- * @author zhanggaofeng
+ * @author Wujun
  */
 public class ProxyRdsTemplate extends RdsTemplate {
 

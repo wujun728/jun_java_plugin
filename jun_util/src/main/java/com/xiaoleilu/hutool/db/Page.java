@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.util.PageUtil;
 
 /**
  * 分页对象
- * @author Looly
+ * @author Wujun
  *
  */
 public class Page {

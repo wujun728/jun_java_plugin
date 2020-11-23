@@ -19,7 +19,7 @@ import okhttp3.RequestBody;
 
 /**
  * 
- * @author icecooly
+ * @author Wujun
  *
  */
 public class PostRequest extends OkHttpRequest {

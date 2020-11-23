@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.date.DateUnit;
 
 /**
  * 缓存使用Demo
- * @author Looly
+ * @author Wujun
  *
  */
 public class CacheDemo {

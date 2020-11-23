@@ -2,7 +2,7 @@ package io.itit.itf.okhttp.interceptor;
 
 /**
  * 
- * @author icecooly
+ * @author Wujun
  *
  */
 public interface DownloadFileProgressListener {

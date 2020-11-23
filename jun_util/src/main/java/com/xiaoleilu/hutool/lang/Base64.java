@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * Base64工具类，提供Base64的编码和解码方案
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class Base64 {

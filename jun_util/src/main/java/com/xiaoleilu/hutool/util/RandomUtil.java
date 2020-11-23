@@ -7,7 +7,7 @@ import java.util.UUID;
 
 /**
  * 随机工具类
- * @author xiaoleilu
+ * @author Wujun
  *
  */
 public class RandomUtil {

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import com.jun.plugin.poi.demo.ExcelReadUtils;
 
 /**
- * @author <a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since 2013年9月29日 下午3:56:48
  */
 public class ExcelReadUtilsTest {

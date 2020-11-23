@@ -30,7 +30,7 @@ package com.jun.base.jdk.sort;
  
 以下给出介绍简单的排序方法：插入排序，选择排序，冒泡排序。 
 三种算法的时间复杂度都是 n 2 级的。 
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since   2014年1月23日 下午3:43:34 
  */
 public abstract class Sort {

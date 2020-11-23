@@ -26,7 +26,7 @@ import com.xiaoleilu.hutool.watch.WatchMonitor;
 
 /**
  * Properties文件读取封装类
- * @author loolly
+ * @author Wujun
  */
 public final class Props extends Properties implements BasicTypeGetter<String>, OptBasicTypeGetter<String>{
 	private static final long serialVersionUID = 1935981579709590740L;

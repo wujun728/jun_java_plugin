@@ -8,7 +8,7 @@ import com.xiaoleilu.hutool.util.ClassUtil;
 /**
  * 单例类<br>
  * 提供单例对象的统一管理，当调用get方法时，如果对象池中存在此对象，返回此对象，否则创建新对象返回
- * @author loolly
+ * @author Wujun
  *
  */
 public final class Singleton {

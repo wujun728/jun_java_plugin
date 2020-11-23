@@ -17,7 +17,7 @@ import com.xiaoleilu.hutool.db.handler.EntityHandler;
  * 此模板用于简化对指定表的操作，简化的操作如下：<br>
  * 1、在初始化时指定了表名，CRUD操作时便不需要表名<br>
  * 2、在初始化时指定了主键，某些需要主键的操作便不需要指定主键类型
- * @author Looly
+ * @author Wujun
  *
  */
 public class DaoTemplate {

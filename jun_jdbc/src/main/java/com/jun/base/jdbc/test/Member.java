@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 会员实体
- * @author gson
+ * @author Wujun
  *
  */
 public class Member {

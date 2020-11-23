@@ -13,7 +13,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 /**
  * 用于处理HTTP请求的工具类
  * 	
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
+ * @author Wujun
  * @since   2013年7月26日 下午3:27:29
  */
 public class RequestUtils {

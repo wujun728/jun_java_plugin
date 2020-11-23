@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 
 /**
  * 数据源抽象实现
- * @author Looly
+ * @author Wujun
  *
  */
 public abstract class AbstractDataSource implements DataSource, Cloneable, Closeable{

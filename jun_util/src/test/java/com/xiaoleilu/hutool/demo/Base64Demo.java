@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.lang.Console;
 
 /**
  * Base64样例
- * @author Looly
+ * @author Wujun
  *
  */
 public class Base64Demo {

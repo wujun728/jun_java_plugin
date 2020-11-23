@@ -18,7 +18,7 @@ import java.util.*;
 /**
  * AbstractEmailSender
  *
- * @author kancy
+ * @author Wujun
  * @date 2020/2/22 15:21
  */
 public abstract class AbstractEmailSender implements EmailSender {

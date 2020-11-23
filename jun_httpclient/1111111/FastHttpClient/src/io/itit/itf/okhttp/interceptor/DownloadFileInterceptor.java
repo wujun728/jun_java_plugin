@@ -14,7 +14,7 @@ import okio.Source;
 
 /**
  * 
- * @author icecooly
+ * @author Wujun
  *
  */
 public abstract class DownloadFileInterceptor implements Interceptor,DownloadFileProgressListener{

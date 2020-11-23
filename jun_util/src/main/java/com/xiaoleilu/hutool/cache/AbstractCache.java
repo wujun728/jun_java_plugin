@@ -13,7 +13,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * 		<li>实现 <code>prune</code> 策略</li>
  * </ul>
  * 
- * @author Looly,jodd
+ * @author Wujun
  *
  * @param <K> 键类型
  * @param <V> 值类型

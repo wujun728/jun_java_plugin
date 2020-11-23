@@ -11,7 +11,7 @@ import com.jun.plugin.commons.util.callback.IConvertValue;
  * @ClassName: ProjectException
  * @Description: 整个项目的异常基类，errorCode不允许修改且必需是ExceptAll所枚举的异常编码。<br>
  *               errorMessage可以修改，如果不修改且是ExceptAll枚举的desc字段。
- * @author 周俊辉
+ * @author Wujun
  * @date 2010-10-29 下午03:45:52
  */
 

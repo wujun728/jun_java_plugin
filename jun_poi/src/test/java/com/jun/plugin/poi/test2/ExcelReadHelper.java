@@ -27,7 +27,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 /**.Excel导入工具类
- * @author 赵海龙
+ * @author Wujun
  * @version 1.0
  * @since 2016年5月13日 下午2:41:07
  */
@@ -51,7 +51,7 @@ public class ExcelReadHelper {
     
     
     /**方法：获取workbook实例
-     * @author 赵海龙
+     * @author Wujun
      * @version 1.0
      * @since 2016年5月16日 下午3:20:20
      * @return

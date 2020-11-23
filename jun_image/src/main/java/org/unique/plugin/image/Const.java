@@ -3,7 +3,7 @@ package org.unique.plugin.image;
 /**
  * 常量
  * 
- * @author rex
+ * @author Wujun
  */
 public interface Const {
 

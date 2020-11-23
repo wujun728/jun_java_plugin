@@ -7,7 +7,7 @@ import com.xiaoleilu.hutool.util.BeanUtil;
 
 /**
  * BeanUtil类Demo
- * @author Looly
+ * @author Wujun
  *
  */
 public class BeanUtilDemo {

@@ -20,7 +20,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 /**
  * JSON工具类
  * 
- * @author Looly
+ * @author Wujun
  *
  */
 public class JSONUtil {

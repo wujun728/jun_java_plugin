@@ -5,7 +5,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * 字符串格式化工具
- * @author Looly
+ * @author Wujun
  *
  */
 public class StrFormatter {

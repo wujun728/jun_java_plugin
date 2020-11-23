@@ -8,7 +8,7 @@ import com.jun.plugin.commons.util.Exceptions.SettingException;
 
 /**
  * 邮件账户对象
- * @author Luxiaolei
+ * @author Wujun
  *
  */
 public class MailAccount {

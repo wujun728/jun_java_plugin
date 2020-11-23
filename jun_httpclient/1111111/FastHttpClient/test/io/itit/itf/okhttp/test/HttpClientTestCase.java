@@ -20,7 +20,7 @@ import okhttp3.Call;
 
 /**
  * 
- * @author icecooly
+ * @author Wujun
  *
  */
 public class HttpClientTestCase extends TestCase{

@@ -34,7 +34,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * <p></p>
  * <p>Copyright (c) 2018</p>
  * @Date 2019/6/17 19:08
- * @author biaoping.yin
+ * @author Wujun
  * @version 1.0
  */
 public class HttpServiceHosts {
