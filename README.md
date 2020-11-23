@@ -7,7 +7,7 @@ jun_plugin 整合Java企业级各种开发组件、开箱即用、不写重复�
 - jun_springboot：[点击查看](https://github.com/wujun728/jun_springboot) 
 - jun_springcloud：[点击查看](https://github.com/wujun728/jun_springcloud) 
 - jedp：[点击查看](https://github.com/wujun728/jedp) 
-
+1
 #### 基础篇：企业级开发组件功能列表（jun_plugin）
 - 【fastdfs-client-java】[fastdfs的源码，编辑jar，引入maven本地，maven仓库没这个jar包](https://github.com/wujun728/jun_plugin)
 - 【jun_activiti】[原生集成activity工作流，完成工作流常用操作](https://github.com/wujun728/jun_plugin)
@@ -50,22 +50,4 @@ jun_plugin 整合Java企业级各种开发组件、开箱即用、不写重复�
 
 - **JDK 1.8 +**
 - **Maven 3.5 +**
-- **IDEA 2018.2 + or  STS 4.5 +** (*注意：务必使用 IDEA 开发，同时保证安装 `lombok` 插件*)
-- **Mysql 5.7 +** (*尽量保证使用 5.7 版本以上，因为 5.7 版本加了一些新特性，同时不向下兼容。本 demo 里会尽量避免这种不兼容的地方，但还是建议尽量保证 5.7 版本以上*)
-
-#### 运行方式
-
-> 提示：如果是 fork 的朋友，同步代码的请参考：
-1. `git clone https://github.com/wujun728/jun_xxx.git`
-2. 使用 IDEA 打开 clone 下来的项目
-3. 在 IDEA 中 Maven Projects 的面板导入项目根目录下 的 `pom.xml` 文件
-4. Maven Projects 找不到的童鞋，可以勾上 IDEA 顶部工具栏的 View -> Tool Buttons ，然后 Maven Projects 的面板就会出现在 IDEA 的右侧
-5. 找到各个 Module 的 Application 类就可以运行各个 demo 了
-6. 注意：每个 demo 均有详细的 README 配套，用 demo 前记得先看看
-7. 注意：运行各个 demo 之前，有些是需要事先初始化数据库数据的
-
-#### 已办&待办列表
-1. 完善Spring集成各种组件
-1. 梳理当前的代码及功能
-
- 
+- **IDEA 2018.2 + or  STS 4.5 +** (*注意：务必使用 IDEA 开发，同时
