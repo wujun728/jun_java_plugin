@@ -15,9 +15,6 @@ import javax.servlet.http.Part;
 @MultipartConfig(fileSizeThreshold = 10000, maxFileSize = 1000000, maxRequestSize = 1000000, location="E:/logs")
 public class MultiPartServlet3 extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7306582588845300635L;
 
 	@Override

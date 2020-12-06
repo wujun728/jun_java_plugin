@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 
-@WebServlet("/UploadServlet")
+@WebServlet("/UploadServlet2")
 @MultipartConfig
 public class UploadServlet2 extends HttpServlet {
 

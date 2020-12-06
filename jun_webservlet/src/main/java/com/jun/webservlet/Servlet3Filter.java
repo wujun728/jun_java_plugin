@@ -25,7 +25,7 @@ public class Servlet3Filter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain) throws IOException, ServletException {
-        System.out.println("执行过滤操作");
+        System.out.println("执行过滤操作  doing 123 ");
         chain.doFilter(request, response);
     }
 
