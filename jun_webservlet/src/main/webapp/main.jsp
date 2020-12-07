@@ -32,7 +32,8 @@
 				attributes:{
 					url:"studentInfoManage.jsp"
 				}
-			}]
+			}
+			]
 		}];
 		
 		// 实例化树菜单
