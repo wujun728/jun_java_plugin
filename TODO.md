@@ -1,8 +1,23 @@
 补充TODO待办清单
 
 TODO PLAN：
-  mvn_template
-	模板 新增+jun_ssh+ssm+springboot+mybatis+JPA
+	mvn_template
+		模板 新增+jun_ssh+ssm+springboot+mybatis+JPA
+	jun_android\
+	jun_app\
+	jun_bigdata\
+	jun_code_generator\
+	jun_framework\
+	jun_frontend\
+	jun_linux\
+	jun_plugin\
+	jun_projejct\
+	jun_spring\
+	jun_springboot\
+	jun_springcloud\
+	jun_test\
+	jun_weixin\
+	jun_wordpress\ 
 
 	jun_plugin  需要调整
 	jun_spring  需要调整
