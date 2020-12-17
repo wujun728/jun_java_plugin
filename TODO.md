@@ -1,75 +1,26 @@
 补充TODO待办清单
 
 TODO PLAN：
-	mvn_template
-		模板 新增+jun_ssh+ssm+springboot+mybatis+JPA
-	jun_android\
-	jun_app\
-	jun_bigdata\
-	jun_code_generator\
-	jun_framework\
-	jun_frontend\
-	jun_linux\
-	jun_plugin\
-	jun_projejct\
-	jun_spring\
-	jun_springboot\
-	jun_springcloud\
-	jun_test\
-	jun_weixin\
-	jun_wordpress\ 
+	jun_code_generator  代码生成器，调整
+	mvn_template  开发模板，调整，新增项目模板；新增SSH、SSM、SpringBoot、SpringCloud、Android、APP模板,新增+jun_ssh+ssm+springboot+mybatis+JPA
+	jun_plugin  常用开发组件，调整，新增并优化项目组件
 
-	jun_plugin  需要调整
-	jun_spring  需要调整
-	mvn_template   需要调整
-	jun_code_generator   需要调整
-	jdep_boot  需要调整  合并到jun_springboota
+	jun_spring  Spring开发组件，调整，新增Spring系常用plugin
+	jun_projejct  常用项目模板及常用项目，调整，常用项目的集合，私有的
+	jun_springboot  SpringBoot开发组件，调整，SpringBoot系组件
+	jun_springcloud  SpringCloud开发组件，调整，SpringCloud系组件
 
-	jun_springboot还没整完
-	jun_projejct   未启动
-	jedp_product   未启动   合并到jun_project
-	jdep_cloud   未启动   合并到jun_springcloud
-	jun_framework  未启动
-	jun_test 未启动    干掉
-	jun_springcloud  未启动  
+	jun_framework   干掉，迁移到jun_project里面来
+	jun_frontend   前端开发组件，调整
+	jun_test   干掉，合并到其他项目
+	jun_linux   Linux开发组件，调整
 
-	jun_linux   未启动，待启动
-	jun_weixin   未启动
-	jun_bigdata   未启动
-	jun_uniapp   未启动
-
-	jun_frontend  未启动  
-
-	Vue+uniapp+Nodejs+WordPress+PHP+Android+Bigdata
-	
-	
-
-
-
-JavaEE
-  mvn_template
-  jun_plugin
-  jun_spring
-  jun_code_generator
-  jun_springboot
-  jun_springcloud  
-  jun_frontend 
-  jun_project 
-  jun_linux
-  jun_test
-  jun_bigdata
-
-产品中心
-  jedp_boot
-  jedp_cloud  
-  jedp_framework
-  jedp_product   
-
-
-移动APP
-  jun_wechat 
-  jedp_app
-
+	jun_website   网站开发，调整
+	jun_weixin    微信开发，调整
+	jun_app    APP开发，调整
+	jun_android    Android开发，调整 
+	jun_bigdata    大数据开发，调整 
+ 	Vue+uniapp+Nodejs+WordPress+PHP+Android+Bigdata
 
 分布式锁
 https://github.com/learninghard-lizhi/common-util
