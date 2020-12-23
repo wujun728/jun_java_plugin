@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">VerificationCodeDemo</string>
+    <string name="drag_login">滑动验证登录</string>
+    <string name="word_login">文字验证登录</string>
+    <string name="user_name">请输入用户名</string>
+    <string name="password">请输入密码</string>
+    <string name="network_callback_error">未知错误</string>
+</resources>

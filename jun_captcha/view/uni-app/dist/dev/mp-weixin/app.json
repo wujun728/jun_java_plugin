@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/point/point"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "行为验证码",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "滑动",
+        "iconPath": "static/slider.png",
+        "selectedIconPath": "static/slider-active.png"
+      },
+      {
+        "pagePath": "pages/point/point",
+        "text": "点选",
+        "iconPath": "static/point.png",
+        "selectedIconPath": "static/point-active.png"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

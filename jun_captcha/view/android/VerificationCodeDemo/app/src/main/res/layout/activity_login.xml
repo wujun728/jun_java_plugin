@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    tools:context=".LoginActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivIp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/logo_login" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/shape_et_bg"
+        app:hintEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietUser"
+            android:layout_width="260dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"
+            android:drawableStart="@drawable/icon_user"
+            android:drawablePadding="16dp"
+            android:hint="@string/user_name"
+            android:inputType="textNoSuggestions"
+            android:maxLength="64"
+            android:nextFocusDown="@id/tietPassword"
+            android:paddingStart="6dp"
+            android:paddingEnd="16dp"
+            android:selectAllOnFocus="true"
+            android:textSize="15sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_et_bg"
+        android:layout_marginTop="20dp"
+        app:hintEnabled="false"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietPassword"
+            android:layout_width="260dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"
+            android:drawableStart="@drawable/icon_password"
+            android:drawablePadding="16dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:maxLength="64"
+            android:paddingStart="6dp"
+            android:paddingEnd="16dp"
+            android:selectAllOnFocus="true"
+            android:textSize="15sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/bGo"
+        android:layout_width="290dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/selector_btn_bg"
+        android:gravity="center"
+        android:text="@string/drag_login"
+        android:textColor="@android:color/white"
+        android:textSize="17sp" />
+    <TextView
+        android:id="@+id/bGo_word"
+        android:layout_width="290dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_btn_bg"
+        android:gravity="center"
+        android:text="@string/word_login"
+        android:textColor="@android:color/white"
+        android:textSize="17sp" />
+
+</LinearLayout>

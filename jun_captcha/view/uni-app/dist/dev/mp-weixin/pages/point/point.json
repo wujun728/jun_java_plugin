@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "点选验证",
+  "usingComponents": {
+    "verify": "/pages/verify/verify"
+  }
+}
