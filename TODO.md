@@ -3,9 +3,10 @@
 TODO PLAN：
 	jun_code_generator  代码生成器，调整
 	mvn_template  开发模板，调整，新增项目模板；新增SSH、SSM、SpringBoot、SpringCloud、Android、APP模板,新增+jun_ssh+ssm+springboot+mybatis+JPA
+	
 	jun_plugin  常用开发组件，调整，新增并优化项目组件
-
 	jun_spring  Spring开发组件，调整，新增Spring系常用plugin
+	
 	jun_projejct  常用项目模板及常用项目，调整，常用项目的集合，私有的
 	jun_springboot  SpringBoot开发组件，调整，SpringBoot系组件
 	jun_springcloud  SpringCloud开发组件，调整，SpringCloud系组件
