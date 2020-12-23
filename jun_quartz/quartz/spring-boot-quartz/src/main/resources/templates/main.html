@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>任务管理系统</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" th:href="@{/Ionicons/css/ionicons.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/AdminLTE/css/AdminLTE.min.css}">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" th:href="@{/AdminLTE/css/skins/_all-skins.min.css}">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="main.shtml" class="logo">
+      <span class="logo-mini"><b>T</b>ask</span>
+      <span class="logo-lg"><b>任务管理</b></span>
+    </a>
+    <nav class="navbar navbar-static-top">
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- 消息提醒  -->
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning">1</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">你有一个消息提醒</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-users text-aqua"></i> 一个任务执行失败
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer"><a href="javaScript:void(0)">查看所有</a></li>
+            </ul>
+          </li>
+          <!-- 任务提醒 -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img th:src="@{/AdminLTE/img/user2-160x160.jpg}"  class="user-image" alt="User Image">
+              <span class="hidden-xs">小柒</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="user-header">
+                <img th:src="@{/AdminLTE/img/user2-160x160.jpg}"  class="img-circle" alt="User Image">
+                <p> 即使你是天才，如果你不努力，你也会被其它人超越。</p>
+              </li>
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="login.shtml" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <aside class="main-sidebar">
+    <section class="sidebar">
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img th:src="@{/AdminLTE/img/user2-160x160.jpg}"  class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>小柒</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+     
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>任务管理</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+              <li data-src="task/index.shtml"><a  href="#task/index.shtml"><i class="fa fa-circle-o"></i>任务列表</a></li>
+          </ul>
+          <ul class="treeview-menu">
+              <li data-src="task/cron.shtml"><a  href="#task/cron.shtml"><i class="fa fa-circle-o"></i>表达式生成器</a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </aside>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Dashboard
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="main.shtml"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+    <!-- 主页 -->
+    <section class="content">
+<!--      <div class="row">-->
+<!--        <div class="col-md-3 col-sm-6 col-xs-12">-->
+<!--          <div class="info-box">-->
+<!--            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>-->
+
+<!--            <div class="info-box-content">-->
+<!--              <span class="info-box-text">CPU Traffic</span>-->
+<!--              <span class="info-box-number">90<small>%</small></span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-3 col-sm-6 col-xs-12">-->
+<!--          <div class="info-box">-->
+<!--            <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>-->
+
+<!--            <div class="info-box-content">-->
+<!--              <span class="info-box-text">Likes</span>-->
+<!--              <span class="info-box-number">41,410</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="clearfix visible-sm-block"></div>-->
+<!--        <div class="col-md-3 col-sm-6 col-xs-12">-->
+<!--          <div class="info-box">-->
+<!--            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>-->
+
+<!--            <div class="info-box-content">-->
+<!--              <span class="info-box-text">Sales</span>-->
+<!--              <span class="info-box-number">760</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-3 col-sm-6 col-xs-12">-->
+<!--          <div class="info-box">-->
+<!--            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>-->
+
+<!--            <div class="info-box-content">-->
+<!--              <span class="info-box-text">New Members</span>-->
+<!--              <span class="info-box-number">2,000</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+      <iframe scrolling="yes" frameborder="0"
+					style="width: 100%; min-height: 600px; overflow: visible; background: #fff;"
+					src='' id="main" name="main"></iframe>
+    </section>
+  </div>
+
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2014-2018 <a href="https://blog.52itstyle.vip">爪哇笔记</a>.</strong> All rights
+    reserved.
+  </footer>
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <div class="tab-content">
+      <div class="tab-pane" id="control-sidebar-home-tab">
+        
+      </div>
+
+    </div>
+  </aside>
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- jQuery 3 -->
+<script th:src="@{/libs/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/layer/layer.js}" type="text/javascript"></script>
+<!-- Bootstrap 3.3.7 -->
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/AdminLTE/js/adminlte.min.js}"></script>
+<!-- AdminLTE for demo purposes -->
+<script th:src="@{/AdminLTE/js/main.js}"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

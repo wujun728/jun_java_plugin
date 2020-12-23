@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>任务首页 - 科帮网</title>
+    <meta name="author" content="小柒2012" />
+    <meta name="site" content="https://blog.52itstyle.com" />
+    <link rel="stylesheet" th:href="@{/iview/iview.css}">
+    <script th:src="@{/libs/jquery-3.2.1.min.js}" type="text/javascript"></script>
+	<script th:src="@{/libs/vue.min.js}" type="text/javascript"></script>
+	<script th:src="@{/layer/layer.js}" type="text/javascript"></script>
+	<script th:src="@{/iview/iview.min.js}" type="text/javascript"></script>
+	<script th:src="@{/common.js}" type="text/javascript"></script>
+    <style type="text/css">
+	[v-cloak] {
+			  display: none;
+			}
+	</style>
+</head>
+<body>
+<div id="app" v-cloak>
+        <div style="margin-bottom: 6px;margin: 30px">
+			<i-input v-model="content" placeholder="任务名称"  style="width: 300px"></i-input>
+			<i-button type="primary" @click="search()" icon="ios-search">搜索</i-button>
+			<i-button type="primary" @click="empty()" icon="ios-close-empty">清空</i-button>
+			<i-button type="primary" style="float: right;" @click="add()" icon="person-add">新增</i-button>
+		</div>
+		<div style="margin-bottom: 6px;margin: 30px">
+			<template> 
+				<i-table border :content="self" :columns="tableTitle" :data="JobData"></i-table>
+			 	<br>
+			 	<!-- 待实现分页功能 -->
+				<!-- <Page :current="teacher.pageNumber" :total="tableSize" :page-size="pageSize"  @on-change="changePage" @on-page-size-change="changePageSize" show-elevator show-sizer show-total></Page> --> 
+			</template>
+		</div>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+	el : '#app',
+	data : {
+		content : '',
+		pageNo : 0,
+		pageSize : 10,
+		jobName : "",
+		JobData : [],
+		tableTitle:[ {
+			key : "jobName",
+			title : "任务名称"
+		}, {
+			key : "jobGroup",
+			title : "任务分组"
+		}, {
+			key : "description",
+			title : "描述"
+		}, {
+			key : "jobClassName",
+			title : "执行类"
+		}, {
+			key : "jobMethodName",
+			title : "执行方法"
+		}, {
+			key : "cronExpression",
+			title : "执行时间"
+		}, {
+			title : '操作',
+			key : 'action',
+			width : 400,
+			align : 'left',
+			render : function(h, params) {
+				var functionList = [];
+				//执行
+				var trigger = h('Button', {
+					props : {
+						type : 'primary',
+						icon : 'arrow-swap'
+					},
+					style : {
+						marginRight : '8px'
+					},
+					on : {
+						click : function() {
+							vm.trigger(params.row.jobName,params.row.jobGroup);
+						}
+					}
+				}, '执行');
+				functionList.push(trigger);
+				//修改
+				var edit = h('Button', {
+					props : {
+						type : 'primary',
+						icon : 'edit'
+					},
+					style : {
+						marginRight : '8px'
+					},
+					on : {
+						click : function() {
+							vm.edit(params.row);
+						}
+					}
+				}, '修改');
+				functionList.push(edit);
+				//移除
+				var remove = h('Button', {
+					props : {
+						type : 'primary',
+						icon : 'close'
+					},
+					style : {
+						marginRight : '8px'
+					},
+					on : {
+						click : function() {
+							vm.remove(params.row.jobName,params.row.jobGroup);
+						}
+					}
+				}, '移除');
+				functionList.push(remove);
+				if(params.row.triggerState=="PAUSED"){
+					//恢复
+					var resume = h('Button', {
+						props : {
+							type : 'primary',
+							icon : 'ios-reload'
+						},
+						style : {
+							marginRight : '8px'
+						},
+						on : {
+							click : function() {
+								vm.resume(params.row.jobName,params.row.jobGroup);
+							}
+						}
+					}, '恢复');
+					functionList.push(resume);
+				}else{
+					//停止
+					var pause = h('Button', {
+						props : {
+							type : 'primary',
+							icon : 'ios-pause'
+						},
+						style : {
+							marginRight : '8px'
+						},
+						on : {
+							click : function() {
+								vm.pause(params.row.jobName,params.row.jobGroup);
+							}
+						}
+					}, '停止');
+					functionList.push(pause);
+				}
+				// 返回方法集合
+				return h('div', functionList);
+			}
+		}]
+		
+	},
+	methods : {
+		//搜索
+		search : function(){
+			 $.ajax({
+					url:"../job/list",
+					type:"post",
+					data:{'jobName':this.content,"pageNo":this.pageNo,'pageSize':this.pageSize},
+					success: function(result) {
+						vm.JobData = result.msg;
+					}
+			});
+		},
+		empty : function(){
+			vm.content = '';
+			this.list();
+		},
+		//任务列表(自行实现分页)
+		list : function() {
+			$.ajax({
+				url:"../job/list",
+				type:"post",
+				data:{'time':(new Date()).toString(),"pageNo":this.pageNo,'pageSize':this.pageSize},
+				success: function(result) {
+					vm.JobData = result.msg;
+				}
+			});
+		},
+		//触发任务
+		trigger : function(jobName,jobGroup){
+			$.ajax({
+				url:"../job/trigger",
+				type:"post",
+				data:{'time':(new Date()).toString(),"jobName":jobName,'jobGroup':jobGroup},
+				success: function(result) {
+					if(result.code=="0"){
+						vm.$Notice.success({
+		                    desc:  '任务执行成功'
+		                });
+					}
+				}
+			});
+		},
+		//停止任务
+		pause : function(jobName,jobGroup){
+			$.ajax({
+				url:"../job/pause",
+				type:"post",
+				data:{'time':(new Date()).toString(),"jobName":jobName,'jobGroup':jobGroup},
+				success: function(result) {
+					if(result.code=="0"){
+						vm.$Notice.success({
+		                    desc:  '停止任务成功'
+		                });
+						vm.list();
+					}
+				}
+			});
+		},
+		//恢复任务
+		resume : function(jobName,jobGroup){
+			$.ajax({
+				url:"../job/resume",
+				type:"post",
+				data:{'time':(new Date()).toString(),"jobName":jobName,'jobGroup':jobGroup},
+				success: function(result) {
+					if(result.code=="0"){
+						vm.$Notice.success({
+		                    desc:  '恢复任务成功'
+		                });
+						vm.list();
+					}
+				}
+			});
+		},
+		//新建任务(略简单)
+		add : function(){
+			dialogOpen({
+				title: '新增',
+				url: 'task/add.shtml',
+				scroll : true,
+				width: '500px',
+				height: '500px',
+				yes : function(iframeId) {
+					top.frames[iframeId].vm.acceptClick();
+				},
+			});  
+		},
+		edit : function(quartz){
+			dialogOpen({
+				title: '修改',
+				url: 'task/add.shtml',
+				scroll : true,
+				width: '500px',
+				height: '500px',
+				success : function(iframeId){
+					top.frames[iframeId].vm.formQuartz = quartz;
+				},
+				yes : function(iframeId) {
+					top.frames[iframeId].vm.acceptClick();
+				},
+			});
+		},
+		//移除任务
+		remove : function(jobName,jobGroup){
+			var that = this;
+			top.layer.confirm('确定要移除任务吗？', {
+			      btn: ['确定','取消'] //按钮
+			}, function(){
+				$.ajax({
+					url:"../job/remove",
+					type:"post",
+					data:{'time':(new Date()).toString(),"jobName":jobName,'jobGroup':jobGroup},
+					success: function(result) {
+						if(result.code=="0"){
+							top.layer.msg('任务移除成功', {icon: 1});
+							window.setTimeout(that.list(),1500); 
+						}
+					}
+				});
+			}, function(){
+			  
+			});
+		}
+	},
+	created : function() {
+		this.list();
+	}
+})
+
+</script>
+</body>
+</html>
