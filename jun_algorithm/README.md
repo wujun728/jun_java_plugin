@@ -1,4 +1,4 @@
-## jun_algorithm,常用数据结构及算法
+## jun_algorithm,常用数据结构Java实现及常用八种排序算法
 
 1. 八大排序 二分查找
 2. 实现自己的List和ArrayList
