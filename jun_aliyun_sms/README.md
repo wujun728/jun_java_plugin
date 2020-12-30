@@ -1,4 +1,4 @@
-#### jun_aliyun_sms，阿里云短信发送Demo
+#### jun_aliyun_sms，阿里云短信SDK Demo实现
 1、阿里云短信发送
 2、阿里云短信发送Demo
 3、阿里云短信发送接口
