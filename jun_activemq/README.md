@@ -1,7 +1,10 @@
 
-# jun_activemq，基于Apache ActiveMQ的JMS的Topic和即Queue实现
+# jun_activemq，基于Apache ActiveMQ的JMS的Topic和Queue+Ajax实现
 
 > 本 demo 主要是说明原生ActiveMQ的实现，，基于Apache ActiveMQ的JMS的Topic和即Queue实现
+
+## 使用说明
+> main方法直接跑就可以了
 
 ## pom.xml
 > 无特殊依赖  activemq-all-5.11.1.jar
