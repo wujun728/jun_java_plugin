@@ -4,7 +4,7 @@
 > 本 demo 主要是说明原生ActiveMQ的实现，，基于Apache ActiveMQ的JMS的Topic和即Queue实现
 
 ## pom.xml
-> 无特殊依赖
+> 无特殊依赖  activemq-all-5.11.1.jar
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
