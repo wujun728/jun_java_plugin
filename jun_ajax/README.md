@@ -1,5 +1,5 @@
 
-# jun_ajax
+# jun_ajax，基于XMLHttpRequest+Servlet的Ajax实现
 
 > 本 demo 主要是说明原生Ajax的实现，即基于XMLHttpRequest+Servlet的Ajax实现
 
