@@ -1,4 +1,4 @@
-package com.java1234.activemq;
+package com.jun.plugin.activemq;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -6,7 +6,7 @@ import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
 /**
- * ÏûÏ¢¼àÌı
+ * ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
  * @author Administrator
  *
  */
@@ -16,7 +16,7 @@ public class Listener implements MessageListener{
 	public void onMessage(Message message) {
 		// TODO Auto-generated method stub
 		try {
-			System.out.println("ÊÕµ½µÄÏûÏ¢£º"+((TextMessage)message).getText());
+			System.out.println("ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½"+((TextMessage)message).getText());
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
