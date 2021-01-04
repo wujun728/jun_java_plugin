@@ -7,7 +7,6 @@ jun_plugin 整合Java企业级各种开发组件、开箱即用、不写重复�
 #### `笔者其他项目` 功能实现&使用
 - jun_springboot：[点击查看](https://github.com/wujun728/jun_springboot) 
 - jun_springcloud：[点击查看](https://github.com/wujun728/jun_springcloud) 
-- jedp：[点击查看](https://github.com/wujun728/jedp) 
     
 #### 基础篇：企业级开发组件功能列表（jun_plugin）
 - 【fastdfs-client-java】[fastdfs的源码，编辑jar，引入maven本地，maven仓库没这个jar包](https://github.com/wujun728/jun_plugin)
