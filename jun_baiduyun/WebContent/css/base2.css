@@ -1,0 +1,177 @@
+body{
+	margin:0 auto
+}
+body,p,b,dl,dd,table,td,th,input,img,form,div,ul,li {
+	margin: 0;
+	padding: 0;
+}
+
+:focus {
+	outline: 0;
+}
+
+img,iframe {
+	border: none;
+}
+
+ol,ul,li {
+	list-style: none;
+}
+
+img,input,label {
+	vertical-align: middle;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body {
+	font: normal 12px/1.5 Arial, Tahoma, Helvetica, sans-serif;
+}
+
+a:link,a:visited {
+	text-decoration: none;
+	color: #000;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #f00;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+.center {
+	width: 990px;
+	margin: 0 auto;
+}
+
+
+.sch {
+	width: 100%;
+	height: 45px;
+	text-align: left;
+}
+
+.sch .first_td,.sch .last_td {
+	width: 3px;
+}
+
+.sch .first_td {
+	background-position: -80px 0;
+}
+
+.sch input {
+	height: 21px;
+	width: 353px;
+	line-height: 21px;
+	padding: 3px 2px 3px 7px;
+	font-size: 16px;
+	border: 1px solid #a2a2a2
+}
+
+.sch button {
+	height: 31px;
+	width: 93px;
+	padding: 0;
+}
+
+#hao_more_event {
+	display: block;
+	width: 37px;
+	height: 18px;
+	line-height: 18px;
+	padding: 0 20px 0 3px;
+	border: 1px solid #fff;
+	cursor: pointer
+}
+
+#hao_more_popup {
+	position: absolute;
+	padding: 0;
+	z-index: 100;
+	width: 62px;
+	text-align: left;
+	border-right: 2px solid #eee;
+	border-bottom: 2px solid #eee;
+	background-color: #fff;
+}
+
+#hao_more_popup a {
+	display: block;
+	padding-left: 3px;
+	zoom: 1;
+}
+
+#hao_more_popup a:hover {
+	color: #fff;
+	background: #ccc;
+	text-decoration: none;
+}
+
+#hao_more_popup li {
+	border-left: 1px solid #B0BEC7;
+	border-right: 1px solid #B0BEC7;
+	line-height: 25px;
+}
+
+#hao_more_popup li.tab_last {
+	border-bottom: 1px solid #B0BEC7;
+}
+
+#ads506 a:link,#ads506 a:visited {
+	color: #687070;
+}
+
+#hao_my_like a,#hao_my_site a {
+	color: #444;
+	margin-left: 10px;
+}
+
+#sugOut {
+	position: relative;
+	z-index: 100;
+}
+
+#sug {
+	position: absolute;
+	float: left;
+	left: 0;
+	top: 0;
+	border: 1px solid #817F82;
+	display: none;
+	-moz-user-select: none;
+}
+
+#sug tr {
+	background: #fff;
+}
+
+#sug td {
+	line-height: 22px;
+	height: 22px;
+	padding-left: 3px;
+	font: 14px verdana;
+}
+
+.mo td {
+	background-color: #36c;
+	color: #fff;
+}
+
+.ml td {
+	background-color: #fff;
+	color: #000;
+}
