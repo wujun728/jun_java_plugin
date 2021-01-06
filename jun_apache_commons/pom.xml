@@ -89,77 +89,74 @@
 			<version>3.4.2</version>
 			<scope>provided</scope>
 		</dependency>
+				
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.11</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+		<dependency>
+		    <groupId>commons-beanutils</groupId>
+		    <artifactId>commons-beanutils</artifactId>
+		    <version>1.9.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
+		<dependency>
+		    <groupId>commons-lang</groupId>
+		    <artifactId>commons-lang</artifactId>
+		    <version>2.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mvel/mvel2 -->
+		<dependency>
+		    <groupId>org.mvel</groupId>
+		    <artifactId>mvel2</artifactId>
+		    <version>2.4.10.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.tapestry/tapestry5-annotations -->
+		<dependency>
+		    <groupId>org.apache.tapestry</groupId>
+		    <artifactId>tapestry5-annotations</artifactId>
+		    <version>5.6.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>3.3.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20200518</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpclient</artifactId>
+		    <version>4.5.12</version>
+		</dependency>
+		<dependency>
+		    <groupId>net.sourceforge.jexcelapi</groupId>
+		    <artifactId>jxl</artifactId>
+		    <version>2.6.12</version>
+		</dependency>
 		
-<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-<dependency>
-    <groupId>org.apache.commons</groupId>
-    <artifactId>commons-lang3</artifactId>
-    <version>3.11</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
-<dependency>
-    <groupId>commons-beanutils</groupId>
-    <artifactId>commons-beanutils</artifactId>
-    <version>1.9.4</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
-<dependency>
-    <groupId>commons-lang</groupId>
-    <artifactId>commons-lang</artifactId>
-    <version>2.6</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.mvel/mvel2 -->
-<dependency>
-    <groupId>org.mvel</groupId>
-    <artifactId>mvel2</artifactId>
-    <version>2.4.10.Final</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.apache.tapestry/tapestry5-annotations -->
-<dependency>
-    <groupId>org.apache.tapestry</groupId>
-    <artifactId>tapestry5-annotations</artifactId>
-    <version>5.6.1</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
-<dependency>
-    <groupId>redis.clients</groupId>
-    <artifactId>jedis</artifactId>
-    <version>3.3.0</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.json/json -->
-<dependency>
-    <groupId>org.json</groupId>
-    <artifactId>json</artifactId>
-    <version>20200518</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
-<dependency>
-    <groupId>org.apache.httpcomponents</groupId>
-    <artifactId>httpclient</artifactId>
-    <version>4.5.12</version>
-</dependency>
-<dependency>
-    <groupId>net.sourceforge.jexcelapi</groupId>
-    <artifactId>jxl</artifactId>
-    <version>2.6.12</version>
-</dependency>
-
-<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-<dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi</artifactId>
-    <version>4.1.2</version>
-</dependency>
-
-<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
-<dependency>
-    <groupId>commons-fileupload</groupId>
-    <artifactId>commons-fileupload</artifactId>
-    <version>1.4</version>
-</dependency>
-
-
-
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>4.1.2</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
+		</dependency>
 
 	</dependencies>
 
