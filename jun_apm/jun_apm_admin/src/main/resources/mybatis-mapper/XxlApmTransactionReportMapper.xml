@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxl.apm.admin.dao.IXxlApmTransactionReportDao" >
+	
+	<resultMap id="xxlApmTransactionReport" type="com.xxl.apm.admin.core.model.XxlApmTransactionReport" >
+		<result column="id" property="id" />
+		<result column="appname" property="appname" />
+		<result column="addtime" property="addtime" />
+		<result column="address" property="address" />
+		<result column="hostname" property="hostname" />
+		<result column="type" property="type" />
+		<result column="name" property="name" />
+		<result column="total_count" property="total_count" />
+		<result column="fail_count" property="fail_count" />
+		<result column="time_max" property="time_max" />
+		<result column="time_avg" property="time_avg" />
+		<result column="time_tp90" property="time_tp90" />
+		<result column="time_tp95" property="time_tp95" />
+		<result column="time_tp99" property="time_tp99" />
+		<result column="time_tp999" property="time_tp999" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		t.`id`,
+		t.`appname`,
+		t.`addtime`,
+		t.`address`,
+		t.`hostname`,
+		t.`type`,
+		t.`name`,
+		t.`total_count`,
+		t.`fail_count`,
+		t.`time_max`,
+		t.`time_avg`,
+		t.`time_tp90`,
+		t.`time_tp95`,
+		t.`time_tp99`,
+		t.`time_tp999`
+	</sql>
+
+	<insert id="add" parameterType="com.xxl.apm.admin.core.model.XxlApmTransactionReport" useGeneratedKeys="true" keyProperty="id" >
+		INSERT INTO xxl_apm_transaction_report (
+			`appname`,
+			`addtime`,
+			`address`,
+			`hostname`,
+			`type`,
+			`name`,
+			`total_count`,
+			`fail_count`,
+			`time_max`,
+			`time_avg`,
+			`time_tp90`,
+			`time_tp95`,
+			`time_tp99`,
+			`time_tp999`
+		) VALUES
+		(
+			#{xxlApmTransactionReport.appname},
+			#{xxlApmTransactionReport.addtime},
+			#{xxlApmTransactionReport.address},
+			#{xxlApmTransactionReport.hostname},
+			#{xxlApmTransactionReport.type},
+			#{xxlApmTransactionReport.name},
+			#{xxlApmTransactionReport.total_count},
+			#{xxlApmTransactionReport.fail_count},
+			#{xxlApmTransactionReport.time_max},
+			#{xxlApmTransactionReport.time_avg},
+			#{xxlApmTransactionReport.time_tp90},
+			#{xxlApmTransactionReport.time_tp95},
+			#{xxlApmTransactionReport.time_tp99},
+			#{xxlApmTransactionReport.time_tp999}
+		)
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<update id="update" parameterType="com.xxl.apm.admin.core.model.XxlApmTransactionReport" >
+		update xxl_apm_transaction_report
+		set `total_count` = `total_count` + #{xxlApmTransactionReport.total_count},
+			`fail_count` = `fail_count` + #{xxlApmTransactionReport.fail_count},
+			`time_max` = #{xxlApmTransactionReport.time_max},
+			`time_avg` = #{xxlApmTransactionReport.time_avg},
+			`time_tp90` = #{xxlApmTransactionReport.time_tp90},
+			`time_tp95` = #{xxlApmTransactionReport.time_tp95},
+			`time_tp99` = #{xxlApmTransactionReport.time_tp99},
+			`time_tp999` = #{xxlApmTransactionReport.time_tp999}
+		where `appname` = #{xxlApmTransactionReport.appname}
+			AND `addtime` = #{xxlApmTransactionReport.addtime}
+			AND `address` = #{xxlApmTransactionReport.address}
+			AND `type` = #{xxlApmTransactionReport.type}
+			AND `name` = #{xxlApmTransactionReport.name}
+	</update>
+
+	<update id="addOrUpdate" parameterType="com.xxl.apm.admin.core.model.XxlApmTransactionReport" >
+		INSERT INTO xxl_apm_transaction_report (
+			`appname`,
+			`addtime`,
+			`address`,
+			`hostname`,
+			`type`,
+			`name`,
+			`total_count`,
+			`fail_count`,
+			`time_max`,
+			`time_avg`,
+			`time_tp90`,
+			`time_tp95`,
+			`time_tp99`,
+			`time_tp999`
+		) VALUES
+		(
+			#{xxlApmTransactionReport.appname},
+			#{xxlApmTransactionReport.addtime},
+			#{xxlApmTransactionReport.address},
+			#{xxlApmTransactionReport.hostname},
+			#{xxlApmTransactionReport.type},
+			#{xxlApmTransactionReport.name},
+			#{xxlApmTransactionReport.total_count},
+			#{xxlApmTransactionReport.fail_count},
+			#{xxlApmTransactionReport.time_max},
+			#{xxlApmTransactionReport.time_avg},
+			#{xxlApmTransactionReport.time_tp90},
+			#{xxlApmTransactionReport.time_tp95},
+			#{xxlApmTransactionReport.time_tp99},
+			#{xxlApmTransactionReport.time_tp999}
+		)
+		ON DUPLICATE KEY update
+			`total_count` = `total_count` + #{xxlApmTransactionReport.total_count},
+			`fail_count` = `fail_count` + #{xxlApmTransactionReport.fail_count},
+			`time_max` = #{xxlApmTransactionReport.time_max},
+			`time_avg` = #{xxlApmTransactionReport.time_avg},
+			`time_tp90` = #{xxlApmTransactionReport.time_tp90},
+			`time_tp95` = #{xxlApmTransactionReport.time_tp95},
+			`time_tp99` = #{xxlApmTransactionReport.time_tp99},
+			`time_tp999` = #{xxlApmTransactionReport.time_tp999}
+	</update>
+
+	<delete id="clean" parameterType="java.util.HashMap" >
+		DELETE FROM xxl_apm_transaction_report
+		WHERE addtime <![CDATA[ < ]]> #{timeoutTime}
+	</delete>
+
+	<select id="find" parameterType="java.util.HashMap" resultMap="xxlApmTransactionReport">
+		SELECT <include refid="Base_Column_List" />
+		FROM xxl_apm_transaction_report AS t
+		WHERE t.appname = #{appname}
+			AND t.addtime between #{addtime_from} and #{addtime_to}
+			<if test="address != null and address != ''">
+				AND t.address = #{address}
+			</if>
+			AND t.type = #{type}
+		ORDER BY t.addtime ASC
+	</select>
+
+    <select id="findTypeList" parameterType="java.util.HashMap" resultType="java.lang.String" >
+        SELECT distinct t.type
+        FROM xxl_apm_transaction_report AS t
+        WHERE t.appname = #{appname}
+          AND t.addtime between #{addtime_from} and #{addtime_to}
+        ORDER BY t.type ASC
+    </select>
+
+	<select id="findFailReport" parameterType="java.util.HashMap" resultType="com.xxl.apm.admin.core.model.XxlApmTransactionReport" >
+        select t.`appname`, t.`type` , count(fail_count) as fail_count
+        from xxl_apm_transaction_report as t
+        where t.addtime between #{addtime_from} and #{addtime_to}
+        	and fail_count <![CDATA[ > ]]> 0
+        group by `appname`, `type`
+    </select>
+
+</mapper>

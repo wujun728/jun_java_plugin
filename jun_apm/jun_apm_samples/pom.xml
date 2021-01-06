@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.jun.plugin</groupId>
+        <artifactId>jun_apm</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>jun_apm_samples</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>jun_apm_sample_frameless</module>
+        <module>jun_apm_sample_springboot</module>
+    </modules>
+
+</project>

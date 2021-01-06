@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxl.apm.admin.dao.IXxlApmHeartbeatReportDao" >
+	
+	<resultMap id="xxlApmHeartbeatReport" type="com.xxl.apm.admin.core.model.XxlApmHeartbeatReport" >
+		<result column="id" property="id" />
+		<result column="appname" property="appname" />
+		<result column="addtime" property="addtime" />
+		<result column="address" property="address" />
+		<result column="hostname" property="hostname" />
+		<result column="heartbeat_data" property="heartbeat_data" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		t.`id`,
+		t.`appname`,
+		t.`addtime`,
+		t.`address`,
+		t.`hostname`,
+		t.`heartbeat_data`
+	</sql>
+
+	<insert id="addMult" parameterType="com.xxl.apm.admin.core.model.XxlApmHeartbeatReport" useGeneratedKeys="true" keyProperty="id" >
+		INSERT INTO xxl_apm_heartbeat_report (
+			`appname`,
+			`addtime`,
+			`address`,
+			`hostname`,
+			`heartbeat_data`
+		) VALUES
+		<foreach collection ="heartbeatReportList" item="heartbeatReportItem" index= "index" separator =",">
+			(
+				#{heartbeatReportItem.appname},
+				#{heartbeatReportItem.addtime},
+				#{heartbeatReportItem.address},
+				#{heartbeatReportItem.hostname},
+				#{heartbeatReportItem.heartbeat_data}
+			)
+		</foreach >
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<delete id="clean" parameterType="java.util.HashMap" >
+		DELETE FROM xxl_apm_heartbeat_report
+		WHERE addtime <![CDATA[ < ]]> #{timeoutTime}
+	</delete>
+
+	<select id="find" parameterType="java.util.HashMap" resultMap="xxlApmHeartbeatReport">
+		SELECT <include refid="Base_Column_List" />
+		FROM xxl_apm_heartbeat_report AS t
+		WHERE t.appname = #{appname}
+			AND t.addtime between #{addtime_from} and #{addtime_to}
+            AND t.address = #{address}
+		ORDER BY t.addtime ASC
+	</select>
+
+    <select id="findAppNameList" parameterType="java.util.HashMap" resultType="java.lang.String" >
+        SELECT distinct t.appname
+        FROM xxl_apm_heartbeat_report AS t
+        WHERE t.appname like CONCAT(CONCAT('%', #{appname}), '%')
+        ORDER BY t.appname ASC
+    </select>
+
+    <select id="findAddressList" parameterType="java.util.HashMap" resultType="com.xxl.apm.admin.core.model.XxlApmHeartbeatReport" >
+        SELECT distinct t.address, t.hostname
+        FROM xxl_apm_heartbeat_report AS t
+        WHERE t.appname = #{appname}
+          AND t.addtime between #{addtime_from} and #{addtime_to}
+        ORDER BY t.address ASC
+    </select>
+
+	<select id="findAppNameCount" resultType="java.lang.Integer" >
+		SELECT COUNT(DISTINCT appname)
+		FROM xxl_apm_heartbeat_report
+	</select>
+
+	<select id="findAppNameAddressCount" resultType="java.lang.Integer" >
+		SELECT COUNT(DISTINCT address)
+		FROM xxl_apm_heartbeat_report
+	</select>
+
+	<select id="findTotalMsgCount" resultType="java.lang.Integer" >
+		select IFNULL(c1 + c2 + c3, 0)
+		from (
+			select	( select count(1) from xxl_apm_heartbeat_report) as c1,
+				( select sum(total_count) from xxl_apm_event_report) as c2,
+				( select sum(total_count) from xxl_apm_transaction_report) as c3
+		) as c
+	</select>
+
+</mapper>
