@@ -1,0 +1,79 @@
+@CHARSET "UTF-8";
+
+body {
+	margin-top: 40px;
+	text-align: center;
+	font-size: 14px;
+	font-family: 微软雅黑, sans-serif;
+}
+
+#wrap {
+	width: 1100px;
+	margin: 0 auto;
+}
+
+#external-events {
+	float: left;
+	width: 150px;
+	padding: 0 10px;
+	border: 1px solid #ccc;
+	background: #eee;
+	text-align: left;
+}
+
+#external-events h4 span {
+	font-size: 16px;
+	margin-top: 0;
+	padding-top: 1em;
+}
+
+.external-event { /* try to mimick the look of a real event */
+	margin: 10px 0;
+	padding: 2px 4px;
+	background: #3366CC;
+	color: #fff;
+	font-size: .85em;
+	cursor: pointer;
+}
+
+#calendar {
+	float: right;
+	width: 900px;
+}
+
+#loading {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	display: none;
+}
+
+#qTipContent {
+	display: none;
+}
+
+#exit {
+	width: 50px;
+	height: 20px;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	border: 2px solid #dddddd;
+	border-radius: 10px 10px 10px 10px;
+	background: #eee;
+	color: #fff;
+}
+
+.delIcon{
+	float: right;
+	margin-right: 5px;
+	text-align:center;
+	background:#ffffff;
+	width:17px;
+	border-radius:50%;
+	font-weight:bold;
+}
+#exit a:link,.delIcon a:link {color: purple; text-decoration:none;}
+#exit a:active,.delIcon a:active:{color: red; }
+#exit a:visited,.delIcon a:visited {color: purple;text-decoration:none;}
+#exit a:hover,.delIcon a:hover {color: red; text-decoration:none;}
