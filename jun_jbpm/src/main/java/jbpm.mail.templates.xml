@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jbpm-configuration>
+
+  <process-engine-context>
+
+    <mail-template name='task-notification'>
+      <to users="${task.assignee}"/>
+      <subject>${task.name}</subject>
+      <text><![CDATA[Hi ${task.assignee},
+Task "${task.name}" has been assigned to you.
+${task.description}
+
+Sent by jBPM]]></text>
+    </mail-template>
+
+    <mail-template name='task-reminder'>
+      <to users="${task.assignee}"/>
+      <subject>${task.name}</subject>
+      <text><![CDATA[Hey ${task.assignee},
+Do not forget about task "${task.name}".
+${task.description}
+
+Sent by jBPM]]></text>
+    </mail-template>
+
+    <mail-template name="rectify-template">
+      <to addresses="${addressee}" />
+      <cc users="bb" groups="innerparty" />
+      <bcc groups="thinkpol" />
+      <subject>rectify ${newspaper}</subject>
+      <text>${newspaper} ${date} ${details}</text>
+    </mail-template>
+
+  </process-engine-context>
+
+</jbpm-configuration>
