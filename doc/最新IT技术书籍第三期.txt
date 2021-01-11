@@ -1,0 +1,13 @@
+第三期最新IT书籍：
+《循序渐进学Docker》
+《小程序 巧应用-微信小程序开发实战》
+《高性能Docker》
+《分布式数据库架构及企业实践--基于Mycat中间件 》
+《Spring mybatis 企业应用实战》
+《Node.js微服务》
+《LBS核心技术揭秘》
+《Java微服务》
+《Hadoop生态系统》
+《Docker实战（In action中文版）》
+百度云  链接：http://pan.baidu.com/s/1hsn374w 密码：pcgc
+附第一二期：链接：http://pan.baidu.com/s/1kVshgaj 密码：11cw

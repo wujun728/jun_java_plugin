@@ -40,7 +40,7 @@
 		</dependency>
 	</dependencies>
 	<modules>
-		<module>dbtracer_core</module>
-		<module>dbtracer_sample</module>
+		<module>jun_dbtracer_core</module>
+		<module>jun_dbtracer_sample</module>
 	</modules>
 </project>

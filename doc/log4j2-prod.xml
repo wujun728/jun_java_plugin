@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration status="off" monitorInterval="1800">
+    <properties>
+        <property name="LOG_HOME">logs</property>
+        <property name="DEFAULT_LOG_FILE_NAME">default</property>
+        <property name="SERVER_NAME">prod</property>
+    </properties>
+    <Appenders>
+        <RollingRandomAccessFile name="syslog"
+                                 fileName="/home/ucmed/logs/syslog/default.log"
+                                 filePattern="/home/ucmed/logs/syslog/log.%d{yyyy-MM-dd}">
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd'T'HH:mm:ss.SSS} %c %p %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+       <!-- <RollingRandomAccessFile name="default-log"
+                                 fileName="${sys:user.home}/logs/smsPlat/default.log"
+                                 filePattern="${sys:user.home}/logs/smsPlat/log.%d{yyyy-MM-dd}">
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>-->
+    </Appenders>
+    <Loggers>
+        <!--<logger name="com.ucmed" level="info" includeLocation="true" additivity="false">-->
+        <!--<appender-ref ref="TestLog"/>-->
+        <!--</logger>-->
+        <root level="info" includeLocation="true" additivity="false">
+            <appender-ref ref="syslog"/>
+        </root>
+    </Loggers>
+</Configuration>

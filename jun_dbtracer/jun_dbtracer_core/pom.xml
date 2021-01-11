@@ -9,7 +9,7 @@
 		<version>1.0</version>
 	</parent>
 	<groupId>com.jun.plugin</groupId>  
-	<artifactId>dbtracer_core</artifactId>
+	<artifactId>jun_dbtracer_core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	
 	<url>http://maven.apache.org</url>
