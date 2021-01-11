@@ -1,0 +1,14 @@
+1. 在mysql test数据库运行下面的 sql
+2. 将lib加入classpath
+3. 修改ibatis配置文件中的jdbc连接信息,文件:src/Configuration.xml
+3. 运行src/Ibatis3DemoMain.java的main()方法
+
+CREATE TABLE `user_info` (
+  `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
+  `sex` tinyint(4) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+);
