@@ -1,0 +1,152 @@
+宁丽娟: ninglj@tarena.com.cn
+
+复习:
+一.CallableStatement
+String sql = "{call myproc(?,?)}";
+CallableStatement cstmt = conn.prepareCall(sql);
+cstmt.setInt(1,1);//输入参数
+--如果有输出参数,需要注册输出参数的类型.
+
+--SQL语句遵循SQL99标准,基本通用.
+select * from emp;
+insert into student(id, name)
+values(1, 'peter');
+select ename, tax(sal) tax from emp;
+
+--不同数据库的存储过程的语法差别非常大.
+
+二.sql语句的批处理.(批量处理)
+大批量执行sql语句.
+stmt.addBatch(sql);//....
+stmt.executeBatch();
+
+三.主键自增长方式在oralce中的实现方式
+mysql: auto_increment
+oracle:sequence
+create sequence myseq;//缓存:20个
+insert into mystu(id, name)
+values(myseq.nextval, 'peter');
+
+四.连接池
+连接池的原理.Tomcat.
+最大连接数>=初始连接数>=最小连接数.
+BasicDataSource ds = ...
+ds.setDriver(...);
+ds.setUrl(...);
+ds.setUsername(...);
+ds.setPassword(...);
+ds.getConnection();
+
+作业
+1.文本文件的内容,插入到数据表中.
+一行是一条记录.
+IO(readLine,split) -> insert(batch)
+2.将分组函数的计算结果插入到新表中.
+insert into t_detail(user_id, interval)
+(select user_id, 
+sum(logout_time - login_time) 
+from t_loginfo
+group by user_id);
+
+20110302
+一.可滚动的结果集
+String sql = "select * from emp";
+Connection conn = DriverManager.getConnetion(url, username, password);
+Statement stmt = conn.createStatement(
+ResultSet.TYPE_SCROLL_INSENSITIVE,
+ResultSet.CONCUR_READ_ONLY
+);
+ResultSet rs = stmt.executeQuery(sql);
+rs.first();
+rs.last();
+rs.beforeFirst();
+rs.previous();
+rs.next();
+rs.absolute(n);
+rs.relative(n);
+//结果集已耗尽 (用尽的结果集)
+
+思考:
+在线考试系统,99道题,随机抽取20道题.重复题号的问题.
+1)获得20个随机数
+2)rs.absolute(n)跳到指定的记录
+
+ Collection                 Map
+  |       |                  |
+Set       List             Hashtable
+ |       |         |         |
+HashSet ArrayList Vector   Properties
+
+二.分页技术
+m-n条记录的获取方式:[m, n)
+select id, user_id, login_time,logout_time 
+from(
+select id, user_id, login_time, logout_time, rownum rn 
+from mytemp where rownum < 20 ) 
+where rn >= 10;
+
+--mysql
+select * from mytemp
+limit 10, 10;
+
+
+分页问题的需求:
+已知条件:每页pageSize条,第n页
+求:第n页的记录. 
+每页10条.pageSize = 10;
+1: 1-10
+2: 11-20
+...
+5: 41-50
+...
+n: from: (n-1)* pageSize + 1
+   to : from + pageSize
+   [from, to)
+
+totalNumber // 总的记录数 
+totalPage //总的页数
+
+if (totalNumber % pageSize == 0)
+totalPage = totalNumber/pageSize;
+else{
+totalPage = totalNumber/pageSize+1;
+}
+
+totalPage = 
+
+if (page > totalPage)
+	page = totalPage;
+else if (page <= 0 )
+	page = 1;
+
+
+三.数据类型:大对象: Blob / Clob
+create table stu_ning(
+id number primary key,
+name varchar2(20),
+photo blob
+);
+create sequence stu_ning_seq;
+
+如果文件存放于项目的根目录下
+File f = new File("mykfc.jpg");
+如果文件存放于项目的src目录下
+File f = new File("src\\mykfc.jpg");
+如果文件存放于项目的src目录的包下
+File f = new File("src\\com\\tarena\\mykfc.jpg");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
