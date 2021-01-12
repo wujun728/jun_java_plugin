@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.jun.plugin</groupId>
-  <artifactId>jun_plugin_jbpm</artifactId>
+  <artifactId>jun_jbpm</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
