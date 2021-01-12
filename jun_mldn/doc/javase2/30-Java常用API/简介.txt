@@ -1,0 +1,9 @@
+内容：
+	本章讲解了JAVA中一些比较简单的类库：StringBuffer、包装类、Date、Calendar、Random、SimpleDateFormat、Runntime、Process
+
+产品：JDK 1.5
+
+技术：JAVA基础
+
+难度：
+	★★★☆☆

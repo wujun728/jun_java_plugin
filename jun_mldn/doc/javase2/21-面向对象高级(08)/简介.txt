@@ -1,0 +1,9 @@
+内容：
+	本章讲解了java中异常的产生与处理机制，详细讲解了try...catch...finally语句的使用和throw与throws关键字的使用。
+
+产品：JDK 1.5
+
+技术：JAVA基础
+
+难度：
+	★★★☆☆

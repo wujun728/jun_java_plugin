@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GBK"?>
+<allarea>
+	<area>
+		<id>1</id>
+		<title>北京</title>
+	</area>
+	<area>
+		<id>2</id>
+		<title>天津</title>
+	</area>
+	<area>
+		<id>3</id>
+		<title>南京</title>
+	</area>
+</allarea>

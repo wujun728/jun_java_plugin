@@ -1,0 +1,2 @@
+class Person extends Object{
+};

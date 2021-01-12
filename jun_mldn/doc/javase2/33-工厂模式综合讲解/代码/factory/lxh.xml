@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>MLDN --&gt; LXH</comment>
+<entry key="b">org.lxh.demo.Banana</entry>
+<entry key="a">org.lxh.demo.Apple</entry>
+<entry key="o">org.lxh.demo.Orange</entry>
+<entry key="c">org.lxh.demo.Cherry</entry>
+<entry key="d">org.lxh.demo.DD</entry>
+</properties>
