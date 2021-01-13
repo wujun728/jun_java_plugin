@@ -23,47 +23,7 @@ TODO PLAN：
 	jun_bigdata    大数据开发，调整 
  	Vue+uniapp+Nodejs+WordPress+PHP+Android+Bigdata
 	
-	
-jun_activemq\
-jun_ajax\
-jun_algorithm\
-jun_aliyun_sms\
-jun_apache_commons\
-jun_api\
-jun_baiduyun\
-jun_books\
-jun_bootsrtap\
-jun_cache\
-jun_calendar\
-jun_camel\
-jun_captcha\
-jun_captcha_code\
-jun_captcha_slider\
-jun_crawler\
-jun_dao\
-jun_datasource\
-jun_dbdoctool\
-jun_dbtracer\
-jun_dbutil\
-jun_demo\
-jun_designpattern\
-jun_drools\
-jun_email\
-jun_excel\
-jun_executor\
-jun_file\
-jun_file_online_preview\
-jun_fileserver\
-jun_fileupload\
-jun_freemarker\
-jun_gzip\
-jun_httpclient\
-jun_ibatis\
-jun_image\
-jun_itext\
-jun_j2cache\
-jun_javase\
-jun_jbpm\
+	 
 
 
 分布式锁
