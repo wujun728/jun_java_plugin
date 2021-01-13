@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<servers>
+	<server ip="127.0.0.1" port="60000" connetion="100" maxThreads="3" timeout="5000">
+		<services>
+			<service>
+				<property name="service" value="com.socket.demo.client.UserService"/>
+				<property name="serviceInterface" value="com.socket.demo.service.UserServiceImpl" />
+			</service>
+		</services>
+	</server>
+	
+	 
+	<server port="65535" connetion="100" maxThreads="2">
+		<services>
+			<service>
+				<property name="service" value="com.socket.demo.client.PersionService"/>
+				<property name="serviceInterface" value="com.socket.demo.service.PersionServiceImpl" />
+			</service>
+		</services>
+	</server>
+	
+</servers>

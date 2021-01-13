@@ -1,0 +1,40 @@
+<rules>
+	<rule>
+		<namespace>Order</namespace>
+		<!-- 
+			   表达式如果不使用自定义路由规则函数,而是直接使用   taobaoId%2==0这种的话就不用在文件
+			   中配置<property name="functionsMap">中了
+		-->
+		<shardingExpression>hash.applyOrder(userId) == 1</shardingExpression>
+		<shards>partition1</shards>
+	</rule>
+	<rule>
+		<namespace>Order</namespace>
+		<shardingExpression>hash.applyOrder(userId) == 2</shardingExpression>
+		<shards>partition2</shards>
+	</rule>
+	<rule>
+		<namespace>Order</namespace>
+		<shardingExpression>hash.applyOrder(userId) == 3</shardingExpression>
+		<shards>partition3</shards>
+	</rule>
+	<rule>
+		<namespace>User</namespace>
+		<!-- 
+			   表达式如果不使用自定义路由规则函数,而是直接使用   taobaoId%2==0这种的话就不用在文件
+			   中配置<property name="functionsMap">中了
+		-->
+		<shardingExpression>hash.applyUser(username) == 1</shardingExpression>
+		<shards>partition1</shards>
+	</rule>
+	<rule>
+		<namespace>User</namespace>
+		<shardingExpression>hash.applyUser(username) == 2</shardingExpression>
+		<shards>partition2</shards>
+	</rule>
+	<rule>
+		<namespace>User</namespace>
+		<shardingExpression>hash.applyUser(username) == 3</shardingExpression>
+		<shards>partition3</shards>
+	</rule>
+</rules>

@@ -1,0 +1,64 @@
+
+import java.util.Date;
+import java.text.DateFormat; 
+
+/**
+ * 格式化时间类
+ * DateFormat.FULL = 0
+ * DateFormat.DEFAULT = 2
+ * DateFormat.LONG = 1
+ * DateFormat.MEDIUM = 2
+ * DateFormat.SHORT = 3
+ * @author    曲金龙 qujl@neusoft.com    
+ * @version   1.0， 2005/04/16 
+ */ 
+
+public class FormatDate{
+    public static void main(String []args){
+        Date d = new Date();
+        String s;
+          
+        /** Date类的格式: Sat Apr 16 13:17:29 CST 2005 */
+        System.out.println(d);
+          
+        System.out.println("******************************************");   
+        
+        /** getDateInstance() */ 
+        /** 输出格式: 2005-4-16 */
+        s = DateFormat.getDateInstance().format(d);
+        System.out.println(s);
+        
+        /** 输出格式: 2005-4-16 */
+        s = DateFormat.getDateInstance(DateFormat.DEFAULT).format(d);
+        System.out.println(s);
+        
+        /** 输出格式: 2005年4月16日 星期六 */
+        s = DateFormat.getDateInstance(DateFormat.FULL).format(d);
+        System.out.println(s);
+        
+        /** 输出格式: 2005-4-16 */
+        s = DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+        System.out.println(s);
+        
+        /** 输出格式: 05-4-16 */
+        s = DateFormat.getDateInstance(DateFormat.SHORT).format(d);
+        System.out.println(s);
+        
+        System.out.println("******************************************"); 
+    }
+}        
+
+
+/*******************************************************************/
+
+String 类型转 Date 类型：
+========================
+String input = "2003-10-10 15:23:12"; 
+java.text.DateFormat format = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
+java.util.Date date = format.parse(input); 
+
+Date 类型格式化为 String 类型：
+==============================
+java.text.DateFormat format = new java.text.SimpleDateFormat("yyyyMMdd"); 
+java.util.Date date = new java.util.Date(); 
+String strDate = format.format(date);

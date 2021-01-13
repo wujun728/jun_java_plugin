@@ -1,0 +1,56 @@
+<Configuration status="TRACE">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+        </Console>
+        <!-- 按天第天备份一个日志 -->
+        <RollingFile name="saveFile" fileName="${sys:catalina.home}/logs/beanspark/auge.log"
+                     filePattern="${sys:catalina.home}/logs/beanspark/auge_%d{yyyy-MM-dd}_%i.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+            <Policies>
+                <!-- 每天更新一次 每个文件最大活跃大小 512MB 最多备份20个文件 -->
+                <TimeBasedTriggeringPolicy modulate="true" interval="1" />
+                <SizeBasedTriggeringPolicy size="512MB" />
+            </Policies>
+            <!-- 最多备份20个 -->
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>
+        <!-- 按天第天备份一个日志 -->
+        <RollingFile name="XdyjError" fileName="${sys:catalina.home}/logs/beanspark/auge_error.log"
+                     filePattern="${sys:catalina.home}/logs/beanspark/auge_error_%d{yyyy-MM-dd}_%i.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+            <Policies>
+                <!-- 每天更新一次 每个文件最大活跃大小 128MB 最多备份20个文件 -->
+                <TimeBasedTriggeringPolicy modulate="true" interval="1" />
+                <SizeBasedTriggeringPolicy size="128MB" />
+            </Policies>
+            <!-- 最多备份20个 -->
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>
+        <!--写入数据库配置，在Logger中设置日志级别为error-->
+        <JDBC name="databaseAppender" tableName="error_log">
+            <ConnectionFactory class="com.xia.utils.ConnectionFactory" method="getDatabaseConnection" />
+            <Column name="class" pattern="%c" />
+            <Column name="method" pattern="%M" />
+            <Column name="log_level" pattern="%p" />
+            <Column name="msg" pattern="%msg"/>
+            <Column name="create_time" pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}"/>
+        </JDBC>
+    </Appenders>
+
+    <Loggers>
+        <logger name="com.xia.Test" level="trace" additivity="false">
+            <appender-ref ref="XdyjError" level="error"/>
+            <appender-ref ref="saveFile" level="info"/>
+            <appender-ref ref="Console" level="debug"/>
+            <!--配置数据库的存放-->
+            <appender-ref ref="databaseAppender" level="all"/>
+        </logger>
+        <Root level="error">
+            <!-- Only events at DIAG level or more specific are sent to the console. -->
+            <appenderRef ref="XdyjError"/>
+            <appenderRef ref="saveFile"/>
+            <appender-ref ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
