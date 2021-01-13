@@ -1,0 +1,7 @@
+https://www.ibm.com/developerworks/cn/java/j-lo-spring-principle/Spring 框架的设计理念与设计模式分析
+http://jinnianshilongnian.iteye.com/blog/1413846   IOC
+https://www.cnblogs.com/xdp-gacl/p/3498271.html   maven安装
+https://blog.csdn.net/u010089444/article/details/52853187   eclipse安装maven失败解决方式
+https://www.cnblogs.com/ChenLLang/p/5307590.html          mybatis如何根据mapper接口生成mapper的代理类
+https://blog.csdn.net/liming363873117/article/details/60467107       mybatis核心组件及其作用
+http://www.cnblogs.com/xiaoluo501395377/p/3383130.html        动态代理

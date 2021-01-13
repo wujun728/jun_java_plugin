@@ -1,0 +1,29 @@
+############基本任务properties属性配置############
+
+#构建者信息
+build.author.name=baishui2004
+build.author.email=bs2004@163.com
+
+#项目信息
+project.name=
+project.version=1.0
+project.compile.source=
+project.compile.target=
+#编译打包包括的源文件
+project.includes.java.sources=**/*
+#打包排除的源文件
+project.excludes.java.sources=**/package-info.java
+
+#properties 项目结构
+#Java源码目录
+dir.src=
+#类包目录
+dir.lib=
+#产出物目录(Jar, War, Java Doc, 测试报告等等)
+dir.dest=dest
+#编译好的字节码目录
+dir.classes=${dir.dest}/classes
+
+#Web项目属性配置
+#Web资源目录
+dir.web=

@@ -1,0 +1,5 @@
+
+#CheckStyle任务需要下载完整包而不是使用Eclipse下的CheckStyle插件
+checkstyle.home=C:/Java/Lib/checkstyle
+checkstyle.all.jar=${checkstyle.home}/checkstyle-5.5-all.jar
+checkstyle.convert.xsl=${checkstyle.home}/contrib/checkstyle-noframes.xsl

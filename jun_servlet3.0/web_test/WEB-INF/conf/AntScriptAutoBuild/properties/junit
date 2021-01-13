@@ -1,0 +1,9 @@
+
+############JUnit单元测试属性配置############
+junit.jar=C:/Java/Eclipse/plugins/org.junit_4.8.2.v4_8_2_v20110321-1705/junit.jar
+hamcrest.jar=C:/Java/Eclipse/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar
+
+dir.junit.src=junit
+dir.junit.classes=${dir.dest}/junit/classes
+dir.junit.reports=${dir.dest}/junit/reports
+dir.junit.reports.testcases=${dir.junit.reports}/testcases

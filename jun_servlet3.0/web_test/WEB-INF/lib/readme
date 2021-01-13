@@ -1,0 +1,29 @@
+Jar类包使用说明：
+
+1, commons-codec-1.5.jar           类bs.util.common.ExCodec.java
+                                                                                             插件Character Converter类bs.util.tool.commongui.plugins.CharacterConverter.java
+                                                                                             插件Encrypt And Decrypt类bs.util.tool.commongui.plugins.EncryptAndDecrypt.java
+
+2, jodconverter/*.jar              插件JODConverter Visual类bs.util.tool.commongui.plugins.more.JODConverterVisual.java
+                                                                                             类包来源：http://www.artofsolving.com/opensource/jodconverter/
+
+3, jnotify-0.94_improve-1.0.jar    插件JNotify Visual类bs.util.tool.commongui.plugins.more.JNotifyVisual.java
+                                                                                             类包来源：http://code.google.com/p/improve-lgpl-jars/
+
+4, juniversalchardet-1.0.3.jar     插件JUniversal Chardet类bs.util.tool.commongui.plugins.more.JUniversalChardet.java
+                                                                                             类包来源：https://code.google.com/p/juniversalchardet/
+
+5, ZHConverter.jar                 插件ZHConverter Visual类bs.util.tool.commongui.plugins.more.ZHConverterVisual.java
+                                                                                             类包来源：https://code.google.com/p/java-zhconverter/
+
+6, commons-httpclient-3.1.jar      插件Short URL类bs.util.tool.commongui.plugins.network.ShortURL.java
+                                                                                             类包来源：http://hc.apache.org/
+
+7, commons-logging-1.1.1.jar       插件Short URL类bs.util.tool.commongui.plugins.network.ShortURL.java
+                                                                                             类包来源：http://commons.apache.org/proper/commons-logging/
+
+8, commons-lang-2.6.jar            插件Escape Character Tool类bs.util.tool.commongui.plugins.more.EscapeCharacterTool.java
+                                                                                             类包来源：http://commons.apache.org/proper/commons-lang/index.html
+
+9, fastjson-1.0.6.jar              插件Postman Client类bs.util.tool.commongui.plugins.more.PostmanClient.java
+                                                                                             类包来源：http://repo1.maven.org/maven2/com/alibaba/fastjson/

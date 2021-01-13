@@ -1,0 +1,127 @@
+[{
+	"id":1,
+	"text":"Channels",
+	"iconCls":"icon-channels",
+	"children":[{
+		"id":11,
+		"text":"Business",
+		"iconCls":"icon-feed",
+		"children":[
+		{
+			"id":110,
+			"text":"sina",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://rss.sina.com.cn/ent/hot_roll.xml"}
+		},
+		{
+			"id":110,
+			"text":"cnBeta",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://rss.cnbeta.com/rss"}
+		},
+		{
+			"id":111,
+			"text":"BBC News",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://news.bbc.co.uk/rss/newsonline_world_edition/business/rss091.xml"}
+		},
+		
+		
+		{
+			"id":112,
+			"text":"Boston Globe",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://syndication.boston.com/news/globe/business?mode=rss_10"}
+		},{
+			"id":113,
+			"text":"Google business",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://googlenews.74d.com/rss/google_business.rss"}
+		},{
+			"id":114,
+			"text":"Yahoo! business",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://rss.news.yahoo.com/rss/business"}
+		},{
+			"id":115,
+			"text":"New York Times",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://partners.userland.com/nytRss/business.xml"}
+		},{
+			"id":116,
+			"text":"The Motley Fool",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://www.fool.com/xml/foolnews_rss091.xml"}
+		}]
+	},{
+		"id":12,
+		"text":"Education",
+		"iconCls":"icon-feed",
+		"children":[{
+			"id":121,
+			"text":"New York Times",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://partners.userland.com/nytRss/education.xml"}
+		},{
+			"id":122,
+			"text":"The Washington Post",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://www.washingtonpost.com/wp-srv/education/rssheadlines.xml"}
+		}]
+	},{
+		"id":13,
+		"text":"Food",
+		"iconCls":"icon-feed",
+		"children":[{
+			"id":131,
+			"text":"Allrecipes dinner recipes",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://rss.allrecipes.com/2/3.xml"}
+		},{
+			"id":132,
+			"text":"Allrecipes healthy recipes",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://rss.allrecipes.com/2/7.xml"}
+		},{
+			"id":133,
+			"text":"Allrecipes entertaining recipes",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://rss.allrecipes.com/2/6.xml"}
+		},{
+			"id":134,
+			"text":"Allrecipes baking recipes",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://rss.allrecipes.com/2/1.xml"}
+		}]
+	},{
+		"id":14,
+		"text":"Science",
+		"iconCls":"icon-feed",
+		"children":[{
+			"id":141,
+			"text":"BBC science",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://news.bbc.co.uk/rss/newsonline_world_edition/science/nature/rss091.xml"}
+		},{
+			"id":142,
+			"text":"NASA Earth Observatory",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://earthobservatory.nasa.gov/eo.rss"}
+		},{
+			"id":143,
+			"text":"NASA Science",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://science.nasa.gov/rss.xml"}
+		},{
+			"id":144,
+			"text":"National Geographic Society",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://news.nationalgeographic.com/index.rss"}
+		},{
+			"id":145,
+			"text":"RedNova space",
+			"iconCls":"icon-rss",
+			"attributes":{"url":"http://www.rednova.com/newsarchive/rss_space.php"}
+		}]
+	}]
+}]

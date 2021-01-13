@@ -1,0 +1,12 @@
+[{
+	"text":"根节点" ,
+	"iconCls":"icon-ok" ,
+	"state":"closed" ,
+	"children":[{
+		"id":"01",
+		"text":"Java"
+	},{
+		"id":"02",
+		"text":"C#"
+	}]
+}]

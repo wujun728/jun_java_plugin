@@ -1,0 +1,12 @@
+
+#YUICompressor
+yuicompressor.jar=C:/Java/Lib/yuicompressor/build/yuicompressor-2.4.7.jar
+#${dir.web}下需要压缩的js
+dir.webapp.compress.js=${dir.web}/js
+#${dir.web}下需要压缩的css
+dir.webapp.compress.css=${dir.web}/css
+dir.yuicompressor.compress=${dir.dest}/yuicompressor
+#压缩后的js存储目录
+dir.yuicompressor.compress.js=${dir.yuicompressor.compress}/js
+#压缩后的css存储目录
+dir.yuicompressor.compress.css=${dir.yuicompressor.compress}/css

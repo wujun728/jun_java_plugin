@@ -1,0 +1,22 @@
+#backUpA {
+	font-size: 12px
+}
+
+#backUpA:link {
+	color: blue;
+	text-decoration: none;
+}
+
+#backUpA:active: {
+	color: red;
+}
+
+#backUpA:visited {
+	color: purple;
+	text-decoration: none;
+}
+
+#backUpA:hover {
+	color: red;
+	text-decoration: underline;
+}
