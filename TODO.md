@@ -23,7 +23,12 @@ TODO PLAN：
 	jun_bigdata    大数据开发，调整 
  	Vue+uniapp+Nodejs+WordPress+PHP+Android+Bigdata
 	
-	 
+git checkout --orphan latest_branch2
+git add -A
+git commit -am "commit message"
+git branch -D master
+git branch -m master
+git push -f origin master 
 
 
 分布式锁
