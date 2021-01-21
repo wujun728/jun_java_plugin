@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+  	<groupId>com.jun.user</groupId>
+    <artifactId>maven_spring4_parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>	
+  
+  <artifactId>maven_spring4_service</artifactId>
+  <packaging>jar</packaging>
+
+ 
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies> 
+    <dependency>
+    	<groupId>com.jun.user</groupId>
+    	<artifactId>maven_spring4_dao</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    
+  
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-core</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-beans</artifactId>
+  	</dependency>
+  	<dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-tx</artifactId>
+        </dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-context</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-context-support</artifactId>
+  	</dependency>
+  	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+	</dependency>
+  	
+  	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aop</artifactId>
+	</dependency>
+	
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aspects</artifactId>
+	</dependency>
+
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+	</dependency>
+  
+	  <dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+	</dependency>
+  
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
+</project>

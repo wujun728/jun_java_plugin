@@ -1,0 +1,156 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.jun.user</groupId>
+  <artifactId>maven_spring4_parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+   <!-- 子模块定义 -->
+   <modules>
+       <module>maven_spring4_common</module>
+       <module>maven_spring4_dao</module>
+       <module>maven_spring4_service</module>
+       <module>maven_spring4_web</module>
+   </modules>
+  
+  
+  <properties>
+  	<spring.version>4.1.7.RELEASE</spring.version>
+  	<junit.version>4.12</junit.version>
+  	<log4j.version>1.2.17</log4j.version>
+  </properties>
+  
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.3.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.36</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+	  
+	    <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>${junit.version}</version>
+	      <scope>test</scope>
+	    </dependency>
+	    
+	    <dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-core</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-beans</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-tx</artifactId>
+         <version>${spring.version}</version>
+        </dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-context</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-context-support</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+  	
+  	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aop</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aspects</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>4.1.7.RELEASE</version>
+	</dependency>
+  
+	  <dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+		<version>1.2.3</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.1.0</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>javax.servlet.jsp</groupId>
+		<artifactId>javax.servlet.jsp-api</artifactId>
+		<version>2.3.1</version>
+	</dependency>
+	
+	<!-- 添加jtl支持 -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+	</dependency>
+  	</dependencies>
+  </dependencyManagement>
+  
+  
+    <build>        
+    	<finalName>spring4_web</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <!-- 内置Tomcat插件端口，只适合开发环境，不适合产品环境 -->
+                    <port>8080</port>   
+                    <path>/spring4_web</path>                 
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>

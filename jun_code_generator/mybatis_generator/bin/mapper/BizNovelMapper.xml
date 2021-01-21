@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.BizNovelMapper">
+  <resultMap id="BaseResultMap" type="pojo.BizNovel">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="uptime" jdbcType="VARCHAR" property="uptime" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="pojo.BizNovel">
+    <result column="content_detail" jdbcType="LONGVARCHAR" property="content_detail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, url, title, content, uptime, createtime
+  </sql>
+  <sql id="Blob_Column_List">
+    content_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from biz_novel
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from biz_novel
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pojo.BizNovel">
+    insert into biz_novel (id, type, url, 
+      title, content, uptime, 
+      createtime, content_detail)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{uptime,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{content_detail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.BizNovel">
+    insert into biz_novel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="uptime != null">
+        uptime,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="content_detail != null">
+        content_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="uptime != null">
+        #{uptime,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content_detail != null">
+        #{content_detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.BizNovel">
+    update biz_novel
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="uptime != null">
+        uptime = #{uptime,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content_detail != null">
+        content_detail = #{content_detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="pojo.BizNovel">
+    update biz_novel
+    set type = #{type,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      uptime = #{uptime,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      content_detail = #{content_detail,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.BizNovel">
+    update biz_novel
+    set type = #{type,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      uptime = #{uptime,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

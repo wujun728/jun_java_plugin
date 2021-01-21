@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+  	<groupId>com.jun.user</groupId>
+    <artifactId>maven_spring4_parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>	
+  
+  <artifactId>maven_spring4_web</artifactId>
+  <packaging>war</packaging>
+  
+  <dependencies>
+   
+  	<dependency>
+  		<groupId>com.jun.user</groupId>
+  		<artifactId>maven_spring4_service</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  
+  
+  	<!-- 添加Servlet支持 -->
+  	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<scope>provided</scope>
+	</dependency>
+	
+	<dependency>
+		<groupId>javax.servlet.jsp</groupId>
+		<artifactId>javax.servlet.jsp-api</artifactId>
+		<scope>provided</scope>
+	</dependency>
+	
+	<!-- 添加jtl支持 -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+	</dependency>
+	
+  
+  	<!-- 添加Spring支持 -->
+	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-core</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-beans</artifactId>
+  	</dependency>
+  	<dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-tx</artifactId>
+        </dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-context</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-context-support</artifactId>
+  	</dependency>
+  	
+  	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+	</dependency>
+  
+  
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+  
+    <build>        
+    	<finalName>spring4_web</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <!-- 内置Tomcat插件端口，只适合开发环境，不适合产品环境 -->
+                    <port>8080</port>   
+                    <path>/spring4_web</path>                 
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+            </plugin>
+        </plugins>
+    </build>
+   
+</project>

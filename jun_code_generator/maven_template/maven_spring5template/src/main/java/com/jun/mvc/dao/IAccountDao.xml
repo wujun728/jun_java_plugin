@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jun.mvc.dao.IAccountDao">
+
+    <!-- 持久化 -->
+    <insert id="save" parameterType="account">
+        insert into tbl_account(balance,create_date,type,status,pin_code,user_id)
+        values(#{balance}, #{createDate}, #{type}, #{status}, #{pinCode}, #{user.id})
+    </insert>
+
+    <select id="findById" parameterType="int" resultType="account">
+        select
+        a.id id,
+        a.balance balance,
+        a.create_date createDate,
+        a.type type,
+        a.status status,
+        a.pin_code pinCode
+        from tbl_account a
+        where a.id = #{value}
+    </select>
+
+    <select id="findAll" resultType="account">
+      select
+        a.id id,
+        a.balance balance,
+        a.create_date createDate,
+        a.type type,
+        a.status status,
+        a.pin_code pinCode
+        from tbl_account a
+    </select>
+
+    <select id="queryUserAccounts" parameterType="int" resultType="account">
+        select
+        a.id id,
+        a.balance balance,
+        a.create_date createDate,
+        a.type type,
+        a.status status,
+        a.pin_code pinCode
+        from tbl_account a join tbl_user u on a.user_id = u.id
+        where u.id = #{value }
+    </select>
+
+    <update id="update" parameterType="account">
+        update tbl_account a
+        <set>
+            <if test="balance != null">
+                a.balance = #{balance},
+            </if>
+            <if test="type != null">
+                a.type = #{type},
+            </if>
+            <if test="status != null">
+                a.status = #{status},
+            </if>
+            <if test="createDate != null">
+                a.create_date = #{createDate},
+            </if>
+            <if test="pinCode != null">
+                a.pin_code = #{pinCode}
+            </if>
+        </set>
+        where a.id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from tbl_account where id = #{value}
+    </delete>
+
+</mapper>
