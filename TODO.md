@@ -22,6 +22,26 @@ TODO PLAN：
 	jun_android    Android开发，调整 
 	jun_bigdata    大数据开发，调整 
  	Vue+uniapp+Nodejs+WordPress+PHP+Android+Bigdata
+ 	
+
+TODO PLAN：
+jun_spring  Spring开发组件，调整，新增Spring系常用plugin
+jun_projejct  常用项目模板及常用项目，调整，常用项目的集合，私有的
+jun_springboot  SpringBoot开发组件，调整，SpringBoot系组件
+jun_springcloud  SpringCloud开发组件，调整，SpringCloud系组件
+jun_framework   干掉，迁移到jun_project里面来
+jun_frontend   前端开发组件，调整
+jun_test   干掉，合并到其他项目
+jun_linux   Linux开发组件，调整
+jun_website   网站开发，调整
+jun_weixin    微信开发，调整
+jun_app    APP开发，调整
+jun_android    Android开发，调整 
+jun_bigdata    大数据开发，调整 
+Vue+uniapp+Nodejs+WordPress+PHP+Android+Bigdata
+
+
+来自 <https://github.com/wujun728/jun_plugin/blob/master/TODO.md> 
 	
 git checkout --orphan latest_branch2
 git add -A
@@ -339,29 +359,7 @@ https://github.com/hnzzmsf/jquery.runCode.js
 
 mybatis+spring+springmvc+vue+easyui实现
 来自 <https://github.com/Ftine/Ajie-Forever-God_snack> 
-
-
-
-jun_code_generator\      干掉， repid原生，转maven，整理模板到jun_rapid_generator
-jun_code_generator_zlinks\    挪走，zlinks-sample抽出结果集，放到jun_freemarker里面
-jun_code_template\   挪走，调整下，挪走到jun_freemarker
-jun_codegenerator\     干掉，模板跟代码没分离，剥离 DatabaseReader
-jun_codgen\       干掉，暂时不用
-jun_easy_cg\       干掉，基于mybatisplus的
-jun_fieldmeta\     挪走，合并到mis
-jun_form_generator\     调整  vue前端form表单构建
-jun_freemarker\              调整， shiro-freemarker-tags   干掉,ssm_freemarker -->spring_freemarker,其他doc
-jun_generator\      暂定，不动，先跑起来
-jun_mybatis_generator_gui\     干掉
-jun_mybatis_plus_code_generator\    调整、保留，新增模板
-jun_rapid_generator\  重命名 jun_generator
-jun_rapid_generator_3.9.2\  干掉，模板挪走到jun_rapid_generator
-jun_roncoo_mybatis_generator\     干掉
-jun_spring_cloud_codegen\    干掉
-jun_springbootcodegenerator\    调整
-	https://www.bejson.com/
-jun_springmvc\     合并到mybatisplus
-
+ 
 
 https://github.com/cncounter/cncounter
 
@@ -377,253 +375,6 @@ https://blog.csdn.net/yuanzhenwei521/article/details/79194275
 https://github.com/justjavac/awesome-wechat-weapp
 
 来自 <https://www.runoob.com/w3cnote/wx-xcx-repo.html> 
-
-
-
-
-mybatisplus-spring-boot    干掉
-redis-project    干掉，合并到springboot_redis
-springboot     *****
-springboot_2.0_learning   干掉
-springboot_2.0_oauth2   挪走到 springboot_oauth2
-springboot_223.0_learning  干掉
-springboot_activiti   调整
-springboot_activiti2   干掉
-springboot_actuator 
-springboot_admin 
-springboot_admin 2   挪走，到springcloud
-springboot_admin 3   挪走到jedp_boot
-springboot_adminui   干掉
-springboot_all   合并到springboot
-springboot_api_boot2      合并到springboot
-springboot_api_project   干掉
-springboot_api_project_seed   干掉
-springboot_api_project23   干掉
-springboot_async   调整
-springboot_batch  调整
-springboot_bboot    干掉
-springboot_blogtemplatewithbootstrap   挪走到jun_frontend
-springboot_bootshiro    调整
-springboot_bootstrapcomment      挪走到jun_frontend
-springboot_bootutil   调整  springboot_util 
-springboot_bucket  调整
-springboot_bucket23   干掉
-springboot_cache    调整，新增
-springboot_cache_ehcache   调整
-springboot_cache_redis    调整
-springboot_camel   干掉
-springboot_cloud   放到springcloud里面
-springboot_cloud 2   干掉
-springboot_codegen   调整
-springboot_codegenerator   调整
-springboot_codegenerator555   干掉
-springboot_common_boot_email   调整
-springboot_cronboot   干掉，挪走到springboot_quartz
-springboot_crud_demo   调整，去掉
-springboot_data_jpa   调整
-springboot_data_mybatis   调整
-springboot_demo   不动
-springboot_demo 4   挪走到demo里面
-springboot_demo_starter   干掉
-springboot_demo2  合并到demo里面
-springboot_demo2 2   合并到demo里面
-springboot_demo11   挪走到demo里面
-springboot_demo21  干掉
-springboot_demo22  干掉
-springboot_demo23  干掉
-springboot_demo223  干掉
-springboot_diboot_v2   干掉
-springboot_distributed_seckill       调整
-springboot_docker   调整
-springboot_drools_springboot     调整到springboot_drools
-springboot_drools7_demo  合并到springboot_drools
-springboot_dubbo  调整
-springboot_dubbo_consumer   干掉
-springboot_dubbo_consumer23  干掉
-springboot_dubbo_provider  干掉
-springboot_dubbo_provider23  干掉
-springboot_dubbox  调整
-springboot_dubbox_web   干掉
-springboot_dynamic_datasource  调整
-springboot_dynamic_datasource_spring_boot_starter   干掉、合并
-springboot_dynamic_datasource_spring_boot_starter2  干掉、删掉
-springboot_dynamicds_spring_boot   干掉、合并
-springboot_elastic_job   调整下
-springboot_elasticsearch  调整
-springboot_elasticsearch 2  干掉、合并
-springboot_elasticsearch 3  干掉、合并
-springboot_elasticsearch_rest_high_level_client   干掉、合并
-springboot_elasticsearch2   干掉、合并
-springboot_elasticsearch3  干掉
-springboot_email  调整
-springboot_eshelloword_booter   干掉
-springboot_eshelloword_spring_boot_starter  干掉
-springboot_example_ui     合并到springboot_demo
-springboot_examples  合并到springboot_demo
-springboot_examples22    合并到springboot_demo
-springboot_exception_handler  调整
-springboot_fastdfs       调整
-springboot_fastdfs 2   干掉
-springboot_fastdfs21  干掉
-springboot_filemanager   调整
-springboot_filemanager2   干掉
-springboot_filemanager13  干掉
-springboot_filemanager23  干掉
-springboot_flyway   调整
-springboot_freemarker   调整
-springboot_graylog       调整
-springboot_helloworld  调整
-springboot_helloworld 2   干掉
-springboot_helloworld 3  干掉
-springboot_https   调整
-springboot_integration   迁移到springboot_demo里面
-springboot_jackson_datetime_example   调整 jackson
-springboot_java_springboot_sell  调整
-springboot_jboot   干掉
-springboot_jbpm6   调整
-springboot_jediscluster   调整
-springboot_jfinal_bootstrap_table     调整
-springboot_jms   调整
-
-
-https://juejin.im/post/6844903826927910926
-springboot_jpa   干掉
-springboot_jpa2  调整
-springboot_jshow_for_bootstrap   挪走jun_frontend
-springboot_junit  调整
-
-https://github.com/anselleeyy/logistics-front
-https://github.com/anselleeyy/logistics-back
-
-来自 <https://github.com/anselleeyy/logistics-front> 
-
-springboot_jwt  調整
-springboot_jwt 2  干掉
-springboot_jwt2  合并
-springboot_kafka_demo   合并到springboot_mq_kafka
-springboot_kaptcha_spring_boot_starter   调整
-springboot_kisso_spring_boot  调整
-springboot_klock_starter  调整
-springboot_klock_starter22   干掉
-springboot_labs 调整
-springboot_laydate_theme_bootstrap   迁移jun_frontend
-springboot_ldap   调整
-springboot_learning   迁移到springboot_demo
-springboot_learning_example  迁移到springboot_demo
-springboot_learning23   迁移到springboot_demo
-springboot_leave   干掉
-springboot_lhbauth   调整
-springboot_lock_spring_boot_starter   合并
-springboot_lock4j_spring_boot_starter   合并
-springboot_log   调整，合并
-springboot_log 2   干掉
-springboot_log_aop   调整
-springboot_logback   调整，合并
-springboot_mall_boot   调整
-springboot_maven   干掉
-springboot_mongodb   调整
-springboot_mongodb 2   合并
-springboot_mongodb2  干掉
-springboot_mongodb23   合并
-springboot_mq_kafka   调整
-springboot_mq_rabbitmq   调整
-springboot_mq_rocketmq   调整
-springboot_ms_office       调整
-springboot_multi_datasource_jpa   调整
-springboot_multi_datasource_mybatis   调整
-springboot_mybatis   调整
-springboot_mybatis_jsp   合并
-springboot_neo4j   调整
-springboot_oauth   调整
-springboot_oauth_server    调整
-springboot_oauth2_server   调整
-springboot_order_mybaits_activemq   调整
-springboot_orm_beetlsql   调整
-springboot_orm_jdbctemplate   调整
-springboot_orm_jpa     调整
-springboot_orm_mybatis   调整
-springboot_orm_mybatis_mapper_page   调整
-springboot_orm_mybatis_plus   调整
-springboot_pay   调整
-springboot_pay 2   调整，合并
-springboot_pay222       干掉
-springboot_plus   迁移到jun_framework
-springboot_project     迁移到jun_framework
-springboot_properties   调整
-springboot_ratelimit_guava    调整
-springboot_ratelimit_redis   调整
-springboot_rbac_security   调整
-springboot_rbac_shiro   调整
-springboot_redis   合并
-springboot_redis_sentinel_example   调整
-springboot_redislock     调整
-springboot_redisson_spring_boot_starter   调整
-springboot_restful   合并
-springboot_restful 2   调整
-springboot_roncoo_jui_springboot   挪走jun_framework
-springboot_roncoo_spring_boot   调整
-springboot_samples   合并到springboot_demo
-springboot_session    调整
-springboot_session2  合并
-springboot_session3  合并
-springboot_sharding_jdbc   调整
-springboot_sharding_jdbc_demo   合并
-springboot_sharding_jdbc_mybatis_plus_spring_boot_starter   合并
-springboot_shiro   调整
-springboot_shiro_spring_boot_starter   合并
-springboot_smart_boot  迁移到jun_framework
-springboot_social   调整
-springboot_sofa_boot   迁移到jun_framework
-springboot_springside4   调整
-springboot_ssh2_boot1   调整
-springboot_starter_drools      调整
-springboot_starter_dubbo  调整
-springboot_starter_dubbox  调整
-springboot_starter_swagger   调整
-springboot_starter_weixin   挪走
-springboot_startkit  挪走到frame
-springboot_study  合并到demo 中
-springboot_study 2 合并到demo
-springboot_superboot   迁移到springcloud里面
-springboot_swagger  调整
-springboot_swagger_beauty   调整
-springboot_task  调整
-springboot_task_quartz   调整
-springboot_task_xxl_job  调整
-springboot_task2   干掉
-springboot_template_beetl 
-springboot_template_enjoy 
-springboot_template_freemarker 
-springboot_template_thymeleaf 
-springboot_templatemaven   迁移到meven_template
-springboot_templates_layui_admin   调整
-springboot_test_examples     迁移到demo里面
-springboot_tio   干掉
-springboot_tools   干掉
-springboot_transaction   迁移到demo
-springboot_tyboot   迁移到frame
-springboot_tyboot2   干掉
-springboot_tybootdemo   迁移到frame
-springboot_uflo  干掉
-springboot_uniapp 
-springboot_unity      调整
-springboot_unity 2   干掉
-springboot_unity23  干掉
-springboot_unity23 2   干掉
-springboot_upload    调整
-springboot_ureport2   干掉
-springboot_urule   干掉
-springboot_war   调整 
-springboot_webflux_reactive_rest_api   调整
-springboot_webhook   调整
-springboot_webhook 2   干掉
-springboot_websocket   调整
-springboot_websocket_demo   干掉、合并
-springboot_websocket_socketio   调整
-springboot_websocket2   合并
-springboot_weixin_dubbo_springboot    迁移到weixin
-springboot_wm_accesstoken   迁移到微信
-springboot_zookeeper   调整
 
 
 
@@ -681,28 +432,10 @@ https://github.com/GodofRabbit/Website
 https://github.com/huangshiyu13/webtemplete
 
 
-TODO PLAN：
-jun_spring  Spring开发组件，调整，新增Spring系常用plugin
-jun_projejct  常用项目模板及常用项目，调整，常用项目的集合，私有的
-jun_springboot  SpringBoot开发组件，调整，SpringBoot系组件
-jun_springcloud  SpringCloud开发组件，调整，SpringCloud系组件
-jun_framework   干掉，迁移到jun_project里面来
-jun_frontend   前端开发组件，调整
-jun_test   干掉，合并到其他项目
-jun_linux   Linux开发组件，调整
-jun_website   网站开发，调整
-jun_weixin    微信开发，调整
-jun_app    APP开发，调整
-jun_android    Android开发，调整 
-jun_bigdata    大数据开发，调整 
-Vue+uniapp+Nodejs+WordPress+PHP+Android+Bigdata
-
-
-来自 <https://github.com/wujun728/jun_plugin/blob/master/TODO.md> 
 
 
 
-  SSH_shiro
+SSH_shiro
     
 
 SSM_Shiro
