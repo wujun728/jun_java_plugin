@@ -5,7 +5,9 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-test-sources/test-annotations"/>
+        <dependent-module archiveName="jun_cache_core-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/jun_cache_core/jun_cache_core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="jun_cache_admin"/>
         <property name="java-output-path" value="/jun_cache_admin/target/classes"/>
     </wb-module>
