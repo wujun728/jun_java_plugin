@@ -1,0 +1,40 @@
+<p>
+
+是的，你只需要按示例规则写菜单格式，就可以实现动态更新 导航区域和 内容区域的内容的功能。<br>
+
+
+至于格式是什么，看看源代码吧，我暂时没有时间把代码更新到文档里面，请见谅~！  <br>
+
+
+
+   驱动菜单更新的javascript代码如下：
+
+   <pre class="prettyprint linenums Lang-html">
+&lt;!-- 绑定左侧菜单按钮事件 &nbsp;--&gt;<span style="white-space:pre">			</span><br />
+&lt;script&gt;<br />
+&nbsp;void function(j){
+	j(&quot;.J_Sub_nav&quot;).click(function(){
+		var _this=j(this);
+		var url=_this.attr('url');
+		var parentId=_this.attr('parentId');
+		var menuName=_this.find('span').html();
+		var parentName=j(&quot;#&quot;+parentId).find('span').html();
+		gUtils.fUpdateNav(true,'crumb-'+parentId,parentName);
+		gUtils.fUpdateNav(false,'crumb-'+_this.attr('id'),menuName,url);
+
+		gUtils.fGetBody(url);
+	});
+
+&nbsp;}(jQuery);
+&lt;/script&gt;
+
+   </pre>
+
+
+
+</p>
+
+
+<script>
+      prettyPrint();
+</script>

@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> jshow for bootstrap api</TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="david zhang">
+  <META NAME="Keywords" CONTENT="jshow bootstrap">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+	<link href="../misc/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="../misc/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+	<link href="../misc/css/joywindow.bootstrap.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="../misc/js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="../misc/js/bootstrap.js"></script>	
+	<script type="text/javascript" src="../misc/js/bootstrap-modalmanager.js"></script>	
+	<script type="text/javascript" src="../misc/js/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="../misc/js/modal.manager.plugin1.0.js"></script>
+		<script type="text/javascript" src="../misc/js/jquery.ui.draggable.js"></script>
+
+	<!-- you can delete follow resource 以下两个可删除-->
+	<script type="text/javascript" src="../misc/js/form.validate.js"></script>
+	<script type="text/javascript" src="../misc/js/jshow.utils.js"></script>	
+	
+	<script type="text/javascript" src="../misc/other/prettify.js"></script>
+	<link href="../misc/other/prettify.css" rel="stylesheet" type="text/css" />
+
+		
+
+ </HEAD>
+
+ <BODY>
+			<div class="navbar  navbar-invers">
+			  <div class="navbar-inner">
+				<a class="brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				<ul class="nav">
+				  <li ><a href="index.html">首页</a></li>
+				  <li><a href="modal.html">弹出窗口</a></li>
+  				  <li class="active"><a href="messagebox.html">消息窗口使用</a></li>
+  				  <li><a href="formvalidate.html">表单验证使用</a></li>
+  				  <li><a href="utils.html">其他工具类使用</a></li>
+   				  <li><a href="adminframe.html">管理后台示例</a></li>
+
+
+				</ul>
+			  </div>
+			</div>
+		
+
+	<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2">
+		<ul class="nav nav-pills nav-stacked" id="J-NAV-PART"  data-spy="affix" data-offset-top="200" style="width:200px">
+			      <li class="active"><a href="#part1">
+			      1.如何创建它？
+			      </a></li>
+			      <li><a href="#part2">
+				2.参数说明
+			      </a></li>
+			    </ul>
+		
+		
+		
+		</div>
+	
+		<div class="span10">
+
+
+		<div class="hero-unit">
+				<h1>
+					消息窗口使用简介
+				</h1>
+				
+				
+				<div class="alert alert-error">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>交流信息</strong> Q群：291737753   欢迎来交流~
+				</div>
+
+				<p>
+					下面我们来讲讲如何方便快捷的使用jshow for bootstrap的消息窗口。
+				</p>
+
+			<hr/>	
+				
+			
+			<h2>
+				什么是消息窗口?
+			</h2>
+			<p>
+			消息窗口有点类似alert窗口，进行一些简单的消息提示，但是它不会影响你的正常操作。
+			只要你引入了相关资源，消息窗口的使用非常简单，就这么简单一句javascript代码: <br/>
+			message_box.show('这是一个消息窗口！');
+			</p>
+			
+			<p>
+					<a class="btn btn-primary btn-large" href="http://git.oschina.net/zhangshibin1987/jshow-for-bootstrap">获取最新版本»»</a>
+			</p>
+
+		</div>
+		
+		<a name="part1"></a>
+		<hr/>
+			<h2>
+				一、jshow for bootsrap的窗口是如何创建的呢？
+			</h2>
+			
+			<p>
+				消息窗口的使用很简单，你在任何地方调用message_box.show('消息','info|warn|success|error')！
+				注意 上面的 "|"的意思是或者，不是全部录入哈~！
+			</p>
+			<p>
+
+			
+			
+<pre class="prettyprint linenums Lang-html">
+ //以下代码用来生成各种级别的提示消息
+	//提示消息
+	&lt;a href="#nogo" &nbsp;class="btn btn-info" onclick="message_box.info('&lt;h4&gt;信息&lt;/h4&gt;只是一个提示消息！');"&gt;信息提示&lt;/a&gt;&nbsp;<br />
+	//警告消息 默认
+	&lt;a href="#nogo" &nbsp;class="btn btn-warning" onclick="message_box.warning('&lt;h4&gt;警告&lt;/h4&gt;只是一个提示消息！');"&gt;警告提示 默认&lt;/a&gt;&nbsp;<br />
+	//成功消息
+	&lt;a href="#nogo" &nbsp;class="btn btn-success" onclick="message_box.success('&lt;h4&gt;成功&lt;/h4&gt;只是一个提示消息！');"&gt;成功提示&lt;/a&gt;&nbsp;<br />
+	//失败或者错误
+	&lt;a href="#nogo" &nbsp;class="btn btn-danger" onclick="message_box.error('&lt;h4&gt;失败&lt;/h4&gt;只是一个提示消息！');"&gt;失败或错误提示&lt;/a&gt;&nbsp;<br />
+</pre>
+
+效果如下：
+	 	 <a href="#nogo"  class="btn btn-info" onclick="message_box.info('<h4>信息</h4>只是一个提示消息！');">信息提示</a> 
+	   <a href="#nogo"  class="btn btn-warning" onclick="message_box.warning('<h4>警告</h4>只是一个提示消息！');">警告提示 默认</a> 
+	 	 <a href="#nogo"  class="btn btn-success" onclick="message_box.success('<h4>成功</h4>只是一个提示消息！');">成功提示</a> 
+	 	 <a href="#nogo"  class="btn btn-danger" onclick="message_box.error('<h4>失败</h4>只是一个提示消息！');">失败或错误提示</a> 
+
+		</p>
+			
+			
+			
+			
+			<a name="part2"></a>
+			<hr/>
+			<h2>
+				二、参数说明
+			</h2>
+			
+			<blockquote>
+			<p>
+				<ol>
+				<li>第一个参数：  消息内容，消息可以为HTML片段，</li>
+				
+				<li>第二个参数：  消息类型，info, warn, success,error  4个级别的消息。</li>
+				
+				<li>调用示例	： message_box.show('消息','info');</li>
+				</ol>
+			</p>
+			</blockquote>
+			
+
+	 	</div>
+	</div>
+</div>
+		
+
+ 
+ </BODY>
+</HTML>
+<script>
+
+$(document).ready(function(){
+     prettyPrint();
+
+	$("#J-NAV-PART").delegate('li','click',function(){
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+})
+</script>

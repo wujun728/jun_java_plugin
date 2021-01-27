@@ -1,0 +1,482 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> jshow for bootstrap api</TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="david zhang">
+  <META NAME="Keywords" CONTENT="jshow bootstrap">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+	<link href="../misc/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="../misc/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+	<link href="../misc/css/joywindow.bootstrap.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="../misc/js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="../misc/js/bootstrap.js"></script>	
+	<script type="text/javascript" src="../misc/js/bootstrap-modalmanager.js"></script>	
+	<script type="text/javascript" src="../misc/js/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="../misc/js/modal.manager.plugin1.0.js"></script>
+		<script type="text/javascript" src="../misc/js/jquery.ui.draggable.js"></script>
+
+	<!-- you can delete follow resource 以下两个可删除-->
+	<script type="text/javascript" src="../misc/js/form.validate.js"></script>
+	<script type="text/javascript" src="../misc/js/jshow.utils.js"></script>	
+
+	<script type="text/javascript" src="../misc/other/prettify.js"></script>
+	<link href="../misc/other/prettify.css" rel="stylesheet" type="text/css" />
+ </HEAD>
+
+ <BODY>
+			<div class="navbar  navbar-invers">
+			  <div class="navbar-inner">
+				<a class="brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				<ul class="nav">
+				  <li ><a href="index.html">首页</a></li>
+				  <li><a href="modal.html">弹出窗口</a></li>
+   				  <li><a href="messagebox.html">消息窗口使用</a></li>
+  				  <li><a href="formvalidate.html">表单验证使用</a></li>
+   				  <li class="active"><a href="utils.html">其他工具类使用</a></li>
+   				  <li><a href="adminframe.html">管理后台示例</a></li>
+   				  
+				</ul>
+			  </div>
+			</div>
+		
+
+	<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2">
+			 <ul class="nav nav-pills nav-stacked" id="J-NAV-PART"  data-spy="affix" data-offset-top="200" style="width:200px">
+			      <li class="active"><a href="#part1">
+			      1.alert &amp; confirm窗口
+			      </a></li>
+			      <li><a href="#part2">
+			      2.窗口关闭
+			      </a></li>
+			      <li><a href="#part3">
+			      3.gUtils中封装的方法
+			      </a></li>
+			    </ul>
+		
+		</div>
+	
+		<div class="span10">
+
+
+		<div class="hero-unit">
+				<h1>
+					其他工具使用
+				</h1>
+				
+				
+				<div class="alert alert-error">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>交流信息</strong> Q群：291737753   欢迎来交流~
+				</div>
+
+				<p>
+					本工具还封装了一些比较有用的方法，如alert窗口，confirm窗口等；此外在gUtils也封装了一些好用的方法，下面一一介绍。
+					此外,在jshow.utils.js中包含了以下及其他方法，还是蛮有用的，因时间原因，暂时不一一介绍
+					 <ol>
+					  <li>简单模板渲染 gUtils.fRenderTemplate(模板内容,数据)</li>
+					  <li>加载内容到id节点 gUtils.fGetHtml(url, id, param)</li>
+					 </ol>
+
+				</p>
+				<p>
+					<a class="btn btn-primary btn-large" href="http://git.oschina.net/zhangshibin1987/jshow-for-bootstrap">获取最新版本»»</a>
+				</p>
+			<hr/>	
+				
+			
+			<h2>
+				gDialog窗口是什么?
+			</h2>
+			<p>
+				gDialog封装了一些窗口操作的基本方法，此外还提供alert,confirm,prompt的简单调用。它的作用就是使整个系统的操作界面尽量统一。<br/>
+			</p>
+			
+			
+
+		</div>
+		
+		
+		<hr/>
+		
+			<a name="part1"></a>
+			<h2>
+				一、gDialog调用alert, confirm, prompt窗口  (和原生js对应)
+			</h2>
+			
+			<p>
+				alert，confrim，prompt的调用相当的简单，都是js简单调用即可，下面我们来试试！
+			</p>
+			<p>
+
+			
+			
+<pre class="prettyprint linenums Lang-html">
+&lt;a href="#nogo" id="gDialog-alert" class="btn btn-primary"&gt;调用gDialog的alert&lt;/a&gt;
+&lt;a href="#nogo" id="gDialog-confirm" class="btn btn-primary"&gt;调用gDialog的confirm&lt;/a&gt;
+
+&lt;script&gt;
+	void function(j){
+	
+		//alert信息
+		j("#gDialog-alert").click(function(){  
+			gDialog.fAlert('你点击了alert按钮',function(){
+			  message_box.show('这是gDialog alert方法后的回调函数，也可以不要！');
+			});
+		});
+
+		//确认后执行
+		j("#gDialog-confirm").click(function(){
+			gDialog.fConfirm('确认执行','你确定执行这个操作么？',function(rs){
+				if(rs){
+					message_box.show('你点击了确定按钮！','success');
+				}else{
+					message_box.show('你取消了本次操作！');
+				}
+			});
+		});
+
+		//输入框
+		j("#gDialog-prompt").click(function(){
+		     	gDialog.fPrompt('请输入参数值','参数值','1',function(rs){
+		     		if(rs==null){
+		     			message_box.warning('你点击了取消按钮！');
+		     		}else if(rs==''){
+		     			message_box.error('你没有输入数据');
+		     		}else{
+		     			message_box.info("你输入了:"+rs);
+		     		}
+		     	});
+      });
+	}(jQuery);
+&lt;/script&gt;
+</pre>
+
+效果如下：
+	<a href="#nogo" id="gDialog-alert" class="btn btn-primary">调用gDialog的alert</a>
+	<a href="#nogo" id="gDialog-confirm" class="btn btn-primary">调用gDialog的confirm</a>
+ 	<a href="#nogo" id="gDialog-prompt" class="btn btn-primary">调用gDialog的promopt</a> 
+ <br/>
+
+	     <a name="part1_2"></a>
+			<hr/>
+			<h3>
+				1.2、fAlert参数说明
+			</h3>
+			
+			<blockquote>
+			<p>
+				<ol>
+				<li>message （String）：	提示内容</li>
+				<li>callback（Function）：	点击确认按钮后的回调方法，alert作为提示框，一般很少回调。</li>
+				
+				</ol>
+			</p>
+			</blockquote>
+			
+
+
+          <a name="part1_3"></a>
+			<hr/>
+			<h3>
+				1.3、fConfirm参数说明
+			</h3>
+			
+			<blockquote>
+			<p>
+				<ol>
+				<li>title （String）：	标题</li>
+				<li>content	(String)：确认框的详细内容</li>
+				<li>callback（Function）：	点击确认,取消按钮后的回调，传入一个result，确认为true,取消为false</li>
+				</ol>
+			</p>
+			</blockquote>
+			
+
+
+			 <a name="part1_4"></a>
+			<hr/>
+			<h3>
+				1.4、fPrompt参数说明
+			</h3>
+			
+			<blockquote>
+			<p>
+				<ol>
+				<li>title （String）：	标题</li>
+				<li>content	(String)：输入框的说明信息</li>
+				<li>defaultVal	(String)：默认值，为空建议传 '' 空字符串</li>
+				<li>callback（Function）：	点击“确认”按钮后，返回输入值，如果为“取消”按钮，则返回null</li>
+				</ol>
+			</p>
+			</blockquote>
+			
+
+ <hr/>
+	<a name="part2"></a>
+		   <h2>
+				二、窗口关闭
+			</h2>
+			
+			<p>
+				在任意时刻，调用gDialog.fClose(); 均可以关闭顶层窗口，而不用担心顶层窗口是哪一个！<br/>
+				在任意时刻，调用gDialog.fCloseAll(); 可关闭所有打开的窗口。
+			</p>
+			<p>
+
+<pre class="prettyprint linenums Lang-html">
+
+&lt;script&gt;
+
+		//关闭顶层打开的窗口
+		gDialog.fClose();
+
+		//关闭所有打开的窗口
+		gDialog.fCloseAll();
+&lt;/script&gt;
+</pre>
+
+
+
+
+
+
+<hr/>
+	<a name="part3"></a>
+		   <h2>
+				三、gUtils中封装的方法
+			</h2>
+			
+			<p>
+				在jshow.utils.js中封装了大量的工具方法，这里进行一一介绍。
+			</p>
+			<p>
+
+
+
+
+			<hr/>
+
+
+		<a name="part3_1"></a>
+			<h3>
+				3.1、gUtils.fRenderTemplate 简易js模板;   对模板中的#{dataName}的数据进行简易替换。
+			</h3>
+			
+			<blockquote>
+			<p>
+				具体实现可参看：http://my.oschina.net/davidzhang/blog/169281
+				<br><br>
+				<b>参数说明:</b>
+				<ol>
+				<li>template （String）：	提示内容</li>
+				<li>data  (Object):	如果是数组，返回拼接对象。</li>
+				
+				</ol>
+			</p>
+			</blockquote>
+			
+
+
+		<a name="part3_2"></a>
+			<h3>
+				3.2 gUtils.fSubmitForm  提交表单并处理返回数据
+			</h3>
+			
+			<blockquote>
+			<p>
+				 a.对提交的数据根据validateSet先进行校验，校验通过才能提交。<br/>
+				 b.对处理后的响应结果，调用gUtils.fProcessResult做处理。<br/>
+				<br>
+				<b>参数说明：</b>
+				<ol>
+				<li>param （String or Object）：	请求参数</li>
+				<li>validateSet  (Object):	验证参数，json格式。</li>
+				<li>url  (String):	如果是数组，返回拼接对象。</li>
+				<li>successHandler  (Function):	执行成功回调，参见：gUtils.fProcessResult 。</li>
+				<li>errorHandler  (Function):	执行失败回调，参见：gUtils.fProcessResult 。</li>
+
+				</ol>
+			</p>
+			</blockquote>
+
+
+
+		<a name="part3_3"></a>
+			<h3>
+				3.3 gUtils.fProcessResult  处理返回结果，与fSubmitForm合用
+			</h3>
+			
+			<blockquote>
+			<p>
+				返回格式要求：{"success" : true|false , "message" : "成功或者错误提示信息" ,...}。
+				<br>
+				其中 success和message是必须的属性，其它数据可根据需要增减;<br>
+				errorHandler 可以不传，默认alert出错误消息。
+				<br>
+				<br>
+				<b>参数说明：</b>
+				<ol>
+				<li>data (Object):	后台返回的json格式的数据</li>
+				<li>successHandler  (Function):	处理成功后的回调方法，即 (data.success==true)。</li>
+				<li>errorHandler  (Function):	处理失败后的回调方法，即 (data.success==false)。</li>
+
+				</ol>
+			</p>
+			</blockquote>
+
+
+
+		<a name="part3_4"></a>
+			<h3>
+				3.4 gUtils.fGetBody  动态更新 &lt;div id="main_content"&gt;&lt;/div&gt; 里面的内容
+			</h3>
+			
+			<blockquote>
+			<p>
+				转调用:	
+						gUtils.fGetHtml(url,'main_content' ,param,loadingMsg);
+
+				<b>参数说明</b>
+				<ol>
+				<li>url （String）：	请求url</li>
+				<li>param  (Object or String):	请求参数。</li>
+				<li>loadingMsg  (String):	加载loading时刻提示信息。</li>
+
+				</ol>
+			</p>
+			</blockquote>
+
+
+		<a name="part3_5"></a>
+			<h3>
+				3.5 gUtils.fGetHtml  获取html内容，并更新到指定的容器中。
+			</h3>
+			
+			<blockquote>
+			<p>
+				特性：对容器更新的内容添加时间戳，如果防止加载比较慢的数据和加载快的数据造成展示错位。
+				如果后点击事件的内容已经更新，则之前 慢加载返回的数据自动丢弃。
+			</p>
+			<p>
+				<b>参数说明:</b>
+				<ol>
+				<li>url （String）：	请求url</li>
+				<li>domId （String）：	装载返回html内容的html容器id,只支持id选择器。</li>
+				<li>param  (Object or String):	请求参数。</li>
+				<li>loadingMsg  (String):	加载loading时刻提示信息。</li>
+
+				</ol>
+			</p>
+			</blockquote>
+
+
+			<a name="part3_6"></a>
+			<h3>
+				3.6 gUtils.fPageSize  修改页码并回车跳转
+			</h3>
+			
+			<blockquote>
+			<p>
+				修改页码并回车跳转，根据输入的值，变更每页显示的数目，需要和后台联合实现该功能。
+				传到后台的每页条数参数名为：pageSize
+				<br><br>
+				<b>参数说明</b>
+				<ol>
+				<li>methodName （String）：	分页跳转的方法名称</li>
+				<li>dom  (HTML Object):	页码输入框dom对象。</li>
+				<li>event  (Event):	js原生Event。</li>
+
+				</ol>
+			</p>
+			</blockquote>
+
+
+
+			<a name="part3_7"></a>
+			<h3>
+				3.6 gUtils.fPostForm  动态创建form表单并提交参数
+			</h3>
+			
+			<blockquote>
+			<p>
+				动态创建一个form表单，并post提交数据，提交完成后，删除该form表单。
+				<br>
+				适用场景：<br>
+
+					a. 在当前页面外弹出一个窗口进行下载。<br>
+					b. url动态提交数据，而数据中存在中文不想urlEncoding处理。
+			</p>
+			<p>
+				<br/>
+				<b>参数说明</b>
+				<ol>
+				<li>url （String）：	请求url</li>
+				<li>param  (String or Object):	请求参数。</li>
+				<li>target （String）: _blank|_self|_parent|_top|自定义名称 具体参见html target属性。</li>
+				
+				</ol>
+			</p>
+			</blockquote>
+
+
+、
+<script>
+void function(j){
+	j("#gDialog-alert").click(function(){
+		gDialog.fAlert('你点击了alert按钮',function(){
+		   message_box.show('这是gDialog alert方法后的回调函数，也可以不要！');
+		});
+	});
+
+	
+	j("#gDialog-confirm").click(function(){
+		gDialog.fConfirm('确认执行','你确定执行这个操作么？',function(rs){
+			if(rs){
+				message_box.show('你点击了确定按钮！','success');
+			}else{
+			 message_box.show('你取消了本次操作！');
+			}
+		});
+
+	});
+
+
+	j("#gDialog-prompt").click(function(){
+     	gDialog.fPrompt('请输入参数值','参数值','1',function(rs){
+     		if(rs==null){
+     			message_box.warning('你点击了取消按钮！');
+     		}else if(rs==''){
+     			message_box.error('你没有输入数据');
+     		}else{
+     			message_box.info("你输入了:"+rs);
+     		}
+     	});
+
+     });
+		
+}(jQuery);
+</script>
+
+			</p>
+
+	 	</div>
+	</div>
+</div>
+		
+
+ </BODY>
+</HTML>
+<script>
+$(document).ready(function(){
+     prettyPrint();
+
+	$("#J-NAV-PART").delegate('li','click',function(){
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+})
+</script>

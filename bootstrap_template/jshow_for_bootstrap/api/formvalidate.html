@@ -1,0 +1,356 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> jshow for bootstrap api</TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="david zhang">
+  <META NAME="Keywords" CONTENT="jshow bootstrap">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+	<link href="../misc/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="../misc/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+	<link href="../misc/css/joywindow.bootstrap.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="../misc/js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="../misc/js/bootstrap.js"></script>	
+	<script type="text/javascript" src="../misc/js/bootstrap-modalmanager.js"></script>	
+	<script type="text/javascript" src="../misc/js/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="../misc/js/modal.manager.plugin1.0.js"></script>
+	<script type="text/javascript" src="../misc/js/jquery.ui.draggable.js"></script>
+
+	<!-- you can delete follow resource 以下两个可删除-->
+	<script type="text/javascript" src="../misc/js/form.validate.js"></script>
+	<script type="text/javascript" src="../misc/js/jshow.utils.js"></script>	
+
+	
+	<script type="text/javascript" src="../misc/other/prettify.js"></script>
+	<link href="../misc/other/prettify.css" rel="stylesheet" type="text/css" />
+ </HEAD>
+
+ <BODY>
+			<div class="navbar  navbar-invers">
+			  <div class="navbar-inner">
+				<a class="brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				<ul class="nav">
+				  <li ><a href="index.html">首页</a></li>
+				  <li><a href="modal.html">弹出窗口</a></li>
+  				  <li><a href="messagebox.html">消息窗口使用</a></li>
+  				  <li class="active"><a href="formvalidate.html">表单验证使用</a></li>
+   				  <li><a href="utils.html">其他工具类使用</a></li>
+   				  <li><a href="adminframe.html">管理后台示例</a></li>
+
+				</ul>
+			  </div>
+			</div>
+		
+
+	<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2">
+			<ul class="nav nav-pills nav-stacked" id="J-NAV-PART"  data-spy="affix" data-offset-top="200" style="width:200px">
+			      <li class="active"><a href="#part1">
+			      1.使用效果
+			      </a></li>
+			      <li><a href="#part2">
+				2.示例代码
+			      </a></li>
+			      <li><a href="#part3">
+			     3.如何使用
+			      </a></li>
+				    <li><a href="#part4">
+				 4.补充说明
+			      </a></li>
+			    </ul>
+		
+		
+		</div>
+	
+		<div class="span10">
+
+
+		<div class="hero-unit">
+				<h1>
+					表单验证使用简介
+				</h1>
+				
+				
+				<div class="alert alert-error">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>交流信息</strong> Q群：291737753   欢迎来交流~
+				</div>
+
+				<p>
+					下面我们来讲讲如何方便快捷的使用jshow for bootstrap的表单验证。
+				</p>
+
+			<hr/>	
+				
+			
+			<h2>
+				jshow 的表单验证功能有什么特点?
+			</h2>
+			<p>
+				<ol>
+				<li>
+					不针对某个form下的元素进行校验，而是对某个元素，所以它可以跨表单进行验证！
+				</li>
+				<li>
+					可扩展的验证器，在handler 属性中，配置多个验证。当然你也可以改form.validate.js的源码进行扩展。
+				</li>
+				<li>
+					默认有 must(必填),minlength(最小长度),maxlength(最大长度)等等验证器。
+				</li>
+				<li>
+					自带提示信息功能。
+				</li>
+			</ol>
+			</p>
+			
+			
+
+		</div>
+		
+		
+		<a name="part1"></a>
+		<hr/>
+		<h2>一、看看表单验证的效果先。</h2>
+		<p>
+			<form class="form-horizontal"  id="form1">
+			
+				 <div class="control-group">
+					<label class="control-label" for="enname">字典选项值</label>
+					<div class="controls">
+					
+						<input type="text"  name="dictElement.enname" id="enname" placeholder="请输入字典选项值" maxlength="20"/>
+						
+					</div>
+				</div>
+				
+				 <div class="control-group">
+					<label class="control-label" for="cnname">重复字典选项值</label>
+					<div class="controls">
+					
+						<input type="text"  name="dictElement.enname2" id="enname2" placeholder="请重复输入选项值" maxlength="20"/>
+						
+					</div>
+				</div>
+				
+				 <div class="control-group">
+					<label class="control-label" for="cssClass">选项样式</label>
+					<div class="controls">
+					
+						<input type="text"  name="dictElement.cssClass" id="cssClass" placeholder="请输入选项样式" maxlength="100"/>
+						
+					</div>
+				</div>
+				
+				 <div class="control-group">
+					<label class="control-label" for="parentId">父字典项id</label>
+					<div class="controls">
+					
+						<input type="text"  name="dictElement.parentId" id="parentId" placeholder="请输入父字典项id" maxlength="2"/>
+						
+					</div>
+				</div>
+				
+				 <div class="control-group">
+					<label class="control-label" for="orderNum">排序号</label>
+					<div class="controls">
+					
+						<input type="text"  name="dictElement.orderNum" id="orderNum" placeholder="请输入排序号" maxlength="10"/>
+						
+					</div>
+				</div>
+				
+				 <div class="control-group">
+					<label class="control-label" for="orderNum">邮箱</label>
+					<div class="controls">
+					
+						<input type="text"  name="dictElement.email" id="email" placeholder="请输入邮箱地址" maxlength="100"/>
+						
+					</div>
+				</div>
+			</form>
+		
+		<div class="form-actions">
+			<a href="javascript:;" class="btn btn-primary" id="btn_submit">执行验证，看看效果吧</a>
+		</div>
+
+
+
+
+		<script language="javascript">
+		void function(j) {
+			var validateSet = {
+				 
+				 enname:  {must: true, minlength:3,maxlength:20,ftip:'英文名称,20字长，必输项'},
+				 enname2:  {must: true, minlength:3,maxlength:20,equalTo:'enname',ftip:'重复输入英文名称,20字长，必输项'},
+				 dictName:  {must: true,minlength:1, maxlength:20,ftip:'字典名称,20字长，必输项'},
+				 cssClass:  {must: false, maxlength:100,ftip:'css名称,100字长，非必输项'},
+				 parentId:  {must: true, maxlength:10,handler:'int',ftip:'整数，必输项'},
+				 orderNum:  {must: true, maxlength:10,handler:'int',ftip:'整数，必输项'},
+				 email: {must:true,maxlength:100, handler:'email',ftip:'邮箱地址，必输项'}
+
+			};
+			
+
+			j('#btn_submit').click(function(e) {
+				if(form.validate(validateSet)){
+				  //提示消息框
+				   gDialog.fAlert('表单验证通过了，^_^！');
+				}
+			});
+			
+			form.friend.init(validateSet);
+		}(jQuery);
+		</script>
+		
+		
+		
+		</p>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a name="part2"></a>
+		<hr/>
+			<h2>
+				二、让我们来看看上面的代码是如何实现的。
+			</h2>
+			
+			<p>
+				下列的代码中，我们有必输项验证，最大长度验证，整数验证，邮箱格式验证以及相等验证。
+			</p>
+			<p>
+
+			
+			
+<pre class="prettyprint linenums">
+&lt;form class=&quot;form-horizontal&quot; &nbsp;id=&quot;form1&quot;&gt;
+	 &lt;div class=&quot;control-group&quot;&gt;
+		&lt;label class=&quot;control-label&quot; for=&quot;enname&quot;&gt;字典选项值&lt;/label&gt;
+		&lt;div class=&quot;controls&quot;&gt;
+			&lt;input type=&quot;text&quot; &nbsp;name=&quot;dictElement.enname&quot; id=&quot;enname&quot; placeholder=&quot;请输入字典选项值&quot; maxlength=&quot;20&quot;/&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	
+	 &lt;div class=&quot;control-group&quot;&gt;
+		&lt;label class=&quot;control-label&quot; for=&quot;cnname&quot;&gt;重复字典选项值&lt;/label&gt;
+		&lt;div class=&quot;controls&quot;&gt;
+			&lt;input type=&quot;text&quot; &nbsp;name=&quot;dictElement.enname2&quot; id=&quot;enname2&quot; placeholder=&quot;请重复输入选项值&quot; maxlength=&quot;20&quot;/&gt;	
+		&lt;/div&gt;
+	&lt;/div&gt;
+	
+	 &lt;div class=&quot;control-group&quot;&gt;
+		&lt;label class=&quot;control-label&quot; for=&quot;cssClass&quot;&gt;选项样式&lt;/label&gt;
+		&lt;div class=&quot;controls&quot;&gt;
+			&lt;input type=&quot;text&quot; &nbsp;name=&quot;dictElement.cssClass&quot; id=&quot;cssClass&quot; placeholder=&quot;请输入选项样式&quot; maxlength=&quot;100&quot;/&gt;	
+		&lt;/div&gt;
+	&lt;/div&gt;
+	
+	 &lt;div class=&quot;control-group&quot;&gt;
+		&lt;label class=&quot;control-label&quot; for=&quot;parentId&quot;&gt;父字典项id&lt;/label&gt;
+		&lt;div class=&quot;controls&quot;&gt;
+			&lt;input type=&quot;text&quot; &nbsp;name=&quot;dictElement.parentId&quot; id=&quot;parentId&quot; placeholder=&quot;请输入父字典项id&quot; maxlength=&quot;2&quot;/&gt;	
+		&lt;/div&gt;
+	&lt;/div&gt;
+	
+	 &lt;div class=&quot;control-group&quot;&gt;
+		&lt;label class=&quot;control-label&quot; for=&quot;orderNum&quot;&gt;排序号&lt;/label&gt;
+		&lt;div class=&quot;controls&quot;&gt;
+			&lt;input type=&quot;text&quot; &nbsp;name=&quot;dictElement.orderNum&quot; id=&quot;orderNum&quot; placeholder=&quot;请输入排序号&quot; maxlength=&quot;10&quot;/&gt;		
+		&lt;/div&gt;
+	&lt;/div&gt;
+		
+&lt;/form&gt;
+&lt;div class=&quot;form-actions&quot;&gt;
+	&lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-primary&quot; id=&quot;btn_submit&quot;&gt;执行验证，看看效果吧&lt;/a&gt;
+&lt;/div&gt;
+
+
+&lt;script language=&quot;javascript&quot;&gt;
+void function(j) {
+	//配置验证规则
+	var validateSet = {
+		 enname: &nbsp;{must: true, minlength:3,maxlength:20,ftip:'英文名称,20字长，必输项'},
+		 enname2: &nbsp;{must: true, minlength:3,maxlength:20,equalTo:'enname',ftip:'重复输入英文名称,20字长，必输项'},
+		 dictName: &nbsp;{must: true,minlength:1, maxlength:20,ftip:'字典名称,20字长，必输项'},
+		 cssClass: &nbsp;{must: false, maxlength:100,ftip:'css名称,100字长，非必输项'},
+		 parentId: &nbsp;{must: true, maxlength:10,handler:'int',ftip:'整数，必输项'},
+		 orderNum: &nbsp;{must: true, maxlength:10,handler:'int',ftip:'整数，必输项'},
+		 email: {must:true,maxlength:100, handler:'email'}
+	};
+	
+	j('#btn_submit').click(function(e) {
+		if(form.validate(validateSet)){
+		 &nbsp;//提示消息框
+		 &nbsp; gDialog.fAlert('表单验证通过了，^_^！');
+		}
+	});
+	//初始化表单验证，这个一定要要的额~！！
+	form.friend.init(validateSet);
+}(jQuery);
+&lt;/script&gt;
+	
+</pre>
+
+
+			</p>
+			
+			
+			<a name="part3"></a>
+			<hr/>
+			<h2>
+				三、使用说明
+			</h2>
+			
+			<blockquote>
+			<p>
+				<ol>
+				<li>请按上述示例代码的格式组织你的表单内容！</li>
+				<li>每个输入元素都需要一个id属性，否则校验无法进行！</li>
+				<li>你需要在js代码中，定义个 var validateSet={....}, 来指定你的元素验证规则！</li>
+				<li>你需要在页面加载完全后，调用 form.friend.init(validateSet);  将你的验证规则进行初始化。</li>
+				<li>在按钮上绑定事件后，需要在事件中通过 form.validate(validateSet); 进行校验，如果校验通过返回true,失败为false</li>
+				</ol>
+			</p>
+			</blockquote>
+			
+			
+			<a name="part4"></a>
+			<hr/>
+			<h2>
+				四、补充说明
+			</h2>
+			<p>
+			  表单验证器可以进行任意验证功能，但是需要你去阅读源码 form.validate.js 这个文件。
+			  你可以修改源码实现更多，更丰富的验证功能！
+			  如数值验证，max,min 我就没有实现，你可以自己尝试去把它实现了，因为你需要去了解它。
+			</p>
+			
+			
+		
+	 	</div>
+	</div>
+</div>
+		
+ 
+ </BODY>
+</HTML>
+<script>
+$(document).ready(function(){
+     prettyPrint();
+
+	$("#J-NAV-PART").delegate('li','click',function(){
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+})
+</script>

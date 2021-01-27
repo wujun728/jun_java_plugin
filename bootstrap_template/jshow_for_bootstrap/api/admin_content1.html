@@ -1,0 +1,66 @@
+<p>
+这是一个Ajax打开的窗口页面，一般来说，就是一个后台管理的url来请求本页面的内容，然后展示在右侧的内容区域。<br>
+
+你有没有发现，当你点左侧的菜单栏时，上方的面包屑区域也跟随更新了，而且内容区域也通过Ajax请求而更新。<br>
+
+这算不算你想要的效果，如果不是，暂时我也爱莫能助了
+</p>
+
+至于教程是什么，看看源代码吧，我暂时没有时间把代码更新到文档里面，请见谅~！<br>
+
+以下是菜单的格式源代码：
+
+<pre class="prettyprint linenums Lang-html">
+&lt;div class=&quot;sidebar-menu&quot;&gt;<br />
+<span style="white-space:pre">	</span>&lt;!-- 第一个主菜单 --&gt;<br />
+<span style="white-space:pre">	</span>&lt;a href=&quot;#contentMenu&quot; class=&quot;nav-header menu-first&quot; data-toggle=&quot;collapse&quot; id=&quot;jshow-nav-1&quot;&gt;<br />
+<span style="white-space:pre">		</span>&lt;i class=&quot;icon-book icon-large&quot;&gt;&lt;/i&gt;&lt;span&gt;内容管理&lt;/span&gt;<br />
+<span style="white-space:pre">	</span>&lt;/a&gt;<br />
+<br />
+<br />
+<span style="white-space:pre">	</span>&lt;!-- 第一个主菜单下面的子菜单 --&gt;<br />
+<span style="white-space:pre">	</span>&lt;ul id=&quot;contentMenu&quot; class=&quot;nav nav-list menu-second in collapse&quot; style=&quot;height: auto;&quot;&gt;<br />
+<span style="white-space:pre">		</span>&lt;li&gt;<br />
+<span style="white-space:pre">			</span>&lt;a href=&quot;javascript:;&quot; class=&quot;J_Sub_nav&quot; id=&quot;jshow-subnav-10&quot; url=&quot;admin_content1.html&quot; parentid=&quot;jshow-nav-1&quot;&gt;<br />
+<span style="white-space:pre">				</span>&lt;i class=&quot;icon-pencil&quot;&gt;&lt;/i&gt; &lt;span&gt;打开动态内容1&lt;/span&gt;<br />
+<span style="white-space:pre">			</span>&lt;/a&gt;<br />
+<span style="white-space:pre">		</span>&lt;/li&gt;<br />
+<span style="white-space:pre">		</span>&lt;li&gt;<br />
+<span style="white-space:pre">			</span>&lt;a href=&quot;javascript:;&quot; class=&quot;J_Sub_nav&quot; id=&quot;jshow-subnav-11&quot; url=&quot;admin_content2.html&quot; parentid=&quot;jshow-nav-1&quot;&gt;<br />
+<span style="white-space:pre">				</span>&lt;i class=&quot;icon-list-alt&quot;&gt;&lt;/i&gt;&lt;span&gt;打开动态内容2&lt;/span&gt;<br />
+<span style="white-space:pre">			</span>&lt;/a&gt;<br />
+<span style="white-space:pre">		</span>&lt;/li&gt;<br />
+<span style="white-space:pre">	</span>&lt;/ul&gt;<br />
+
+
+
+	&lt;!-- 第二个主菜单 --&gt;<br />
+	&lt;a href=&quot;#siteMenu&quot; class=&quot;nav-header menu-first collapsed&quot; data-toggle=&quot;collapse&quot; id=&quot;jshow-nav-2&quot;&gt;<br />
+	<span style="white-space:pre">	</span>&lt;i class=&quot;icon-user icon-large&quot;&gt;&lt;/i&gt;&lt;span&gt;站点管理&lt;/span&gt;<br />
+	&lt;/a&gt;<br />
+	<br />
+
+	&lt;!-- 第二个主菜单下面的子菜单 --&gt;<br />
+	&lt;ul id=&quot;siteMenu&quot; class=&quot;nav nav-list collapse menu-second&quot;&gt;<br />
+	<span style="white-space:pre">	</span>&lt;li&gt;<br />
+	<span style="white-space:pre">		</span>&lt;a href=&quot;javascript:;&quot; id=&quot;jshow-subnav-8&quot; url=&quot;/content/aritice/manage.html&quot; parentid=&quot;jshow-nav-2&quot;&gt;<br />
+	<span style="white-space:pre">			</span>&lt;i class=&quot;icon-user&quot;&gt;&lt;/i&gt;&lt;span&gt;增加用户&lt;/span&gt;<br />
+	<span style="white-space:pre">		</span>&lt;/a&gt;<br />
+	<span style="white-space:pre">	</span>&lt;/li&gt;<br />
+	<br />
+	<br />
+	<span style="white-space:pre">	</span>&lt;!-- 以下几个菜单是空的，所以点击了没有效果--&gt;<br />
+	<span style="white-space:pre">	</span>&lt;li&gt;&lt;a href=&quot;javascript:;&quot;&gt;&lt;i class=&quot;icon-edit&quot;&gt;&lt;/i&gt; &lt;span&gt;修改用户&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;<br />
+	<span style="white-space:pre">	</span>&lt;li&gt;&lt;a href=&quot;javascript:;&quot;&gt;&lt;i class=&quot;icon-trash&quot;&gt;&lt;/i&gt; &lt;span&gt;删除用户&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;<br />
+	<span style="white-space:pre">	</span>&lt;li&gt;&lt;a href=&quot;javascript:;&quot;&gt;&lt;i class=&quot;icon-list&quot;&gt;&lt;/i&gt; &lt;span&gt;用户列表&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;<br />
+	&lt;/ul&gt;
+&lt;/div&gt;
+
+</pre>
+
+
+
+
+<script>
+      prettyPrint();
+</script>

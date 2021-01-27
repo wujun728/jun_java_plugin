@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> jshow for bootstrap index page</TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="david zhang">
+  <META NAME="Keywords" CONTENT="jshow bootstrap">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+	<link href="misc/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="misc/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+	<link href="misc/css/joywindow.bootstrap.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="misc/js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="misc/js/bootstrap.js"></script>	
+	<script type="text/javascript" src="misc/js/bootstrap-modalmanager.js"></script>	
+	<script type="text/javascript" src="misc/js/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="misc/js/modal.manager.plugin1.0.js"></script>
+	<script type="text/javascript" src="misc/js/jshow.utils.js"></script>	
+
+
+	<!-- you can delete follow resource 以下两个可删除-->
+	<script type="text/javascript" src="misc/js/form.validate.js"></script>
+	<script type="text/javascript" src="misc/js/jquery.ui.draggable.js"></script>
+
+ </HEAD>
+
+ <BODY>
+  <div class="hero-unit">
+
+	 <h1> jshow for bootstrap前端框架 </h1>
+ 	 <p class="lead">让弹窗更简单，更方便... 窗口在关闭的时候，同时回收dom节点，bootstrap原始的modal插件是不会回收dom节点的。
+		 此外，可通过设置reuse:true 则不回收dom节点，实现dialog的多次使用。 
+	</p>
+	
+	<p>
+     jshow for bootstrap3请访问：http://git.oschina.net/zhangshibin1987/jshow-for-bootstrap3 进行查看！
+    
+    
+	  有任何问题，请邮件联系本人：zhangshibin1987 # 126.com 愿意解答您的疑问` <br>
+		<div class="alert alert-error">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			  <strong>交流信息</strong> Q群：291737753   欢迎来交流~
+		</div>
+	</p>
+
+	<p>
+		<a class="btn btn-large btn-primary" href="api/index.html">进入教程>>></a>
+		<a class="btn btn-large" type="button" href="http://git.oschina.net/zhangshibin1987/jshow-for-bootstrap">查看最新版本</a>
+	</p>
+
+
+	<hr/>
+	<br><br/>
+	 <a href="#nogo" id="gDialog-alert" class="btn btn-primary">调用gDialog的alert</a>
+	 
+	 <a href="#nogo" id="gDialog-confirm" class="btn btn-primary">调用gDialog的confirm</a>
+	 
+	 
+	 
+	 
+	 <br/>
+	 <br/>
+	  <p class="lead">以下调用均是ajax调用，窗口内容都不在本页中，如果打开为空，请使用IE浏览器，或者firefox浏览器查看（部分浏览器存在本地文件权限访问问题）</p>
+	 <a href="#nogo" id="openDialog" class="btn  btn-info">很简单的JS点击弹窗</a> 
+	
+	 <a href="#nogo" id="openManyDialog" class="btn  btn-info">弹多层窗口</a> 
+	
+	 
+		<hr/> 
+	 	 <br/> <br/>
+	 
+	 <a href="#nogo" id="formDialog" class="btn btn-primary">表单验证窗口</a> 
+	
+	 
+	 <hr/>     
+	 <br/>
+	  <p class="lead">message_box.show(''), 显示你自己的提示消息！</p>
+	 	 <a href="#nogo"  class="btn btn-info" onclick="message_box.show('<h4>信息</h4>只是一个提示消息！','info');">信息提示</a> 
+	   <a href="#nogo"  class="btn btn-warning" onclick="message_box.show('<h4>警告</h4>只是一个提示消息！');">警告提示 默认</a> 
+	 	 <a href="#nogo"  class="btn btn-success" onclick="message_box.show('<h4>成功</h4>只是一个提示消息！','success');">成功提示</a> 
+	 	 <a href="#nogo"  class="btn btn-danger" onclick="message_box.show('<h4>失败</h4>只是一个提示消息！','error');">失败或错误提示</a> 
+  
+  
+	 </div>
+
+ </BODY>
+</HTML>
+<script>
+
+void function(j){
+
+	j("#gDialog-alert").click(function(){
+		gDialog.fAlert('你点击了alert按钮',function(){
+		    message_box.show('这是gDialog alert方法后的回调函数，也可以不要！','info');
+		});
+		
+	});
+	
+		j("#gDialog-confirm").click(function(){
+			gDialog.fConfirm('调用gDialog的确认窗口，哈哈','你确定执行这个操作么？',function(rs){
+			if(rs){
+				 message_box.show('你点击了确定按钮！','success');
+			}else{
+			  message_box.show('你取消了本次操作！','error');
+			}
+		});
+		
+	});
+
+
+	j("#openDialog").click(function(){
+		gDialog.fCreate({title:'这是一个弹窗窗口',url:'myDialog.ahtml',width:700}).show();	
+	});
+
+	
+	j("#openManyDialog").click(function(){
+	  		gDialog.fCreate({title:'这是多层弹窗窗口',url:'manywindow.ahtml',width:700}).show();
+	});
+	
+	
+	j("#formDialog").click(function(){
+	  gDialog.fCreate({title:'表单验证窗口',url:'formValidate.ahtml',width:700}).show();
+	});
+	
+
+}(jQuery);
+</script>

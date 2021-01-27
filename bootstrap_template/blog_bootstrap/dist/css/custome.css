@@ -1,0 +1,35 @@
+/*
+ * Custom style sheet, mainly used to adapt to the theme of this site.
+ * @date 2016-10-16 
+ * @author yadong.zhang
+ */
+/* 引入网站核心css样式 */
+@import url(core.css);
+
+.bottom-line {
+	padding: 0.5rem 0 0.5rem 0;
+	border-bottom: .05rem solid #eee;
+}
+
+/* 标签动图 start */
+#tagsList {
+	position: relative;
+	width: 200px;
+	height: 230px;
+	margin: 30px auto 0;
+}
+#tagsList a {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	font-family: Microsoft YaHei;
+	color: black;
+	font-size: 10px;
+	font-weight: bold;
+	text-decoration: none;
+}
+#tagsList a:hover {
+	color: #FF0000;
+	letter-spacing: 2px;
+}
+/* 标签动图 end */

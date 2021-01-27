@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+.w-e-toolbar {
+	flex-wrap: wrap;
+	-webkit-box-lines: multiple;
+}
+
+.w-e-toolbar .w-e-menu:hover{
+	z-index: 10002!important;
+}
+
+.w-e-menu a {
+	text-decoration: none;
+}
+
+.fullscreen-editor {
+	position: fixed !important;
+	width: 100% !important;
+	height: 100% !important;
+	left: 0px !important;
+	top: 0px !important;
+	background-color: white;
+	z-index: 9999;
+}
+
+.fullscreen-editor .w-e-text-container {
+	width: 100% !important;
+	height: 95% !important;
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> jshow for bootstrap api</TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="david zhang">
+  <META NAME="Keywords" CONTENT="jshow bootstrap">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+	<link href="../misc/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="../misc/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+	<link href="../misc/css/joywindow.bootstrap.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="../misc/js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="../misc/js/bootstrap.js"></script>	
+	<script type="text/javascript" src="../misc/js/bootstrap-modalmanager.js"></script>	
+	<script type="text/javascript" src="../misc/js/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="../misc/js/bootbox.js"></script>	
+	<script type="text/javascript" src="../misc/js/modal.manager.plugin1.0.js"></script>
+	
+	<!-- you can delete follow resource 以下两个可删除-->
+	<script type="text/javascript" src="../misc/js/form.validate.js"></script>
+	<script type="text/javascript" src="../misc/js/jshow.utils.js"></script>	
+
+	
+	<script type="text/javascript" src="../misc/other/prettify.js"></script>
+	<link href="../misc/other/prettify.css" rel="stylesheet" type="text/css" />
+ </HEAD>
+
+ <BODY>
+			<div class="navbar  navbar-invers">
+			  <div class="navbar-inner">
+				<a class="brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				<ul class="nav">
+				  <li class="active"><a href="index.html">首页</a></li>
+				  <li><a href="modal.html">弹出窗口</a></li>
+  				  <li><a href="messagebox.html">消息窗口使用</a></li>
+  				  <li><a href="formvalidate.html">表单验证使用</a></li>
+  				  <li><a href="utils.html">其他工具类使用</a></li>
+   				  <li><a href="adminframe.html">管理后台示例</a></li>
+				  <li><a href="adminIframe.html">管理后台Iframe示例</a></li>
+
+				</ul>
+			  </div>
+			</div>
+		
+
+	<div class="container-fluid">
+	<div class="row-fluid">
+	
+	
+		<div class="span2">
+			     <ul class="nav nav-pills nav-stacked" id="J-NAV-PART"  data-spy="affix" data-offset-top="200" style="width:200px">
+			      <li class="active"><a href="#part1">
+			      1.为什么创建它？
+			      </a></li>
+			      <li><a href="#part2">
+				2.我能用它做什么？
+			      </a></li>
+			      <li><a href="#part3">
+			     3.需要哪些基础知识？
+			      </a></li>
+				    <li><a href="#part4">
+				 4.如何使用它?
+			      </a></li>
+			    </ul>
+		</div>
+	
+		<div class="span10">
+
+
+		<div class="hero-unit">
+				<h1>
+					Hello, jshow for bootstrap!
+				</h1>
+				
+				<div class="alert alert-error">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>交流信息</strong>  
+					&nbsp;&nbsp;<span class="label label-important"> <h3>Q群：291737753   欢迎来交流~</h3></span> 
+				</div>
+			
+			
+				<p>
+					jshow for bootstrap是由david zhang整理改造的一款可用于搭建一个功能完善的站点的bootstrap插件集合。本系统基于Bootstrap进行构造，感谢Bootstrap这一优秀的开源软件！
+				</p>
+				<p>
+					本集合包含了modalManager开源插件，对modalManager进行了一定的代码改造，使其更方便使用，也更利于垃圾回收。同时，对ajax请求及导航更新以及表单验证等增加了很多神奇的功能。
+				</p>
+				<p>
+					希望你喜欢她.....
+				</p>
+				<p>
+					<a class="btn btn-primary btn-large" href="http://git.oschina.net/zhangshibin1987/jshow-for-bootstrap">获取最新版本»»</a>
+				</p>
+		</div>
+		
+					<hr/>	
+				
+			<a name="part1"></a>
+			<h2>
+				1.为什么创建它？
+			</h2>
+			<p>
+				我想用bootstrap搭建自己的站点，本人找了很多插件，找了很多资源，它们都无法满足本人的需求。所以，为什么不去融合它，改造它，让它变得更加易用，更加方便。所以，我就这么作做了！哈哈.........
+			</p>
+			
+			<p>
+				当然，也许它还缺少一些插件？ 是的很多插件，日期插件，拖拽插件，树状插件，富文本插件... 因为我目前不需要他们，所以没有引入进来，热心的朋友如何添加进来之后，可以联系我增加到源码之中。
+			</p>
+			
+			
+			<hr/>
+			<a name="part2"></a>
+			<h2>
+				2.我能用它做什么？
+			</h2>
+			<ol>
+				<li>
+					快速整合建站资源，搭建出方便使用的后台管理代码。
+				</li>
+				<li>
+					方便易用的ajax弹出窗口，封装后更简单，可以多层窗口，窗口关闭资源即被回收（只会复制粘贴的菜鸟是无法理解的）。
+				</li>
+				<li>
+					同时也支持bootstrap原生的所有弹窗方式。
+				</li>
+				<li>
+					更方便的消息提示窗口。
+				</li>
+				<li>
+					更简单易用，功能强大的表单验证器。
+				</li>
+			</ol>
+			
+			<p>
+				以上这一切都够了，它们已经足够吸引你了，不是吗？
+			</p>
+			
+			
+			<hr/>
+			<a name="part3"></a>
+
+			<h2>
+				3.使用它，我需要哪些基础知识？
+			</h2>
+			<p>
+				什么？不懂javascript，jquery,不懂bootstrap，不懂HTML，我劝你还是回去好好补习基础知识吧。只有这些东东你都很熟悉之后，才有驾驭它的本事........不然的话不要惹我说脏话，滚粗...
+			</p>
+		
+		
+			<hr/>
+			<a name="part4"></a>
+
+			<h2>
+				4.如何使用它？
+			</h2>
+			<p>
+				你需要将misc目录下的除了other目录下的所有文件引入工程，是的，全部！ <br>
+				然后你就可以使用了，类似下面的用法,但是你<span  class="label label-important">需要修改一下资源路径</span>，对html驾轻就熟的你应该不成问题：
+			</p>
+		
+			
+<pre class="prettyprint linenums Lang-html">
+		
+&lt;link href="../misc/css/bootstrap.min.css" rel="stylesheet" type="text/css" /&gt;
+&lt;link href="../misc/css/bootstrap-modal.css" rel="stylesheet" type="text/css" /&gt;
+&lt;link href="../misc/css/joywindow.bootstrap.css" rel="stylesheet" type="text/css" /&gt;
+
+&lt;script type="text/javascript" src="../misc/js/jquery-1.7.2.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../misc/js/bootstrap.js"&gt;&lt;/script&gt; 
+&lt;script type="text/javascript" src="../misc/js/bootstrap-modal.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../misc/js/bootstrap-modalmanager.js"&gt;&lt;/script&gt; 
+&lt;script type="text/javascript" src="../misc/js/modal.manager.plugin1.0.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../misc/js/jshow.utils.js"&gt;&lt;/script&gt;
+<br />
+
+&lt;!-- you can delete follow resource 如果你不需要拖拽，以下文件可删除 --&gt;
+&lt;script type="text/javascript" src="../misc/js/jquery.ui.draggable.js"&gt;&lt;/script&gt;<br />
+&lt;!-- you can delete follow resource 如果你不需要表单验证，以下文件可删除 --&gt;
+&lt;script type="text/javascript" src="../misc/js/form.validate.js"&gt;&lt;/script&gt;<br />
+	
+</pre>
+		
+	 	</div>
+	</div>
+</div>
+		
+ 
+ 
+
+
+ 
+ 
+ 
+ 
+ </BODY>
+</HTML>
+<script>
+
+$(document).ready(function(){
+     prettyPrint();
+
+	$("#J-NAV-PART").delegate('li','click',function(){
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+})
+
+</script>

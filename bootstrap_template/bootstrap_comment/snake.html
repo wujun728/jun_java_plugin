@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JavaScript层抖动效果</title>
+		<style type="text/css">
+			#body {
+				text-align: center;
+			}
+			
+			#test {
+				width: 200px;
+				position: absolute;
+				margin: 10px auto;
+				border: 2px dotted red;
+				text-align: center
+			}
+			.shake {
+				margin: 100px auto;
+				width: 100px;
+				text-align: center;
+			    height: 40px;
+			    line-height: 40px;
+			    border: 1px solid #CCC;
+			    border-radius: 2px;
+			}
+			.shake:hover {
+				animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+				transform: translate3d(0, 0, 0);
+				backface-visibility: hidden;
+				perspective: 1000px;
+			}
+			@keyframes shake {
+				10%, 90% {
+					transform: translate3d(-1px, 0, 0);
+				}
+				20%, 80% {
+					transform: translate3d(2px, 0, 0);
+				}
+				30%, 50%, 70% {
+					transform: translate3d(-4px, 0, 0);
+				}
+				40%, 60% {
+					transform: translate3d(4px, 0, 0);
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div style="margin:10px 200px">
+			<div> <input type="button" value="~点这里让我抖抖吧~" onclick="nn.start()" /></div>
+			<div> <input type="button" value="晃晕了，我不抖了！" onclick="nn.stop()" /></div>
+			<div id="test"> <img border="0" src="img/user/11.jpg"></div>
+		</div>
+
+		<div class="shake">Hover Me</div>​
+	</body>
+
+</html>
+<script type="text/javascript">
+	var m = document.getElementById("test");
+
+	function SKclass(obj, Rate, speed) {
+		var oL = obj.offsetLeft;
+		var oT = obj.offsetTop;
+		this.stop = null;
+		this.oTime = null;
+		var om = this;
+		this.start = function() {
+			if(parseInt(obj.style.left) == oL - 2) {
+				obj.style.top = oT + 2 + "px";
+				setTimeout(function() {
+					obj.style.left = oL + 2 + "px"
+				}, Rate)
+			} else {
+				obj.style.top = oT - 2 + "px";
+				setTimeout(function() {
+					obj.style.left = oL - 2 + "px"
+				}, Rate)
+			}
+			this.oTime = setTimeout(function() {
+				om.start()
+			}, speed);
+		}
+		this.stop = function() {
+			clearTimeout(this.oTime);
+
+		}
+	}
+	var nn = new SKclass(m, 20, 70);
+</script>
+</body>
+
+</html>

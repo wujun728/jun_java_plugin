@@ -1,0 +1,335 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> jshow for bootstrap api</TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="david zhang">
+  <META NAME="Keywords" CONTENT="jshow bootstrap">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+	<link href="../misc/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="../misc/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+	<link href="../misc/css/joywindow.bootstrap.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="../misc/js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="../misc/js/bootstrap.js"></script>	
+	<script type="text/javascript" src="../misc/js/bootstrap-modalmanager.js"></script>	
+	<script type="text/javascript" src="../misc/js/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="../misc/js/modal.manager.plugin1.0.js"></script>
+	<script type="text/javascript" src="../misc/js/jquery.ui.draggable.js"></script>
+
+	<!-- you can delete follow resource 以下两个可删除-->
+	<script type="text/javascript" src="../misc/js/form.validate.js"></script>
+	<script type="text/javascript" src="../misc/js/jshow.utils.js"></script>	
+
+	
+	<script type="text/javascript" src="../misc/other/prettify.js"></script>
+	<link href="../misc/other/prettify.css" rel="stylesheet" type="text/css" />
+ </HEAD>
+
+ <BODY>
+			<div class="navbar  navbar-invers">
+			  <div class="navbar-inner">
+				<a class="brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				<ul class="nav">
+				  <li ><a href="index.html">首页</a></li>
+				  <li class="active"><a href="modal.html">弹出窗口</a></li>
+  				  <li><a href="messagebox.html">消息窗口使用</a></li>
+  				  <li><a href="formvalidate.html">表单验证使用</a></li>
+				  <li><a href="utils.html">其他工具类使用</a></li>
+   				  <li><a href="adminframe.html">管理后台示例</a></li>
+
+				</ul>
+			  </div>
+			</div>
+		
+
+	<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2">
+			 <ul class="nav nav-pills nav-stacked" id="J-NAV-PART"  data-spy="affix" data-offset-top="200" style="width:200px">
+			      <li class="active"><a href="#part1">
+			      1.如何创建它？
+			      </a></li>
+			      <li><a href="#part2">
+				2.参数说明
+			      </a></li>
+			      <li><a href="#part3">
+			     3.标签生成的Modal
+			      </a></li>
+ 			      <li><a href="#part4">
+			     4.关于多层弹窗
+			      </a></li>
+
+			    </ul>
+		
+		
+		
+		
+		</div>
+	
+		<div class="span10">
+
+
+		<div class="hero-unit">
+				<h1>
+					弹出窗口使用简介
+				</h1>
+				
+				
+				<div class="alert alert-error">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>交流信息</strong> Q群：291737753   欢迎来交流~
+				</div>
+
+				<p>
+					下面我们来讲讲如何方便快捷的使用jshow for bootstrap的弹出窗口。
+				</p>
+				<p>
+					<a class="btn btn-primary btn-large" href="http://git.oschina.net/zhangshibin1987/jshow-for-bootstrap">获取最新版本»»</a>
+				</p>
+			<hr/>	
+				
+			
+			<h2>
+				bootstrap原生的弹窗有什么缺点?
+			</h2>
+			<p>
+				<ol>
+				<li>
+					不能弹窗多层窗口，也很难对弹出窗进行管理。
+				</li>
+				<li>
+					生成ajax窗口复杂，不方便，而且兼容性不好？个人认为~~
+				</li>
+				<li>
+					modalmanager虽然可以弹多层窗口，但是使用也较麻烦，而且不能直接关闭顶层窗口，窗口关闭后无法回收dom资源!
+				</li>
+			</ol>
+			
+			 <strong>所以，jshow for bootstrap 诞生了，它解决了以上所有问题，当然它还有更多美好的功能！</strong>
+			</p>
+			
+			
+
+		</div>
+		
+		
+		<a name="part1"></a>
+		<hr/>
+			<h2>
+				一、jshow for bootsrap的窗口是如何创建的呢？
+			</h2>
+			
+			<p>
+				本系统解决了以上所有难题，同时也兼容之前所有的弹窗的方法，您原来的弹窗控件依然可以继续使用！
+			</p>
+			<p>
+
+			
+			
+<pre class="prettyprint linenums">
+
+//以下代码用来生成一个按钮
+&lt;a href=&quot;#nogo&quot; id=&quot;openDialog&quot; class=&quot;btn  btn-info&quot;&gt;很简单的JS点击弹窗&lt;/a&gt; 
+
+//以下脚本用来将弹窗事件绑定到按钮上
+
+	$("#openDialog").click(function(){
+		gDialog.fCreate({title:'这是一个弹窗窗口',url:'myDialog.html',width:700}).show();	
+	});
+
+//在任何时候通过以下代码，可以关闭顶层弹窗
+	gDialog.fClose();	
+	
+</pre>
+
+
+
+<div class="alert alert-error">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>警告!</strong> 由于本地文件访问权限原因，非IE或者firefox浏览器本弹窗可能会内容为空，建议IE或者firefox浏览，谢谢！
+</div>
+效果如下：
+	 <a href="#nogo" id="openDialog2" class="btn  btn-info">很简单的JS点击弹窗</a> 
+	<script>
+	  void function(j){
+	  
+	  	$("#openDialog2").click(function(){
+				gDialog.fCreate({title:'这是一个弹窗窗口',url:'myDialog.html',width:700}).show();	
+		});
+
+	  
+	  }(jQuery);
+	</script>
+
+			</p>
+			
+			
+			<a name="part2"></a>
+			<hr/>
+			<h2>
+				二、参数说明
+			</h2>
+			
+			<blockquote>
+			<p>
+				<ol>
+				<li>title：	标题，可为空</li>
+				<li>url	：	请求资源地址，也就是你窗口内容的地址</li>
+				<li>content	：如果非url请求，可以通过content直接设定dialog中的值，当url为空的时候才起作用</li>
+				<li>width：	宽度，也就是窗口的宽度</li>
+				<li>reuse：	重复使用，如果该参数为true，该窗口关闭后，资源不会被回收</li>
+				<li>dragConfig：传递jquery ui draggable的 拖动参数配置，非必输项，如果需要指定拖动的handle节点，可以通过：dragConfig:{handle:'选择器'}，来实现该功能！</li>
+				</ol>
+			</p>
+			</blockquote>
+			
+			
+			
+
+			
+			<a name="part3"></a>
+			<hr/>
+			<h2>
+				三、标签生成的Modal
+			</h2>
+			
+			<blockquote>
+			<p>
+				1. 即使是原生的Modal窗口，也已经纳入窗口管理器中，可以通过gDialog.fClose(); 方法关闭。如下所示：<br><br>
+				<!-- Button to trigger modal -->
+				<a href="#myModal" role="button" class="btn" data-toggle="modal">查看演示案例</a>
+				 <br>
+				<!-- Modal -->
+				<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h3 id="myModalLabel">Modal header</h3>
+				  </div>
+				  <div class="modal-body">
+					<p>One fine body…</p>
+				  </div>
+				  <div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">html标记关闭</button>
+					<button class="btn btn-primary" onclick="gDialog.fClose();">gDialog.fClose();关闭任意弹窗！</button>
+				  </div>
+				</div>
+				
+				代码如下：
+	<pre class="prettyprint linenums Lang-html">
+	&lt;!-- Button to trigger modal --&gt;
+	&lt;a href=&quot;#myModal&quot; role=&quot;button&quot; class=&quot;btn&quot; data-toggle=&quot;modal&quot;&gt;查看演示案例&lt;/a&gt;
+	&nbsp;
+	&lt;!-- Modal --&gt;
+	&lt;div id=&quot;myModal&quot; class=&quot;modal hide fade&quot; tabindex=&quot;-1&quot; role=&quot;dialog&quot; aria-labelledby=&quot;myModalLabel&quot; aria-hidden=&quot;true&quot;&gt;
+	 &nbsp;&lt;div class=&quot;modal-header&quot;&gt;
+		&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-hidden=&quot;true&quot;&gt;×&lt;/button&gt;
+		&lt;h3 id=&quot;myModalLabel&quot;&gt;Modal header&lt;/h3&gt;
+	 &nbsp;&lt;/div&gt;
+	 &nbsp;&lt;div class=&quot;modal-body&quot;&gt;
+		&lt;p&gt;One fine body…&lt;/p&gt;
+	 &nbsp;&lt;/div&gt;
+	 &nbsp;&lt;div class=&quot;modal-footer&quot;&gt;
+		&lt;button class=&quot;btn&quot; data-dismiss=&quot;modal&quot; aria-hidden=&quot;true&quot;&gt;关闭&lt;/button&gt;
+		&lt;button class=&quot;btn btn-primary&quot; onclick=&quot;gDialog.fClose();&quot;&gt;js关闭任意弹窗！&lt;/button&gt;
+	 &nbsp;&lt;/div&gt;
+	&lt;/div&gt;
+</pre>
+				
+	   <strong> 2.原生窗口支持拖动</strong>
+		<br/>
+		 在原生窗口中，在任意节点增加 <span class="label label-important">class:  drag-handle</span>，即可实现原生窗口的拖动功能， 且可拖动区域在加了该class 的节点上，如下所示。<br/>
+		 唯一的缺憾是，拖动后，第二次展现出来的效果有点问题，但不影响使用！
+		<br><br>
+		 	<!-- Button to trigger modal -->
+				<a href="#myModalDrag" role="button" class="btn" data-toggle="modal">查看演示案例</a><br>
+				 
+				 	<!-- Modal -->
+				<div id="myModalDrag" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabelDrag" aria-hidden="true">
+				  <div class="modal-header drag-handle">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h3 id="myModalLabelDrag">头部可以拖动</h3>
+				  </div>
+				  <div class="modal-body">
+					<p>内容区域不能拖动，因为拖动的drag-handle样式在头部区域定义!…</p>
+				  </div>
+				  <div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">html标记关闭</button>
+					<button class="btn btn-primary" onclick="gDialog.fClose();">gDialog.fClose();关闭任意弹窗！</button>
+				  </div>
+				</div>
+
+
+<pre class="prettyprint linenums Lang-html">
+	&lt;!-- Button to trigger modal --&gt;
+	&lt;a href=&quot;#myModalDrag&quot; role=&quot;button&quot; class=&quot;btn&quot; data-toggle=&quot;modal&quot;&gt;查看演示案例&lt;/a&gt;
+	&nbsp;
+	&lt;!-- Modal --&gt;
+	&lt;div id=&quot;#myModalDrag&quot; class=&quot;modal hide fade&quot; tabindex=&quot;-1&quot; role=&quot;dialog&quot; aria-labelledby=&quot;myModalLabel&quot; aria-hidden=&quot;true&quot;&gt;
+	 &nbsp;&lt;div class=&quot;modal-header  <span class="label label-warning">drag-handle</span> &quot;&gt;
+		&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-hidden=&quot;true&quot;&gt;×&lt;/button&gt;
+		&lt;h3 id=&quot;myModalLabel&quot;&gt;Modal header&lt;/h3&gt;
+	 &nbsp;&lt;/div&gt;
+	 &nbsp;&lt;div class=&quot;modal-body&quot;&gt;
+		&lt;p&gt;One fine body…&lt;/p&gt;
+	 &nbsp;&lt;/div&gt;
+	 &nbsp;&lt;div class=&quot;modal-footer&quot;&gt;
+		&lt;button class=&quot;btn&quot; data-dismiss=&quot;modal&quot; aria-hidden=&quot;true&quot;&gt;关闭&lt;/button&gt;
+		&lt;button class=&quot;btn btn-primary&quot; onclick=&quot;gDialog.fClose();&quot;&gt;js关闭任意弹窗！&lt;/button&gt;
+	 &nbsp;&lt;/div&gt;
+	&lt;/div&gt;
+</pre>
+					
+	
+		 
+
+				
+			</p>
+		</blockquote>
+		
+
+		
+
+				<a name="part4"></a>
+		<hr/>
+			<h2>
+				四、多层窗口弹窗
+			</h2>
+			
+			<p>
+				 多层窗口弹窗，只需要你在新弹出的窗口中，通过各种方式再弹窗一层，他就会在最上面，而之前的窗口会被盖住。效果如下：
+			</p>
+		
+
+ 		<a href="#nogo" id="openManyWindow" class="btn  btn-info">多层弹出窗口</a> 
+		<script>
+		  void function(j){
+		  
+		  	$("#openManyWindow").click(function(){
+					gDialog.fCreate({title:'多层弹出窗口，这是顶层',url:'topModal.html',width:700}).show();	
+			});
+
+		  
+		  }(jQuery);
+		</script>
+
+
+
+		
+	 	</div>
+	</div>
+</div>
+
+ </BODY>
+</HTML>
+<script>
+
+$(document).ready(function(){
+     prettyPrint();
+
+	$("#J-NAV-PART").delegate('li','click',function(){
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+})
+</script>

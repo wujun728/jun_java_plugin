@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0043)http://127.0.0.1:8080/sys/admin/main.action -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>一般常用后台管理系统框架搭建</title>
+<meta name="Generator" content="EditPlus">
+
+	<link href="../misc/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="../misc/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+	<link href="../misc/css/joywindow.bootstrap.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="../misc/js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="../misc/js/bootstrap.js"></script>	
+	<script type="text/javascript" src="../misc/js/bootstrap-modalmanager.js"></script>	
+	<script type="text/javascript" src="../misc/js/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="../misc/js/modal.manager.plugin1.0.js"></script>
+		<script type="text/javascript" src="../misc/js/jquery.ui.draggable.js"></script>
+
+	<!-- you can delete follow resource 以下两个可删除-->
+	<script type="text/javascript" src="../misc/js/form.validate.js"></script>
+	<script type="text/javascript" src="../misc/js/jshow.utils.js"></script>	
+	
+	<script type="text/javascript" src="../misc/other/prettify.js"></script>
+	<link href="../misc/other/prettify.css" rel="stylesheet" type="text/css" />
+
+
+	<!--左侧菜单样式-->
+	<style type="text/css">
+	/*左侧菜单样式*/
+	.sidebar-menu {
+		border-radius: 5px;
+		border-right: 1px solid #c4c8cb;
+	}
+
+	/*一级菜单*/
+	.menu-first {
+		height: 45px;
+		line-height: 45px;
+		background-color: #d9d9d9;
+		border-top: 1px solid #efefef;
+		border-bottom: 1px solid #e1e1e1;
+		padding: 0 0 0 20%;
+		font-size: 14px;
+		color: #556677;
+		font-weight: normal;
+	}
+
+	/*一级菜单鼠标划过状态*/
+	.menu-first:hover {
+		text-decoration: none;
+		background-color: #a6a4a5;
+		border-top: 1px solid #b7b7b7;
+		border-bottom: 1px solid #8c8cac;
+	}
+
+	/*二级菜单*/
+	.menu-second li a {
+		background-color: #f6f6f6;
+		height: 31px;
+		line-height: 31px;
+		border-top: 1px solid #efefef;
+		border-bottom: 1px solid #efefef;
+		font-size: 12px;
+	}
+
+	/*二级菜单鼠标划过样式*/
+	.menu-second li a:hover {
+		text-decoration: none;
+		background-color: #66c3ec;
+		border-top: 1px solid #83ceed;
+		border-bottom: 1px solid #83ceed;
+		border-right: 3px solid #f8881c;
+	}
+
+	/*二级菜单选中状态*/
+	.menu-second-selected a{
+		background-color: #66c3ec;
+		height: 31px;
+		line-height: 31px;
+		border-top: 1px solid #83ceed;
+		border-bottom: 1px solid #83ceed;
+		border-right: 3px solid #f8881c;
+	}
+
+	/*覆盖bootstrap的样式*/
+	.nav-list {
+		padding: 0px;
+		margin: 0px;
+	}
+
+    .nav-list li a {
+		padding: 0 0 2 20%;
+		margin: 0px;
+	}
+	
+	
+	.pagination ul > li > input{
+				vertical-align: top;
+			  	-webkit-border-radius: 0;
+			     -moz-border-radius: 0;
+			          border-radius: 0;
+			    height:auto;
+				*height: 20px;
+				margin-bottom:0px;
+				background-color: #fff;
+				border-left-width: 0;
+				width:40px;
+				float:left;
+				min-height: auto;
+				*min-height: 20px;
+	}
+		
+	input{
+		 height:auto;
+		 *height: 20px;
+	}
+	</style>
+
+
+
+
+</head>
+
+<body>
+
+		<div class="navbar  navbar-invers">
+			  <div class="navbar-inner">
+				<a class="brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				<ul class="nav">
+				  <li ><a href="index.html">首页</a></li>
+				  <li><a href="modal.html">弹出窗口</a></li>
+   				  <li><a href="messagebox.html">消息窗口使用</a></li>
+  				  <li><a href="formvalidate.html">表单验证使用</a></li>
+   				  <li ><a href="utils.html">其他工具类使用</a></li>
+   				  <li class="active"><a href="adminframe.html">管理后台示例</a></li>
+				  <li><a href="adminIframe.html">管理后台Iframe示例</a></li>
+				</ul>
+			  </div>
+		</div>
+
+
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="page-header">
+				<h1>系统管理平台 <small>欢迎登陆管理系统</small></h1>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<div class="row-fluid">
+		<div class="span3">
+
+
+		<!--Sidebar content start-->
+			<div class="sidebar-menu">
+				<a href="#contentMenu" class="nav-header menu-first collapsed" data-toggle="collapse" id="jshow-nav-1">
+                    <i class="icon-book icon-large"></i><span>内容管理</span>
+                </a>
+				<ul id="contentMenu" class="nav nav-list menu-second collapse">
+					<li><a href="javascript:;" class="J_Sub_nav" id="jshow-subnav-10" url="admin_content1.html" parentid="jshow-nav-1">
+							<i class="icon-pencil"></i> <span>打开动态内容1</span>
+						</a>
+					</li>
+					<li><a href="javascript:;" class="J_Sub_nav" id="jshow-subnav-11" url="admin_content2.html" parentid="jshow-nav-1">
+                            <i class="icon-list-alt"></i><span>打开动态内容2</span>
+						</a>
+					</li>
+				</ul>
+				
+				
+				<a href="#siteMenu" class="nav-header menu-first collapsed" data-toggle="collapse" id="jshow-nav-2">
+                    <i class="icon-user icon-large"></i><span>站点管理</span>
+				</a>
+				<ul id="siteMenu" class="nav nav-list collapse menu-second">
+                    <li><a href="javascript:;" id="jshow-subnav-8" url="/content/aritice/manage.html" parentid="jshow-nav-2">
+							<i class="icon-user"></i><span>增加用户</span>
+						</a>
+					</li>
+
+					<!-- 以下几个菜单是空的，所以点击了没有效果-->
+					<li><a href="javascript:;"><i class="icon-edit"></i> <span>修改用户</span></a></li>
+					<li><a href="javascript:;"><i class="icon-trash"></i> <span>删除用户</span></a></li>
+					<li><a href="javascript:;"><i class="icon-list"></i> <span>用户列表</span></a></li>
+				</ul>
+
+				
+				<a href="#sysMenu" class="nav-header menu-first collapsed" data-toggle="collapse" id="jshow-nav-3">
+					<i class="icon-book icon-large"></i><span>系统管理</span>
+				</a>
+				<ul id="sysMenu" class="nav nav-list collapse menu-second">
+					<li><a href="javascript:;" class="J_Sub_nav" id="jshow-subnav-30" url="/sys/dictElement/manage.action" parentid="jshow-nav-3">
+							<i class="icon-pencil"></i><span>字典项管理</span>
+						</a>
+					</li>
+					<li><a href="javascript:;">
+							<i class="icon-list-alt"></i> 
+							<!-- 为什么这个菜单明明配置了url也不行，因为没有class="J_Sub_nav"  这个class，你加上试试呢？-->
+							<span id="jshow-subnav-31" url="/sys/dictelement/manage.html" parentid="jshow-nav-3">内存管理</span>
+					</a></li>
+				</ul>
+				
+
+			</div>
+				
+		<!-- 绑定左侧菜单按钮事件  -->			
+		<script>
+		 void function(j){
+		 	j(".J_Sub_nav").click(function(){
+				var _this=j(this);
+				var url=_this.attr('url');
+				var parentId=_this.attr('parentId');
+				var menuName=_this.find('span').html();
+				var parentName=j("#"+parentId).find('span').html();
+				j(".J_Sub_nav").parent().removeClass('active');
+				_this.parent().addClass('active');
+
+				gUtils.fUpdateNav(true,'crumb-'+parentId,parentName);
+				gUtils.fUpdateNav(false,'crumb-'+_this.attr('id'),menuName,url);
+
+				gUtils.fGetBody(url);
+				gUtils.fGetFrame(url);
+
+			});
+		 
+		 }(jQuery);
+		</script>
+		<!--Sidebar content end-->
+
+			
+		</div>
+		
+		<!-- content begin -->
+		<div class="span9">
+		
+			<div class="row-fluid">
+				<div class="span12">
+					<ul class="breadcrumb" id="crumbs">
+						<li><a href="javascript:;">首页</a> <span class="divider">/</span></li>
+					</ul>
+				</div>
+			</div>
+
+
+			<!--内容区域 start -->
+			<div class="row-fluid">
+				<div class="span12">
+                    <div id="main_content">
+                    	说明：<br>
+                    	 1. 这个区域是一个动态区域，初次加载时为空，在点击右侧的菜单后，在菜单的伪属性“url”中配置的地址，通过Ajax来更新本区域的内容~！<br>
+                    	 2. 左侧的导航区域<br>
+                    	 3. 顶部为面包屑区域，通过菜单配置的名称，来更改面包屑的内容。<br>
+
+                    	 目前没有教程，只能右键查看页面源代码来了解他的作用~！！！
+
+					</div>
+
+				</div>
+			</div>
+			<!--内容区域 end -->
+
+			
+			
+		</div>
+		<!-- content end -->
+	</div>
+
+
+		
+	<!-- footer 部分 -->	
+	<div class="row-fluid">
+		<div class="span12"></div>
+	</div>
+</div>
+
+
+</body>
+</html>
