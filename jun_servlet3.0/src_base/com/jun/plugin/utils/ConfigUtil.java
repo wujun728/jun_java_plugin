@@ -33,7 +33,7 @@ import org.junit.Test;
  * <p>Description:福产流通科技</p>
  * <p>Copyright: Copyright (c) 2012</p>
  * <p>Company:福产流通科技</p>
- * @author shouyin 756514656@qq.com
+ * @author wujun
  * @date 2013-4-19 下午03:18:05
  * @version V1.0
  */
