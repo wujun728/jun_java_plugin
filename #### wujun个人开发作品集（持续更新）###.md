@@ -1,37 +1,44 @@
 ## [俊哥个人技术栈代码库(持续更新)](https://github.com/wujun728)
 --------------------------------------------------------------------------------------------------------------
 
-
 #### 企业篇：产品及解决方案(重点)
 
-> 企业信息化系统jun_biz：
+> 企业信息化系统[jun_product,jun_ssh,jun_ssm,jun_cloud,jun_boot]：
 
-【企业OA系统】[产品功能说明](https://github.com/wujun728/jun_biz/jun_oa)
-【企业CRM系统】[产品功能说明](https://github.com/wujun728/jun_biz/jun_crm)
-【企业ERP系统】[产品功能说明](https://github.com/wujun728/jun_biz/jun_erp)
-【企业HR系统】[产品功能说明](https://github.com/wujun728/jun_biz/jun_hr)
-【企业管理系统解决方案】[产品功能说明](https://github.com/wujun728/jun_biz/jun_mis) 
-【Blog管理系统】[产品功能说明](https://github.com/wujun728/jun_biz/jun_blog)
-【微服务快速开发平台】[产品功能说明](https://github.com/wujun728/jun_biz/jun_boot)
-【企业SSM快速开发平台】[产品功能说明](https://github.com/wujun728/jun_biz/jun_ssm)
-【企业SSH快速开发平台】[产品功能说明](https://github.com/wujun728/jun_biz/jun_ssh)
+【企业TPG门户系统】[仿中软国际TPG门户系统](https://github.com/wujun728/jun_product/jun_portal )
+【企业财经服务系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_finance)
+【企业HR服务系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_hr)
+【企业行政服务系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_administrative)
+【企业自助服务系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_itselfservice)
+【企业问答论坛系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_ask&discuss)
+【企业业务运营支撑系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_bos)
+【企业预算管理系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_op)
+【企业项目管理系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_project)
+【企业OA系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_oa)
+【企业CRM系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_crm)
+【企业ERP系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_erp)
+【企业信息管理系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_mis) 
+【Blog管理系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_blog)
+【俊哥的个人简历】[产品功能说明](https://github.com/wujun728/jun_product/jun_resume) 
+【微服务快速开发平台SpringCoud】[产品功能说明](https://github.com/wujun728/jun_cloud)
+【微服务快速开发平台SpringBoot】[产品功能说明](https://github.com/wujun728/jun_boot)
+【企业SSM快速开发平台】[产品功能说明](https://github.com/wujun728/jun_ssm)
+【企业SSH快速开发平台】[产品功能说明](https://github.com/wujun728/jun_ssh)
 
+> 企业网站产品 [jun_website],网站开发，WordPress+PHP ：
 
-> 企业网站产品 jun_website,网站开发，WordPress+PHP ：
-
-【企业门户】[产品功能说明](https://github.com/wujun728/jun_website/jun_portal)
-【企业CMS系统】[产品功能说明](https://github.com/wujun728/jun_website/jun_cms)
-【个人简历】[产品功能说明](https://github.com/wujun728/jun_website/jun_resume)
+【企业官网门户】[产品功能说明](https://github.com/wujun728/jun_website/jun_official_website)
+【企业CMS系统】[产品功能说明](https://github.com/wujun728/jun_website/jun_cms) 
 【WordPress】[产品功能说明](https://github.com/wujun728/jun_website/jun_wordpress)
 
-#### 移动篇：产品及解决方案(重点)
+#### 移动篇：产品及解决方案(重点) [jun_android,jun_app]
 
-> APP开发框架 jun_app, APP开发，Android开发，Vue+uniapp+Nodejs+++Bigdata：
+> APP开发框架 jun_app, APP开发，Android开发，Vue+uniapp+Nodejs+Bigdata：
 
-【Android程序开发】[产品功能说明](https://github.com/wujun728/jun_app/jun_android)
-【H5混合App程序开发】[产品功能说明](https://github.com/wujun728/jun_app/jun_app)
+【Android程序开发】[产品功能说明](https://github.com/wujun728/jun_android)
+【H5混合App程序开发】[产品功能说明](https://github.com/wujun728/jun_app)
 
-> 微信开发框架jun_weixin 微信开发：
+> 微信开发框架[jun_weixin] 微信开发：
 
 【微信小程序】[产品功能说明](https://github.com/wujun728/jun_weixin/weixin_miniprogram)
 【微信小程序管理系统】[产品功能说明](https://github.com/wujun728/jun_weixin/weixin_manager)
@@ -41,51 +48,55 @@
 【微信推送更新订阅管理系统】[产品功能说明](https://github.com/wujun728/jun_weixin/weixin_push)
 
 --------------------------------------------------------------------------------------------------------------
-#### 大数据篇：大数据场景（jun_bigdata） 大数据开发，Hadoop、Spark、Strom 
-【Hadoop大数据】[Spring连接Hadoop实现CRUD](https://github.com/wujun728/jun_plugin/Spring-mongoDB)
-【Spark大数据】[Spring连接Spark实现CRUD](https://github.com/wujun728/jun_plugin/Spring-mongoDB)
-【MongoDB数据库】[Spring连接mongoDB数据库实现增删改查](https://github.com/wujun728/jun_plugin/Spring-mongoDB)
-【Oracle数据库】[实现Oracle数据库的CRUD](https://github.com/wujun728/jun_plugin/Spring-redis)
-【MySQL数据库】[实现Mysql数据库的主从复制、读写分离、分表分库、负载均衡和高可用](https://github.com/wujun728/jun_plugin/Spring-redis)
-【H2数据库】[Spring连接H2数据库实现CRUD](https://github.com/wujun728/jun_plugin/Spring-redis)
-【SQLite数据库】[Spring连接SQLite实现CRUD](https://github.com/wujun728/jun_plugin/Spring-redis)
-【Neo4j图数据库】[Spring连接图存数据库Neo4j实现增删改查](https://github.com/wujun728/jun_plugin/Spring-neo4j)
-【ETL数据转换Kettle】[使用ETL工具Kettle的实例](https://github.com/wujun728/jun_plugin/Kettle-demo)
-【Zeppelin数据分析】[使用数据仓库进行OLAP数据分析（Mysql+Kettle+Zeppelin）](https://github.com/wujun728/jun_plugin)
+#### 大数据篇：大数据场景[jun_bigdata] 大数据开发，Hadoop、Spark、Strom 
+【Hadoop大数据】[Spring连接Hadoop实现CRUD](https://github.com/wujun728/jun_bigdata/Spring-mongoDB)
+【Spark大数据】[Spring连接Spark实现CRUD](https://github.com/wujun728/jun_bigdata/Spring-mongoDB)
+【MongoDB数据库】[Spring连接mongoDB数据库实现增删改查](https://github.com/wujun728/jun_bigdata/Spring-mongoDB)
+【Oracle数据库】[实现Oracle数据库的CRUD](https://github.com/wujun728/jun_bigdata/Spring-redis)
+【MySQL数据库】[实现Mysql数据库的主从复制、读写分离、分表分库、负载均衡和高可用](https://github.com/wujun728/jun_bigdata/Spring-redis)
+【H2数据库】[Spring连接H2数据库实现CRUD](https://github.com/wujun728/jun_bigdata/Spring-redis)
+【SQLite数据库】[Spring连接SQLite实现CRUD](https://github.com/wujun728/jun_bigdata/Spring-redis)
+【Neo4j图数据库】[Spring连接图存数据库Neo4j实现增删改查](https://github.com/wujun728/jun_bigdata/Spring-neo4j)
+【ETL数据转换Kettle】[使用ETL工具Kettle的实例](https://github.com/wujun728/jun_bigdata/Kettle-demo)
+【Zeppelin数据分析】[使用数据仓库进行OLAP数据分析（Mysql+Kettle+Zeppelin）](https://github.com/wujun728/jun_bigdata)
 
 --------------------------------------------------------------------------------------------------------------
-#### 微服务篇：基于Spring系微服务（jun_microservice,jun_boot）
-【SpringBoot微服务】[基于SpringBoot实现各种服务应用](https://github.com/wujun728/jun_springboot)
+#### 微服务篇：基于Spring系微服务[jun_cloud,jun_boot]
+【SpringBoot微服务】[基于SpringBoot实现各种服务应用](https://github.com/wujun728/jun_cloud)
 【SpringCloud微服务Netflex】[基于SpringCloud2.1的微服务开发脚手架，整合了spring-security-oauth2、nacos、feign、sentinel、springcloud-gateway等](https://github.com/zhoutaoo/SpringCloud)
-【SpringCloud微服务2020】[基于SpringCloud2020最新版构建微服务框架](https://github.com/wujun728/jun_plugin)
-【SpringCloudAlibaba微服务】[基于SpringCloudAlibaba提供微服务开发的一站式解决方案](https://github.com/wujun728/jun_plugin)
-【ApacheDubbo微服务】[基于Dubbo实现高性能、轻量级的Java微服务框架](https://github.com/wujun728/jun_plugin)
-【分布式session】[Spring框架的session模块实现集中式session管理 ](https://github.com/wujun728/jun_plugin)
-【分布式文件】[使用FastDFS搭建分布式文件系统（高可用、负载均衡）](https://github.com/wujun728/jun_plugin/Spring-fastdfs)
+【SpringCloud微服务2020】[基于SpringCloud2020最新版构建微服务框架](https://github.com/wujun728/jun_cloud)
+【SpringCloudAlibaba微服务】[基于SpringCloudAlibaba提供微服务开发的一站式解决方案](https://github.com/wujun728/jun_cloud)
+【ApacheDubbo微服务】[基于Dubbo实现高性能、轻量级的Java微服务框架](https://github.com/wujun728/jun_cloud)
+【分布式session】[Spring框架的session模块实现集中式session管理 ](https://github.com/wujun728/jun_cloud)
+【分布式文件】[使用FastDFS搭建分布式文件系统（高可用、负载均衡）](https://github.com/wujun728/jun_cloud/Spring-fastdfs)
 【分布式事务】[基于可靠消息最终一致性实现分布式事务（activeMQ），使用TCC框架实现分布式事务（Spring Cloud & dubbo）]
-【高并发事务】[高并发，数据库锁机制和事务隔离级别的实现](https://github.com/wujun728/jun_plugin)
-【分布式锁】[高并发：使用redis实现分布式锁，使用zookeeper实现分布式锁](https://github.com/wujun728/jun_plugin)
-【线程池&异步现场】[高并发：Java多线程编程实例 ](https://github.com/wujun728/jun_plugin)
+【高并发事务】[高并发，数据库锁机制和事务隔离级别的实现](https://github.com/wujun728/jun_cloud)
+【分布式锁】[高并发：使用redis实现分布式锁，使用zookeeper实现分布式锁](https://github.com/wujun728/jun_cloud)
+【线程池&异步现场】[高并发：Java多线程编程实例 ](https://github.com/wujun728/jun_cloud)
 【高性能NIO】[高并发：使用netty实现高性能NIO通信]
 【dubbo RPC服务】[Spring boot整合Apache dubbo v2.7实现分布式服务治理（SOA架构）]
 【Spring Cloud微服务】[使用Spring Cloud实现微服务架构（MSA架构）]
-【Redis&Redis Cluster】[基于Redis集群实现分布式缓存](https://github.com/wujun728/jun_plugin/Spring-redis)
-【分库分表Mycat】[实现Mysql数据库的主从复制、读写分离、分表分库、负载均衡和高可用](https://github.com/wujun728/jun_plugin/Spring-redis)
+【Redis&Redis Cluster】[基于Redis集群实现分布式缓存](https://github.com/wujun728/jun_cloud/Spring-redis)
+【分库分表Mycat】[实现Mysql数据库的主从复制、读写分离、分表分库、负载均衡和高可用](https://github.com/wujun728/jun_cloud/Spring-redis)
 
 --------------------------------------------------------------------------------------------------------------
-#### 架构环境篇：部署架构&分布式&高并发(jun_linux)  Linux环境部署、各种中间件
+#### 架构环境篇：部署架构&分布式&高并发[jun_linux]  Linux环境部署、各种中间件
 
-【Gitlib&SVN服务&搭建】[Git指南和分支管理策略](https://github.com/wujun728/jun_plugin)
-【Nginx集群】[搭建高可用nginx集群和Tomcat负载均衡](https://github.com/wujun728/jun_plugin)
-【zookeeper注册中心】[产品功能说明](https://github.com/wujun728/jun_plugin)=
+【Gitlib&SVN服务&搭建】[Git指南和分支管理策略](https://github.com/wujun728/jun_linux)
+【Nginx集群】[搭建高可用nginx集群和Tomcat负载均衡](https://github.com/wujun728/jun_linux)
+【zookeeper注册中心】[产品功能说明](https://github.com/wujun728/jun_linux)=
 【jenkins自动化部署】[使用jenkins+centos+git+maven搭建持续集成环境自动化部署分布式服务]
 【Docker微服务自动化】[使用docker+compose+jenkins+gitlab+spring cloud实现微服务的编排、持续集成和动态扩容]
 【kubernetes服务编排】[基于Kubernetes实现服务编排、自动部署，扩展和管理容器化]
 
-
 #### 基础篇：企业级开发组件(开发组件、代码生成、前端组件)
 
-> Spring系开发框架jun_spring_plugin：
+> Java基础系开发组件[jun_plugin] jun_plugin 常用开发组件，调整，新增并优化项目组件：
+
+【Java基础】[文件上传下载，邮件、Echart报表、二维码，开发工具](https://github.com/wujun728/jun_plugin/jun_redis)
+【设计模式】[23种设计模式及常见数据结构与算法](https://github.com/wujun728/jun_plugin/SSM)
+
+> Spring系开发框架组件[jun_spring_plugin] Spring常用开发组件，新增Spring系常用plugin，万能粘合剂，企业级J2EE实际标准平台 ：
 
 【SSH框架】[Struts2,Hibernate,Spring三大框架](https://github.com/wujun728/jun_spring_plugin/S2SH)
 【SSM框架】 [SpringMVC,Mybatis,Spring三大框架](https://github.com/wujun728/jun_spring_plugin/SSM)
@@ -103,19 +114,16 @@
 【Elastic search全文检索】[Spring整合Elastic search实现全文检索](https://github.com/wujun728/jun_spring_plugin/Spring-elastic_search)
 【单点登录】[Spring整合CAS框架&JWT实现单点登录](https://github.com/wujun728/jun_spring_plugin/Spring-cas-sso)
 
-> 前端系开发框架jun_frontend：
+> 前端系开发框架[jun_frontend]：
 
-【JQueryEasyUI】[基于JQuery的前端UI组件快速开发框架](https://github.com/wujun728/jun_plugin)
-【LayUI框架】[经典模块化前端UI 框架](https://www.layui.com/)](https://github.com/wujun728/jun_plugin)
-【Bootstrap框架】[前端响应式CSS/HTML框架](https://github.com/wujun728/jun_plugin)
-【Vue框架】[前端、构建用户界面的渐进式JavaScript框架](https://github.com/wujun728/jun_plugin)
+【JQueryEasyUI】[基于JQuery的前端UI组件快速开发框架](https://github.com/wujun728/jun_frontend)
+【LayUI框架】[经典模块化前端UI 框架](https://www.layui.com/)](https://github.com/wujun728/jun_frontend)
+【Bootstrap框架】[前端响应式CSS/HTML框架](https://github.com/wujun728/jun_frontend)
+【Vue框架】[前端、构建用户界面的渐进式JavaScript框架](https://github.com/wujun728/jun_frontend)
 
-> Java基础系开发组件 jun_plugin ：
 
-【Java基础】[文件上传下载，邮件、Echart报表、二维码，开发工具](https://github.com/wujun728/jun_plugin/SSM)
-【设计模式】[23种设计模式及常见数据结构与算法](https://github.com/wujun728/jun_plugin/SSM)
 
-> Java基础系开发组件  jun_code_generator  代码生成器&开发模板，基于freemarker及MetaData&SQL解析的代码生成器
+> Java基础系开发组件[jun_code_generator]  代码生成器&开发模板，基于freemarker及MetaData&SQL解析的代码生成器
 
 【Java代码生成模块】[数据库表代码生成、页面代码生成](https://github.com/wujun728/jun_code_generator/jun_code_helper)
 【Mybatis代码生成模块】[Mybatis代码生成](https://github.com/wujun728/jun_code_generator)
@@ -126,8 +134,10 @@
 		新增+jun_ssh+ssm+springboot+mybatis+JPA
 		常用项目模板及常用项目，调整，常用项目的集合，私有的
 
-TODO: 
-	jun_plugin 常用开发组件，调整，新增并优化项目组件
+> 待办-待处理-TODO[jun_2021,jun_test] 
+
+ 【TODO】
+	
 		jun_frontend 前端开发组件，调整
 		jun_test 干掉，合并到其他项目
 		fsLayui 
@@ -141,12 +151,18 @@ TODO:
 		springboot-mui
 		Jobs-search
 		xxyms
-		 
-	jun_spring_plugin Spring常用开发组件，新增Spring系常用plugin，万能粘合剂，企业级J2EE实际标准平台 
+		    
+	https://github.com/lerry903/spring-boot-api-project-seed
+	https://github.com/jackying/H-ui.admin
+	https://github.com/xiaoshaDestiny/spring-cloud-2020
+	
+	https://github.com/stylefeng/Guns
+	https://github.com/jsnjfz/WebStack-Guns
+	https://github.com/1477551037/exam
+	https://github.com/itd2008/My-Blog
+	https://github.com/qiaokun-sh/spring-token
 
-https://github.com/lerry903/spring-boot-api-project-seed
-https://github.com/jackying/H-ui.admin
-https://github.com/xiaoshaDestiny/spring-cloud-2020
+	https://github.com/wujun728/inspinia_admin_java_ssm
 
 
 
