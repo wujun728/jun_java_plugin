@@ -15,7 +15,8 @@
 	</properties>
 
 	<modules>
-		<module>fastdfs-client-java</module>
+		<module>jun_api</module>
+		
 		<module>jun_activemq</module>
 		<module>jun_activiti</module>
 		<module>jun_ajax</module>
