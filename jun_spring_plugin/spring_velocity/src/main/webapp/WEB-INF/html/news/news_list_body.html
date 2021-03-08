@@ -1,0 +1,11 @@
+ #foreach( $item in $list)
+<tr>
+<tr>
+	<td>$item.title</td>
+	<td>$item.description</td>
+	<td>$date.format('yyyy-MM-dd',$item.newsTime)</td>
+	<td>$date.format('yyyy-MM-dd HH:mm:ss:SSSS',$item.createTime)</td>
+	<td>$item.address</td>
+</tr>
+</tr>
+#end

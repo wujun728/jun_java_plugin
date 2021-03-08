@@ -1,0 +1,21 @@
+package com.us.demo.ticket
+import com.us.demo.ticket.Customer;
+import com.us.demo.ticket.Ticket;
+
+rule "New Ticket"
+    when
+    customer : Customer( )
+    ticket : Ticket( customer == customer, status == "New" )
+    then
+        System.out.println( "New : "  +customer.getName()+ "  "+customer.getSubscription()+" get one new Ticket.");
+end
+/*
+       customer : Customer( )
+        ticket : Ticket( customer == customer, status == "New" )
+rule "New Ticket"
+    when
+    ticket : Ticket( status == "New");
+    then
+        System.out.println( "New : "  );
+end
+*/

@@ -1,0 +1,74 @@
+package com.us.demo.money;
+
+import com.us.demo.money.Money;
+
+global java.util.List list
+
+function void  printTheMsg(int number,String desc){
+	System.out.println("[Number:"+number+"] [Desc:"+desc+"]");
+}
+function void printString(String string){
+	System.out.println(string);
+}
+
+rule "test0"
+when 
+	// 输出1次
+	//eval( true )
+	// 输出2次
+	Object()
+then
+	printString("ok");
+	 
+end
+
+
+/*
+rule "test1"
+salience 5
+// no-loop
+// 只执行一次？ update之后亦不会进行更新？ 
+when
+	m:Money(number>0,number<10,$number:number);
+then
+	m.setDesc("number>0");
+	//Money money=new Money(10); 
+	printString(m.toString());
+	list.add(m);
+	//这边也就是说，只改变了一处，但是并未改变Facts内部加载的事实
+	//并没有更新
+	//$number=$number+1;
+	//m.setNumber($number+1);
+	//改变2次 测试是否都被执行了
+	update(m);
+	//m.setNumber($number+2);
+	update(m);
+	// 两次都会被执行 以第二次的为准 并不是一开始update就更新workmemory
+	//list.add(money);
+	//retract(m);
+	// 是否有ELSE？
+end
+
+rule "test2"
+salience 4
+when
+	m:Money(number>10);
+then
+	m.setDesc("number>10");
+	printString(m.toString());
+	list.add(m);
+	//m.setNumber(102);
+	//retract(m);
+end
+
+rule "test3"
+salience 3
+when
+	m:Money(number>100);
+then
+	m.setDesc("number>100");
+	list.add(m);
+	//printString(m.toString());
+	//retract(m);
+end
+*/

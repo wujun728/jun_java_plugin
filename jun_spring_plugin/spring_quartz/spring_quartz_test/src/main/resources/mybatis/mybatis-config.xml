@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+	<!-- MyBatis全局设置 -->
+	<settings>
+		<!-- 全局的对mapper进行缓存属性的配置 -->
+		<setting name="cacheEnabled" value="true" />
+		<!-- 全局设置是否延迟加载，否的话，在服务启动的时候，自动加载所有的mapper -->
+		<setting name="lazyLoadingEnabled" value="true" />
+		<!-- 启用的时候，将会加载对象的所有懒属性，否则，按需加载 -->
+		<setting name="aggressiveLazyLoading" value="false" />
+		<!-- 允许用label替代name，不同的数据库驱动在这方面都不同 -->
+		<setting name="useColumnLabel" value="true" />
+		<!-- 启用下划线与驼峰式命名规则进行字段映射 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+
+	<!-- 插件配置 -->
+	<plugins>
+		<!-- 分页插件配置 -->
+		<plugin interceptor="com.job.common.pagination.PageInterceptor">
+			<!-- 数据库方言 -->
+			<property name="dialect" value="mysql" />
+			<!-- 分页对应的SQL语句id(拦截以page结尾的SQL) -->
+			<property name="pageSqlId" value=".*Page$" />
+		</plugin>
+	</plugins>
+
+</configuration>  

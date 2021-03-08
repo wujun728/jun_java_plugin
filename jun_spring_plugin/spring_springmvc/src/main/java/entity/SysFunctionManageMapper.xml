@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.SysFunctionManageMapper" >
+  <resultMap id="BaseResultMap" type="model.SysFunctionManage" >
+    <id column="MANAGEID" property="manageid" jdbcType="INTEGER" />
+    <result column="FUNID" property="funid" jdbcType="INTEGER" />
+    <result column="ROLEID" property="roleid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MANAGEID, FUNID, ROLEID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sysfunctionmanage
+    where MANAGEID = #{manageid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sysfunctionmanage
+    where MANAGEID = #{manageid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.SysFunctionManage" >
+    insert into sysfunctionmanage (MANAGEID, FUNID, ROLEID
+      )
+    values (#{manageid,jdbcType=INTEGER}, #{funid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.SysFunctionManage" >
+    insert into sysfunctionmanage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="manageid != null" >
+        MANAGEID,
+      </if>
+      <if test="funid != null" >
+        FUNID,
+      </if>
+      <if test="roleid != null" >
+        ROLEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="manageid != null" >
+        #{manageid,jdbcType=INTEGER},
+      </if>
+      <if test="funid != null" >
+        #{funid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.SysFunctionManage" >
+    update sysfunctionmanage
+    <set >
+      <if test="funid != null" >
+        FUNID = #{funid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        ROLEID = #{roleid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where MANAGEID = #{manageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.SysFunctionManage" >
+    update sysfunctionmanage
+    set FUNID = #{funid,jdbcType=INTEGER},
+      ROLEID = #{roleid,jdbcType=INTEGER}
+    where MANAGEID = #{manageid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,7 @@
+{
+  "name": "myblog",
+  "dependencies": {
+    "jquery": "*",
+    "semantic": "*"
+  }
+}

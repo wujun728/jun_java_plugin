@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>注册</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../assets/css/semantic.min.css"/>
+    <style>
+        *{
+            font-family: "microsoft yahei";
+        }
+    </style>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/semantic.min.js"></script>
+    <script>
+        $(function(){
+            $('.ui.form').form({
+                firstName: {
+                    identifier  : 'firstName',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : '请输入姓氏'
+                        }
+                    ]
+                },
+                lastName: {
+                    identifier  : 'lastName',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : '请输入名字'
+                        }
+                    ]
+                },
+                email: {
+                    identifier: 'email',
+                    rules: [
+                        {
+                            type   : 'email',
+                            prompt : '请输入邮箱'
+                        }
+                    ]
+                },
+                name: {
+                    identifier : 'name',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : '请输入用户名'
+                        }
+                    ]
+                },
+                password: {
+                    identifier : 'password',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : '请输入密码'
+                        },
+                        {
+                            type   : 'length[6]',
+                            prompt : '密码至少六位'
+                        }
+                    ]
+                },
+                repassword:{
+                    identifier : 'repassword',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : '请输入密码'
+                        },
+                        {
+                            type   : 'match[password]',
+                            prompt : '确认密码不一致'
+                        }
+                    ]
+                },
+                terms: {
+                    identifier : 'terms',
+                    rules: [
+                        {
+                            type   : 'checked',
+                            prompt : '请确认用户协议'
+                        }
+                    ]
+                }
+            });
+            $('.ui.checkbox').checkbox();
+        });
+    </script>
+</head>
+<body class="ui grid page">
+    <main class="column" style="width: 100%">
+        <form class="ui form segment error" method="POST" action="/sessions/signup">
+            <lengend class="ui header">注册blog</lengend>
+            <p class="ui error" th:text="${error}"></p>
+            <!--<input type="hidden" name="_method" value="put" />-->
+            <fieldset>
+                <div class="two fields">
+                    <div class="field">
+                        <label>姓</label>
+                        <input placeholder="姓" name="firstName" type="text"/>
+                    </div>
+                    <div class="field">
+                        <label>名</label>
+                        <input placeholder="名" name="lastName" type="text"/>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>邮箱</label>
+                    <input placeholder="用户名" name="email" type="text"/>
+                </div>
+                <div class="field">
+                    <label>用户名</label>
+                    <input placeholder="用户名" name="name" type="text"/>
+                </div>
+                <div class="field">
+                    <label>密码</label>
+                    <input type="password" placeholder="请输入密码" name="password" />
+                </div>
+                <div class="field">
+                    <label>确认密码</label>
+                    <input type="password" placeholder="再次输入密码" name="repassword" />
+                </div>
+                <div class="inline field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="terms" />
+                        <label>用户协议</label>
+                    </div>
+                </div>
+                <div class="ui error message"></div>
+                <div class="ui buttons">
+                    <div class="ui positive submit button">注册</div>
+                    <div class="or"></div>
+                    <a class="ui blue button" href="/sessions/login">登录</a>
+                </div>
+            </fieldset>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+<classPathEntry location="C:\\Users\\shenzhanwang\\Desktop\\pqms\\src\\main\\webapp\\WEB-INF\\lib\\sqljdbc4-4.0.jar" />  
+  <context id="context1">
+  <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+  </commentGenerator>
+    <jdbcConnection connectionURL="jdbc:sqlserver://10.6.179.99:1433;databaseName=pqms" driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" password="123456789" userId="sa" />
+    <javaModelGenerator targetPackage="po" targetProject="test" />
+    <sqlMapGenerator targetPackage="mapper.xml" targetProject="test" />
+    <javaClientGenerator targetPackage="mapper" targetProject="test" type="XMLMAPPER" /><!--ANNOTATEDMAPPER,XMLMAPPER-->
+    <table tableName="project" domainObjectName="Project"  enableCountByExample="false" enableUpdateByExample="false"
+     enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+  </context>
+</generatorConfiguration>
+<!--oracle处理date字段用String代替-->

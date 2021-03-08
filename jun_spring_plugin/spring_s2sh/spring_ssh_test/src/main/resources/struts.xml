@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <!-- 指定由spring负责action对象的创建 -->
+    <constant name="struts.objectFactory" value="spring" />
+    <!-- 所有匹配*.action的请求都由struts2处理 -->
+    <constant name="struts.action.extension" value="action" />
+    <!--设置Convention插件是否从jar包中搜索Action类 [可选] 默认值为true-->
+    <constant name="struts.convention.action.disableJarScanning" value="true" />
+    <!--设置Convention插件文件协议类型-->
+    <constant name="struts.convention.action.fileProtocols" value="jar,wsjar" />
+    <!--设置Convention插件需要搜索的jar包-->
+    <constant name="struts.convention.action.includeJars" value=".*?/struts2-action*.*?jar(!/)?" />
+    <!--该常量指定包作为根包来搜索Action类。-->
+    <!--Convention插件除了扫描默认的action,actions,struts,struts2，还会扫描该常量指定的一个或多个包，-->
+    <!--Convention会试图从指定包中发现Action类。-->
+    <constant name="struts.convention.action.packages" value="cn.qingyi.Controller" />
+    <!-- /static 为存放静态资源的路径，不拦截对此文件夹下文件的请求 -->
+    <constant name="struts.action.excludePattern" value="/static/.*?" />
+
+    <package name="default" namespace="/User" extends="struts-default">
+        <interceptors>
+            <!-- 登陆验证拦截器 -->
+            <interceptor name="LoginInterceptor"
+                         class="cn.qingyi.Interceptor.LoginInterceptor">
+            </interceptor>
+            <!-- 拦截器栈 -->
+            <interceptor-stack name="LoginStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="LoginInterceptor"/>
+            </interceptor-stack>
+        </interceptors>
+        <!-- 定义全局Result -->
+        <global-results>
+            <!-- 当返回login视图名时，转入/login.jsp页面 -->
+            <result name="login">/login.jsp</result>
+        </global-results>
+        <!--<action name="login" method="login" class="cn.qingyi.Controller.UserAction">-->
+            <!--<interceptor-ref name="LoginStack"></interceptor-ref>-->
+            <!--<result name="ok">/index.jsp</result>-->
+            <!--<result name="fail">/login.jsp</result>-->
+        <!--</action>-->
+
+    </package>
+</struts>

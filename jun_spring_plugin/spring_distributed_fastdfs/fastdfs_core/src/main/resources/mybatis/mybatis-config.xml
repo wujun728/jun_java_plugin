@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties>
+        <property name="dialect" value="mysql"/>
+        <property name="pageSqlId" value=".*Page$"/>
+    </properties>
+
+    <settings>
+        <!-- 使用驼峰命名法转换字段 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 使全局的映射器启用或禁用缓存 -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 全局启用或禁用延迟加载。当禁用时，所有关联对象都会即时加载 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 设置当JDBC类型为空时,某些驱动程序 要指定值,default:OTHER，插入空值时不需要指定类型 -->
+        <setting name="jdbcTypeForNull" value="NULL"/>
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="com.jun.plugin.dfs.core.entity.AppInfoEntity" alias="AppInfoEntity"/>
+        <typeAlias type="com.jun.plugin.dfs.core.entity.FileInfoEntity" alias="FileInfoEntity"/>
+    </typeAliases>
+
+</configuration>

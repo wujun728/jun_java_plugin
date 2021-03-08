@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 指定Struts 2配置文件的DTD信息 -->
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<!-- Struts 2配置文件的根元素 -->
+<struts>
+	<!-- 配置了系列常量 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+	<constant name="struts.multipart.maxSize" value="30000000" />
+	<package name="wsz" extends="json-default">
+	<interceptors>
+		<interceptor name="auth" class="intercepter.LoginIntercepter"></interceptor>
+		<interceptor-stack name="mydefault">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="auth"></interceptor-ref>
+		</interceptor-stack>
+	</interceptors>
+	<default-interceptor-ref name="mydefault"></default-interceptor-ref>
+	<global-results>
+		<result name="login">/WEB-INF/content/login.jsp</result>
+	</global-results>
+	<action name="login" class="action.LoginAction" method="userlogin">
+	<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="ok">/WEB-INF/content/showactor.jsp</result>
+			<result name="false">/WEB-INF/content/fail.jsp</result>
+	</action>
+	<action name="logout" class="action.LoginAction" method="logout">
+		<result name="ok">/WEB-INF/content/login.jsp</result>
+	</action>
+	<action name="actorlist" class="action.ActorGridAction">
+		<result name="success" type="json"></result>
+	</action>
+	<action name="updateactor" class="action.ActorAction">
+		<result name="success">/WEB-INF/content/showactor.jsp</result>
+	</action>
+	<action name="getActorInfo" class="action.ActorAction" method="getActorInfo">
+		<result name="ok" type="json"></result>
+	</action>
+	
+	<action name="rentallist" class="action.RentalGridAction">
+		<result name="success" type="json"></result>
+	</action>
+	<action name="deleterental" class="action.RentalAction" method="delete">
+		<result name="ok">/WEB-INF/content/showrental.jsp</result>
+	</action>
+	<action name="getRentalInfo" class="action.RentalAction" method="getinfo">
+		<result name="ok" type="json"></result>
+	</action>
+	<action name="updaterental" class="action.RentalAction" method="update">
+		<result name="ok">/WEB-INF/content/showrental.jsp</result>
+	</action>
+	<action name="insertrental" class="action.RentalAction" method="insert">
+		<result name="ok">/WEB-INF/content/showrental.jsp</result>
+	</action>
+	
+	<action name="countryandcity" class="action.Country_cityAction">
+		<result name="success" type="json"></result>
+	</action>
+	<action name="staffandstore" class="action.Staff_storeAction">
+		<result name="success" type="json"></result>
+	</action>
+	<action name="getcountry" class="action.CountryAction" method="getcountry">
+		<result name="success" type="json"></result>
+	</action>
+	
+	<action name="addcountry" class="action.CountryAction" method="addcountry">
+		<result name="success">aaa.jsp</result>
+	</action>
+	
+	<action name="deletecountry" class="action.CountryAction" method="deleteCountry">
+		<result name="success">BBB.jsp</result>
+	</action>
+	
+	<action name="updatecountry" class="action.CountryAction" method="updatecountry">
+		<result name="success">BBB.jsp</result>
+	</action>
+	<action name="upload" class="action.UploadAction">
+		<interceptor-ref name="fileUpload">
+			<param name="allowedTypes">image/png,application/vnd.ms-excel</param>
+			<param name="maximumSize">2000000</param>
+		</interceptor-ref>
+		<interceptor-ref name="defaultStack"></interceptor-ref>
+		<param name="savePath">/uploadfiles</param>
+		<result>/WEB-INF/content/succ.jsp</result>
+		<result name="input">/WEB-INF/content/uploaderror.jsp</result>
+	</action>
+	
+	<action name="authImg">
+	<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result>/WEB-INF/content/authImg.jsp</result>
+	</action>
+	
+	<action name="exportactor" class="action.ActorAction" method="export">
+           <result name="download" type="stream">
+              <param name="contentType">application/vnd.ms-excel</param>
+              <!-- 在浏览器中打开提示窗口，要求下载还是用相关软件打开，注意attachment的使用 -->
+              <param name="contentDisposition">attachment;filename="AllUsers.xls"</param>
+              <param name="inputName">downLoadFile</param>
+           </result>
+    </action>
+	
+	<action name="*">
+			<result>/WEB-INF/content/{1}.jsp</result>
+		</action>
+	</package>
+</struts>

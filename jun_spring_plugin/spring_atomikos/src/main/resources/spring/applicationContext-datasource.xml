@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+	default-lazy-init="true">
+
+	<description>配置数据源信息</description>
+
+	<context:property-placeholder location="classpath*:config/jdbc.properties" ignore-unresolvable="true" />
+
+	<bean id="abstractXADataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close" abstract="true">
+		<property name="poolSize" value="${datasource.poolSize}" />
+		<property name="minPoolSize" value="${datasource.minPoolSize}" />
+		<property name="maxPoolSize" value="${datasource.maxPoolSize}" />
+		<property name="borrowConnectionTimeout" value="${datasource.borrowConnectionTimeout}" />
+		<property name="reapTimeout" value="${datasource.reapTimeout}" />
+		<property name="maxIdleTime" value="${datasource.maxIdleTime}" />
+		<property name="maintenanceInterval" value="${datasource.maintenanceInterval}" />
+		<property name="loginTimeout" value="${datasource.loginTimeout}" />
+		<property name="logWriter" value="${datasource.logWriter}" />
+	</bean>
+
+	<bean id="masterDataSource" parent="abstractXADataSource">
+		<property name="uniqueResourceName" value="master" />
+		<property name="xaDataSourceClassName" value="${master.datasource.xaDataSourceClassName}" />
+		<property name="testQuery" value="${master.datasource.testQuery}" />
+		<property name="xaProperties">
+			<props>
+				<prop key="URL">${master.datasource.url}</prop>
+				<prop key="user">${master.datasource.username}</prop>
+				<prop key="password">${master.datasource.password}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="slaveDataSource" parent="abstractXADataSource">
+		<property name="uniqueResourceName" value="slave" />
+		<property name="xaDataSourceClassName" value="${slave.datasource.xaDataSourceClassName}" />
+		<property name="testQuery" value="${slave.datasource.testQuery}" />
+		<property name="xaProperties">
+			<props>
+				<prop key="URL">${slave.datasource.url}</prop>
+				<prop key="user">${slave.datasource.username}</prop>
+				<prop key="password">${slave.datasource.password}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="dynamicDatasource" class="com.wangxin.framework.datasource.DynamicDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="slave" value-ref="slaveDataSource" />
+				<entry key="master" value-ref="masterDataSource" />
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="slaveDataSource" />
+	</bean>
+
+	<bean id="dataSourceAspect" class="com.wangxin.framework.datasource.DataSourceAspect" />
+
+	<aop:config>
+		<aop:aspect order="1" ref="dataSourceAspect">
+			<aop:pointcut id="dsPointCut" expression="execution(* com.wangxin.service..*Service.*(..))" />
+			<aop:before pointcut-ref="dsPointCut" method="before" />
+		</aop:aspect>
+	</aop:config>
+
+</beans>

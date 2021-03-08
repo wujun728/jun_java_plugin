@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: marvin
+Build-Jdk: 1.7.0_04
+Specification-Title: Jasig CAS Web Application
+Specification-Version: 3.5.1
+Specification-Vendor: Jasig
+Implementation-Title: Jasig CAS Web Application
+Implementation-Version: 3.5.1
+Implementation-Vendor-Id: org.jasig.cas
+Implementation-Vendor: Jasig
+

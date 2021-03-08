@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ehcache.xsd"
+         updateCheck="false">
+
+
+    <diskStore path="java.io.tmpdir"/>
+
+
+    <!--
+    Mandatory Default Cache configuration. These settings will be applied to caches
+    created programmtically using CacheManager.add(String cacheName)
+    EhCache 配置
+    -->
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="240"
+            timeToLiveSeconds="240"
+            overflowToDisk="true"
+            maxElementsOnDisk="10000000"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="240"
+            memoryStoreEvictionPolicy="LRU"/>
+
+
+    <cache name="clientDetailsCache"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToIdleSeconds="240"
+           timeToLiveSeconds="240"
+           overflowToDisk="true"
+           maxElementsOnDisk="10000000"
+           diskPersistent="false"
+           diskExpiryThreadIntervalSeconds="240"
+           memoryStoreEvictionPolicy="LRU"/>
+
+
+    <cache name="accessTokenCache"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToIdleSeconds="240"
+           timeToLiveSeconds="240"
+           overflowToDisk="true"
+           maxElementsOnDisk="10000000"
+           diskPersistent="false"
+           diskExpiryThreadIntervalSeconds="240"
+           memoryStoreEvictionPolicy="LRU"/>
+
+
+    <cache name="authorizationCodeCache"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToIdleSeconds="240"
+           timeToLiveSeconds="240"
+           overflowToDisk="true"
+           maxElementsOnDisk="10000000"
+           diskPersistent="false"
+           diskExpiryThreadIntervalSeconds="240"
+           memoryStoreEvictionPolicy="LRU"/>
+
+
+    <cache name="userCache"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToIdleSeconds="240"
+           timeToLiveSeconds="240"
+           overflowToDisk="true"
+           maxElementsOnDisk="10000000"
+           diskPersistent="false"
+           diskExpiryThreadIntervalSeconds="240"
+           memoryStoreEvictionPolicy="LRU"/>
+
+
+    <cache name="refreshTokenCache"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToIdleSeconds="240"
+           timeToLiveSeconds="240"
+           overflowToDisk="true"
+           maxElementsOnDisk="10000000"
+           diskPersistent="false"
+           diskExpiryThreadIntervalSeconds="240"
+           memoryStoreEvictionPolicy="LRU"/>
+
+
+</ehcache>

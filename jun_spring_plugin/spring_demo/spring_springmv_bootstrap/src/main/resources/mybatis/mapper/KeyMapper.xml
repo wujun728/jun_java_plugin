@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.springmvc.mybatis.mapper.KeyMapper">
+
+	<select id="getTableValues" resultType="cn.springmvc.mybatis.common.base.model.Key">
+		<foreach collection="list" item="item" separator="union all">
+			SELECT max(${item.id}) id, '${item.tableName}' tableName FROM ${item.tableName}
+			 <where>
+			 	<if test="item.machineCode != null and item.machineCode != ''"> ${item.id} like '${item.machineCode}%'</if>
+			 </where>
+		</foreach>
+	</select>
+
+	<select id="getTables" resultType="cn.springmvc.mybatis.common.base.model.Key">
+		<!-- oracle -->
+		<!-- select cu.column_name id, cu.table_name tableName from user_cons_columns cu, user_constraints au, tabs t where cu.constraint_name = au.constraint_name and au.constraint_type = 'P' and au.table_name = t.table_name -->
+
+		<!-- MySQL -->
+		<!-- select c.column_name id , UPPER(t.table_name) tableName from information_schema.table_constraints as t,information_schema.key_column_usage as c where t.table_name = c.table_name and t.table_schema = 'XJH' and t.constraint_type = 'PRIMARY KEY' -->
+
+		<!-- SQLite -->
+		SELECT 'ID' as id , UPPER(name) as tableName FROM sqlite_master WHERE type='table' order by name
+	</select>
+
+
+</mapper>

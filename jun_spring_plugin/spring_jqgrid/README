@@ -1,0 +1,23 @@
+>>>>>>>>>>>  jqGrid Java Demo  <<<<<<<<<<<<<<<<<<<<
+
+ jqGrid is an Ajax-enabled JavaScript control that provides solutions for representing 
+ and manipulating tabular data on the web. jqGrid uses a jQuery Java Script Library and 
+ is written as plugin for that package. (http://www.trirand.com/jqgridwiki/doku.php)
+
+ This project is a demonstration how you can use jqGrid in Spring MVC framework.
+
+ Building
+
+    To build you will need: JDK 1.6
+
+    To build from Spring Tool Suite:
+        - File->Import->Maven->Existing Maven Projects->Browse
+        - choose the project
+        - press Finish
+        - select project
+        - Run As -> Maven package
+        
+ Running
+ 
+        - Run As->Run on Server
+        - Choose Tomcat v7.0 Server

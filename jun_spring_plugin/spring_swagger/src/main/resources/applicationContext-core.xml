@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--扫描Config，Services-->
+    <context:component-scan base-package="org.itcast.demo.config" />
+    <context:component-scan base-package="org.itcast.demo.service.impl" />
+
+    <!--导入配置文件-->
+    <context:property-placeholder location="classpath:druid.properties" />
+
+    <!--配置数据源-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="driverClassName" value="${driver}" />
+        <property name="url" value="${url}" />
+        <property name="username" value="${user}" />
+        <property name="password" value="${password}" />
+
+        <property name="initialSize" value="${initialSize}" />
+        <property name="maxWait" value="${maxWait}" />
+        <property name="maxActive" value="${maxActive}" />
+        <property name="minIdle" value="${minIdle}" />
+    </bean>
+
+    <!--配置MybatisSqlSessionFactoryBean-->
+    <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+        <!--数据源注入-->
+        <property name="dataSource" ref="dataSource" />
+        <!--别名配置-->
+        <property name="typeAliasesPackage" value="org.itcast.demo.entity" />
+        <!--SQL映射文件地址-->
+        <property name="mapperLocations" value="classpath:mappers/*Mapper.xml" />
+        <!--分页插件配置-->
+        <property name="plugins">
+            <bean class="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor" />
+        </property>
+    </bean>
+
+    <!--配置MapperScan-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--Mapper接口扫描-->
+        <property name="basePackage" value="org.itcast.demo.mapper" />
+        <!--SqlSession注入，在mybatis plus中可以省略-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+
+    <!--事务处理-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <!--开启事务注解-->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+</beans>

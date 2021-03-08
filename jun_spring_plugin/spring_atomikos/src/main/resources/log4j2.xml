@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status=debug 可以查看log4j的装配过程 -->
+<configuration status="off" monitorInterval="1800">
+
+	<!-- Log4j2.x 包含了基于LMAX 分离库的下一代的异步日志系统，在多线程环境下，异步日志系统比 Log4j1.x 和Logback 提高了10倍性能提升（吞吐量和延迟率 ） -->
+
+	<properties>
+		<!-- 本地调试用，日志备份目录 -->
+		<!-- <property name="BACKUP_HOME">/Users/vincent/workspace/examples/spirngmvc-atomikos/logs</property> -->
+		<!-- 本地调试用，生产环境 -->
+		<!-- <property name="BACKUP_HOME">/usr/local/logs</property> -->
+
+		<!-- <property name="PROJECT_NAME">spirngmvc-atomikos</property> -->
+	</properties>
+
+	<appenders>
+		<!-- 定义控制台输出 -->
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="%d{yy/MM/dd HH:mm:ss,SSS} %-8r [%-6p] [%t] %C.%M(%F:%L) - %m%n" />
+		</Console>
+
+		<!-- 应用日志 -->
+		<!-- <RollingRandomAccessFile name="RollingLog" fileName="${BACKUP_HOME}/report.log" filePattern="${BACKUP_HOME}/report.%d{yyyyMMdd}.log"> -->
+		<!-- <PatternLayout pattern="[${PROJECT_NAME}] %-9sn %d{yy/MM/dd HH:mm:ss,SSS} %-8r [%-6p] [%t] %C.%M(%F:%L) - %m%n" /> -->
+		<!-- <Policies> -->
+		<!-- <TimeBasedTriggeringPolicy interval="1" modulate="true" /> -->
+		<!-- </Policies> -->
+		<!-- </RollingRandomAccessFile> -->
+	</appenders>
+
+	<loggers>
+		<!-- 3rdparty Loggers -->
+		<logger name="com.wangxin" level="debug" />
+		<logger name="javax.transaction" level="info" />
+		<logger name="org.objectweb" level="info" />
+		<logger name="com.atomikos" level="error" />
+		<logger name="org.springframework" level="info" />
+		<logger name="org.hibernate" level="info" />
+		<logger name="org.apache" level="info" />
+		<logger name="org.mybatis.spring.SqlSessionUtils" level="info" />
+		<logger name="org.mybatis.spring.transaction.SpringManagedTransaction" level="info" />
+		<logger name="org.quartz" level="info" />
+
+		<!-- print sql log -->
+		<logger name="com.ibatis" level="debug" />
+		<logger name="com.ibatis.common.jdbc.SimpleDataSource" level="debug" />
+		<logger name="org.apache.ibatis.jdbc.ScriptRunner" level="debug" />
+		<logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="debug" />
+		<logger name="org.springframework.jdbc.core.JdbcTemplate" level="debug" />
+		<logger name="java.sql.ResultSet" level="debug" />
+		<logger name="java.sql.Connection" level="debug" />
+		<logger name="java.sql.Statement" level="debug" />
+		<logger name="java.sql.PreparedStatement" level="debug" />
+
+		<!-- Root Logger -->
+		<root level="debug">
+			<appender-ref ref="Console" />
+			<!-- <appender-ref ref="RollingLog" /> -->
+		</root>
+
+	</loggers>
+
+</configuration>

@@ -1,0 +1,14 @@
+package com.us.demo.ticketDSL
+import com.us.demo.ticket.Customer;
+import com.us.demo.ticket.Ticket;
+expander ticket.dsl
+
+rule "New Ticket"
+    salience 10
+    when
+       我要买张票 "New"
+       // 漂
+    then
+       打印 "买到了一张票";
+       
+end

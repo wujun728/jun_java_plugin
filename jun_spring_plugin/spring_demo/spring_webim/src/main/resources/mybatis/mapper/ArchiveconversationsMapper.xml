@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.springmvc.mapper.ArchiveconversationsMapper">
+
+	<resultMap id="BaseResultMap" type="cn.springmvc.model.Archiveconversations">
+		<id column="conversationId" property="conversationid" jdbcType="BIGINT" />
+		<result column="startTime" property="starttime" jdbcType="BIGINT" />
+		<result column="endTime" property="endtime" jdbcType="BIGINT" />
+		<result column="ownerJid" property="ownerjid" jdbcType="VARCHAR" />
+		<result column="ownerResource" property="ownerresource" jdbcType="VARCHAR" />
+		<result column="withJid" property="withjid" jdbcType="VARCHAR" />
+		<result column="withResource" property="withresource" jdbcType="VARCHAR" />
+		<result column="subject" property="subject" jdbcType="VARCHAR" />
+		<result column="thread" property="thread" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		conversationId, startTime, endTime, ownerJid, ownerResource, withJid, withResource,
+		subject, thread
+	</sql>
+
+	<select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from archiveconversations
+		where conversationId = #{conversationid,jdbcType=BIGINT}
+	</select>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from archiveconversations where conversationId = #{conversationid,jdbcType=BIGINT}
+	</delete>
+
+
+</mapper>

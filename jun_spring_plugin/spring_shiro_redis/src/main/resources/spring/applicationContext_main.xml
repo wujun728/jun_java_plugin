@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:jaxws="http://cxf.apache.org/jaxws"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:task="http://www.springframework.org/schema/task"
+	   xmlns:jee="http://www.springframework.org/schema/jee"
+	   xmlns:c="http://www.springframework.org/schema/c"
+	   xmlns:cache="http://www.springframework.org/schema/cache"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.1.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+  		http://www.springframework.org/schema/aop
+  		http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+    	http://www.springframework.org/schema/task
+  		http://www.springframework.org/schema/task/spring-task-4.1.xsd
+  		http://www.springframework.org/schema/jee
+  		http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
+  		http://www.springframework.org/schema/cache
+  		http://www.springframework.org/schema/cache/spring-cache.xsd">
+        <context:annotation-config/>
+        <context:component-scan base-package="com.zhm.ssr"/>
+        <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+            <property name="ignoreUnresolvablePlaceholders" value="true" />
+            <property name="locations">
+                <list>
+                    <value>classpath:jdbc.properties</value>
+                    <value>classpath:redis.properties</value>
+                </list>
+            </property>
+        </bean>
+        <aop:aspectj-autoproxy />
+       <!-- spring 线程池配置  -->
+        <task:annotation-driven executor="executorWithCallerRunsPolicy"/>
+        <task:executor id="executorWithCallerRunsPolicy" pool-size="2-5"  queue-capacity="50"  rejection-policy="CALLER_RUNS"/>
+         
+		<!-- redis缓存 -->
+		<bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager" c:template-ref="redisTemplate">
+			<property name="defaultExpiration" value="31536000"></property>
+		</bean>
+        <!--  支持注解缓存 -->
+		<cache:annotation-driven cache-manager="cacheManager"/>
+
+	    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+        <!-- 文件上传大小限制 -->
+		<bean id="multipartResolver"     class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+			<property name="maxUploadSize">
+            	<value>4097152000</value>  
+      		</property>
+		</bean>
+
+        <!--  ========shiro 配置开始 ======== -->
+		<bean id="myRealm" class="com.zhm.ssr.shiro.CustomRealm">
+			<!-- 配置AuthorizationInfo信息不用放redis缓存，直接放session即可 -->
+			<property name="cachingEnabled" value="false"/>
+			<property name="authenticationCachingEnabled" value="false" />
+		</bean>
+        <!-- session 保存到cookie，关闭浏览器下次可以直接登录认证，当maxAge为-1不会写cookie。-->
+		<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+			<constructor-arg value="sid"/>
+			<property name="httpOnly" value="true"/>
+			<!-- 浏览器关闭session失效，不计入cookie -->
+			<property name="maxAge" value="-1"/>
+		</bean>
+        <!--  记住我功能，当关闭浏览器下次再访问的时候不需要登录也能查看。只对filterChainDefinitions设置为user级别的链接有效，
+             类似于淘宝看商品、添加购物车，不需要验证是否登录。但是提交订单就必须登录。
+        -->
+		<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+			<constructor-arg value="rememberMe"/>
+			<property name="httpOnly" value="true"/>
+			<property name="maxAge" value="2592000"/><!-- 30天 -->
+		</bean>
+		<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+			<property name="cookie" ref="rememberMeCookie"/>
+            <!-- aes key。shiro默认的key是不安全的,可以使用工程utils包的GenerateAESKey生成一个自定义的key-->
+			<property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('XgGkgqGqYrix9lI6vxcrRw==')}"/>
+		</bean>
+		<bean id="sessionManager"
+			  class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+			<property name="sessionDAO" ref="sessionDAO"/>
+			<property name="sessionIdCookieEnabled" value="true"/>
+			<property name="sessionIdCookie" ref="sessionIdCookie"/>
+			<property name="deleteInvalidSessions" value="true" />
+			<property name="sessionValidationSchedulerEnabled" value="true" />
+		</bean>
+		<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+			<property name="realm" ref="myRealm"/>
+			<!-- shiro使用redis缓存 -->
+			<property name="cacheManager" ref="redisCacheManager" />
+			<property name="sessionManager" ref="sessionManager" />
+			<!-- 客户端勾选记住 -->
+			<property name="rememberMeManager" ref="rememberMeManager"/>
+		</bean>
+		<bean id="redisCacheManager" class="com.zhm.ssr.shiro.RedisCacheManager" >
+			<property name="redisManager" ref="redisManager" />
+		</bean>
+		<bean id="redisManager" class="com.zhm.ssr.shiro.RedisManager">
+			<property name="expire" value="${redis.expireTime}" />
+			<property name="host" value="${redis.host}" />
+			<property name="password" value="${redis.pass}" />
+			<property name="port" value="${redis.port}" />
+			<property name="timeout" value="${redis.maxWait}" />
+		</bean>
+		<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+			<property name="securityManager" ref="securityManager"/>
+			<property name="loginUrl" value="/login.html"/>
+			<property name="unauthorizedUrl" value="/nolimit.html"/>
+            <property name="filters">
+                <map>
+                    <entry key="mainFilter">
+                        <bean class="com.zhm.ssr.filters.CustomAuthorizationFilter" />
+                    </entry>
+                </map>
+            </property>
+			<property name="filterChainDefinitions">
+                <!-- 登录页面的所有请求，包括资源文件全部设定为匿名
+                     修改用户信息功能需要验证登录，其他都使用user过滤器。即rememberMe功能。
+                -->
+				<value>
+					/login**=anon
+					/user/doLogin**=anon
+					/lib/login.js=anon
+					/css/theme.css=anon
+					/favicon.ico=anon
+					/lib/font-awesome/css/font-awesome.css=anon
+					/js/html5.js=anon
+                    /user/edit/**=authc,perms[admin:manage]
+                    /**=mainFilter,user
+				</value>
+			</property>
+		</bean>
+        <!-- 自定义shiro的sessionDao，把session写入redis -->
+		<bean id="sessionDAO" class="com.zhm.ssr.shiro.RedisSessionDao">
+			<constructor-arg ref="redisTemplate" />
+			<constructor-arg value="${redis.expireTime}" />
+		</bean>
+		<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+        <!-- @shiro注解抛出异常之后跳转的页面。-->
+		<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+			<property name="exceptionMappings">
+				<props>
+					<prop key="org.apache.shiro.authz.UnauthorizedException">
+						redirect:/nolimit.html
+					</prop>
+					<prop key="org.apache.shiro.authz.UnauthenticatedException">
+						redirect:/login.html
+					</prop>
+				</props>
+			</property>
+		</bean>
+        <!--  ========shiro 配置结束 ======== -->
+
+        <!--  spring-data-redis配置,主要用作redis缓存 begin -->
+		<bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+			  p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}" p:timeout="5000"/>
+		<bean id="stringRedisSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		<bean id="jdkSerializationRedisSerializer" class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+		<bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
+			  p:connection-factory-ref="connectionFactory">
+			<property name="KeySerializer" ref="stringRedisSerializer" />
+			<property name="ValueSerializer" ref="stringRedisSerializer" />
+			<property name="hashKeySerializer" ref="stringRedisSerializer" />
+			<property name="hashValueSerializer" ref="stringRedisSerializer" />
+		</bean>
+		<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+			  p:connection-factory-ref="connectionFactory">
+			<property name="KeySerializer" ref="stringRedisSerializer" />
+			<property name="ValueSerializer" ref="jdkSerializationRedisSerializer" />
+			<property name="hashKeySerializer" ref="stringRedisSerializer" />
+			<property name="hashValueSerializer" ref="jdkSerializationRedisSerializer" />
+			<property name="enableTransactionSupport" value="true" />
+		</bean>
+        <!--  spring-data-redis配置,主要用作redis缓存 end -->
+
+	    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+			<property name="driverClassName" value="${jdbch2.driverClassName}" />
+			<property name="url" value="${jdbch2.url}" />
+			<property name="username" value="${jdbch2.username}" />
+			<property name="password" value="${jdbch2.password}" />
+			<property name="validationQuery" value="select 1 " />
+		</bean>
+		<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+			<property name="dataSource"><ref bean="dataSource"/></property>
+		</bean>
+		<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+			<property name="dataSource" ref="dataSource"/>
+		</bean>
+		<tx:annotation-driven transaction-manager="txManager"/>
+</beans>

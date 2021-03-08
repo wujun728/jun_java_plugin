@@ -1,0 +1,52 @@
+//created on: 2016-12-12
+package com.us.demo.helloword
+
+import com.us.demo.helloword.HelloWorldExample.Message;
+global java.util.List list
+
+rule "Hello Wolrd"
+// mvel 一种脚本语言
+	dialect "mvel" 
+	when 
+		m:Message(status == Message.HELLO , mymessage:message)
+ 	then
+ 		System.out.println(mymessage);
+ 		modify(m){ message = "Goodbye cruel world " , status = Message.GOODBYE
+ 		};
+	end
+	
+rule "GoodBye"
+// java 与java类似 但是又不是纯正的java类型
+	dialect "java" 
+	when
+		Message( status == Message.GOODBYE , mymessage : message)
+	then
+		System.out.println(mymessage);
+	end
+
+//list any import classes here.
+
+
+
+//declare any global variables here
+
+
+
+
+//rule "Your First Rule"
+
+  //  when
+        //conditions
+    //then
+        //actions
+
+//end
+
+//rule "Your Second Rule"
+    //include attributes such as "salience" here...
+  //  when
+        //conditions
+  // then
+        //actions
+
+//end
