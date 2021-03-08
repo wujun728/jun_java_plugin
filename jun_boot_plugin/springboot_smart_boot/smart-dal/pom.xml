@@ -1,0 +1,108 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.smartboot</groupId>
+		<artifactId>smart-boot</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>smart-dal</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.smartboot</groupId>
+			<artifactId>smart-assembly</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<!-- maven-mydalgen-plugin 配置 -->
+	<properties>
+		<middlegen.package>org.smartboot.dal.middlegen</middlegen.package>
+		<middlegen.package.dir>org/smartboot/dal/middlegen</middlegen.package.dir>
+		<middlegen.jdbc.url>jdbc:mysql://localhost:3306/demo</middlegen.jdbc.url>
+		<middlegen.jdbc.user>root</middlegen.jdbc.user>
+		<middlegen.jdbc.password>root</middlegen.jdbc.password>
+		<middlegen.jdbc.driver>com.mysql.jdbc.Driver</middlegen.jdbc.driver>
+		
+		<middlegen.destination>${basedir}/src/main</middlegen.destination>
+		<middlegen.source>${middlegen.destination}/resources/META-INF</middlegen.source>
+		<middlegen.config.file>${middlegen.source}/tables-config.xml</middlegen.config.file>
+		<middlegen.templates>file://${middlegen.source}/templates</middlegen.templates>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.smartboot.maven.plugin</groupId>
+				<artifactId>maven-mydalgen-plugin</artifactId>
+				<version>1.0.2</version>
+				<configuration>
+					<config>
+						<configFile>${middlegen.config.file}</configFile>
+						<mergedir>${middlegen.source}/templates/mergedir</mergedir>
+						<middlegenPackage>${middlegen.package}</middlegenPackage>
+						<jdbcDriver>${middlegen.jdbc.driver}</jdbcDriver>
+						<jdbcUrl>${middlegen.jdbc.url}</jdbcUrl>
+						<jdbcUser>${middlegen.jdbc.user}</jdbcUser>
+						<jdbcPassword>${middlegen.jdbc.password}</jdbcPassword>
+					</config>
+
+					<fileProducers>
+						<fileProducer>
+							<!-- 为每一个表生成一个DO -->
+							<destination>${middlegen.destination}/java/${middlegen.package.dir}</destination>
+							<template>${middlegen.templates}/do.vm</template>
+							<filename>dataobject/{0}DO.java</filename>
+						</fileProducer>
+
+						<fileProducer>
+							<!-- 为每一个表生成一个DAO -->
+							<destination>${middlegen.destination}/java/${middlegen.package.dir}</destination>
+							<template>${middlegen.templates}/dao.vm</template>
+							<filename>dao/{0}DAO.java</filename>
+						</fileProducer>
+
+						<fileProducer>
+							<!-- 生成dal层组件bean -->
+							<destination>${middlegen.destination}/java/${middlegen.package.dir}</destination>
+							<template>${middlegen.templates}/middlegen-dal-bean.vm</template>
+							<filename>MiddlegenDalBean.java</filename>
+						</fileProducer>
+
+						<fileProducer>
+							<!-- 生成sqlMap-mapping -->
+							<destination>${middlegen.destination}/resources</destination>
+							<template>${middlegen.templates}/table-sqlmap-mapping.vm</template>
+							<filename>mybatis/mapping/{0}-sqlmap-mapping.xml</filename>
+						</fileProducer>
+					</fileProducers>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

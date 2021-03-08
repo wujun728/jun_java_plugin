@@ -1,0 +1,89 @@
+<!--# layout("/common/layout.html",{"jsBase":"/js/admin/dict/"}){ -->
+
+<form class="layui-form layui-form-pane" id="updateForm">
+	<div class="layui-row">
+		<div class="layui-form-item">
+
+			<div class="layui-inline">
+				<label class="layui-form-label">字典值</label>
+				<div class="layui-input-block">
+					<input type="text" name="value" value="${dict.value}"
+						class="layui-input">
+				</div>
+			</div>
+			
+			<div class="layui-inline">
+				<label class="layui-form-label">字典名称</label>
+				<div class="layui-input-block">
+					<input type="text" name="name" value="${dict.name}"
+						class="layui-input">
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<div class="layui-row">
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">类型</label>
+				<div class="layui-input-inline">
+					<input type="text" name="type" value="${dict.type}"
+						class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-inline">
+				<label class="layui-form-label">类型描述</label>
+				<div class="layui-input-inline">
+					<input type="text" name="typeName" value="${dict.typeName}"
+						class="layui-input">
+				</div>
+			</div>
+
+
+			<div class="layui-inline">
+				<label class="layui-form-label">显示顺序</label>
+				<div class="layui-input-inline">
+					<input type="text" name="sort" value="${dict.sort}"
+						class="layui-input">
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<div class="layui-row">
+		<div class="layui-form-item">
+
+			<div class="layui-inline">
+				<label class="layui-form-label">父字典值</label>
+				<div class="layui-input-inline">
+					<input type="text" name="parent" value="${dict.parent}"
+						class="layui-input">
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="layui-row">
+		<div class="layui-form-item">
+			<label class="layui-form-label">备注</label>
+			<div class="layui-input-block">
+				<input type="text" name="remark" value="${dict.remark}"
+					class="layui-input">
+			</div>
+		</div>
+	</div>
+	<input type="hidden" name="id" value=${dict.id} />
+
+	<layui:submitButtons id="updateButton" />
+</form>
+<!--#} -->
+<script>
+layui.use(['edit'], function(){
+  var dictEdit = layui.edit
+  dictEdit.init();
+});
+
+</script>

@@ -1,0 +1,15 @@
+target/
+.svn/
+.settings/
+do-c-log/
+.classpath
+.project
+mail_zh_CN.properties
+.externalToolBuilders/org.eclipse.wst.jsdt.core.javascriptValidator.launch
+*.log
+*.iml
+.idea/
+bin/
+.idea/
+*.iml
+*~

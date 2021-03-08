@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html;charset=UTF-8"/>
+	<title>${title!"业务页面"}</title>
+	<meta name="keywords" content="fsLayuiPlugin,layui,layuiPlugin,layui插件,layui快速开发插件" />
+    <meta name="description" content="fsLayuiPlugin,layui,layuiPlugin,layui插件,layui快速开发插件" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta http-equiv ="Pragma" content = "no-cache"/>
+	<meta http-equiv="Cache-Control" content="no cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no"/>	
+	<script src="${ctxPath}/js/cdn/pace.min.js?v=${jsVer}"></script>
+	<link href="${ctxPath}/css/cdn/pace-theme-flash.css?v=${jsVer}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/plugins/layui/css/layui.css?v=${jsVer}" media="all"/>
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/css/cdn/font_520106_q8xykrwf86ywrk9.css?v=${jsVer}" media="all"/>
+	<script type="text/javascript" src="${ctxPath}/plugins/layui/layui.js?v=${jsVer}"></script>
+	<script type="text/javascript" src="${ctxPath}/plugins/jquery/jquery.min.js?v=${jsVer}"></script>
+	<!--<link rel="stylesheet" href="${ctxPath}/plugins/ztree/css/zTreeStyle.css?v=${jsVer}" type="text/css">-->
+	<link rel="stylesheet" href="${ctxPath}/plugins/ztree/css/metroStyle.css?v=${jsVer}" type="text/css">
+	<script type="text/javascript" src="${ctxPath}/plugins/ztree/js/jquery.ztree.all.min.js?v=${jsVer}"></script>
+	<!-- 业务公用库 -->
+	<script type="text/javascript" src="${ctxPath}/js/common.js?v=${jsVer}"></script>
+	<script type="text/javascript" src="${ctxPath}/js/lib.js?v=${jsVer}"></script>
+	<script>
+
+	Common.ctxPath= '${ctxPath}';
+	Common.version= '${jsVer}';
+	//设定layui模块的版本,1234
+	layui.config({
+		base : Common.ctxPath+"${jsBase!}",
+		version : Common.version
+	});
+	$(document).ready(function () { }).keydown(
+　　　function (e) {
+　　　　if (e.which === 27) {
+		Common.openConfirm("是否放弃治疗回到主页?",function(){
+			layer.closeAll(); 
+		})
+　　　　　 
+　　　　   }
+	});
+	</script>
+	<style>
+	.site-block{padding: 20px; border: 1px solid #eee;}
+	
+    
+    .input-readonly{
+    	background-color: #efefef;  
+    	cursor:not-allowed;
+	}  
+	.button-disabled{
+    	background-color: #efefef;  
+    	cursor:not-allowed;
+	}  
+	</style>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+<div style="margin: 15px;"> 
+${layoutContent}
+</div>
+</div>
+</body>
+</html>

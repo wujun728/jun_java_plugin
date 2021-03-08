@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--package 为所在包名-->
+<hibernate-mapping package="net.oschina.j2cache.hibernate">
+
+<!--数据库表名不区分大小写，table缺省取和name同值，这里table属性可以不写-->
+<class name="User" table="tb_user">
+    <cache usage="nonstrict-read-write"/>  
+    <!--主键 name为类的属性名，表字段名缺省与name一致，这里column可以不写-->
+    <id name="id" column="id"></id>
+    <!--其他属性字段-->
+    <property name="name" column="name"></property>
+</class>
+
+</hibernate-mapping>

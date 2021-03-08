@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.bluesky.mapper.BaseRuleConditionInfoMapper">
+    <sql id="BaseFindListSql">
+        T.CONDITION_ID,
+        T.RULE_ID,
+        T.CONDITION_NAME,
+        T.CONDITION_EXPRESSION,
+        T.CONDITION_DESC,
+        T.IS_EFFECT,
+        T.CRE_USER_ID,
+        T.CRE_TIME,
+        T.REMARK
+    </sql>
+    <select id="findBaseRuleConditionInfoList" parameterType="com.sky.bluesky.model.BaseRuleConditionInfo"
+            resultType="com.sky.bluesky.model.BaseRuleConditionInfo">
+        SELECT DISTINCT
+        <include refid="BaseFindListSql"></include>
+        FROM
+        RULE_CONDITION_INFO T
+        WHERE
+        1 = 1
+        <if test="ruleId != null">
+            AND T.RULE_ID = #{ruleId}
+        </if>
+
+    </select>
+    <select id="findRuleConditionInfoByRuleId" resultType="com.sky.bluesky.model.BaseRuleConditionInfo">
+        SELECT DISTINCT
+        <include refid="BaseFindListSql"></include>
+        FROM
+        RULE_CONDITION_INFO T
+        WHERE
+        1 = 1
+        <if test="ruleId != null">
+            AND T.RULE_ID = #{ruleId}
+        </if>
+    </select>
+</mapper>

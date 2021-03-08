@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>labs-parent</artifactId>
+        <groupId>cn.iocoder.springboot.labs</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>lab-27</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>lab-27-webflux-01</module>
+        <module>lab-27-webflux-02</module>
+        <module>lab-27-webflux-03</module>
+        <module>lab-27-webflux-mongodb</module>
+        <module>lab-27-webflux-redis</module>
+        <module>lab-27-webflux-elasticsearch</module>
+        <module>lab-27-webflux-r2dbc</module>
+    </modules>
+
+
+</project>

@@ -1,0 +1,32 @@
+<!--# 
+/*通用数据下拉列表控件,输入有data,value,attrId,attrName,name
+<layui:simpleDataSelect name="orgId" value="${user.orgId}" data="${orgs}" 
+					attrId="id" attrName="orgName"/>
+*/  -->
+<div class="${style!'layui-input-inline'}">
+<!--#  
+if(has(readonly)){
+	var selectedData = null;
+	var expected = value!"";
+	for(item in data){
+		if(item[attrId]==expected){
+			selectedData = item;
+			break;
+		}
+	}
+-->
+	<input type="text"  class="layui-input input-readonly" value="${selectedData[attrName]}"></input>
+	<input type="hidden"  name="${name}" value="${expected}"></input>
+<!--#}else{  -->
+
+	<select  name="${name}" ${has(id)?("id="+id):''}>
+		<option  value="">请选择</option>
+	<!--# 
+		var expected = value!"";
+		for(item in data){
+	 -->
+    	<option value="${item[attrId]}" ${item[attrId]==expected?'selected'}>${item[attrName]}</option>
+   <!--#}-->
+    </select>
+ <!--#}  -->
+</div>

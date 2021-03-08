@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zh</groupId>
+    <artifactId>spring-boot-demos</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>spring-boot-condition</module>
+        <module>spring-boot-redis</module>
+        <module>spring-boot-java8stream</module>
+        <module>spring-boot-banner</module>
+        <module>spring-boot-swagger</module>
+        <module>spring-boot-command</module>
+        <module>spring-boot-mybatis</module>
+        <module>spring-boot-jpa</module>
+        <module>spring-boot-aoplog</module>
+        <module>spring-boot-mail</module>
+        <module>spring-boot-scheduler</module>
+        <module>spring-boot-thymeleaf</module>
+        <module>spring-boot-easypoi</module>
+        <module>spring-boot-exception</module>
+        <module>spring-boot-redisson</module>
+        <module>spring-boot-multidatasource</module>
+        <module>spring-boot-atomikos-jta</module>
+        <module>spring-boot-activemq</module>
+        <module>spring-boot-mongodb</module>
+        <module>spring-boot-async</module>
+        <module>spring-boot-elasticsearch</module>
+        <module>spring-boot-logback</module>
+        <module>spring-boot-websocket</module>
+        <module>spring-boot-jwt</module>
+        <module>spring-boot-shiro</module>
+        <module>spring-boot-bloomfilter</module>
+        <module>spring-boot-docker</module>
+        <module>spring-boot-rabbitmq</module>
+        <module>spring-boot-design-pattern</module>
+    </modules>
+</project>

@@ -1,0 +1,27 @@
+
+
+使用的主要技术与版本号
+*Spring-Boot (2.0.2.RELEASE)
+*spring-security-oauth2 (2.3.0.RELEASE)
+
+
+如何使用?
+1.项目是Maven管理的, 需要本地安装maven(开发用的maven版本号为3.3.3), 还有MySql(开发用的mysql版本号为5.6)
+
+2.下载(或clone)项目到本地
+
+3.创建MySQL数据库(数据库名oauth2_boot), 并运行相应的SQL脚本(脚本文件位于others/database目录),
+   运行脚本的顺序: initial_db.ddl -> oauth.ddl -> initial_data.ddl
+
+4.修改application.properties(位于src/resources目录)中的数据库连接信息(包括username, password等)
+
+5.将本地项目导入到IDE(如Intellij IDEA)中,配置Tomcat(或类似的servlet运行服务器), 并启动Tomcat(默认端口为8080)
+   另: 也可通过maven package命令将项目编译为war文件(spring-oauth-server.war),
+         将war放在Tomcat中并启动(注意: 这种方式需要将application.properties加入到classpath中并正确配置数据库连接信息).
+
+6.参考oauth_test.txt(位于others目录)的内容并测试之(也可在浏览器中访问相应的地址,如: http://localhost:8080/spring-oauth-server).
+
+7. 运行单元测试时请先创建数据库 oauth2_boot_test, 并依次运行SQL脚本.
+   运行脚本的顺序: initial_db.ddl -> oauth.ddl
+
+

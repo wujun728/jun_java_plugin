@@ -1,0 +1,32 @@
+#parse("copyright.vm")
+#set ($baseClass = ${table.baseDaoClass})
+
+#set ($base = ${table.baseDaoClassName})
+
+package ${table.ibatisPackage};
+
+import ${baseClass};
+
+import ${table.qualifiedDAOClassName};
+import org.springframework.stereotype.Repository;
+#foreach($importClass in $table.daoImplImports) 
+import $importClass;
+#end
+
+
+/**
+ * An ibatis based implementation of dao interface <tt>${table.qualifiedDAOClassName}</tt>.
+ *
+#parse("description-java.vm")
+ */
+@Repository("${table.DAOClassName}")
+public class ${table.ibatisClassName} extends $base implements ${table.DAOClassName} {
+
+	private static final String namespace="${table.baseClassName}.";
+
+#foreach($operation in $table.operations)
+#parse("operation/op-${operation.templateSuffix}.vm") #parse("operation/opbody-${operation.templateSuffix}.vm")
+
+
+#end
+}

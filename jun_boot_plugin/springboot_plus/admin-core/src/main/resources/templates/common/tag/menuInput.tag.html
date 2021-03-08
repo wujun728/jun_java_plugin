@@ -1,0 +1,40 @@
+<!--# 
+/*菜单选择控件
+name: 表单名称
+text：显示
+id:表单的id
+value:表单的值
+*/  
+
+-->
+<!--# 
+var text = text!"";
+var id=id!"menuId";
+if(isEmpty(text)&&isNotEmpty(value)){
+
+	text= core.menuName(value);
+	
+}
+ -->
+<div class="${style!'layui-input-inline'}">
+	<input type="text" name="${name}Text" id="${id}Text" disabled autocomplete="off" class="layui-input" value="${text}">
+       
+</div>
+<span id="${name}Search">选择</span>
+<div style="display:none;"><input type="text" name='${name}' id="${id}" value="${value!}"></div>
+<div id="${name}TreeDemoContainer">
+</div>
+
+<script>
+$(document).ready(function(){
+	$("#${name}Search").click(function(){
+	Lib.loadMenuPanel($("#${name}TreeDemoContainer"),$("#${id}Text"),$("#${id}"));
+})
+
+
+
+
+});
+
+
+</script>

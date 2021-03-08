@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.bluesky.mapper.BaseRuleActionParamValueInfoMapper">
+    <sql id="BaseFindParamValueSql">
+        T.ACTION_PARAM_VALUE_ID,
+        T.RULE_ACTION_REL_ID,
+        T.ACTION_PARAM_ID,
+        T.PARAM_VALUE,
+        T.IS_EFFECT,
+        T.CRE_USER_ID,
+        T.CRE_TIME,
+        T.REMARK
+    </sql>
+    <select id="findBaseRuleActionParamValueInfoList" parameterType="com.sky.bluesky.model.BaseRuleActionParamValueInfo"
+            resultType="com.sky.bluesky.model.BaseRuleActionParamValueInfo">
+        SELECT DISTINCT
+        <include refid="BaseFindParamValueSql"></include>
+        FROM
+        RULE_ACTION_PARAM_VALUE_INFO T
+        WHERE
+        1 = 1
+        <if test="ruleActionRelId != null">
+            AND T.RULE_ACTION_REL_ID = #{ruleActionRelId}
+        </if>
+        <if test="actionParamId != null">
+            AND T.ACTION_PARAM_ID = #{actionParamId}
+        </if>
+
+
+    </select>
+    <select id="findRuleParamValueByActionParamId"
+            resultType="com.sky.bluesky.model.BaseRuleActionParamValueInfo">
+        SELECT DISTINCT
+        <include refid="BaseFindParamValueSql"></include>
+        FROM
+        RULE_ACTION_PARAM_VALUE_INFO T
+        WHERE
+        1 = 1
+        AND T.IS_EFFECT = 1
+        AND T.ACTION_PARAM_ID = #{paramId}
+    </select>
+</mapper>

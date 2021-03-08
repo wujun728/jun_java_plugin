@@ -1,0 +1,17 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: spring-boot-clienta
+  boot:
+    admin:
+      client:
+        url: http://localhost:8888
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

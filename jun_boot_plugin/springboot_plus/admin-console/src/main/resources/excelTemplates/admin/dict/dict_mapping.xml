@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<workbook>
+	<worksheet name="Template">
+		<section startRow="0" endRow="2">
+		</section>
+		<loop startRow="3" endRow="3" items="list" var="dict"
+			varType="com.ibeetl.admin.console.web.dto.DictExcelImportData">
+			<section startRow="3" endRow="3">
+				<mapping row="3" col="0">dict.excelId</mapping>
+				<mapping row="3" col="1">dict.name</mapping>
+				<mapping row="3" col="2">dict.value</mapping>
+				<mapping row="3" col="3">dict.typeName</mapping>
+				<mapping row="3" col="4">dict.type</mapping>
+				<mapping row="3" col="5">dict.parentExcelId</mapping>
+				<mapping row="3" col="6">dict.remark</mapping>
+			</section>
+			<loopbreakcondition>
+				<rowcheck offset="0">
+					<cellcheck offset="1"></cellcheck>
+				</rowcheck>
+			</loopbreakcondition>
+		</loop>
+	</worksheet>
+</workbook>

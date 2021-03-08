@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="talk">
+        <div style="width: 680px;margin: 0 auto">
+            <p>欢迎您:{{currentUserName}}</p>
+            <input type="radio" id="one" value="multi" @click="chooseTalkType(picked)" v-model="picked">
+            <label for="one">群聊</label>
+            <input type="radio" id="two" value="single" @click="chooseTalkType(picked)" v-model="picked">
+            <label for="two">私聊</label>
+            <div id="chooseUser" v-show = 'picked == "single"'>
+                <select v-model="selected" style="width: 150px;">
+                    <option v-for="option in options" :value="option.value">{{option.text}}</option>
+                </select>
+            </div>
+        </div>
+        <div style="width: 680px;margin: 0 auto">
+            <textarea v-model="loginOutBox" readonly style="height: 150px;width: 200px;border: 1px solid black">
+            </textarea>
+            <textarea v-show = 'picked == "multi"' v-model="multiMsgOutput" readonly style="height: 350px;width: 200px;border: 1px solid black">
+            </textarea>
+            <textarea v-show = 'picked == "multi"' v-model="multiMsgInput" style="height: 150px;width: 200px;border: 1px solid black">
+            </textarea>
+            <button v-show = 'picked == "multi"' @click="submit(0,multiMsgInput)">发送</button>
+            <textarea v-show = 'picked == "single"' v-model="singleMsgOutput" readonly style="height: 350px;width: 200px;border: 1px solid black">
+            </textarea>
+            <textarea v-show = 'picked == "single"' v-model="singleMsgInput" style="height: 150px;width: 200px;border: 1px solid black">
+            </textarea>
+            <button v-show = 'picked == "single"' @click="submit(1,singleMsgInput)">发送</button>
+        </div>
+
+    </div>
+    <script src="../main.js"></script>
+</body>
+</html>

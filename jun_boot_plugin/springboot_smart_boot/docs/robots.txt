@@ -1,0 +1,58 @@
+User-agent: Googlebot
+Disallow: /assets/
+Disallow: /CNAME
+Disallow: /*.md$
+Disallow: /files/
+
+User-agent: Googlebot-Image
+Disallow: /assets/
+Disallow: /CNAME
+Disallow: /*.md$
+Disallow: /files/
+
+User-agent: Twitterbot
+Disallow: /assets/
+Disallow: /CNAME
+Disallow: /*.md$
+Disallow: /files/
+
+User-agent: Bingbot
+Disallow: /assets/
+Disallow: /CNAME
+Disallow: /*.md$
+Disallow: /files/
+
+User-agent: DuckDuckBot
+Disallow: /assets/
+Disallow: /CNAME
+Disallow: /*.md$
+Disallow: /files/
+
+User-agent: ia_archiver
+Disallow: /assets/
+Disallow: /CNAME
+Disallow: /*.md$
+Disallow: /files/
+
+User-agent: Applebot
+Disallow: /assets/
+Disallow: /CNAME
+Disallow: /*.md$
+Disallow: /files/
+
+User-agent: facebookexternalhit
+Disallow: /assets/
+Disallow: /CNAME
+Disallow: /*.md$
+Disallow: /files/
+
+User-agent: Facebot
+Disallow: /assets/
+Disallow: /CNAME
+Disallow: /*.md$
+Disallow: /files/
+
+User-agent: *
+Disallow: /
+
+Sitemap: https://example.com/sitemap.xml

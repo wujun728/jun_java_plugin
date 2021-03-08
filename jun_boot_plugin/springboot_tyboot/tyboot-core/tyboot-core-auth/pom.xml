@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+
+	<parent>
+		<groupId>org.typroject</groupId>
+		<artifactId>tyboot-core</artifactId>
+		<version>1.1.20Ty-SNAPSHOT</version>
+	</parent>
+
+	<groupId>org.typroject</groupId>
+	<artifactId>tyboot-core-auth</artifactId>
+	<packaging>jar</packaging>
+	<name>tyboot-core-auth</name>
+	<url>http://www.tycloud.org</url>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.typroject</groupId>
+			<artifactId>tyboot-core-rdbms</artifactId>
+			<version>1.1.20Ty-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.typroject</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.typroject</groupId>
+			<artifactId>tyboot-core-foundation</artifactId>
+			<version>1.1.20Ty-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.typroject</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.typroject</groupId>
+			<artifactId>tyboot-component-cache</artifactId>
+			<version>1.1.20Ty-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.typroject</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- 要将源码放上去，需要加入这个插件 -->
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

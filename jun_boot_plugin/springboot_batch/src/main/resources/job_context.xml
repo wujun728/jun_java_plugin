@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/batch
+	 	http://www.springframework.org/schema/batch/spring-batch.xsd
+	 	http://www.springframework.org/schema/task
+	  	http://www.springframework.org/schema/task/spring-task.xsd">
+	<!-- Import our beans -->
+	<import resource="classpath:/applicationContext.xml" />
+	<batch:job id="job1">
+		<batch:step id="importFileStep">
+			<tasklet>
+				<chunk reader="productReader" writer="productWriter"
+					commit-interval="5" />
+			</tasklet>
+		</batch:step>
+	</batch:job>
+	<!--执行器 -->
+	<bean id="runScheduler" class="com.sushou.demo.BatchJob" />
+	<!--定时任务 每5秒执行一次 -->
+	<task:scheduled-tasks>
+		<task:scheduled ref="runScheduler" method="run"
+			cron="*/5 * * * * *" />
+	</task:scheduled-tasks>
+</beans>

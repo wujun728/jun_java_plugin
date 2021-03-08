@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://www.java1234.com/jquery-easyui-1.3.3/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	function show(){
+		$.post("ajax/hello",{},function(result){
+			alert(result);
+		});
+	}
+	
+</script>
+</head>
+<body>
+<button onclick="show()">你大爷</button>
+<a href="/HelloWorld/blog/21">博客</a>
+<a href="/HelloWorld/blog/query?q=123456">搜索</a>
+</body>
+</html>

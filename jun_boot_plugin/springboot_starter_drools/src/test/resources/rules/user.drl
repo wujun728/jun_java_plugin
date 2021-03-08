@@ -1,0 +1,14 @@
+package cloud.user
+
+import xin.guaika.cloud.drools.model.User;
+
+rule "user.name"
+
+    when
+        // conditions
+        $user : User()
+    then
+    	
+        //actions
+		System.out.println("hello "+$user.getName()+"!");
+end

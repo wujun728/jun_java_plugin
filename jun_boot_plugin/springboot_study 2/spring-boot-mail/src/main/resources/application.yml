@@ -1,0 +1,5 @@
+spring:
+  mail:
+    host: smtp.126.com
+    username: eacdy0000@126.com
+    password:

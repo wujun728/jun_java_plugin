@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>SpringBoot项目测试</h1>
+	<form th:action="@{/insert}" method="post">
+		<fieldset style="width: 300px">
+			<legend>新增用户</legend>
+			<table>
+				<tr>
+					<td>id</td>
+					<td>
+						<input name=id type="text">
+					</td>
+				</tr>
+				<tr>
+					<td>姓名</td>
+					<td>
+						<input name="userName" type="text">
+					</td>
+				</tr>
+				<tr>
+					<td>性别</td>
+					<td>
+						<input type="radio" name="gender" checked="checked" value="男">男
+						<input type="radio" name="gender" value="女">女
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="reset" value="重置">
+					</td>
+					<td>
+						<input type="submit" value="提交">
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+	</form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>注册用户</title>
+    <style>
+        .container {
+            text-align: center;
+            margin: 0 auto;
+        }
+        .title {
+            text-align: center;
+        }
+        .notice {
+            font-size:14px;
+            color:red;
+        }
+        h3 {
+            color: #686868;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">吐槽了</h1>
+        <h3>您刚注册了【吐槽了】网站，请点击下面的链接进行激活。</h3>
+        <p class="notice">注意：此链接在两小时内有效，逾期无效。</p>
+        <a th:href="${href}">点击激活</a>
+    </div>
+</body>
+</html>

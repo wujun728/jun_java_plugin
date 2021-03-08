@@ -1,0 +1,20 @@
+server:
+    context-path: /springboot
+    port: 8080
+    session-timeout: 60
+    tomcat:
+      max-threads: 300
+      uri-encoding: UTF-8
+    ssl: 
+      key-store: classpath:keystore.p12
+      key-store-password: 123456
+      keyStoreType: PKCS12
+
+logging:
+    level:
+      root: INFO
+
+
+      
+      
+

@@ -1,0 +1,9 @@
+    /** 
+     * The name of the DAO.
+     *
+     * <p>
+     * Please DO NOT use hard coded String "${daoName}" for requesting instance of this DAO,
+     * use the constant instead.
+     */
+    String NAME = "${daoName}";
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hello Spring Boot</title>
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <div>用户信息：</div>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">姓名</th>
+            <th scope="col">年龄</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row" th:text="${data.user.id}"></th>
+            <td th:text="${data.user.name}"></td>
+            <td th:text="${data.user.age}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div>课程信息：</div>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">课程名称</th>
+            <th scope="col">课程地点</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course, iterStat : ${data.list}">
+            <th scope="row" th:text="${course.id}"></th>
+            <td th:text="${course.name}"></td>
+            <td th:text="${course.address}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${data.flag == true}">如果 flag 为 true 你将可以看到这行字：）</div>
+
+</div>
+
+</body>
+</html>

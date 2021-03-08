@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <base target="_blank">
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            <p>专项管理</p>
+            <p>
+                <button class="btn btn-primary btn-add" type="button">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;新增专项</button>
+                <button class="btn btn-info btn-upd" type="button"><i class="fa fa-paste"></i> 编辑</button>
+                <button class="btn btn-success btn-del" type="button">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;删除
+                </button>
+                <button class="btn btn-warning btn-stop" type="button"><i class="fa fa-warning"></i> <span class="bold">专项结束</span>
+                </button>
+            </p>
+            <table id="tb_users"></table>
+        </div>
+    </div>
+</div>
+
+<!-- 模态框（Modal）-->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" style="width: 700px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onClick="cancer()">&times;</button>
+                <h5 class="modal-title" id="modalAddorEditTitle">新增专项</h5>
+            </div>
+            <div class="modal-body" style="background-color: white;">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="myForm">
+                        <input name="zxUuid" type="text" hidden>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">编号：</label>
+                            <div class="col-sm-6">
+                                <input name="zxCode" class="form-control" type="text" disabled="disabled">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">名称：</label>
+                            <div class="col-sm-6">
+                                <input id="zxName" name="zxName" class="form-control" type="text" aria-required="true" aria-invalid="false" class="valid">
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 注意：必填项，且数字字母下划线不超过32位</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">范围：</label>
+                            <div class="col-sm-6">
+                                <select class="form-control zxRange" name="zxRange">
+                                    <option value="1">全国</option>
+                                    <option value="2">省/直辖市</option>
+                                    <option value="3">区/旗/市</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">类型：</label>
+                            <div class="col-sm-6">
+                                <select class="form-control zxType" name="zxType">
+                                    <option value="1">事件</option>
+                                    <option value="2">案件</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">开始时间：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control layer-date" name="startTime" placeholder="YYYY-MM-DD" onclick="laydate({istime: false, format: 'YYYY-MM-DD'})">
+                                <label class="laydate-icon"></label>
+                            </div>
+                            <label class="col-sm-3 control-label">结束时间：<span
+                                    style="color: red"></span></label>
+                            <div class="col-sm-8">
+                                <input class="form-control layer-date" name="endTime" placeholder="YYYY-MM-DD" onclick="laydate({istime: false, format: 'YYYY-MM-DD'})">
+                                <label class="laydate-icon"></label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="addOrEdit()">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cancer()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 模态框（Modal）end-->
+
+<script src="js/core/common/jquery.min.js?v=2.1.4"></script>
+<script src="js/core/common/bootstrap.min.js?v=3.3.5"></script>
+<script src="js/plugins/layer/layer/layer.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/plugins/layer/laydate/laydate.js"></script>
+<script src="js/static/jquery.cookie.js"></script>
+<script src="js/static/common.js"></script>
+<script src="js/core/common/jquery.form.js"></script>
+<script src="js/core/common/collection.js"></script>
+<script src="js/core/common/util.js"></script>
+<script src="js/core/common/zeus.js"></script>
+<script src="js/static/specialManagement/specialManagement.js"></script>
+</body>
+
+</html>

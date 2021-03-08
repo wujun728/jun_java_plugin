@@ -1,0 +1,45 @@
+<!--# layout("/common/layout.html",{"jsBase":"/js/"}){ -->
+<!--# if(isNotEmpty(templatePath)){  -->
+<blockquote class="layui-elem-quote">
+<u><a href="${ctxPath}/core/file/downloadTemplate.do?path=${templatePath}">点击下载模板 </a></u>
+</blockquote> 
+<!--#}  -->
+<form class="layui-form layui-form-pane" id="updateForm">
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>拖拽上传</legend>
+</fieldset>
+<div class="layui-upload-drag" id="test10">
+  <i class="layui-icon"></i>
+  <p>点击上传，或将文件拖拽到此处</p>
+</div>
+
+
+
+</form>
+<!--#} -->
+
+<script>
+layui.use('upload', function(){
+  var upload = layui.upload;
+  upload.render({
+    elem: '#test10'
+    ,accept: '${fileType!"file"}' //默认所有文件都允许
+    ,url: '${uploadUrl}'
+    ,done: function(res){
+    debugger;
+      if(res.code==0){
+      	Common.openConfirm("上传成功,是否继续上传?",null,function(){
+			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+			parent.layer.close(index); //再执行关闭  
+		})
+      }else{
+      	Common.alert(res.msg)
+      }
+    }
+   
+  });
+  
+ });
+
+</script>

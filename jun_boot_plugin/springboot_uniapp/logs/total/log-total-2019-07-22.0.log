@@ -1,0 +1,22 @@
+2019-07-22 18:08:48.953  INFO 2172 --- [restartedMain] c.lxx.springboot.SpringbootApplication   : Starting SpringbootApplication on MS-20190302BOQ2 with PID 2172 (F:\MyProject\springboot-project\target\classes started by Administrator in F:\MyProject\springboot-project)
+2019-07-22 18:08:48.956  INFO 2172 --- [restartedMain] c.lxx.springboot.SpringbootApplication   : No active profile set, falling back to default profiles: default
+2019-07-22 18:08:49.029  INFO 2172 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-07-22 18:08:49.029  INFO 2172 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-07-22 18:08:51.084  INFO 2172 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-07-22 18:08:51.086  INFO 2172 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-07-22 18:08:51.113  INFO 2172 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10ms. Found 0 repository interfaces.
+2019-07-22 18:08:51.931  INFO 2172 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$954688ec] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-07-22 18:08:52.301  INFO 2172 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8880 (http)
+2019-07-22 18:08:52.332  INFO 2172 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-22 18:08:52.333  INFO 2172 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-22 18:08:52.536  INFO 2172 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/my]     : Initializing Spring embedded WebApplicationContext
+2019-07-22 18:08:52.536  INFO 2172 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3507 ms
+2019-07-22 18:08:52.712  INFO 2172 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-07-22 18:08:52.859  INFO 2172 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-07-22 18:08:55.085  INFO 2172 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-22 18:08:55.437  INFO 2172 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-07-22 18:08:55.505  INFO 2172 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8880 (http) with context path '/my'
+2019-07-22 18:08:55.509  INFO 2172 --- [restartedMain] c.lxx.springboot.SpringbootApplication   : Started SpringbootApplication in 7.114 seconds (JVM running for 11.694)
+2019-07-22 18:10:30.383  INFO 2172 --- [http-nio-8880-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/my]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-07-22 18:10:30.384  INFO 2172 --- [http-nio-8880-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-07-22 18:10:30.404  INFO 2172 --- [http-nio-8880-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 20 ms

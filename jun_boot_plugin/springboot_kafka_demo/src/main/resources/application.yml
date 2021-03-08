@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev
+
+logging:
+  level:
+    com.lin: debug
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.lin.model

@@ -1,0 +1,15 @@
+            <div class="custom-footer" style="display: block;">
+            <div class="footer-social-icons">
+            <ul class="social-icons">
+            {% for social_item in site.data.socialmedia %}
+              {% if social_item.url contains 'http' %}
+              {% assign domain = '' %}
+              {% else %}
+              {% assign domain = site.url %}
+            {% endif %}
+            <li><a href="{{ domain }}{{ social_item.url }}" rel="me" {% if social_item.url contains 'http' %} target="_blank" {% endif %} class="social-icons" title="{{ social_item.title }}"> <i class="{{ social_item.class }} fa-2x"></i></a></li>
+            {% endfor %}          
+            </ul>
+            </div>
+            <h6 class="text-footer"><a rel="license" href="{{ site.url }}/disclosure/" title="CC BY-NC-SA 4.0 License, link to site disclosure" class="social-icon"><i class="fa fa-creative-commons"></i></a> <a rel="license" href="{{ site.url }}/disclosure/" title="CC BY-NC-SA 4.0 License, link to site disclosure">2016-{{ site.time | date: '%Y' }}</a>: <a href="{{ site.url }}" title="Home">smartboot.org</a> | <a href="{{ site.url }}/reference/" rel="me">使用手册</a></h6>
+            </div>

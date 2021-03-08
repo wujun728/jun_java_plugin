@@ -1,0 +1,18 @@
+#parse("copyright.vm")
+package ${table.DOPackage};
+import java.io.Serializable;
+// auto generated imports
+#foreach($importClass in $table.doImports) 
+import $importClass;
+#end
+
+/**
+ * A data object class directly models database table <tt>$table.sqlName</tt>.
+ *
+#parse("description-java.vm")
+ */
+public class ${table.DOClassName} implements Serializable{
+    private static final long serialVersionUID = 741231858441822688L;
+
+#parse("do-fields.vm")
+}

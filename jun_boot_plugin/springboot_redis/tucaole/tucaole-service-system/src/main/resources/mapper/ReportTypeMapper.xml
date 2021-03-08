@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chentongwei.core.system.dao.IReportTypeDAO">
+
+	<!-- 表名称 -->
+	<sql id="table_name">
+		sys_report_type
+	</sql>
+
+	<!-- 吐槽了举报类型列表 -->
+	<select id="list" resultType="reportTypeListVO">
+		SELECT
+			id, name
+		FROM
+			<include refid="table_name" />
+		WHERE
+			is_delete = 1
+	</select>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 消费者 应用信息 -->
+    <dubbo:application name="springBoot_dubbo_consumer"/>
+
+    <!-- 注册中心服务地址 -->
+    <dubbo:registry  protocol="zookeeper" address="${dubbo.registry.address}" />
+    <!-- 
+	           消费者配置 10秒重试默认retries="2" 3次调用 -同步返回-启动不检查提供者
+	 -->
+	<dubbo:consumer   check="false"/>
+    <!-- 使用注解方式-->
+ 	<dubbo:annotation package="com.itstyle.dubbo"/>
+</beans>

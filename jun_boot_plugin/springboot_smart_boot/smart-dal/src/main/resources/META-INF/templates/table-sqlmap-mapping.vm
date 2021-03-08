@@ -1,0 +1,77 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ==========================================================  -->
+<!-- Configuration for mybatis sqlmap mapping.                    -->
+<!-- ==========================================================  -->
+
+#parse("description-xml.vm")
+
+<mapper namespace="${table.dAOPackage}.${table.dAOClassName}">
+    <!-- ============================================= -->
+    <!-- RESULT MAPS                                   -->
+    <!-- ============================================= -->
+
+
+##generate all other resultmaps
+    <!-- result maps for database table ${table.sqlName} -->
+#foreach ($resultMap in ${table.resultMaps})
+    <resultMap id="${resultMap.idAttr}" type="${resultMap.classAttr}">
+#foreach ($result in ${resultMap.results})
+        <result property="${result.property}" column="${result.column}" javaType="${result.javaType}" jdbcType="${result.jdbcType}"#if (${result.hasNullValue}) nullValue="${result.nullValue}"#end/>
+#end
+    </resultMap>
+#end
+
+
+##generate all statemetns
+    <!-- ============================================= -->
+    <!-- mapped statements for ${table.dAOClassName} -->
+    <!-- ============================================= -->
+#foreach ($operation in ${table.operations})
+    <!-- mapped statement for ${table.dAOClassName}.${operation.name} -->
+	#if (${operation.mappedStatementType} == "insert")
+	<insert id="${operation.mappedStatementId}">
+		#if (${operation.hasSqlmap})
+	$operation.mappedStatementSql
+		#else
+	$operation.mappedStatementSql
+		#end
+    <selectKey resultType="${table.pkColumn.javaType}" keyProperty="${table.pkColumn.variableName}" order="AFTER">
+		select last_insert_id() as ${table.pkColumn.variableName}
+    </selectKey>
+	</insert>
+	#elseif (${operation.mappedStatementType} == "select")
+    <select id="${operation.mappedStatementId}" ${operation.mappedStatementResult}>
+		#if (${operation.hasSqlmap})
+        $operation.mappedStatementSql
+		#else
+    <![CDATA[
+        $operation.mappedStatementSql
+    ]]>
+		#end
+    </select>
+	#elseif (${operation.mappedStatementType} == "update")
+    <update id="${operation.mappedStatementId}">
+		#if (${operation.hasSqlmap})
+        $operation.mappedStatementSql
+		#else
+    <![CDATA[
+        $operation.mappedStatementSql
+    ]]>
+		#end
+    </update>
+	#elseif (${operation.mappedStatementType} == "delete")
+    <delete id="${operation.mappedStatementId}">
+		#if (${operation.hasSqlmap})
+        $operation.mappedStatementSql
+		#else
+    <![CDATA[
+        $operation.mappedStatementSql
+    ]]>
+		#end
+    </delete>
+	#end
+#end
+</mapper>

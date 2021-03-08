@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 基本坐标 -->
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>info.xiaomo</groupId>
+    <artifactId>xiaomo</artifactId>
+    <version>2017.2</version>
+
+    <!-- 模块 -->
+    <modules>
+        <!-- xiaomo.info api接口 -->
+        <module>website</module>
+        <!-- 核心包 -->
+        <module>core</module>
+        <!-- 在线聊天 -->
+        <module>socket</module>
+        <!-- 定时任务 -->
+        <module>scheduled</module>
+        <!-- 消息队列 -->
+        <module>rabbitmq</module>
+        <module>redis</module>
+        <!-- redis缓存 -->
+        <module>async</module>
+        <!-- mongodb数据库 -->
+        <module>mongodb</module>
+        <!-- spring安全设置 -->
+        <module>security</module>
+        <!-- mybatis -->
+        <module>mybatis</module>
+        <!-- freemarker -->
+        <module>freemarker</module>
+        <!-- thymeleaf -->
+        <module>thymeleaf</module>
+        <!-- 多数据源 -->
+        <module>multipleSource</module>
+        <!-- 爬虫 -->
+        <module>crawler</module>
+        <module>javase</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <developers>
+        <developer>
+            <name>Xiaomo</name>
+            <email>83387856@qq.com</email>
+        </developer>
+    </developers>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>aliyun maven</name>
+            <layout>default</layout>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <!-- 属性 -->
+    <properties>
+        <!-- project encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- sources resultCode version -->
+        <sources.version>1.8</sources.version>
+        <!-- common util method jar -->
+        <common-lang3.version>3.5</common-lang3.version>
+        <!-- test jar -->
+        <junit.version>4.12</junit.version>
+        <!-- database connection -->
+        <mysql-connector>5.1.38</mysql-connector>
+        <!-- logger -->
+        <slf4j.version>1.7.21</slf4j.version>
+        <!-- logback -->
+        <logback.version>1.1.7</logback.version>
+        <!-- io util -->
+        <commons-io.version>2.5</commons-io.version>
+        <!-- upload util -->
+        <commons-fileupload.version>[1.3.3,)</commons-fileupload.version>
+        <!-- json support -->
+        <fastjson.version>[1.2.31,)</fastjson.version>
+        <!-- html  -->
+        <jsoup.version>1.10.1</jsoup.version>
+        <!-- spring-boot version -->
+        <spring-boot.version>2.0.3.RELEASE</spring-boot.version>
+        <!-- compiler-plugin version -->
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <!-- surefile-plugin test util -->
+        <surefire-plugin.version>2.19.1</surefire-plugin.version>
+        <!-- mail -->
+        <javax-mail.version>1.4.7</javax-mail.version>
+        <!-- lomlok -->
+        <lombak.version>1.16.10</lombak.version>
+        <!-- api文档 -->
+        <springfox-swagger-ui.version>2.2.2</springfox-swagger-ui.version>
+        <!-- mybatis -->
+        <mybatis.version>1.1.1</mybatis.version>
+        <!-- 操作html -->
+        <jsoup.version>1.9.2</jsoup.version>
+        <!-- excel -->
+        <jxl.version>2.6.12</jxl.version>
+        <!-- microsoft office -->
+        <poi.version>3.10-beta2</poi.version>
+    </properties>
+
+
+    <!-- 相关依赖 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${common-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons-fileupload.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>${javax-mail.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombak.version}</version>
+            </dependency>
+            <!-- Swagger -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox-swagger-ui.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox-swagger-ui.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/net.sourceforge.jexcelapi/jxl -->
+            <dependency>
+                <groupId>net.sourceforge.jexcelapi</groupId>
+                <artifactId>jxl</artifactId>
+                <version>${jxl.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+
+            <!-- 编译插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${sources.version}</source>
+                    <target>${sources.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!--surefire-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire-plugin.version}</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+
+            <!--source-->
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

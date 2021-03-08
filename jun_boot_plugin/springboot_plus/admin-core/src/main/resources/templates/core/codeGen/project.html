@@ -1,0 +1,38 @@
+<!--# layout("/common/layout.html",{"jsBase":"/js/core/codeGen/"}){ -->
+
+<form class="layui-form layui-form-pane" id="projectForm">
+	<div class="layui-form-item">
+	   <label class="layui-form-label">路径</label>
+	   <div class="layui-input-block">
+	     <input type="text" name="path" required  lay-verify="required"  value="${path}" autocomplete="off" class="layui-input">
+	   </div>
+	 </div>
+	 
+	 <div class="layui-form-item">
+	   <label class="layui-form-label">包名</label>
+	   <div class="layui-input-block">
+	     <input type="text" name="basePackage" required  lay-verify="required"  value="${basePackage}" autocomplete="off" class="layui-input">
+	   </div>
+	 </div>
+
+
+	 <div class="layui-form-item">
+	   <label class="layui-form-label">添加管理</label>
+	   <div class="layui-input-inline">
+	     <input type="checkbox" name="includeConsole" lay-skin="switch">
+	   </div>
+	  
+	 </div>
+		
+	<layui:submitButtons id="genProject" text="立即生成工程" />
+
+</form>
+<!--#} -->
+<script>
+layui.use(['project'], function(){
+  var project = layui.project
+  project.init();
+});
+
+</script>
+

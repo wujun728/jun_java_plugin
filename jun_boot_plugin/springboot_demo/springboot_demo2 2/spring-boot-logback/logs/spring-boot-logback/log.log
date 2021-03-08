@@ -1,0 +1,4 @@
+2019-06-21 10:38:56.744 [main] INFO  c.z.springbootlogback.SpringBootLogbackApplication - Starting SpringBootLogbackApplication on 2013-20160801DY with PID 6220 (started by Administrator in D:\idea project2\springbootdemos)
+2019-06-21 10:38:56.746 [main] DEBUG c.z.springbootlogback.SpringBootLogbackApplication - Running with Spring Boot v2.1.5.RELEASE, Spring v5.1.7.RELEASE
+2019-06-21 10:38:56.747 [main] INFO  c.z.springbootlogback.SpringBootLogbackApplication - The following profiles are active: dev
+2019-06-21 10:38:57.317 [main] INFO  c.z.springbootlogback.SpringBootLogbackApplication - Started SpringBootLogbackApplication in 1.128 seconds (JVM running for 1.993)

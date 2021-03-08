@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry location="D:\mysql-connector-java-5.1.40.jar" />
+	<context id="context1" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/portal?useUnicode=true&amp;characterEncoding=UTF-8"
+			userId="root" password="" />
+		<javaModelGenerator targetPackage="com.sam.demo.spring.boot.mybatis.entity"
+			targetProject="src/main/java" />
+		<sqlMapGenerator targetPackage="sqlmapper"
+			targetProject="src/main/resources" />
+		<javaClientGenerator targetPackage="com.sam.demo.spring.boot.mybatis.entity.mapper"
+			targetProject="src/main/java" type="XMLMAPPER" />
+
+		<table schema="portal" tableName="sys_user" domainObjectName="User"
+			enableCountByExample="true" enableUpdateByExample="true"
+			enableDeleteByExample="true" enableSelectByExample="true"
+			selectByExampleQueryId="true">
+			<!-- 指定数据库列名与实体属性名及该属性的java类型 -->
+			<columnOverride column="username" property="name"
+				javaType="String"></columnOverride>
+			<!-- 忽略属性 -->
+			<ignoreColumn column="email" />
+		</table>
+	</context>
+</generatorConfiguration>

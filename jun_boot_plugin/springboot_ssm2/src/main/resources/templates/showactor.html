@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>actors</title>
+<script src="/js/jquery-1.12.3.min.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/jquery.bootgrid.min.css" />
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.bootgrid.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/js/showactor.js"></script>
+<link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css"
+	type="text/css"></link>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar navbar-inverse">
+					<div class="container-fluid">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed"
+								data-toggle="collapse"
+								data-target="#bs-example-navbar-collapse-1"
+								aria-expanded="false">
+								<span class="sr-only">Toggle navigation</span> <span
+									class="icon-bar"></span> <span class="icon-bar"></span> <span
+									class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#">Mysql sakila database</a>
+						</div>
+						<div class="collapse navbar-collapse"
+							id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav">
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown" role="button" aria-haspopup="true"
+									aria-expanded="false">单表查询<span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="showactor.html">actor</a></li>
+									</ul></li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown" role="button" aria-haspopup="true"
+									aria-expanded="false">跨表查询<span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="city.html">country和city</a></li>
+										<li><a href="country.html">查询中国的city</a></li>
+									</ul></li>
+								<li><a href="fileupload.html">fileupload</a></li>
+								<li><a href="logout">logout</a></li>
+							</ul>
+						</div>
+						<!-- /.navbar-collapse -->
+					</div>
+					<!-- /.container-fluid -->
+				</nav>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2>actor表的信息</h2>
+				<a class="btn btn-primary" href="/exportactor">导出数据为excel</a> <a
+					class="btn btn-primary" href="#" id="add">添加actor</a>
+				<table id="grid-data"
+					class="table table-condensed table-hover table-striped">
+					<thead>
+						<tr>
+							<th data-column-id="id" data-identifier="true"
+								data-type="numeric">ID</th>
+							<th data-column-id="first_name">first_name</th>
+							<th data-column-id="last_name">last_name</th>
+							<th data-column-id="last_update" data-order="desc">last_update</th>
+							<th data-column-id="commands" data-formatter="commands"
+								data-sortable="false">modify</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+
+
+
+	</div>
+	<div id="model" class="modal fade actormodal" tabindex="-1"
+		role="dialog" aria-labelledby="mySmallModalLabel">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">update actor</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="fname">first name</label> <input type="text"
+							name="first_name" class="form-control" id="fname" />
+					</div>
+					<div class="form-group">
+						<label for="lname">last name</label> <input type="text"
+							name="last_name" class="form-control" id="lname" />
+					</div>
+					<div class="form-group ">
+						<label for="lupdate">last update</label> <input type="text"
+							name="last_update" class="form-control" id="lupdate" /> <input
+							type="hidden" id="actorid" name="id" />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="updateactor">Save
+						changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade addmodal" tabindex="-1" role="dialog"
+		aria-labelledby="mySmallModalLabel">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">add actor</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="fname">first name</label> <input type="text"
+							name="first_name" class="form-control" id="fname2" />
+					</div>
+					<div class="form-group">
+						<label for="lname">last name</label> <input type="text"
+							name="last_name" class="form-control" id="lname2" />
+					</div>
+					<div class="form-group">
+						<label for="lupdate">last update</label> <input type="text"
+							name="last_update" class="form-control" id="lupdate2" /> <input
+							type="hidden" id="actorid" name="id2" />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="insertactor">add
+						actor</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+  $(document).ready(function(){
+  	$("#insertactor").click(function(){
+  		var json={"first_name":$("#fname2").val(),"last_name":$("#lname2").val(),"last_update":$("#lupdate2").val()};
+		   $.ajax({  
+            url : "/actors",  
+            type : "POST",  
+            data : JSON.stringify(json), //转JSON字符串  
+            dataType: 'json',  
+            contentType:'application/json;charset=UTF-8', //contentType很重要     
+            success : function(result) {  
+                alert("添加成功"+JSON.stringify(result));  
+            }  
+  	
+  	});
+  });
+  
+  $("#updateactor").click(function(){
+  		var json={"id":$("#actorid").val(),"first_name":$("#fname").val(),"last_name":$("#lname").val(),"last_update":$("#lupdate").val()};
+		   $.ajax({  
+            url : "/actors",  
+            type : "PUT",  
+            data : JSON.stringify(json), //转JSON字符串  
+            dataType: 'json',  
+            contentType:'application/json;charset=UTF-8', //contentType很重要     
+            success : function(result) {  
+                alert("修改成功"+JSON.stringify(result));  
+                $("#model").modal("hide");
+                $("#grid-data").bootgrid("reload");
+            }  
+  	
+  	});
+  });
+  
+  
+  
+  });
+  
+  </script>
+</html>

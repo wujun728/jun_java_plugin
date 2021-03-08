@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd"
+       default-lazy-init="true">
+
+    <!-- 使用 annotation -->
+    <context:annotation-config/>
+
+    <aop:aspectj-autoproxy/>
+
+    <!-- 使用 annotation 自动注册bean,并检查@Controller, @Service, @Repository注解已被注入 -->
+    <context:component-scan base-package="net.oschina.j2cache.hibernate4"/>
+
+    <!-- 可以通过annotation 添加定时任务 @Scheduled(fixedDelay=任务间的延时时间,fixedRate=任务的间隔时间,cron=表达式) -->
+    <task:executor id="spring.executor" pool-size="5"/>
+    <task:scheduler id="spring.scheduler" pool-size="10"/>
+    <!--
+    <task:annotation-driven scheduler="spring.scheduler" executor="spring.executor"/>
+    -->
+
+    <!-- 其他需要加载的spring模块 -->
+    <import resource="classpath:spring/applicationContext-datasource.xml"/>
+
+    <import resource="classpath:spring/applicationContext-transaction.xml"/>
+
+    <import resource="classpath:spring/applicationContext-hibernate.xml"/>
+
+</beans>

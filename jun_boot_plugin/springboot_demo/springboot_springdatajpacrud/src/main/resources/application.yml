@@ -1,0 +1,15 @@
+server: 
+    port: 80
+    context-path: /
+
+spring: 
+    datasource: 
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://119.45.221.36:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: mysqladmin
+    jpa: 
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+      database-platform: org.hibernate.dialect.MySQL5Dialect

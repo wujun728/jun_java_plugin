@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.springboot.mapper.auth.RoleMapper">
+
+	<resultMap id="roleMap" type="cn.springboot.model.auth.Role">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="code" column="CODE" />
+		<result property="remark" column="REMARK" />
+	</resultMap>
+
+	<insert id="insert" parameterType="cn.springboot.model.auth.Role">
+		 <![CDATA[ INSERT INTO T_SYS_ROLE(ID , NAME, CODE , REMARK) VALUES(#{id} , #{name} , #{code} , #{remark} ) ]]>
+	</insert>
+
+	<sql id="find_xxx">
+	    <![CDATA[
+	    	select id , name , code , remark
+	    ]]>
+	</sql>
+
+	<sql id="find_as_xxx">
+	    <![CDATA[
+	    	SELECT R.ID , R.NAME , R.CODE , R.REMARK
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+	    <![CDATA[
+	    	from t_sys_role
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+	    <![CDATA[
+	    	where 1=1
+	    ]]>
+	</sql>
+
+	<select id="findById" parameterType="string" resultMap="roleMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		WHERE ID=#{id}
+	</select>
+
+	<select id="findRoleByUserId" parameterType="string" resultMap="roleMap">
+		<include refid="find_as_xxx" />
+		FROM T_SYS_ROLE R , T_SYS_USER_ROLE UR WHERE R.ID=UR.ROLE_ID AND UR.USER_ID=#{userId}
+	</select>
+
+	<select id="findRoleByCode" parameterType="string" resultMap="roleMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		WHERE CODE=#{code}
+	</select>
+
+	<select id="findAllByFilter" parameterType="Map" resultMap="roleMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+		<if test="start != null and limit != null">
+			LIMIT #{start},#{limit}
+		</if>
+	</select>
+
+	<select id="findAllByFilterCount" parameterType="Map" resultType="int">
+		SELECT COUNT(ID)
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+	</select>
+
+	<update id="update" parameterType="cn.springboot.model.auth.Role">
+		UPDATE T_SYS_ROLE
+		<set>
+			<if test="name != null">
+				NAME = #{name},
+			</if>
+			<if test="code != null">
+				CODE = #{code},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark}
+			</if>
+		</set>
+		WHERE ID = #{id}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		DELETE FROM T_SYS_ROLE WHERE ID=#{id}
+	</delete>
+
+</mapper>

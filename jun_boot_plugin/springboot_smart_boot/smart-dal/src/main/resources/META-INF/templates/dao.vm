@@ -1,0 +1,21 @@
+#parse("copyright.vm")
+package ${table.DAOPackage};
+
+// auto generated imports
+#foreach($importClass in $table.daoImports) 
+import $importClass;
+#end
+
+/**
+ * A dao interface provides methods to access database table <tt>$table.sqlName</tt>.
+ *
+#parse("description-java.vm")
+ */
+public interface ${table.DAOClassName} {
+#set ($daoName = ${table.DAOClassName})
+##parse("dao-name.vm")
+#foreach($operation in $table.operations)
+#parse("operation/op-${operation.templateSuffix}.vm");
+
+#end
+}

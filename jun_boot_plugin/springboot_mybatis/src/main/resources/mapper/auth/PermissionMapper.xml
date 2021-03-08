@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.springboot.mapper.auth.PermissionMapper">
+
+	<resultMap id="permissionMap" type="cn.springboot.model.auth.Permission">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="cssClass" column="CSS_CLASS" />
+		<result property="key" column="SKEY" />
+		<result property="hide" column="HIDE" />
+		<result property="url" column="URL" />
+		<result property="lev" column="LEV" />
+		<result property="sort" column="SORT" />
+		<result property="parentKey" column="PARENT_KEY" />
+	</resultMap>
+
+	<insert id="insert" parameterType="cn.springboot.model.auth.Permission">
+		INSERT INTO T_SYS_PERMISSION(ID , NAME , CSS_CLASS, SKEY , HIDE , URL, LEV, SORT , PARENT_KEY) 
+		VALUES(#{id} , #{name} , #{cssClass} , #{key} , ${hide} , #{url} , ${lev} , ${sort} , #{parentKey})
+	</insert>
+
+	<sql id="find_xxx">
+	    <![CDATA[
+	    	SELECT ID , HIDE , SKEY , NAME, CSS_CLASS , PARENT_KEY, LEV, SORT , URL
+	    ]]>
+	</sql>
+	
+	<sql id="find_AS_R">
+	    <![CDATA[
+	    	SELECT P.ID , P.HIDE , P.SKEY , P.NAME, P.CSS_CLASS , P.PARENT_KEY , P.LEV , P.SORT , P.URL
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+	    <![CDATA[
+	    	FROM T_SYS_PERMISSION
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+	    <![CDATA[
+	    	WHERE 1=1
+	    ]]>
+	</sql>
+
+	<select id="findById" parameterType="int" resultMap="permissionMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		WHERE ID=#{id}
+	</select>
+
+	<select id="findPermissionByUserId" parameterType="string" resultMap="permissionMap">
+		<include refid="find_AS_R" />
+		 <![CDATA[
+			FROM T_SYS_PERMISSION P , T_SYS_USER_ROLE UR , T_SYS_ROLE_PERMISSION RP 
+			WHERE RP.PERMISSION_ID=P.ID AND RP.ROLE_ID=UR.ROLE_ID 
+			AND UR.USER_ID=#{userId}
+			ORDER BY P.SORT ASC
+		 ]]>
+	</select>
+	
+	<select id="findPermissionByKey" parameterType="string" resultMap="permissionMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		 <![CDATA[
+			WHERE SKEY=#{permissionKey}
+		 ]]>
+	</select>
+
+	<select id="findAllByFilter" parameterType="Map" resultMap="permissionMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+		<if test="start != null and limit != null">
+			LIMIT #{start},#{limit}
+		</if>
+	</select>
+
+	<select id="findAllByFilterCount" parameterType="Map" resultType="int">
+		SELECT COUNT(ID)
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+	</select>
+
+	<update id="update" parameterType="cn.springboot.model.auth.Permission">
+		UPDATE T_SYS_PERMISSION
+		<set>
+			<if test="hide != null">
+				HIDE = ${hide},
+			</if>
+			<if test="key != null">
+				SKEY = #{key},
+			</if>
+			<if test="name != null">
+				NAME = #{name},
+			</if>
+			<if test="cssClass != null">
+				CSS_CLASS = #{cssClass},
+			</if>
+			<if test="parentKey != null">
+				PARENT_KEY = #{parentKey},
+			</if>
+			<if test="lev != null">
+				LEV = ${lev},
+			</if>
+			<if test="sort != null">
+				SORT = ${sort},
+			</if>
+			<if test="url != null">
+				URL = #{url}
+			</if>
+		</set>
+		WHERE ID = #{id}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		DELETE FROM T_SYS_PERMISSION WHERE ID=#{id}
+	</delete>
+
+</mapper>

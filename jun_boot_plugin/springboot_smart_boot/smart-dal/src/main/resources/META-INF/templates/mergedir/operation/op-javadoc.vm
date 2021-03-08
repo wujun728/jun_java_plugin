@@ -1,0 +1,14 @@
+   	 *  <p>
+   	 *  Description for this operation is<br>
+   	 *  <tt></tt>
+	 *  <p>
+	 *  The sql statement for this operation is <br>
+	 *  <tt>$operation.parsedSql</tt>
+	 *
+##@param
+#foreach ($param in ${operation.params})
+	 *	@param $param.name
+#end
+##@return
+	 *	@return ${operation.simpleReturnType}
+	 *	@throws DataAccessException

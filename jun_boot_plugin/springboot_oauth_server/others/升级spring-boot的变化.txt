@@ -1,0 +1,11 @@
+
+
+记录 spring-oauth-server 升级到 spring-boot 后的变化
+
+1. client_secret 加密保存
+2. 密码加密方式由 MD5 变成 BCrypt
+3. resourceId 可为可选
+4.增加CSRF支持
+
+
+

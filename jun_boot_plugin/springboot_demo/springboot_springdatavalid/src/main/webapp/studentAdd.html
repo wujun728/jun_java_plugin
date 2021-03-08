@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>学生信息添加页面</title>
+<script src="http://www.java1234.com/jquery-easyui-1.3.3/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	function submitData(){
+		$.post("/student/add",{name:$("#name").val(),age:$("#age").val()},
+				function(result){
+					alert(result);
+				}
+		);
+	}
+	
+</script>
+</head>
+<body>
+	姓名：<input type="text" id="name" name="name"/><br/>
+	年龄：<input type="text" id="age" name="age"/><br/>
+	<input type="button" onclick="submitData()" value="提交"/>
+</body>
+</html>

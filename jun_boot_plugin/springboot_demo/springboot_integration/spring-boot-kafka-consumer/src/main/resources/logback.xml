@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 60秒扫描一次配置文件，不打印配置日志系统内部日志 -->
+<configuration scan="false">
+
+	<!-- 配置参考 ： http://blog.csdn.net/haidage/article/details/6794529 -->
+
+	<!-- 控制台 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%thread] %-5level %logger.%line %msg%n</pattern>
+			<!-- %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger.%line %msg%n -->
+			<charset>UTF-8</charset>  
+		</encoder>
+	</appender>
+
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

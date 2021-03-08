@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.bluesky.mapper.BaseRuleEntityInfoMapper">
+    <sql id="BaseFindColumnSql">
+            T.ENTITY_ID,
+            T.ENTITY_NAME,
+            T.ENTITY_DESC,
+            T.ENTITY_IDENTIFY,
+            T.PKG_NAME,
+            T.CRE_USER_ID,
+            T.CRE_TIME,
+            T.IS_EFFECT,
+            T.REMARK
+    </sql>
+    <select id="findBaseRuleEntityInfoList" parameterType="com.sky.bluesky.model.BaseRuleEntityInfo"
+            resultType="com.sky.bluesky.model.BaseRuleEntityInfo">
+        SELECT DISTINCT
+            <include refid="BaseFindColumnSql"></include>
+        FROM
+            RULE_ENTITY_INFO T
+        WHERE 1=1
+
+
+    </select>
+    <select id="findBaseRuleEntityInfoById" resultType="com.sky.bluesky.model.BaseRuleEntityInfo">
+        SELECT DISTINCT
+        <include refid="BaseFindColumnSql"></include>
+        FROM
+        RULE_ENTITY_INFO T
+        WHERE 1=1
+        AND T.ENTITY_ID = #{id}
+    </select>
+</mapper>

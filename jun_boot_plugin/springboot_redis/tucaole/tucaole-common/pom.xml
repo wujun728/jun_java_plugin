@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.chentongwei</groupId>
+		<artifactId>tucaole</artifactId>
+		<version>${tucaole-parent.version}</version>
+	</parent>
+
+	<artifactId>tucaole-common</artifactId>
+	<version>${tucaole-common.version}</version>
+	<name>tucaole-common</name>
+
+	<dependencies>
+		<!-- 公用配置 -->
+		<dependency>
+			<groupId>com.chentongwei</groupId>
+			<artifactId>tucaole-common-config</artifactId>
+			<version>${tucaole-common-config.version}</version>
+		</dependency>
+		<!-- Redis -->
+		<dependency>
+			<groupId>com.chentongwei</groupId>
+			<artifactId>tucaole-cache</artifactId>
+			<version>${tucaole-cache.version}</version>
+		</dependency>
+		<!-- 分页 -->
+		<dependency>
+		    <groupId>com.github.pagehelper</groupId>
+		    <artifactId>pagehelper-spring-boot-starter</artifactId>
+		</dependency>
+		<!--lombok依赖-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<!-- json -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency>
+		<!--  apache commons start -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+		<!--  apache commons end -->
+	</dependencies>
+</project>

@@ -1,0 +1,62 @@
+<!--# layout("/common/layout.html",{"jsBase":"/js/admin/function/"}){ -->
+
+<form class="layui-form layui-form-pane" id="addForm">
+	<div class="layui-row">
+		<div class="layui-form-item">
+			<label class="layui-form-label">功能名</label>
+			<div class="layui-input-block">
+				<input type="text" name="name" autocomplete="off" lay-verify="required" 
+					placeholder="请输入名称" class="layui-input" value="">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">功能代码</label>
+			<div class="layui-input-inline">
+				<input type="text" name="code" lay-verify="required"
+					placeholder="请输入" autocomplete="off" class="layui-input"
+					value="">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">功能地址</label>
+			<div class="layui-input-inline">
+				<input type="text" name="accessUrl" 
+					placeholder="请输入" autocomplete="off" class="layui-input"
+					value="">
+			</div>
+		</div>
+	</div>
+	<div class="layui-row">
+		<div class="layui-col-xs4">
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">所在父功能</label>
+				<layui:functionInput style='layui-input-inline' name="parentId" id="parentFunctionId"
+					value=""></layui:functionInput>
+			</div>
+		</div>
+		</div>
+
+		<div class="layui-col-xs4">
+		<div class="layui-form-item">
+			<label class="layui-form-label">功能类型</label>
+			<layui:simpleDictSelect style='layui-input-inline' type="function_type"
+				id="type" name="type" value="" />
+		</div>
+		</div>
+
+	</div>
+
+	
+	
+	<layui:submitButtons id="saveFunction" />
+</form>
+<!--#} -->
+<script>
+layui.use(['add'], function(){
+  var functionAdd = layui.add
+  functionAdd.init();
+});
+
+</script>
+

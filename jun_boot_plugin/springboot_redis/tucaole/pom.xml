@@ -1,0 +1,200 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.chentongwei</groupId>
+	<artifactId>tucaole</artifactId>
+	<packaging>pom</packaging>
+	<version>${tucaole-parent.version}</version>
+	<name>tucaole</name>
+	<url>http://maven.apache.org</url>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- parent project -->
+        <tucaole-parent.version>1.0.0-SNAPSHOT</tucaole-parent.version>
+
+        <!-- cache projects -->
+        <tucaole-cache.version>1.0-SNAPSHOT</tucaole-cache.version>
+
+        <!-- es projects -->
+        <tucaole-es.version>1.0-SNAPSHOT</tucaole-es.version>
+
+        <!-- common projects -->
+        <tucaole-common.version>1.0-SNAPSHOT</tucaole-common.version>
+        <tucaole-common-config.version>1.0-SNAPSHOT</tucaole-common-config.version>
+        <tucaole-common-email.version>1.0-SNAPSHOT</tucaole-common-email.version>
+        <tucaole-common-core.version>1.0-SNAPSHOT</tucaole-common-core.version>
+
+        <!-- service projects -->
+        <tucaole-service-system.version>1.0-SNAPSHOT</tucaole-service-system.version>
+        <tucaole-service-tucao.version>1.0-SNAPSHOT</tucaole-service-tucao.version>
+        <tucaole-service-user.version>1.0-SNAPSHOT</tucaole-service-user.version>
+
+        <!-- spider projects -->
+        <tucaole-spider.version>1.0-SNAPSHOT</tucaole-spider.version>
+
+        <!-- task projects -->
+        <tucaole-task.version>1.0-SNAPSHOT</tucaole-task.version>
+
+        <!-- test projects -->
+        <tucaole-test.version>1.0-SNAPSHOT</tucaole-test.version>
+
+        <!-- doc projects -->
+        <tucaole-doc.version>1.0-SNAPSHOT</tucaole-doc.version>
+
+        <!-- web projects -->
+        <tucaole-web.version>1.0-SNAPSHOT</tucaole-web.version>
+
+	</properties>
+
+	<parent>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-parent</artifactId>
+	    <version>1.5.6.RELEASE</version>
+	</parent>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- 分页 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+            <!--lombok依赖-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.18</version>
+            </dependency>
+            <!-- json -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.29</version>
+            </dependency>
+            <!--  apache commons start -->
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>2.6</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>1.2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>3.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>1.9.3</version>
+            </dependency>
+
+            <!--  apache commons end -->
+            <!-- 连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.0.28</version>
+            </dependency>
+            <!-- mybatis -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>1.3.0</version>
+            </dependency>
+            <!-- Elasticsearch -->
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>5.6.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>transport</artifactId>
+                <version>5.6.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+	<dependencies>
+        <!-- 热部署 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <!-- 去除logback依赖包 -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
+        <!-- javassist 字节码类库 -->
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+        </dependency>
+
+	</dependencies>
+
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>utf-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+	</build>
+	
+	<modules>
+        <module>tucaole-cache</module>
+        <module>tucaole-web</module>
+        <module>tucaole-common</module>
+        <module>tucaole-common-config</module>
+        <module>tucaole-common-email</module>
+        <module>tucaole-common-core</module>
+        <module>tucaole-service-user</module>
+        <module>tucaole-service-tucao</module>
+        <module>tucaole-service-system</module>
+        <module>tucaole-task</module>
+        <module>tucaole-es</module>
+        <module>tucaole-spider</module>
+        <module>tucaole-test</module>
+        <module>tucaole-doc</module>
+    </modules>
+</project>

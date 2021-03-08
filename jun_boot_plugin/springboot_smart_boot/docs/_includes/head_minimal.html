@@ -1,0 +1,73 @@
+<head>
+<!-- link href="http://gmpg.org/xfn/11" rel="profile" -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<!-- Enable responsiveness on mobile devices-->
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<title>
+  {% if page.title == "Home" %}
+    {{ site.title }} &middot; {{ site.tagline }}
+  {% else %}
+    {{ page.title }} &middot; {{ site.title }}
+  {% endif %}
+</title>
+
+<!-- Search Engine Optimization -->
+<meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+
+{% if page.noindex == true %}<meta name="robots" content="noindex">{% endif %}
+{% if page.nofollow == true %}<meta name="robots" content="nofollow">{% endif %}
+
+<meta name="twitter:creator" content="@{{ site.owner.twitter }}">
+
+<!-- Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400|Tangerine|Inconsolata">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ site.baseurl }}/public/css/iconmoon.css">
+
+<!-- CSS -->
+<link rel="stylesheet" href="{{ site.baseurl }}/public/css/style.min.css">
+{% if page.category contains 'mypubs' or page.category contains 'myaoi' %} 
+<link rel="stylesheet" href="{{ site.baseurl }}/public/css/publ.css">
+<script src="{{ site.baseurl }}/public/js/jquery.min.js"></script>
+{% endif %}
+<!-- Add-on CSS to override system-wide defaults -->
+<link rel="stylesheet" href="{{ site.baseurl }}/public/css/addon.css">
+
+<!-- CSS override per page -->
+{% if page.style %}
+   <style type="text/css">
+       {{ page.style }}
+   </style>
+{% endif %}
+
+<!-- Java scripts -->
+<!-- <script src="{{ site.baseurl }}/public/js/jquery.min.js"></script> -->
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="{{ site.url }}/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="{{ site.url }}/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="{{ site.url }}/images/icons/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.url }}/images/icons/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.url }}/images/icons/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.url }}/images/icons/apple-touch-icon-144x144-precomposed.png">
+<!-- 180x180 (precomposed) for iPhone 6 -->
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="{{ site.url }}/images/icons/apple-touch-icon-180x180.png">
+<!-- 192x192 (precomposed) for Android -->
+<link rel="icon" type="image/png" sizes="192x192"  href="{{ site.url }}/images/icons/android-icon-192x192.png">
+
+{% if site.owner.google_plus %}<link rel="author" href="{{ site.owner.google_plus }}?rel=author">{% endif %}
+
+<!-- RSS -->
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ site.url }}/feed.xml">
+
+</head>

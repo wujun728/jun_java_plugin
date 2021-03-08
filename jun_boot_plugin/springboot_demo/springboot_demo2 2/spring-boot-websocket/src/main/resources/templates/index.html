@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="login" style="margin-top: 20%;margin-left: 40%">
+    <input type="text" v-model="userName" placeholder="随意输入一个昵称"/>
+    <button  @click="login">登录</button>
+</div>
+<script>
+    new Vue({
+        el: '#login',
+        data: {
+            userName: ''
+        },
+        methods: {
+            login: function () {
+                console.log(this.userName);
+                if (!this.userName.trim()){
+                    return alert("请随意输入一个昵称");
+                }
+                var param = new FormData();
+                param.append('userName', this.userName.trim());
+                axios.post('/login',param)
+                        .then(function (response) {
+                            if (response.status == 200){
+                                sessionStorage.setItem("userName", response.data);
+                                window.location.href = "http://localhost:8888/main";
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+            }
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+server:
+  port: 8080
+  tomcat:
+    max-threads: 1000
+    accept-count: 1000
+    max-connections: 2000
+  
+zookeeper:
+  address: 192.168.240.15\:2181,192.168.240.15\:2182,192.168.240.15\:2183
+  
+spring:
+  application:
+    name: distributed-seckill
+  session:
+    store-type: none
+  kafka:
+    bootstrap-servers:
+    - 192.168.240.42:9092
+    - 192.168.240.43:9092
+    - 192.168.240.44:9092
+    consumer:
+      group-id: 0
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      batch-size: 65536
+      buffer-memory: 524288
+  redis:
+    database: 0
+    port: 56379
+#    password: dXzMHN2MaHUX
+    password: Mon56BuEcXzZ
+    timeout: 3000
+    host: 192.168.234.33
+#    cluster:
+#      nodes: 192.168.234.18:6579,192.168.234.28:6579,192.168.234.29:6579,192.168.234.30:6579,192.168.234.6:6579,192.168.234.43:6579
+    pool:
+      max-active: 8
+      max-wait: 3000
+      max-idle: 8
+      min-idle: 0
+  datasource:
+    write:
+      url: jdbc:mysql://127.0.0.1:8096/bm_market?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+      username: BlueMoon
+      password: bm.mall.123
+      driver-class-name: com.mysql.jdbc.Driver
+      max-active: 20
+      initial-size: 1
+      min-idle: 3
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x' FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000
+    read:
+      url: jdbc:mysql://127.0.0.1:8096/bm_market?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+      username: BlueMoon
+      password: bm.mall.123
+      driver-class-name: com.mysql.jdbc.Driver
+      max-active: 20
+      initial-size: 1
+      min-idle: 3
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x' FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000
+  mvc:
+    view:
+      prefix: /views/
+      suffix: .html
+    
+mybatis:
+  config-location:  classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+ 
+  
