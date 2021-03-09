@@ -1,5 +1,0 @@
-spring:
-  application:
-    name: Platform Web Admin
-  profiles:
-    active: @profileActive@

@@ -1,1 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.gitee.tooleek.lock.spring.boot.LockAutoConfiguration

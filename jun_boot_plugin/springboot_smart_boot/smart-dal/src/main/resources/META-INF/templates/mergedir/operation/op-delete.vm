@@ -1,6 +1,0 @@
-	/**
-	 *  Delete records from DB table <tt>$table.sqlName</tt>.
-	 *
-#parse("operation/op-javadoc.vm")	 
-	 */	 
-#parse("operation/op-signature.vm")

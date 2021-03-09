@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.baomidou.kaptcha.spring.boot.KaptchaAutoConfiguration

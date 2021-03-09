@@ -1,4 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  net.dreamlu.weixin.properties.DreamWeixinProperties,\
-  net.dreamlu.weixin.config.WeixinAppConfig,\
-  net.dreamlu.weixin.config.DreamWeixinAutoConfiguration

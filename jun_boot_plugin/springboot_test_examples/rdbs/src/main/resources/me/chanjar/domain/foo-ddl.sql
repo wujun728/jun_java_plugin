@@ -1,3 +1,0 @@
-CREATE TABLE FOO (
-  name VARCHAR2(100)
-);

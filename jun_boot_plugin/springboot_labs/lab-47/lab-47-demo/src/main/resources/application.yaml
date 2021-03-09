@@ -1,3 +1,0 @@
-yunai:
-  server:
-    port: 8888 # 自定义 HttpServer 端口
