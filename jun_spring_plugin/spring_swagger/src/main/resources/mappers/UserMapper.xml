@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.itcast.demo.mapper.UserMapper">
-
-    <select id="pageInfo" resultType="org.itcast.demo.entity.User">
-        SELECT id,rel_name,log_pwd,log_name,log_status,sex,birthday,create_time from tbl_user ${ew.customSqlSegment}
-    </select>
-</mapper>
