@@ -1,5 +1,90 @@
 补充TODO待办清单
 
+补充TODO待办清单
+About
+代码生成器jun_code_generator 默认提供Spring、Hibernate、MyBatis、Spring JDBC模板，也可以根据FreeMarker语法编写自定义模板生成代码。
+ 
+ 
+https://www.bejson.com/
+
+https://github.com/cncounter/cncounter
+
+Nginx优化
+https://www.jianshu.com/p/5149a7a700b9
+
+Netty
+https://blog.csdn.net/yuanzhenwei521/article/details/79194275
+
+
+微信小程序
+https://github.com/justjavac/awesome-wechat-weapp
+
+来自 <https://www.runoob.com/w3cnote/wx-xcx-repo.html> 
+ https://github.com/wujun728/quark-h5
+ https://github.com/wujun728/Android-ZBLibrary
+ 
+ https://github.com/wujun728/ssm-demo
+
+> 【TODO】待处理-TODO[jun_2021]  
+
+
+
+
+jun_boot
+jun_plugin
+jun_weixin
+	weixin_api
+	weixin_boot
+	weixin_manager
+jun_ssm
+jun_cloud
+jun_app
+	jun_uniapp
+	jun_app_cms
+jun_website
+	https://github.com/zhangdaiscott/luban-h5
+	https://github.com/zhangdaiscott/h5huodong
+
+https://github.com/lerry903/spring-boot-api-project-seed
+https://github.com/jackying/H-ui.admin
+https://github.com/xiaoshaDestiny/spring-cloud-2020
+	
+https://github.com/stylefeng/Guns
+https://github.com/jsnjfz/WebStack-Guns
+https://github.com/1477551037/exam
+https://github.com/itd2008/My-Blog
+https://github.com/qiaokun-sh/spring-token
+	
+https://github.com/wujun728/inspinia_admin_java_ssm
+	
+https://github.com/xwjie/ElementVueSpringbootCodeTemplate
+https://github.com/RudeCrab/rude-java
+https://github.com/Wjhsmart/Front-end-UI
+https://github.com/zongjl/JavaWeb
+https://github.com/zongjl/Jeebase
+https://github.com/xzt1995/nideshop-springboot
+
+fsLayui 
+VIEWUI-FOR-EASYUI 
+spring-boot-starter-motan 
+java
+layoutit
+Personnel-Management-System
+fiction_house
+inspinia_admin_java_ssm
+springboot-mui
+Jobs-search
+xxyms
+
+
+jun_2021\
+jun_framework\
+jun_ssm\
+jun_temp1\
+jun_temp2\
+jun_test\
+
+
 TODO PLAN：
 	jun_code_generator  代码生成器，调整
 	mvn_template  开发模板，调整，新增项目模板；新增SSH、SSM、SpringBoot、SpringCloud、Android、APP模板,新增+jun_ssh+ssm+springboot+mybatis+JPA
