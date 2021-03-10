@@ -1,5 +1,12 @@
 补充TODO待办清单
 
+NOTE20210311
+jun_2021\
+jun_framework\
+jun_ssm\
+jun_test\
+jun_test11\
+
 补充TODO待办清单
 About
 代码生成器jun_code_generator 默认提供Spring、Hibernate、MyBatis、Spring JDBC模板，也可以根据FreeMarker语法编写自定义模板生成代码。
