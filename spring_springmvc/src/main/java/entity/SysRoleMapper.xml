@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.SysRoleMapper" >
+  <resultMap id="BaseResultMap" type="model.SysRole" >
+    <id column="ROLEID" property="roleid" jdbcType="INTEGER" />
+    <result column="ROLENAME" property="rolename" jdbcType="VARCHAR" />
+    <result column="ROLESTATE" property="rolestate" jdbcType="INTEGER" />
+    <result column="ROLEDESC" property="roledesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ROLEID, ROLENAME, ROLESTATE, ROLEDESC
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sysrole
+    where ROLEID = #{roleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sysrole
+    where ROLEID = #{roleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.SysRole" >
+    insert into sysrole (ROLEID, ROLENAME, ROLESTATE, 
+      ROLEDESC)
+    values (#{roleid,jdbcType=INTEGER}, #{rolename,jdbcType=VARCHAR}, #{rolestate,jdbcType=INTEGER}, 
+      #{roledesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="model.SysRole" >
+    insert into sysrole
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        ROLEID,
+      </if>
+      <if test="rolename != null" >
+        ROLENAME,
+      </if>
+      <if test="rolestate != null" >
+        ROLESTATE,
+      </if>
+      <if test="roledesc != null" >
+        ROLEDESC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolestate != null" >
+        #{rolestate,jdbcType=INTEGER},
+      </if>
+      <if test="roledesc != null" >
+        #{roledesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.SysRole" >
+    update sysrole
+    <set >
+      <if test="rolename != null" >
+        ROLENAME = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolestate != null" >
+        ROLESTATE = #{rolestate,jdbcType=INTEGER},
+      </if>
+      <if test="roledesc != null" >
+        ROLEDESC = #{roledesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLEID = #{roleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.SysRole" >
+    update sysrole
+    set ROLENAME = #{rolename,jdbcType=VARCHAR},
+      ROLESTATE = #{rolestate,jdbcType=INTEGER},
+      ROLEDESC = #{roledesc,jdbcType=VARCHAR}
+    where ROLEID = #{roleid,jdbcType=INTEGER}
+  </update>
+</mapper>

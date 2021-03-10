@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.GoodMapper" >
+  <resultMap id="BaseResultMap" type="model.Good" >
+    <id column="GOODID" property="goodid" jdbcType="INTEGER" />
+    <result column="STOREID" property="storeid" jdbcType="INTEGER" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="goodname" property="goodname" jdbcType="VARCHAR" />
+    <result column="goodprice" property="goodprice" jdbcType="REAL" />
+    <result column="goodtrueprice" property="goodtrueprice" jdbcType="REAL" />
+    <result column="gooddesc" property="gooddesc" jdbcType="VARCHAR" />
+    <result column="goodimg1" property="goodimg1" jdbcType="VARCHAR" />
+    <result column="goodimg2" property="goodimg2" jdbcType="VARCHAR" />
+    <result column="goodimg3" property="goodimg3" jdbcType="VARCHAR" />
+    <result column="goodimg4" property="goodimg4" jdbcType="VARCHAR" />
+    <result column="goodimg5" property="goodimg5" jdbcType="VARCHAR" />
+    <result column="goodstate" property="goodstate" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GOODID, STOREID, typeid, goodname, goodprice, goodtrueprice, gooddesc, goodimg1, 
+    goodimg2, goodimg3, goodimg4, goodimg5, goodstate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from good
+    where GOODID = #{goodid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from good
+    where GOODID = #{goodid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.Good" >
+    insert into good (GOODID, STOREID, typeid, 
+      goodname, goodprice, goodtrueprice, 
+      gooddesc, goodimg1, goodimg2, 
+      goodimg3, goodimg4, goodimg5, 
+      goodstate)
+    values (#{goodid,jdbcType=INTEGER}, #{storeid,jdbcType=INTEGER}, #{typeid,jdbcType=INTEGER}, 
+      #{goodname,jdbcType=VARCHAR}, #{goodprice,jdbcType=REAL}, #{goodtrueprice,jdbcType=REAL}, 
+      #{gooddesc,jdbcType=VARCHAR}, #{goodimg1,jdbcType=VARCHAR}, #{goodimg2,jdbcType=VARCHAR}, 
+      #{goodimg3,jdbcType=VARCHAR}, #{goodimg4,jdbcType=VARCHAR}, #{goodimg5,jdbcType=VARCHAR}, 
+      #{goodstate,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="model.Good" >
+    insert into good
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodid != null" >
+        GOODID,
+      </if>
+      <if test="storeid != null" >
+        STOREID,
+      </if>
+      <if test="typeid != null" >
+        typeid,
+      </if>
+      <if test="goodname != null" >
+        goodname,
+      </if>
+      <if test="goodprice != null" >
+        goodprice,
+      </if>
+      <if test="goodtrueprice != null" >
+        goodtrueprice,
+      </if>
+      <if test="gooddesc != null" >
+        gooddesc,
+      </if>
+      <if test="goodimg1 != null" >
+        goodimg1,
+      </if>
+      <if test="goodimg2 != null" >
+        goodimg2,
+      </if>
+      <if test="goodimg3 != null" >
+        goodimg3,
+      </if>
+      <if test="goodimg4 != null" >
+        goodimg4,
+      </if>
+      <if test="goodimg5 != null" >
+        goodimg5,
+      </if>
+      <if test="goodstate != null" >
+        goodstate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodid != null" >
+        #{goodid,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null" >
+        #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="goodname != null" >
+        #{goodname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodprice != null" >
+        #{goodprice,jdbcType=REAL},
+      </if>
+      <if test="goodtrueprice != null" >
+        #{goodtrueprice,jdbcType=REAL},
+      </if>
+      <if test="gooddesc != null" >
+        #{gooddesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodimg1 != null" >
+        #{goodimg1,jdbcType=VARCHAR},
+      </if>
+      <if test="goodimg2 != null" >
+        #{goodimg2,jdbcType=VARCHAR},
+      </if>
+      <if test="goodimg3 != null" >
+        #{goodimg3,jdbcType=VARCHAR},
+      </if>
+      <if test="goodimg4 != null" >
+        #{goodimg4,jdbcType=VARCHAR},
+      </if>
+      <if test="goodimg5 != null" >
+        #{goodimg5,jdbcType=VARCHAR},
+      </if>
+      <if test="goodstate != null" >
+        #{goodstate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.Good" >
+    update good
+    <set >
+      <if test="storeid != null" >
+        STOREID = #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="goodname != null" >
+        goodname = #{goodname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodprice != null" >
+        goodprice = #{goodprice,jdbcType=REAL},
+      </if>
+      <if test="goodtrueprice != null" >
+        goodtrueprice = #{goodtrueprice,jdbcType=REAL},
+      </if>
+      <if test="gooddesc != null" >
+        gooddesc = #{gooddesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodimg1 != null" >
+        goodimg1 = #{goodimg1,jdbcType=VARCHAR},
+      </if>
+      <if test="goodimg2 != null" >
+        goodimg2 = #{goodimg2,jdbcType=VARCHAR},
+      </if>
+      <if test="goodimg3 != null" >
+        goodimg3 = #{goodimg3,jdbcType=VARCHAR},
+      </if>
+      <if test="goodimg4 != null" >
+        goodimg4 = #{goodimg4,jdbcType=VARCHAR},
+      </if>
+      <if test="goodimg5 != null" >
+        goodimg5 = #{goodimg5,jdbcType=VARCHAR},
+      </if>
+      <if test="goodstate != null" >
+        goodstate = #{goodstate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where GOODID = #{goodid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.Good" >
+    update good
+    set STOREID = #{storeid,jdbcType=INTEGER},
+      typeid = #{typeid,jdbcType=INTEGER},
+      goodname = #{goodname,jdbcType=VARCHAR},
+      goodprice = #{goodprice,jdbcType=REAL},
+      goodtrueprice = #{goodtrueprice,jdbcType=REAL},
+      gooddesc = #{gooddesc,jdbcType=VARCHAR},
+      goodimg1 = #{goodimg1,jdbcType=VARCHAR},
+      goodimg2 = #{goodimg2,jdbcType=VARCHAR},
+      goodimg3 = #{goodimg3,jdbcType=VARCHAR},
+      goodimg4 = #{goodimg4,jdbcType=VARCHAR},
+      goodimg5 = #{goodimg5,jdbcType=VARCHAR},
+      goodstate = #{goodstate,jdbcType=INTEGER}
+    where GOODID = #{goodid,jdbcType=INTEGER}
+  </update>
+</mapper>

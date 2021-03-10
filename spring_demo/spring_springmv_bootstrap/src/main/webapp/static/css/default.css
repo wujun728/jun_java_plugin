@@ -1,0 +1,79 @@
+/** ҳ�沼�� **/
+body {
+	padding-top: 70px;
+	padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+	display: block;
+	position: static;
+	margin-bottom: 20px;
+}
+
+.theme-showcase>p>.btn {
+	margin: 5px 0;
+}
+
+/** ҳ�沼��  the end **/
+
+/** ��ҳ **/
+.pagingFrom>li>a,.pagingFrom>li>span {
+	color: #000000;
+}
+
+.pagingFrom>li>.paging {
+	color: #428BCA;
+}
+
+.pagingFrom>.paging-input {
+	/* 	color:red; */
+	background-color: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	float: left;
+	line-height: 1.42857;
+	margin-left: -1px;
+	padding: 6px 12px;
+	position: relative;
+	text-decoration: none;
+	border-width: 0px;
+}
+
+.input-mini-s {
+	width: 30px;
+	background-color: transparent;
+	border-color: #000000;
+	border-right: 1px solid #B7D8EE;
+	border-style: solid;
+	border-width: 0 0 1px;
+	color: #0061DE;
+	text-align: center;
+	margin: 0 3px;
+}
+
+/** ��ҳ  the end **/
+
+/** ------- CSS------------------- **/
+.col-sm-0 {
+	width: 1%;
+}
+
+.col-sm-01 {
+	width: 5%;
+}
+
+.error-msg {
+	color: red;
+	font-size: 90%;
+	display: block;
+	margin-bottom: 8px;
+	white-space: nowrap;
+	font-weight: bold;
+}
+
+.border1 {
+	border: 1px solid red;
+}
+
+.border2 {
+	border: 1px solid #000000;
+}

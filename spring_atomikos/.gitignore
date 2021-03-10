@@ -1,0 +1,11 @@
+/target
+/.externalToolBuilders
+/*.log
+/.classpath
+/.project
+/.settings
+/*.db
+/bin
+/logs
+/*.lck
+/60

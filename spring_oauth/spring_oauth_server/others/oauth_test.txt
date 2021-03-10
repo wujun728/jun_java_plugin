@@ -1,0 +1,97 @@
+
+提示: 以下测试是基于项目安装成功,初始化数据库(initial_db.ddl, oauth.ddl, initial_data.ddl)后的测试, 也可在页面上点击"client_details"菜单里进行测试
+
+
+方式1:基于浏览器 (grant_type=authorization_code) 分两步完成
+ 第一步: 获取code, 访问时后跳到登录页面,登录成功后跳转到redirect_uri指定的地址 [GET]
+说明:只能使用admin或unity 账号登录才能有权限访问,若使用mobile账号登录将返回Access is denied
+http://localhost:8080/spring-oauth-server/oauth/authorize?client_id=unity-client&redirect_uri=http%3a%2f%2flocalhost%3a8080%2fspring-oauth-server%2funity%2fdashboard&response_type=code&scope=read&state=123456
+
+说明: 由于mobile-client只支持password,refresh_token, 所以不管用哪个账号登录后都将返回Illegal action
+http://localhost:8080/spring-oauth-server/oauth/authorize?client_id=mobile-client&redirect_uri=http%3a%2f%2flocalhost%3a8080%2fspring-oauth-server%2fm%2fdashboard&response_type=code&scope=read&state=123456
+
+
+
+响应的URL如:
+http://localhost:8080/spring-oauth-server/unity/dashboard.htm?code=zLl170
+
+第二步: 通过code换取access_token [POST]
+http://localhost:8080/spring-oauth-server/oauth/token?client_id=unity-client&client_secret=unity&grant_type=authorization_code&code=zLl170&redirect_uri=http%3a%2f%2flocalhost%3a8080%2fspring-oauth-server%2funity%2fdashboard
+
+
+
+方式2:基于客户端(如IOS,Android) (grant_type=password) ,需要账号与密码, 一步完成
+(注意参数中的username,password,对应用户的账号,密码) [POST]
+http://localhost:8080/spring-oauth-server/oauth/token?client_id=mobile-client&client_secret=mobile&grant_type=password&scope=read,write&username=mobile&password=mobile
+
+说明:由于unity-client不支持password,所以若用unity-client通过password方式去授权,将返回invalid_grant
+http://localhost:8080/spring-oauth-server/oauth/token?client_id=unity-client&client_secret=unity&grant_type=password&scope=read,write&username=mobile&password=mobile
+
+
+
+获取access_token响应的数据如:
+{"access_token":"3420d0e0-ed77-45e1-8370-2b55af0a62e8","token_type":"bearer","refresh_token":"b36f4978-a172-4aa8-af89-60f58abe3ba1","expires_in":43199,"scope":"read write"}
+
+
+获取access_token后访问资源 [GET]
+http://localhost:8080/spring-oauth-server/unity/dashboard.htm?access_token=3420d0e0-ed77-45e1-8370-2b55af0a62e8
+
+
+
+刷新access_token [POST]
+http://localhost:8080/spring-oauth-server/oauth/token?client_id=mobile-client&client_secret=mobile&grant_type=refresh_token&refresh_token=b36f4978-a172-4aa8-af89-60f58abe3ba1
+
+
+Restful OAuth2 Test [POST]
+URL: /oauth2/rest_token
+ContentType: application/json
+
+DEMO URL: http://localhost:8080/spring-oauth-server/oauth2/rest_token
+Request Body: {"grant_type":"client_credentials","scope":"read","client_id":"credentials","client_secret":"credentials","username":"user","password":"123"}
+
+Response Body:
+{
+    "access_token": "cd165ebc-562d-45df-8488-9f1ba947553e",
+    "token_type": "bearer",
+    "expires_in": 43193,
+    "scope": "read"
+}
+
+
+
+
+更多的测试请访问
+https://gitee.com/mkk/spring-oauth-client
+
+
+------------------------------------------------------------------------------------------------
+grant_type(授权方式)
+1.authorization_code                      授权码模式(即先登录获取code,再获取token)
+2.password                                     密码模式(将用户名,密码传过去,直接获取token)
+3.refresh_token                            刷新token
+4.implicit                                        简化模式(在redirect_uri 的Hash传递token; Auth客户端运行在浏览器中,如JS,Flash)
+5.client_credentials                      客户端模式(无用户,用户向客户端注册,然后客户端以自己的名义向'服务端'获取资源)
+
+
+scope
+1.read
+2.write
+3.trust
+
+
+------------------------------------------------------------------------------------------------
+
+Resource API
+Use it get resource-server resources after auth successful. will use it in <spring-oauth-client> project.
+(retrieve current logged user information)
+
+[ROLE_UNITY]
+http://localhost:8080/spring-oauth-server/unity/user_info?access_token=b03b99a1-f128-4d6e-b9d3-38a0ebcab5ef
+Response JSON
+{"archived":false,"email":"unity@wdcy.cc","guid":"55b713df1c6f423e842ad68668523c49","phone":"","privileges":["UNITY"],"username":"unity"}
+
+[ROLE_MOBILE]
+http://localhost:8080/spring-oauth-server/m/user_info?access_token=20837fa5-a0a1-4c76-9083-1f0e47ca0208
+Response JSON
+{"archived":false,"email":"mobile@wdcy.cc","guid":"612025cb3f964a64a48bbdf77e53c2c1","phone":"","privileges":["MOBILE"],"username":"mobile"}
+

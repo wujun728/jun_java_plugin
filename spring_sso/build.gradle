@@ -1,0 +1,151 @@
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+ext {
+    configuration = [
+            javaVersion = JavaVersion.VERSION_1_8
+    ]
+
+    libraries = [
+            springBootVersion = "2.3.3.RELEASE",
+            lombokVersion = "1.18.12",
+            jjwtVersion = "0.11.2"
+    ]
+}
+
+group = 'com.baomidou'
+version = '3.7.6'
+
+description = "kisso is a lightweight Java SSO Framework and reusable components."
+
+sourceCompatibility = "${javaVersion}"
+targetCompatibility = "${javaVersion}"
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenLocal()
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    jcenter()
+}
+
+dependencies {
+    compileOnly("javax.servlet:servlet-api:2.5")
+    compileOnly("javax.servlet:jsp-api:2.0")
+    compileOnly("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compileOnly("org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}")
+    compileOnly("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
+
+    api("io.jsonwebtoken:jjwt-api:${jjwtVersion}")
+    api("io.jsonwebtoken:jjwt-impl:${jjwtVersion}")
+    api("io.jsonwebtoken:jjwt-jackson:${jjwtVersion}")
+
+    compileOnly("org.projectlombok:lombok:${lombokVersion}")
+    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    testCompile("javax.servlet:servlet-api:2.5")
+    testCompile("junit:junit:4.12")
+}
+
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveClassifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+javadoc {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        failOnError false
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+publishing {
+    repositories {
+        maven {
+            def userName = System.getProperty("un")
+            def passWord = System.getProperty("ps")
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+            credentials {
+                username userName
+                password passWord
+            }
+        }
+    }
+    publications {
+
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifact sourcesJar
+            artifact javadocJar
+
+            pom {
+                name = 'kisso'
+                packaging 'jar'
+                description = 'An enhanced toolkit of SSO to simplify development.'
+                url = 'https://github.com/baomidou/kisso'
+
+                scm {
+                    connection = 'scm:git@github.com:Codearte/gradle-nexus-staging-plugin.git'
+                    developerConnection = 'scm:git@github.com:Codearte/gradle-nexus-staging-plugin.git'
+                    url = 'https://github.com/baomidou/kisso'
+                }
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'baomidou'
+                        name = 'hubin'
+                        email = 'jobob@qq.com'
+                    }
+                }
+
+                withXml {
+                    def root = asNode()
+                    root.dependencies.'*'.findAll {
+                        def d = it
+                        d.scope.text() == 'runtime' && project.configurations.findByName("implementation").allDependencies.find { dep ->
+                            dep.name == it.artifactId.text()
+                        }.each() {
+                            d.scope*.value = 'compile'
+                            d.appendNode('optional', true)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        sign publishing.publications.mavenJava
+    }
+}

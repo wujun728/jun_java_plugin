@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+<context:component-scan base-package="jdbc.viewcblob"/>
+<context:component-scan base-package="jdbc.viewspace"/>
+
+<bean id="dataSource" 
+      class="com.mchange.v2.c3p0.ComboPooledDataSource" >  
+      <!-- destroy-method="close"去掉就不会报错误 -->    
+  <property name="driverClass" value="org.gjt.mm.mysql.Driver"/>      
+  <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/spring"/>      
+  <property name="user" value="zhou"/>      
+  <property name="password" value="1991"/>      
+</bean>
+
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+  <property name="dataSource" ref="dataSource"/>
+</bean>
+<bean id="nativeJdbcExtractor" 
+      class="org.springframework.jdbc.support.nativejdbc.C3P0NativeJdbcExtractor" 
+      lazy-init="true"/>
+<bean id="lobHandler" 
+      class="org.springframework.jdbc.support.lob.DefaultLobHandler"
+      lazy-init="true"> 
+   <!-- <property name="nativeJdbcExtractor" ref="nativeJdbcExtractor"/> -->    
+</bean>
+
+</beans>           

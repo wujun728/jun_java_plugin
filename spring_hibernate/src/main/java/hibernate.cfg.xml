@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/test</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">mysqladmin</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		<!-- session绑定 -->
+		<property name="hibernate.current_session_context_class">thread</property>
+		
+		<!-- 抓取策略 -->
+		<property name="hibernate.max_fetch_depth">1</property>
+		<property name="hibernate.default_batch_fetch_size">4</property>
+		<property name="hibernate.jdbc.fetch_size">30</property>
+		<property name="hibernate.jdbc.batch_size">50</property>
+		
+		<!-- 建表的命名规则 -->
+		<property name="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</property>
+		
+		<!-- 用于调试的属性 -->
+		<property name="hibernate.cache.use_structured_entries">false</property>
+		<property name="hibernate.generate_statistics">true</property>
+		<!-- 
+		<property name="hibernate.use_sql_comments">true</property>
+		 -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<!-- end 用于调试的属性 -->
+		
+		<!-- 缓存 -->
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.use_query_cache">true</property>
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		<property name="net.sf.ehcache.configurationResourceName">ehcache/ehcache-hibernate-local.xml</property>
+ 		
+        <mapping class="com.ketayao.learn.hibernate.entity.Monkey" />  
+ 		<mapping class="com.ketayao.learn.hibernate.entity.Module" />
+ 		<mapping class="com.ketayao.learn.hibernate.entity.User" />
+ 		<mapping class="com.ketayao.learn.hibernate.entity.Car" />
+ 		<mapping class="com.ketayao.learn.hibernate.entity.AssignKey" />
+ 		<mapping class="com.ketayao.learn.hibernate.entity.IDCard" />
+ 		
+ 		 
+ 		<mapping class="com.ketayao.learn.hibernate.entity.Company" />
+ 		<mapping class="com.ketayao.learn.hibernate.entity.Person" />
+ 		
+ 		<mapping class="com.ketayao.learn.hibernate.entity.Language" />
+ 		<mapping class="com.ketayao.learn.hibernate.entity.Message" />
+	</session-factory>
+</hibernate-configuration>

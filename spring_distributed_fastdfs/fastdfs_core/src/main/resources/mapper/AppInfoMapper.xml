@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jun.plugin.dfs.core.mapper.AppInfoMapper">
+    <cache/>
+
+    <select id="getAllAppInfo" flushCache="true" resultType="AppInfoEntity">
+		SELECT * FROM dfs_app_info ORDER BY create_date DESC
+	</select>
+
+    <select id="getAppInfoByAppKey" flushCache="true" resultType="AppInfoEntity" statementType="PREPARED">
+		SELECT * FROM dfs_app_info WHERE app_key = #{appKey}
+	</select>
+
+</mapper>  

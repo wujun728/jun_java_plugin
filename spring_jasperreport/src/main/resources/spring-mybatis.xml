@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 载入属性文件  -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <!-- 不需要区分环境的,指向的是被Maven已编译的资源文件 -->
+                <value>classpath*:datasource.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--0.数据库厂商配置-->
+    <bean id="vendorProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="properties">
+            <props>
+                <prop key="SQL Server">sqlserver</prop>
+                <prop key="DB2">db2</prop>
+                <prop key="Oracle">oracle</prop>
+                <prop key="MySQL">mysql</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="databaseIdProvider" class="org.apache.ibatis.mapping.VendorDatabaseIdProvider">
+        <property name="properties" ref="vendorProperties"/>
+    </bean>
+
+
+    <!-- 1.数据源配置-->
+    <!--see https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_DruidDataSource%E5%8F%82%E8%80%83%E9%85%8D%E7%BD%AE -->
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!-- 基本属性 url、user、password -->
+        <property name="url" value="${jdbcUrl}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+        <property name="driverClassName" value="${driverClassName}"></property>
+        <!-- 初始化连接大小、连接池最小空闲、最大使用连接数量 -->
+        <property name="initialSize" value="${initialSize}"/>
+        <property name="minIdle" value="${minIdle}"/>
+        <property name="maxActive" value="${maxActive}"/>
+        <!-- 获取连接等待超时的时间 -->
+        <property name="maxWait" value="${maxWait}"/>
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。 -->
+        <property name="poolPreparedStatements" value="${poolPreparedStatements}"/>
+        <!-- 检测连接是否有效sql，要求是一个查询语句，如果为null，则后三个参数无效。 -->
+        <property name="validationQuery" value="${validationQuery}"/>
+        <!-- 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。 -->
+        <property name="testWhileIdle" value="${testWhileIdle}"/>
+        <!-- 申请连接时执行 validationQuery检测连接是否有效，做了这个配置会降低性能。 -->
+        <property name="testOnBorrow" value="${testOnBorrow}"/>
+        <!-- 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能 -->
+        <property name="testOnReturn" value="${testOnReturn}"/>
+        <!-- 间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}"/>
+        <!-- 一个连接在池中最小生存的时间，单位是毫秒 -->
+        <!-- 打开removeAbandoned功能 -->
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="1800"/>
+        <property name="logAbandoned" value="true"/>
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="${filters}"/>
+        <!-- 慢查询sql打印 -->
+        <property name="connectionProperties" value="${connectionProperties}"/>
+        <!--druid内置sql打印配置-->
+<!--
+        <property name="proxyFilters">
+            <list>
+                <bean class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+                    <property name="resultSetLogEnabled" value="true"></property>
+                </bean>
+            </list>
+        </property>
+-->
+    </bean>
+    <bean class="com.alibaba.druid.filter.logging.Slf4jLogFilter"></bean>
+
+    <!--2.SqlSessionFactoryBean配置-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="druidDataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:mappings/**/*.xml</value>
+            </list>
+        </property>
+        <!-- 数据库id标识 -->
+        <property name="databaseIdProvider" ref="databaseIdProvider"></property>
+        <!-- 注册类型 -->
+        <property name="typeAliasesPackage" value="cn.kiwipeach.**.modal"></property>
+    </bean>
+
+    <!--3.Mapper扫描配置-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.kiwipeach.demo.mapper"></property>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+
+    <!--4.事务管理器配置 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="druidDataSource"/>
+    </bean>
+
+    <!-- 5.使用声明式事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+</beans>

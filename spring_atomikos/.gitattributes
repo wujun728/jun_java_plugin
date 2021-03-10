@@ -1,0 +1,6 @@
+*.js linguist-language=Java
+*.css linguist-language=Java
+*.html linguist-language=Java
+*.ftl linguist-language=Java
+*.FreeMarker linguist-language=Java
+*.freemarker linguist-language=Java

@@ -1,0 +1,20 @@
+#scroll_totop {
+    display: none;
+    position: fixed;
+   	bottom: 40px;
+	right: 10px;
+	z-index: 999;
+	width: 71px;
+	height: 64px;
+	cursor: pointer;
+    background: url(../images/toTop.gif) no-repeat;
+    filter: alpha(opacity=40);
+    text-align: center;
+	color: #888;
+}
+#scroll_totop:hover {
+    filter: alpha(opacity=80);
+    background-position: -88px 0;
+	text-decoration: none;
+	color: #3a9
+}

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.springmvc.mybatis.mapper.simple.ImportExcelMapper">
+
+	<resultMap id="newsMap" type="cn.springmvc.mybatis.entity.simple.ImportExcel">
+		<result column="ID" property="id" />
+		<result column="USER_NAME" property="userName" />
+		<result column="START_DATE" property="startDate" />
+		<result column="END_DATE" property="endDate" />
+		<result column="START_TIME" property="startTime" />
+		<result column="END_TIME" property="endTime" />
+		<result column="YEAR" property="year" />
+		<result column="REMARK" property="remark" />
+		<result column="IS_MODIFY" property="isModify" />
+	</resultMap>
+
+	<insert id="insert" parameterType="cn.springmvc.mybatis.entity.simple.ImportExcel">
+		INSERT INTO T_IMPORT_EXCEL(ID , USER_NAME , START_DATE , END_DATE , START_TIME , END_TIME , YEAR , REMARK, IS_MODIFY) VALUES(#{id} , #{userName} , #{startDate} , #{endDate} , #{startTime} , #{endTime} , #{year},
+		#{remark},#{isModify})
+	</insert>
+
+	<sql id="find_xxx">
+	    <![CDATA[
+			SELECT ID , USER_NAME , START_DATE , END_DATE , START_TIME , END_TIME , YEAR , REMARK, IS_MODIFY
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+	    <![CDATA[
+	    	FROM T_IMPORT_EXCEL
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+	    <![CDATA[
+	    	WHERE 1=1
+	    ]]>
+	</sql>
+
+	<select id="findNewsByKeywords" parameterType="string" resultMap="newsMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<where>
+			<if test="keywords != null and keywords != ''"> title like '%${keywords}%'</if>
+		</where>
+	</select>
+
+	<update id="updateStartTime" parameterType="cn.springmvc.mybatis.entity.simple.ImportExcel">
+		update t_import_excel
+		set start_date = end_date,
+		start_time = str_to_date(
+		concat(end_date, ' 09:00:00'),
+		"%Y-%m-%d %T"
+		),
+		is_modify = 1
+		where
+		start_date is null
+	</update>
+
+	<update id="updateEndTime" parameterType="cn.springmvc.mybatis.entity.simple.ImportExcel">
+		update t_import_excel
+		set end_date = start_date,
+		end_time = str_to_date(
+		concat(start_date, ' 18:00:00'),
+		"%Y-%m-%d %T"
+		),
+		is_modify = 3
+		where
+		(
+		end_date is null
+		or is_modify = 3
+		)
+		and date_format(start_time, "%T") != '00:00:00'
+	</update>
+
+	<update id="updateEndTimeByWeekend" parameterType="cn.springmvc.mybatis.entity.simple.ImportExcel">
+		update t_import_excel
+		set end_date = start_date,
+		end_time = str_to_date(
+		concat(start_date, ' 00:00:00'),
+		"%Y-%m-%d %T"
+		),
+		is_modify = 2
+		where
+		(
+		end_date is null
+		or is_modify = 2
+		)
+		and date_format(start_time, "%T") = '00:00:00'
+	</update>
+
+</mapper>

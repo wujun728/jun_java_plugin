@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 定义包的扫描规则 -->
+	<context:component-scan base-package="com.lyx">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Repository" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Component" />
+	</context:component-scan>
+
+	<!--tomcat jdbc pool数据源配置 -->
+	<bean id="localDataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		destroy-method="close">
+		<property name="poolProperties">
+			<bean class="org.apache.tomcat.jdbc.pool.PoolProperties">
+				<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+				<property name="url"
+					value="jdbc:mysql://10.255.9.79:3306/local_database" />
+				<property name="username" value="root" />
+				<property name="password" value="034039" />
+			</bean>
+		</property>
+	</bean>
+
+	<!--tomcat jdbc pool数据源配置 -->
+	<bean id="threadDataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		destroy-method="close">
+		<property name="poolProperties">
+			<bean class="org.apache.tomcat.jdbc.pool.PoolProperties">
+				<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+				<property name="url"
+					value="jdbc:mysql://10.255.9.79:3306/thread_database" />
+				<property name="username" value="root" />
+				<property name="password" value="034039" />
+			</bean>
+		</property>
+	</bean>
+
+	<!--tomcat jdbc pool数据源配置 -->
+	<bean id="remoteDataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		destroy-method="close">
+		<property name="poolProperties">
+			<bean class="org.apache.tomcat.jdbc.pool.PoolProperties">
+				<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+				<property name="url"
+					value="jdbc:mysql://10.255.9.79:3306/remote_database" />
+				<property name="username" value="root" />
+				<property name="password" value="034039" />
+			</bean>
+		</property>
+	</bean>
+
+	<!--使用枚举类型作为key -->
+	<bean id="dataSource" class="com.lyx.DynamicDataSource">
+		<property name="targetDataSources">
+			<map key-type="com.lyx.DataSourceLookupKey">
+				<entry key="REMOTE_DATASOURCE" value-ref="remoteDataSource" />
+				<entry key="THREAD_DATASOURCE" value-ref="threadDataSource" />
+				<entry key="LOCAL_DATASOURCE" value-ref="localDataSource" />
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="localDataSource" />
+	</bean>
+
+	<!-- spring的事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 动态选择数据源的切面 -->
+	<bean id = "determineDataSourceAspect" class="com.lyx.DetermineDataSourceAspect"/>
+	<!-- 切面的配置 -->
+	<aop:config>
+		<aop:aspect id="determineDataSourceAspect" ref="determineDataSourceAspect">
+			<aop:pointcut id="dataSourcePoint"
+				expression="@annotation(com.lyx.RequireDataSource)" />
+			<aop:before method="determineDataSource" pointcut-ref="dataSourcePoint" />
+		</aop:aspect>
+	</aop:config>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+</beans>

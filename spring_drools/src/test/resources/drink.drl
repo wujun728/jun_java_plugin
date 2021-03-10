@@ -1,0 +1,46 @@
+#created on: 2014-01-17
+package com.zandili.demo.drools.service;
+
+#list any import classes here.
+import com.zandili.demo.drools.pojo.User;
+import java.io.Console;
+ 
+
+#declare any global variables here
+// 规则1，如果有钱就买一瓶喝掉
+rule "r001"
+    //no-loop true
+	salience 3
+	when
+		$u:User(money>0);
+	then
+		System.out.println("余钱：" + $u.getMoney() + ",花1元购买1瓶并喝掉");
+		$u.setKp($u.getKp() + 1);
+		$u.setMoney($u.getMoney() - 1);
+		$u.setTotals($u.getTotals() + 1);
+		update($u);
+end
+ 
+// 规则2，如果空瓶数大于2则换购1瓶（兑换成1元钱）
+rule "r002"
+	salience 2
+	when
+		$u:User(kp>=2);
+	then
+		System.out.println("空瓶数：" + $u.getKp() + ",兑换2个空瓶为1元钱");
+		$u.setKp($u.getKp() - 2);
+		$u.setMoney($u.getMoney() + 1);
+		update($u);
+end
+ 
+// 规则3，打印已经喝掉的数量
+rule "r003"
+	salience 1
+	when
+		$u:User();
+	then
+		System.out.println("总喝掉瓶数：" + $u.getTotals());
+end
+
+ 
+

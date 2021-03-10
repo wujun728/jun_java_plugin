@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+	default-lazy-init="true">
+
+	<description>MyBatis的数据库持久层配置/配置主-从数据源</description>
+
+	<bean id="masterSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="masterDataSource" />
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageInterceptor">
+					<property name="properties">
+						<value>
+							helperDialect=oracle
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+		<property name="mapperLocations" value="classpath*:mybatis/master/**/*.xml" />
+	</bean>
+
+	<bean id="slaveSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="slaveDataSource" />
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageInterceptor">
+					<property name="properties">
+						<value>
+							helperDialect=mysql
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+		<property name="mapperLocations" value="classpath*:mybatis/slave/**/*.xml" />
+	</bean>
+
+	<bean id="sqlSessionTemplate" class="com.wangxin.framework.sqlsession.CustomSqlSessionTemplate" scope="prototype">
+		<constructor-arg ref="slaveSqlSessionFactory" />
+		<property name="targetSqlSessionFactorys">
+			<map>
+				<entry value-ref="slaveSqlSessionFactory" key="slave" />
+				<entry value-ref="masterSqlSessionFactory" key="master" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.wangxin.mapper" />
+		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate" />
+		<property name="markerInterface" value="com.wangxin.mapper.SqlMapper" />
+	</bean>
+
+</beans>

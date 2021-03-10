@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.UserListMapper" >
+  <resultMap id="BaseResultMap" type="model.UserList" >
+    <id column="LISTID" property="listid" jdbcType="INTEGER" />
+    <result column="courieID" property="courieid" jdbcType="INTEGER" />
+    <result column="USERID" property="userid" jdbcType="INTEGER" />
+    <result column="GOODNUM" property="goodnum" jdbcType="INTEGER" />
+    <result column="GOODID" property="goodid" jdbcType="INTEGER" />
+    <result column="PAYTATE" property="paytate" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    LISTID, courieID, USERID, GOODNUM, GOODID, PAYTATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userlist
+    where LISTID = #{listid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userlist
+    where LISTID = #{listid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.UserList" >
+    insert into userlist (LISTID, courieID, USERID, 
+      GOODNUM, GOODID, PAYTATE
+      )
+    values (#{listid,jdbcType=INTEGER}, #{courieid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{goodnum,jdbcType=INTEGER}, #{goodid,jdbcType=INTEGER}, #{paytate,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.UserList" >
+    insert into userlist
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="listid != null" >
+        LISTID,
+      </if>
+      <if test="courieid != null" >
+        courieID,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="goodnum != null" >
+        GOODNUM,
+      </if>
+      <if test="goodid != null" >
+        GOODID,
+      </if>
+      <if test="paytate != null" >
+        PAYTATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="listid != null" >
+        #{listid,jdbcType=INTEGER},
+      </if>
+      <if test="courieid != null" >
+        #{courieid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="goodnum != null" >
+        #{goodnum,jdbcType=INTEGER},
+      </if>
+      <if test="goodid != null" >
+        #{goodid,jdbcType=INTEGER},
+      </if>
+      <if test="paytate != null" >
+        #{paytate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.UserList" >
+    update userlist
+    <set >
+      <if test="courieid != null" >
+        courieID = #{courieid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="goodnum != null" >
+        GOODNUM = #{goodnum,jdbcType=INTEGER},
+      </if>
+      <if test="goodid != null" >
+        GOODID = #{goodid,jdbcType=INTEGER},
+      </if>
+      <if test="paytate != null" >
+        PAYTATE = #{paytate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where LISTID = #{listid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.UserList" >
+    update userlist
+    set courieID = #{courieid,jdbcType=INTEGER},
+      USERID = #{userid,jdbcType=INTEGER},
+      GOODNUM = #{goodnum,jdbcType=INTEGER},
+      GOODID = #{goodid,jdbcType=INTEGER},
+      PAYTATE = #{paytate,jdbcType=INTEGER}
+    where LISTID = #{listid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,160 @@
+2015-03-03 15:23:01 [ main:590 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:24:19 [ main:1442 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:25:32 [ main:685 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:25:55 [ main:576 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:26:28 [ main:508 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:26:32 [ main:739 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:28:36 [ main:637 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:29:18 [ main:607 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:30:43 [ main:672 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:36:05 [ main:749 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:37:06 [ main:607 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:39:16 [ main:530 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:39:17 [ main:1134 ] - [ ERROR ] Context initialization failed
+org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from ServletContext resource [/WEB-INF/spring-servlet.xml]; nested exception is java.io.FileNotFoundException: Could not open ServletContext resource [/WEB-INF/spring-servlet.xml]
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:341)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:174)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:209)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:180)
+	at org.springframework.web.context.support.XmlWebApplicationContext.loadBeanDefinitions(XmlWebApplicationContext.java:125)
+	at org.springframework.web.context.support.XmlWebApplicationContext.loadBeanDefinitions(XmlWebApplicationContext.java:94)
+	at org.springframework.context.support.AbstractRefreshableApplicationContext.refreshBeanFactory(AbstractRefreshableApplicationContext.java:130)
+	at org.springframework.context.support.AbstractApplicationContext.obtainFreshBeanFactory(AbstractApplicationContext.java:537)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:451)
+	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:651)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:665)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:518)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:459)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:136)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:241)
+	at org.mortbay.jetty.servlet.ServletHolder.initServlet(ServletHolder.java:433)
+	at org.mortbay.jetty.servlet.ServletHolder.doStart(ServletHolder.java:256)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:40)
+	at org.mortbay.jetty.servlet.ServletHandler.initialize(ServletHandler.java:612)
+	at org.mortbay.jetty.servlet.Context.startContext(Context.java:139)
+	at org.mortbay.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1216)
+	at org.mortbay.jetty.handler.ContextHandler.doStart(ContextHandler.java:509)
+	at org.mortbay.jetty.webapp.WebAppContext.doStart(WebAppContext.java:447)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:40)
+	at org.mortbay.jetty.handler.HandlerWrapper.doStart(HandlerWrapper.java:117)
+	at org.mortbay.jetty.Server.doStart(Server.java:222)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:40)
+	at runjettyrun.Bootstrap.main(Bootstrap.java:121)
+Caused by: java.io.FileNotFoundException: Could not open ServletContext resource [/WEB-INF/spring-servlet.xml]
+	at org.springframework.web.context.support.ServletContextResource.getInputStream(ServletContextResource.java:140)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:328)
+	... 29 more
+2015-03-03 15:39:32 [ main:542 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:41:35 [ main:540 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:42:46 [ main:787 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:49:04 [ main:448 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:49:40 [ main:451 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:50:16 [ main:446 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:54:05 [ main:676 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 15:55:08 [ main:500 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 16:23:30 [ main:455 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 16:24:25 [ main:493 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 16:25:30 [ main:832 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 16:27:09 [ main:486 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 16:28:40 [ main:486 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 16:30:00 [ main:474 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 16:30:16 [ main:493 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 16:51:49 [ main:870 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 16:53:24 [ main:490 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 16:56:22 [ main:410 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 16:56:23 [ main:688 ] - [ ERROR ] Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [conf/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [conf/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error registering typeAlias for 'User'. Cause: java.lang.ClassNotFoundException: Cannot find class: cn.springmvc.model.User
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1482)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:610)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:389)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:294)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:112)
+	at org.mortbay.jetty.handler.ContextHandler.startContext(ContextHandler.java:539)
+	at org.mortbay.jetty.servlet.Context.startContext(Context.java:135)
+	at org.mortbay.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1216)
+	at org.mortbay.jetty.handler.ContextHandler.doStart(ContextHandler.java:509)
+	at org.mortbay.jetty.webapp.WebAppContext.doStart(WebAppContext.java:447)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:40)
+	at org.mortbay.jetty.handler.HandlerWrapper.doStart(HandlerWrapper.java:117)
+	at org.mortbay.jetty.Server.doStart(Server.java:222)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:40)
+	at runjettyrun.Bootstrap.main(Bootstrap.java:121)
+Caused by: org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [conf/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error registering typeAlias for 'User'. Cause: java.lang.ClassNotFoundException: Cannot find class: cn.springmvc.model.User
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:434)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:340)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1479)
+	... 22 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error registering typeAlias for 'User'. Cause: java.lang.ClassNotFoundException: Cannot find class: cn.springmvc.model.User
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:106)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parse(XMLConfigBuilder.java:89)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:428)
+	... 25 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error registering typeAlias for 'User'. Cause: java.lang.ClassNotFoundException: Cannot find class: cn.springmvc.model.User
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.typeAliasesElement(XMLConfigBuilder.java:127)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:96)
+	... 27 more
+Caused by: java.lang.ClassNotFoundException: Cannot find class: cn.springmvc.model.User
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:188)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:87)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:254)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.typeAliasesElement(XMLConfigBuilder.java:120)
+	... 28 more
+2015-03-03 16:56:34 [ main:397 ] - [ ERROR ] maxIdle is deprecated
+2015-03-03 16:56:35 [ main:695 ] - [ ERROR ] Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [conf/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [conf/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error registering typeAlias for 'User'. Cause: java.lang.ClassNotFoundException: Cannot find class: cn.springmvc.model.User
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1482)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:610)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:389)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:294)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:112)
+	at org.mortbay.jetty.handler.ContextHandler.startContext(ContextHandler.java:539)
+	at org.mortbay.jetty.servlet.Context.startContext(Context.java:135)
+	at org.mortbay.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1216)
+	at org.mortbay.jetty.handler.ContextHandler.doStart(ContextHandler.java:509)
+	at org.mortbay.jetty.webapp.WebAppContext.doStart(WebAppContext.java:447)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:40)
+	at org.mortbay.jetty.handler.HandlerWrapper.doStart(HandlerWrapper.java:117)
+	at org.mortbay.jetty.Server.doStart(Server.java:222)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:40)
+	at runjettyrun.Bootstrap.main(Bootstrap.java:121)
+Caused by: org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [conf/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error registering typeAlias for 'User'. Cause: java.lang.ClassNotFoundException: Cannot find class: cn.springmvc.model.User
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:434)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:340)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1479)
+	... 22 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error registering typeAlias for 'User'. Cause: java.lang.ClassNotFoundException: Cannot find class: cn.springmvc.model.User
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:106)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parse(XMLConfigBuilder.java:89)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:428)
+	... 25 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error registering typeAlias for 'User'. Cause: java.lang.ClassNotFoundException: Cannot find class: cn.springmvc.model.User
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.typeAliasesElement(XMLConfigBuilder.java:127)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:96)
+	... 27 more
+Caused by: java.lang.ClassNotFoundException: Cannot find class: cn.springmvc.model.User
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:188)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:87)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:254)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.typeAliasesElement(XMLConfigBuilder.java:120)
+	... 28 more
+2015-03-03 16:57:44 [ main:476 ] - [ ERROR ] maxIdle is deprecated

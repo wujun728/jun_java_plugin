@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util" xmlns:jaxws="http://cxf.apache.org/jaxws"
+    xmlns:batch="http://www.springframework.org/schema/batch"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/mvc  
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+        http://www.springframework.org/schema/batch 
+        http://www.springframework.org/schema/batch/spring-batch-2.1.xsd">
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+
+    <!-- JOB REPOSITORY - WE USE IN-MEMORY REPOSITORY FOR OUR EXAMPLE -->
+    <bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
+        <property name="transactionManager" ref="transactionManager" />
+    </bean>
+
+    <!-- Batch配置,运行 Job -->
+    <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+        <property name="jobRepository" ref="jobRepository" />
+    </bean>
+
+    <!-- FINALLY OUR JOB DEFINITION. THIS IS A 1 STEP JOB -->
+    <!-- Job 下分为多个 Step。Step 是一个独立的、顺序的处理步骤，包含该步骤批处理中需要的所有信息 -->
+    <batch:job id="ledgerJob" restartable="true">
+        <batch:listeners>
+            <batch:listener ref="appJobExecutionListener" />
+        </batch:listeners>
+        <batch:step id="messageStep">
+            <batch:tasklet>
+                <batch:listeners>
+                    <batch:listener ref="itemFailureLoggerListener" />
+                </batch:listeners>
+
+                <!-- 从数据库中读取数据.commit-interval表示每次读取多少条 -->
+                <batch:chunk reader="ledgerReader" writer="ledgerWriter" commit-interval="10" />
+
+                <!-- 指定了 Step 的完成策略，即当什么情况发生时表明该 Step 已经完成，可以转入后续处理。 由于没有明确指定相应的类，Spring 
+                    Batch 使用默认策略，即当读入数据为空时认为 Step 结束。 【提示】：由于配置了每5条才提交事务，所以，如果中途出现了网络故障、数据库崩溃等一系列原因导致任务中途中断， 
+                    则如果没有完成5条，则不会提交事务。 例如：springbatch操作到了第143条，后面3条属于一个事务中,准备开始操作144条的时候,由于服务器故障中断，则这3条不会插入到数据库中. -->
+                <!-- <batch:chunk reader="messageReader" writer="messageWriter" 
+                    commit-interval="5" chunk-completion-policy=""/> -->
+            </batch:tasklet>
+        </batch:step>
+    </batch:job>
+
+    <!-- 从数据库中读取数据 -->
+    <bean id="ledgerReader" class="org.springframework.batch.item.database.JdbcCursorItemReader">
+        <property name="dataSource" ref="dataSource" />
+        <property name="sql" value="select * from ledgers" />
+        <property name="rowMapper" ref="ledgerRowMapper" />
+    </bean>
+
+    <!-- 读取txt内容 -->
+    <!-- <bean id="messageReader" class="org.springframework.batch.item.file.FlatFileItemReader"> 
+        <property name="lineMapper" ref="lineMapper"/> <property name="resource" 
+        value="classpath:/datas/ledger.txt"></property> </bean> -->
+
+    <!-- DefaultLineMapper 需要设置 lineTokenizer 和 fieldSetMapper 两个属性 首先通过 
+        lineTokenizer 完成文件行拆分，并封装为一个属性结果集， 因为我们使用“,”分隔用户属性，所以需要将 lineTokenizer 设置为 
+        DelimitedLineTokenizer。 最后通过 fieldSetMapper 完成将结果集封装为一个 POJO 对象。 -->
+    <bean id="lineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+        <property name="lineTokenizer" ref="delimitedLineTokenizer"></property>
+        <property name="fieldSetMapper">
+            <bean class="com.zb.batch.mapper.UserMapper" />
+        </property>
+    </bean>
+
+    <!-- 从文件users.txt中读取数据 -->
+    <bean id="delimitedLineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" />
+
+    <!-- Spring Batch Job同一个job instance，成功执行后是不允许重新执行的【失败后是否允许重跑，可通过配置Job的restartable参数来控制，默认是true】，如果需要重新执行，可以变通处理， 
+        添加一个JobParameters构建类,以当前时间作为参数，保证其他参数相同的情况下却是不同的job instance -->
+    <bean id="jobParameterBulider" class="org.springframework.batch.core.JobParametersBuilder" />
+
+
+
+    <!-- 定时任务 开始 -->
+
+    <!-- MethodInvokingJobDetailFactoryBean类默认是并发执行的， -->
+    <bean id="ledgerJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <!-- 定时执行的类 -->
+            <ref bean="quartzLedgerJob" />
+        </property>
+        <property name="targetMethod">
+            <!-- 定时执行的类方法 -->
+            <value>execute</value>
+        </property>
+        <!-- 设置“concurrent”为false,任务不是并发执行的.前面的任务执行完毕,才继续执行 , 设置为true,很可能带来并发或者死锁的问题 -->
+        <!-- <property name="concurrent" value="false"/> -->
+    </bean>
+
+    <bean id="ledgerCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <!-- 这里不可以直接在属性jobDetail中引用taskJob，因为他要求的是一个jobDetail类型的对象，所以我们得通过MethodInvokingJobDetailFactoryBean来转一下 -->
+        <property name="jobDetail">
+            <ref bean="ledgerJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <!-- <value>0 * 15 * * ?</value> -->
+            <value>0 24 10 * * ? * </value>
+        </property>
+    </bean>
+
+    <!-- 触发器工厂，将所有的定时任务都注入工厂 -->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <!-- 添加触发器 -->
+        <property name="triggers">
+            <list>
+                <!-- 将上面定义的测试定时任务注入（可以定义多个定时任务，同时注入） -->
+                <ref bean="ledgerCronTrigger" />
+            </list>
+        </property>
+    </bean>
+    <!-- 定时任务 结束 -->
+
+</beans>

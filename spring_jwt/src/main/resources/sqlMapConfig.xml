@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 配置日志 LOG4J -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="logImpl" value="LOG4j"/>
+    </settings>
+
+    <!-- 配置别名信息 -->
+    <typeAliases>
+        <package name="com.jun.plugin.entity"/>
+    </typeAliases>
+
+</configuration>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- magenta:洋红 -->
+    <!-- boldMagenta:粗红-->
+    <!-- cyan:青色 -->
+    <!-- white:白色 -->
+    <!-- magenta:洋红 -->
+    <!--控制台日志配置-->
+    <property name="CONSOLE_LOG_PATTERN" value="%yellow(%date{yyyy-MM-dd HH:mm:ss}) |%highlight(%-5level)|%green(%logger) |%cyan(%msg%n)"/>
+    <property name="FILE_PATH" value="/root/sys/logs/member"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+    </appender>
+    <!--  log 日志 要强制打印的日志信息,否则按root的级别打印 -->
+    <logger name="org.springframework.web.servlet.DispatcherServlet" level="debug" additivity="false">
+        <appender-ref ref="debug" />
+    </logger>
+
+    <root level="debug">
+        <appender-ref ref="console"/>
+    </root>
+</configuration>

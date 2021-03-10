@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--1.获取自动增长主键ID-->
+        <!--
+                <setting name="useGeneratedKeys" value="true"/>
+        -->
+        <!--2.开启别名规则（默认情况下是开启着的）-->
+        <!--
+                <setting name="useColumnLabel" value="true"/>
+        -->
+        <!--3.开启驼峰命名规则 create_time==createTime-->
+        <setting name="mapUnderscoreToCamelCase" value="true"></setting>
+        <!--4.SQL日志打印 参考:http://www.mybatis.org/mybatis-3/zh/configuration.html#settings-->
+        <!--SLF4J | LOG4J | LOG4J2 | JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING | NO_LOGGING-->
+        <!--STDOUT_LOGGING与选SLF4J日志的区别:前者不会把日志记录到日志文件，而后者会。-->
+        <setting name="logImpl" value="SLF4J"/>
+    </settings>
+
+</configuration>
