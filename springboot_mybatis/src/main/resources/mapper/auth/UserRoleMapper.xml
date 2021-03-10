@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.springboot.mapper.auth.UserRoleMapper">
+
+	<resultMap id="userRoleMap" type="cn.springboot.model.auth.UserRole">
+		<result property="id" column="ID" />
+		<result property="userId" column="USER_ID" />
+		<result property="roleId" column="ROLE_ID" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="cn.springboot.model.auth.UserRole">
+		INSERT INTO T_SYS_USER_ROLE(ID , USER_ID , ROLE_ID) VALUES(#{id} , #{userId} , #{roleId})
+	</insert>
+
+	<sql id="find_xxx">
+	    <![CDATA[
+	    	SELECT ID , USER_ID , ROLE_ID
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+	    <![CDATA[
+	    	FROM T_SYS_USER_ROLE
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+	    <![CDATA[
+	    	WHERE 1=1
+	    ]]>
+	</sql>
+
+	<select id="findById" parameterType="int" resultMap="userRoleMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		WHERE ID=#{id}
+	</select>
+
+	<select id="findAllByFilter" parameterType="Map" resultMap="userRoleMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+		<if test="start != null and limit != null">
+			LIMIT #{start},#{limit}
+		</if>
+	</select>
+
+	<select id="findAllByFilterCount" parameterType="Map" resultType="int">
+		SELECT COUNT(id)
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+	</select>
+
+	<update id="update" parameterType="cn.springboot.model.auth.UserRole">
+		UPDATE T_SYS_USER_ROLE
+		<set>
+			<if test="userId != null">
+				USER_ID = #{userId},
+			</if>
+			<if test="roleId != null">
+				ROLE_ID = #{roleId}
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		DELETE FROM T_SYS_USER_ROLE WHERE ID IN #{id}
+	</delete>
+
+</mapper>

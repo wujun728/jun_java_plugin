@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:/config/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath*:mappers/*.xml"/>
+        <property name="plugins">
+            <array>
+                <!--
+                 | 分页插件配置
+                 | 插件首先会根据方言查找实现类，如果未找到则使用自定义的实现类，两者均为配置则抛出异常
+                 | dialectType 数据库方言
+                 |             默认支持  mysql|oracle
+                 | dialectClazz 方言实现类
+                 |              自定义需要实现 org.springagg.mybatis.IDialect接口
+                 | -->
+                <bean id="paginationInterceptor"
+                      class="org.supercall.mybatis.plugins.PaginationInterceptor">
+                    <property name="dialectType" value="mysql"/>
+                    <property name="dialectClazz"
+                              value="org.springagg.mybatis.dialect.MySqlDialect"/>
+                </bean>
+            </array>
+        </property>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="org.supercall.dao"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>

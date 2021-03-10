@@ -1,0 +1,1 @@
+npm install gulp gulp-ruby-sass gulp-autoprefixer gulp-minify-css gulp-uglify gulp-imagemin gulp-rename del gulp-concat gulp-notify gulp-cache browser-sync bs-html-injector http-proxy-middleware --save

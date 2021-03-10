@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- import CSS -->
+<link rel="stylesheet" href="../css/index.css">
+<style>
+.el-header, .el-footer {
+	background-color: #B3C0D1;
+	color: #333;
+	text-align: center;
+	line-height: 60px;
+}
+
+.el-aside {
+	background-color: #D3DCE6;
+	color: #333;
+	text-align: center;
+	line-height: 200px;
+}
+
+.el-main {
+	background-color: #E9EEF3;
+	color: #333;
+	text-align: center;
+	line-height: 160px;
+}
+
+body>.el-container {
+	margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside, .el-container:nth-child(6) .el-aside
+	{
+	line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+	line-height: 320px;
+}
+[v-cloak]{
+	display: none;
+}
+</style>
+</head>
+<body>
+	<div id="app" v-cloak>
+		<el-container>
+			<el-header>分布式秒杀测试</el-header>
+			<el-container>
+				<el-aside width="200px">当前活动编码：{{stallActivityId}}</el-aside>
+				<el-main>
+					<el-form ref="form" :model="form" label-width="80px">
+						<el-row>
+							<el-col :span="18">
+								<el-form-item label="库存数量">
+									<el-input v-model="stockNum"></el-input>
+								</el-form-item>
+							</el-col>
+							<el-col :span="6">
+								<el-form-item>
+									<el-button type="primary" @click.native="setStockNum">设置库存</el-button>
+								</el-form-item>
+							</el-col>
+						</el-row>
+						<el-row>
+							<el-col :span="18">
+								<el-form-item label="库存信息">
+									<el-input v-model="realStockNum"></el-input>
+								</el-form-item>
+							</el-col>
+							<el-col :span="6">
+								<el-form-item>
+									<el-button type="warning" @click.native="getStockNum">获取库存信息</el-button>
+								</el-form-item>
+							</el-col>
+						</el-row>
+						<el-row>
+							<el-col :span="18">
+								<el-form-item label="openId">
+									<el-input v-model="openId"></el-input>
+								</el-form-item>
+							</el-col>
+							<el-col :span="6">
+								<el-form-item>
+									<el-button type="primary" @click.native="goSeckillByQueue">开始秒杀</el-button>
+								</el-form-item>
+							</el-col>
+						</el-row>
+						<el-row>
+							<el-col :span="24">
+								<el-form-item>
+									<span v-html="message"></span>
+								</el-form-item>
+							</el-col>
+						</el-row>
+					</el-form>
+				</el-main>
+			</el-container>
+		</el-container>
+	</div>
+</body>
+<!-- import Vue before Element -->
+<script src="../js/vue.js"></script>
+<!-- import JavaScript -->
+<script src="../js/index.js"></script>
+<script src="../js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return { 
+          stallActivityId: 11,
+          form: {},
+          stockNum: 50,
+          realStockNum: '',
+          count: 100,
+          openId: 'This is a test openId',
+          message: '',
+          orderQualificationCode: null
+        }
+      },
+      methods:{
+    	  getStockNum: function(){
+    		  var params = {stallActivityId: this.stallActivityId };
+    		  $.ajax({
+		         type: 'POST',
+		         url: 'http://localhost:8080/api/seckill/getStockNum',
+		         dataType: "json",
+	    	 	 contentType:"application/json",
+		         data: JSON.stringify(params),
+		         async: true,
+		         success:function(data){
+			         if( data.isSuccess == true ){
+						 this.realStockNum = "真实库存剩余：" + data.realStockNum + "；未锁定库存剩余： " + data.stockNum;
+			         }else{
+			        	 this.$message({
+			                message: data.responseMsg,
+			                type: 'error'
+			             });
+			         }
+			     }.bind(this)
+    		  });
+    	  },
+    	  setStockNum: function(){
+    		  var params = {stallActivityId: this.stallActivityId, stockNum: this.stockNum };
+    		  $.ajax({
+		         type: 'POST',
+		         url: 'http://localhost:8080/api/seckill/setStockNum',
+		         dataType: "json",
+	    	 	 contentType:"application/json",
+		         data: JSON.stringify(params),
+		         async: true,
+		         success:function(data){
+			         if( data.isSuccess == true ){
+			        	 this.$message({
+			                message: data.responseMsg,
+			                type: 'success'
+			             });
+			         }else{
+			        	 this.$message({
+			                message: data.responseMsg,
+			                type: 'error'
+			             });
+			         }
+			     }.bind(this)
+    		  });
+    	  },
+    	  goSeckillByQueue: function(){
+    		  var params = {stallActivityId: this.stallActivityId, purchaseNum: 1, openId: this.openId,
+    				  formId: 'test formId', addressId: 100};
+    		  $.ajax({
+ 		         type: 'POST',
+ 		         url: 'http://localhost:8080/api/seckill/goSeckillByQueue',
+ 		         dataType: "json",
+ 	    	 	 contentType:"application/json",
+ 		         data: JSON.stringify(params),
+ 		         async: true,
+ 		         success:function(data){
+ 			         if( data.isSuccess == true ){
+ 			        	 this.$message({
+ 			                message: data.responseMsg,
+ 			                type: 'success'
+ 			             });
+ 			        	 this.message += data.responseMsg + "<br/>";
+ 			        	 this.seckillPollingQueue();
+ 			         }else{
+ 			        	this.message += data.responseMsg + "<br/>";
+ 			         }
+ 			     }.bind(this)
+     		  });
+    	  },
+    	  seckillPollingQueue: function(){
+    		  var params = {stallActivityId: this.stallActivityId, openId: this.openId };
+    		  $.ajax({
+  		         type: 'POST',
+  		         url: 'http://localhost:8080/api/seckill/seckillPollingQueue',
+  		         dataType: "json",
+  	    	 	 contentType:"application/json",
+  		         data: JSON.stringify(params),
+  		         async: true,
+  		         success:function(data){
+  			         if( data.isSuccess == true ){
+  			        	 if( data.orderQualificationCode != null ){
+  			        		this.message += data.responseMsg + "，下单资格码为：" + data.orderQualificationCode + "<br/>";
+  			        		this.orderQualificationCode = data.orderQualificationCode;
+  			        		this.createOrder();
+  			        	 }else{
+	  			        	this.message += data.responseMsg + "<br/>";
+	  			        	setTimeout(function(){this.seckillPollingQueue()}.bind(this), 1000);
+  			        	 }
+  			         }else{
+  			        	this.message += data.responseMsg + "<br/>";
+  			         }
+  			     }.bind(this)
+      		  });
+    	  },
+    	  createOrder: function(){
+    		  var params = {stallActivityId: this.stallActivityId, openId: this.openId, orderQualificationCode: this.orderQualificationCode };
+    		  $.ajax({
+   		         type: 'POST',
+   		         url: 'http://localhost:8080/api/seckill/createOrder',
+   		         dataType: "json",
+   	    	 	 contentType:"application/json",
+   		         data: JSON.stringify(params),
+   		         async: true,
+   		         success:function(data){
+   			         if( data.isSuccess == true ){
+  			        	this.message += "恭喜您，下单成功！ <br/>";
+   			         }else{
+   			        	this.message += data.responseMsg + "<br/>";
+   			         }
+   			     }.bind(this)
+       		  });
+    	  }
+      }
+    })
+  </script>
+</html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../../main/config/ehcache.xsd"  updateCheck="false">
+  <!-- 
+        配置自定义缓存
+        maxElementsInMemory:设置基于内存的缓存可存放对象的最大数目
+        maxElementsOnDisk:设置基于硬盘的缓存可存放对象的最大数目
+        eternal：如果为true，表示对象永远不会过期，此时会忽略timeToIdleSeconds和timeToLiveSeconds属性，默认为false
+        timeToIdleSeconds：设定允许对象处于空闲状态的最长时间，以秒为单位。当对象自从最近一次被访问后，
+                    如果处于空闲状态的时间超过了timeToIdleSeconds属性
+		值，这个对象就会过期。当对象过期，EHCache将把它从缓存中清空。只有当eternal属性为false，该属性才有效。如果该属性值为0，则表示
+		对象可以无限期地处于空闲状态
+        timeToLiveSeconds：设定对象允许存在于缓存中的最长时间，以秒为单位。当对象自从被存放到缓存中后，如果处于缓存中的时间超过了
+        timeToLiveSeconds属性值，这个对象就会过期。当对象过期，EHCache将把它从缓存中清除。只有当eternal属性为false，
+                    该属性才有效。如果该属性值为0，则表示对象可以无限期地存在于缓存中。timeToLiveSeconds必须大于timeToIdleSeconds
+                    属性，才有意义
+        overflowToDisk：如果为true,表示当基于内存的缓存中的对象数目达到了maxElementsInMemory界限后，会把益出        
+        
+        
+      memoryStoreEvictionPolicy：缓存对象清除策略。有三种：
+
+        1 、FIFO ，first in first out ，这个是大家最熟的，先进先出，不多讲了
+
+        2 、LFU ， Less Frequently Used ，就是上面例子中使用的策略，直白一点就是讲一直以来最少被使用的。如上面所讲，缓存的元素有一个hit 属性，hit 值最小的将会被清出缓存。
+
+        3、 LRU ，Least Recently Used ，最近最少使用的，缓存的元素有一个时间戳，当缓存容量满了，而又需要腾出地方来缓存新的元素的时候，那么现有缓存元素中时间戳离当前时间最远的元素将被清出缓存。  
+    -->
+    
+    <!-- 指定一个文件目录，当EHCache把数据写到硬盘上时，将把数据写到这个文件目录下 -->
+    <diskStore path="java.io.tmpdir"/>
+    
+    <!-- 设定缓存的默认数据过期策略。 -->
+    <defaultCache
+        maxElementsInMemory="1000"
+        eternal="false"
+        timeToIdleSeconds="100"
+        timeToLiveSeconds="100"
+        overflowToDisk="true"
+     />
+     <!-- 一分钟缓存 -->
+     <cache name="one.minute"
+        maxElementsInMemory="1000"
+        eternal="false"
+        timeToIdleSeconds="10"
+        timeToLiveSeconds="60"
+        overflowToDisk="true"
+    />
+    <cache name="two.minute"
+        maxElementsInMemory="1000"
+        eternal="false"
+        timeToIdleSeconds="0"
+        timeToLiveSeconds="1200"
+        overflowToDisk="true"
+    />
+    
+    <cache name="three.minute"
+        maxElementsInMemory="1000"
+        eternal="false"
+        timeToIdleSeconds="0"
+        timeToLiveSeconds="1800"
+        overflowToDisk="true"
+    />
+    
+    <cache name="one.hour"
+        maxElementsInMemory="1000"
+        eternal="false"
+        timeToIdleSeconds="0"
+        timeToLiveSeconds="3600"
+        overflowToDisk="true"
+    />
+</ehcache>

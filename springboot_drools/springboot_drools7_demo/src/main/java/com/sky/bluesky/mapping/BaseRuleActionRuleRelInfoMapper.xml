@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.bluesky.mapper.BaseRuleActionRuleRelInfoMapper">
+    <select id="findBaseRuleActionRuleRelInfoList" parameterType="com.sky.bluesky.model.BaseRuleActionRuleRelInfo"
+            resultType="com.sky.bluesky.model.BaseRuleActionRuleRelInfo">
+
+        SELECT DISTINCT
+                T.RULE_ACTION_REL_ID,
+                T.ACTION_ID,
+                T.RULE_ID,
+                T.IS_EFFECT,
+                T.CRE_USER_ID,
+                T.CRE_TIME,
+                T.REMARK
+            FROM
+                RULE_ACTION_RULE_REL T
+            WHERE
+                1 = 1
+                <if test="ruleId != null">
+                    AND T.RULE_ID = #{ruleId}
+                </if>
+
+    </select>
+</mapper>

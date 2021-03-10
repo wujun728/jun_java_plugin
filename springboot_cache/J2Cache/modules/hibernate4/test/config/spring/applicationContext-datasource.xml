@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:property-placeholder system-properties-mode="OVERRIDE" ignore-resource-not-found="true" ignore-unresolvable="true" location="classpath:props/jdbc.properties" />
+
+	<bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="driver" value="${jdbc.driver}" />
+		<property name="driverUrl" value="${jdbc.driverUrl}" />
+		<property name="user" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="alias" value="portal" />
+        <!--
+		<property name="houseKeepingSleepTime" value="${jdbc.houseKeepingSleepTime}" />
+		<property name="houseKeepingTestSql" value="${jdbc.houseKeepingTestSql}" />
+		<property name="prototypeCount" value="${jdbc.prototypeCount}" />
+		<property name="maximumConnectionCount" value="${jdbc.maximumConnectionCount}" />
+		<property name="minimumConnectionCount" value="${jdbc.minimumConnectionCount}" />
+		<property name="trace" value="true" />
+		<property name="verbose" value="true" />
+		-->
+	</bean>
+
+</beans>

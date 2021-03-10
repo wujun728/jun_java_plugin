@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="186px" height="186px" viewBox="0 0 186 186" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-274.000000, -144.000000)">
+        <g id="Group-2" transform="translate(274.000000, 144.000000)">
+            <circle id="Oval" fill="#EF002D" cx="93" cy="93" r="93"></circle>
+            <g id="Group" transform="translate(87.806080, 89.479473) rotate(30.000000) translate(-87.806080, -89.479473) translate(45.306080, 31.479473)">
+                <polygon id="Rectangle-2" fill="#FFFFFF" points="56.8661972 0 85 0 85 87.7512953 56.8661972 116"></polygon>
+                <polygon id="Rectangle-2-Copy" fill="#FFFFFF" points="28.1338028 52.2901554 28.1338028 116 0 87.7512953 0 52.2901554"></polygon>
+                <polygon id="Rectangle-2-Copy-2" fill="#F4F4F4" opacity="0.699999988" points="56.8661972 87.7512953 56.8661972 116 28.1338028 116 28.1338028 87.7512953"></polygon>
+                <polygon id="Rectangle-2-Copy-2" fill="#000000" opacity="0.05" points="30.528169 87.7512953 30.528169 116 28.1338028 116 28.1338028 87.7512953"></polygon>
+                <polygon id="Rectangle-2-Copy-3" fill="#000000" opacity="0.05" points="56.8661972 87.7512953 56.8661972 116 54.471831 116 54.471831 87.7512953"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

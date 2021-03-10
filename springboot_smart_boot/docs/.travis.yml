@@ -1,0 +1,13 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.1.5
+
+before_install:
+  - export NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+
+script:
+  - bundle exec jekyll build
+
+notifications:
+  email: false

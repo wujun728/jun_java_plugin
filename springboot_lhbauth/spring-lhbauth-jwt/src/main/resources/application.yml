@@ -1,0 +1,64 @@
+#server config
+server:
+  port: 80
+spring:
+  application:
+    name: security-demo
+  http:
+      encoding:
+        force: true
+  redis:
+     host: v.sunniwell.net
+     password: sunniwell
+     database: 1
+  datasource:
+      druid:
+          url: jdbc:mysql://127.0.0.1:3306/lhbauth?userUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.jdbc.Driver
+          initial-size: 5
+          min-idle: 6
+          max-active: 20
+          max-wait: 60000
+          time-between-eviction-runs-millis: 60000
+          min-evictable-idle-time-millis: 300000
+          validation-query: SELECT 1 FROM DUAL
+          test-while-idle: true
+          test-on-borrow: false
+          test-on-return: false
+          pool-prepared-statements: true
+          max-pool-prepared-statement-per-connection-size: 20
+          filters: stat,wall,log4j
+          connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+
+  thymeleaf:
+      prefix: classpath:/page/
+      suffix: .html
+      cache: false
+
+
+
+system:
+#客户端配置
+  client:
+    clients[0]:
+      clientId: lvhaibao
+      clientSecret: 123456
+    clients[1]:
+      clientId: lhb
+      clientSecret: 123456
+    clients[2]:
+      clientId: app
+      clientSecret: app
+  social:
+    qq:
+      app-id: xxxx
+      app-secret: xxxx
+      providerId: callback.do
+
+    filterProcessesUrl: /qqLogin
+    weixin:
+      app-id: xxxx
+      app-secret: xxxxx

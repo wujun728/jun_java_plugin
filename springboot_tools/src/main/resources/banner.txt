@@ -1,0 +1,8 @@
+${AnsiColor.BRIGHT_BLUE}
+
+
+zhaodui
+${AnsiColor.BRIGHT_GREEN}
+
+Spring Boot Version: ${spring-boot.version}${spring-boot.formatted-version}
+${AnsiColor.BLACK}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.supercall.dao.SysDictMapperExtend">
+    <select id="all" resultType="java.util.LinkedHashMap">
+        SELECT a.`id`,
+        a.`dictgroup`,
+        a.`dictkey`,
+        a.`dictvalues`
+        FROM `sys_dict` as a
+        left join sys_user as b  on b.id=a.creator
+        left join sys_user as c  on c.id=a.updator
+        where 1=1
+        <if test="dictkey!=null and dictkey!='' ">
+            and a.dictkey like CONCAT('%',#{dictkey},'%' )
+        </if>
+        <if test="dictgroup!=null and dictgroup!='' ">
+            and a.dictgroup like CONCAT('%',#{dictgroup},'%' )
+        </if>
+        order BY a.dictgroup desc
+    </select>
+</mapper>

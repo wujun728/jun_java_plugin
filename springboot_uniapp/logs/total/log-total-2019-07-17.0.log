@@ -1,0 +1,66 @@
+2019-07-17 15:44:43.737  INFO 8524 --- [main] c.l.s.SpringbootApplicationTests         : Starting SpringbootApplicationTests on MS-20190302BOQ2 with PID 8524 (started by Administrator in F:\MyProject\springboot-project)
+2019-07-17 15:44:43.738  INFO 8524 --- [main] c.l.s.SpringbootApplicationTests         : No active profile set, falling back to default profiles: default
+2019-07-17 15:44:44.501  INFO 8524 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-07-17 15:44:44.504  INFO 8524 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-07-17 15:44:44.530  INFO 8524 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11ms. Found 0 repository interfaces.
+2019-07-17 15:44:44.961  INFO 8524 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$3e146d80] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-07-17 15:44:45.475  INFO 8524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8880 (http)
+2019-07-17 15:44:45.507  INFO 8524 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-17 15:44:45.507  INFO 8524 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-07-17 15:44:45.640  INFO 8524 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/my]     : Initializing Spring embedded WebApplicationContext
+2019-07-17 15:44:45.640  INFO 8524 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1846 ms
+2019-07-17 15:44:45.874  INFO 8524 --- [main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-07-17 15:44:46.017  INFO 8524 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-07-17 15:44:47.507  INFO 8524 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-17 15:44:48.128  INFO 8524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8880 (http) with context path '/my'
+2019-07-17 15:44:48.132  INFO 8524 --- [main] c.l.s.SpringbootApplicationTests         : Started SpringbootApplicationTests in 5.32 seconds (JVM running for 6.645)
+2019-07-17 15:44:48.873  INFO 8524 --- [Thread-4] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-17 15:44:48.946  INFO 8524 --- [Thread-4] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-07-17 15:45:03.507  INFO 5276 --- [main] c.l.s.SpringbootRedisApplicationTests    : Starting SpringbootRedisApplicationTests on MS-20190302BOQ2 with PID 5276 (started by Administrator in F:\MyProject\springboot-project)
+2019-07-17 15:45:03.508  INFO 5276 --- [main] c.l.s.SpringbootRedisApplicationTests    : No active profile set, falling back to default profiles: default
+2019-07-17 15:45:04.646  INFO 5276 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-07-17 15:45:04.649  INFO 5276 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-07-17 15:45:04.669  INFO 5276 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8ms. Found 0 repository interfaces.
+2019-07-17 15:45:05.036  INFO 5276 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$98141af8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-07-17 15:45:05.205  INFO 5276 --- [main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-07-17 15:45:05.410  INFO 5276 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-07-17 15:45:06.789  INFO 5276 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-17 15:45:07.294  INFO 5276 --- [main] c.l.s.SpringbootRedisApplicationTests    : Started SpringbootRedisApplicationTests in 4.498 seconds (JVM running for 5.438)
+2019-07-17 15:45:07.760  INFO 5276 --- [main] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2019-07-17 15:45:07.762  INFO 5276 --- [main] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2019-07-17 15:45:08.227  INFO 5276 --- [main] c.l.s.SpringbootRedisApplicationTests    : name-- luo
+2019-07-17 15:45:08.228  INFO 5276 --- [main] c.l.s.SpringbootRedisApplicationTests    : age-- 26
+2019-07-17 15:45:08.233  INFO 5276 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-17 15:45:09.353  INFO 5276 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-07-17 15:48:04.805  INFO 7884 --- [main] c.l.s.SpringbootRedisApplicationTests    : Starting SpringbootRedisApplicationTests on MS-20190302BOQ2 with PID 7884 (started by Administrator in F:\MyProject\springboot-project)
+2019-07-17 15:48:04.806  INFO 7884 --- [main] c.l.s.SpringbootRedisApplicationTests    : No active profile set, falling back to default profiles: default
+2019-07-17 15:48:05.693  INFO 7884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-07-17 15:48:05.695  INFO 7884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-07-17 15:48:05.713  INFO 7884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8ms. Found 0 repository interfaces.
+2019-07-17 15:48:06.038  INFO 7884 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$eb041e5e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-07-17 15:48:06.209  INFO 7884 --- [main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-07-17 15:48:06.406  INFO 7884 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-07-17 15:48:07.782  INFO 7884 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-17 15:48:08.270  INFO 7884 --- [main] c.l.s.SpringbootRedisApplicationTests    : Started SpringbootRedisApplicationTests in 4.202 seconds (JVM running for 5.234)
+2019-07-17 15:48:08.575  INFO 7884 --- [main] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2019-07-17 15:48:08.577  INFO 7884 --- [main] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2019-07-17 15:48:08.859  INFO 7884 --- [main] c.l.s.SpringbootRedisApplicationTests    : [name--] luo
+2019-07-17 15:48:08.860  INFO 7884 --- [main] c.l.s.SpringbootRedisApplicationTests    : [age--] 26
+2019-07-17 15:48:08.865  INFO 7884 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-17 15:48:10.003  INFO 7884 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-07-17 15:48:42.920  INFO 5580 --- [main] c.l.s.SpringbootRedisApplicationTests    : Starting SpringbootRedisApplicationTests on MS-20190302BOQ2 with PID 5580 (started by Administrator in F:\MyProject\springboot-project)
+2019-07-17 15:48:42.922  INFO 5580 --- [main] c.l.s.SpringbootRedisApplicationTests    : No active profile set, falling back to default profiles: default
+2019-07-17 15:48:43.618  INFO 5580 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-07-17 15:48:43.621  INFO 5580 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-07-17 15:48:43.644  INFO 5580 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 0 repository interfaces.
+2019-07-17 15:48:44.021  INFO 5580 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9d62c493] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-07-17 15:48:44.193  INFO 5580 --- [main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-07-17 15:48:44.399  INFO 5580 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-07-17 15:48:45.810  INFO 5580 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-17 15:48:46.287  INFO 5580 --- [main] c.l.s.SpringbootRedisApplicationTests    : Started SpringbootRedisApplicationTests in 4.667 seconds (JVM running for 5.506)
+2019-07-17 15:48:46.566  INFO 5580 --- [main] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2019-07-17 15:48:46.568  INFO 5580 --- [main] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2019-07-17 15:48:46.768  INFO 5580 --- [main] c.l.s.SpringbootRedisApplicationTests    : 日志输出：[name--] luo
+2019-07-17 15:48:46.769  INFO 5580 --- [main] c.l.s.SpringbootRedisApplicationTests    : 日志输出: [age--] 26
+2019-07-17 15:48:46.780  INFO 5580 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-17 15:48:47.898  INFO 5580 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>示例</title>
+	<script src="//cdn.bootcss.com/require.js/2.2.0/require.min.js" ></script>
+	<script type="text/javascript">
+	requirejs(['./js/config'], function () {
+	    requirejs(['./demo.min'],function(){
+	    	angular.bootstrap ( document , [ 'demoModule' ] ) ;
+	    });
+	});
+	</script>
+</head>
+  <body ng-controller="demoCtrl">
+  	<div>
+		<nice-navbar/>
+	</div>
+    <div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">键值管理</h3>
+					</div>
+					<div class="panel-body">
+						<form class="form-inline">
+						  <div class="form-group">
+						  	<label for="tenant">选择租户</label>
+							<button type="button" class="btn btn-default" id='tenant' placeholder='选择租户' ng-model="tenant" data-html="1" data-toggle="true" bs-options="tenant.value as tenant.label for tenant in tenants" bs-select>
+							  Action <span class="caret"></span>
+							</button>
+						  </div>
+						 <div class="form-group">
+						    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+						    <input type="text" class="form-control" id="exampleInputEmail3" placeholder="键名" ng-model='searchKey'>
+						  </div>
+						  <button type="submit" class="btn btn-default" ng-click='page.loadPage()'>搜索</button>
+						  <button type="button" class="btn btn-sm btn-primary" ng-click='addOrEditDetail()'>新增</button>
+						  
+						</form>
+						<div class='table-responsive'>
+						<table class="table table-striped table-hover">
+						  <thead>
+						    <tr>
+						      <th>#</th>
+						      <th>Key</th>
+						      <th>Value</th>
+						      <th>简介</th>
+						      <th>操作 </th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr ng-repeat="info in page.dataList" ng-hide='listMessage'>
+						      <td scope="row">{{(page.options.currentPage - 1) * page.options.pageSize + 1 + $index}}</td>
+						      <td>{{info.key}}</td>
+						      <td>{{info.value}}</td>
+						      <td>{{info.remark}}</td>
+						      <td>
+						      	<button type="button" class="btn btn-sm btn-primary" ng-click='addOrEditDetail(info.key)'>修改</button>
+						      	<button type="button" class="btn btn-sm btn-danger" ng-click='delete(info.key)'>删除</button>
+						      </td>
+						    </tr>
+						    <tr ng-show='listMessage'>
+						      <td class="danger" colspan='5'>
+						      	<p class="text-center">{{listMessage}}</p>
+						      	</td>
+						    </tr>
+						  </tbody>
+						</table>
+					</div>
+						<nav pagination data-page-plugin="page"/>
+					</div>
+				</div>
+			</div>
+	  	</div>
+	</div>
+
+   <nice-footer/>	
+  </body>
+</html>

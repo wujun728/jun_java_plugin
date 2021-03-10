@@ -1,0 +1,123 @@
+/* The bibliography */
+div.bibliography 
+   {
+       font-family: "PT Serif", Georgia, "Times New Roman", serif;
+   }
+
+/* Collection titles */
+div.bibliography h1, div.bibliography h2, div.bibliography h3, div.bibliography h4
+   {
+       font-family: "PT Sans", Helvetica, Arial, sans-serif;
+       font-weight:1000;
+       color:DarkSlateGray ;
+   }
+
+/* The entire bibliographic item */
+div.bib-item {
+}
+div.full-bib-section div.bib-item {
+    margin-bottom:25px;
+}
+/* the short format (selected works) */
+div.short-bib-section div.bib-item {
+    margin-bottom:5px;
+}
+
+/* The actual BibTeX record (when visible) */
+div.bib {
+    font-family:Menlo,Courier,monospaced;
+    color: #9A9A9A;
+    padding-left:30px;
+    padding-bottom:10px;
+}
+
+/* Text "bib" or "abstract" */
+
+/* Text "bib" or "abstract" */
+.blink a {
+    font-family:Arial,sans-serif;
+    font-variant: small-caps;
+    clear: both;
+    padding:0;
+    margin:0;
+}
+div.full-bib-section .blink a {
+    margin-bottom:-30px;
+}
+div.short-bib-section .blink {
+    display:inline-block; /* needed to make margin-top work (collapsed margins) */
+    margin-top:-5px;
+    margin-bottom:10px;
+}
+
+
+/* The actual abstract (when visible) */
+div.abstract {
+    color:black;
+    padding-left:30px;
+    padding-bottom:10px;
+}
+
+/* Document titles */
+.doctitle {
+    font-weight:700;
+}
+
+/* Document titles linking to a PDF or somewhere else */
+a.doctitle:link,a.doctitle:visited,a.doctitle,a.doctitle:hover,a.doctitle.active {
+    color:#3090D4;
+    font-weight:700;
+    text-decoration:none; /* do not underline */ 
+}
+
+/* Document titles where shorted, e.g. "selected works" */
+.doctitle-short {
+}
+
+/* Display publication titles in their own lines.
+Remove to disable. */
+a.doctitle,span.doctitle {
+    display:block;
+}
+
+/* Search box */
+#pubSearchButton {
+    /* border: 0 solid #d4d0ba; */
+    font-family: inherit;
+    padding: 0;
+}
+#pubSearchBox {
+    position:absolute; 
+    right:10px; top:100px;
+    display:block;
+}
+
+
+/* Categories at top of the bibliography */
+.bib-cat {
+    display: inline;
+    list-style: none;
+    text-indent: 0;
+    margin: 0; padding: 0; 
+}
+
+.bib-cat li {
+    display: inline;
+}
+.bib-cat li:after {
+    content: " | ";
+}
+.bib-cat li:last-child:after {
+    content: ""
+}
+
+@media print {
+    div.full-bib-section .blink {
+        display: none;
+    }
+    a.doctitle:link:after {
+        display: none;
+    }
+}
+
+/*END*/

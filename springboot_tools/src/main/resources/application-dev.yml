@@ -1,0 +1,75 @@
+spring:
+  # 数据源
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springboot?useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: Zzerp123
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      filters: stat
+  jmx:
+    enabled: false
+  redis:
+    database: 0
+    host: 127.0.0.1
+    password:
+    port: 6379
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+  # 设置静态文件路径，js,css等
+  mvc:
+    static-path-pattern: /**
+  resource:
+    static-locations: classpath:/static/,classpath:/public/
+## Mapper文件位置
+#mybatis:
+#  mapper-locations: classpath:mapper/*Mapper.xml
+#mybatis plus 设置
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  global-config:
+    # 关闭MP3.0自带的banner
+    banner: false
+    db-config:
+      #主键类型  0:"数据库ID自增",1:"该类型为未设置主键类型", 2:"用户输入ID",3:"全局唯一ID (数字类型唯一ID)", 4:"全局唯一ID UUID",5:"字符串全局唯一ID (idWorker 的字符串表示)";
+      id-type: 4
+      # 默认数据库表下划线命名
+      table-underline: true
+  configuration:
+#     这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 8081
+  tomcat:
+      max-swallow-size: -1
+  servlet:
+  #    context-path:
+    context-path: /zhaodui
+    compression:
+      enabled: true
+      min-response-size: 1024
+      mime-types: application/javascript,application/json,application/xml,text/html,text/xml,text/plain,text/css,image/*
+#专用配置
+zhaodui:
+  path:
+    #文件上传根目录 设置
+    upload: D://upFiles
+    #webapp文件路径
+    webapp: D://webapp
+logging:
+  level:
+    com.zhaodui.springboot: info

@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>tyboot</artifactId>
+        <groupId>org.typroject</groupId>
+        <version>1.1.20Ty-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.typroject</groupId>
+    <artifactId>tyboot-core</artifactId>
+    <packaging>pom</packaging>
+    <name>tyboot-core</name>
+    <url>http://tycloud.org</url>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
+
+
+
+
+    </dependencies>
+
+    <modules>
+        <module>tyboot-core-foundation</module>
+        <module>tyboot-core-restful</module>
+        <module>tyboot-core-rdbms</module>
+		<module>tyboot-core-auth</module>
+    </modules>
+
+
+
+</project>

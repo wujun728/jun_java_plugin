@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration>
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{HH:mm:ss,SSS} %p [%c]%M(line:%L)%m%n" />
+		</layout>
+	</appender>
+
+	<appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="DatePattern" value=".yyyy-MM-dd" />
+		<param name="Encoding" value="UTF-8" />
+		<param name="File" value="/logs/jfantasy_test.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss,SSS} %p [%c]%M(line:%L)%m%n" />
+		</layout>
+	</appender>
+	 
+	<!-- 
+	<appender name="db" class="org.apache.log4j.jdbc.JDBCAppender">
+		<param name="BufferSize" value="1" />
+		<param name="URL" value="jdbc:oracle:thin:@192.168.0.36:1521:ORA36" />
+		<param name="driver" value="oracle.jdbc.driver.OracleDriver" />
+		<param name="user" value="shtj" />
+		<param name="password" value="shtj" />
+		<param name="sql" value="INSERT INTO TBL_CORE_AUDIT_LOG(id,priority,log_date,class_name,method,msg,user_id,url,parameter,ip,module_name,oper_type) VALUES (SEQ_TBL_AUDITLOG_PK.nextval,'%p',to_date('%d{yyyy-MM-dd HH:mm:ss}', 'yyyy-MM-dd HH24:Mi.SS'),'%C','%M','%m','%X{userId}','%X{url}','%X{parameter}','%X{ip}','%X{moduleName}','%X{operType}')" />
+	</appender>
+	-->
+    <category name="net.oschina.j2cache.hibernate4">
+        <priority value="DEBUG" />
+    </category>
+ 	<category name="com.fantasy">
+ 		<priority value="DEBUG" />
+ 	</category>
+	<category name="org.hibernate.cache">
+		<priority value="DEBUG" />
+	</category>
+	<!--
+	<category name="org.activiti">
+		<priority value="DEBUG" />
+		<appender-ref ref="CONSOLE" />
+	</category>
+	-->
+	<category name="org.mybatis.spring">
+		<priority value="ERROR" />
+	</category>
+	<category name="java.sql.Connection">
+		<priority value="DEBUG" />
+	</category>
+	<category name="java.sql.Statement">
+		<priority value="ERROR" />
+	</category>
+	<category name="java.sql.PreparedStatement">
+		<priority value="ERROR" />
+	</category>
+	<category name="java.sql.ResultSet">
+		<priority value="ERROR" />
+	</category>
+	
+	<root>
+		<priority value="WARN" />
+        <appender-ref ref="CONSOLE" />
+	</root>
+	
+</log4j:configuration>

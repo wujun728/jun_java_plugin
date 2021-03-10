@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+xin.guaika.cloud.drools.configuration.DroolsAutoConfiguration

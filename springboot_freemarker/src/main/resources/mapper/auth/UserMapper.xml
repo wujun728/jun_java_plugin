@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.springboot.mapper.auth.UserMapper">
+
+	<resultMap id="userMap" type="cn.springboot.model.auth.User">
+		<result column="ID" property="id" />
+		<result column="EMAIL" property="email" />
+		<result column="USERNAME" property="username" />
+		<result column="TRUE_NAME" property="trueName" />
+		<result column="PASSWORD" property="password" />
+		<result column="SALT" property="salt" />
+		<result column="STATUS" property="status" />
+		<result column="ORGANIZE_ID" property="organizeId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="LAST_LOGIN_TIME" property="lastLoginTime" />
+		<result column="MODIFY_TIME" property="modifyTime" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="cn.springboot.model.auth.User">
+		INSERT INTO T_SYS_USER (ID , CREATE_TIME , EMAIL , LAST_LOGIN_TIME ,  MODIFY_TIME , USERNAME , ORGANIZE_ID , `PASSWORD` , SALT , `STATUS` , TRUE_NAME)
+		VALUES(#{id} , #{createTime} , #{email} , #{lastLoginTime} , #{modifyTime} , #{username} , #{organizeId} , #{password} , #{salt} , #{status} , #{trueName})
+	</insert>
+
+	<sql id="find_xxx">
+	    <![CDATA[
+			SELECT ID , CREATE_TIME , EMAIL , LAST_LOGIN_TIME ,  MODIFY_TIME , USERNAME , ORGANIZE_ID , `PASSWORD` , SALT , `STATUS` , TRUE_NAME
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+	    <![CDATA[
+	    	FROM T_SYS_USER
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+	    <![CDATA[
+	    	WHERE 1=1
+	    ]]>
+	</sql>
+
+	<select id="findById" parameterType="string" resultMap="userMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<![CDATA[
+			WHERE ID=#{id}
+		]]>
+	</select>
+
+	<select id="findUserByName" parameterType="string" resultMap="userMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<![CDATA[
+			WHERE USERNAME=#{username}
+		]]>
+	</select>
+
+	<select id="findUserByShop" parameterType="string" resultMap="userMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<![CDATA[
+			WHERE ORGANIZE_ID=#{organizeId}
+		]]>
+	</select>
+	
+	<select id="findUserByRoleCode" parameterType="string"  resultMap="userMap">
+		select u.id , u.create_time , u.email , u.last_login_time ,  u.modify_time , u.username , u.organize_id , u.`password` , u.salt , u.`status` , u.true_name 
+		from t_sys_user u, t_sys_role r, t_sys_user_role ur
+		where u.id=ur.user_id and r.id=ur.role_id and r.code=#{roleCode}
+	</select>
+	
+	<select id="findEmp" parameterType="string" resultMap="userMap">
+		<include refid="find_xxx" />
+		<![CDATA[
+			FROM T_SYS_USER U , T_SYS_USER_ROLE UR , T_SYS_ROLE R 
+			WHERE U.ID=UR.USER_ID AND UR.ROLE_ID=R.ID 
+			AND R.CODE=#{roleCode}
+			AND U.STATUS=#{status}
+		]]>
+		<if test="shopId != null">
+			AND U.ORGANIZE_ID=#{shopId}
+		</if>
+		<if test="empName != null">
+			AND U.USERNAME LIKE '%'||#{empName}||'%'
+		</if>
+	</select>
+
+	<select id="findUsers" resultMap="userMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+	</select>
+
+	<update id="update" parameterType="cn.springboot.model.auth.User">
+		UPDATE T_SYS_USER
+		<set>
+			<if test="email != null">
+				EMAIL = #{email},
+			</if>
+			<if test="username != null">
+				USERNAME = #{username},
+			</if>
+			<if test="trueName != null">
+				TRUE_NAME = #{trueName},
+			</if>
+			<if test="password != null">
+				PASSWORD = #{password},
+			</if>
+			<if test="salt != null">
+				SALT = #{salt},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>
+			<if test="organizeId != null">
+				ORGANIZE_ID = #{organizeId},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime},
+			</if>
+			<if test="lastLoginTime != null">
+				LAST_LOGIN_TIME = #{lastLoginTime},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime}
+			</if>
+		</set>
+		WHERE ID = #{id}
+	</update>
+
+	<select id="findAllByFilter" parameterType="Map" resultMap="userMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+		<if test="start != null and limit != null">
+			LIMIT #{start},#{limit}
+		</if>
+	</select>
+
+	<select id="findAllByFilterCount" parameterType="Map" resultType="int">
+		SELECT COUNT(id)
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+	</select>
+
+	<delete id="delete" parameterType="string">
+		DELETE FROM T_SYS_USER WHERE ID=#{id}
+	</delete>
+
+</mapper>

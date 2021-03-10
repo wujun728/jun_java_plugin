@@ -1,0 +1,213 @@
+prose:
+  rooturl: ''
+  siteurl: 'http://example.com/'
+  relativeLinks: 'http://example.com/links.jsonp'
+  media: 'images/media'
+  ignore:
+    - /_data
+    - /_includes
+    - /_layouts
+    - /blog
+    - .htaccess
+    - _config.yml
+    - Gemfile
+    - Gemfile.lock
+    - .gitignore
+    - .editorconfig
+    - .gitattributes
+    - favicon.ico
+    - favicon.png
+  metadata:
+    _posts:
+      - name: "published"
+        field:
+          label: "Published"
+          element: "checkbox"
+          value: "true"
+      - name: "layout"
+        field:
+          element: "hidden"
+          label: "Layout"
+          value: "post"
+      - name: "title"
+        field:
+          label: "Title"
+          element: "text"
+          value: "An Awesome Headline!"
+      - name: "description"
+        field:
+          element: "text"
+          label: "Description"
+          placeholder: "Enter Post Description"
+      - name: "date"
+        field:
+          element: "text"
+          label: "Post date - this will override date given in file name and permalink will change accordingly"
+          placeholder: "YYYY-MM-DD"
+          value: CURRENT_DATETIME
+      - name: "modified"
+        field:
+          element: "text"
+          label: "Last modified in quotes"
+          placeholder: "YYYY-MM-DD"
+          value: CURRENT_DATETIME
+      - name: "category"
+        field:
+          element: "select"
+          label: "Add categories"
+          placeholder: "Choose category"
+          value: base
+          options:
+            - name: "info"
+              value: info
+            - name: "news"
+              value: news
+            - name: "base"
+              value: base              
+          alterable: true
+      - name: "tags"
+        field:
+          element: "multiselect"
+          label: "Add tags"
+          placeholder: "Choose tags"
+          value: default
+          options:
+            - name: "default"
+              value: default
+          alterable: true     
+      - name: "imagefeature"
+        field:
+          element: "text"
+          label: "Featured Image or Video frame jpg for twitter card"
+          placeholder: "http url or path relative to images dir"
+          value: "sitelogo.png"        
+      - name: "show_meta"
+        field:
+          element: "checkbox"
+          label: "Show tags and share buttons"
+          value: true
+      - name: "comments"
+        field:
+          element: "checkbox"
+          label: "Comments"
+          value: true
+      - name: "mathjax"
+        field:
+          element: "checkbox"
+          label: "MathJax"
+          value: false
+      - name: "gistembed"
+        field:
+          element: "checkbox"
+          label: "embed gist?"
+          value: false 
+      - name: "noindex"
+        field:
+          element: "checkbox"
+          label: "noindex in robots.txt?"
+          value: false
+      - name: "hide_printmsg"
+        field:
+          element: "checkbox"
+          label: "hide info box while printing?"
+          value: false
+      - name: "sitemap"
+        field:
+          element: "checkbox"
+          label: "Keep in sitemap?"
+          value: true   
+      - name: "summaryfeed"
+        field:
+          element: "checkbox"
+          label: "Show summary and not full post in rss feed?"
+          value: false      
+    pages:
+      - name: "published"
+        field:
+          label: "Published"
+          element: "checkbox"
+          value: true
+      - name: "layout"
+        field:
+          element: "hidden"
+          label: "Layout"
+          value: "page"
+      - name: "title"
+        field:
+          label: "Title"
+          element: "text"
+          value: "An Awesome Headline!"
+      - name: "description"
+        field:
+          element: "text"
+          label: "Description"
+          placeholder: "Enter Page Description"
+      - name: "permalink"
+        field:
+          element: "text"
+          label: "Permalink - relative to root directory"
+      - name: "modified"
+        field:
+          element: "text"
+          label: "Last modified in quotes"
+          placeholder: "YYYY-MM-DD"
+          value: CURRENT_DATETIME
+      - name: "category"
+        field:
+          element: "select"
+          label: "Add categories"
+          placeholder: "Choose category"
+          value: info
+          options:
+            - name: "info"
+              value: info
+            - name: "news"
+              value: news
+          alterable: true
+      - name: "author"
+        field:
+          element: "select"
+          label: "Add author"
+          placeholder: "Choose author"
+          value: author1
+          options:
+            - name: "author1"
+              value: author1
+            - name: "author2"
+              value: author2
+          alterable: true        
+      - name: "show_meta"
+        field:
+          element: "checkbox"
+          label: "Show tags and share buttons"
+          value: false
+      - name: "comments"
+        field:
+          element: "checkbox"
+          label: "Comments"
+          value: false
+      - name: "mathjax"
+        field:
+          element: "checkbox"
+          label: "MathJax"
+          value: false
+      - name: "gistembed"
+        field:
+          element: "checkbox"
+          label: "embed gist?"
+          value: false
+      - name: "noindex"
+        field:
+          element: "checkbox"
+          label: "noindex in robots.txt?"
+          value: false
+      - name: "hide_printmsg"
+        field:
+          element: "checkbox"
+          label: "hide info box while printing?"
+          value: false          
+      - name: "sitemap"
+        field:
+          element: "checkbox"
+          label: "Keep in sitemap?"
+          value: true

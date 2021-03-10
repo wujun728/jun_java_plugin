@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.bluesky.mapper.BaseRuleSceneInfoMapper">
+    <select id="findBaseRuleSceneInfiList" parameterType="com.sky.bluesky.model.BaseRuleSceneInfo"
+            resultType="com.sky.bluesky.model.BaseRuleSceneInfo">
+        SELECT DISTINCT
+                T.SCENE_ID,
+                T.SCENE_IDENTIFY,
+                T.SCENE_TYPE,
+                T.SCENE_NAME,
+                T.SCENE_DESC,
+                T.IS_EFFECT,
+                T.CRE_USER_ID,
+                T.CRE_TIME,
+                T.REMARK
+            FROM
+                RULE_SCENE_INFO T
+            WHERE	1 = 1
+
+    </select>
+</mapper>

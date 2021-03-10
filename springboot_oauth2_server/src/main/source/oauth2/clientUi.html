@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>bata </title>
+</head>
+<body>
+<form name="f" th:action="@{/client/add}" method="post">
+    <fieldset>
+        <legend>请填写clientDetail</legend>
+
+        <label for="clientId">clientId</label>
+        <input type="text" id="clientId" name="clientId"/>
+
+        <label for="resourceIds">resourceIds</label>
+        <input type="text" id="resourceIds" name="resourceIds"/>
+
+        <label for="clientSecret">clientSecret</label>
+        <input type="text" id="clientSecret" name="clientSecret"/>
+
+        <label for="scope">scope</label>
+        <input type="text" id="scope" name="scope"/>
+
+        <label for="authorizedGrantTypes">authorizedGrantTypes</label>
+        <input type="text" id="authorizedGrantTypes" name="authorizedGrantTypes"/>
+
+        <label for="webServerRedirectUri">webServerRedirectUri</label>
+        <input type="text" id="webServerRedirectUri" name="webServerRedirectUri"/>
+
+        <label for="authorities">authorities</label>
+        <input type="text" id="authorities" name="authorities"/>
+
+        <label for="accessTokenValidity">accessTokenValidity</label>
+        <input type="text" id="accessTokenValidity" name="accessTokenValidity"/>
+
+        <label for="refreshTokenValidity">refreshTokenValidity</label>
+        <input type="text" id="refreshTokenValidity" name="refreshTokenValidity"/>
+
+        <label for="additionalInformation">additional_information</label>
+        <input type="text" id="additionalInformation" name="additionalInformation"/>
+
+        <label for="autoapprove">autoapprove</label>
+        <input type="text" id="autoapprove" name="autoapprove"/>
+
+        <div class="form-actions">
+            <button type="submit" class="btn">提交</button>
+        </div>
+    </fieldset>
+</form>
+</body>
+</html>

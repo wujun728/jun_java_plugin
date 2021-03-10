@@ -1,0 +1,69 @@
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" id="myModalLabel">{{infoDetail.id?'编辑':'新增'}}用户信息</h4>
+      		</div>
+	      	<div class="modal-body">
+		        <form class="form-horizontal">
+		        	<div class="form-group" ng-show='infoDetail.id'>
+					    <label class="col-sm-2 col-xs-2 control-label">ID:</label>
+					    <span class="col-sm-10 col-xs-10">{{infoDetail.id}}</span>
+					</div>
+					
+					<div class="form-group">
+						<label for="name" class="col-sm-2 col-xs-2 control-label">姓名:</label>
+						<div class="col-sm-10 col-xs-10">
+							<input type="text" class="form-control" id="name" ng-model='infoDetail.name' placeholder="请输入用户姓名">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="sex"  class="col-sm-2 col-xs-2 control-label">性别</label>
+						<div class="col-sm-10 col-xs-10">
+  							 <input
+							    bs-switch
+							    ng-model="infoDetail.sex"
+							    type="checkbox"
+							    switch-active="true"
+							    switch-on-text="男"
+							    switch-off-text="女"
+							    switch-label="性别"
+							    switch-on-color="info"
+							    switch-off-color="warning"
+							    switch-animate="true"
+							    switch-size="normal"
+							    switch-radio-off="true"
+							    switch-label-width="auto"
+							    switch-handle-width="auto"
+							    ng-true-value="1"
+							    ng-false-value="2"
+							    >
+							</div>
+					</div>
+					<div class="form-group">
+						<label for="birthday"  class="col-sm-2 col-xs-2 control-label">年龄</label>
+						<div class="col-sm-10 col-xs-10">
+						 <input type="text" id='birthday' class="form-control" ng-model="infoDetail.birthday" data-date-format="yyyy-MM-dd" data-date-type="string" data-max-date="today" data-autoclose="1" name="date2" bs-datepicker>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="phone"  class="col-sm-2 col-xs-2 control-label">手机号</label>
+						<div class="col-sm-10 col-xs-10">
+						<input type="text" class="form-control" id="phone" ng-model='infoDetail.phone' placeholder="请输入手机号">
+					</div>
+					</div>
+					<div class="form-group">
+						<label for="remark" class="col-sm-2 col-xs-2 control-label" >备注</label>
+						<div class="col-sm-10 col-xs-10 ">
+						<textarea class="form-control" id="remark" ng-model='infoDetail.remark' placeholder="备注信息"></textarea>
+					</div>
+					</div>
+				</form>
+	      	</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" ng-click='submit()'>保存</button>
+			</div>
+	    </div>
+  	</div>
+</div>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<!-- <parent> <groupId>io.spring.platform</groupId> <artifactId>platform-bom</artifactId> 
+		<version>Athens-SR1</version> <relativePath /> </parent> -->
+
+	<groupId>com.roncoo.os</groupId>
+	<artifactId>roncoo-jui-springboot</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<name>roncoo-open-source</name>
+	<url>http://maven.apache.org</url>
+
+	<modules>
+		<module>roncoo-jui-springboot-common</module>
+		<module>roncoo-jui-springboot-web</module>
+	</modules>
+
+	<organization>
+		<name>龙果学院</name>
+		<url>http://www.roncoo.com</url>
+	</organization>
+
+	<properties>
+		<hutool.version>2.16.2</hutool.version>
+		<mybatis.spring.boot.starter.version>1.3.1</mybatis.spring.boot.starter.version>
+
+		<com.roncoo.druid.version>1.0.2</com.roncoo.druid.version>
+		<com.roncoo.shiro.version>1.0.2</com.roncoo.shiro.version>
+		<com.roncoo.shiro.freemarker.version>1.0.0</com.roncoo.shiro.freemarker.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- roncoo -->
+			<dependency>
+				<groupId>com.roncoo.os</groupId>
+				<artifactId>roncoo-jui-springboot-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- mybatis -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis.spring.boot.starter.version}</version>
+			</dependency>
+
+			<!-- Druid -->
+			<dependency>
+				<groupId>com.roncoo</groupId>
+				<artifactId>roncoo-spring-boot-starter-druid</artifactId>
+				<version>${com.roncoo.druid.version}</version>
+			</dependency>
+			<dependency>
+                <groupId>com.roncoo</groupId>
+                <artifactId>roncoo-spring-boot-starter-shiro</artifactId>
+                <version>${com.roncoo.shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.roncoo</groupId>
+                <artifactId>shiro-freemarker-tags</artifactId>
+                <version>${com.roncoo.shiro.freemarker.version}</version>
+            </dependency>
+
+			<!-- io.spring.platform -->
+			<dependency>
+				<groupId>io.spring.platform</groupId>
+				<artifactId>platform-bom</artifactId>
+				<version>Brussels-SR5</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.xiaoleilu</groupId>
+			<artifactId>hutool</artifactId>
+			<version>${hutool.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- compiler插件, 设定JDK版本 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<skip>true</skip>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <env>prod</env>
+            </properties>
+        </profile>
+	</profiles>
+
+</project>

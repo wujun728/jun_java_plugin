@@ -1,0 +1,224 @@
+<!--# layout("/common/layout.html",{"jsBase":"/js/core/codeGen/"}){ -->
+<div class="layui-btn-group">
+
+
+	<button class="layui-btn ext-toolbar" data-type="js">预览JS</button>
+	<button class="layui-btn ext-toolbar" data-type="java">预览Java</button>
+	<button class="layui-btn ext-toolbar" data-type="sql">预览SQL</button>
+	<button class="layui-btn ext-toolbar" data-type="html">预览HTML</button>
+	<button class="layui-btn ext-toolbar" data-type="gen">立即生成</button>
+	<button class="layui-btn ext-toolbar" data-type="cancel">取消</button>
+</div>
+<form class="layui-form layui-form-pane" id="updateForm">
+
+	<fieldset class="layui-elem-field layui-field-title"
+		style="margin-top: 30px;">
+		<legend>主键字段</legend>
+	</fieldset>
+
+	<div class="layui-row">
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">主键</label>
+				<div class="layui-input-inline">
+					<input type="text" name="entity.idAttribute.name" disable
+						value="${entity.idAttribute.name}" class="layui-input">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<fieldset class="layui-elem-field layui-field-title"
+		style="margin-top: 30px;">
+		<legend>显示字段</legend>
+	</fieldset>
+
+	<div class="layui-row">
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<select name="nameAttr">
+					<!--#  
+			for(attr in entity.list){
+			-->
+					<option value="${attr.name}" ${attrLP.index==1? "selected=''"}>${attr.name}</option>
+					<!--#}  -->
+				</select>
+			</div>
+		</div>
+	</div>
+	<fieldset class="layui-elem-field layui-field-title"
+		style="margin-top: 30px;">
+		<legend>配置基本信息</legend>
+	</fieldset>
+	<div class="layui-row">
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">表名</label>
+				<div class="layui-input-inline">
+					<input type="text" name="entity.tableName" readonly
+						value="${entity.tableName}" class="layui-input">
+				</div>
+			</div>
+
+
+			<div class="layui-inline">
+				<label class="layui-form-label">类名</label>
+				<div class="layui-input-inline">
+					<input type="text" name="entity.name" value="${entity.name}"
+						class="layui-input">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">系统包名</label>
+				<div class="layui-input-inline">
+					<input type="text" name="basePackage"
+						value="com.ibeetl.cms" class="layui-input">
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="layui-form-item">
+		<div class="layui-inline">
+			<label class="layui-form-label">业务名称</label>
+			<div class="layui-input-inline">
+				<input type="text" name="entity.displayName" value="${entity.name}"
+					class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-inline">
+			<label class="layui-form-label">变量名</label>
+			<div class="layui-input-inline">
+				<input type="text" name="entity.code" value="${entity.code}"
+					class="layui-input">
+			</div>
+		</div>
+
+	</div>
+	<div class="layui-row">
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">urlBase</label>
+				<div class="layui-input-inline">
+					<input type="text" name="urlBase" value="cms" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-inline">
+				<label class="layui-form-label">system</label>
+				<div class="layui-input-inline">
+					<input type="text" name="entity.system" value="cms"
+						class="layui-input">
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	
+	<fieldset class="layui-elem-field layui-field-title"
+		style="margin-top: 30px;">
+		<legend>可选配置</legend>
+	</fieldset>
+		<div class="layui-row">
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<div class="layui-input-inline">
+					<input type="checkbox"
+					name="entity.includeExcel"
+					lay-skin="primary" value="true" title="导入导出"/>
+				</div>
+			</div>
+
+
+			<div class="layui-inline">
+				<div class="layui-input-inline">
+					<input type="checkbox"
+					name="entity.attachment"
+					lay-skin="primary" value="true" title="关联附件"/>
+				</div>
+			</div>
+			
+			<div class="layui-inline">
+				<div class="layui-input-inline">
+					<input type="checkbox"
+					name="entity.autoAddFunction"
+					lay-skin="primary" value="true" title=" 自动配置功能点"/>
+					
+				</div>
+				<div class="layui-input-inline">
+					<input type="checkbox"
+					name="entity.autoAddMenu"
+					lay-skin="primary" value="true" title="添加到菜单"/>
+					
+				</div>
+			</div>
+			
+			
+			
+		</div>
+
+	</div>
+	
+	<fieldset class="layui-elem-field layui-field-title"
+		style="margin-top: 30px;">
+		<legend>字段信息（重要）</legend>
+	</fieldset>
+
+	<table class="layui-table">
+		<colgroup>
+			<col width="200">
+			<col width="250">
+			<col width="250">
+			<col>
+		</colgroup>
+		<thead>
+			<tr>
+				<th>名称</th>
+				<th>显示名</th>
+				<th>查询</th>
+				<th>字典类型(可选)</th>
+				<th>字段校验(可选)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!--#  
+			var attrs = entity.list;
+			for(attr in attrs){
+			-->
+			<tr>
+				<td><input type="text"
+					name="entity.list[${attrLP.index-1}].name" readonly
+					value="${attr.name}" class="layui-input" /></td>
+				<td><input type="text"
+					name="entity.list[${attrLP.index-1}].displayName"
+					value="${attr.displayName}" class="layui-input"></td>
+				<td><input type="checkbox"
+					name="entity.list[${attrLP.index-1}].showInQuery"
+					lay-skin="primary" value="true" title="作为搜索"></td>
+				<td><input type="text" name="entity.list[${attrLP.index-1}].dictType"  value=""
+					class="layui-input"></td>
+				<td>
+						<div class="layui-btn-container verifyGroup" data-index="${attrLP.index-1}">
+							<div class="layui-btn layui-btn-xs addVerify"><i class="layui-icon">&#xe654;</i></div>
+						</div>
+				</td>
+			</tr>
+			<!--# }  -->
+		</tbody>
+	</table>
+	
+
+
+
+</form>
+<!--#} -->
+<script>
+layui.use(['edit'], function(){
+  var codeGenEdit = layui.edit
+  codeGenEdit.init();
+});
+
+</script>

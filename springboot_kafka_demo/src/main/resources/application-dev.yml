@@ -1,0 +1,33 @@
+spring:
+  kafka:
+    bootstrap-servers: 39.106.38.29:9092
+    consumer:
+      group-id: foo
+      auto-offset-reset: earliest
+
+
+datasource:
+  read-size: 1
+  master:
+    url: jdbc:mysql://39.106.38.29:3306/test
+    username: qcwy
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    initial-size: 2
+    max-active: 20
+    min-idle: 2
+    filter:
+      stat:
+        enabled: true
+  slave-alpha:
+    url: jdbc:mysql://39.106.38.29:3306/test2
+    username: qcwy
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    initial-size: 2
+    max-active: 20
+    min-idle: 2
+    filter:
+      stat:
+        enabled: true
+

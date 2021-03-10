@@ -1,0 +1,61 @@
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+<!--   <div class="sidebar-item">
+    <p>{{ site.description }}</p>
+  </div> -->
+
+  <nav class="sidebar-nav">
+    <!-- a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a-->
+
+    {% comment %}
+      The code below dynamically generates a sidebar nav of pages with
+      `layout: page` in the front-matter. See readme for usage.
+    {% endcomment %}
+
+    {% comment %}
+    <!-- DISABLE AUTO LINKS -->
+    {% assign pages_list = site.pages | sort:"url" %}
+    {% for node in pages_list %}
+      {% if node.title != null %}
+        {% if node.layout == "page" %}
+          <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% endcomment %}
+
+    {% for link in site.links %}
+            {% if link.external %}
+                    <a class="sidebar-nav-item{% if page.url == link.url %} active{% endif %}" href="{{ link.url }}" target="_blank">{{ link.title }}</a>
+                {% else %}
+                    <a class="sidebar-nav-item{% if page.url == link.url %} active{% endif %}" href="{{ site.url }}{{ link.url }}">{{ link.title }}</a>
+                {% endif %}
+    {% endfor %}     
+
+    {% if site.version %}
+    <a class="sidebar-nav-item" href="{{ site.github_repo }}"><em>smart-boot project</em></a>
+    <!-- <a class="sidebar-nav-item" href="{{ site.github_repo }}/releases/tag/v{{ site.version }}">Download v{{ site.version }}</a> -->
+    {% endif %}
+  </nav>
+
+<hr class="gh">
+
+{% if site.google_search %}
+<div id="searchbox2" style="margin:0 auto; display: table;">
+<div class="searchcont2">
+    <!-- span class="searchicon2"><i class="fa fa-search fa-2x"></i></span -->
+    <form role="search" method="get" action="{{ site.url }}/cse/">
+        <input id="searchString2" name="searchString2"
+               placeholder=" Search" type="text">
+    </form>
+</div>
+</div>
+{% else %}
+<!-- Search box will show up here if Google Custom Search key is set in <code>_config.yml</code> -->
+{% endif %}
+
+</div>

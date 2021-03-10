@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chentongwei.core.common.dao.ICommonDAO">
+    <!-- 表名称 -->
+    <sql id="table_name">
+        ${tableName}
+    </sql>
+
+    <!-- 判断是否是自己的数据 -->
+    <select id="existsOneSelf" parameterType="existsOneSelfIO" resultType="integer">
+        SELECT 1 FROM <include refid="table_name" /> WHERE id = #{id} AND creator_id = #{creatorId}
+    </select>
+</mapper>

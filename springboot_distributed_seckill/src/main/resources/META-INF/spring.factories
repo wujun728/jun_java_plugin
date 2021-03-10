@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.com.bluemoon1.redis.repository.RedisCacheConfig,cn.com.bluemoon1.redis.repository.RedissonProperties,cn.com.bluemoon1.redis.repository.RedissonAutoConfiguration

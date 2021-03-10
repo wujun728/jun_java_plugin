@@ -1,0 +1,6 @@
+	/**
+	 *  Insert one <tt>$table.DOClassName</tt> object to DB table <tt>$table.sqlName</tt>, return primary key
+	 *
+#parse("operation/op-javadoc.vm")	 
+	 */	 
+#parse("operation/op-signature.vm")

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chentongwei.core.tucao.dao.IArticleSupportDAO">
+
+	<!-- 表名称 -->
+	<sql id="table_name">
+		tcl_article_support
+	</sql>
+
+	<!-- 保存点赞记录 -->
+	<insert id="save">
+		INSERT INTO
+			<include refid="table_name" />
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			article_id,
+			user_id,
+			status,
+		</trim>
+		VALUES
+		<foreach collection="articleSupportList" item="articleSupport" index="index" separator=",">
+			(
+				#{articleSupport.articleId},
+				#{articleSupport.userId},
+				#{articleSupport.status}
+			)
+		</foreach>
+	</insert>
+</mapper>

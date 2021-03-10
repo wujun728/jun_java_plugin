@@ -1,0 +1,4 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.roncoo.spring.boot.autoconfigure.shiro.ShiroAutoConfiguration,\
+com.roncoo.spring.boot.autoconfigure.xxl.job.XxlJobAutoConfiguration
