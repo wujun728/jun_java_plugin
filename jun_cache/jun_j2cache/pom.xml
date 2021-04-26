@@ -19,7 +19,7 @@
         <jedis.verion>2.8.0</jedis.verion>
         <ehcache.version>2.10.0</ehcache.version>
         <jgroups.version>3.6.1.Final</jgroups.version>
-        <commons-io.version>2.4</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <fst.version>2.43</fst.version>
         <snappy-java.version>1.1.2</snappy-java.version>
 
