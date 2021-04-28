@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="jdbc.properties"></properties>
+    <settings>
+        <!-- 打印查询语句 -->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+        <!-- 控制全局缓存（二级缓存）-->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 延迟加载的全局开关。当开启时，所有关联对象都会延迟加载。默认 false  -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 当开启时，任何方法的调用都会加载该对象的所有属性。默认 false，可通过select标签的 fetchType来覆盖-->
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!--  Mybatis 创建具有延迟加载能力的对象所用到的代理工具，默认JAVASSIST -->
+        <!--<setting name="proxyFactory" value="CGLIB" />-->
+        <!-- STATEMENT级别的缓存，使一级缓存，只针对当前执行的这一statement有效 -->
+        <!--
+                <setting name="localCacheScope" value="STATEMENT"/>
+        -->
+        <setting name="localCacheScope" value="SESSION"/>
+    </settings>
+
+<!--     <typeAliases>
+        <typeAlias alias="blog" type="com.jun.domain.Blog" />
+    </typeAliases> -->
+
+<!--    <typeHandlers>
+        <typeHandler handler="com.jun.type.MyTypeHandler"></typeHandler>
+    </typeHandlers>-->
+
+    <!-- 对象工厂 -->
+<!--    <objectFactory type="com.jun.objectfactory.GPObjectFactory">
+        <property name="jun" value="666"/>
+    </objectFactory>-->
+
+<!--    <plugins>
+        <plugin interceptor="com.jun.interceptor.SQLInterceptor">
+            <property name="jun" value="betterme" />
+        </plugin>
+        <plugin interceptor="com.jun.interceptor.MyPageInterceptor">
+        </plugin>
+    </plugins>-->
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/><!-- 单独使用时配置成MANAGED没有事务 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- <mappers>
+        <mapper resource="BlogMapper.xml"/>
+        <mapper resource="BlogMapperExt.xml"/>
+    </mappers> -->
+    
+    <!-- 使用相对于类路径的资源引用 -->
+	<!-- <mappers>
+	  <mapper resource="org/mybatis/builder/AuthorMapper.xml"/>
+	  <mapper resource="org/mybatis/builder/BlogMapper.xml"/>
+	  <mapper resource="org/mybatis/builder/PostMapper.xml"/>
+	</mappers> -->
+	<!-- 使用完全限定资源定位符（URL） -->
+	<!-- <mappers>
+	  <mapper url="file:///var/mappers/AuthorMapper.xml"/>
+	  <mapper url="file:///var/mappers/BlogMapper.xml"/>
+	  <mapper url="file:///var/mappers/PostMapper.xml"/>
+	</mappers> -->
+	<!-- 使用映射器接口实现类的完全限定类名 -->
+	<!-- <mappers>
+	  <mapper class="org.mybatis.builder.AuthorMapper"/>
+	  <mapper class="org.mybatis.builder.BlogMapper"/>
+	  <mapper class="org.mybatis.builder.PostMapper"/>
+	</mappers> -->
+	<!-- 将包内的映射器接口实现全部注册为映射器 -->
+	<mappers>
+	  <mapper resource="mapper/gen/TestclobMapper.xml"/>
+<!-- 	  <package name="com.jun.plugin.bizservice.mapper"/> -->
+	</mappers>
+
+</configuration>

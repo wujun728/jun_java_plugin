@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!--导入属性配置-->
+    <properties resource="jdbc.properties"></properties>
+    <!--指定特定数据库的jdbc驱动jar包的位置-->
+    <classPathEntry location="${jdbc.path}"/>
+<!--     <classPathEntry location="mysql-connector-java-5.1.29.jar" /> -->
+
+    <context id="context" targetRuntime="MyBatis3">
+        <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="${jdbc.driver}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.username}"
+                        password="${jdbc.password}"/>
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+            NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--指定包名生成实体类 以及生成的地址 （可以自定义地址，如果路径不存在会自动创建） -->
+        <javaModelGenerator targetPackage="com.jun.plugin.bizservice.pojo" targetProject="D:\workspace\github\jun_code_generator\jun_mybatis_generator\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--Mapper映射文件生成所在的目录 为每一个数据库的表生成对应的mapper文件 -->
+        <sqlMapGenerator targetPackage="mapper.gen" targetProject="D:\workspace\github\jun_code_generator\jun_mybatis_generator\src\main\resources">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+
+        <!--生成Dao接口所在位置-->
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+        -->
+        <javaClientGenerator targetPackage="com.jun.plugin.bizservice.mapper"
+                             targetProject="D:\workspace\github\jun_code_generator\jun_mybatis_generator\src\main\java" type="XMLMAPPER">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+
+        <!-- 指定数据库表 -->
+        <table schema="test" tableName="t_user2" domainObjectName="Enterprise" mapperName="EnterpriseMapper"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="true" enableUpdateByExample="true"/>
+        	
+		<table tableName="sys_log" domainObjectName="SysLog" 
+			enableCountByExample="true" 
+			enableUpdateByExample="true" 
+			enableDeleteByExample="true"
+			enableSelectByExample="true" 
+			selectByExampleQueryId="true" >
+			<property name="useActualColumnNames" value="true" /> 
+		</table>
+			
+		<table tableName="biz_file" domainObjectName="BizFile" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false"  >
+			<property name="useActualColumnNames" value="true" /> 
+			</table>
+			
+		<table tableName="biz_novel" domainObjectName="BizNovel" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false"  >
+			<property name="useActualColumnNames" value="true" /> 
+			</table>
+			
+		<table tableName="testclob" domainObjectName="Testclob" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false"  >
+			<property name="useActualColumnNames" value="true" /> 
+			</table>
+			
+		<table tableName="users" domainObjectName="Users" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false"  >
+			<property name="useActualColumnNames" value="true" /> 
+			</table>
+			
+
+
+    </context>
+</generatorConfiguration>

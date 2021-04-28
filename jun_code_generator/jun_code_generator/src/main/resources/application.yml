@@ -1,0 +1,101 @@
+server:
+  port: 8011
+  servlet:
+      context-path: /generator
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30    
+    remote-ip-header: x-forward-for
+    basedir: ${user.home}/tomcat/
+    background-processor-delay: 30
+# MyBatis
+mybatis:
+    # 搜索指定包别名
+    typeAliasesPackage: com.jun.plugin.code.common
+    # 配置mapper的扫描，找到所有的mapper.xml映射文件
+    mapperLocations: classpath*:mapper/**/*Mapper.xml
+    # 加载全局的配置文件
+    configLocation: classpath:mapper/mybatis-config.xml
+spring:
+    # 环境 dev:开发环境|test:测试环境|prod:生产环境|druid:生产环境
+    profiles:
+        active: druid #激活的配置文件
+    banner:
+      charset: UTF-8
+    http:
+      encoding:
+        force: true
+        charset: UTF-8
+    application:
+        name: code_generator
+    freemarker:
+        request-context-attribute: request
+        suffix: .ftl
+        content-type: text/html
+        enabled: true
+        cache: false
+        charset: UTF-8
+        allow-request-override: false
+        expose-request-attributes: true
+        expose-session-attributes: true
+        expose-spring-macro-helpers: true
+        template-loader-path: classpath:/templates/
+    mvc:
+      static-path-pattern: /static/**
+    # 模板引擎
+    thymeleaf:
+        mode: HTML
+        encoding: utf-8
+        # 禁用缓存
+        cache: false
+    # 资源信息
+    messages:
+      # 国际化资源文件路径
+      basename: i18n/messages
+    jackson:
+      time-zone: GMT+8
+      date-format: yyyy-MM-dd HH:mm:ss
+    # 文件上传
+    servlet:
+       multipart:
+         max-file-size:  30MB
+         max-request-size:  30MB
+    # 服务模块
+    devtools:
+      restart:
+        # 热部署开关
+        enabled: true
+# 日志配置
+logging:
+  level:
+    com.ruoyi: debug
+    org.springframework: WARN
+    org.spring.springboot.dao: debug
+OEM:
+  version: 1.0
+  header: SQL转Java JPA、MYBATIS代码生成平台
+  keywords: 实体类,DAO,service,JPA,MYBATIS实现
+  title: JAVA代码生成平台
+  slogan: For reducing the repetitive CRUD work
+  description: JunCodeGenerator(JAVA代码生成平台)，SQL、Java JPA、MYBATIS实现类代码生成平台。
+  author: github.com/wujun728
+  packageName: com.software.system
+  copyright: powered by Wujun
+  returnUtilSuccess: ReturnT.success
+  returnUtilFailure: ReturnT.error
+  outputStr: github.com/wujun728
+  mode: local
+# 代码生成
+gen:
+  # 作者
+  author: wujun
+  # 默认生成包路径 module 需改成自己的模块名称 如 system monitor tool
+  packageName: com.wcy.module
+  # 自动去除表前缀，默认是true
+  autoRemovePre: true
+  # 表前缀(类名不会包含表前缀)
+  tablePrefix: sys_

@@ -1,0 +1,209 @@
+[{
+  "group": "ui",
+  "templates": [{
+    "id": "10",
+    "name": "swagger-ui.json",
+    "page": "swagger-ui"
+  },
+    {
+      "id": "11",
+      "name": "element-ui.vue",
+      "page": "element-ui"
+    },
+    {
+      "id": "12",
+      "name": "bootstrap-ui.html",
+      "page": "bootstrap-ui"
+    },
+    {
+      "id": "13",
+      "name": "layui-edit.html",
+      "page": "layui-edit"
+    },
+    {
+      "id": "14",
+      "name": "layui-list.html",
+      "page": "layui-list"
+    }
+  ]
+},
+  {
+    "group": "mybatis",
+    "templates": [{
+      "id": "20",
+      "name": "controller.java",
+      "page": "controller"
+    },
+      {
+        "id": "21",
+        "name": "service.java",
+        "page": "service"
+      },
+      {
+        "id": "22",
+        "name": "service_impl.java",
+        "page": "service_impl"
+      },
+      {
+        "id": "23",
+        "name": "mapper.java",
+        "page": "mapper"
+      },
+      {
+        "id": "24",
+        "name": "mybatis.xml",
+        "page": "mybatis"
+      },
+      {
+        "id": "25",
+        "name": "model.java",
+        "page": "model"
+      },
+      {
+        "id": "26",
+        "name": "mapper2.java",
+        "page": "mapper annotation"
+      }
+    ]
+  },
+  {
+    "group": "jpa",
+    "templates": [{
+      "id": "30",
+      "name": "entity.java",
+      "page": "entity"
+    },
+      {
+        "id": "31",
+        "name": "repository.java",
+        "page": "repository"
+      },
+      {
+        "id": "32",
+        "name": "jpacontroller.java",
+        "page": "jpacontroller"
+      }
+    ]
+  },
+
+  {
+    "group": "jdbctemplate",
+    "templates": [{
+      "id": "40",
+      "name": "jtdao.java",
+      "page": "jtdao"
+    },
+      {
+        "id": "41",
+        "name": "jtdaoimpl.java",
+        "page": "jtdaoimpl"
+      }
+    ]
+  },
+
+  {
+    "group": "beetlsql",
+    "templates": [{
+      "id": "50",
+      "name": "beetlmd.java",
+      "page": "beetlmd"
+    },
+      {
+        "id": "51",
+        "name": "beetlentity.java",
+        "page": "beetlentity"
+      },
+      {
+        "id": "52",
+        "name": "beetlcontroller.java",
+        "page": "beetlcontroller"
+      }
+    ]
+  },
+
+  {
+    "group": "mybatisplus",
+    "templates": [{
+      "id": "60",
+      "name": "pluscontroller.java",
+      "page": "pluscontroller"
+    },
+      {
+        "id": "61",
+        "name": "plusservice.java",
+        "page": "plusservice"
+      },
+      {
+        "id": "62",
+        "name": "plusmapper.java",
+        "page": "plusmapper"
+      },
+      {
+        "id": "63",
+        "name": "plusentity.java",
+        "page": "plusentity"
+      }
+    ]
+  },
+
+  {
+    "group": "util",
+    "templates": [{
+      "id": "70",
+      "name": "beanutil.java",
+      "page": "beanutil"
+    },
+      {
+        "id": "71",
+        "name": "json.json",
+        "page": "json"
+      },
+      {
+        "id": "72",
+        "name": "xml.xml",
+        "page": "xml"
+      },
+      {
+        "id": "73",
+        "name": "sql.sql",
+        "page": "sql"
+      }
+    ]
+  }
+  ,
+
+  {
+    "group": "crud",
+    "templates": [{
+      "id": "74",
+      "name": "controller",
+      "page": "controller"
+    },
+      {
+        "id": "75",
+        "name": "service_impl",
+        "page": "service_impl"
+      },
+      {
+        "id": "76",
+        "name": "service",
+        "page": "service"
+      },
+      {
+        "id": "77",
+        "name": "dao",
+        "page": "dao"
+      },
+      {
+        "id": "78",
+        "name": "mybatis",
+        "page": "mybatis"
+      },
+      {
+        "id": "79",
+        "name": "model",
+        "page": "model"
+      }
+    ]
+  }
+]
