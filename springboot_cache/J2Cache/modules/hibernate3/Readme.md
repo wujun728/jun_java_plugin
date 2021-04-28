@@ -1,1 +1,0 @@
-对 Hibernate 3.x 的支持

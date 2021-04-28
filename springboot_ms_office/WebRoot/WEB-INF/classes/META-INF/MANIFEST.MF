@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: spring-boot-ms-office
-Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: duhongming
-Implementation-Vendor-Id: spring-boot-ms-office
-Build-Jdk: 1.8.0_66
-Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
-

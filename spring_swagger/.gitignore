@@ -1,6 +1,0 @@
-*.war
-*.log
-*.cache
-target/
-out/
-.idea/

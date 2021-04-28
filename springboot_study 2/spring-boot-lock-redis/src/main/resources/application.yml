@@ -1,6 +1,0 @@
-spring:
-  redis:
-    port: 6379
-    host: localhost
-server:
-  port: 8083

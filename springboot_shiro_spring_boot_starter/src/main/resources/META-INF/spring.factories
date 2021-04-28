@@ -1,6 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.baomidou.shiro.ShiroAutoConfiguration
-org.springframework.boot.diagnostics.FailureAnalyzer=\
-com.baomidou.shiro.exception.NoRealmConfiguredFailureAnalyzer,\
-com.baomidou.shiro.exception.ConvertFailureAnalyzer,\
-com.baomidou.shiro.exception.CacheFailureAnalyzer
