@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.com.bzcoder</groupId>
-    <artifactId>MyBatisPlus</artifactId>
+    <artifactId>jun_mybatisplus</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>

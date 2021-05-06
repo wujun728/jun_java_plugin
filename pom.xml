@@ -15,8 +15,6 @@
 	</properties>
 
 	<modules>
-		<module>jun_api</module>
-		
 		<module>jun_activemq</module>
 		<module>jun_activiti</module>
 		<module>jun_ajax</module>
