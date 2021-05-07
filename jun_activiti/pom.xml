@@ -1,107 +1,145 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jun.plugin</groupId>
 	<version>1.0</version>
-  <artifactId>jun_activiti</artifactId>
-  <packaging>war</packaging>
-  
-  <name>test_mis Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    	<dependency>
-    	<groupId>org.activiti</groupId>
-    	<artifactId>activiti-modeler</artifactId>
-    	<version>5.16</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.activiti</groupId>
-    	<artifactId>activiti-engine</artifactId>
-    	<version>5.16</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.activiti</groupId>
-    	<artifactId>activiti-explorer</artifactId>
-    	<version>5.16</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.activiti</groupId>
-    	<artifactId>activiti-rest</artifactId>
-    	<version>5.16</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.activiti</groupId>
-    	<artifactId>activiti-spring</artifactId>
-    	<version>5.16</version>
-    </dependency> 
+	<artifactId>jun_activiti</artifactId>
+	<packaging>war</packaging>
 
-	   <dependency>
-		    <groupId>opensymphony</groupId>
-		    <artifactId>quartz</artifactId>
-		    <version>1.6.6</version>
+	<name>test_mis Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>apache-beanutils</groupId>
-		    <artifactId>commons-beanutils</artifactId>
-		    <version>1.7.0</version>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-modeler</artifactId>
+			<version>5.23.0</version>
 		</dependency>
-		 
+<dependency>
+    <groupId>org.activiti</groupId>
+    <artifactId>activiti-spring-boot-starter-basic</artifactId>
+    <version>5.23.0</version>
+</dependency>
+<dependency>
+    <groupId>org.activiti</groupId>
+    <artifactId>activiti-spring-boot-starter-actuator</artifactId>
+    <version>5.23.0</version>
+</dependency>
+<dependency>
+    <groupId>org.activiti</groupId>
+    <artifactId>activiti-rest</artifactId>
+    <version>5.23.0</version>
+</dependency>
+<dependency>
+    <groupId>org.activiti</groupId>
+    <artifactId>activiti-explorer</artifactId>
+    <version>5.23.0</version>
+</dependency>
+<dependency>
+    <groupId>org.activiti</groupId>
+    <artifactId>activiti-diagram-rest</artifactId>
+    <version>5.23.0</version>
+</dependency>
+<dependency>
+    <groupId>org.activiti</groupId>
+    <artifactId>activiti-modeler</artifactId>
+    <version>5.23.0</version>
+</dependency>
+<dependency>
+    <groupId>org.activiti</groupId>
+    <artifactId>activiti-simple-workflow</artifactId>
+    <version>5.23.0</version>
+</dependency>
+<dependency>
+    <groupId>org.activiti</groupId>
+    <artifactId>activiti-spring</artifactId>
+    <version>5.23.0</version>
+</dependency>
+<!-- <dependency>
+    <groupId>org.apache.xmlgraphics</groupId>
+    <artifactId>batik-codec</artifactId>
+    <version>${batik.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.xmlgraphics</groupId>
+    <artifactId>batik-css</artifactId>
+    <version>${batik.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.xmlgraphics</groupId>
+    <artifactId>batik-svg-dom</artifactId>
+    <version>${batik.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.xmlgraphics</groupId>
+    <artifactId>batik-svggen</artifactId>
+    <version>${batik.version}</version>
+</dependency> --> 
+
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.6.6</version>
+		</dependency>
+		<dependency>
+			<groupId>apache-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-core -->
 		<dependency>
-		    <groupId>org.apache.shiro</groupId>
-		    <artifactId>shiro-core</artifactId>
-		    <version>1.6.0</version>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>1.6.0</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-web -->
 		<dependency>
-		    <groupId>org.apache.shiro</groupId>
-		    <artifactId>shiro-web</artifactId>
-		    <version>1.6.0</version>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-web</artifactId>
+			<version>1.6.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-ehcache -->
 		<dependency>
-		    <groupId>org.apache.shiro</groupId>
-		    <artifactId>shiro-ehcache</artifactId>
-		    <version>1.6.0</version>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-ehcache</artifactId>
+			<version>1.6.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-spring -->
 		<dependency>
-		    <groupId>org.apache.shiro</groupId>
-		    <artifactId>shiro-spring</artifactId>
-		    <version>1.6.0</version>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>1.6.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.esen/fcexporter -->
-		<!-- <dependency>
-		    <groupId>com.esen</groupId>
-		    <artifactId>fcexporter</artifactId>
-		    <version>1.5</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.esen</groupId> <artifactId>fcexporter</artifactId> 
+			<version>1.5</version> </dependency> -->
 		<!-- https://mvnrepository.com/artifact/jxl/jxl -->
-	 <!-- https://mvnrepository.com/artifact/com.google.code.kaptcha/kaptcha -->
-<!-- https://mvnrepository.com/artifact/com.github.penggle/kaptcha -->
-<dependency>
-    <groupId>com.github.penggle</groupId>
-    <artifactId>kaptcha</artifactId>
-    <version>2.3.2</version>
-    <exclusions>
-    	<exclusion>
-    		<groupId>javax.servlet</groupId>
-    		<artifactId>javax.servlet-api</artifactId>
-    	</exclusion>
-    </exclusions>
-</dependency>
-	 
-		
-				
-<!--  1111111111111111111111    -->
-    <!-- 加入mysql驱动依赖包 -->
+		<!-- https://mvnrepository.com/artifact/com.google.code.kaptcha/kaptcha -->
+		<!-- https://mvnrepository.com/artifact/com.github.penggle/kaptcha -->
+		<dependency>
+			<groupId>com.github.penggle</groupId>
+			<artifactId>kaptcha</artifactId>
+			<version>2.3.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>javax.servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+
+		<!-- 1111111111111111111111 -->
+		<!-- 加入mysql驱动依赖包 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -116,17 +154,13 @@
 		<!-- oracle数据库驱动，如果没有使用oracle数据库，请把这个引用注释掉 -->
 		<!-- oracle驱动特殊，他是商业驱动，官方maven版本库中是不存在jar包的，所以需要使用下面命令添加到你本地的maven库中 -->
 		<!-- 在CMD中执行下面语句(前提是你配置好了JAVA和MAVEN环境变量) -->
-		<!-- mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0 -Dpackaging=jar -Dfile=D:\pf\oracle\product\11.2.0\dbhome_1\jdbc\lib\ojdbc6.jar -->
+		<!-- mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc6 
+			-Dversion=11.2.0 -Dpackaging=jar -Dfile=D:\pf\oracle\product\11.2.0\dbhome_1\jdbc\lib\ojdbc6.jar -->
 		<!-- DartifactId的值改为artifactId的值 -->
 		<!-- Dversion的值改为version的值 -->
 		<!-- Dfile的值指定到你硬盘上的oracle驱动的绝对位置 -->
-		<!-- 
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0</version>
-		</dependency>
-		 -->
+		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc6</artifactId> 
+			<version>11.2.0</version> </dependency> -->
 
 		<!-- 加入junit依赖包 -->
 		<dependency>
@@ -232,21 +266,21 @@
 			<artifactId>commons-dbutils</artifactId>
 			<version>1.5</version>
 		</dependency>
-		
+
 		<!-- 加入javamelody依赖包 -->
 		<dependency>
 			<groupId>net.bull.javamelody</groupId>
 			<artifactId>javamelody-core</artifactId>
 			<version>1.47.0</version>
 		</dependency>
-		
+
 		<!-- 加入batik依赖包，用于highcharts导出图表 -->
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-codec</artifactId>
 			<version>1.7</version>
 		</dependency>
-		
+
 		<!-- 加入CXF依赖包 -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
@@ -325,25 +359,25 @@
 			<artifactId>struts2-config-browser-plugin</artifactId>
 			<version>2.3.15.2</version>
 		</dependency>
-		
-    
-    
-  </dependencies>
-  
-  
-  <build>
-  	<finalName>jun_mis</finalName>
-	<plugins>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<version>2.0</version>
-			<configuration>
-				<source>1.7</source>
-				<target>1.7</target>
-				<encoding>utf8</encoding>
-			</configuration>
-		</plugin>
+
+
+
+	</dependencies>
+
+
+	<build>
+		<finalName>jun_mis</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>utf8</encoding>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
