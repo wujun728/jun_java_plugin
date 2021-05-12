@@ -24,7 +24,7 @@
     <log4j.version>1.2.12</log4j.version>
     <oracle.version>11.2.0.1.0</oracle.version>
     <mybatis.version>3.4.5</mybatis.version>
-    <spring.security.version>5.0.1.RELEASE</spring.security.version>
+    <spring.security.version>5.2.10.RELEASE</spring.security.version>
     <log4j2.version>2.9.1</log4j2.version>
     </properties>
 
