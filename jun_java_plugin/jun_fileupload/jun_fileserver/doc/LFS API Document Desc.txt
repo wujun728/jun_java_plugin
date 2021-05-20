@@ -1,0 +1,347 @@
+
+类型：（类型仅仅作为类型转换）
+byte
+boolean
+short
+int
+long
+float
+double
+String
+
+
+变量：有一个名为 vars 的变量，包含收到的数组数据
+vars 的属性：
+	varsLength 数组的大小
+	state 当前的将要发送的状态标识
+	messageLength 收到的数据长度
+	dataData 一个临时对象，隐式用来读取文件内容，然后放到此对象中
+	dataFile 打开的文件，每次 data_open 都会变化，即最后一次打开的文件（特别注意：写入、读取等操作都作用于此文件上）
+	indexWrite 写“唯一索引”的工具（是线程安全的）
+
+
+vars.dataData 的属性：
+	sizeTotal 文件的总大小
+	size 读取的数据的实际大小
+	sizeMemory 此对象在内存中的总大小
+
+vars.indexWrite 的属性：
+	file 文件 ID，如果是 -1 则追加写入一个新文件（默认：-1）
+	buffer 将要写入的内容
+	size 将要写入的字节大小（默认是 buffer 的大小）
+	offset buffer 中的开始偏移（默认：0）
+	sizeBlockMin 默认为 0，目前建议一直为 0，此处需要详解（修改文件时，是速度快的关键）
+	link 默认为 0，目前建议一直为 0，此处需要详解（修改文件时，是速度快的关键）
+	
+	//索引的属性（同 data_write_index 的参数）
+	indexSizeBlockMin 默认为 0，目前建议一直为 0，此处需要详解
+	indexSizeBlockMinFirst 默认为 0，目前建议一直为 0，此处需要详解
+
+vars.indexWrite 的方法：
+	示例：（使用 ":"）
+		indexWrite:setIndex("key");
+		id = indexWrite:write();
+
+	/**
+	 * （同 data_writeIndex 的参数）
+	 * @param key 将要进行哈希的对象
+	 * @param size 将要进行哈希的字节数量（默认：-1，key 的全部大小）
+	 * @param length 默认为 0（建议一直为 0），哈希表的大小
+	 */
+	setIndex(key:Object, size:int = -1, length:int = 0):void;
+
+	/**
+	 * 将 buffer 写入 file 对应的文件，并根据 setIndex 构建唯一索引
+	 * 如果已经存在唯一索引，则不重复写入
+	 * @return 索引对应的文件 ID（小于 0 则失败）
+	 */
+	write():long;
+
+
+
+***************************
+
+
+打开文件，成功返回 1，失败返回 0
+/**
+ * @param fileName
+ * @return
+ */
+data_open(fileName:String):int;
+
+
+写入文件，返回写入的文件序号，如果小于 0 则写入失败
+/**
+ * @param file 文件 ID，如果是 -1 则追加写入一个新文件
+ * @param buffer 将要写入的内容
+ * @param size 将要写入的字节大小，如果是 -1 则将 buffer 全部写入
+ * @param offset buffer 中的开始偏移，默认是 0
+ * @param sizeBlockMin 默认为 0，目前建议一直为 0，此处需要详解（修改文件时，是速度快的关键）
+ * @param link 默认为 0，目前建议一直为 0，此处需要详解（修改文件时，是速度快的关键）
+ * @return
+ */
+data_write(file:long, buffer:Object, size:long, offset:long = 0, sizeBlockMin:int = 0, link:int = 0):long;
+
+
+读取数据，返回状态 1 为成功，不等于 1 为失败（可能文件已经删除，或没有此文件等）
+/**
+ * @param file 文件 ID
+ * @param offset 读取文件时的开始偏移位置，默认为 0
+ * @param sizeMaxRead 读取的最大字节数，默认为 0 即读取全部数据
+ * @param end 默认为 0（建议一直为 0），当为 1 时，在读取的字节后额外多写入一个字节 '\0' 用来标记结尾
+ * @return
+ */
+data_read(file:int, offset:long = 0, sizeMaxRead:int = 0, end:int = 0):int;
+
+
+删除数据，返回状态 1 为成功
+/**
+ * @param file 文件 ID
+ * return
+ */
+data_delete(file:int):int;
+
+
+返回 dataFile 的全部文件个数，包含有效文件个数和已经删除的文件个数（可以用来遍历所有文件）
+/**
+ * @param dataFile 已经打开的文件
+ * @return
+ */
+getTotalFile(dataFile:DataFile):int;
+
+
+返回 dataFile 的有效文件个数
+/**
+ * @param dataFile 已经打开的文件
+ * @return
+ */
+getFileLength(dataFile:DataFile):int;
+
+
+返回 dataFile 的删除文件个数
+/**
+ * @param dataFile 已经打开的文件
+ * @return
+ */
+getFileLengthDeleted(dataFile:DataFile):int;
+
+
+***************************
+
+
+写入索引，返回大于 0 为成功（已经废弃，原因：只能单线程，应使用新的 vars.indexWrite）
+/**
+ * @param file 对应索引的 文件 ID
+ * @param obj 将要进行哈希的对象
+ * @param size 将要进行哈希的字节数量，当为 -1 时，是 obj 的全部大小
+ * @param length 默认为 0（建议一直为 0），哈希表的大小
+ * @param sizeBlockMin 默认为 0，目前建议一直为 0，此处需要详解
+ * @param sizeBlockMinFirst 默认为 0，目前建议一直为 0，此处需要详解
+ * return
+ */
+//data_write_index(file:int, obj:Object, size:int, length:int = 0, sizeBlockMin:int = 0, sizeBlockMinFirst:int = 0):int;
+
+
+读取索引，根据索引返回文件 ID，小于 0 则失败（可能还没有此索引）
+可以用来判断是否存在某个数据
+/**
+ * @param obj 将要进行哈希的对象
+ * @param size 将要进行哈希的字节数量，当为 -1 时，是 obj 的全部大小
+ * @param length 默认为 0（建议一直为 0），哈希表的大小
+ * return
+ */
+data_read_index(obj:Object, size:int, length:int):long;
+
+
+删除索引，返回 1 为成功
+/**
+ * @param obj 将要进行哈希的对象
+ * @param size 将要进行哈希的字节数量，当为 -1 时，是 obj 的全部大小
+ * @param length 默认为 0（建议一直为 0），哈希表的大小
+ * return
+ */
+data_delete_index(obj:Object, size:int, length:int):int;
+
+
+***************************
+
+
+查找是否有匹配的项，返回文件 ID，如果没有，则返回 -1，其他的错误返回负数
+/**
+ * @param obj 将要查找的对象
+ * @param size 将要比较的字节大小（也就是需要读取的字节大小）
+ * @param offset 将要读取的开始偏移
+ * @param length 将要遍历的次数（即文件的个数），默认为 0，即全部文件个数（同 getTotalFile）
+ * @return
+ */
+data_select(obj:Object, size:int, offset:long = 0, length:int = 0):long;
+
+
+***************************
+
+
+返回传过来的数据的大小（传过来的是数组）
+返回 vars 变量里指定索引的字节大小
+/**
+ * @param index
+ * @return
+ */
+getVarsLength(index:int):int;
+
+
+返回将要发送的数据长度（为 true 时返回额外的实际数据的总长度的 4 个字节的头）
+一般用来限制返回数据的长度
+/**
+ * @param b 为 true 时，返回的值加 4
+ */
+int getMessageLength(boolean b);
+
+
+设置将要发送的状态标识
+/**
+ * @param state
+ */
+setState(state:int):void;
+
+
+退出
+exit():void;
+
+
+***************************
+
+
+向将要发送的数据里添加一个 byte
+putByte(value:byte):void;
+
+putBytes(obj:Object, size:int, offset:int = 0):void;
+
+putString(str:String, size:int, offset:int = 0):void;
+
+putStringBytes(str:String, size:int, offset:int = 0):void;
+
+putBoolean(value:int):void;
+
+putShort(value:short):void;
+
+putInt(value:int):void;
+
+putLong(value:long):void;
+
+putFloat(value:float):void;
+
+putDouble(value:double):void;
+
+putNull():void;
+
+
+将将要发送的数据设置到偏移的位置
+（如果需要修改之前的数据，可以通过设置偏移来实现，不过记得一定要设置回之前的值）
+/**
+ * @param position
+ */
+setPosition(position:int):void;
+
+
+返回将要发送的数据的当前偏移
+/**
+ * @return
+ */
+getPosition():int;
+
+
+***************************
+
+
+创建一个对象
+/**
+ * @param size 对象的大小，默认 32 字节
+ * @param obj 如果不为空时，则根据 size 重置 obj
+ * @return 返回一个对象
+ */
+newObject(size:int = 32, obj:Object = null):Object;
+
+
+清空一个对象
+/**
+ * @param obj
+ */
+clearObject(obj:Object):void;
+
+
+设置对象的内容，当 type 为 0 时，根据 size 的大小来拷贝内容到指定对象上
+/**
+ * @param obj 目标对象
+ * @param offset obj 中的偏移
+ * @param obj2 待拷贝对象
+ * @param type 拷贝的数据类型（int, long 等）
+ * @param size 当 type 为 0 时，根据 size 的大小来拷贝内容
+ * @param offset2 obj2 中的偏移
+ */
+setObject(obj:Object, offset:int, obj2:Object, type:int = 0, size:int = 0, offset2:int = 0):void;
+
+
+强制转换类型，当有 type3 时，将对象以 type2 类型转换为 type3 类型
+/**
+ * @param obj
+ * @param type2
+ * @param type3 当有 type3 时，将对象以 type2 类型转换为 type3 类型，没有则转为 type2 类型
+ * @return
+ */
+cast(obj:Object, type2:int, type3:int = 0):Object;
+
+
+设置对象内容
+将 obj 从 offset 偏移开始的 size 个字节都设置为 value
+/**
+ * @param obj
+ * @param value
+ * @param size
+ * @param offset
+ */
+memset(obj:Object, value:int, size:int, offset:int = 0):void;
+
+
+比较两个对象 相同返回 0，不相同返回非 0 值
+/**
+ * @param obj
+ * @param obj2
+ * @param size
+ * @param offset
+ * @param offset2
+ * @return
+ */
+memcmp(obj:Object, obj2:Object, size:int, offset:int = 0, offset2:int = 0):int;
+
+
+返回一个时间对象
+/**
+ * @param type 当 type = 0 时，设置开始时间，type = 1 时，设置结束时间
+ * @param time 一个时间对象（包含开始时间和结束时间），当 type = 1 时，必须有值
+ * @return
+ */
+clock(type:int, time:Object = null):Object;
+
+
+返回间隔时间
+/**
+ * @param time
+ * @return
+ */
+diffClock(time:Object):long;
+
+
+***************************
+
+
+交换 Big Endian 和 Little Endian
+swap16(value:short):short;
+
+swap32(value:int):int;
+
+交换字节序 从 obj 的 offset 偏移处开始 size（4 的整数倍）个字节
+swap32_P(obj:Object, size:int, offset:int = 0):void;
+
+swap64(value:long):long;
+
+

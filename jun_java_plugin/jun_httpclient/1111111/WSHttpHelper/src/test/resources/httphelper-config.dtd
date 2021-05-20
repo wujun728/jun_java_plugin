@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- httphelper-config.xml配置文件DTD，必须放在classpath下，可以指定请求的xml路径，请求xml文件名称可以自定义 -->
+<!ELEMENT httphelper-config (
+        httpclient-config?,
+        default-handlers?,
+        requests?,
+        request-xml?)
+>
+<!-- 请求客户端配置 -->
+<!ELEMENT httpclient-config (http?,pool?)>
+<!-- http请求默认编码，超时 -->
+<!ELEMENT http EMPTY>
+<!ATTLIST http
+        charset CDATA #IMPLIED
+        connection-timeout CDATA #IMPLIED
+        socket-timeout CDATA #IMPLIED
+>
+<!-- 请求线程池配置 -->
+<!ELEMENT pool EMPTY>
+<!ATTLIST pool
+        QueueCapacity CDATA #IMPLIED
+        CorePoolSize CDATA #IMPLIED
+        MaxPoolSize CDATA #IMPLIED
+        KeepAliveSeconds CDATA #IMPLIED
+>
+<!-- 全局默认处理器和用户自定义的处理器 -->
+<!ELEMENT default-handlers (pre?,pro?)>
+<!ELEMENT pre (handler+)>
+<!ELEMENT pro (handler+)>
+<!ELEMENT handler EMPTY>
+<!ATTLIST handler
+        clazz CDATA #REQUIRED
+        type (init|parameter|url|validation|parse|user) "user"
+        >
+
+
+<!-- 通过xml配置的请求，通过WSHttpRequestFactory根据id获取一个WSHttpRequest类型的实体 -->
+<!ELEMENT requests (request+)>
+<!ELEMENT request (parameters?,headers?,handlers?)>
+<!ATTLIST request
+        name CDATA #REQUIRED
+        url CDATA #REQUIRED
+        description CDATA #IMPLIED
+        response-type (TEXT|HTML|JSON|XML|BYTE_ARRAY) "HTML"
+        method (GET|POST|DELETE) "GET"
+        charset CDATA #IMPLIED
+        result-class CDATA #IMPLIED
+>
+<!-- 该请求自定义的处理器 -->
+<!ELEMENT handlers (pre?,pro?)>
+
+<!ELEMENT parameters (parameter+)>
+<!ELEMENT parameter EMPTY>
+<!ATTLIST parameter
+        name CDATA #REQUIRED
+        description CDATA #IMPLIED
+        defaultValue CDATA #IMPLIED
+        type (STRING|INT|LIST|FILE) "STRING"
+        required (true|false) "false"
+        example CDATA #IMPLIED
+        validateRegex CDATA #IMPLIED
+>
+
+<!ELEMENT headers (header+)>
+<!ELEMENT header EMPTY>
+<!ATTLIST header
+        name CDATA #REQUIRED
+        value CDATA #REQUIRED
+>
+
+<!-- 请求配置xml存放路径，可以指定到相对路径下-->
+<!ELEMENT request-xml (path+)>
+<!ELEMENT path EMPTY>
+<!ATTLIST path
+        value CDATA #REQUIRED
+>

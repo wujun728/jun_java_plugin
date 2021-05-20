@@ -1,0 +1,17 @@
+
+############邮件任务properties属性配置############
+#注意：依赖类包activation-*.jar及mail-.*jar，需要将其放在目录ANT_HOME/lib下，
+#      Eclipse下运行还需要重设Preferences->Ant->Runtime->Ant home
+#replyto 回复mail地址   
+#tolist  收件地址列表  可用子标签替代
+#cclist  抄送地址列表  可用子标签替代
+#bcclist 暗送地址列表  可用子标签替代
+mail.mailhost=smtp.qq.com
+mail.subject=Test build
+mail.user=860495914
+mail.password=
+mail.from.address=860495914@qq.com
+mail.to.address=weijinmaozi@qq.com
+mail.message=The Test nightly build has completed.
+#产出物目录下的文件
+mail.attachments=junit/reports/*.html,findbugs/*.html,pmd/*.html,checkstyle/*.html

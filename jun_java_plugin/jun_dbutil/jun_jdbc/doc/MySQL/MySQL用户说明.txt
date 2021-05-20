@@ -1,0 +1,12 @@
+此目录内的文件供MySQL用户使用。
+
+您可以使用MySQL作为JDiy开发平台的默认数据库。
+
+这个目录内的文件清单如下所示：
+
+jdiy_db.sql：
+	这是JDiy开发平台的初始化数据库的备份文件(采用mysqldump工具备份)
+	在MySQL中新建一个数据库，然后在mysql中执行此文件还原就可以了。
+
+mysql-connector-java-5.1.15-bin.jar:
+	这是MySQL官方的JDBC驱动包，请将其添加到应用程序的lib目录中即可。

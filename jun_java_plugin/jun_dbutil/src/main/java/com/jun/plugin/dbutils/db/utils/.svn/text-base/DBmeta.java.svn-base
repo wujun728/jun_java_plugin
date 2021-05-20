@@ -1,0 +1,120 @@
+package klg.db.utils;
+
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+
+import klg.common.utils.MyPrinter;
+
+public class DBmeta {
+	public static void main(String[] args) {
+		DBAccess dba=new DBAccess();
+		MyPrinter.print(getFields("information_schema.TABLES",dba.getConn()));
+	}
+
+
+	// LinkedHashMap保留插入顺序
+	public static LinkedHashMap<String, String> getFields(String tableName,
+			Connection conn) {
+		LinkedHashMap<String, String> fields = new LinkedHashMap<>();
+		String sql = "select * from " + tableName+" limit 1";
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			ResultSetMetaData rsmeta = (ResultSetMetaData) rs.getMetaData();
+			int count = rsmeta.getColumnCount();
+			for (int i = 1; i <= count; i++) {
+				//System.out.println(rsmeta.getColumnType(i));
+				fields.put(rsmeta.getColumnLabel(i),rsmeta.getColumnTypeName(i)+"("+rsmeta.getColumnDisplaySize(i)+")");
+				System.out.println(sqlTypeToJavaType(rsmeta.getColumnTypeName(i))+" " +rsmeta.getColumnLabel(i)+";");
+			}
+			
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return fields;
+	}
+
+	public static String[] getFieldsNames(String tableName, Connection conn) {
+		String[] fields = null;
+		try {
+			DatabaseMetaData DBmeta = conn.getMetaData();
+			ResultSet rs = DBmeta.getColumns(null, null, tableName, null);
+			List<String> ls = new ArrayList<String>();
+			int i = 0;
+			while (rs.next()) {
+				ls.add(rs.getString(4));
+				i++;
+			}
+			fields = new String[i];
+			ls.toArray(fields);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return fields;
+	}
+
+	public static String[] getTableNames(String DBname, Connection conn) {
+		String[] tables = null;
+		try {
+			DatabaseMetaData DBmeta = conn.getMetaData();
+			String types[] = { "TABLE" };
+			ResultSet rs = DBmeta.getTables(DBname, null, null, types);
+			List<String> ls = new ArrayList<String>();
+			int i = 0;
+			while (rs.next()) {
+				ls.add(rs.getString(3));
+				i++;
+			}
+			tables = new String[i];
+			ls.toArray(tables);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tables;
+	}
+
+	private static String sqlTypeToJavaType(String sqlType) {
+
+		if (sqlType.toLowerCase().contains("bit")) {
+			return "boolean";
+		} else if (sqlType.toLowerCase().contains("tinyint")) {
+			return "byte";
+		} else if (sqlType.toLowerCase().contains("smallint")) {
+			return "short";
+		} else if (sqlType.toLowerCase().contains("bigint")) {
+			return "long";
+		} else if (sqlType.toLowerCase().contains("int")
+				|| sqlType.toLowerCase().contains("int unsigned")) {
+			return "int";
+		} else if (sqlType.toLowerCase().contains("float")) {
+			return "float";
+		} else if (sqlType.toLowerCase().contains("decimal")
+				|| sqlType.toLowerCase().contains("numeric")
+				|| sqlType.toLowerCase().contains("real")
+				|| sqlType.toLowerCase().contains("money")
+				|| sqlType.toLowerCase().contains("smallmoney")) {
+			return "double";
+		} else if (sqlType.toLowerCase().contains("varchar")
+				|| sqlType.toLowerCase().contains("char")
+				|| sqlType.toLowerCase().contains("nvarchar")
+				|| sqlType.toLowerCase().contains("nchar")
+				|| sqlType.toLowerCase().contains("text")) {
+			return "String";
+		} else if (sqlType.toLowerCase().contains("datetime")) {
+			return "Date";
+		} else if (sqlType.toLowerCase().contains("image")) {
+			return "Blod";
+		}
+		return null;
+	}
+}

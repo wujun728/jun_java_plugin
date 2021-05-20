@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>www.mldnjava.cn，MLDN高端Java培训</title>
+	<script language="javascript">
+		var xmlHttp ;
+		function createXMLHttp(){
+			if(window.XMLHttpRequest){
+				xmlHttp = new XMLHttpRequest() ;
+			} else {
+				xmlHttp = new ActiveXObject("Microsoft.XMLHTTP") ;
+			}
+		}
+		function getCity(){
+			createXMLHttp() ;
+			xmlHttp.open("POST","CityServlet") ;
+			xmlHttp.onreadystatechange = getCityCallback ;
+			xmlHttp.send(null) ;
+		}
+		function getCityCallback(){
+			if(xmlHttp.readyState == 4){
+				if(xmlHttp.status == 200){
+					var allarea = xmlHttp.responseXML.getElementsByTagName("allarea")[0].childNodes ;	// 取得全部的allarea下的节点
+					var select = document.getElementById("city") ;
+					select.length = 1 ;	// 每次选择一个
+					select.options[0].selected = true ;	// 第一个为选中的状态
+					for(var i=0;i<allarea.length;i++){
+						var area = allarea[i] ;
+						var option = document.createElement("option") ;
+						var id = area.getElementsByTagName("id")[0].firstChild.nodeValue ;
+						var title = area.getElementsByTagName("title")[0].firstChild.nodeValue;
+						option.setAttribute("value",id) ;
+						option.appendChild(document.createTextNode(title)) ;
+						select.appendChild(option) ;
+					}
+				}
+			}
+		}
+	</script>
+</head>
+<body onload="getCity()">
+	<form action="" method="post">
+		请选择喜欢的城市：
+			<select name="city">
+				<option value="0"> - 请选择城市 -</option>
+			</select>
+	</form>
+</body>
+</html>

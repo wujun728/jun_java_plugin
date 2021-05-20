@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-lazy-init="true">
+
+	<bean id="dataDao" class="com.caland.common.data.DataDaoImpl">
+		<property name="dataSource" ref="dataSource1"/>
+		<property name="db" value="itcast01"/>
+	</bean>
+	
+	<!--	获取真实路径-->
+	<bean id="realPathResolver" class="com.caland.common.web.springmvc.ServletContextRealPathResolver"/>
+	
+<!-- 	<bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"> -->
+<!-- 		<property name="templateLoaderPath" value="classpath:"/> -->
+<!-- 		<property name="freemarkerSettings"> -->
+<!-- 			<props> -->
+<!-- 				<prop key="template_update_delay">0</prop> -->
+<!-- 				<prop key="defaultEncoding">UTF-8</prop> -->
+<!-- 				<prop key="locale">zh_CN</prop> -->
+<!-- 				<prop key="boolean_format">true,false</prop> -->
+<!-- 				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop> -->
+<!-- 				<prop key="date_format">yyyy-MM-dd</prop> -->
+<!-- 				<prop key="time_format">HH:mm:ss</prop> -->
+<!-- 				<prop key="number_format">0.######</prop> -->
+<!-- 				<prop key="whitespace_stripping">true</prop> -->
+<!-- 			</props> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="sessionProvider" class="com.caland.common.web.session.CacheSessionProvider"> -->
+<!-- 		<property name="sessionCache" ref="sessionCache"/> -->
+<!-- 		<property name="sessionIdGenerator" ref="sessionIdGenerator"/> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="sessionIdGenerator" class="com.caland.common.web.session.id.JdkUUIDGenerator"/> -->
+<!-- 	<bean id="sessionCache" class="com.caland.common.web.session.cache.MemcachedSpyCache"> -->
+<!-- 			<property name="servers"> -->
+<!-- 				<list> -->
+<!-- 					<value>192.168.2.128:11211</value> -->
+<!-- 				</list> -->
+<!-- 			</property> -->
+<!-- 	</bean> -->
+	
+</beans>

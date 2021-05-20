@@ -1,0 +1,146 @@
+package ${query_p};
+
+import java.util.*;
+
+/**
+ * 
+ * @author lixu
+ * @Date [2014-3-28 下午05:58:00]
+ */
+public class ${Entity}Query extends BaseQuery {
+	/**
+	 * ==============================批量查询、更新、删除时的Where条件设置======================
+	 * ============
+	 **/
+<#list fields as field>
+	private <@fieldType type=field.fieldType/> <#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>;
+	public <@fieldType type=field.fieldType/> get<#list field.name?split('_') as n>${n?cap_first}</#list>() {
+		return <#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>;
+	}
+	public ${Entity}Query set<#list field.name?split('_') as n>${n?cap_first}</#list>(<@fieldType type=field.fieldType/> <#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>) {
+		this.<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list> = <#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>;
+		return this;
+	}
+	<@fieldLike type=field.fieldType>
+	private boolean <#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>Like;
+	public ${Entity}Query set<#list field.name?split('_') as n>${n?cap_first}</#list>Like(boolean isLike) {
+		this.<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>Like = isLike;
+		return this;
+	}
+	</@fieldLike>
+</#list>
+	/**
+	 * ==============================批量查询时的Order条件顺序设置==========================
+	 * ========
+	 **/
+	 	public class OrderField {
+		public OrderField(String fieldName, String order) {
+			super();
+			this.fieldName = fieldName;
+			this.order = order;
+		}
+		private String fieldName;
+		private String order;
+
+		public String getFieldName() {
+			return fieldName;
+		}
+		public OrderField setFieldName(String fieldName) {
+			this.fieldName = fieldName;
+			return this;
+		}
+		public String getOrder() {
+			return order;
+		}
+		public OrderField setOrder(String order) {
+			this.order = order;
+			return this;
+		}
+	}
+		/**
+	 * ==============================批量查询时的Order条件顺序设置==========================
+	 * ========
+	 **/
+	/** 排序列表字段 **/
+	private List<OrderField> orderFields = new ArrayList<OrderField>();
+<#list fields as field>
+	/**
+	 * 设置排序按属性：${field.name}
+	 * 
+	 * @param isAsc
+	 *            是否升序，否则为降序
+	 */
+	public ${Entity}Query orderby<#list field.name?split('_') as n>${n?cap_first}</#list>(boolean isAsc) {
+		orderFields.add(new OrderField("${field.name}", isAsc ? "ASC" : "DESC"));
+		return this;
+	}
+</#list>
+	private String fields;
+	/**
+	 * 提供自定义字段使用
+	 */
+	private static Map<String, String> fieldMap;
+
+	private static Map<String, String> getFieldSet() {
+		if (fieldMap == null) {
+			fieldMap = new HashMap<String, String>();
+			<#list fields as field>
+			fieldMap.put("<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>", "${field.name}");
+			</#list>
+		}
+		return fieldMap;
+	}
+
+	public String getFields() {
+		return this.fields;
+	}
+	public void setFields(String fields) {
+		if (fields == null)
+			return;
+		String[] array = fields.split(",");
+		StringBuffer buffer = new StringBuffer();
+		for (String field : array) {
+			if (getFieldSet().containsKey(field)) {
+				buffer.append(getFieldSet().get(field)).append(" as ")
+						.append(field).append(" ,");
+			}
+			if (getFieldSet().containsKey("`" + field + "`")) {
+				buffer.append("`" + getFieldSet().get(field) + "`").append(" as ")
+						.append(field).append(" ,");
+			}
+		}
+		if (buffer.length() != 0) {
+			this.fields = buffer.substring(0, buffer.length() - 1);
+		} else {
+			this.fields = " 1 ";// 没有一个参数可能会报错
+		}
+	}
+}
+<#macro fieldType type>
+	<#if type?contains("bigint")>
+	Long<#t/>
+	<#elseif type?contains("int")>
+	Integer<#t/>
+	<#elseif type?contains("datetime")>
+	Date<#t/>
+	<#elseif type?contains("binary") || type?contains("blob")>
+	Byte[]<#t/>
+	<#elseif type?contains("float")>
+	Float<#t/>
+	<#elseif type?contains("double")>
+	Double<#t/>
+	<#else>
+	String<#t/>
+	</#if>
+</#macro>
+<#macro fieldLike type>
+	<#if type?contains("bigint")>
+	<#elseif type?contains("int")>
+	<#elseif type?contains("datetime")>
+	<#elseif type?contains("binary") || type?contains("blob")>
+	<#elseif type?contains("float")>
+	<#elseif type?contains("double")>
+	<#else>
+	<#nested><#t/>
+	</#if>
+</#macro>

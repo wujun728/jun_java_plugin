@@ -1,0 +1,149 @@
+spring:
+Spring的核心是一个轻量级（Lightweight）的容器（Container），
+它是实现IoC（Inversion of Control）容器和非入侵性（No intrusive）的框架，
+并提供AOP（Aspect-oriented programming）概念的实现方式；
+提供对持久层（Persistence）、事务（Transcation）的支持；
+提供MVC Web框架的实现，
+并对一些常用的企业服务API（Application Interface）提供一致的模型封装，
+是一个全方位的应用程序框架（Application Framework），
+除此之外，对现存的各种框架（Structs、JSF、Hibernate、Ibatis、Webwork等），Spring也提供了与他们相整合的方案。
+
+
+IOC控制反转(DI依赖注入)---注入的三种方法：属性注入，构造方法注入，接口注入（spring不支持）
+1.导包，2.配置文件，3.	BeanFactory bf = new ClassPathXmlApplicationContext("spring-config.xml");
+自动装配：default-autowire="byType|byName"
+scope:singleton(默认),prototype,[session、request、global session三种专用于Web应用程序上下文的Bean]
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+	default-autowire="byType">
+	<!-- default-autowire="byName" -->
+	<bean id="b" class="com.yc.B" />
+	<bean id="a" class="com.yc.A">
+		<property name="b" ref="b" />
+		<!-- <constructor-arg ref="b"/> 注入的三种方法：属性注入，构造方法注入，接口注入（spring不支持） -->
+	</bean>
+	<aop:aspectj-autoproxy />
+	<bean id="userDao" class="com.yc.aop.UserDaoImpl" />
+	<bean id="myLog" class="com.yc.aop.MyLog" />
+	<bean id="c" class="com.yc.auto.C" scope="prototype"/>
+	<bean id="dd" class="com.yc.auto.D" />
+</beans>
+BeanFactory bf = new ClassPathXmlApplicationContext("spring-*.xml");
+
+
+
+
+AOP:
+AOP(Aspect Oriented  Programming)主要概念：	
+Cross Cutting Concern 横切关注点（日志）：是一种独立服务，它会遍布在系统的处理流程之中
+*Aspect切面：对横切性关注点的模块化（类）
+*Advice通知：对横切性关注点的具体实现（要执行的动作）
+*Pointcut切入点：它定义了Advice应用到哪些JoinPoint上，对Spring来说是方法调用
+*JoinPoint连接点：Advice在应用程序上执行的点或时机，Spring只支持方法的JoinPoint
+*Advisor:是PointCut和Advice的综合体，完整描述了一个Advice将会在PointCut所定义的位置被触发
+---------
+spring对AOP的支持（采用注解方式）
+@Aspect
+public class MyLog {
+	@Pointcut("execution(* com.kc.spring.aop.*.add*(..))")
+	public void xx() {
+	}// 此方无用，让注解有依靠
+	@Before("xx()")
+	public void log() {
+		System.out.println("MyLog");
+	}
+}
+<beans><aop:aspectj-autoproxy />
+
+
+
+
+SpringWebMVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架,目的简化开发。
+
+前端控制器是DispatcherServlet--处理器映射器(Handler Mapping)进行处理器管理和视图解析器(View Resolver)进行视图管理；
+页面控制器/动作/处理器为Controller接口（仅包含ModelAndView handleRequest(request, response) 方法）的实现（也可以是任何的POJO类）；
+支持本地化（Locale）解析、主题（Theme）解析及文件上传等；提供了非常灵活的数据验证、格式化和数据绑定机制；
+
+ √能非常简单的设计出干净的Web层；  
+ √进行更简洁的Web层的开发；  
+ √天生与Spring框架集成（如IoC容器、AOP等）；  
+ √提供强大的约定大于配置的契约式编程支持；  
+ √能简单的进行Web层的单元测试；  
+ √支持灵活的URL到页面控制器的映射；  
+ √非常容易与其他视图技术集成，如Velocity、FreeMarker等等，
+ √非常灵活的数据验证、格式化和数据绑定机制，能使用任何对象进行数据绑定，不必实现特定框架的API；  
+ √提供一套强大的JSP标签库，简化JSP开发；  
+ √支持灵活的本地化、主题等解析；  
+ √更加简单的异常处理；  
+ √对静态资源的支持；  
+ √支持Restful风格。  
+
+SpringMVC处理请求的流程
+  1、 用户发送请求--前端控制器，前端控制器根据请求信息（如URL）来决定选择哪一个页面控制器进行处理并把请求委托给它;
+  2、 页面控制器接收到请求后，进行功能处理，首先需要收集和绑定请求参数到一个对象,
+并进行验证，然后将命令对象委托给业务对象进行处理；处理完毕后返回一个ModelAndView（模型数据和逻辑视图名）；
+  3、 前端控制器收回控制权，然后根据返回的逻辑视图名，选择相应的视图进行渲染，并把模型数据传入以便视图渲染；
+  4、 前端控制器再次收回控制权，将响应返回给用户；至此整个结束。
+
+------
+SpringMVC:
+0.导jar包
+1.DispatcherServlet
+2.web-inf/xxx-servlet.xml(DispatcherServlet的servletName名相同)
+	<!-- 不想在xml文件中配置bean,可以给类加上spring组件注解,只需再配置下spring的扫描器就可以实现bean的自动载入。 -->
+	<context:component-scan base-package="com.yc" />
+	<!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 
+		两个bean,是spring MVC为@Controllers分发请求所必须的。 并提供了：数据绑定支持，@NumberFormatannotation支持， 
+		@DateTimeFormat支持，@Valid支持，读写XML的支持（JAXB）， 读写JSON的支持（Jackson）。 -->
+	<mvc:annotation-driven />
+
+	<!-- InternalResourceViewResolver通常就只负责到指定位置抓取JSP模板文件， 并构造InternalResourceView类型的View实例并返回。 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+3.创建Controllor
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String add() {
+		return "add";
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String add(@ModelAttribute("u") UserModel u) {//@ModelAttribute("u"),scope
+		System.out.println(u);
+		return "list";
+	}
+
+	@ResponseBody//jackson-core-asl-1.8.8.jar;	jackson-mapper-asl-1.8.8.jar
+	@RequestMapping(value = "json", method = RequestMethod.GET)
+	public UserModel json() {
+		UserModel u = new UserModel("zs", "zs1", new Date());
+		System.out.println(u);
+		return u;
+	}
+
+	// @RequestMapping(value = "{name}/checkName", method = RequestMethod.GET)
+	// public String add(@PathVariable String name, HttpServletResponse resp) {
+
+------
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+</beans>

@@ -1,0 +1,163 @@
+复习
+需求分析:数据库分析
+系统设计:数据库设计
+开发:数据库sql和pl/sql开发-jdbc-Java应用
+测试
+部署:部署数据库脚本
+试运行
+
+JDBC: API,sun公司制定的标准.
+一部分提供给程序员,接口
+一部分提供给数据库厂商,实现.ojdbc14.jar
+
+使用jdbc连接数据库的步骤:
+1)注册驱动,根据不同数据库注册不同的驱动.
+oracle.jdbc.driver.OracleDriver
+2)通过驱动管理器生成连接
+url,username,password
+oracle_url=jdbc:oracle:thin:@ip:1521:orcl
+3)通过连接(Connection)生成语句(Statement)对象
+Statement / PreparedStatement/CallableStatement
+conn.createStatement();
+conn.prepareStatement(sql);
+4)传递sql语句
+stmt.executeQuery(sql);
+prepareStmt.executeQuery();
+5)返回结果
+ResultSet rs = stmt.executeQuery(sql);
+int n = stmt.executeUpdate(sql);
+6)关闭资源
+
+事务:jdbc是自动提交的.
+
+
+作业:
+db_oracle.properties:填入参数(***)
+ConnectionUtils.java:
+读取操作系统文件db_oracle.properties,获得属性文件中的参数,注册驱动,获得连接,关闭连接.
+Main.java:
+接受键盘数据的语句,当输入的不是exit时,由SQLConsole类的execute方法接析并执行该语句.
+SQLConsole.execute()(******)
+
+
+Statement的三个方法
+1)ResultSet executeQuery(sql):select
+2)int executeUpdate(sql):insert/update/delete
+3)boolean execute():可以执行上述两种sql,当执行sql有结果集产生时,返回true,当执行的是dml操作,或者没有结果集,返回false;
+
+StringUtiles.rightPad(String content, int totalLength, String pad);
+举例:
+StringUtiles.rightPad("ename", 10, "")
+
+
+20110301
+一.在JDBC中调用存储过程
+Statement
+    |
+PrepareStatement
+    |
+CallableStatement:存储过程
+
+建立存储过程:
+create table mystu(
+id number(4) primary key,
+name varchar2(20),
+age number(2),
+sex char);
+
+create or replace procedure insert_stu(
+v_id number,
+v_name varchar2,
+v_age number,
+v_sex char
+)
+is
+begin
+insert into mystu(id, name, age, sex)
+values(v_id, v_name, v_age, v_sex);
+commit;
+end;
+
+exec insert_stu(1,'peter',20,'M');
+
+Stored Procedure : SP,存储过程
+SQL>desc insert_stu
+
+--创建过程,有输出参数
+create or replace procedure total_count(
+v_deptno vemp.deptno%type,
+v_count out number
+)
+is
+begin
+select count(*) into v_count
+from vemp where deptno = v_deptno; 
+end;
+--数据库中的测试方式:
+declare
+v_count number;
+begin
+total_count(20, v_count);
+dbms_output.put_line(v_count);
+end;
+
+
+二.sql语句的批处理.(批量处理)
+B:business
+C:customer
+B2B:阿里巴巴
+B2C:360buy.com,当当,卓越,凡客
+C2C:taobao
+
+String sql1 = "....";
+String sql2 = "....";
+//conn.autoCommit(false);
+//stmt.addBatch(...);
+//stmt.executeBatch();
+//conn.commit();
+
+优化问题?
+
+create table mytemp(
+id number primary key,
+name varchar2(50)
+);
+
+增加到批处理缓存中的语句,可以间隔指定的记录条数执行,以提高效率.
+
+三.主键自增长方式在oralce中的实现方式
+--mysql:
+create table student(
+id number primary key auto_increment,
+name varchar(20)
+);
+insert into student(name) values('peter');
+insert into student(name) values('jack');
+select * from student;
+id  name
+----------
+1   peter
+2   jack
+
+--mysql结束,oracle开始---
+create sequence myseq start with 888
+increment by 10;
+
+insert into mystu (id, name, age, sex)
+values(myseq.nextval, 'chris', 20, 'M');
+
+四.连接池
+            open         sql
+connection <-> statement --> resultset
+            close
+
+应用服务器产品(软件产品)
+tomcat : apache开源产品,提供连接池的功能
+weblogic: bea(oracle)
+websphere: ibm
+ 
+Oracle    开源机构   Google
+(sun)     harmony    android
+jdk        (jdk)     java
+
+jdk + tomcat + mysql : 免费

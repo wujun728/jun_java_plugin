@@ -1,0 +1,141 @@
+package ${service_impl_p};
+
+import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.caland.common.page.Pagination;
+import ${entity_p}.${Entity};
+import ${dao_p}.${Entity}Dao;
+import ${query_p}.${Entity}Query;
+import ${service_p}.${Entity}Service;
+/**
+ * 
+ * @author lixu
+ * @Date [2014-3-27 下午03:31:57]
+ */
+@Service
+@Transactional
+public class ${Entity}ServiceImpl implements ${Entity}Service {
+
+	private static final Log log = LogFactory.getLog(${Entity}ServiceImpl.class);
+
+	@Resource
+	${Entity}Dao ${entity}Dao;
+
+	/**
+	 * 插入数据库
+	 * 
+	 * @return
+	 */
+	public <@fieldType type=fields[0].fieldType/> add${Entity}(${Entity} ${entity}) {
+		try {
+			return ${entity}Dao.add${Entity}(${entity});
+		} catch (SQLException e) {
+			log.error("dao add${Entity} error.:" + e.getMessage(), e);
+		}
+		return <#if fields[0].fieldType?contains("bigint")>0L<#elseif fields[0].fieldType?contains("int")>0<#else>null</#if>;
+	}
+
+	/**
+	 * 根据主键查找
+	 */
+	@Transactional(readOnly = true)
+	public ${Entity} get${Entity}ByKey(<@fieldType type=fields[0].fieldType/> id) {
+		try {
+			return ${entity}Dao.get${Entity}ByKey(id);
+		} catch (SQLException e) {
+			log.error("dao get${Entity}byKey error.:" + e.getMessage(), e);
+		}
+		return null;
+	}
+	@Transactional(readOnly = true)
+	public List<${Entity}> get${Entity}ByKeys(List<<@fieldType type=fields[0].fieldType/>> idList) {
+		try {
+			return ${entity}Dao.get${Entity}ByKeys(idList);
+		} catch (SQLException e) {
+			log.error("dao get${Entity}sByKeys erorr." + e.getMessage(), e);
+		}
+		return null;
+	}
+
+	/**
+	 * 根据主键删除
+	 * 
+	 * @return
+	 */
+	public Integer deleteByKey(<@fieldType type=fields[0].fieldType/> id) {
+		try {
+			return ${entity}Dao.deleteByKey(id);
+		} catch (SQLException e) {
+			log.error("dao deleteByKey error. :" + e.getMessage(), e);
+		}
+		return -1;
+	}
+
+	public Integer deleteByKeys(List<<@fieldType type=fields[0].fieldType/>> idList) {
+		try {
+			return ${entity}Dao.deleteByKeys(idList);
+		} catch (SQLException e) {
+			log.error("dao deleteByKeys error. s:" + e.getMessage(), e);
+		}
+		return -1;
+	}
+
+	/**
+	 * 根据主键更新
+	 * 
+	 * @return
+	 */
+	public Integer update${Entity}ByKey(${Entity} ${Entity}) {
+		try {
+			return ${entity}Dao.update${Entity}ByKey(${Entity});
+		} catch (SQLException e) {
+			log.error("dao update${Entity} error.${Entity}:" + e.getMessage(), e);
+		}
+		return -1;
+	}
+	@Transactional(readOnly = true)
+	public Pagination get${Entity}ListWithPage(${Entity}Query ${Entity}Query) {
+		try {
+			return ${entity}Dao.get${Entity}ListWithPage(${Entity}Query);
+		} catch (Exception e) {
+			log.error("get ${Entity} pagination error." + e.getMessage(), e);
+		}
+
+		return new Pagination();
+	}
+	@Transactional(readOnly = true)
+	public List<${Entity}> get${Entity}List(${Entity}Query ${Entity}Query) {
+		try {
+			return ${entity}Dao.get${Entity}List(${Entity}Query);
+		} catch (SQLException e) {
+			log.error("get ${Entity} list error." + e.getMessage(), e);
+		}
+		return Collections.emptyList();
+	}
+}
+<#macro fieldType type>
+	<#if type?contains("bigint")>
+	Long<#t/>
+	<#elseif type?contains("int")>
+	Integer<#t/>
+	<#elseif type?contains("datetime")>
+	Date<#t/>
+	<#elseif type?contains("binary") || type?contains("blob")>
+	Byte[]<#t/>
+	<#elseif type?contains("float")>
+	Float<#t/>
+	<#elseif type?contains("double")>
+	Double<#t/>
+	<#else>
+	String<#t/>
+	</#if>
+</#macro>

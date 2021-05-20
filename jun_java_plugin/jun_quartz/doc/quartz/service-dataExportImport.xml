@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="exportDataDistillService" parent="transactionInterceptor">
+		<property name="target">
+			<bean class="com.gtjy.integration.data.service.ExportDataDistillService">
+				<property name="dataTakeDAO">
+					<ref bean="dataTakeDAO" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="importDataDistillService" parent="transactionInterceptor">
+		<property name="target">
+			<bean class="com.gtjy.integration.data.service.ImportDataDistillService">
+				<property name="dataTakeDAO">
+						<ref bean="dataTakeDAO" />
+					</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean name="dataSyncJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+	  <property name="jobClass" value="com.gtjy.integration.data.service.DataSyncJob" />
+
+	</bean>	
+		
+	<bean id="dataSyncTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="dataSyncJob" />
+	    <!-- run every morning at 6 AM -->
+	    <property name="cronExpression" value="0 0 2 L 12 ? 2049" />
+	</bean>
+		
+	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	    <property name="triggers">
+	        <list>
+	            <ref bean="dataSyncTrigger" />	           
+	        </list>
+	    </property>
+	</bean>	
+</beans>

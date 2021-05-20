@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--延迟加载-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <setting name="lazyLoadTriggerMethods" value="clone"/>
+    </settings>
+
+    <!--
+      0: 属性配置(延迟加载，别名)
+      1:创建连接池
+      2:创建事物管理器
+      3:关联Mapper文件
+      这四步以及上面的lazyLoadingEnabled延迟加载等等属性配置都可以放到Spring里配置
+    -->
+</configuration>

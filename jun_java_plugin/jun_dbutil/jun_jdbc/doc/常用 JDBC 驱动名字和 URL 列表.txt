@@ -1,0 +1,48 @@
+常用 JDBC 驱动名字和 URL 列表 
+
+ODBC  driver
+sun.jdbc.odbc.JdbcOdbcDriver
+jdbc:odbc:name 
+
+用 COM.ibm.db2.jdbc.net.DB2Driver 连接到 DB2 数据库
+一个 DB2 URL 的示例:
+jdbc:db2://aServer.myCompany.com:50002/name 
+
+用 com.sybase.jdbc.SybDriver连接到 Sybase 数据库
+一个 Sybase URL 的示例:
+jdbc:sybase:Tds:aServer.myCompany.com:2025 
+
+MySQL driver
+com.mysql.jdbc.Driver
+jdbc:mysql://hostname:3306/dbname?useUnicode=true&amp;characterEncoding=GBK 
+
+Microsoft SQL Server Driver
+com.microsoft.jdbc.sqlserver.SQLServerDriver
+jdbc:microsoft:sqlserver://127.0.0.1:1433;DatabaseName=WapSvc;User=sa;Password=pwd 
+
+Informix
+com.informix.jdbc.IfxDriver
+jdbc:informix-sqli://hostname:1526/dbname:INFORMIXSERVER=informixservername;user=username;password=password 
+
+Oracle
+oracle.jdbc.driver.OracleDriver
+jdbc:oracle:thin:@hostname:1521:<SID> 
+
+Postgresql
+org.postgresql.Driver
+jdbc:postgresql://localhost/soft 
+
+Apache Derby/Java DB
+org.apache.derby.jdbc.ClientDriver
+jdbc:derby://localhost:1527/databaseName;create=true 
+
+Access 是通过 ODBC 连接的. Excel 也可以. 甚至可以动态构造连接字符串: 
+
+这样可以直接连接到 Access 数据库文件. 
+
+jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb)};DBQ=c:\mydata.mdb 
+
+类似的 Excel 文件也可以用类似方法: 
+
+jdbc:odbc:Driver={Microsoft Excel Driver (*.xls)};DBQ=.\mydata.xls
+

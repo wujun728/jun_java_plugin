@@ -1,0 +1,5 @@
+spring-boot-quartz:
+  image: reg.itstyle.com/spring-boot-quartz
+  ports:
+  - 8080:8080
+  hostname: quartz

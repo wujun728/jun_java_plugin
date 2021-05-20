@@ -1,0 +1,14 @@
+
+    <!-- 邮件任务 -->
+    <!-- 注意：依赖类包activation-*.jar及mail-.*jar，需要将其放在目录ANT_HOME/lib下，Eclipse下运行还需要重设Preferences->Ant->Runtime->Ant home -->
+	<target name="mail" description="Send Mail">
+		<mail mailhost="${mail.mailhost}" subject="${mail.subject}" user="${mail.user}" password="${mail.password}">
+			<from address="${mail.from.address}" />
+			<to address="${mail.to.address}" />
+			<message>${mail.message}</message>
+			<attachments>
+				<fileset dir="${dir.dest}" includes="${mail.attachments}" />
+			</attachments>
+		</mail>
+		<echo message="Send Audit Mail Success(Mail to: ${mail.to.address})." />
+	</target>

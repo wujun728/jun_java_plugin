@@ -1,0 +1,7 @@
+
+	<!-- JAutodoc任务，需安装Eclipse的JAutodoc插件 -->
+	<!-- 注意：此任务仅能在Eclipse下成功运行，使用Run As->Ant Build(配置JRE->Run in the same JRE as the workspace) -->
+	<target name="jautodoc" description="Generate Javadoc">
+		<jautodoc srcdir="${dir.src}" includes="**/*.java" mode="complete" todo="false" />
+		<echo message="Generate Javadoc Success(includes java files: **/*.java)." />
+	</target>

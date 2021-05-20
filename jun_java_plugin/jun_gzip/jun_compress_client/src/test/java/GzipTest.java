@@ -1,0 +1,52 @@
+
+
+import java.io.IOException;
+
+import com.jun.plugin.gzip.compressclient.compress.CompressUtils;
+import com.jun.plugin.gzip.compressclient.encrypt.AESUtils;
+
+/**
+ * 
+ * @author Wujun
+ *
+ */
+public class GzipTest {
+
+    public static void main(String [] args){
+        String content=" ";
+        System.out.println("Step1 压缩前长度:" + content.length());
+        try{
+        	// 压缩
+            String afterCompressStr = CompressUtils.compress(content);
+            System.out.println("Step2 压缩后长度:" + afterCompressStr.length());
+
+            // 加密
+            String afterEncryptStr = AESUtils.encrypt(afterCompressStr);
+            System.out.println("Step3 先压缩后加密的长度:" + afterEncryptStr.length());
+            System.out.println("Step3 先压缩后加密的content:" + afterEncryptStr);
+
+            // 先加密后压缩
+            String _afterEncryptStr = AESUtils.encrypt(content);
+            System.out.println("先加密的长度:" +_afterEncryptStr);
+            String _afterCompressStr = CompressUtils.compress(_afterEncryptStr);
+            System.out.println("先加密后压缩的长度:" + _afterCompressStr.length());
+            
+            // 解密
+//            String afterEncryptStrVal=afterEncryptStr;
+            String afterEncryptStrVal="2d0edaa5fb0a14b105be7c954e7061eee165de7086faa9cfd19e5fb03d3af95e18caa582dd3e217a8b0bf16ef652daf9f6a240cc989c9c1c71ac2ac012024bdb84a6d1502bc053dff1ef5d0588af96794c9fe71a7e8f0241708903c1aecd7415790931536b1efe1aefc5cd4af47304ff089b3bc37b8a859c00f3562bae04ed22333cefe7c5530c11a96a15393736ee16c2d747da5a941d58377d287b63cb983855624a936abde105df1b8ffca94d37ed99e7022b58fd194724d1cf7576d226e24aed27542dfd320dd1059fcfc3c20d462affbe206ba8d2d695076d4b24292139fe4d56b380dbc2df195e215264424366420c964b1be5b07eb5481ce56ec8f3e70fddd7c5e5c14f97c55d68194001993395672d605bbcb190d9b003c57a51cf14330637d4a24cc6d0aa99002b1c83d3f94333d14b696a0248d2d125f19d751c66bb3f50be6c3fc2c92f26afb0886b9c130811496a89c8e805ecb523bafe3a78f1c0e30f5ee57a4b7990076b532dba1e5fca4bfabe7878bc3eece128782290b518d238287787ad80254dba44f80166ab503fad401186204941653e8929dfa6144ed63d4c290b563050adfd24e8caec0f82e30f32d17c7a24cf18de22d071bff4411894bce13d58cd322c6d484714bdd07a2dd29cc0931ea675eb0d44a6041c65f1fe7bdbffaae5c344bb112bf5586542bb2135f20db7f43554b1c7fbcd0ee1c6adb5b7acba9794db352392dc617f1bb6f1391926baf5479a82fb7b1446e0f55581212564de9f977f1c27f967c0bef4ef45e4443660fee0c6619019ea5c5e0cbdfc9348b9eaf09f5fd99850c4faf7ac122f28c3f75e140d6256dd582158479a95d7b4fc57d8591321b906ad2fb9aa4168c18250e3502d49bd5daca93830c6a94e33040687d9493c7e1a49ce019fe04bc14b57c198453b606b52c0a762f0c68dec7a3f4693958c7d06afe14dc1f47623eccab1bf657659aa7471065cbe9256712ae09094f46fc04a0c55231078d38347533aa3fba6b9c233f2f6542b67344bd422d517808f51e69b5d3af067ec21f72a69d3c83202a7795e316a3b5d2a56d481ee78ea4823dcd2e8622e40cafcf93825c6379394aa039d3d7f2ed67a44cc21735e1ac0a33a4afa9efbbd37f13dbc8370b48c49fac31d3105fc82a804276839f1f082e600b735ec3ec54191c063e79c11c46a1e37c06d8501289ba0740f6976e5a65ceb6567501cb7e9da4293be4d4dea82a1e9c5ef51d4cabf9e8fe7eb50fa36b43c682f5f92c1693691c31003aafdeebc58c3dd700d24fdcc8498c6fa0b668dc58449d8058c476c0c1bafe9fe1c61ed28c6afa6bd91ac228038e842e7d99f8ae95fa7bf1681e3008bc7a153c3745981f0752692f4d741eb8a73b2bae1a80a91e428fcef487ba28e8dbcac87244bc616438c975f5bb56f1031e56ee4ea08b9207b3c76295784d4a219390d5f084f8c1e2773ca0ed2d5938f609539ced1ae2d536c8937774fc2c22d386fb7f37ca7a75df4f12affc62c9d0cc87c4262fbddfb0069d4613cec4449c93041193ca5b73f8df4d54b5b72dbf2d7d05e69e5e72288a3b9c27395a4c9b8cfd5764aae43384ace8a09a972c8ac919f022f59e043df0f486bce012858e419eb6b943881778ddfe99254f99ff1faa500e3e74ceebb99cadae48ccc76bbeece42e1ea946c6ef9fc8931e446efaac4d8e2ecaeaccc6c7d7963b025b9b9418c985cd090b094e4b7ef81105795f5a7e0e897074eb76ff714f724bdc6ef31677d75acfec039ac2312bda44a75401bf7114fe3ab98a797591a9d13d8308b332f5d150c76bfcffb70baed05cfdaabf3cac1081d8f9c5219b7d46fbd571431af4f808f667808e955787bd2881c0b01fbc905454094dcc5d741f3a0a4d5ef1f44457d02d7be9645596072a5082d52ca078bc5e74c6b67b756719366d11273697e580424135701462db41da2c343d31a3f7fe16700670d19ddb7485433f883eb5065a6debad46c73c5c5f071255578f281a95da5857524c1032025db594f26e460f401bd2ea161e4fd426b7cf1e5e352be462b1a3211765414cadc78b2303994cdc2066e140b7e401deb377b2395484e97bb666ae598fa88e0c3beba8ab1ddcc3535b022583e8bab9ee41cc302f5e9797801df8394b77e3a8a13e77bb4775d6ccd6b4bd0d574820ad5d60e25c92379ab7768e2aa2dbed2713bf3a172789ea5d25ccb15e1de6e660f369869a3346f060848eed189c3fef1424cdd1eb90f0756a613ca4423013defc6f917ed1e550e59ca4007169d62d2202d93653e14210495e60efa5a8c649840b7c43cbc6f97ea71cdd886caa7113fafe844c3dd06157cb1cf7f4c2eeaae2f3723faaaed5039d0493f1067a116e342119232c5d162d6c70eed288219c34c6e0e1747c006e924f4dadcd871cbf1a041ddfd1df2a24004e1d9ecd568d4c6627066e4107d716842b63e9ff8715a949b7c2d7701b1280dbafe3b215b86cd2c20ec272052b204e014c5f976ec233d976c6dabc54d794cc2fcf93475ef85d4b9ae28838df0b424d002d7a61de25c856503c4c1260c1af5e5ad02cff9775cf12bdfbf8bb7185bd789b520175893d62511bc5fa5d69c35d2730a0d520f125a8ee2864b6645f7c1c4a16b38f389bc883bb57d0ae3881f12b1787a8bff1f8d8e0bb54649fcf8290b8ff72b478dd21cf7ce44fa6242739e63ef07b6f9c7b798f9e9cc625faf08377fe2302fba2176dfc8fd4c62c8d944b83ff3a2cc322bdca64b7b1b2aa7be23def93b6990e00e1b1c98b9774cb75059874545b0e7f67a3337f9bb11a692feab7f0edf81273c2b7862b637e4697dc62e89e8ba8adfbd755e4af333b8c30729ee0753c7aeaa2ca0585ae3d99188e3469db5a58d4b8a81293423886dfbd2f3ce94a5a7bcb96ebf06c39efd7a2d15c4bd5e8215155d493b6e6d333b09450800155c2391a1df0f7ca38c34765e3e13937e9051ec85f6135bfae43ca0f9fc1c0c69562145408f9b8cac805a183936ae4cbb667b1a3180c5d06927ae21abf55ebb4186a82eae6f0f9c2622d84905b05fe2735523bed8644f4ccdfbb85eef0e96b5d0e635fbbf4bc840acc2dd32287503a5a86b1bb3a2bcd557b3384f4428680683bfd2831f3904667ef42e1d0de2a559eb40cd60d2d27afe52b098133f0a8739723a5d07b5b5709d704fdbe2d101a853272a2d0709372eb1b8c65ed2d3d6f4af10e244f8b14b00d6ab2503e6411ae7d9c6c3b10e508aa5189954";
+            String afterDecryptStr = AESUtils.decrypt(afterEncryptStrVal);
+            System.out.println("Step4 解密:" + afterDecryptStr.length());
+            
+
+            // 解压缩
+            String afterDecryptContent = CompressUtils.decompressToStr(afterDecryptStr);
+            System.out.println("Step5 解压缩:" + afterDecryptContent.length());
+            System.out.println("Step5 解压缩:" + afterDecryptContent);
+            
+            
+
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+}

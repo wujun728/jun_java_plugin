@@ -1,0 +1,12 @@
+	<error-page>
+		<error-code>500</error-code>
+		<location>/basic_page/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/basic_page/error.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/basic_page/error.jsp</location>
+	</error-page>

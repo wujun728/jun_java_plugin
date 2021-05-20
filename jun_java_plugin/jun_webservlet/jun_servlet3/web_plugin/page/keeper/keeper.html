@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Keeper Demo Online chat room</title>
+<!-- The script's src attribute set in the /WEB-INF/web.xml file. -->
+<script type="text/javascript" src="./keeperScript.js"></script>
+<script type="text/javascript" src="./ajaxReq.js"></script>
+<script type="text/javascript">
+	Keeper.addListener('timer',showTime);
+	function showTime(obj){
+		var sp = document.getElementById("dateTime");
+		if(sp){
+			sp.innerHTML = obj.responseText;
+		}
+	}
+
+	function startOrStop(obj){
+		var btn = document.getElementById("controlBtn")
+		btn.value=obj.responseText;
+	}
+
+	Keeper.addListener('msg',showMsg,"GBK");
+	function showMsg(obj){
+		var msg = document.getElementById("msg");
+		if(msg){
+			
+				msg.value = obj.responseText+"\n"+msg.value;
+			
+		}
+	}
+	function sendMsg() {
+		var msg = document.getElementById("sendMsg");
+		if(msg){
+			var d = "msg="+msg.value;
+			sendReq('POST','./demo',d,startOrStop);
+			msg.value = "";
+		}
+	}
+	
+</script>
+</head>
+<body>
+	<h2>
+		Time:<span id="dateTime"></span>
+	</h2>
+	<br />
+	<input id="controlBtn" type="button" value="start" onclick="sendReq('GET','./demo','',startOrStop);">
+	<br />
+	<textarea rows="7" cols="80" id="msg"></textarea>
+	<br />
+	<input type="text" id="sendMsg">
+	<br/>
+	<input id="sendBtn" type="button" value="Send" onclick="sendMsg();">
+</body>
+</html>

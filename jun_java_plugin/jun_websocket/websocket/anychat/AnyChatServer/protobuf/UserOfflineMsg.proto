@@ -1,0 +1,5 @@
+syntax = "proto3";
+package org.anychat.protobuf.msg;
+message UserOffline{
+	string userId=1;
+}

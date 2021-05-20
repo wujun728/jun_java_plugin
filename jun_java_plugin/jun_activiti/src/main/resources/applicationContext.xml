@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:cache="http://www.springframework.org/schema/cache" 
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+          http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd 
+          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+          
+    <!-- 在applicationContext.xml中只加载除表现层之外的所有bean，因此下面一行中不需要加载@Controller -->                       
+    <!-- 扫描注解Bean 不包括@Controller(表现层) 保证@Service @Repository的属性被注入-->
+    <context:component-scan base-package="com.zml.oa">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    
+    <!-- 引入配置文件 --> 
+	<context:property-placeholder ignore-unresolvable="true" local-override="true" location="classpath:application.properties"/>
+    
+    <util:properties id="APP_PROPERTIES" location="classpath:application.properties" local-override="true"/>
+    
+	<!-- 数据源 -->
+	<bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource" >
+		<!-- 数据源别名 -->
+		<property name="alias" value="proxoolDataSource"/>
+		<property name="driver" value="${connection.driverClassName}" />
+		<property name="driverUrl" value="${connection.url}" />
+		<property name="user" value="${connection.username}" />
+		<property name="password" value="${connection.password}" />
+		<!--最大连接数(默认5个),超过了这个连接数,再有请求时,就排在队列中等候,最大的等待请求数由maximum-new-connections决定 -->
+		<property name="maximumConnectionCount" value="${proxool.maximum.connection.count}"/>
+		<!--最小连接数(默认2个)-->  
+		<property name="minimumConnectionCount" value="${proxool.minimum.connection.count}" />
+		<property name="statistics" value="${proxool.statistics}" />
+		<property name="simultaneousBuildThrottle" value="${proxool.simultaneous.build.throttle}"/>
+		
+		
+	</bean>  
+	
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"> 
+        <property name="dataSource" ref="dataSource" /> 
+		<property name="packagesToScan" value="com.zml.oa.entity"/>
+        <property name="hibernateProperties"> 
+         	<props>
+		         <prop key="hibernate.show_sql">true</prop>
+		         <prop key="hibernate.format_sql">true</prop>
+		         <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+		 	 <prop key="hibernate.hbm2ddl.auto">update</prop> 
+  			</props>
+        </property> 
+    </bean>   
+	 
+	<!-- jdbc模板 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+  	
+	<!-- jdbc命名参数模板 -->
+	<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+	
+	<bean id="applicationContextHelper" class="com.zml.oa.util.ApplicationContextHelper"/>
+  	
+   	<!-- 开启AOP监听 只对当前配置文件有效 -->
+	<aop:aspectj-autoproxy expose-proxy="true"/>
+  	
+  	<!-- 开启注解事务 只对当前配置文件有效 -->
+  	<tx:annotation-driven transaction-manager="transactionManager"/>
+  
+    <!-- 事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="doSave*" propagation="REQUIRED" />  
+           	<tx:method name="doAdd*" propagation="REQUIRED" />  
+           	<tx:method name="add*" propagation="REQUIRED" />  
+           	<tx:method name="set*" propagation="REQUIRED" />  
+           	<tx:method name="doCreate*" propagation="REQUIRED" />  
+          	<tx:method name="doInsert*" propagation="REQUIRED" />  
+           	<tx:method name="doUpdate*" propagation="REQUIRED" />  
+           	<tx:method name="doMerge*" propagation="REQUIRED" />  
+           	<tx:method name="doDelete*" propagation="REQUIRED" />  
+           	<tx:method name="doRemove*" propagation="REQUIRED" />  
+           	<tx:method name="delete" propagation="REQUIRED" />  
+           	<tx:method name="doPut*" propagation="REQUIRED" />
+           	<!-- workflowService.bankTransfer 需要回滚，但是传播行为设置为REQUIRES_NEW 相应的 act_ru_identitylink表中又不能保存task_id_   -->
+			<!-- 先记下来，待解决 -->
+			<tx:method name="bankTransfer*" propagation="REQUIRES_NEW" />
+            <!--hibernate4必须配置为开启事务 否则 getCurrentSession()获取不到-->
+            <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="count*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="find*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="list*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="toList*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config expose-proxy="true" proxy-target-class="true">
+        <!-- 只对业务逻辑层实施事务 -->
+        <aop:pointcut id="txPointcut" expression="execution(* com.zml.oa..service..*.*(..))"/>
+        <aop:advisor id="txAdvisor" advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+    </aop:config>
+    
+    
+    <!-- Activiti的bean -->
+	<!-- 流程引擎的配置bean -->
+	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+		<property name="dataSource" ref="dataSource" />
+		<property name="databaseSchemaUpdate" value="true"/>
+		<property name="transactionManager" ref="transactionManager" />
+        <!-- 生成流程图的字体 -->
+        <property name="activityFontName" value="${diagram.activityFontName}"/>
+        <property name="labelFontName" value="${diagram.labelFontName}"/>
+		<!-- <property name="deploymentResources" value="classpath*:/deploy/*" /> -->
+	</bean>
+	<!-- 流程引擎的bean -->
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+	<!-- 服务组件的bean -->
+	<bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
+	<bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
+	<bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
+	<bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
+	<bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
+	<bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService" />
+	
+    <!-- 启用缓存注解功能(请将其配置在Spring主配置文件中) -->
+	<cache:annotation-driven cache-manager="springCacheManager" mode="proxy" />
+	
+    <import resource="classpath:spring-config-cache.xml"/>
+    <import resource="classpath:spring-config-shiro.xml"/>
+	
+</beans>

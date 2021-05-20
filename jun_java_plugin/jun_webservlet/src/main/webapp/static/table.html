@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="simple.css" rel="stylesheet" type="text/css">
+<title>simple.css测试效果页面</title>
+</head>
+<body>
+<div class="css-panel">
+    <div class="css-panel-header">
+        <div class="css-left">
+            <h3>Product List</h3>
+        </div>
+        <div class="css-right">
+            <a href="product_create.html">New Product</a>
+        </div>
+    </div>
+    <div class="css-panel-content">
+        <div class="css-row">
+            <div class="css-left">
+                <form id="product_search_form" method="post">
+                    <div class="css-search">
+                        <input type="text" id="product_name" placeholder="Product Name"/>
+                        <span class="css-search-button">
+                            <button type="submit">Search</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="css-right">
+                <div id="product_pager"></div>
+            </div>
+        </div>
+        <table id="product_table" class="css-table">
+            <thead>
+                <tr>
+                    <td>Product Type</td>
+                    <td>Product Name</td>
+                    <td>Product Code</td>
+                    <td>Price</td>
+                    <td>Description</td>
+                    <td class="css-width-75">Action</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<form id="product_create_form" method="post" class="css-form">
+    <div class="css-form-header">
+        <h3>Create Product</h3>
+    </div>
+    <div class="css-form-row">
+        <label for="product_type_id">Product Type:</label>
+        <select id="product_type_id" name="productTypeId">
+            <option value="0"></option>
+            <option value="1">Mobile Phone</option>
+            <option value="2">Tablet Computer</option>
+        </select>
+    </div>
+    <div class="css-form-row">
+        <label for="product_name">Product Name:</label>
+        <input type="text" id="product_name" name="productName"/>
+    </div>
+    <div class="css-form-row">
+        <label for="product_code">Product Code:</label>
+        <input type="text" id="product_code" name="productCode"/>
+    </div>
+    <div class="css-form-row">
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price"/>
+    </div>
+    <div class="css-form-row">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="5"></textarea>
+    </div>
+    <div class="css-form-footer">
+        <button type="submit">Submit</button>
+        <button type="button" id="cancel">Cancel</button>
+    </div>
+</form>
+</body>
+</html>

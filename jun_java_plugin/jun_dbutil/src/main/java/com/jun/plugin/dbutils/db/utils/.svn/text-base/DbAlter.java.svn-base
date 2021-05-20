@@ -1,0 +1,49 @@
+package klg.db.utils;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.dbutils.DbUtils;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.MapListHandler;
+
+public class DbAlter {
+	
+	public static void main(String[] args) {
+		try {
+			alterFieldCharset();
+			//alterTable();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 更新字段的字符集和校验规则
+	 * @throws SQLException
+	 */
+	public static void alterFieldCharset() throws SQLException{
+
+		String sql="select * from information_schema.`COLUMNS` WHERE TABLE_SCHEMA='nursinghomehaihejigoukf' and TABLE_NAME like 'n_%'  and CHARACTER_SET_NAME is not null";
+		List<Map<String, Object>> fields=new QueryRunner().query(DBAccess.getConn(), sql, new MapListHandler());
+		for(Map<String, Object> field:fields){
+			String alter="ALTER TABLE `" + field.get("TABLE_NAME") + "` MODIFY COLUMN `" +field.get("COLUMN_NAME")+"` "
+					+field.get("COLUMN_TYPE") +" CHARACTER SET utf8 COLLATE utf8_general_ci;";
+			System.out.println(alter);
+		}
+	}
+	/**
+	 * 更改表的引擎，字符集，校验规则
+	 * @throws SQLException
+	 */
+	public static void alterTable() throws SQLException{
+		String sql="select * from information_schema.`TABLES` WHERE TABLE_SCHEMA='nursinghomehaihejigoukf' and TABLE_NAME like 'n_%'";
+		List<Map<String, Object>> tables=new QueryRunner().query(DBAccess.getConn(), sql, new MapListHandler());
+		for(Map<String, Object> table:tables){
+			String alter="ALTER TABLE "+table.get("TABLE_NAME")+" ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci;";
+			System.out.println(alter);
+		}		
+	}
+	
+}

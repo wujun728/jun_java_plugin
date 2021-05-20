@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	
+	
+	<!-- 数据源 -->
+	<context:property-placeholder location="classpath:db.properties"/>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driver}"></property>
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<property name="user" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	<!-- 事务管理器 -->
+	<bean id="dataSourceTransactionManager" 
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!-- 基于注解的事务管理 -->
+	<tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
+
+	<!-- 定义MybatisPlus的全局策略配置-->
+	<bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+		<!-- 数据源 -->
+		<property name="dataSource" ref="dataSource"/>
+
+		<!--<property name="configLocation" value="classpath:mybatis-config.xml"/>-->
+
+		<property name="configuration">
+			<bean class="com.baomidou.mybatisplus.core.MybatisConfiguration">
+				<property name="mapUnderscoreToCamelCase" value="true"/>
+			</bean>
+		</property>
+		<!-- 别名处理 -->
+		<property name="typeAliasesPackage" value="com.com.bzcoder.entity"/>
+		<!-- 注入全局MP策略配置 -->
+		<property name="globalConfig">
+			<bean class="com.baomidou.mybatisplus.core.config.GlobalConfig">
+				<property name="dbConfig">
+					<bean class="com.baomidou.mybatisplus.core.config.GlobalConfig.DbConfig">
+						<property name="idType" value="AUTO"/>
+						<property name="tablePrefix" value="tbl_"/>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<!-- 
+		配置mybatis 扫描mapper接口的路径
+	 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.bzcoder.mapper"></property>
+	</bean>
+	
+	
+</beans>

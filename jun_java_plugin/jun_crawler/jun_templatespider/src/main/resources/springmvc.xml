@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!-- 扫描controller的注解，别的不扫描 -->
+    <context:component-scan base-package="com.xia">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- JSP文件所在的目录 -->
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <!-- 文件的后缀名 -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!-- 设置静态资源不过滤 -->
+    <mvc:annotation-driven/>
+    <mvc:default-servlet-handler/>
+</beans>

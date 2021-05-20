@@ -1,0 +1,9 @@
+内容：
+	本章讲解了JAVA中集合框架的整体概况，并通过代码讲解了List、Set、Map、Iterator、Enumeration接口及Vector、ArrayList、HashMap、Hashtable、TreeMap、HashSet、TreeSet、Properties类的使用
+
+产品：JDK 1.5
+
+技术：JAVA基础
+
+难度：
+	★★★★☆

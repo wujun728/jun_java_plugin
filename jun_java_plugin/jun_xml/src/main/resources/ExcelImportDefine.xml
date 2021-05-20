@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<root>
+    <!-- 
+        tradeCode:交易码， 用以确定每一个业务逻辑模块唯一的导入交易。
+        tableName：表名，后台物理表中用以存储导入数据的临时表名。
+        valiClass：数据从临时表到实际业务表的逻辑实现类名，该类实现com.yuchengtech.bob.importimpl.ImportInterface接口。如不填写，则默认为com.yuchengtech.bob.importimpl.DefaultImpl类.
+        sheetStartIndex:导入EXCEL文件中，导入数据的起始页签,默认为0。
+        creatorColumn=临时表中“创建人”的列名，该列不在column中配置。
+        creatOrgColumn=临时表中“创建机构”的列名，该列不在column中配置。
+        creatDateColumn=临时表中“创建日期”的列名，该列不在column中配置。
+                                    列定义：
+                name：中文名称；
+                columnIndex:该列对应数据在导入的EXCEL sheet中所出列数（从0开始计数）。
+                fieldCode：该列数据对应的临时表中的列名。
+                isPk:是否主键，主键生成策略：IMP_+导入批次号_+sheet页号_+数据行号.主键请在物理表中定义为varchar2类型,且长度在30以上。
+                type:数据类型。目前主要使用3中数据类型校验，“NUMBER”,"VARCHAR2","DATE"类型，默认按VARCHAR2类型处理。
+                length:数据长度,默认为0。
+                precial:数据精度，默认为0。
+                isNull：可否为空，默认为false。
+                                    数据处理策略：
+                                           数字类型：超出长度精度部分，整数部分截取右边，小数部分截取左边。isNull="false"，且数据为空时，取0,长度为0，则不处理.
+                                           字符串类型：查出长度部分，截取右边，长度为0，则不处理。
+                                          日期数据：对于不合法数据，置空，如不可为空，则置为当前时间，长度为0，则不处理。
+     -->
+    <trade tradeCode="ImportTest" tableName="A_IMPORT_TEST" valiClass="" sheetStartIndex="1" creatorColumn="CREATOR" creatOrgColumn="CREATORORG" creatDateColumn="CREATORDATE">
+        <column name="主键" columnIndex="2" fieldCode="IDPK" isPK="true" type="VARCHAR2" length="" precial="" isNull="false"></column>
+        <column name="var数据" columnIndex="3" fieldCode="DATAVAR" isPK="false" type="VARCHAR2" length="10" precial="" isNull="true"></column>
+        <column name="num数据" columnIndex="4" fieldCode="DATANUM" isPK="false" type="NUMBER" length="" precial="" isNull="true"></column>
+        <column name="日期数据" columnIndex="5" fieldCode="DATADATE" isPK="false" type="DATE" length="" precial="" isNull="true"></column>
+   	</trade>
+   	<trade tradeCode="MktIndexImportTemp" tableName="OCRM_F_CI_P_PROBUY_INFO" valiClass="" sheetStartIndex="0" creatorColumn="" creatOrgColumn="" creatDateColumn="">
+   	    <column name="ID" columnIndex="0" fieldCode="ID" isPK="true" type="VARCHAR2" length="32" precial="" isNull="false"></column>
+   	    <column name="客户号" columnIndex="1" fieldCode="CUST_ID" isPK="false" type="VARCHAR2" length="32" precial="" isNull="true"></column>
+        <column name="客户名称" columnIndex="2" fieldCode="CUST_NAME" isPK="false" type="VARCHAR2" length="32" precial="" isNull="true"></column>
+        <column name="证件类型" columnIndex="3" fieldCode="CERT_TYPE" isPK="false" type="VARCHAR2" length="100" precial="" isNull="true"></column>
+        <column name="证件号码" columnIndex="4" fieldCode="CERT_NUM" isPK="false" type="VARCHAR2" length="100" precial="" isNull="true"></column>
+        <column name="购买产品编号" columnIndex="5" fieldCode="PRODUCT_NO" isPK="false" type="VARCHAR2" length="100" precial="" isNull="true"></column>
+        <column name="购买产品名称" columnIndex="6" fieldCode="PRODUCT_NAME" isPK="false" type="VARCHAR2" length="100" precial="" isNull="true"></column>
+        <column name="购买金额" columnIndex="7" fieldCode="BUY_AMT" isPK="false" type="NUMBER" length="100" precial="" isNull="true"></column>
+        <column name="添加日期" columnIndex="8" fieldCode="OPP_DATE" isPK="false" type="DATE" length="" precial="" isNull="true"></column>
+        <column name="添加理由" columnIndex="9" fieldCode="OPP_REASON" isPK="false" type="VARCHAR2" length="100" precial="" isNull="true"></column>
+        <column name="操作类型"  columnIndex="10" fieldCode="OPP_TYPE"  isPK="false"  type="VARCHAR2"  length="100"  precial=""  isNull="true"></column>
+        <column name="操作人"  columnIndex="11"  fieldCode="OPP_USER"  isPK="false"  type="VARCHAR2"  length="100"  precial=""  isNull="true"></column>
+   	</trade>
+   	<trade tradeCode="MktIndexImportTemp1" tableName="OCRM_F_CI_P_PROBUY_INFO_TEMP" valiClass="com.yuchengtech.bob.action.ProbuyImport" sheetStartIndex="0" creatorColumn="" creatOrgColumn="" creatDateColumn="">
+   	    <column name="ID" columnIndex="0" fieldCode="ID" isPK="true" type="VARCHAR2" length="32" precial="" isNull="false"></column>
+   	    <column name="客户号"  columnIndex="1"  fieldCode="CUST_ID"  isPK="false"  type="VARCHAR2"  length="32"  precial=""  isNull="true"></column>
+        <column name="客户名称"  columnIndex="2"  fieldCode="CUST_NAME"  isPK="false"  type="VARCHAR2"  length="32"  precial=""  isNull="true"></column>
+        <column name="证件类型"  columnIndex="3"  fieldCode="CERT_TYPE"  isPK="false"  type="VARCHAR2"  length="100"  precial=""  isNull="true"></column>
+        <column name="证件号码"  columnIndex="4"  fieldCode="CERT_NUM"  isPK="false"  type="VARCHAR2"  length="100"  precial=""  isNull="true"></column>
+        <column name="购买产品编号"  columnIndex="5"  fieldCode="PRODUCT_NO"  isPK="false"  type="VARCHAR2"  length="100"  precial=""  isNull="true"></column>
+        <column name="购买产品名称"  columnIndex="6"  fieldCode="PRODUCT_NAME"  isPK="false"  type="VARCHAR2"  length="100"  precial=""  isNull="true"></column>
+        <column name="购买金额"  columnIndex="7"  fieldCode="BUY_AMT"  isPK="false"  type="VARCHAR2"  length="100"  precial=""  isNull="true"></column>
+        <column name="删除日期"  columnIndex="8"  fieldCode="OPP_DATE"  isPK="false"  type="VARCHAR2"  length=""  precial=""  isNull="true"></column>
+        <column name="删除理由"  columnIndex="9"  fieldCode="OPP_REASON"  isPK="false"  type="VARCHAR2"  length="100"  precial=""  isNull="true"></column>
+        <column name="操作类型"   columnIndex="10"  fieldCode="OPP_TYPE"   isPK="false"   type="VARCHAR2"   length="100"   precial=""   isNull="true"></column>
+        <column name="操作人"   columnIndex="11"   fieldCode="OPP_USER"   isPK="false"   type="VARCHAR2"   length="100"   precial=""   isNull="true"></column>
+   	</trade>
+   
+    <!--证件号码导入（客户群）-->
+    <trade tradeCode="importantGroupCust" tableName="OCRM_F_GROUP_TEMP" valiClass="" sheetStartIndex="1" creatorColumn="" creatOrgColumn="" creatDateColumn="">
+   	  <column name="序号"  columnIndex="0"  fieldCode="ID"  isPK="true"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>
+      <column name="证件类型"  columnIndex="1"  fieldCode="CERT_TYPE"  isPK="false"  type="VARCHAR2"  length="12"  precial=""  isNull="true"></column>
+      <column name="证件号码"  columnIndex="2"  fieldCode="CERT_NUM"  isPK="false"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>
+   	</trade>
+   	
+   	<!--贵宾卡增值服务参数导入-->
+    <trade tradeCode="importVipCardAddServiceParamt" tableName="OCRM_F_CI_VIPADDPARAM_TEMP" valiClass="com.yuchengtech.bob.action.VipAddServiceParamImport" sheetStartIndex="0" creatorColumn="" creatOrgColumn="" creatDateColumn="">
+   	  <column name="编号"  columnIndex="0"  fieldCode="ID"  isPK="true"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>
+      <column name="贵宾卡级别"  columnIndex="1"  fieldCode="VIP_CARD_LEVEL"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+      <column name="提供商"  columnIndex="2"  fieldCode="PROVIDER_NAME"  isPK="false"  type="VARCHAR2"  length="100"  precial=""  isNull="true"></column>
+      <column name="增值服务名称"  columnIndex="3"  fieldCode="ADD_SERVICE_NAME"  isPK="false"  type="VARCHAR2"  length="30"  precial=""  isNull="true"></column>
+      <column name="增值服务标识"  columnIndex="4"  fieldCode="ADD_SERVICE_IDENTIFY"  isPK="false"  type="VARCHAR2"  length="30"  precial=""  isNull="true"></column>
+      <column name="适用范围"  columnIndex="5"  fieldCode="RANGE_APPLY"  isPK="false"  type="VARCHAR2"  length="30"  precial=""  isNull="true"></column>
+      <column name="增值服务内容"  columnIndex="6"  fieldCode="SERVICE_CONTENT"  isPK="false"  type="VARCHAR2"  length="200"  precial=""  isNull="true"></column>
+      <column name="备注"  columnIndex="7"  fieldCode="REMARK"  isPK="false"  type="VARCHAR2"  length="100"  precial=""  isNull="true"></column>
+   	</trade>
+   	
+    <!--贵宾卡增值服务享受记录导入-->
+    <trade tradeCode="importVipEnjoyServiceRecord" tableName="OCRM_F_CI_VIPADDPARAM_TEMP" valiClass="com.yuchengtech.bob.action.VipEnjoyServiceRecordImport" sheetStartIndex="0" creatorColumn="" creatOrgColumn="" creatDateColumn="">
+   	  <column name="编号"  columnIndex="0"  fieldCode="ID"  isPK="true"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>
+      <column name="客户号"  columnIndex="1"  fieldCode="CUST_ID"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+      <column name="客户名称"  columnIndex="2"  fieldCode="CUST_NAME"  isPK="false"  type="VARCHAR2"  length="30"  precial=""  isNull="true"></column>
+      <column name="联盟商代码"  columnIndex="3"  fieldCode="ALIANCE_PROGRAM_ID"  isPK="false"  type="VARCHAR2"  length="30"  precial=""  isNull="true"></column>
+      <column name="联盟商名称"  columnIndex="4"  fieldCode="ALIANCE_PROGRAM_NAME"  isPK="false"  type="VARCHAR2"  length="100"  precial=""  isNull="true"></column>
+      <column name="增值服务标识"  columnIndex="5"  fieldCode="ADD_SERVICE_IDENTIFY"  isPK="false"  type="VARCHAR2"  length="30"  precial=""  isNull="true"></column>
+      <column name="增值服务内容"  columnIndex="6"  fieldCode="SERVICE_CONTENT"  isPK="false"  type="VARCHAR2"  length="200"  precial=""  isNull="true"></column>
+      <column name="享受服务日期"  columnIndex="7"  fieldCode="ENJOY_SERVICE_DATE"  isPK="false"  type="VARCHAR2"  length="30"  precial=""  isNull="true"></column>
+   	</trade>
+   	
+    <!--潜在客户导入-->
+	   <!--潜在客户导入-->
+	<trade tradeCode="importLantentCustInfo" tableName="ACRM_F_CI_CUSTOMER_TEMP" valiClass="com.yuchengtech.crm.customer.action.LantentCustomerImport" sheetStartIndex="1" creatorColumn="" creatOrgColumn="" creatDateColumn="">
+   	    <column name="序号" columnIndex="0" fieldCode="CUST_ID" isPK="true" type="VARCHAR2" length="27" precial="" isNull="false"></column>
+        <column name="客户名称"  columnIndex="1"  fieldCode="CUST_NAME"  isPK="false"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>
+        <column name="客户类别"  columnIndex="2"  fieldCode="CUST_TYPE"  isPK="false"  type="VARCHAR2"  length="10"  precial=""  isNull="true"></column>
+        <column name="证件类型"  columnIndex="3"  fieldCode="IDENT_TYPE"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+        <column name="证件号码"  columnIndex="4"  fieldCode="IDENT_NO"  isPK="false"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>
+        <column name="联系人"  columnIndex="6"  fieldCode="LINKMAN_NAME"  isPK="false"  type="VARCHAR2"  length="30"  precial=""  isNull="true"></column>
+        <column name="联系手机"  columnIndex="9"  fieldCode="LINKMAN_TEL"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+<!--         <column name="座机号"  columnIndex="6"  fieldCode="TELEPHONE_NO"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column> -->
+<!--         <column name="联系地址"  columnIndex="7"  fieldCode="COMMU_ADDR"  isPK="false"   type="VARCHAR2"   length="200"   precial=""   isNull="true"></column> -->
+<!--         <column name="电话区域"  columnIndex="8"  fieldCode="PHONE_AREA"  isPK="false"  type="VARCHAR2"  length="10"  precial=""  isNull="true"></column> -->
+<!--         <column name="邮编号码"  columnIndex="10"  fieldCode="PORT_NO"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column> -->
+ 		<column name="其他名称"  columnIndex="11"  fieldCode="SHORT_NAME"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+  		<column name="英文名称"  columnIndex="12"  fieldCode="EN_NAME"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+  		<column name="客户来源渠道"  columnIndex="13"  fieldCode="SOURCE_CHANNEL"  isPK="false"  type="VARCHAR2"  length="10"  precial=""  isNull="true"></column>
+   </trade>
+   
+    <!--贵金属AUM导入-->
+	<trade tradeCode="nobelMetalImportInfo" tableName="A_AC_CUST_ASSET_AUM_INPUT_TMP" valiClass="com.yuchengtech.bob.action.NobelMetalImport" sheetStartIndex="0" creatorColumn="INPUT_USER" creatOrgColumn="" creatDateColumn="INPUT_DATE">
+        <column name="客户号"  columnIndex="0"  fieldCode="CUST_ID"  isPK="false"  type="VARCHAR"  length="50"  precial=""  isNull="true"></column>
+        <column name="AUM"  columnIndex="1"  fieldCode="AUM"  isPK="false"  type="NUMBER"  length="20"  precial=""  isNull="true"></column>
+        <column name="数据日期"  columnIndex="2"  fieldCode="DATA_DATE"  isPK="false"  type="DATE"  length="50"  precial=""  isNull="true"></column>
+   </trade>
+   
+   <!--保险中间业务导入-->
+	<trade tradeCode="insuranceImportInfo" tableName="A_AC_CUST_BAOX_INPUT_TMP" valiClass="com.yuchengtech.bob.action.InsuranceImport" sheetStartIndex="0" creatorColumn="INPUT_USER" creatOrgColumn="" creatDateColumn="INPUT_DATE">
+        <column name="客户号"  columnIndex="0"  fieldCode="CUST_ID"  isPK="false"  type="VARCHAR"  length="50"  precial=""  isNull="true"></column>
+        <column name="趸缴或期缴金额"  columnIndex="1"  fieldCode="BAOX_AMT"  isPK="false"  type="NUMBER"  length="20"  precial=""  isNull="true"></column>
+        <column name="数据日期"  columnIndex="2"  fieldCode="DATA_DATE"  isPK="false"  type="DATE"  length="50"  precial=""  isNull="true"></column>
+   </trade>
+   
+   
+   <!--小微评级客户月均销售额导入-->
+	<trade tradeCode="salesVolumeOfSmallImportInfo" tableName="A_AC_CUST_MCR_SAL_INPUT_TMP" valiClass="com.yuchengtech.bob.action.SalesVolumeOfSmallImportImport" sheetStartIndex="0" creatorColumn="INPUT_USER" creatOrgColumn="" creatDateColumn="INPUT_DATE">
+        <column name="客户号"  columnIndex="0"  fieldCode="CUST_ID"  isPK="false"  type="VARCHAR"  length="50"  precial=""  isNull="true"></column>
+        <column name="销售额"  columnIndex="1"  fieldCode="TRAD_AMT"  isPK="false"  type="NUMBER"  length="20"  precial=""  isNull="true"></column>
+        <column name="数据日期"  columnIndex="2"  fieldCode="DATA_DATE"  isPK="false"  type="DATE"  length="50"  precial=""  isNull="true"></column>
+   </trade>
+   
+   <!--客户群管理黑名单客户导入-->
+	<trade tradeCode="importBlacklistCustInfo" tableName="ACRM_F_CI_CUSTOMER_TEMP" valiClass="com.yuchengtech.bob.action.BlacklistCustImport" sheetStartIndex="1" creatorColumn="" creatOrgColumn="" creatDateColumn="">
+   	    <column name="客户号" columnIndex="0" fieldCode="CUST_ID" isPK="true" type="VARCHAR2" length="27" precial="" isNull="false"></column>
+        <column name="客户名称"  columnIndex="1"  fieldCode="CUST_NAME"  isPK="false"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>
+        <column name="证件类型"  columnIndex="2"  fieldCode="IDENT_TYPE"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+        <column name="证件号码"  columnIndex="3"  fieldCode="IDENT_NO"  isPK="false"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>
+        <column name="客户类别"  columnIndex="4"  fieldCode="CUST_TYPE"  isPK="false"  type="VARCHAR2"  length="10"  precial=""  isNull="true"></column>
+   </trade>
+   
+   
+   <!--个金目标值导入-->
+     <trade tradeCode="importReportCfgNewInfo" tableName="ACRM_M_TARGET_VAL_TEMP" valiClass="com.yuchengtech.bob.action.ReportCfgNewImport" sheetStartIndex="1" creatorColumn="" creatOrgColumn="" creatDateColumn="">
+        <column name="编号" columnIndex="0" fieldCode="ORDER_ID" isPK="true" type="VARCHAR2" length="20" precial="" isNull="false"></column>
+        <column name="报表编号" columnIndex="1" fieldCode="REPORT_ID" isPK="false" type="VARCHAR2" length="20" precial="" isNull="true"></column>
+        <column name="报表名称"  columnIndex="2"  fieldCode="REPORT_NA"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+        <column name="上级机构ID"  columnIndex="3"  fieldCode="ORG_ID"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+        <column name="上级机构名称"  columnIndex="4"  fieldCode="ORG_NA"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+        <column name="机构ID"  columnIndex="5"  fieldCode="BRANCH_ID"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+        <column name="机构名称"  columnIndex="6"  fieldCode="BRANCH_NA"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+        <column name="指标名称"  columnIndex="7"  fieldCode="STAT_NA"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+        <column name="指标ID"  columnIndex="8"  fieldCode="STAT_ID"  isPK="false"   type="VARCHAR2"   length="20"   precial=""   isNull="true"></column>
+        <column name="项目"  columnIndex="9"  fieldCode="PROJECT"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+        <column name="目标值" columnIndex="10" fieldCode="INDEX_VAL" isPK="false" type="NUMBER" length="20" precial="" isNull="true"></column>
+        <column name="最后更新日期"  columnIndex="11"  fieldCode="UPDATETIME"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+     </trade>
+     
+     <!-- 客户分配导入信息 -->
+     <trade tradeCode="importCustBelong" tableName="ACRM_F_CI_BELONG_IMP" valiClass="com.yuchengtech.bcrm.customer.belong.action.CustBelongImport" sheetStartIndex="1" creatorColumn="" creatOrgColumn="" creatDateColumn="">
+        <column name="编号" columnIndex="0" fieldCode="ID" isPK="true" type="VARCHAR2" length="20" precial="" isNull="false"></column>
+        <column name="客户号" columnIndex="1" fieldCode="CUST_ID" isPK="false" type="VARCHAR2" length="20" precial="" isNull="true"></column>
+        <column name="客户名称"  columnIndex="2"  fieldCode="CUST_NAME"  isPK="false"  type="VARCHAR2"  length="80"  precial=""  isNull="true"></column>
+        <column name="机构主协办类型"  columnIndex="3"  fieldCode="ORG_MAIN_TYPE"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+        <column name="机构ID"  columnIndex="4"  fieldCode="ORG_CODE"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+        <column name="机构名称"  columnIndex="5"  fieldCode="ORG_NAME"  isPK="false"  type="VARCHAR2"  length="80"  precial=""  isNull="true"></column>
+        <column name="客户经理主协办类型"  columnIndex="6"  fieldCode="MGR_MAIN_TYPE"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+        <column name="客户经理ID"  columnIndex="7"  fieldCode="MGR_ID"  isPK="false"   type="VARCHAR2"   length="20"   precial=""   isNull="true"></column>
+        <column name="客户经理名称"  columnIndex="8"  fieldCode="MGR_NAME"  isPK="false"  type="VARCHAR2"  length="80"  precial=""  isNull="true"></column>
+     </trade>
+     <!-- 公司评级 importCompanyGrade -->
+     <trade tradeCode="importCompanyGrade" tableName="ACRM_F_CI_OGRADE_RESULT_TEMP" valiClass="com.yuchengtech.bcrm.custmanager.action.CustGradeCompanyImport" sheetStartIndex="1" creatorColumn="IMPORT_USER" creatOrgColumn="" creatDateColumn="IMPORT_DATE">
+   	  	<column  name="客户号"    columnIndex="0"  fieldCode="CUST_ID"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+		<column  name="客户名称"   columnIndex="1"  fieldCode="CUST_NAME"  isPK="false"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>
+	   	<column  name="客户等级ID"    columnIndex="2"  fieldCode="CUST_GRADE_ID"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+		<column  name="客户等级类型"    columnIndex="3"  fieldCode="CUST_GRADE_TYPE"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+       	<column  name="本期客户等级"    columnIndex="4"  fieldCode="CUST_GRADE"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+		<column  name="是否本月新增"    columnIndex="5"  fieldCode="IS_MONTH_ADD"  isPK="false"  type="VARCHAR2"  length="2"  precial=""  isNull="true"></column>
+		<column  name="净利润"    columnIndex="6"  fieldCode="RETAIN_PROFIT"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+        <column  name="营业净收入"    columnIndex="7"  fieldCode="IN_BUSI_RETAIN_PROFIT"  isPK="false"  type="NUMBER" length="20"  precial=""  isNull="true"></column>
+        <column  name="营业外净收入"    columnIndex="8"  fieldCode="OUT_BUSI_RETAIN_PROFIT"  isPK="false"  type="NUMBER" length="20"  precial=""  isNull="true"></column>
+        <column  name="所得税"    columnIndex="9"  fieldCode="INCOME_TAX"  isPK="false"  type="NUMBER" length="20" precial=""  isNull="true"></column>
+		<column  name="贷款减值准备"    columnIndex="10"  fieldCode="LOAN_IMPAIRMENT"  isPK="false"  type="VARCHAR2"  length="60"  precial=""  isNull="true"></column>
+		<column  name="EVA"    columnIndex="11"  fieldCode="EVA"  isPK="false"  type="NUMBER" length="20"  precial=""  isNull="true"></column>
+		<column  name="经济资本占用"    columnIndex="12"  fieldCode="FINA_ASSET_EMPLOY"  isPK="false"  type="NUMBER" length="20"  precial=""  isNull="true"></column>
+		<column  name="业务规模"    columnIndex="13"  fieldCode="BUSI_SCALE"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+		<column  name="存款年日均"    columnIndex="14"  fieldCode="DEP_YDAY_AVG"  isPK="false" type="NUMBER" length="20" precial=""  isNull="true"></column>
+		<column  name="贷款年日均"    columnIndex="15"  fieldCode="LOAN_YDAY_AVG"  isPK="false"  type="NUMBER" length="20"  precial=""  isNull="true"></column>
+		<column  name="贷款年收息"    columnIndex="16"  fieldCode="LOAN_YDAY_INTEREST"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+		<column  name="存贷比"    columnIndex="17"  fieldCode="DEP_LOAN_PROP"  isPK="false"  type="NUMBER" length="20"  precial=""  isNull="true"></column>
+        <column  name="存款加权季末余额"    columnIndex="18"  fieldCode="DEP_WEIGHT_ENDS_BAL"  isPK="false"  type="NUMBER" length="20" precial=""  isNull="true"></column>
+		<column  name="外汇收支"    columnIndex="19"  fieldCode="FOREIGN_EXCHANGE"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+		<column  name="评级RAROC"    columnIndex="20"  fieldCode="EVALUATE_RAROC"  isPK="false"  type="NUMBER" length="20"  precial=""  isNull="true"></column>
+		<column  name="RAROC(贴现)"    columnIndex="21"  fieldCode="RAROC_DISCOUNT"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+		<column  name="RAROC(贸易融资)"    columnIndex="22"  fieldCode="RAROC_TRADE_FINA"  isPK="false"  type="NUMBER" length="20"  precial=""  isNull="true"></column>
+		<column  name="净利润等级结果"    columnIndex="23"  fieldCode="RETAIN_PROFIT_GRADE"  isPK="false"  type="VARCHAR2"  length="2"  precial=""  isNull="true"></column>
+		<column  name="评级RAROC等级结果"    columnIndex="24"  fieldCode="EVALUATE_RAROC_GRADE"  isPK="false"  type="VARCHAR2"  length="2"  precial=""  isNull="true"></column>
+		<column  name="业务规模等级结果"    columnIndex="25"  fieldCode="BUSI_SCALE_GRADE"  isPK="false"  type="VARCHAR2"  length="2"  precial=""  isNull="true"></column>
+   </trade>
+   
+   
+   <!--客户经理培训信息批量导入-->
+   <trade tradeCode="mgrCourseBatchImport" tableName="OCRM_F_CM_CUST_MGR_COURSE_TEMP" valiClass="com.yuchengtech.bob.action.CustManagerCourseImport" sheetStartIndex="0" creatorColumn="" creatOrgColumn="" creatDateColumn="">
+      <column name="ID" columnIndex="0" fieldCode="ID" isPK="true" type="VARCHAR2" length="32" precial="" isNull="false"></column>
+      <column name="客户经理工号"  columnIndex="1"  fieldCode="MGR_NO"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+   	  <column name="客户经理名称"  columnIndex="2"  fieldCode="MGR_NAME"  isPK="false"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>
+   	  <column name="课程名称"  columnIndex="3"  fieldCode="COURSE_NAME"  isPK="false"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>
+   	  <column name="培训日期"  columnIndex="4"  fieldCode="COURSE_DATE"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+   	  <column name="课堂表现"  columnIndex="5"  fieldCode="PERFORMANCE_SCORE"  isPK="false"  type="VARCHAR2"  length="10"  precial=""  isNull="true"></column>
+   	  <column name="考核成绩"  columnIndex="6"  fieldCode="EXAMINE_SCORE"  isPK="false"  type="VARCHAR2"  length="10"  precial=""  isNull="true"></column>
+   	  <column name="加分项"  columnIndex="7"  fieldCode="BONUS_SCORE"  isPK="false"  type="VARCHAR2"  length="10"  precial=""  isNull="true"></column>
+   	  <column name="培训心得"  columnIndex="8"  fieldCode="THOUGHT_SCORE"  isPK="false"  type="VARCHAR2"  length="10"  precial=""  isNull="true"></column>
+   </trade>
+   	
+   <!--客户经理等级批量导入-->
+   <trade tradeCode="mgrClassBatchImport" tableName="OCRM_F_CM_CUST_MGR_CLASS_TEMP" valiClass="com.yuchengtech.crm.customer.action.CustManagerClassImport" sheetStartIndex="0" creatorColumn="" creatOrgColumn="" creatDateColumn="">
+   	  <column name="ID" columnIndex="0" fieldCode="ID" isPK="true" type="VARCHAR2" length="32" precial="" isNull="false"></column>
+   	 	 <column name="客户经理工号"  columnIndex="1"  fieldCode="MGR_NO"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+   <!-- 	  <column name="客户经理名称"  columnIndex="1"  fieldCode="MGR_NAME"  isPK="false"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>-->
+   	  <column name="等级"  columnIndex="2"  fieldCode="MGR_CLASS"  isPK="false"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>
+   	<!--   <column name="有效期"  columnIndex="4"  fieldCode="EFFECT_DATE"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>  --> 
+   </trade>
+   
+      <!--客户经理评级信息导入-->
+   <trade tradeCode="mgrGradeInfoImport" tableName="ACRM_MGR_CPN_DATA_IMP_TEMP" valiClass="com.yuchengtech.bob.action.MgrGradeInfoImport" sheetStartIndex="0" creatorColumn="IMPORT_USER" creatOrgColumn="" creatDateColumn="IMPORT_DATE">
+   	  <column name="客户经理工号"  columnIndex="0"  fieldCode="MGR_ID"  isPK="false"  type="VARCHAR2"  length="20"  precial=""  isNull="true"></column>
+   	  <column name="客户经理名称"  columnIndex="1"  fieldCode="MGR_NAME"  isPK="false"  type="VARCHAR2"  length="50"  precial=""  isNull="true"></column>
+      <column  name="年度考核结果"    columnIndex="2"  fieldCode="DNKHJG"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="品德合规状况"    columnIndex="3"  fieldCode="DDHGZK"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="公关营销能力"    columnIndex="4"  fieldCode="GGYXNL"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="其它调整项1"    columnIndex="5"  fieldCode="QTTZX1"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="营销竞赛排名"    columnIndex="6"  fieldCode="YXJSNL"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="新产品创新及推广"    columnIndex="7"  fieldCode="XCPTG"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="信贷工作能力"    columnIndex="8"  fieldCode="XDGZNL"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="其他调整项2"    columnIndex="9"  fieldCode="QTTZX2"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="培训表现加分"    columnIndex="10"  fieldCode="PXBX_ADD"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="规范化服务"    columnIndex="11"  fieldCode="GFHFW_ADD"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="交叉持证资格"    columnIndex="12"  fieldCode="JCCZZG"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="其他项目加分"    columnIndex="13"  fieldCode="QTXM"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+       <column  name="贷后管理工作"    columnIndex="14"  fieldCode="DHGLGZ"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="培训表现扣分"    columnIndex="15"  fieldCode="PXBX_CUT"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="规范化服务扣分"    columnIndex="16"  fieldCode="GFHFW_CUT"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+      <column  name="信贷从业资格/银行从业资格扣分"    columnIndex="17"  fieldCode="XDCYZG"  isPK="false" type="NUMBER" length="20"  precial=""  isNull="true"></column>
+   </trade>
+
+	
+     
+</root>

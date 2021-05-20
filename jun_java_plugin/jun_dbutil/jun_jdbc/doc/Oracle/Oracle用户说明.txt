@@ -1,0 +1,18 @@
+此目录内的文件供Oracle用户使用。
+
+您可以使用Oracle作为JDiy开发平台的默认数据库。
+★★★★重要提示：表名和字段名请遵循Oracle的命名规范，JDiy目前不支持小写的Oracle表名和字段名★★★★
+
+这个目录内的文件清单如下所示：
+
+JDIY_DB.DMP:
+	这是JDiy开发平台的初始化数据库的备份文件(在Oracle 10g下采用EXP工具做的备份)
+	您可以在Oracle中新建一个JDIY_DB的用户，然后在命令行用类似下面的命令还原：
+	IMP 用户名/密码@连接字符串 FULL=Y file=JDIY_DB.DMP的文件路径
+	例如：
+	IMP JDIY_DB/123456@ORCL FULL=Y file=c:\JDIY_DB.DMP
+	
+ojdbc6.jar:
+	这是Oracle官方提供的jdbc驱动包（版本为：11.2.0.1.0，同样适用于oracle 10g, 9i等版本），
+	将其添加到项目的lib目录中，
+	注意，JDiy建议使用最新版本的oracle驱动，某些旧版本的驱动包，可能无法运行JDiy

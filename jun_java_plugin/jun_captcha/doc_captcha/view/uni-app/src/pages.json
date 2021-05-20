@@ -1,0 +1,38 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "滑动验证"
+			}
+		},
+		{
+			"path": "pages/point/point",
+			"style": {
+				"navigationBarTitleText": "点选验证"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "行为验证码",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar":{
+		"list":[
+			{
+				"pagePath":"pages/index/index",
+				"text":"滑动",
+				"iconPath":"static/slider.png",
+				"selectedIconPath":"static/slider-active.png"
+			},
+			{
+				"pagePath":"pages/point/point",
+				"text":"点选",
+				"iconPath":"static/point.png",
+				"selectedIconPath":"static/point-active.png"
+			}
+		]
+	}
+}

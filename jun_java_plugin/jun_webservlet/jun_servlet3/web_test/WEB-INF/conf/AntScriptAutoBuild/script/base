@@ -1,0 +1,46 @@
+
+	<!-- tstamp生成日期时间信息(依赖机器设置语言环境，中文环境下日期信息包含中文) -->
+	<tstamp>
+		<format property="build.date" pattern="EEEE, d MMMM yyyy" />
+		<format property="build.time" pattern="hh:mm a" />
+	</tstamp>
+
+	<!-- compile依赖classpath -->
+	<path id="classpath.compile">
+		<fileset dir="${dir.lib}" includes="*.jar" />
+	</path>
+	<!-- 单个jar依赖 
+	<path id="classpath.compile" location="${dir.lib}/x.jar" />
+	-->
+
+	<!-- 初始任务 -->
+	<target name="init">
+	    <antcall target="cleanClasses" />
+		<mkdir dir="${dir.classes}" />
+		<mkdir dir="${dir.dest}" />
+		<echo message="Make dir '${dir.classes}' and '${dir.dest}' Success." />
+	</target>
+
+	<!-- 编译任务 -->
+	<target name="compile" depends="init" description="Compile Java Code">
+		<!-- includeantruntime="on"，解决：warning: 'includeantruntime' was not set(此警告并不影响Ant运行) -->
+		<!-- 当Ant编译时报错“警告：编码GBK的不可映射字符”(此警告将终止Ant运行)，解决：1，javac加属性encoding="UTF-8"(参见下1行末尾)；2，参见下2到4行 -->
+		<javac srcdir="${dir.src}" destdir="${dir.classes}" includeantruntime="on" classpathref="classpath.compile" source="${project.compile.source}" target="${project.compile.target}" encoding="UTF-8">
+			<!-- 
+			<compilerarg line="-encoding UTF-8" />
+			-->
+		</javac>
+		<copydir src="${dir.src}" dest="${dir.classes}" includes="${project.includes.java.sources}" excludes="${project.excludes.java.sources},**/*.java">
+		</copydir>
+		<echo message="Compile Java Code Success(FilePath: ${dir.classes})." />
+	</target>
+	
+	<!-- 清理Classes任务 -->
+	<target name="cleanClasses">
+		<delete dir="${dir.classes}" />
+		<echo message="Delete dir '${dir.classes}' Success." />
+	</target>
+	
+	<!-- Base任务(即compile编译任务) -->
+	<target name="base" depends="compile">
+	</target>

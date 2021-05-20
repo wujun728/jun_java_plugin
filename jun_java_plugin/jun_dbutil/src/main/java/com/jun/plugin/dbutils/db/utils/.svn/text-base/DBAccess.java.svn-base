@@ -1,0 +1,179 @@
+package klg.db.utils;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+
+public class DBAccess {
+
+	private static String jdbc_file_path = DBAccess.class.getResource("jdbc.properties").getPath();
+	private static final Connection conn = createConn();
+
+	private Statement stmt = null;
+	private ResultSet rs = null;
+
+	public DBAccess() {
+
+	}
+
+	public static Connection getConn() {
+		return conn;
+	}
+
+	public ResultSet getRs() {
+		return rs;
+	}
+
+	public void setRs(ResultSet rs) {
+		this.rs = rs;
+	}
+
+	public static Connection createConn() {
+		Connection c = null;
+		try {
+			Properties properties=new Properties();
+			properties.load(new FileInputStream(jdbc_file_path));
+			String drv = properties.getProperty("jdbc.driverClassName");
+			String url = properties.getProperty("jdbc.url");
+			String user = properties.getProperty("jdbc.username");
+			String passwd = properties.getProperty("jdbc.password");
+			Class.forName(drv);
+			c = DriverManager.getConnection(url, user, passwd);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return c;
+	}
+
+	/*
+	 * 验证
+	 */
+
+	public boolean valid(String sql) {
+		boolean b = false;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				b = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return b;
+	}
+
+	/*
+	 * 查询
+	 */
+
+	public void query(String sql) {
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/*
+	 * 更新
+	 */
+
+	public boolean update(String sql) {
+		boolean b = false;
+		try {
+			stmt = conn.createStatement();
+			stmt.execute(sql);
+			b = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return b;
+	}
+
+	public boolean next() {
+		boolean b = false;
+		try {
+			if (rs.next())
+				b = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return b;
+	}
+
+	public String getValue(String field) {
+		String value = null;
+		if (rs != null)
+			try {
+				value = rs.getString(field);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return value;
+	}
+
+	public String getValue(int columnIndex) {
+		String value = null;
+		if (rs != null)
+			try {
+				value = rs.getString(columnIndex);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return value;
+	}
+
+	/*
+	 * 关闭数据库连接对象
+	 */
+	public void closeConn() {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void closeStmt() {
+		try {
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void closeRs() {
+		try {
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String args[]) throws SQLException {
+		String sql = "show databases";
+		DBAccess dba = new DBAccess();
+
+		dba.query(sql);
+		ResultSet rs = dba.getRs();
+		while (rs.next()) {
+			System.out.println(rs.getString(1));
+		}
+	}
+}

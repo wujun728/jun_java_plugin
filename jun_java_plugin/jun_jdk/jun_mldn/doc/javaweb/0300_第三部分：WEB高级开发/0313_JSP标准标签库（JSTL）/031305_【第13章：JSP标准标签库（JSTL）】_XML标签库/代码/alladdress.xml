@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GBK"?>
+<addresslist>
+	<linkman>
+		<name id="lxh">李兴华</name>
+		<email>mldnqa@163.com</email>
+	</linkman>
+	<linkman>
+		<name id="kf">客服中心</name>
+		<email>mldnkf@163.com</email>
+	</linkman>
+	<linkman>
+		<name id="hr">招聘中心</name>
+		<email>mldnhr@163.com</email>
+	</linkman>
+</addresslist>

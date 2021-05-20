@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="${Entity}">
+	<!-- Alias Map Defined -->
+	<typeAlias alias="${Entity}Query" type="${query_p}.${Entity}Query" />
+	<typeAlias alias="${Entity}" type="${entity_p}.${Entity}" />
+	<resultMap id="${entity}" class="${Entity}">
+	<#list fields as field>
+		<result property="<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>" column="${field.name}" />
+	</#list>
+	</resultMap>
+	<!-- Select SQL -->
+	<sql id="${entity}.selector">
+		SELECT
+		<dynamic>
+			<isNotEmpty property="fields">
+				$fields$
+			</isNotEmpty>
+			<isEmpty property="fields">
+			<#list fields as field><#if field_has_next>${field.name},<#else>${field.name}</#if></#list>
+			</isEmpty>
+		</dynamic>
+		FROM ${table}
+	</sql>
+	<sql id="${entity}List.where">
+		<dynamic prepend=" WHERE ">
+		<#list fields as field>
+			<isNotNull property="<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>" prepend=" AND ">
+			<#if field.fieldType?contains("bigint") || field.fieldType?contains("int") || field.fieldType?contains("datetime") || field.fieldType?contains("binary") || field.fieldType?contains("blob") || field.fieldType?contains("float") || field.fieldType?contains("double")>
+				${field.name}=#<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>#
+			<#else>
+			<isEqual property="<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>Like" compareValue="false">
+				${field.name}=#<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>#
+			</isEqual>
+			<isEqual property="<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>Like" compareValue="true">
+				 <![CDATA[  ${field.name} like '%$<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>$%' ]]>
+			</isEqual>
+			</#if>
+			</isNotNull>
+		</#list>
+		</dynamic>
+	</sql>
+
+	<!-- 用#号会导致druid连接池报错 -->
+	<sql id="${entity}List.order">
+		<dynamic prepend=" ORDER BY ">
+			<isNotEmpty property="orderFields">
+				<iterate property="orderFields" conjunction="," open=""
+					close="">
+					$orderFields[].fieldName$ $orderFields[].order$
+				</iterate>
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+
+	<sql id="${entity}List.limit">
+		<dynamic prepend=" LIMIT  ">
+			<isNotEmpty property="startRow">
+				#startRow#,#pageSize#
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+
+	<!-- 根据主键查询 -->
+	<select id="${Entity}.get${Entity}ByKey" resultMap="${entity}" parameterClass="hashMap">
+		SELECT <#list fields as field><#if field_has_next>${field.name},<#else>${field.name}</#if></#list> FROM ${table}
+		WHERE
+		${fields[0].name}=#id#
+	</select>
+	<select id="${Entity}.get${Entity}sByKeys" resultMap="${entity}"
+		parameterClass="hashMap">
+		SELECT <#list fields as field><#if field_has_next>${field.name},<#else>${field.name}</#if></#list> FROM ${table}
+		WHERE
+		${fields[0].name} in
+		<iterate conjunction="," open="(" close=")" property="keys">
+			#keys[]#
+		</iterate>
+	</select>
+
+	<!-- 根据主键删除 -->
+	<delete id="${Entity}.deleteByKey" parameterClass="hashMap">
+		DELETE FROM ${table}
+		WHERE
+		${fields[0].name}=#id#
+	</delete>
+
+	<delete id="${Entity}.deleteByKeys">
+		DELETE FROM ${table}
+		WHERE
+		${fields[0].name} in
+		<iterate conjunction="," open="(" close=")" property="keys">
+			#keys[]#
+		</iterate>
+	</delete>
+
+	<!-- 根据主键更新 -->
+	<update id="${Entity}.update${Entity}ByKey" parameterClass="${Entity}">
+		UPDATE ${table}
+		<dynamic prepend="SET">
+		<#list fields as field>
+			<isNotNull prepend="," property="<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>">
+				${field.name} = #<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>#
+			</isNotNull>
+		</#list>
+		</dynamic>
+		WHERE
+		${fields[0].name}=#<#list fields[0].name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>#
+	</update>
+	<!-- 分页 -->
+	<select id="${Entity}.get${Entity}ListWithPage" parameterClass="${Entity}Query"
+		resultMap="${entity}">
+		<include refid="${entity}.selector" />
+		<include refid="${entity}List.where" />
+		<include refid="${entity}List.order" />
+		<include refid="${entity}List.limit" />
+	</select>
+	<select id="${Entity}.get${Entity}ListCount" parameterClass="${Entity}Query"
+		resultClass="int">
+		SELECT count(1) FROM ${table}
+		<include refid="${entity}List.where" />
+	</select>
+	<select id="${Entity}.get${Entity}List" parameterClass="${Entity}Query"
+		resultMap="${entity}">
+		<include refid="${entity}.selector" />
+		<include refid="${entity}List.where" />
+		<include refid="${entity}List.order" />
+	</select>
+
+	<!-- 如果使用自定义字段查询,则要使用resultClass否则会出现异常 -->
+	<select id="${Entity}.get${Entity}ListWithPageFields" parameterClass="${Entity}Query"
+		resultClass="${Entity}">
+		<include refid="${entity}.selector" />
+		<include refid="${entity}List.where" />
+		<include refid="${entity}List.order" />
+		<include refid="${entity}List.limit" />
+	</select>
+	<select id="${Entity}.get${Entity}ListFields" parameterClass="${Entity}Query"
+		resultClass="${Entity}">
+		<include refid="${entity}.selector" />
+		<include refid="${entity}List.where" />
+		<include refid="${entity}List.order" />
+	</select>
+	<insert id="${Entity}.insert${Entity}" parameterClass="${Entity}">
+		INSERT INTO ${table}
+		<dynamic prepend="(" close=")">
+		<#list fields as field>
+			<isNotEmpty prepend="," property="<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>">
+				${field.name}
+			</isNotEmpty>
+		</#list>
+		</dynamic>
+		VALUES
+		<dynamic prepend="(" close=")">
+		<#list fields as field>
+			<isNotEmpty prepend="," property="<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>">
+				#<#list field.name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>#
+			</isNotEmpty>
+		</#list>
+		</dynamic>
+		<selectKey resultClass="<@fieldType type=fields[0].fieldType/>" keyProperty="<#list fields[0].name?split('_') as n><#if n_index ==0>${n}<#else>${n?cap_first}</#if></#list>">
+			SELECT LAST_INSERT_ID() AS ${fields[0].name?upper_case}
+		</selectKey>
+	</insert>
+</sqlMap>
+<#macro fieldType type>
+	<#if type?contains("bigint")>
+	Long<#t/>
+	<#elseif type?contains("int")>
+	Integer<#t/>
+	<#elseif type?contains("datetime")>
+	Date<#t/>
+	<#elseif type?contains("binary") || type?contains("blob")>
+	Byte[]<#t/>
+	<#elseif type?contains("float")>
+	Float<#t/>
+	<#elseif type?contains("double")>
+	Double<#t/>
+	<#else>
+	String<#t/>
+	</#if>
+</#macro>

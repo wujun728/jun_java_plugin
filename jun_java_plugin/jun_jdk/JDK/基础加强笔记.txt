@@ -1,0 +1,61 @@
+目录：<My Documents>\exercises\liangtong
+
+
+1、Debug【★★★★★】
+	* 程序进行调试
+	* 前提：设置断点
+	* 步骤：
+		* 以debug模式运行
+		* 调试：按钮（F6、F5、F7、F8） 重置
+
+
+2、JDK5.0新特性
+	* Annotations 注解
+	* Static Import ： 静态导入
+		* 导入静态资源：静态方法和静态字段
+		* 格式：import static java.lang.Math.PI;
+			    import static java.lang.Math.*;
+	* Autoboxing/Unboxing：自动装箱和自动拆箱
+		* 基本类型与包装类型的转换
+		* JDK1.4
+			Integer ii = new Integer(20);
+		    int jj = ii.intValue();
+	* Varargs：可变参数
+		/* 可变参数的格式：类型    ...  变量名
+		 * 使用：
+		 * 	* 在方法体内，形参可变参数，将被当成数组使用
+		 *  * 实际参数的个数，将是形参可变参数，在方法体内使用的数组的长度
+		 *  * 实际参数是数组，数组将会被打散
+		 *  * 总结：可变参数只能放置在方法参数列表的最后一位
+		 *  	* 一个方法中能否具有两个可变参数？不能
+	* Generics：泛型
+		/*
+		 * 格式：类型<类型[,类型...]>
+		 * * 泛型使用必须前后相同
+		 * * 泛型是在编译前进行类型约束，在字节码文件中不存在泛型信息
+		* 遍历：List、Map【★★★】
+	* Enhanced for Loop:增强for循环
+		* 格式 for(类型   变量名 : 集合(Iterable)|数组){}
+			* 需要实现Iterable接口的所有的集合。只要能够迭代的所有的集合
+		* 温习遍历
+	* Typesafe Enums
+		/* 枚举也是一个类
+		 *  枚举的实例对象，默认 public static final
+		 *  枚举构造方法，默认私有
+		 *  枚举的实例对象的变量名，必须放在所有内容之前
+		 
+		 * 了解 enums4  
+		 * 传参 enums5
+		 * 内部类 enums6
+		 * api   enums7
+		 
+3、反射
+	* 对内存中字节码对象的描述 java.lang.Class
+	* 包：java.lang.reflect
+	* API 
+		* Class.forName()
+		* getConstrutor() -- newInstance
+		* getMethod()  -- invoke
+		* getField()  --get  set
+	
+	

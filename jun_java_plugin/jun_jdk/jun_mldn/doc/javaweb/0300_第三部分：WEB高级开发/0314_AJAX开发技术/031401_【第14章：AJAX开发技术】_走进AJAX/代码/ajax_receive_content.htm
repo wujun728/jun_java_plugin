@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>www.mldnjava.cn，MLDN高端Java培训</title>
+	<script language="javascript">
+		var xmlHttp ;
+		function createXMLHttp(){
+			if(window.XMLHttpRequest){
+				xmlHttp = new XMLHttpRequest() ;
+			} else {
+				xmlHttp = new ActiveXObject("Microsoft.XMLHTTP") ;
+			}
+		}
+		function showMsg(){
+			createXMLHttp() ;	// 创建XMLHttp对象
+			xmlHttp.open("POST","content.htm") ;
+			// 设置操作的回调函数
+			xmlHttp.onreadystatechange = showMsgCallback ;
+			xmlHttp.send(null) ;
+		}
+		function showMsgCallback(){	// 回调操作函数
+			if(xmlHttp.readyState == 4){	// 调用完成
+				if(xmlHttp.status == 200){	// HTTP状态码操作正常
+					var text = xmlHttp.responseText ;
+					document.getElementById("msg").innerHTML = text ;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+<input type="button" onClick="showMsg()" value="调用AJAX显示内容">
+<span id="msg"></span>
+</body>
+</html>

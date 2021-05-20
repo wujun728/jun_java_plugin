@@ -1,0 +1,11 @@
+一、ssm框架创建的项目执行顺序（配置文件加载顺序）
+	1.服务器加载web.xml文件。根据web.xml文件中<context-param></context-param>的配置加载spring配置文件。（此时服务器会暂停<context-param>之后的代码加载）。
+	2.加载spring配置文件。扫描<context:component-scan base-package="url">配置下的所有包文件,<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>，注意此时不加载控制器；配置数据源DataSource；生成Mapper接口代理（即加载dao层下的mapper配置文件，生成dao层接口的实现类对数据库进行操作的sql语句）；事务配置；aop配置；spring配置文件加载完成。
+	3.回到web.xml配置文件中继续按顺序从上到下加载。加载监听器；加载过滤器；加载前端控制器（即servlet或者springMVC），前端控制器中的<load-on-startup>1</load-on-startup>配置决定了前端控制器是否在容器启动时就加载，若其值大于等于0则在容器启动时加载，小于零或不设置时则不在容器启动时加载。若要在容器（服务器Tomcat）启动时就加载前端控制器，则此时暂停web.xml的加载，先去加载springMVC。
+	4.加载springMVC配置文件。在web.xml配置文件加载前端控制器时根据其中的相关配置<init-param></init-param>加载springMVC配置。加载控制器（第二步中未加载），自动实例化相关类以便之后直接使用不用new（controller和servse），加载视图解析器，完成springMVC配置文件的加载。
+	5.回到web.xml文件中，继续进行后续加载，若无后续则完成整个项目的加载。
+二、理解context(在spring中，是核心组件之一，容器，即IOC)
+	1.context就是“容器”，放的就是应用程序的所有资源，要用时候就访问它，所以context里面的东西，在同一个应用程序里面是全局的，相当于js中的window对象？
+	2.<context-param>和<init-param> 放置的是一组键值对，当容器读取到该标签时会将该键值对存储到context上下文中，以便以后通过键来获取相应的值，<context-param>相当于全局，在整个范围内有效，<init-param>是放置在一个servlet中，在该范围内有效，相当于局部。
+
+

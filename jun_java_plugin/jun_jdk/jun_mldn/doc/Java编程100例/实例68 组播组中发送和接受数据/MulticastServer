@@ -1,0 +1,32 @@
+public
+class MulticastServer
+{
+public
+static
+void
+main(String [] arstring)
+{
+try
+{
+// Create a multicast datagram socket for receiving IP
+// multicast packets. Join the multicast group at
+// 230.0.0.1, port 7777.
+MulticastSocket multicastSocket = new MulticastSocket(7777);
+InetAddress inetAddress = InetAddress.getByName("230.0.0.1");
+multicastSocket.joinGroup(inetAddress);
+// Loop forever and receive messages from clients. Print
+// the received messages.
+while (true)
+{
+byte [] arb = new byte [100];
+DatagramPacket datagramPacket = new DatagramPacket(arb, arb.length);
+multicastSocket.receive(datagramPacket);
+System.out.println(new String(arb));
+}
+}
+catch (Exception exception)
+{
+exception.printStackTrace();
+}
+}
+}

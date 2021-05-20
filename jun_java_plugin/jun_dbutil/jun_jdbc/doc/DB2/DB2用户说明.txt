@@ -1,0 +1,39 @@
+此目录内的文件供DB2用户使用。
+
+您可以使用DB2作为JDiy开发平台的默认数据库。
+目前此目录内的这些文件，我们是在DB2_v9.7版本环境下使用创建的。
+★★★★重要提示：表名和字段名请遵循DB2的命名规范，JDiy目前不支持小写的DB2表名和字段名★★★★
+
+这个目录内的文件清单如下所示：
+
+db2jcc.jar, db2jcc_license_cu.jar:
+	这是DB2的jcc数据库驱动包,和DB2的lincese授权文件，
+	您也可以从DB2的IBM/SQLLIB/java安装目录中找到这两个文件;
+jdiy_db.ddl
+	这是JDiy的DB2数据库建表（DDL）语句文件。
+data/
+	这个目录是JDiy的数据库数据导出文件。
+
+
+DB2的JDiy数据库创建方式（我们以windows平台为例，并假设您将此目录复制到了您电脑的D盘根目录下,即d:/DB2）：
+
+1. 打开DB2控制中心，创建一个名为”JDIY_DB“的数据库（也可以叫其它名字）。
+2. 运行CMD，输入：db2cmd 后回车，系统会再弹出一个CMD窗口。在该窗口中输出下面几步的命令.
+
+   db2 connect to JDIY_DB  user 用户名 using 密码
+3. 然后使用DDL语句创建JDiy的数据表信息：
+   db2 -tvf d:/DB2/jdiy_db.ddl
+
+4. 再运行下面命令来登录到DB2:
+   db2
+   connect to JDIY_DB user 用户名 using 密码
+
+5.分别运行下面命令来导入JDiy的初始化数据：
+import from d:/DB2/data/article.ixf of ixf replace_create into article
+import from d:/DB2/data/jdiy_mm.ixf of ixf replace_create into jdiy_mm
+import from d:/DB2/data/jdiy_sys.ixf of ixf replace_create into jdiy_sys
+import from d:/DB2/data/jdiy_tb.ixf of ixf replace_create into jdiy_tb
+import from d:/DB2/data/jdiy_vi.ixf of ixf replace_create into jdiy_vi
+import from d:/DB2/data/vip.ixf of ixf modified by identityignore replace_create into vip
+import from d:/DB2/data/viptype.ixf of ixf modified by identityignore replace_create into viptype
+   

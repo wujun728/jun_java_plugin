@@ -1,0 +1,38 @@
+
+    <!-- JS Compress -->
+    <target name="js.compress">
+        <delete dir="${dir.yuicompressor.compress.js}"/>
+        <mkdir dir="${dir.yuicompressor.compress.js}"/>
+        <!-- java -jar yuicompressor-2.4.7.jar -o D:/hello_min.js hello.js -->
+        <apply executable="java" parallel="false" failonerror="true" dest="${dir.yuicompressor.compress.js}">
+            <fileset dir="${dir.webapp.compress.js}" includes="*.js"/>
+            <arg line="-jar"/>
+            <arg path="${yuicompressor.jar}"/>
+            <arg line="--charset utf-8"/>
+            <srcfile/>
+            <arg line="-o"/>
+            <mapper type="glob" from="*.js" to="*.js"/>
+            <targetfile/>
+        </apply>
+    	<echo message="Yuicompressor compress js files Success(FilePath: ${dir.yuicompressor.compress.js})." />
+    </target>
+
+    <!-- CSS Compress -->
+    <target name="css.compress">
+        <delete dir="${dir.yuicompressor.compress.css}"/>
+        <mkdir dir="${dir.yuicompressor.compress.css}"/>
+        <apply executable="java" parallel="false" failonerror="true" dest="${dir.yuicompressor.compress.css}">
+            <fileset dir="${dir.webapp.compress.css}" includes="*.css"/>
+            <arg line="-jar"/>
+            <arg path="${yuicompressor.jar}"/>
+            <arg line="--charset utf-8"/>
+            <srcfile/>
+            <arg line="-o"/>
+            <mapper type="glob" from="*.css" to="*.css"/>
+            <targetfile/>
+        </apply>
+    	<echo message="Yuicompressor compress css files Success(FilePath: ${dir.yuicompressor.compress.css})." />
+    </target>
+    
+    <!-- YUI Compressor任务 -->
+	<target name="yuicompressor" depends="js.compress, css.compress" />

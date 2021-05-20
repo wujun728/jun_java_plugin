@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="memcachedPool" class="com.whalin.MemCached.SockIOPool"
+          factory-method="getInstance" init-method="initialize">
+        <property name="servers">
+            <list>
+                <value>127.0.0.1:11211</value>
+            </list>
+        </property>
+        <property name="weights">
+            <list>
+                <value>3</value>
+            </list>
+        </property>
+        <property name="initConn">
+            <value>20</value>
+        </property>
+        <property name="minConn">
+            <value>10</value>
+        </property>
+        <property name="maxConn">
+            <value>50</value>
+        </property>
+        <property name="maxIdle">
+            <value>3600000</value>
+        </property>
+        <property name="nagle">
+            <value>false</value>
+        </property>
+        <property name="maintSleep">
+            <value>60</value>
+        </property>
+        <property name="socketTO">
+            <value>3000</value>
+        </property>
+        <property name="socketConnectTO">
+            <value>0</value>
+        </property>
+    </bean>
+    <bean id="memcachedClient" class="com.whalin.MemCached.MemCachedClient">
+    </bean>
+</beans>

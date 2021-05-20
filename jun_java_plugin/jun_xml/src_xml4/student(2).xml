@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 这是一个用XML描述的例子 -->
+<bookcase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<book type="教育">
+		<b-name>XML实用培训教程</b-name>
+		<author>
+			<name>张健飞</name>
+			<E-mail>zjf@163.com</E-mail>
+		</author>
+		<price>27元</price>
+		<publishing-house>
+			<p-name>科学出版社</p-name>
+			<address>北京东皇城根北街16号</address>
+			<zipcode>100717</zipcode>
+			<E-mail>yanmc@bhp.com.cn</E-mail>
+		</publishing-house>
+	</book>
+	<book type="科技">
+		<b-name> XML网页制作彻底研究</b-name>
+		<a:author xmlns:a="mysefl" >
+			<name>陈会安</name>
+			<E-mail>cha@163.com</E-mail>
+		</a:author>
+		<price>47元</price>
+		<b:publishing-house  xmlns:b="mysefl">
+			<p-name>中国铁道出版社</p-name>
+			<address>北京市宣武区右安门西街8号</address>
+			<zipcode>100054</zipcode>
+			<E-mail>bjb@tqbooks.com.cn</E-mail>
+		</b:publishing-house>
+	</book>
+</bookcase>

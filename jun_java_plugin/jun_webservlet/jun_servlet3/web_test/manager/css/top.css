@@ -1,0 +1,28 @@
+#top{
+  width:500px;
+  margin:auto 0;
+}
+#top a{
+	font-size:14px;
+	font-weight:bold;
+	font-family:"宋体";
+	color:#006699;
+}
+#top a:link{ 
+     text-decoration: none;
+}
+#top a:hover{
+	font-size:18px;
+	text-decoration:underline;
+	color:#000066;
+}
+
+#top a:visited{
+   text-decoration: none;
+   color:#6699ff;
+}
+img{
+  width:23px;
+  height:23px;
+  border:0px;
+}

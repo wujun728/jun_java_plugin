@@ -1,0 +1,30 @@
+一、完成客户信息的修改和删除
+二、大结果集分页：
+	提升效率：分批出查询
+	
+	MySQL：   limit startIndex,offset
+	
+	1、设计封装了所有与分页有关的类：Page
+	2、Dao的编写：
+		得到所有记录的条数
+		分页查询出记录
+	3、Service的编写
+		根据用户要看的页码，查询封装了分页信息的Page实例
+	4、Servlet、JSP的改写
+三、抽取了公有的代码：Page.java   page.jsp
+四、批处理、大文本和二进制数据的存取、调用存储过程
+五、事务入门
+六、事务的特性
+	原子性
+	一致性
+	隔离性
+	持久性
+七、事务的隔离性
+	隔离级别：
+		READ UNCOMMITTED
+		READ COMMITTED
+		REPEATABLE READ
+		SERIALIZABLE
+	不考虑事务的隔离级别：脏读、不可重复读、虚读
+	
+	
