@@ -1,0 +1,20 @@
+<!--#layout("/common/layout.html",{"jsBase":"/js/admin/org/"}){ -->
+<layui:searchForm formId="orgSearchForm"  condition="${search}">
+</layui:searchForm>
+
+  <div class="layui-btn-group">
+  	<layui:accessButton function="org.add"  action="add">增加</layui:accessButton>
+  	<layui:accessButton function="org.edit"  action="edit">编辑</layui:accessButton>
+  	<layui:accessButton function="org.del"  action="del">删除</layui:accessButton>
+  	<layui:accessButton function="org.user.query"  action="orgUser">查看用户</layui:accessButton>
+  </div>
+<table id="orgTable" lay-filter="orgTable"></table>
+<!--#} -->
+<script>
+
+layui.use(['index'], function(){
+  var index = layui.index
+  index.init();
+});
+
+</script>

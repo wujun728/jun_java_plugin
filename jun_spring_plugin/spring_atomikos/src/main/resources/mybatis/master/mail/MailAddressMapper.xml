@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wangxin.mapper.mail.MailAddressMapper">
+
+	<resultMap id="entityMap" type="com.wangxin.entity.mail.MailAddress">
+		<result column="ID" property="id" />
+		<result column="MAIL_TYPE" property="mailType" />
+		<result column="TO_ADDRESS" property="toAddress" />
+		<result column="TO_CC" property="toCc" />
+		<result column="TO_BCC" property="toBcc" />
+		<result column="IS_DEL" property="isDel" />
+		<result column="VERSION_NUM" property="versionNum" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+	</resultMap>
+
+	<insert id="insert" parameterType="com.wangxin.entity.mail.MailAddress">
+		INSERT INTO RPT_MAIL_ADDRESS_T (ID , MAIL_TYPE, TO_ADDRESS , TO_CC, TO_BCC , IS_DEL, VERSION_NUM, CREATE_TIME , UPDATE_TIME)
+		VALUES (#{id} , #{mailType} , #{toAddress} , #{toCc} , #{toBcc} , ${isDel} ,
+		${versionNum}, #{createTime} , #{updateTime})
+	</insert>
+
+	<!-- <insert id="insert" parameterType="com.wangxin.entity.mail.MailAddress"> -->
+	<!-- INSERT INTO RPT_MAIL_ADDRESS_T -->
+	<!-- (ID , MAIL_TYPE, TO_ADDRESS , TO_CC, TO_BCC , IS_DEL, VERSION_NUM, CREATE_TIME , UPDATE_TIME) -->
+	<!-- VALUES -->
+	<!-- (#{id,jdbcType=VARCHAR} , #{mailType,jdbcType=VARCHAR} , #{toAddress,jdbcType=VARCHAR} , #{toCc,jdbcType=VARCHAR} , #{toBcc,jdbcType=VARCHAR} , #{isDel,jdbcType=INTEGER} , #{versionNum,jdbcType=INTEGER} -->
+	<!-- , #{createTime,jdbcType=TIMESTAMP} , #{updateTime,jdbcType=TIMESTAMP}) -->
+	<!-- </insert> -->
+
+	<sql id="find_xxx">
+	    <![CDATA[
+			SELECT ID , MAIL_TYPE, TO_ADDRESS , TO_CC, TO_BCC , IS_DEL, VERSION_NUM, CREATE_TIME , UPDATE_TIME
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+	    <![CDATA[
+	    	FROM RPT_MAIL_ADDRESS_T
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+	    <![CDATA[
+	    	WHERE 1=1
+	    ]]>
+	</sql>
+
+	<select id="findById" parameterType="string" resultMap="entityMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<![CDATA[
+			WHERE ID=#{id}
+		]]>
+	</select>
+
+	<select id="findMailAddressByMailType" parameterType="string" resultMap="entityMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<where>
+			MAIL_TYPE=#{mailType}
+		</where>
+	</select>
+
+	<select id="findMailAddessByPage" parameterType="string" resultMap="entityMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<where>
+			<if test="mailType != null and mailType != ''"> MAIL_TYPE like '%${mailType}%'</if>
+		</where>
+		order by create_time desc
+	</select>
+
+	<update id="update" parameterType="com.wangxin.entity.mail.MailAddress">
+		UPDATE RPT_MAIL_ADDRESS_T
+		<set>
+			<if test="mailType != null and mailType!='' ">
+				MAIL_TYPE = #{mailType},
+			</if>
+			<if test="toAddress != null and toAddress!=''">
+				TO_ADDRESS = #{toAddress},
+			</if>
+			<if test="toCc != null and toCc!='' ">
+				TO_CC = #{toCc},
+			</if>
+			<if test="toBcc != null and toBcc!='' ">
+				TO_BCC = #{toBcc},
+			</if>
+			<if test="isDel != null">
+				IS_DEL = ${isDel},
+			</if>
+			<if test="versionNum != null">
+				VERSION_NUM = ${versionNum},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime},
+			</if>
+			ID = #{id}
+		</set>
+		WHERE ID = #{id}
+	</update>
+	
+	<update id="updateFail" parameterType="com.wangxin.entity.mail.MailAddress">
+		UPDATE RPT_MAIL_ADDRESS_T
+		UPDATE_TIME = 1now()
+		WHERE ID = #{id}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		DELETE FROM RPT_MAIL_ADDRESS_T WHERE ID #{id}
+	</delete>
+
+</mapper>

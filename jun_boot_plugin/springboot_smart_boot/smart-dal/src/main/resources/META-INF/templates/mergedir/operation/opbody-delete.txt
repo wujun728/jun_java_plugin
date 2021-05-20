@@ -1,0 +1,36 @@
+{
+## check parameters
+#if (${operation.paramType} == "object")
+    	if (${operation.params.get(0).name} == null) {
+    		throw new IllegalArgumentException("Can't delete by a null data object.");
+    	}
+
+#end
+## prepare parameters
+#if (${operation.params.size()} == 0)
+#set ($paramName = "null")
+
+#elseif (${operation.params.size()} == 1)
+#if (${operation.param.javaTypePrimitive})
+        ${operation.param.simpleJavaTypeForPrimitive} param = new ${operation.param.simpleJavaTypeForPrimitive}(${operation.param.name});
+#set ($paramName = "param")
+
+#else
+#set ($paramName = ${operation.param.name})
+
+#end
+#else
+        Map param = new HashMap();
+
+#foreach ($param in ${operation.params})
+#if ($param.javaTypeForPrimitive)
+        param.put("${param.name}", new ${param.simpleJavaTypeForPrimitive}(${param.name}));
+#else
+        param.put("${param.name}", ${param.name});
+#end
+#end
+#set ($paramName = "param")
+
+#end
+        return super.delete(namespace+"${operation.mappedStatementId}", ${paramName});
+    }

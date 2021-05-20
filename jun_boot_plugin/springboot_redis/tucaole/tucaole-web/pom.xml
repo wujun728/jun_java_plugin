@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.chentongwei</groupId>
+		<artifactId>tucaole</artifactId>
+		<version>${tucaole-parent.version}</version>
+	</parent>
+	
+	<artifactId>tucaole-web</artifactId>
+	<name>tucaole-web</name>
+	<version>${tucaole-web.version}</version>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.chentongwei</groupId>
+			<artifactId>tucaole-common-core</artifactId>
+			<version>${tucaole-common-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chentongwei</groupId>
+			<artifactId>tucaole-service-system</artifactId>
+			<version>${tucaole-service-system.version}</version>
+		</dependency>
+			<dependency>
+			<groupId>com.chentongwei</groupId>
+			<artifactId>tucaole-service-tucao</artifactId>
+			<version>${tucaole-service-tucao.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chentongwei</groupId>
+			<artifactId>tucaole-service-user</artifactId>
+			<version>${tucaole-service-user.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chentongwei</groupId>
+			<artifactId>tucaole-cache</artifactId>
+			<version>${tucaole-cache.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chentongwei</groupId>
+			<artifactId>tucaole-task</artifactId>
+			<version>${tucaole-task.version}</version>
+		</dependency>
+		<!-- QQ SDK -->
+		<dependency>
+			<groupId>com.qq</groupId>
+			<artifactId>qqSdk</artifactId>
+			<version>1.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>tucaole-web</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.chentongwei.Application</mainClass>
+					<layout>ZIP</layout>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<!-- 这个插件是springboot maven打包的，不能去掉。-->
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

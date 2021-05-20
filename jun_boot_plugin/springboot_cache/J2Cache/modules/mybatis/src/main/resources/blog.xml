@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Blog">
+
+    <cache type="net.oschina.j2cache.mybatis.J2CacheAdapter"/>
+
+    <insert id="new" parameterType="Blog">
+        INSERT INTO blogs (id,title,body) VALUES(#{id},#{title},#{body});
+    </insert>
+
+    <select id="read" parameterType="int" resultType="Blog">
+        SELECT * FROM blogs WHERE id = #{id}
+    </select>
+
+</mapper>

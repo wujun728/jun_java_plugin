@@ -1,0 +1,39 @@
+server:
+  port: 8080
+sharding:
+  jdbc: 
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: root
+    filters: stat
+    maxActive: 100
+    initialSize: 1
+    maxWait: 15000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 30000
+    minEvictableIdleTimeMillis: 180000
+    validationQuery: SELECT 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: false
+    maxPoolPreparedStatementPerConnectionSize: 20
+    removeAbandoned: true
+    removeAbandonedTimeout: 600
+    logAbandoned: false
+    connectionInitSqls: 
+    
+    url0: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+    username0: root
+    password0: root
+    
+    url1: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+    username1: root
+    password1: root
+
+logging:
+  level: {"root":"debug"}
+    
+
+    

@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<name>springboot :: Examples</name>
+
+	<groupId>springboot</groupId>
+	<artifactId>springboot</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<!-- 基础 – 入门篇 -->
+		<!-- Spring Boot 之 HelloWorld 详解 -->
+		<module>springboot-helloworld</module>
+		<!-- Spring Boot 之配置文件详解 -->
+		<module>springboot-properties</module>
+
+		<!-- 基础 - Web 业务开发篇 -->
+		<!-- Spring Boot 实现 Restful 服务，基于 HTTP / JSON 传输 -->
+		<module>springboot-restful</module>
+		<!-- Spring Boot 集成 FreeMarker -->
+		<module>springboot-freemarker</module>
+		<!-- Spring Boot HTTP over JSON 的错误码异常处理 -->
+		<module>springboot-validation-over-json</module>
+
+		<!-- 基础 – 数据存储篇 -->
+		<!-- Spring Boot 整合 Mybatis 的完整 Web 案例 -->
+		<module>springboot-mybatis</module>
+		<!-- Spring Boot 整合 Mybatis Annotation 注解案例 -->
+		<module>springboot-mybatis-annotation</module>
+		<!-- Spring Boot 整合 Mybatis 实现 Druid 多数据源配置 -->
+		<module>springboot-mybatis-mutil-datasource</module>
+
+		<!-- 基础 – 数据缓存篇 -->
+		<!-- Spring Boot 整合 Redis 实现缓存 -->
+		<module>springboot-mybatis-redis</module>
+		<!-- Spring Boot 注解实现整合 Redis 实现缓存 -->
+		<module>springboot-mybatis-redis-annotation</module>
+
+		<!-- 基础 – 应用篇 -->
+		<!-- Spring Boot Actuator 监控
+		<module>springboot-actuator</module>-->
+
+		<!-- 其他篇 -->
+		<!-- Spring Boot 整合 Dubbo/ZooKeeper 详解 SOA 案例 -->
+		<module>springboot-dubbo-server</module>
+		<module>springboot-dubbo-client</module>
+		<!-- Spring Boot 整合 Elasticsearch -->
+		<module>springboot-elasticsearch</module>
+
+		<!-- Spring Data ES 篇 -->
+		<module>spring-data-elasticsearch-crud</module>
+		<module>spring-data-elasticsearch-query</module>
+
+	</modules>
+
+</project>

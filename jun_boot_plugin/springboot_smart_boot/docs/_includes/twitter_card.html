@@ -1,0 +1,28 @@
+{% if page.videofeature %}
+<meta name="twitter:card" content="player">
+{% if page.videocredit %}<meta name="twitter:site" content="@{{ page.videocredit }}">{% else %}
+<meta name="twitter:site" content="@youtube">{% endif %}
+{% if page.videoimage %}<meta name="twitter:image" content="{{ page.videoimage }}">{% elsif page.imagefeature %}
+  {% if page.imagefeature contains 'http' %}
+    {% assign domain = '' %}
+  {% else %}
+    {% assign domain = site.urlimg %}
+  {% endif %}
+<meta name="twitter:image" content="{{ domain }}{{ page.imagefeature }}">{% else %}
+<meta name="twitter:image" content="{{ site.urlimg }}{{ site.default_bg }}">{% endif %}
+<meta name="twitter:player" content="{{ page.videofeature }}">
+<meta name="twitter:player:width" content="1920">
+<meta name="twitter:player:height" content="1080">
+{% elsif page.imagefeature %}
+  {% if page.imagefeature contains 'http' %}
+    {% assign domain = '' %}
+  {% else %}
+    {% assign domain = site.urlimg %}
+  {% endif %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@{{ site.owner.twitter }}">
+<meta name="twitter:image" content="{{ domain }}{{ page.imagefeature }}">
+{% else %}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@{{ site.owner.twitter }}">
+<meta name="twitter:image" content="{% if page.imagesummary %}{{ site.urlimg }}{{ page.imagesummary }}{% else %}{{ site.urlimg }}{{ site.default_bg }}{% endif %}">{% endif %}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:context='http://www.springframework.org/schema/context'
+       xmlns='http://www.springframework.org/schema/beans'
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:redis.properties"/>
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="1000"/>
+        <property name="maxIdle" value="10"/>
+        <property name="minIdle" value="1"/>
+        <property name="maxWaitMillis" value="30000"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+        <property name="testWhileIdle" value="true"/>
+    </bean>
+    <bean id="jedis1.shardInfo" class="redis.clients.jedis.JedisShardInfo">
+        <constructor-arg index="0" value="${redis1.host}"/>
+        <constructor-arg index="1" value="${redis1.port}"/>
+        <constructor-arg index="2" value="${redis1.timeout}"/>
+        <!-- <constructor-arg index="3" value="${redis1.name}" /> -->
+        <!-- <property name="password" value="${redis1.password}" /> -->
+    </bean>
+    <bean id="jedis2.shardInfo" class="redis.clients.jedis.JedisShardInfo">
+        <constructor-arg index="0" value="${redis2.host}"/>
+        <constructor-arg index="1" value="${redis2.port}"/>
+        <constructor-arg index="2" value="${redis2.timeout}"/>
+        <!-- <constructor-arg index="3" value="${redis2.name}" /> -->
+        <!-- <property name="password" value="${redis1.password}" /> -->
+    </bean>
+    <bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool">
+        <constructor-arg index="0" ref="jedisPoolConfig"/>
+        <constructor-arg index="1">
+            <list>
+                <ref bean="jedis1.shardInfo"/>
+                <ref bean="jedis2.shardInfo"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    <bean id="redisClient" class="com.kind.redis.client.RedisClient">
+        <constructor-arg>
+            <ref bean="shardedJedisPool"/>
+        </constructor-arg>
+    </bean>
+</beans>

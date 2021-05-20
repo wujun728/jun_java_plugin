@@ -1,0 +1,95 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+
+    <display-name>Demo of J2Cache Session Filter</display-name>
+
+    <filter>
+        <filter-name>j2cache-session-filter</filter-name>
+        <filter-class>net.oschina.j2cache.session.J2CacheSessionFilter</filter-class>
+        <init-param><!-- 内存中存放会话数 -->
+            <param-name>session.maxSizeInMemory</param-name>
+            <param-value>2000</param-value>
+        </init-param>
+        <init-param><!-- 会话有效期，单位：秒钟 -->
+            <param-name>session.maxAge</param-name>
+            <param-value>1800</param-value>
+        </init-param>
+        <init-param><!-- 是否废弃非序列化对象到 Redis 而不是抛出异常 -->
+            <param-name>session.discardNonSerializable</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <!-- cookie configuration -->
+        <init-param>
+            <param-name>cookie.name</param-name>
+            <param-value>J2CACHE_SESSION_ID</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cookie.path</param-name>
+            <param-value>/</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cookie.domain</param-name>
+            <param-value></param-value>
+        </init-param>
+        <!-- redis configuration -->
+        <init-param>
+            <param-name>redis.mode</param-name>
+            <param-value>single</param-value>
+        </init-param>
+        <init-param>
+            <param-name>redis.hosts</param-name>
+            <param-value>127.0.0.1:6379</param-value>
+        </init-param>
+        <init-param>
+            <param-name>redis.channel</param-name>
+            <param-value>j2cache-session</param-value>
+        </init-param>
+        <init-param>
+            <param-name>redis.cluster_name</param-name>
+            <param-value>j2cache-session</param-value>
+        </init-param>
+        <init-param>
+            <param-name>redis.timeout</param-name>
+            <param-value>2000</param-value>
+        </init-param>
+        <init-param>
+            <param-name>redis.password</param-name>
+            <param-value></param-value>
+        </init-param>
+        <init-param>
+            <param-name>redis.database</param-name>
+            <param-value>0</param-value>
+        </init-param>
+        <init-param>
+            <param-name>redis.maxTotal</param-name>
+            <param-value>100</param-value>
+        </init-param>
+        <init-param>
+            <param-name>redis.maxIdle</param-name>
+            <param-value>10</param-value>
+        </init-param>
+        <init-param>
+            <param-name>redis.minIdle</param-name>
+            <param-value>1</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>j2cache-session-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <servlet id="jsp">
+        <servlet-name>jsp</servlet-name>
+        <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>jsp</servlet-name>
+        <url-pattern>*.jsp</url-pattern>
+    </servlet-mapping>
+
+</web-app>

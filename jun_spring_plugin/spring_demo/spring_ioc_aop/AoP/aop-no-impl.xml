@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation=
+          "http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+        
+<bean id="waiter" class="aop.impl.advice.Waiter"/>
+<bean id="justAdMethod" class="aop.no.impl.JustAdMethod"/>
+<aop:config proxy-target-class="true">
+   <aop:aspect ref="justAdMethod">
+     <aop:pointcut id="waiterpoint" expression="target(aop.impl.advice.Waiter) and execution(* leadCustomer(..))"/>
+     <aop:before   method="introIn" pointcut-ref="waiterpoint"/>
+   </aop:aspect>
+</aop:config>   
+
+</beans>

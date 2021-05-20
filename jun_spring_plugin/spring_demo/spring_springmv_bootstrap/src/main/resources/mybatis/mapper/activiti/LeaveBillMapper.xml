@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.springmvc.mybatis.mapper.activiti.LeaveBillMapper">
+
+	<resultMap id="baseMap" type="cn.springmvc.mybatis.entity.activiti.LeaveBill">
+		<result column="id" property="id" />
+		<result column="days" property="days" />
+		<result column="content" property="content" />
+		<result column="remark" property="remark" />
+		<result column="leaveDate" property="leaveDate" />
+		<result column="state" property="state" />
+		<result column="user_id" property="userId" />
+	</resultMap>
+
+	<insert id="insert" parameterType="cn.springmvc.mybatis.entity.activiti.LeaveBill">
+		INSERT INTO a_leavebill(id , days , content ,remark, leaveDate , state, user_id)
+		VALUES(default, #{days} , #{content} ,#{remark}, #{leaveDate} , #{state}, #{userId} )
+	</insert>
+
+	<sql id="find_xxx">
+	    <![CDATA[
+			SELECT id , days , content ,remark, leaveDate , state , user_id
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+	    <![CDATA[
+	    	FROM a_leavebill
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+	    <![CDATA[
+	    	WHERE 1=1
+	    ]]>
+	</sql>
+
+	<select id="findById" parameterType="string" resultMap="baseMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<![CDATA[
+			WHERE ID=#{id}
+		]]>
+	</select>
+	
+	<select id="findAll" resultMap="baseMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+	</select>
+
+	<update id="update" parameterType="cn.springmvc.mybatis.entity.activiti.LeaveBill">
+		UPDATE a_leavebill
+		<set>
+			<if test="days != null">
+				days = #{days},
+			</if>
+			<if test="content != null">
+				content = #{content},
+			</if>
+			<if test="remark != null">
+				remark = #{remark},
+			</if>
+			<if test="leaveDate != null">
+				leaveDate = #{leaveDate},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId},
+			</if>
+			<if test="state != null">
+				state = #{state}
+			</if>
+		</set>
+		WHERE ID = #{id}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		DELETE FROM a_leavebill WHERE ID=#{id}
+	</delete>
+
+</mapper>

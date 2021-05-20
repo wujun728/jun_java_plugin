@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status=debug 可以查看log4j的装配过程 -->
+<configuration status="off" monitorInterval="1800">
+
+	<!-- Log4j 2 包含了基于LMAX 分离库的下一代的异步日志系统，在多线程环境下，异步日志系统比 Log4j 1.x 和Logback 提高了10倍性能提升（吞吐量和延迟率 ） -->
+
+	<properties>
+		<!-- 日志备份目录 -->
+		<property name="BACKUP_HOME">./logs</property>
+	</properties>
+
+	<appenders>
+		<!-- 定义控制台输出 -->
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="%d{HH:mm:ss,SSS} %r [%-6p] %c.%M(%F:%L) - %m%n" />
+			<!-- <PatternLayout pattern="%sn %d{yy/MM/dd HH:mm:ss,SSS} %r [%-6p] [%t] %c.%M(%F:%L) - %m%n" /> -->
+		</Console>
+	</appenders>
+
+	<loggers>
+		<!-- 3rdparty Loggers -->
+		<logger name="cn.springboot" level="debug" />
+		<logger name="org.springframework" level="info" />
+		<logger name="org.jboss" level="info" />
+		<logger name="org.fasterxml" level="info" />
+		<logger name="org.hibernate" level="info" />
+		<logger name="javax.el" level="info" />
+		<logger name="org.apache" level="info" />
+		<logger name="com.alibaba" level="info" />
+		<logger name="druid.sql" level="info" />
+		<logger name="freemarker" level="info" />
+		<logger name="org.mybatis" level="info" />
+
+		<!-- mybatis sql log -->
+		<logger name="org.apache.ibatis.jdbc.ScriptRunner" level="debug" />
+		<logger name="java.sql.Connection" level="debug" />
+		<logger name="java.sql.Statement" level="debug" />
+		<logger name="java.sql.PreparedStatement" level="debug" />
+
+		<!-- Root Logger -->
+		<root level="debug">
+			<appender-ref ref="Console" />
+		</root>
+
+	</loggers>
+
+</configuration>

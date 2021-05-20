@@ -1,0 +1,6 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  application:
+    name: spring-boot-mybatis-optional

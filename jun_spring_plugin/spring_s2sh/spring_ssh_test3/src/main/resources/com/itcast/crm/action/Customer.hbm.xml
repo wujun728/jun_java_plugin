@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--映射文件 -->
+<!-- Generated 2016-2-26 16:58:40 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+	<class name="cn.itcast.crm.entity.Customer" table="cst_customer"
+		optimistic-lock="version">
+		<id name="custId" type="java.lang.Long">
+			<column name="cust_id" />
+			<generator class="identity" />
+		</id>
+		<property name="custName" type="string">
+			<column name="cust_name" length="32" not-null="true"></column>
+		</property>
+		<property name="custUserId" type="java.lang.Long">
+			<column name="cust_user_id"></column>
+		</property>
+		<property name="custCreateId" type="java.lang.Long">
+			<column name="cust_create_id"></column>
+		</property>
+		<property name="custIndustry" type="string">
+			<column name="cust_industry" length="32"></column>
+		</property>
+		<property name="custLevel" type="string">
+			<column name="cust_level" length="32"></column>
+		</property>
+		<property name="custLinkman" type="string">
+			<column name="cust_linkman" length="64"></column>
+		</property>
+		<property name="custPhone" type="string">
+			<column name="cust_phone" length="64"></column>
+		</property>
+		<property name="custMobile" type="string">
+			<column name="cust_mobile" length="16"></column>
+		</property>
+	</class>
+</hibernate-mapping>

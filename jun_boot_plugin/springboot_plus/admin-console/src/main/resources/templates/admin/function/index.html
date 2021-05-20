@@ -1,0 +1,19 @@
+<!--#layout("/common/layout.html",{"jsBase":"/js/admin/function/"}){ -->
+<layui:searchForm formId="functionSearchForm"  condition="${search}">
+</layui:searchForm>
+
+  <div class="layui-btn-group">
+  	<layui:accessButton function="function.add"  action="add">增加</layui:accessButton>
+  	<layui:accessButton function="function.edit"  action="edit">编辑</layui:accessButton>
+  	<layui:accessButton function="function.delete"  action="del">删除</layui:accessButton>
+  </div>
+<table id="functionTable" lay-filter="functionTable"></table>
+<!--#} -->
+<script>
+
+layui.use(['index'], function(){
+  var index = layui.index
+  index.init();
+});
+
+</script>

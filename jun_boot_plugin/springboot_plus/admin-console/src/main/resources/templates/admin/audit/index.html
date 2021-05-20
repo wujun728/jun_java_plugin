@@ -1,0 +1,15 @@
+<!--#layout("/common/layout.html",{"jsBase":"/js/admin/audit/"}){ -->
+<layui:searchForm formId="auditSearchForm"  condition="${search}">
+
+</layui:searchForm>
+
+<table id="auditTable" lay-filter="auditTable"></table>
+<!--#} -->
+<script>
+
+layui.use(['index'], function(){
+  var index = layui.index
+  index.init();
+});
+
+</script>

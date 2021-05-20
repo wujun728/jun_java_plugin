@@ -1,0 +1,11 @@
+<!--#layout("/common/container.html"){-->
+<script>
+    layui.use('layer', function () {
+        parent.layer.open({
+            content: '${errorMessage}'
+            ,btn: '确定'
+        });
+
+    })
+</script>
+<!--#}  -->

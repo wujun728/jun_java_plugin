@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <display-name>spring-oauth-server</display-name>
+
+    <!--
+        distributable
+        应用支持在分布式Web容器中部署
+    -->
+    <distributable/>
+
+    <context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value>spring-oauth-server</param-value>
+    </context-param>
+
+    <!--
+        字符编码Filter, 统一为UTF-8
+    -->
+    <!--Encoding filter-->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>com.monkeyk.sos.web.filter.CharacterEncodingIPFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!--
+        响应时启用GZIP压缩, 提高性能与网络传输
+    -->
+    <!--GzipFilter -->
+    <filter>
+        <filter-name>gzipFilter</filter-name>
+        <filter-class>
+            net.sf.ehcache.constructs.web.filter.GzipFilter
+        </filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>gzipFilter</filter-name>
+        <url-pattern>*.css</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>gzipFilter</filter-name>
+        <url-pattern>*.png</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>gzipFilter</filter-name>
+        <url-pattern>*.gif</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>gzipFilter</filter-name>
+        <url-pattern>*.jpeg</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>gzipFilter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>gzipFilter</filter-name>
+        <url-pattern>*.jpg</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>gzipFilter</filter-name>
+        <url-pattern>*.js</url-pattern>
+    </filter-mapping>
+
+
+    <!--
+        Spring Security 拦截 Filter配置
+    -->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--
+        Sitemesh, 装饰器Filter
+    -->
+    <!-- sitemesh filter-->
+    <filter>
+        <filter-name>sitemesh</filter-name>
+        <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <mime-mapping>
+        <extension>ico</extension>
+        <mime-type>image/vnd.microsoft.icon</mime-type>
+    </mime-mapping>
+
+    <!--
+        配置Spring Context 加载配置文件
+    -->
+    <!--contextConfigLocation -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/*.xml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>/WEB-INF/log4j.xml</param-value>
+    </context-param>
+
+    <!--
+        Log4j 日志监听器
+    -->
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+
+    <!--
+        Spring Context 监听
+    -->
+    <!-- Spring context listener -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+
+    <!--
+        Spring MVC 配置
+    -->
+    <!--mvc-->
+    <servlet>
+        <servlet-name>mkk</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mkk</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!--<error-page>-->
+    <!--<error-code>404</error-code>-->
+    <!--<location>/index.jsp</location>-->
+    <!--</error-page>-->
+
+    <!--
+        配置Session 有效期时间 30分钟
+    -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+
+</web-app>

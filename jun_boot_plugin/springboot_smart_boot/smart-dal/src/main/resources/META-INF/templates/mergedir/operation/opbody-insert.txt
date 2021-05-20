@@ -1,0 +1,14 @@
+{
+#if (${operation.paramType} == "object")
+    	if (${operation.param.name} == null) {
+    		throw new IllegalArgumentException("Can't insert a null data object into db.");
+    	}
+    	
+        super.insert(namespace+"${operation.mappedStatementId}", ${operation.param.name});
+
+        return ${operation.param.name}.${table.iwPkColumn.getterName}();
+#else
+## Not supported yet.
+#parse ("operation/not-support.vm")
+#end
+    }

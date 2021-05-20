@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  This is the JRebel configuration file. It maps the running application to your IDE workspace, enabling JRebel reloading for this project.
+  Refer to https://manuals.zeroturnaround.com/jrebel/standalone/config.html for more information.
+-->
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" generated-by="intellij" xmlns="http://www.zeroturnaround.com" xsi:schemaLocation="http://www.zeroturnaround.com http://update.zeroturnaround.com/jrebel/rebel-2_1.xsd">
+
+	<classpath>
+		<dir name="G:\GiteeVSGitHub\2018secondhalf\SpringMVC-JasperReport\target\classes">
+		</dir>
+	</classpath>
+
+	<web>
+
+		<link target="/">
+			<dir name="G:\GiteeVSGitHub\2018secondhalf\SpringMVC-JasperReport\src\main\webapp">
+			</dir>
+		</link>
+	</web>
+
+</application>

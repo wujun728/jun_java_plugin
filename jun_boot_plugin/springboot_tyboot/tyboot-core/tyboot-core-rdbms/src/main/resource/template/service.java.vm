@@ -1,0 +1,41 @@
+package ${package.Service};
+
+
+import ${package.ServiceImpl}.${entity}Model;
+import ${package.Mapper}.${table.mapperName};
+import ${package.Entity}.${entity};
+
+import org.springframework.stereotype.Component;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.typroject.tyboot.core.rdbms.service.BaseService;
+import java.util.List;
+
+
+/**
+ * <p>
+ * ${table.comment} 服务类
+ * </p>
+ *
+ * @author 子杨
+ * @since ${date}
+ */
+@Component
+public class ${table.serviceName} extends BaseService<${entity}Model,${entity},${table.mapperName}> {
+
+
+        /**
+         * 分页查询
+         */
+        public Page<${entity}Model> queryFor${entity}Page(Page page, String agencyCode) throws Exception {
+                return this.queryForPage(page, null, false, agencyCode);
+        }
+
+        /**
+         * 列表查询 示例
+         */
+        public List<${entity}Model> queryFor${entity}List(String agencyCode) throws Exception {
+                return this.queryForList("" , false, agencyCode);
+        }
+
+
+}

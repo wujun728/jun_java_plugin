@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+                        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+                        http://www.springframework.org/schema/mvc  
+                        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+    <!-- 激活自动代理功能 -->
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+
+    <!-- <context:annotation-config> 和 <context:component-scan>的区别：如下！ 我们既配置了<context:annotation-config/>，又配置了<context:component-scan base-package="xxx.xxx" />， 它们都具有处理在容器中注册的bean里面的注解的功能。会不会出现重复注入的情况呢？答案是不会的！ 
+        因为<context:annotation-config />和 <context:component-scan>同时存在的时候，前者会被忽略。 
+        也就是那些@autowire，@resource等注入注解只会被注入一次，哪怕是你手动的注册了多个处理器，spring仍然只会处理一次 -->
+    <!-- 配置了<context:component-scan>,这个配置可以去掉<context:annotation-config /> 
+        <context:annotation-config />仅能够在已经在已经注册过的bean上面起作用。对于没有在spring容器中注册的bean，它并不能执行任何操作。 
+        但是不用担心，<context:component-scan>除了具有<context:annotation-config />的功能之外，还具有自动将带有@component,@service,@Repository，@Controller等注解的对象注册到spring容器中的功能。 
+        <context:annotation-config /> -->
+    <!-- 设置Spring扫描的包. <context:component-scan>这个配置本身就具有<context:annotation-config>的功能， -->
+    <context:component-scan base-package="com.zb" />
+
+
+    <mvc:annotation-driven />
+    <!-- 启用Spring注解,完成请求和注解POJO的映射, 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter两个bean， 
+        这2个bean的具体配置见下面注释的地方. 对应的实现类是org.springframework.web.servlet.config.AnnotationDrivenBeanDefinitionParser 
+        这个类主要注册8个类的实例： 
+        1.RequestMappingHandlerMapping 
+        2.BeanNameUrlHandlerMapping 
+        3.RequestMappingHandlerAdapter 
+        4.HttpRequestHandlerAdapter 
+        5.SimpleControllerHandlerAdapter 
+        6.ExceptionHandlerExceptionResolver 
+        7.ResponseStatusExceptionResolver 
+        8.DefaultHandlerExceptionResolver 
+        1是处理@RequestMapping注解的，2.将controller类的名字映射为请求url。1和2都实现了HandlerMapping接口，用来处理请求映射。 
+        3是处理@Controller注解的控制器类，4是处理继承HttpRequestHandlerAdapter类的控制器类，5.处理继承SimpleControllerHandlerAdapter类的控制器。所以这三个是用来处理请求的。具体点说就是确定调用哪个controller的哪个方法来处理当前请求。 
+        6,7,8全部继承AbstractHandlerExceptionResolver，这个类实现HandlerExceptionResolver，该接口定义：接口实现的对象可以解决处理器映射、执行期间抛出的异常，还有错误的视图。 
+        所以<annotaion-driven/>标签主要是用来帮助我们处理请求映射，决定是哪个controller的哪个方法来处理当前请求，异常处理。 -->
+    <!-- <mvc:annotation-driven />到底帮我们做了啥，实际做了以下工作：（不包括添加自己定义的拦截器） 我们了解这些之后，对Spring3 
+        MVC的控制力就更强大了，想改哪就改哪里。 
+        spring 3.0.x是下面的配置： 
+        <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"> 
+            <property name="interceptors"> 
+                <list> 日志拦截器，这是你自定义的拦截器 <ref bean="logNDCInteceptor"/> </list> 
+            </property> 
+        </bean> 
+        <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> 
+            <property name="messageConverters"> 
+                <list> 
+                    <ref bean="byteArray_hmc" /> 
+                    <ref bean="string_hmc" /> 
+                    <ref bean="resource_hmc" /> 
+                    <ref bean="source_hmc" /> 
+                    <ref bean="xmlAwareForm_hmc" /> 
+                    <ref bean="jaxb2RootElement_hmc" /> 
+                    <ref bean="jackson_hmc" /> 
+               </list> 
+            </property> 
+        </bean> 
+        <bean id="byteArray_hmc" class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/> 
+        <bean id="string_hmc" class="org.springframework.http.converter.StringHttpMessageConverter"/> 
+        <bean id="resource_hmc" class="org.springframework.http.converter.ResourceHttpMessageConverter"/> 
+        <bean id="source_hmc" class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/> 
+        <bean id="xmlAwareForm_hmc" class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter"/> 
+        <bean id="jaxb2RootElement_hmc" class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/> 
+        <bean id="jackson_hmc" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/> 
+    -->
+
+
+
+
+    <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+    <bean
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 指定view视图的位置 -->
+        <property name="prefix" value="/WEB-INF/view/"></property>
+        <!-- 处理.jsp为后缀名的视图 -->
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+</beans>

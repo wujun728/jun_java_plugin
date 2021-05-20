@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- Configures the @Controller programming model -->
+    <mvc:annotation-driven />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<context:component-scan base-package="com.stepbysteptopro.template" />
+	
+    <util:properties id="applicationProps" location="classpath:application.properties"/>
+    <!-- This tag (mvc:resources) allows static resource requests following a particular URL pattern 
+         to be served by a ResourceHttpRequestHandler from any of a list of Resource locations. 
+         This provides a convenient way to serve static resources from locations other 
+         than the web application root, including locations on the classpath. 
+         The cache-period property may be used to set far future expiration headers 
+         (1 year is the recommendation of optimization tools such as Page Speed and YSlow) 
+         so that they will be more efficiently utilized by the client. 
+         See http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/mvc.html -->
+    <mvc:resources mapping="/resources-#{applicationProps['application.version']}/**" location="/resources/" cache-period="31556926"/>
+</beans>

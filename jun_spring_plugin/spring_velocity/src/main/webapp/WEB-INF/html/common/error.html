@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<link rel="icon" type="image/x-icon" href="$ctx/static/images/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="$ctx/static/images/favicon.ico" />
+<style type="text/css">
+.center {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-top: auto;
+}
+</style>
+<title>error</title>
+
+<link href="$ctx/static/bootstrap/css/bootstrap.css?$version_css" rel="stylesheet" />
+</head>
+<body class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80">
+	<div class="container" id="mainContent">
+		<div class="row">
+			<div class="span3">&nbsp;</div>
+			<div class="span5">
+				<div class="wel1">
+					<legend> 页面访问出错。 </legend>
+					<span>$exception.code</span>
+					#if($exception.message!=null) 
+						错误消息:<font color="red">$exception.message</font>
+					#end
+				</div>
+				<div class="span3">&nbsp;</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

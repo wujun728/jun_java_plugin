@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+    <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >  
+    <generatorConfiguration>  
+        <!-- 数据库驱动包位置 -->  
+        
+        <classPathEntry  
+            location="D:\maven\workspace\mysql\mysql-connector-java\5.1.39\mysql-connector-java-5.1.39.jar" />  
+        <context id="context1">  
+            <commentGenerator>  
+                <!-- 是否去除自动生成的注释 true：是 ： false:否 -->  
+                <property name="suppressAllComments" value="true"/>  
+            </commentGenerator>  
+            <!-- 数据库链接URL、用户名、密码 -->  
+            <jdbcConnection driverClass="com.mysql.jdbc.Driver"  
+                connectionURL="jdbc:mysql://127.0.0.1:3306/3dstore" userId="root" password="" />  
+            <!-- 生成模型的包名和位置 -->  
+             <javaModelGenerator targetPackage="model" targetProject="SpringMVC/src/main/java" />  
+            <!-- 生成的映射文件报名和位置 -->  
+            <sqlMapGenerator targetPackage="entity" targetProject="SpringMVC/src/main/java" />  
+            <!-- 生成DAO的包名和位置 -->  
+            
+            <javaClientGenerator targetPackage="mapper" targetProject="SpringMVC/src/main/java" type="XMLMAPPER" />  
+            <!-- 要生成的那些表(更改tableName 和domainObjectName 就可以了) -->  
+            <table tableName="courier" domainObjectName="Courier" enableCountByExample="false" enableUpdateByExample="false"  
+                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  
+                <!-- <columnOverride column="password" property="password" />  
+                <columnOverride column="name" property="name" />  
+                <columnOverride column="email" property="email" />  
+                <columnOverride column="count" property="count" /> -->  
+            </table>
+            <table tableName="good" domainObjectName="Good" enableCountByExample="false" enableUpdateByExample="false"  
+                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  
+            </table>    
+            <table tableName="goodtheme" domainObjectName="GoodTheme" enableCountByExample="false" enableUpdateByExample="false"  
+                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  
+            </table>
+            <table tableName="goodtype" domainObjectName="GoodType" enableCountByExample="false" enableUpdateByExample="false"  
+                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  
+            </table>
+            <table tableName="store" domainObjectName="Store" enableCountByExample="false" enableUpdateByExample="false"  
+                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  
+            </table>
+            <table tableName="storedesc" domainObjectName="StoreDesc" enableCountByExample="false" enableUpdateByExample="false"  
+                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  
+            </table>
+            <table tableName="storetype" domainObjectName="StoreType" enableCountByExample="false" enableUpdateByExample="false"  
+                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  
+            </table>
+            <table tableName="sysadmin" domainObjectName="SysAdmin" enableCountByExample="false" enableUpdateByExample="false"  
+                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  
+            </table>
+            <table tableName="sysfunction" domainObjectName="SysFunction" enableCountByExample="false" enableUpdateByExample="false"  
+                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  
+            </table>
+            <table tableName="sysfunctionmanage" domainObjectName="SysFunctionManage" enableCountByExample="false" enableUpdateByExample="false"  
+                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  
+            </table>
+            <table tableName="sysrole" domainObjectName="SysRole" enableCountByExample="false" enableUpdateByExample="false"  
+                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  
+            </table>
+            <table tableName="sysuser" domainObjectName="SysUser" enableCountByExample="false" enableUpdateByExample="false"  
+                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  
+            </table>
+            <table tableName="userlist" domainObjectName="UserList" enableCountByExample="false" enableUpdateByExample="false"  
+                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  
+            </table>                      
+        </context>  
+    </generatorConfiguration>  

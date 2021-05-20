@@ -1,0 +1,36 @@
+package ${package.ServiceImpl};
+
+import org.typroject.tyboot.core.rdbms.model.BaseModel;
+
+    /**
+     * <p>
+     * ${table.comment}
+     * </p>
+     *
+     * @author 子杨
+     * @since ${date}
+     */
+    public class ${entity}Model extends BaseModel {
+
+        private static final long serialVersionUID = 1L;
+
+        #foreach($field in ${table.fields})
+            #if("$!field.comment" != "")
+                /**
+                 * ${field.comment}
+                 */
+            #end
+            private ${field.propertyType} ${field.propertyName};
+        #end
+
+
+        #foreach($field in ${table.fields})
+        public ${field.propertyType} get${field.capitalName}() {
+            return ${field.propertyName};
+        }
+        public void set${field.capitalName}(${field.propertyType} ${field.propertyName}) {
+            this.${field.propertyName} = ${field.propertyName};
+        }
+        #end
+
+    }

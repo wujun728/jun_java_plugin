@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.typroject</groupId>
+		<artifactId>tyboot-prototype</artifactId>
+		<version>1.1.20Ty-SNAPSHOT</version>
+	</parent>
+
+
+	<artifactId>tyboot-prototype-trade</artifactId>
+	<packaging>jar</packaging>
+
+	<name>tyboot-prototype-trade</name>
+	<description>tyboot-prototype-trade</description>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.typroject</groupId>
+			<artifactId>tyboot-core-foundation</artifactId>
+			<version>1.1.20Ty-SNAPSHOT</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.typroject</groupId>
+			<artifactId>tyboot-core-rdbms</artifactId>
+			<version>1.1.20Ty-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.typroject</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.typroject</groupId>
+			<artifactId>tyboot-prototype-account</artifactId>
+			<version>1.1.20Ty-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.typroject.tyboot</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alipay.sdk</groupId>
+			<artifactId>alipay-sdk-java</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.6</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180813</version>
+		</dependency>
+
+	</dependencies>
+</project>

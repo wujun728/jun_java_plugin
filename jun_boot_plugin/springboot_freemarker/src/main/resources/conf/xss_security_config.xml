@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XSSConfig>
+    <!-- 是否进行header校验 -->
+    <isCheckHeader>false</isCheckHeader>
+    <!-- 是否进行parameter校验 -->
+    <isCheckParameter>true</isCheckParameter>
+    <!-- 是否记录攻击日志 -->
+    <isLog>true</isLog>
+    <!-- 是否拦截攻击内容 -->
+    <isChain>true</isChain>
+    <!-- 是否开启特殊字符替换 - 会替换掉整个匹配的字符串 -->
+    <replace>true</replace>
+
+    <!-- 是否开启特殊url校验 -->
+    <isCheckUrl>true</isCheckUrl>
+    <!-- 特殊URL检测，不使用通用正则匹配 -->
+    <checkUrlList>
+        <!-- 支持匹配多个或者零个正则 -->
+        <!-- <checkUrl>
+            <url>RelationAction.do</url>
+            <regex>xjh</regex>
+        </checkUrl>
+        <checkUrl>
+            <url>CompanyAction.do</url>
+        </checkUrl> -->
+        <checkUrl>
+            <url>imgshow</url>
+        </checkUrl>
+    </checkUrlList>
+
+    <!-- 通用URL正则 -->
+    <regexList>
+        <!-- 匹配含有字符： < > 支持多正则匹配 ,必填项  -->
+        <!--regex><![CDATA[.*[<|>|'|"].*]]></regex-->
+         <!-- 匹配含有字符： iframe  add yangyanan -->  
+        <regex><![CDATA[.*[I|i][F|f][R|r][A|a][M|m][E|e].*]]></regex> 
+        
+        <!-- 匹配含有字符： script  add yangyanan -->  
+        <regex><![CDATA[.*[S|s][C|c][R|r][I|i][P|p][T|t].*]]></regex> 
+        
+        <!-- 匹配含有字符： alert( ) modify yangyanan 匹配%2b-->  
+        <regex><![CDATA[.*[a|A]('%2b')?[l|L]('%2b')?[e|E]('%2b')?[r|R]('%2b')?[t|T]\\s*\\(.*\\).*]]></regex>  
+        <!-- 匹配含有字符： window.location = -->  
+        <regex><![CDATA[.*[W|w][I|i][N|n][D|d][O|o][W|w]\\.[L|l][O|o][C|c][A|a][T|t][I|i][O|o][N|n]\\s*=.*]]></regex>  
+        <!-- 匹配含有字符：style = x:ex pression ( ) -->  
+        <regex><![CDATA[.*[S|s][T|t][Y|y][L|l][E|e]\\s*=.*[X|x]:[E|e][X|x].*[P|p][R|r][E|e][S|s]{1,2}[I|i][O|o][N|n]\\s*\\(.*\\).*]]></regex>  
+        <!-- 匹配含有字符： document.cookie -->  
+        <regex><![CDATA[.*[D|d][O|o][C|c][U|u][M|m][E|e][N|n][T|t]\\.[C|c][O|o]{2}[K|k][I|i][E|e].*]]></regex>  
+        <!-- 匹配含有字符： eval( ) -->  
+        <regex><![CDATA[.*[E|e][V|v][A|a][L|l]\\s*\\(.*\\).*]]></regex>  
+        <!-- 匹配含有字符： unescape() -->  
+        <regex><![CDATA[.*[U|u][N|n][E|e][S|s][C|c][A|a][P|p][E|e]\\s*\\(.*\\).*]]></regex>  
+        <!-- 匹配含有字符： execscript( ) -->  
+        <regex><![CDATA[.*[E|e][X|x][E|e][C|c][S|s][C|c][R|r][I|i][P|p][T|t]\\s*\\(.*\\).*]]></regex>  
+        <!-- 匹配含有字符： msgbox( ) -->  
+        <regex><![CDATA[.*[M|m][S|s][G|g][B|b][O|o][X|x]\\s*\\(.*\\).*]]></regex>  
+        <!-- 匹配含有字符： confirm( ) -->  
+        <regex><![CDATA[.*[C|c][O|o][N|n][F|f][I|i][R|r][M|m]\\s*\\(.*\\).*]]></regex>  
+        <!-- 匹配含有字符： prompt( ) -->  
+        <regex><![CDATA[.*[P|p][R|r][O|o][M|m][P|p][T|t]\\s*\\(.*\\).*]]></regex>  
+        <!-- 匹配含有字符： <script> </script> -->  
+        <regex><![CDATA[.*<[S|s][C|c][R|r][I|i][P|p][T|t].*>.*</[S|s][C|c][R|r][I|i][P|p][T|t]>.*]]></regex>  
+        <!-- 匹配含有字符： <style> </style> -->  
+        <regex><![CDATA[.*<[S|s][T|t][Y|y][L|l][E|e].*>.*</[S|s][T|t][Y|y][L|l][E|e]>.*]]></regex>  
+        <!-- 匹配含有字符： 含有一个符号： "  -->  
+        <regex><![CDATA[[.&[^\"]]*\"[.&[^\"]]*]]></regex>  
+        <!-- 匹配含有字符： 含有一个符号： '  -->  
+        <regex><![CDATA[[.&[^']]*'[.&[^']]*]]></regex>  
+		<!-- 匹配含有字符：一个符号： *  -->
+		<!-- <regex><![CDATA[.*[\*]+.*]]></regex>   -->
+        <!-- 匹配含有字符： 含有回车换行 和 <script> </script> -->  
+        <regex><![CDATA[[[.&[^a]]|[|a|\n|\r\n|\r|\u0085|\u2028|\u2029]]*<[S|s][C|c][R|r][I|i][P|p][T|t]>.*</[S|s][C|c][R|r][I|i][P|p][T|t]>[[.&[^a]]|[|a|\n|\r\n|\r|\u0085|\u2028|\u2029]]*]]></regex>  
+    </regexList>
+
+</XSSConfig>

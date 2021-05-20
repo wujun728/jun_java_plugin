@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+xin.guaika.cloud.spring.boot.ShardingAutoConfiguration,\
+xin.guaika.cloud.spring.boot.MyBatisPlusAutoConfiguration

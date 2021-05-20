@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.supercall.dao.SysMenuMapperExtend">
+    <select id="all" resultType="java.util.LinkedHashMap">
+        SELECT
+        a.id,
+        case when  b.`name`  is null then '无' else b.name end  AS pname,
+        a.name,
+        a.orders,
+        a.icons,
+        a.urls,
+        CASE a.isshow
+        WHEN 1 THEN '显示'
+        ELSE '隐藏'
+        END AS isshow
+        FROM
+        sys_menu AS a
+        LEFT JOIN
+        sys_menu AS b ON a.parentid = b.id
+        where 1=1
+        <if test="name!=null and name!='' ">
+            and a.name like CONCAT('%',#{name},'%' )
+        </if>
+        <if test="isshow!=null and isshow!='' ">
+            and a.isshow = #{isshow}
+        </if>
+        <if test="parentid!=null and parentid!=''">
+            AND a.`parentid`=#{parentid}
+        </if>
+        <if test="n_isshow!=null and n_isshow!='' ">
+            and a.isshow != #{n_isshow}
+        </if>
+
+    </select>
+</mapper>

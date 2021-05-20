@@ -1,0 +1,30 @@
+<!--#layout("/common/layout.html",{"jsBase":"/js/admin/role/"}){ -->
+<form class="layui-form layui-form-pane">
+	<div class="layui-row">
+		<div class="layui-col-xs4" >
+			<div class="site-block" style="height:400px;overflow:auto; ">
+			<!--# 
+				var roles = core.roles("R0");
+				for(role in roles){
+				-->
+    			<input type="radio" name="roleId" value="${role.id}" title="${role.name}" checked="" lay-filter="roleId"><br>
+   			<!--#}-->
+			</div>
+		</div>
+		<div class="layui-col-xs8">
+			<div class="site-block" style="height:400px;overflow:auto; ">
+				<div id="functionTree" class='ztree'></div>
+			</div>
+		</div>
+	</div>
+</form>
+<layui:submitButtons id="save" />
+<!--#} -->
+<script>
+
+layui.use(['roleFn'], function(){
+  var index = layui.roleFn
+  index.init();
+});
+
+</script>

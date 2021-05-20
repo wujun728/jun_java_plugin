@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>tyboot</artifactId>
+        <groupId>org.typroject</groupId>
+        <version>1.1.20Ty-SNAPSHOT</version>
+    </parent>
+
+
+    <artifactId>tyboot-prototype</artifactId>
+    <packaging>pom</packaging>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <modules>
+		<module>tyboot-prototype-trade</module>
+		<module>tyboot-prototype-order</module>
+        <module>tyboot-prototype-account</module>
+    </modules>
+
+</project>

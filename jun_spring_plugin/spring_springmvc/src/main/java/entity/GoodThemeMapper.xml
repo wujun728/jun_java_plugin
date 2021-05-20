@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.GoodThemeMapper" >
+  <resultMap id="BaseResultMap" type="model.GoodTheme" >
+    <id column="themeid" property="themeid" jdbcType="INTEGER" />
+    <result column="themename" property="themename" jdbcType="VARCHAR" />
+    <result column="themedesc" property="themedesc" jdbcType="VARCHAR" />
+    <result column="themedesc1" property="themedesc1" jdbcType="VARCHAR" />
+    <result column="themedesc2" property="themedesc2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    themeid, themename, themedesc, themedesc1, themedesc2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goodtheme
+    where themeid = #{themeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goodtheme
+    where themeid = #{themeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.GoodTheme" >
+    insert into goodtheme (themeid, themename, themedesc, 
+      themedesc1, themedesc2)
+    values (#{themeid,jdbcType=INTEGER}, #{themename,jdbcType=VARCHAR}, #{themedesc,jdbcType=VARCHAR}, 
+      #{themedesc1,jdbcType=VARCHAR}, #{themedesc2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="model.GoodTheme" >
+    insert into goodtheme
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="themeid != null" >
+        themeid,
+      </if>
+      <if test="themename != null" >
+        themename,
+      </if>
+      <if test="themedesc != null" >
+        themedesc,
+      </if>
+      <if test="themedesc1 != null" >
+        themedesc1,
+      </if>
+      <if test="themedesc2 != null" >
+        themedesc2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="themeid != null" >
+        #{themeid,jdbcType=INTEGER},
+      </if>
+      <if test="themename != null" >
+        #{themename,jdbcType=VARCHAR},
+      </if>
+      <if test="themedesc != null" >
+        #{themedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="themedesc1 != null" >
+        #{themedesc1,jdbcType=VARCHAR},
+      </if>
+      <if test="themedesc2 != null" >
+        #{themedesc2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.GoodTheme" >
+    update goodtheme
+    <set >
+      <if test="themename != null" >
+        themename = #{themename,jdbcType=VARCHAR},
+      </if>
+      <if test="themedesc != null" >
+        themedesc = #{themedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="themedesc1 != null" >
+        themedesc1 = #{themedesc1,jdbcType=VARCHAR},
+      </if>
+      <if test="themedesc2 != null" >
+        themedesc2 = #{themedesc2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where themeid = #{themeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.GoodTheme" >
+    update goodtheme
+    set themename = #{themename,jdbcType=VARCHAR},
+      themedesc = #{themedesc,jdbcType=VARCHAR},
+      themedesc1 = #{themedesc1,jdbcType=VARCHAR},
+      themedesc2 = #{themedesc2,jdbcType=VARCHAR}
+    where themeid = #{themeid,jdbcType=INTEGER}
+  </update>
+</mapper>

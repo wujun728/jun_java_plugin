@@ -1,0 +1,4 @@
+##测试宏 - 文字加红
+#macro (haha $txt)
+<font color="red">$txt</font>
+#end

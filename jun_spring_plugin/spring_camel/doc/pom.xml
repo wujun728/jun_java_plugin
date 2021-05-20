@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.jun.plugin</groupId>
+    <artifactId>jun_apache_camel</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <modules>
+		<module>01-ApacheCamel-HelloWorld</module>
+		<module>02-ApacheCamelServer</module>
+		<module>03-ApacheCamel-FTP</module>
+		<module>04-ApacheCamel-CXF-WebService</module>
+		<module>05-ApacheCamel-CXF-WebService</module>
+		<module>06-ApacheCamel-JMS-ActiveMQ</module>
+		<module>07-ApacheCamel-JMS-ActiveMQ</module>
+		<module>08-ApacheCamel-Jetty</module>
+		<module>09-ApacheCamel-Timer</module>
+		<module>10-ApacheCamel-JDBC</module>
+		<module>11-ApacheCamel-JDBC</module>
+		<module>12-ApahceCamel-SpringDemo</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+        </dependency>
+    </dependencies>
+
+</project>

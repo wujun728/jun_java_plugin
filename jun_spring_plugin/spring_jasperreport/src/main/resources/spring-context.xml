@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--1.加载属性配置文件-->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <!-- 不需要区分环境的,指向的是被Maven已编译的资源文件 -->
+                <value>classpath:datasource.properties</value>
+                <value>classpath:jasperreports.properties</value>
+            </list>
+        </property>
+    </bean>
+    <!--2.引入其他的spring模块-->
+    <import resource="spring-mybatis.xml"></import>
+    <!--
+        <import resource="spring-redis.xml"></import>
+        <import resource="spring-mongo.xml"></import>
+        <import resource="spring-activemq.xml"></import>
+        <import resource="spring-utils.xml"></import>
+    -->
+    <!--2.配置扫描Service组件的扫描器-->
+    <context:component-scan base-package="cn.kiwipeach.demo.**.impl">
+        <!--排除扫描注解-->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+    <!--3.其他资源Bean-->
+
+</beans>

@@ -1,0 +1,47 @@
+<!--# layout("/common/layout.html",{"jsBase":"/js/${target.urlBase}/${entity.code}/"}){ -->
+
+<form class="layui-form layui-form-pane" id="addForm">
+	@ var list = entity.generalList;
+	@ var size = list.~size; /*一行显示俩个，生成后在根据显示要求调整*/
+	@ for(var i=0;i<size;i++){
+	@ var item0=list[i];
+	@ var item1=(size-i==1)?null:list[i+1];
+	@ i=i+1;
+	@ var array = [item0,item1];
+    <div class="layui-row">
+        <div class="layui-form-item">
+		@for(item in array){
+			@if(item==null){continue;}
+			@if(item.name=="delFlag"){continue;}
+			@if(item.name=="version"){continue;}
+			@if(item.name=="attachmentId"){continue;}
+            <div class="layui-inline">
+            <label class="layui-form-label">${item.displayName}</label>
+				<div class="layui-input-inline">
+					@if(isEmpty(item.dictType)){
+					<input type="text" name="${item.name}" class="layui-input${item.javaType=='Date'?' input-date'}" ${isNotEmpty(item.verifyList)?('lay-verify="'+verifyFormat(item.verifyList)+'"'):''}>
+					@}else{
+					<layui:simpleDictSelect style='layui-input-inline' type="${item.dictType}" layVerify="${verifyFormat(item.verifyList)}"
+								id="${item.name}" name="${item.name}" value="" />
+					@}
+				</div>
+            </div>
+		@}
+        </div>
+    </div>
+	@}
+	@if(entity.attachment){
+    <div class="layui-row">
+        <!-- 业务对象得有一个字段保存附件id，假设是attachmentId  -->
+        <layui:attachment name="attachmentId" batchFileUUID="\${uuid()}"  bizType="entity.name" isNew="true"  />
+    </div>
+	@}
+    <layui:submitButtons id="addButton" />
+</form>
+<!--#} -->
+<script>
+layui.use(['add'], function(){
+    var ${entity.code}Add = layui.add
+    ${entity.code}Add.init();
+});
+</script>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.SysFunctionMapper" >
+  <resultMap id="BaseResultMap" type="model.SysFunction" >
+    <id column="FUNID" property="funid" jdbcType="INTEGER" />
+    <result column="FUNNAME" property="funname" jdbcType="VARCHAR" />
+    <result column="FUNURL" property="funurl" jdbcType="VARCHAR" />
+    <result column="FUNPID" property="funpid" jdbcType="INTEGER" />
+    <result column="FUNSTATE" property="funstate" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FUNID, FUNNAME, FUNURL, FUNPID, FUNSTATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sysfunction
+    where FUNID = #{funid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sysfunction
+    where FUNID = #{funid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.SysFunction" >
+    insert into sysfunction (FUNID, FUNNAME, FUNURL, 
+      FUNPID, FUNSTATE)
+    values (#{funid,jdbcType=INTEGER}, #{funname,jdbcType=VARCHAR}, #{funurl,jdbcType=VARCHAR}, 
+      #{funpid,jdbcType=INTEGER}, #{funstate,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="model.SysFunction" >
+    insert into sysfunction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="funid != null" >
+        FUNID,
+      </if>
+      <if test="funname != null" >
+        FUNNAME,
+      </if>
+      <if test="funurl != null" >
+        FUNURL,
+      </if>
+      <if test="funpid != null" >
+        FUNPID,
+      </if>
+      <if test="funstate != null" >
+        FUNSTATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="funid != null" >
+        #{funid,jdbcType=INTEGER},
+      </if>
+      <if test="funname != null" >
+        #{funname,jdbcType=VARCHAR},
+      </if>
+      <if test="funurl != null" >
+        #{funurl,jdbcType=VARCHAR},
+      </if>
+      <if test="funpid != null" >
+        #{funpid,jdbcType=INTEGER},
+      </if>
+      <if test="funstate != null" >
+        #{funstate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.SysFunction" >
+    update sysfunction
+    <set >
+      <if test="funname != null" >
+        FUNNAME = #{funname,jdbcType=VARCHAR},
+      </if>
+      <if test="funurl != null" >
+        FUNURL = #{funurl,jdbcType=VARCHAR},
+      </if>
+      <if test="funpid != null" >
+        FUNPID = #{funpid,jdbcType=INTEGER},
+      </if>
+      <if test="funstate != null" >
+        FUNSTATE = #{funstate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where FUNID = #{funid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.SysFunction" >
+    update sysfunction
+    set FUNNAME = #{funname,jdbcType=VARCHAR},
+      FUNURL = #{funurl,jdbcType=VARCHAR},
+      FUNPID = #{funpid,jdbcType=INTEGER},
+      FUNSTATE = #{funstate,jdbcType=INTEGER}
+    where FUNID = #{funid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns='http://www.ehcache.org/v3'
+        xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.5.xsd">
+    <persistence directory="usr/tmp/ehcache_data" />
+
+    <cache-template name="defaultCacheTemplate">
+        <key-type>java.lang.String</key-type>
+        <value-type>java.lang.String</value-type>
+        <resources>
+            <heap>1000</heap>
+            <offheap unit="MB">20</offheap>
+            <disk unit="MB" persistent="true">200</disk>
+        </resources>
+    </cache-template>
+    <cache alias="ehcache_cache" uses-template="defaultCacheTemplate" />
+</config>

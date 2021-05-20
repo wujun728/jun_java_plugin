@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kiwipeach.demo.mapper.EmployMapper">
+  <resultMap id="BaseResultMap" type="cn.kiwipeach.demo.domain.Employ">
+    <id column="EMPNO" jdbcType="DECIMAL" property="empno" />
+    <result column="ENAME" jdbcType="VARCHAR" property="ename" />
+    <result column="JOB" jdbcType="VARCHAR" property="job" />
+    <result column="MGR" jdbcType="DECIMAL" property="mgr" />
+    <result column="HIREDATE" jdbcType="TIMESTAMP" property="hiredate" />
+    <result column="SAL" jdbcType="DECIMAL" property="sal" />
+    <result column="COMM" jdbcType="DECIMAL" property="comm" />
+    <result column="DEPTNO" jdbcType="DECIMAL" property="deptno" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EMP
+    where EMPNO = #{empno,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from EMP
+    where EMPNO = #{empno,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="cn.kiwipeach.demo.domain.Employ">
+    insert into EMP (EMPNO, ENAME, JOB, 
+      MGR, HIREDATE, SAL, 
+      COMM, DEPTNO)
+    values (#{empno,jdbcType=DECIMAL}, #{ename,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
+      #{mgr,jdbcType=DECIMAL}, #{hiredate,jdbcType=TIMESTAMP}, #{sal,jdbcType=DECIMAL}, 
+      #{comm,jdbcType=DECIMAL}, #{deptno,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.kiwipeach.demo.domain.Employ">
+    insert into EMP
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empno != null">
+        EMPNO,
+      </if>
+      <if test="ename != null">
+        ENAME,
+      </if>
+      <if test="job != null">
+        JOB,
+      </if>
+      <if test="mgr != null">
+        MGR,
+      </if>
+      <if test="hiredate != null">
+        HIREDATE,
+      </if>
+      <if test="sal != null">
+        SAL,
+      </if>
+      <if test="comm != null">
+        COMM,
+      </if>
+      <if test="deptno != null">
+        DEPTNO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empno != null">
+        #{empno,jdbcType=DECIMAL},
+      </if>
+      <if test="ename != null">
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="mgr != null">
+        #{mgr,jdbcType=DECIMAL},
+      </if>
+      <if test="hiredate != null">
+        #{hiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sal != null">
+        #{sal,jdbcType=DECIMAL},
+      </if>
+      <if test="comm != null">
+        #{comm,jdbcType=DECIMAL},
+      </if>
+      <if test="deptno != null">
+        #{deptno,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.kiwipeach.demo.domain.Employ">
+    update EMP
+    <set>
+      <if test="ename != null">
+        ENAME = #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        JOB = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="mgr != null">
+        MGR = #{mgr,jdbcType=DECIMAL},
+      </if>
+      <if test="hiredate != null">
+        HIREDATE = #{hiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sal != null">
+        SAL = #{sal,jdbcType=DECIMAL},
+      </if>
+      <if test="comm != null">
+        COMM = #{comm,jdbcType=DECIMAL},
+      </if>
+      <if test="deptno != null">
+        DEPTNO = #{deptno,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where EMPNO = #{empno,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.kiwipeach.demo.domain.Employ">
+    update EMP
+    set ENAME = #{ename,jdbcType=VARCHAR},
+      JOB = #{job,jdbcType=VARCHAR},
+      MGR = #{mgr,jdbcType=DECIMAL},
+      HIREDATE = #{hiredate,jdbcType=TIMESTAMP},
+      SAL = #{sal,jdbcType=DECIMAL},
+      COMM = #{comm,jdbcType=DECIMAL},
+      DEPTNO = #{deptno,jdbcType=DECIMAL}
+    where EMPNO = #{empno,jdbcType=DECIMAL}
+  </update>
+</mapper>

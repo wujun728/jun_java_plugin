@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<div class="page">
+  <h1 class="page-title">{{ page.title }}</h1>
+    {% if page.show_meta == true %}
+      {% include meta_info.html %}
+    {% endif %} 
+  {{ content }}
+    {% if page.show_meta == true %}
+      {% include meta_info.html %}
+    {% endif %}  
+</div>
+
+{% unless page.hide_printmsg == true %}
+  {% include printmsgpages.html %}
+{% endunless %}
+
+<div class="page-break"></div>
+{% if site.disqus_shortname and page.comments == true %}<div id="disqus_thread"></div><!-- /#disqus_thread -->{% endif %}

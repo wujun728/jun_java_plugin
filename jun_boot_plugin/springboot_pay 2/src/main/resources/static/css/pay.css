@@ -1,0 +1,130 @@
+@charset "utf-8";
+
+*{
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+html,
+body {
+	-webkit-text-size-adjust: none;
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #fff;
+	color: #333;
+	font: normal 0.22rem/0.3rem "microsoft yahei";
+}
+article,
+section,
+figure,
+div,
+form,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	box-sizing: border-box;
+	font-size: 0.22rem;
+}
+ol,
+ul,
+li {
+	list-style: none;
+}
+a {
+	color: #656565;
+	text-decoration: none;
+	-webkit-tap-highlight-color: rgba(255,0,0,0);
+}
+a:hover,
+a:visited {
+	color: #656565;
+	text-decoration: none;
+}
+input,
+button{
+	font-family: "microsoft yahei";
+	outline: none;
+	font-size: 0.22rem;
+	-webkit-appearance: none;
+}
+img{
+	display: block;
+}
+.dn{
+	display: none;
+}
+.clearfix:after {
+	content: "";
+	display: block;
+	visibility: hidden;
+	height: 0;
+	clear: both;
+}
+/* 确认支付信息 begin */
+.affirm-info{
+	background-color: #f5f5f5;
+}
+.affirm-info h4{
+	text-align: center;
+	font-size: 0.3rem;
+	padding:0.5rem 0 0;
+	font-weight: bold;
+}
+.affirm-info h3{
+	text-align: center;
+	font-size: 0.6rem;
+	font-weight: bold;
+	margin:0.7rem 0 0.7rem;
+}
+.affirm-info .detail-dl{
+	padding:0.2rem 5%;
+	border-top:1px #d8d8d8 solid;
+	border-bottom:1px #d8d8d8 solid;
+	background-color: #fff;
+}
+.affirm-info .detail-dl dl:after{
+	display:block;
+	clear:both;
+	content:"";
+	visibility:hidden;
+	height:0;
+}
+.affirm-info .detail-dl dl{
+	margin: 0;
+	line-height: 0.45rem;
+}
+.affirm-info .detail-dl dt{
+	width:15%;
+	float: left;
+	text-align: center;
+}
+.affirm-info .detail-dl dd{
+	width:80%;
+	text-align: right;
+	float: left;
+}
+.affirm-info .pay-info{
+	width:85%;
+	margin:auto;
+	height: 0.7rem;
+	line-height: 0.7rem;
+	font-size: 0.32rem;
+	color: #fff;
+	text-align: center;
+	background-color: #4abd55;
+	margin-top: 0.7rem;
+}
+/* 确认支付信息 end */

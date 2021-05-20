@@ -1,0 +1,36 @@
+.loginbox{
+    margin-top:50px;
+}
+.forgot-password{
+    float:right;
+    font-size: 80%;
+    position: relative;
+    top:-10px;
+}
+.panel-pad{
+    padding-top:30px;
+}
+.login-alert{
+    display:none;
+}
+.margT25{
+    margin-bottom: 25px;
+}
+.margT10{
+    margin-top:10px;
+}
+.margL10{
+    padding-left: 25px;
+}
+.no-acc{
+    border-top: 1px solid#888; padding-top:15px; font-size:85%;
+}
+.signup-box{
+    display:none; margin-top:50px;
+}
+.signup-fb{
+    border-top: 1px solid #999; padding-top:20px;
+}
+.signin{
+    float:right; font-size: 85%; position: relative; top:-10px;
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mapper.OrderMapper">
+	<resultMap id="BaseResultMap" type="com.test.model.Order">
+		<id column="order_id" property="orderId" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+	</resultMap>
+	<select id="getOrderListByUserId" resultMap="BaseResultMap"
+		parameterType="int">
+		select order_id, user_id from t_order where
+		user_id=#{userId}
+	</select>
+	<insert id="createOrder" parameterType="com.test.model.Order">
+		insert into
+		t_order(user_id, order_id) values (#{userId}, #{orderId})
+	</insert>
+</mapper>

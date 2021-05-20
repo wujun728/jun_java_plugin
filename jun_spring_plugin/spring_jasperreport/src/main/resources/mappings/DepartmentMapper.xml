@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kiwipeach.demo.mapper.DepartmentMapper">
+  <resultMap id="BaseResultMap" type="cn.kiwipeach.demo.domain.Department">
+    <id column="DEPTNO" jdbcType="DECIMAL" property="deptno" />
+    <result column="DNAME" jdbcType="VARCHAR" property="dname" />
+    <result column="LOC" jdbcType="VARCHAR" property="loc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DEPTNO, DNAME, LOC
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DEPT
+    where DEPTNO = #{deptno,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from DEPT
+    where DEPTNO = #{deptno,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="cn.kiwipeach.demo.domain.Department">
+    insert into DEPT (DEPTNO, DNAME, LOC
+      )
+    values (#{deptno,jdbcType=DECIMAL}, #{dname,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.kiwipeach.demo.domain.Department">
+    insert into DEPT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deptno != null">
+        DEPTNO,
+      </if>
+      <if test="dname != null">
+        DNAME,
+      </if>
+      <if test="loc != null">
+        LOC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deptno != null">
+        #{deptno,jdbcType=DECIMAL},
+      </if>
+      <if test="dname != null">
+        #{dname,jdbcType=VARCHAR},
+      </if>
+      <if test="loc != null">
+        #{loc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.kiwipeach.demo.domain.Department">
+    update DEPT
+    <set>
+      <if test="dname != null">
+        DNAME = #{dname,jdbcType=VARCHAR},
+      </if>
+      <if test="loc != null">
+        LOC = #{loc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPTNO = #{deptno,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.kiwipeach.demo.domain.Department">
+    update DEPT
+    set DNAME = #{dname,jdbcType=VARCHAR},
+      LOC = #{loc,jdbcType=VARCHAR}
+    where DEPTNO = #{deptno,jdbcType=DECIMAL}
+  </update>
+</mapper>

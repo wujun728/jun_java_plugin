@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.springmvc.mapper.ArchivemessagesMapper">
+
+	<resultMap id="BaseResultMap" type="cn.springmvc.model.Archivemessages">
+		<id column="messageId" property="messageid" jdbcType="BIGINT" />
+		<result column="time" property="time" jdbcType="BIGINT" />
+		<result column="direction" property="direction" jdbcType="CHAR" />
+		<result column="type" property="type" jdbcType="CHAR" />
+		<result column="subject" property="subject" jdbcType="VARCHAR" />
+		<result column="body" property="body" jdbcType="LONGVARCHAR" />
+		<result column="conversationId" property="conversationid" jdbcType="BIGINT" />
+	</resultMap>
+	
+	<resultMap id="ResultMap" type="cn.springmvc.model.Archivemessages">
+		<id column="messageId" property="messageid" jdbcType="BIGINT" />
+		<result column="time" property="time" jdbcType="BIGINT" />
+		<result column="direction" property="direction" jdbcType="CHAR" />
+		<result column="type" property="type" jdbcType="CHAR" />
+		<result column="subject" property="subject" jdbcType="VARCHAR" />
+		<result column="body" property="body" jdbcType="LONGVARCHAR" />
+		<result column="conversationId" property="conversationid" jdbcType="BIGINT" />
+		
+		<result column="ownerJid" property="ownerjid" />
+		<result column="withJid" property="withjid" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		messageId, time, direction, type, subject,body, conversationId
+	</sql>
+
+	<select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from archivemessages
+		where messageId = #{messageid,jdbcType=BIGINT}
+	</select>
+	
+	<select id="findAll" resultMap="ResultMap">
+		select t1.ownerJid,t1.withJid, t2.messageId, t2.time, t2.direction, t2.type, t2.subject,t2.body, t2.conversationId 
+		from archiveconversations t1 , archivemessages t2
+		where t1.conversationId=t2.conversationId
+	</select>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from archivemessages	where messageId = #{messageid,jdbcType=BIGINT}
+	</delete>
+
+
+</mapper>

@@ -1,0 +1,40 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.9
+-- http://www.phpmyadmin.net
+--
+-- 主机: 127.0.0.1
+-- 生成日期: 2017-01-03 10:51:48
+-- 服务器版本: 5.5.34
+-- PHP 版本: 5.4.22
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- 数据库: `cjtdb`
+--
+CREATE DATABASE IF NOT EXISTS `cjtdb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `cjtdb`;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `t_user`
+--
+
+CREATE TABLE IF NOT EXISTS `t_user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `name` varchar(10) NOT NULL COMMENT '用户姓名',
+  `address` varchar(255) DEFAULT NULL COMMENT '用户地址',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=18 ;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

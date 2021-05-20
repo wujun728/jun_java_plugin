@@ -1,0 +1,2 @@
+#spring-boot-drools7-demo
+spring-boot整合drools7，数据库实现drools规则文件的增删改查及加载

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName">
+	<import resource="classpath*:service-integration.xml" />
+	<!-- 配置缓存拦截器 -->
+	<beans profile="redis">
+		 <bean id="cacheInterceptor" class="org.smartboot.component.cache.CacheInterceptor">
+			<property name="cacheClient" ref="cacheClient" />
+		</bean>
+		<bean
+			class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+			<property name="interceptorNames">
+				<list>
+					<value>cacheInterceptor</value>
+				</list>
+			</property>
+			<property name="beanNames">
+				<value>*Component</value>
+			</property>
+		</bean>
+	</beans>
+
+</beans>

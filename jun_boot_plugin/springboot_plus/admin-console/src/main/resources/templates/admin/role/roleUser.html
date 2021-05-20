@@ -1,0 +1,16 @@
+<!--#layout("/common/layout.html",{"jsBase":"/js/admin/role/"}){ -->
+<layui:searchForm formId="roleUserSearchForm"  condition="${search}">
+	<input type="hidden" name="roleId" value="${role.id}">
+</layui:searchForm>
+
+<table id="userTable" lay-filter="userTable"></table>
+<layui:closeButton id="close"/>
+<!--#} -->
+<script>
+
+layui.use(['roleUser'], function(){
+  var roleUser = layui.roleUser
+  roleUser.init(${role.id});
+});
+
+</script>

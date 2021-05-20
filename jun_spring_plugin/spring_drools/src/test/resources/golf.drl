@@ -1,0 +1,48 @@
+package com.zandili.demo.drools.service;
+
+dialect "mvel"
+
+import com.zandili.demo.drools.pojo.Golfer;
+
+rule "find solution"
+    when
+        //Fred的信息很少，只知道名字
+        $fred : Golfer( name == "Fred" )
+
+        //Joe在队列中排第二
+        $joe : Golfer( name == "Joe",
+                position == 2,
+                position != $fred.position,
+                color != $fred.color )
+
+        //Bob穿着彩色格呢的裤子
+        $bob : Golfer( name == "Bob",
+                position != $fred.position,
+                position != $joe.position,
+                color == "plaid",
+                color != $fred.color,
+                color != $joe.color )
+
+        //Tom不在第一或者第四, 他没有穿那种让人恶心的桔黄色裤子
+        $tom : Golfer( name == "Tom",
+                position != 1,
+                position != 4,
+                position != $fred.position,
+                position != $joe.position,
+                position != $bob.position,
+                color != "orange",
+                color != $fred.color,
+                color != $joe.color,
+                color != $bob.color )
+
+        //在Fred右边的一个选手穿蓝色
+        Golfer( position == ( $fred.position + 1 ),
+                      color == "blue",
+                      this in ( $joe, $bob, $tom ) )
+
+    then
+        System.out.println( "Fred " + $fred.getPosition() + " " + $fred.getColor() );
+        System.out.println( "Joe " + $joe.getPosition() + " " + $joe.getColor() );
+        System.out.println( "Bob " + $bob.getPosition() + " " + $bob.getColor() );
+        System.out.println( "Tom " + $tom.getPosition() + " " + $tom.getColor() );
+end
