@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<root>
-    <widget label="label1" />
-    <widget plugin-class="tqlin.plugins.TextLabel" label="label2" />
-    <widget plugin-class="tqlin.plugins.Slider" label="slider1" />
-</root>

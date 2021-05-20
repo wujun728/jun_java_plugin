@@ -1,3 +1,0 @@
-
-#War打包
-file.warfile=${project.name}-${project.version}.war

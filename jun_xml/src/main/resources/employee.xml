@@ -1,9 +1,0 @@
-<employee>
-    <firstName>tq</firstName>
-    <lastName>lin</lastName>
-    <address>
-        <type>CITY</type>
-        <city>Xiamen</city>
-        <state>2</state>
-    </address>
-</employee>

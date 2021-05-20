@@ -1,8 +1,0 @@
-package com.java1234.jdbc.chap06.sec01;
-
-public class Demo1 {
-
-	public static void main(String[] args) {
-		System.out.println("HelloWorld!");
-	}
-}

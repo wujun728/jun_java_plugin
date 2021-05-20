@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<university name="tsu">
-    
-    
-    <college name="c3">
-    <class name="c4"/>
-    </college>
-    <college name="c5">text</college>
-</university>

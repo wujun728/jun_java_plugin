@@ -1,8 +1,0 @@
-
-#Jar打包
-#Main程序
-project.main.class=
-#Soureces Jar
-file.sourceJarfile=${project.name}-${project.version}-sources.jar
-#Classes Jar
-file.jarfile=${project.name}-${project.version}.jar

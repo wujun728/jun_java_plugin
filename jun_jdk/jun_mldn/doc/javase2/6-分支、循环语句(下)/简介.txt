@@ -1,9 +1,0 @@
-内容：
-	讲解了程序的循环实现，包括for、while、do..while循环，以及循环的控制语句：break、continue
-
-产品：JDK 1.5
-
-技术：JAVA基础
-
-难度：
-	★★★☆☆

@@ -1,3 +1,0 @@
-
-#FindBugs任务需要下载完整包而不是使用Eclipse下的FindBugs插件
-findbugs.home=C:/Java/Lib/findbugs
