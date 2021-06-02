@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jun.mvc.dao.IUserDao">
+
+    <!-- 持久化 -->
+    <insert id="save" parameterType="user">
+        insert into tbl_user(u_name,u_pwd,u_real_name,u_status) values
+         (#{userName},#{password}, #{realName}, #{status})
+    </insert>
+
+    <select id="findById" parameterType="int" resultType="user">
+        select
+          u.id id,
+          u.u_name userName,
+          u.u_pwd password,
+          u.u_real_name realName,
+          u.u_status status
+        from tbl_user u where u.id = #{id}
+    </select>
+
+    <select id="findAll" resultType="user">
+        select
+          u.id id,
+          u.u_name userName,
+          u.u_pwd password,
+          u.u_real_name realName,
+          u.u_status status
+        from tbl_user u
+    </select>
+
+    <select id="queryByUserName" parameterType="string" resultType="user">
+        select
+          u.id id,
+          u.u_name userName,
+          u.u_pwd password,
+          u.u_real_name realName,
+          u.u_status status
+        from tbl_user u where u.u_name = #{value}
+    </select>
+
+    <select id="queryByAccountId" resultType="user" parameterType="int">
+         select
+          u.id id,
+          u.u_name userName,
+          u.u_pwd password,
+          u.u_real_name realName,
+          u.u_status status
+          from tbl_user u join tbl_account a on u.id = a.user_id
+          where a.id = #{id}
+    </select>
+
+    <delete id="delete" parameterType="int">
+        delete from tbl_user where id = #{value}
+    </delete>
+
+    <update id="update" parameterType="user">
+        update tbl_user u
+        <set>
+            <if test="userName != null">
+                u.u_name = #{userName},
+            </if>
+            <if test="password != null">
+                u.u_pwd = #{password},
+            </if>
+            <if test="realName != null">
+                u.u_real_name = #{realName},
+            </if>
+            <if test="status != null">
+                u.u_status = #{status}
+            </if>
+        </set>
+        where u.id = #{id}
+    </update>
+
+</mapper>
+
+

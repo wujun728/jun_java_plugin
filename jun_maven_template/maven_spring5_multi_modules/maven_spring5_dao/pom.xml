@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.jun</groupId>
+        <artifactId>maven_spring5_parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>maven_spring5_dao</artifactId>
+    <packaging>jar</packaging>
+
+    <name>maven_spring5_dao</name>
+    <url>http://www.java.com</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.jun</groupId>
+            <artifactId>maven_spring5_domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- 导入数据库驱动: 以下的依赖由于父模块中定义了 dependencyManagement，所在不需要写 version 了 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <!-- runtime表示编译期间不需要，在运行期间需要，打包进会把此包导入到目标项目中 -->
+            <scope>runtime</scope>
+        </dependency>
+        <!-- 可以直接引入父项目中pom.xml定义的全局属性 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>
