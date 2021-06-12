@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>权限列表</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../../css/oksub.css">
+	<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body class="ok-body-scroll">
+<div class="ok-body">
+	<!--模糊搜索区域-->
+	<div class="layui-row">
+		<form class="layui-form layui-col-md12 ok-search">
+			<input class="layui-input" placeholder="权限名称" autocomplete="off">
+			<input class="layui-input" placeholder="权限标识" autocomplete="off">
+			<input class="layui-input" placeholder="权限路径" autocomplete="off">
+			<button class="layui-btn" lay-submit="" lay-filter="search">
+				<i class="layui-icon layui-icon-search"></i>
+			</button>
+		</form>
+	</div>
+	<div class="layui-row">
+		<div class="layui-col-md3">
+			<div id="permissionTree"></div>
+		</div>
+		<div class="layui-col-md9">
+			<table class="layui-hide" id="permissionTable" lay-filter="tableFilter"></table>
+		</div>
+	</div>
+</div>
+<!--js逻辑-->
+<script src="../../lib/layui/layui.js"></script>
+<script>
+	layui.use(["element", "table", "laydate", "tree", "okUtils", "okMock"], function () {
+		let table = layui.table;
+		let laydate = layui.laydate;
+		let tree = layui.tree;
+		let okUtils = layui.okUtils;
+		let okMock = layui.okMock;
+
+		okLoading.close();
+
+		laydate.render({elem: '#startTime', type: "datetime"});
+		laydate.render({elem: '#endTime', type: "datetime"});
+
+		function initPermissionTree() {
+			okUtils.ajax("/permission/tree", "get", null, true).done(function (response) {
+				tree.render({
+					elem: '#permissionTree',
+					data: response.data,
+					showCheckbox: true,
+					id: 'demoId1',
+					isJump: true,
+					click: function (obj) {
+						var data = obj.data;
+						layer.msg('状态：' + obj.state + '<br>节点数据：' + JSON.stringify(data));
+					}
+				});
+
+				initPermissionTable();
+			}).fail(function (error) {
+				console.log(error)
+			});
+		}
+
+		function initPermissionTable() {
+			table.render({
+				elem: '#permissionTable',
+				url: okMock.api.permission.list,
+				limit: 20,
+				page: true,
+				size: "sm",
+				cols: [[
+					{field: "id", title: "ID", width: 170, sort: true, fixed: "left"},
+					{field: "name", title: "权限名称", width: 100},
+					{field: "permit", title: "权限标识", width: 150},
+					{field: "url", title: "权限路径", width: 150},
+					{field: "parentName", title: "父菜单", width: 100},
+					{field: "type", title: "类型", width: 100, templet: "#typeTpl"},
+					{field: "createTime", title: "创建时间", width: 150},
+					{field: "updateTime", title: "创建时间", width: 150},
+					{title: "操作", width: 100, templet: "#operationTpl", align: "center", fixed: "right"}
+				]],
+				done: function (res, curr, count) {
+					console.info(res, curr, count);
+				}
+			});
+		}
+
+		initPermissionTree();
+	});
+</script>
+<!--行工具栏模板-->
+<script type="text/html" id="operationTpl">
+	<a href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+	<a href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+</script>
+
+<script type="text/html" id="typeTpl">
+	{{#  if(d.type == 0){ }}
+	<span class="layui-btn layui-btn-normal layui-btn-xs">目录</span>
+	{{#  } else if(d.type == 1){ }}
+	<span class="layui-btn layui-btn-warm layui-btn-xs">菜单</span>
+	{{#  } else if(d.type == 2) { }}
+	<span class="layui-btn layui-btn-danger layui-btn-xs">按钮</span>
+	{{#  } }}
+</script>
+</body>
+</html>

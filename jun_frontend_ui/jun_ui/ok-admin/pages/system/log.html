@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>日志列表</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="../../css/oksub.css">
+    </head>
+    <body>
+        <div class="ok-body">
+            <!--模糊搜索区域-->
+            <div class="layui-row">
+                <form class="layui-form layui-col-md12 ok-search">
+                    <input class="layui-input" placeholder="开始日期" autocomplete="off" id="startTime" name="startTime">
+                    <input class="layui-input" placeholder="截止日期" autocomplete="off" id="endTime" name="endTime">
+                    <input class="layui-input" placeholder="请输入标题" autocomplete="off" name="title">
+                    <button class="layui-btn" lay-submit="" lay-filter="search">
+                        <i class="layui-icon layui-icon-search"></i>
+                    </button>
+                </form>
+            </div>
+            <!--数据表格-->
+            <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+        </div>
+        <!--js逻辑-->
+        <script src="../../lib/layui/layui.js"></script>
+        <script>
+            layui.use(["element", "table", "form", "laydate", "okLayer", "okUtils", "okMock"], function () {
+                var table = layui.table;
+                var form = layui.form;
+                var util = layui.util;
+                var laydate = layui.laydate;
+                var okLayer = layui.okLayer;
+                var okUtils = layui.okUtils;
+                var okMock = layui.okMock;
+
+                util.fixbar({});
+
+                laydate.render({elem: "#startTime", type: "datetime"});
+                laydate.render({elem: "#endTime", type: "datetime"});
+
+                var articleTable = table.render({
+                    elem: "#tableId",
+                    url: okMock.api.article.list,
+                    limit: 20,
+                    page: true,
+                    even: true,
+                    toolbar: "#toolbarTpl",
+                    size: "sm",
+                    cols: [[
+                        {type: "checkbox", fixed: "left"},
+                        {field: "guid", title: "GUID", width: 280, sort: true},
+                        {field: "title", title: "标题", width: 350},
+                        {field: "url", title: "链接", width: 250, templet: "#urlTpl"},
+                        {field: "publisher", title: "发布者", width: 100},
+                        {field: "readSize", title: "阅读量", width: 80},
+                        {field: "isTop", title: "是否置顶", width: 100, align: "center", templet: "#topTpl"},
+                        {field: "status", title: "发布状态", width: 110, align: "center", templet: "#statusTpl"},
+                        {title: "操作", width: 100, align: "center", fixed: "right", templet: "#operationTpl"}
+                    ]],
+                    done: function (res, curr, count) {
+                        console.log(res, curr, count)
+                    }
+                });
+
+                form.on("submit(search)", function () {
+                    articleTable.reload({
+                        where: data.field,
+                        page: {curr: 1}
+                    });
+                    return false;
+                });
+
+                table.on("toolbar(tableFilter)", function (obj) {
+                    switch (obj.event) {
+                        case "batchEnabled":
+                            batchEnabled();
+                            break;
+                        case "batchDisabled":
+                            batchDisabled();
+                            break;
+                        case "batchDel":
+                            batchDel();
+                            break;
+                        case "add":
+                            add();
+                            break;
+                    }
+                });
+
+                table.on("tool(tableFilter)", function (obj) {
+                    var data = obj.data;
+                    switch (obj.event) {
+                        case "edit":
+                            edit(data.id);
+                            break;
+                        case "del":
+                            del(data.id);
+                            break;
+                    }
+                });
+
+                function batchEnabled() {
+                    okLayer.confirm("确定要批量上架吗？", function (index) {
+                        layer.close(index);
+                        var idsStr = okUtils.table.batchCheck(table);
+                        if (idsStr) {
+                            okUtils.ajax("/article/batchNormal", "post", {idsStr: idsStr}).done(function (response) {
+                                console.log(response);
+                                okUtils.table.successMsg("批量上架成功");
+                            }).fail(function (error) {
+                                console.log(error)
+                            });
+                        }
+                    });
+                }
+
+                function batchDisabled() {
+                    okLayer.confirm("确定要批量下架吗？", function (index) {
+                        layer.close(index);
+                        var idsStr = okUtils.table.batchCheck(table);
+                        if (idsStr) {
+                            okUtils.ajax("/article/batchStop", "post", {idsStr: idsStr}).done(function (response) {
+                                console.log(response);
+                                okUtils.table.successMsg("批量下架成功");
+                            }).fail(function (error) {
+                                console.log(error)
+                            });
+                        }
+                    });
+                }
+
+                function batchDel() {
+                    okLayer.confirm("确定要批量删除吗？", function (index) {
+                        layer.close(index);
+                        var idsStr = okUtils.table.batchCheck(table);
+                        if (idsStr) {
+                            okUtils.ajax("/article/batchDel", "post", {idsStr: idsStr}).done(function (response) {
+                                console.log(response);
+                                okUtils.table.successMsg("批量删除成功");
+                            }).fail(function (error) {
+                                console.log(error)
+                            });
+                        }
+                    });
+                }
+
+                function add() {
+                    okLayer.open("添加文章", "article-add.html", "90%", "90%", null, function () {
+                        articleTable.reload();
+                    })
+                }
+
+                function edit(id) {
+                    okLayer.open("编辑文章", "article-edit.html?id=" + id, "90%", "90%", null, function () {
+                        articleTable.reload();
+                    })
+                }
+
+                function del(id) {
+                    okLayer.confirm("确定要删除吗？", function () {
+                        okUtils.ajax("/article/batchDel", "post", {idsStr: id}).done(function (response) {
+                            console.log(response);
+                            okUtils.table.successMsg("删除成功");
+                        }).fail(function (error) {
+                            console.log(error)
+                        });
+                    })
+                }
+            })
+        </script>
+        <!-- 头工具栏模板 -->
+        <script type="text/html" id="toolbarTpl">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">批量上架</button>
+                <button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchDisabled">批量下架</button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">批量删除</button>
+                <button class="layui-btn layui-btn-sm" lay-event="add">添加文章</button>
+            </div>
+        </script>
+        <!-- 链接模板 -->
+        <script type="text/html" id="urlTpl">
+            <a href="{{d.url}}" target="_blank">{{d.url}}</a>
+        </script>
+        <!-- 是否指顶模板
+            <input type="checkbox" name="isTop" value="{{d.isTop}}" lay-skin="switch" lay-text="是|否" {{ d.isTop== true ? 'checked' : ''}}>
+        -->
+        <script type="text/html" id="topTpl">
+            {{#  if(d.isTop == true){ }}
+            <span class="layui-btn layui-btn-normal layui-btn-xs">已置顶</span>
+            {{#  } else if(d.isTop == false) { }}
+            <span class="layui-btn layui-btn-warm layui-btn-xs">未置顶</span>
+            {{#  } }}
+        </script>
+        <!-- 发布状态模板
+            <input type="checkbox" name="top" value="{{d.status}}" lay-skin="switch" lay-text="已发布|未发布" {{ d.status== true ? 'checked' : ''}}>
+        -->
+        <script type="text/html" id="statusTpl">
+            {{#  if(d.status == true){ }}
+            <span class="layui-btn layui-btn-normal layui-btn-xs">已发布</span>
+            {{#  } else if(d.status == false) { }}
+            <span class="layui-btn layui-btn-warm layui-btn-xs">未发布</span>
+            {{#  } }}
+        </script>
+        <!-- 行工具栏模板 -->
+        <script type="text/html" id="operationTpl">
+            <a href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+            <a href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+        </script>
+    </body>
+</html>

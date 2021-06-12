@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Grid With jqPagination</title>
+    <!-- grid.min.css, common.min.js, grid.min.js -->
+    <link rel="stylesheet" href="../../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../../builds/merged/bsgrid.all.min.js"></script>
+    <link rel="stylesheet" href="css/jqpagination.css"/>
+    <script type="text/javascript" src="js/jquery.jqpagination.min.js"></script>
+    <script type="text/javascript">
+        $.fn.bsgrid.initPaging = function (options) {
+            $('#searchTable_pt').jqPagination({
+                current_page: 1,
+                link_string: '#',
+                // max_page: null,
+                // page_string: 'Page {current_page} of {max_page}',
+                /**
+                 * The paged callback is called when a valid page request has been made, the page variable simply contains the page requested.
+                 */
+                paged: function (page) {
+                    // do something with the page variable
+                    $.fn.bsgrid.getGridObj(options.gridId).page(parseInt(page));
+                }
+            });
+        };
+        $.fn.bsgrid.setPagingValues = function (options) {
+            var curPage = options.curPage;
+            var totalRows = options.totalRows;
+            var totalPages = parseInt(totalRows / options.settings.pageSize);
+            totalPages = parseInt((totalRows % options.settings.pageSize == 0) ? totalPages : totalPages + 1);
+
+            $('#searchTable_pt').data("jqPagination").options.max_page = totalPages;
+            var page_string = $('#searchTable_pt').data("jqPagination").options.page_string;
+            page_string = page_string.replace('{current_page}', curPage).replace('{max_page}', totalPages + '');
+            $('#searchTable_pt input').data('current-page', curPage).data('max-page', totalPages).val(page_string);
+        };
+    </script>
+</head>
+<body style="background-color: #fff;">
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="30%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<div id="searchTable_pt" class="pagination">
+    <a href="#" class="first" data-action="first">&laquo;</a>
+    <a href="#" class="previous" data-action="previous">&lsaquo;</a>
+    <input type="text" readonly="readonly" data-max-page="" />
+    <a href="#" class="next" data-action="next">&rsaquo;</a>
+    <a href="#" class="last" data-action="last">&raquo;</a>
+</div>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: '../../grid/data/json.jsp',
+            // autoLoad: false,
+            pageSize: 10
+        });
+        $('#searchTable_pt_outTab').css('border-width', '0');
+    });
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

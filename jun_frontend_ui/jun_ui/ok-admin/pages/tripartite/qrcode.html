@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>导航的图标</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+   <style>
+      .ok-body {
+         padding: 20px;
+      }
+
+      blockquote {
+         font-size: 16px;
+      }
+
+      .qr-box > div {
+         display: inline-block;
+         vertical-align: middle;
+         padding: 10px;
+      }
+   </style>
+</head>
+<body>
+<div class="ok-body">
+   <blockquote class="layui-elem-quote">
+      <p>js生成二维码。（注意加入了两个生成二维码的工具类,使用其中一个即可）</p>
+      <p><a target="_blank" href="https://github.com/alphatr/jquery-qrcode">jQqrcode</a>
+      <p><a target="_blank" href="https://github.com/davidshimjs/qrcodejs">qrcode</a>
+      </p>
+   </blockquote>
+   <pre lay-title="JavaScript">
+var q = new qrcode($("#qrcode")[0], {
+   width: 200,
+   height: 200,
+   text: "http://ok-admin.xlbweb.cn/"
+});
+var q2 = $("#qrcodeCanvas3").qrcode({
+   width: "200",
+   height: "200",
+   background: "transparent",    //二维码的后景色（默认透明色）
+   foreground: "#000000",        //二维码的前景色（默认黑色）
+   text: "http://ok-admin.xlbweb.cn/"
+});
+   </pre>
+   <div class="qr-box">
+      <div id="qrcode"></div>
+      <div id="qrcodeCanvas2"></div>
+      <div id="qrcodeCanvas3"></div>
+   </div>
+</div>
+</body>
+</html>
+<script src="../../lib/layui/layui.js"></script>
+<script type="text/javascript">
+  layui.use(['code', 'jquery', 'okQrcode', 'qrcode'], function () {
+    var code = layui.code,
+      qrcode = layui.qrcode,
+      $ = layui.jquery;
+    code({
+      elem: 'pre'
+    });
+    var q = new qrcode($("#qrcode")[0], {
+      width: 200,
+      height: 200,
+      text: "http://ok-admin.xlbweb.cn/"
+    });
+
+    var q1 = $("#qrcodeCanvas2").qrcode({
+      render: "canvas",//生成的对象元素(canvas,table)
+      text: "http://ok-admin.xlbweb.cn/",
+      width: "200",               //二维码的宽度
+      height: "200",              //二维码的高度
+      background: "#ffffff",       //二维码的后景色
+      foreground: "#000000",        //二维码的前景色
+      logo: 'https://gitee.com/instanceof/file/raw/master/img/9.jpg'//二维码中间的图片
+    });
+
+    var q2 = $("#qrcodeCanvas3").qrcode({
+      width: "200",
+      height: "200",
+      text: "http://ok-admin.xlbweb.cn/"
+    });
+
+  });
+</script>

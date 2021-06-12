@@ -1,0 +1,160 @@
+@CHARSET "UTF-8";
+
+.bsgrid_icon {
+    cursor: pointer;
+    font-family: '微软雅黑', Verdana, sans-serif, '宋体', serif;
+    font-size: 12px;
+    line-height: 1.5em;
+    color: #b22222;
+    background: no-repeat 3px center;
+}
+
+/*
+ * Style 1, how to use:
+ * <a class="bsgrid_icon icon_view">View</a>
+ * A style Correct order: a:link, a:visited, a:hover, a:active
+ */
+a.bsgrid_icon {
+    padding-left: 20px;
+    text-decoration: underline;
+}
+
+/*
+ * Style 2, how to use:
+ * <button type="button" class="bsgrid_icon icon_view" onclick="alert('view!');">View</button>
+ * OR
+ * <input type="button" class="bsgrid_icon icon_view" onclick="alert('view!');" value="View" />
+ */
+input.bsgrid_icon, button.bsgrid_icon {
+    padding-left: 20px;
+    padding-right: 4px;
+    background-color: #d5e2f2;
+    border: solid 1px #99bbe8;
+    /* Solve IE6 and IE7 not auto width */
+    width: auto;
+    overflow: visible;
+}
+
+.icon_view {
+    background-image: url(../images/icons/view-list-details-5.png);
+}
+
+.icon_add {
+    background-image: url(../images/icons/list-add-6.png);
+}
+
+.icon_edit {
+    background-image: url(../images/icons/page-edit.png);
+}
+
+.icon_save {
+    background-image: url(../images/icons/document-save-6.png);
+}
+
+.icon_delete {
+    background-image: url(../images/icons/edit-delete-6.png);
+}
+
+.icon_delete2 {
+    background-image: url(../images/icons/edit-delete-7.png);
+}
+
+.icon_close {
+    background-image: url(../images/icons/window-close-4.png);
+}
+
+.icon_close2 {
+    background-image: url(../images/icons/window-close.png);
+}
+
+.icon_find {
+    background-image: url(../images/icons/edit-find-8.png);
+}
+
+.icon_search {
+    background-image: url(../images/icons/system-search-6.png);
+}
+
+.icon_refresh {
+    background-image: url(../images/icons/arrow-refresh.png);
+}
+
+.icon_sort-view {
+    background-image: url(../images/icons/sort-view.gif);
+}
+
+.icon_sort-asc {
+    background-image: url(../images/icons/view-sort-descending-2.png);
+}
+
+.icon_sort-desc {
+    background-image: url(../images/icons/view-sort-ascending-2.png);
+}
+
+.icon_copy {
+    background-image: url(../images/icons/edit-copy-7.png);
+}
+
+.icon_cut {
+    background-image: url(../images/icons/edit-cut-7.png);
+}
+
+.icon_paste {
+    background-image: url(../images/icons/edit-paste-7.png);
+}
+
+.icon_download {
+    background-image: url(../images/icons/download.png);
+}
+
+.icon_print {
+    background-image: url(../images/icons/document-print-2.png);
+}
+
+.icon_mail {
+    background-image: url(../images/icons/mail-generic.png);
+}
+
+.icon_accept {
+    background-image: url(../images/icons/dialog-accept-2.png);
+}
+
+.icon_flag {
+    background-image: url(../images/icons/flag.png);
+}
+
+.icon_about {
+    background-image: url(../images/icons/help-about-3.png);
+}
+
+.icon_help {
+    background-image: url(../images/icons/help.png);
+}
+
+.icon_documentation {
+    background-image: url(../images/icons/documentation.png);
+}
+
+.icon_config {
+    background-image: url(../images/icons/configure-2.png);
+}
+
+.icon_config2 {
+    background-image: url(../images/icons/system-config-boot.png);
+}
+
+.icon_text {
+    background-image: url(../images/icons/mimetypes/silk_style/page-white_text.png);
+}
+
+.icon_pdf {
+    background-image: url(../images/icons/mimetypes/silk_style/page-white_acrobat.png);
+}
+
+.icon_excel {
+    background-image: url(../images/icons/mimetypes/silk_style/page-white_excel.png);
+}
+
+.icon_word {
+    background-image: url(../images/icons/mimetypes/silk_style/page-white_word.png);
+}

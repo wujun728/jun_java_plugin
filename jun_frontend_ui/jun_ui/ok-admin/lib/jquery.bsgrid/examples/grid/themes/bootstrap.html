@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>Bootstrap Style Grid</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- grid.simple.min.css, grid.simple.min.js -->
+    <link rel="stylesheet" href="../../../builds/merged/bsgrid.all.min.css"/>
+    <link rel="stylesheet" href="../../../builds/css/skins/grid_bootstrap.min.css"/>
+    <script type="text/javascript" src="../../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../../builds/merged/bsgrid.all.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="30%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: '../data/json.jsp',
+            // autoLoad: false,
+            pageSizeSelect: true,
+            stripeRows: true,
+            pageSize: 10
+        });
+    });
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

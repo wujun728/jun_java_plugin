@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>okUtils</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+    <style>
+        .ok-body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ok-body">
+		<!--########################okUtils.ajax()########################-->
+        <blockquote class="layui-elem-quote">
+            <p>异步请求封装</p>
+        </blockquote>
+        <blockquote class="layui-elem-quote layui-quote-nm">
+            okUtils.ajax(url, type, params, load)
+        </blockquote>
+        <pre>
+okUtils.ajax("/permission/tree", "get", null, true).done(function (response) {
+    console.log(response);
+}).fail(function (error) {
+    console.log(error);
+});
+        </pre>
+        <table class="layui-table">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <thead>
+            <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>描述</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>url</td>
+                <td>String</td>
+                <td>请求路径</td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>String</td>
+                <td>请求类型</td>
+            </tr>
+            <tr>
+                <td>params</td>
+                <td>String</td>
+                <td>请求参数</td>
+            </tr>
+            <tr>
+                <td>load</td>
+                <td>Boolean</td>
+                <td>是否显示loading</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--########################okUtils.getBodyWidth()########################-->
+        <blockquote class="layui-elem-quote">
+            <p>获取body宽度</p>
+        </blockquote>
+        <blockquote class="layui-elem-quote layui-quote-nm">
+            okUtils.getBodyWidth()
+        </blockquote>
+        <pre>
+console.log(okUtils.getBodyWidth());
+        </pre>
+
+        <!--########################okUtils.table.batchCheck()########################-->
+        <blockquote class="layui-elem-quote">
+            <p>批量操作前的校验</p>
+        </blockquote>
+        <blockquote class="layui-elem-quote layui-quote-nm">
+            okUtils.table.batchCheck(table)
+        </blockquote>
+        <pre>
+待补充...
+        </pre>
+
+        <!--########################okUtils.table.successMsg()########################-->
+        <blockquote class="layui-elem-quote">
+            <p>获取body宽度</p>
+        </blockquote>
+        <blockquote class="layui-elem-quote layui-quote-nm">
+            okUtils.table.successMsg(content)
+        </blockquote>
+        <pre>
+待补充...
+        </pre>
+
+        <!--########################okUtils.dateFormat()########################-->
+        <blockquote class="layui-elem-quote">
+            <p>格式化当前日期</p>
+        </blockquote>
+        <blockquote class="layui-elem-quote layui-quote-nm">
+            okUtils.table.dateFormat(date, fmt)
+        </blockquote>
+        <pre>
+待补充...
+        </pre>
+
+        <!--########################okUtils.number.isNumber()########################-->
+        <blockquote class="layui-elem-quote">
+            <p>判断是否为一个正常的数字</p>
+        </blockquote>
+        <blockquote class="layui-elem-quote layui-quote-nm">
+            okUtils.table.isNumber(num)
+        </blockquote>
+        <pre>
+待补充...
+        </pre>
+
+        <!--########################okUtils.number.isNumberWith()########################-->
+        <blockquote class="layui-elem-quote">
+            <p>判断一个数字是否包括在某个范围</p>
+        </blockquote>
+        <blockquote class="layui-elem-quote layui-quote-nm">
+            okUtils.table.isNumberWith(num, begin, end)
+        </blockquote>
+        <pre>
+待补充...
+        </pre>
+    </div>
+</body>
+</html>
+<script src="../../lib/layui/layui.js"></script>
+<script type="text/javascript">
+    layui.use(["util", "code"], function () {
+        let util = layui.util;
+        let code = layui.code;
+
+        util.fixbar({});
+
+        code({
+            elem: 'pre',
+            title: "代码示例"
+        });
+    });
+</script>

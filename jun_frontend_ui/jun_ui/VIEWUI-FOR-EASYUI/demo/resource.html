@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="description" content="HTML, CSS, js">
+<meta name="author" content="poya, dj, view Easy-UI">
+
+<title>资源管理</title>
+<meta property="og:url" content="">
+<meta property="og:title" content="EasyUI">
+<meta property="og:description" content="HTML, CSS, JS">
+
+<meta property="og:image" content="">
+<link href="../assets/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="../assets/js/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/layout.css" rel="stylesheet" type="text/css" />
+<script src="../assets/json/resource.js" type="text/javascript"></script>
+</head>
+<body scroll="no" class="body-pd10">
+<div class="dataView-container">
+	<div class="table-container">
+		<div class="tabs-wrapper">
+			<div class="comp-search-box">
+			     <div class="screen-top">
+			        <div class="colRow">
+			        	<input id="txtNewPass" type="text" class="easyui-textbox" name="name" data-options="label:'资源名称',required:true" />
+			        </div>
+			        <div class="colRow">
+			        	<input id="numbers" type="text" class="easyui-textbox" name="name" data-options="label:'资源类型'" />
+			        </div>
+			        <div class="colRow">
+			        	<input type="text" id="selest-item" name="" class="easyui-combobox" name="language" label="父级资源" />
+			        </div>
+			        <div class="colRow">
+			            <button class="easyui-linkbutton btnDefault">
+			            	<i class="fa fa-search"></i>查询
+			            </button>
+			        </div>
+			     </div>
+			</div>
+			<div class="btnbar-tools">
+				<a href="javascript:;" class="add" onclick="$('#newData').dialog('open')"><i class="fa fa-plus-square success"></i>新增</a>
+				<a href="javascript:;" class="edit"><i class="fa fa-pencil-square info"></i>编辑</a>
+				<a href="javascript:;" class="del"><i class="fa fa-times-rectangle danger"></i>删除</a>
+				<a href="javascript:;" class="count"><i class="fa fa-pie-chart purple"></i>统计</a>
+				<a href="javascript:;" class="check"><i class="fa fa-check-circle yellow"></i>审核</a>
+			</div>
+		    <table class="easyui-treegrid table-tree" style="width:100%;height:500px" data-options="data:resourceDate, idField: 'id', treeField: 'name'">
+				<thead>
+					<tr>
+					<th data-options="field:'name'" width="25%">资源名称</th>
+					<th data-options="field:'path'" width="20%">资源路径</th>
+					<th data-options="field:'type'" width="10%">资源类型</th>
+					<th data-options="field:'icon'" width="6%">资源图标</th>
+					<th data-options="field:'sort'" width="5%">资源排序</th>
+					<th data-options="field:'parentName'" width="10%">父级资源名称</th>
+					<th data-options="field:'remarks'" width="10%">备注</th>
+					<th data-options="field:'operation'" width="8%">操作</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+	
+</div>
+
+
+<!-- 新增和编辑数据 -->
+<div class="dig-wrapper" id="newData">
+	<div class="form2-column" title="表单示例">
+		<form id="vui_sample" class="easyui-form" method="post" data-options="novalidate:true">
+			<div class="form-column2">
+				<div class="form-column-left">
+					<input class="easyui-textbox" name="name" style="width:100%" data-options="label:'申请单号:',required:true">
+				</div>
+				<div class="form-column-left fm-left">
+					<select class="easyui-combobox" name="state" data-options="label:'状态:',required:true" labelPosition="top" style="width:100%;">
+						<option value="AL">新增</option>
+						<option value="AK">已提交</option>
+						<option value="AZ">申请中</option>
+						<option value="AR">已入库</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-column2">
+				<div class="form-column-left">
+					<input class="easyui-textbox" name="wznumber" style="width:100%" data-options="label:'物料编号:',required:true">
+				</div>
+				<div class="form-column-left fm-left">
+					<input class="easyui-textbox" name="subject" style="width:100%" data-options="label:'物料名称:',required:true">
+				</div>
+			</div>
+			<div class="form-column2">
+				<div class="form-column-left">
+					<select class="easyui-combobox" name="state" data-options="label:'物料类型:',required:true" labelPosition="top" style="width:100%;">
+						<option value="AL">原材料</option>
+						<option value="AK">辅料</option>
+						<option value="AZ">产品</option>
+						<option value="AR">深加工原料</option>
+					</select>
+				</div>
+				<div class="form-column-left fm-left">
+					<select class="easyui-combobox" name="state" data-options="label:'入库类型:',required:true" labelPosition="top" style="width:100%;">
+						<option value="AL">原材料入库</option>
+						<option value="AK">辅料入库</option>
+						<option value="AZ">产品入库</option>
+						<option value="AR">深加工原料入库</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-column2">
+				<div class="form-column-left">
+					<input class="easyui-textbox" name="sqkf" style="width:100%" data-options="label:'申请库房:',required:true">
+				</div>
+				<div class="form-column-left fm-left">
+					<input class="easyui-textbox" name="subject" style="width:100%" data-options="label:'申请数量:',required:true,validType:'number'">
+				</div>
+			</div>
+			<div class="form-column2">
+				<div class="form-column-left">
+					<input class="easyui-textbox" name="sqkf" style="width:100%" data-options="label:'单位:',required:true">
+				</div>
+				<div class="form-column-left fm-left">
+					<input class="easyui-textbox" id="storage-time" name="subject" style="width:100%" data-options="label:'存储期限:',required:true">
+				</div>
+			</div>
+			<div class="form-column1">
+				<div class="form-column-left">
+					<input class="easyui-textbox" name="message" style="width:100%;height:60px" data-options="label:'备注:',multiline:true">
+				</div>
+			</div>
+			<div class="form-btnBar pl75">
+				<input type="submit" name="" value="保存" class="easyui-linkbutton btnPrimary" onclick="submitForm()" style="width:80px" />
+				<input type="submit" name="" value="重置" class="easyui-linkbutton btnDefault" onclick="clearForm()" style="width:80px" />
+			</div>
+		</form>
+	</div>
+</div>
+<script src="../assets/js/jquery2.1.1.js" type="text/javascript"></script>
+<script src="../assets/js/jquery.easyui.min.js" type="text/javascript"></script>
+<script src="../assets/js/custom.js" type="text/javascript"></script>
+<script src="../assets/json/combobox_data.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#selest-add').combobox({data:upMenuPath,valueField:'id',textField:'text'});
+	$('#resource-mDate').combobox({data:upMenuPath,valueField:'id',textField:'text'});
+
+	$('#selest-item').combobox({data:companyNemw,valueField:'id',textField:'text'});//下拉选择
+	$('#selest-item2').combobox({data:companyNemw,valueField:'id',textField:'text'});//下拉选择
+
+	//删除确认
+	$('.delMsg').click(function(){
+		layer.confirm('<div class="delMsgTip"><div class="delTip"><i class="icon"></i>你确定要删除当前数据！<br>是“确认”，否“取消”</div></div>', {type:0, title:false, shade:0}, function(index){
+		  layer.msg('删除成功！')
+		});
+	});
+
+	$('#newData').dialog({    
+		title: '新增数据', 
+		closed:true,//默认显示隐藏false显示true隐藏
+		draggable:false,
+		width:1000,
+		height:450,
+		cache: false,
+		resizable:false,
+		// href: 'form1.html',
+		modal: true
+	});
+	$('#storage-time').datebox({required:true});
+});
+function submitForm(){//保存提交
+	$('#vui_sample').form('submit',{
+		onSubmit:function(){
+			return $(this).form('enableValidation').form('validate');
+		}
+	});
+}
+function clearForm(){//重置表单
+	$('#vui_sample').form('clear');
+}
+</script>
+</body>
+</html>

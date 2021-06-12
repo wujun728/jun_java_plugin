@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>导航的图标</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+   <style>
+      .ok-body {
+         padding: 20px;
+      }
+   </style>
+</head>
+<body>
+<div class="ok-body">
+   <blockquote class="layui-elem-quote">
+      <p>主要讲述如何设置导航的图标。</p>
+   </blockquote>
+   <blockquote class="layui-elem-quote layui-quote-nm">
+      <p>特别注意：必须要遵守指定的写法</p>
+      <p>1.默认的图标指向的值layui内置图标</p>
+      <p>2.要想使用ok-icon图标必须设置navs.json中的fontFamily属性和icon属性</p>
+   </blockquote>
+   <pre lay-title="JavaScript">
+{
+   "title": "后台首页",
+   "fontFamily":"ok-icon",
+   "icon":"ok-iconairplay",
+   "href": "pages/home.html",
+},
+{
+   "title": "后台首页",
+   "fontFamily":"ok-icon",
+   "icon":"&#x26;#xe9a6;",
+   "href": "pages/home.html",
+}
+   </pre>
+</div>
+</body>
+</html>
+<script src="../../lib/layui/layui.js"></script>
+<script type="text/javascript">
+  layui.use(['code'], function () {
+    var code = layui.code;
+    code({
+      elem: 'pre'
+    });
+  });
+</script>

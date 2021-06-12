@@ -1,0 +1,6 @@
+/**
+* jQuery.bsgrid v1.38 by @Baishui2004
+* Copyright 2014 Apache v2 License
+* https://github.com/baishui2004/jquery.bsgrid
+*/
+(function(a){a.bsgridLanguage={isFirstPage:"This is first page!",isLastPage:"This is last page!",needInteger:"Please input number!",needRange:function(c,b){return"Please input a number between "+c+" and "+b+"!"},errorForRequestData:"Request datas fail!",errorForSendOrRequestData:"Send or request datas fail!",noPagingation:function(b){return'Total:&nbsp;<span id="'+b+'"></span>'},pagingToolbar:{pageSizeDisplay:function(d,c){var b="";if(!c){b+="PageSize:"}return b+'&nbsp;<select id="'+d+'"></select>'},currentDisplayRows:function(c,b,e){var d="";if(!e){d+="Display:"}return d+'&nbsp;<span id="'+c+'"></span>&nbsp;-&nbsp;<span id="'+b+'"></span>'},totalRows:function(b){return'Total:&nbsp;<span id="'+b+'"></span>'},currentDisplayPageAndTotalPages:function(b,c){return'<div><span id="'+b+'"></span>&nbsp;/&nbsp;<span id="'+c+'"></span></div>'},firstPage:"First",prevPage:"Prev",nextPage:"Next",lastPage:"Last",gotoPage:"Goto",refreshPage:"Refresh"},loadingDataMessage:"Loading data, Please wait......",noDataToDisplay:"No data to display."}})(jQuery);

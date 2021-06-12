@@ -1,0 +1,129 @@
+v1.38  2016-03-27 新功能、性能优化
+
+1，增加带参数查询示例：search.html；
+2，dataType增加支持jsonp，示例：jsonp.html；
+3，settings增加dataTrim，是否trim单元格值，默认true，与之前版本处理相同，dataTrim为false则不trim，使用示例：nested-json.html；
+4，修复编辑模式下addNewEditRow前表格必须有一行的bug，改为表格初始化后必须有一行即可；
+5，gridObj增加clearRowData(rowIndex)及loadRowData(record, rowIndex)方法；
+6，additionalRenderPerColumn改为在additionalRenderPerRow之前执行，renderPerColumnMethods改为在renderPerRowMethods之前执行；
+
+
+
+v1.37  2015-11-24 使用优化、性能优化、BUG修复
+
+1，修复pageSize为0或pageAll为tue且数据条数为0时隐藏不了表头列的bug；
+2，增加参数showPageToolbar控制是否显示分页工具条，默认值true显示；
+3，增加9个方法，获取分页及排序相关值；
+4，修复当页记录条数为0时不执行afterRenderGridMethods系列方法的bug；
+5，增加grid属性ajaxType，默认post，可修改为get；
+6，增强分页工具条的按钮显示、最小宽度自定义；
+
+
+
+v1.36  2015-06-25 功能扩展、完善示例
+
+1，禁止拖动表头改变列宽时选中表头文本；
+2，修改表格渲染数据支持返回非最后一页数据行数不等于pageSize的异常情况，考虑的是集群大数据情况下数据可能不正常；
+3，定义了一个全局的alert方法$.bsgrid.alert(msg)，方便被用于重写；
+4，grid.extend.js代码优化；
+5，修复Firefox下表头拖动bug，并优化拖动体验；
+6，表底聚合增加自定义聚合，示例：w_agg="custom,countXhMultId"，custom表示自定义，逗号后面的表示自定义聚合函数；
+7，新增获取表格行Dom对象、行单元格Dom对象、列单元格Dom对象、单元格Dom对象、单元格Record值、select选择行索引的方法；
+8，表格在线编辑新增新增行、删除行方法；
+9，控制表体最小宽度不小于分页工具条宽度；
+10，新增获取checked行的index值的方法；
+11，新增获取所有记录值的方法；
+12，优化样式，逐步增加对响应式的支持；
+13，完善工具条宽度与grid宽度相同，支持改动grid宽度；
+14，grid增加search方法，即gridObj.search(params)，params支持三种方式，
+    一：'param1=val1&param2=val2'；二：{'param1': 'val1', 'param2': 'val2'}；三、$('#searchForm').serializeArray()；
+15，增加行选择及反选事件支持selectRowEvent、unselectRowEvent；
+16，增加对行、单元格、单元格编辑表单jQuery标准事件的支持，去掉getColumnAttr方法，增加getColumnModel方法；
+    columnModel属性：sortName, sortOrder, index, render, tip, maxLen, align, hidden
+                    扩展属性：lineNumber, check, edit, 扩展表底属性：aggName, aggIndex
+17，增加表格编辑的自定义编辑表单功能(extend.settings.gridEditConfigs)；
+18，增加layui系列的laypage、laydate、layer演示；
+19，增加划过行变色rowHoverColor属性，默认false；
+20，完善示例、文档；
+21，修改属性名changeColorIfRowSelected为rowSelectedColor，默认值true有行背景色；
+
+
+
+v1.35  2015-04-28 性能优化、功能增强
+
+1，优化grid及grid.extend的性能（减少非配置必须的js执行，一千条数据加载速度快一倍多）；
+2，options.otherParames支持String型参数串（示例：param1=val1&param2=val2）；
+3，local json、xml data数据增加分页功能，简化数据构造；
+
+
+
+v1.34  2015-02-05 功能增强
+
+1，grid增加userdata，对于json数据其值可以是一个简单的值或json Object或者json Array；
+                    对于json数据其值可以是一个简单的值或xml串；
+   配置processUserdata以处理userdata，使用grid.getUserdata()获取userdata；
+2，增加动态表头示例，使用userdata进行简易的动态表头处理；
+3，修复表格渲染数据由使用$(cellValue).text().length == 0判断cellValue是否html字符串，cellValue是特别特殊情况造成js异常的bug；
+
+
+
+v1.33  2015-02-04 文档优化、示例优化、bug修复
+
+1，修复grid使用hover样式后分页时遮罩颜色异常问题；
+2，去掉grid.paging.little.css及grid.paging.little.js，简化为使用参数pagingLittleToolbar控制显示分页的little或正常样式；
+3，去掉html表格table的class="bsgrid"样式，改为使用jquery的addClass方法添加此样式，代码更简洁；
+4，优化皮肤样式；
+5，给grid的bootstrap皮肤增加little paging工具条图标按钮样式；
+6，修改grid表格初始化init时不能使用参数otherParames的bug；
+7，修复grid表格checkbox选中不联动的bug；
+8，添加底部分页工具条额外增加按钮示例paging.button.html及paging.little.button.html；
+9，grid增加配置参数lineWrap，默认false表示不换行且超长时显示省略号，设置为true超长则折行显示；
+10，扩展增加表格列属性w_num以用于显示行号，值为line、total_line，分别表示当前页的数据行号、所有记录的数据行号；
+11，修改表格渲染数据支持返回非最后一页数据行数不等于pageSize的异常情况；
+12，中文化主要的文档示例；
+13，修复配置参数pageSizeForGrid只能增加分页大小不能减少的bug；
+14，增加参数pageIncorrectTurnAlert以控制翻页翻尽时再点击按钮是否弹出提示框，默认true；
+15，简化示例，网站文档优化；
+
+
+
+v1.32  2015-01-22
+
+1，扩展(grid.extend)可拖动改变表头宽度；
+2，优化项目目录结构；
+3，完善grid的单元格tip展示，对于index有正确值且其value值不包括html标签元素，才计算其value长度并判断是否截断与tip展示；
+4，示例集成jquery.validationEngine.js例子演示；
+5，扩展(grid.extend)类似jqGrid的多字段选择查询效果；
+6，初步实现表格在线编辑功能；
+7，修正checked属性在jQuery1.6以后使用attr()方法的bug，改为1.6后使用prop()方法，提供工具方法$.bsgrid.adaptAttrOrProp(obj, prop, val)；
+8，给grid提供属性changeColorIfRowSelected，以便于自定义选中行后是否变色，默认为true有行背景色；
+9，增加Pure Gray、jqGrid、EasyUI、Bootstrap风格表格皮肤；
+10，重大更新，完善表格生成为thead、tbody、tfoot结构；
+11，表格支持多行表头，渲染数据以表头的最后一行为准，另多行表头暂不支持列宽手动调整；
+12，表格支持表底，表底支持count、countNotNone、sum、avg、max、min、concat聚合；
+13，给分页工具条增加刷新按钮；
+14，支持多字段排序；
+15，扩展表格可设置参数固定表头，滚动表体数据（注意此特性对于IE仅支持IE8及以上，Chrome、Firefox等不限），支持多行表头，注意支持列合并不支持行合并；
+16，支持本地json、xml数据；
+
+
+
+v1.30  2014-12-05  定型版本
+
+定型说明：
+1，完全兼容1.21版本（第一次对外发布的版本）；
+2，之前版本的Change Log未详细记录，本次统一归到当前版本V1.30中；
+
+版本概述：
+1，插件包括grid、paging、form、button四大模块，每个模块都可以单独使用，并有有两个工具js，util.js及export.js；
+2，插件放开了属性及方法的全局修改权限，所有方法都可在外部进行全局重写，而无需修改插件本身的代码；
+3，grid支持json、xml两种数据格式；
+       支持分页或者不分页的数据展示，且非常容易集成第三方paging工具条一起使用；
+       内置了多套皮肤，并且非常容易扩展，一个皮肤样式的未压缩CSS样式代码量不足40行；
+       提供grid.extend扩展，推荐grid扩展接口使用方式，更方便扩展；
+       支持友好的导出参数构建；
+       自带load加载数据遮罩，并很容易进行扩展或重写；
+4，paging可单独使用，并可扩展或简化使用，且非常容易修改样式；
+       提供分页循环往复属性，可做图片轮播效果，此配置属性loopback默认false；
+5，form提供简洁但非常实用的表单处理能力，并提供了较大的灵活空间；
+6，button仅提供按钮样式，可单独使用；

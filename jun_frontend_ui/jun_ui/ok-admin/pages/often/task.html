@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>任务列表</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../../css/oksub.css">
+	<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body>
+<div class="ok-body">
+	<!--模糊搜索区域-->
+	<div class="layui-row">
+		<form class="layui-form layui-col-md12 ok-search">
+			<input class="layui-input" placeholder="开始日期" autocomplete="off" id="startTime" name="startTime">
+			<input class="layui-input" placeholder="截止日期" autocomplete="off" id="endTime" name="endTime">
+			<input class="layui-input" placeholder="请输入标题" autocomplete="off" name="title">
+			<button class="layui-btn" lay-submit="" lay-filter="search">
+				<i class="layui-icon layui-icon-search"></i>
+			</button>
+		</form>
+	</div>
+	<!--数据表格-->
+	<table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+</div>
+<!--js逻辑-->
+<script src="../../lib/layui/layui.js"></script>
+<script>
+	layui.use(["element", "table", "form", "laydate", "okLayer", "okUtils", "okMock"], function () {
+		let element = layui.element;
+		let table = layui.table;
+		let form = layui.form;
+		let util = layui.util;
+		let laydate = layui.laydate;
+		let okLayer = layui.okLayer;
+		let okUtils = layui.okUtils;
+		let okMock = layui.okMock;
+		okLoading.close();
+		util.fixbar({});
+
+		laydate.render({elem: "#startTime", type: "datetime"});
+		laydate.render({elem: "#endTime", type: "datetime"});
+
+		let articleTable = table.render({
+			elem: "#tableId",
+			url: okMock.api.listTask,
+			limit: 20,
+			page: true,
+			even: true,
+			toolbar: "#toolbarTpl",
+			size: "sm",
+			cols: [[
+				{type: "checkbox", fixed: "left"},
+				{field: "id", title: "ID", width: 170, sort: true},
+				{field: "name", title: "任务名称", width: 150},
+				{field: "createTime", title: "任务创建时间", width: 150},
+				{field: "startTime", title: "任务开始时间", width: 150},
+				{field: "endTime", title: "任务结束时间", width: 150},
+				{field: "createUser", title: "任务创建人", width: 100},
+				{field: "progress", title: "任务进度", width: 200, templet: "#progressTpl"},
+				{field: "status", title: "任务状态", width: 110, align: "center", templet: "#statusTpl"},
+				{title: "操作", width: 100, align: "center", fixed: "right", templet: "#operationTpl"}
+			]],
+			done: function (res, curr, count) {
+				console.log(res, curr, count);
+				element.init();
+			}
+		});
+
+		form.on("submit(search)", function (data) {
+			articleTable.reload({
+				where: data.field,
+				page: {curr: 1}
+			});
+			return false;
+		});
+
+		table.on("toolbar(tableFilter)", function (obj) {
+			switch (obj.event) {
+				case "batchStart":
+					batchStart();
+					break;
+				case "batchEnd":
+					batchEnd();
+					break;
+				case "batchDelete":
+					batchDelete();
+					break;
+				case "add":
+					add();
+					break;
+			}
+		});
+
+		table.on("tool(tableFilter)", function (obj) {
+			let data = obj.data;
+			switch (obj.event) {
+				case "updateById":
+					updateById(data.id);
+					break;
+				case "deleteById":
+					deleteById(data.id);
+					break;
+			}
+		});
+
+		function batchStart() {
+			okLayer.confirm("确定要批量开始吗？", function (index) {
+				layer.close(index);
+				let idsStr = okUtils.tableBatchCheck(table);
+				if (idsStr) {
+					okUtils.ajax("/task/update-task-status", "put", {idsStr: idsStr}, true).done(function (response) {
+						okUtils.tableSuccessMsg(response.msg);
+					}).fail(function (error) {
+						console.log(error);
+					});
+				}
+			});
+		}
+
+		function batchEnd() {
+			okLayer.confirm("确定要批量结束吗？", function (index) {
+				layer.close(index);
+				let idsStr = okUtils.tableBatchCheck(table);
+				if (idsStr) {
+					okUtils.ajax("/task/update-task-status", "put", {idsStr: idsStr}, true).done(function (response) {
+						okUtils.tableSuccessMsg(response.msg);
+					}).fail(function (error) {
+						console.log(error);
+					});
+				}
+			});
+		}
+
+		function batchDelete() {
+			okLayer.confirm("确定要批量删除吗？", function (index) {
+				layer.close(index);
+				let idsStr = okUtils.tableBatchCheck(table);
+				if (idsStr) {
+					okUtils.ajax("/task/deleteTask", "delete", {idsStr: idsStr}, true).done(function (response) {
+						okUtils.tableSuccessMsg(response.msg);
+					}).fail(function (error) {
+						console.log(error);
+					});
+				}
+			});
+		}
+
+		function add() {
+			okLayer.open("添加任务", "task-add.html", "90%", "90%", null, function () {
+				articleTable.reload();
+			})
+		}
+
+		function updateById(id) {
+			okLayer.open("编辑任务", "task-edit.html?id=" + id, "90%", "90%", null, function () {
+				articleTable.reload();
+			})
+		}
+
+		function deleteById(id) {
+			okLayer.confirm("确定要删除吗？", function () {
+				okUtils.ajax("/task/deleteTask", "delete", {idsStr: id}).done(function (response) {
+					okUtils.tableSuccessMsg(response.msg);
+				}).fail(function (error) {
+					console.log(error);
+				});
+			})
+		}
+	})
+</script>
+<!-- 头工具栏模板 -->
+<script type="text/html" id="toolbarTpl">
+	<div class="layui-btn-container">
+		<button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchStart">批量开始</button>
+		<button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchEnd">批量结束</button>
+		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDelete">批量删除</button>
+		<button class="layui-btn layui-btn-sm" lay-event="add">添加任务</button>
+	</div>
+</script>
+<!-- 行工具栏模板 -->
+<script type="text/html" id="operationTpl">
+	<a href="javascript:" title="编辑" lay-event="updateById"><i class="layui-icon">&#xe642;</i></a>
+	<a href="javascript:" title="删除" lay-event="deleteById"><i class="layui-icon">&#xe640;</i></a>
+</script>
+<!-- 任务进度 -->
+<script type="text/html" id="progressTpl">
+	<div class="layui-progress" style="top: 8px">
+		<div class="layui-progress-bar" lay-percent="{{d.progress}}"></div>
+	</div>
+</script>
+<!-- 任务状态 -->
+<script type="text/html" id="statusTpl">
+	{{#  if(d.status == 0){ }}
+	<span class="layui-btn layui-btn-normal layui-btn-xs">未开始</span>
+	{{#  } else if(d.status == 1) { }}
+	<span class="layui-btn layui-btn-warm layui-btn-xs">进行中</span>
+	{{#  } else if(d.status == 2) { }}
+	<span class="layui-btn layui-btn-danger layui-btn-xs">已完成</span>
+	{{#  } }}
+</script>
+</body>
+</html>

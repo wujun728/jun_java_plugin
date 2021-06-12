@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Local XML Data Grid</title>
+    <!-- grid.simple.min.css, grid.simple.min.js -->
+    <link rel="stylesheet" href="../../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../../builds/merged/bsgrid.all.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="30%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<script type="text/javascript">
+    var localData = '<row>'
+                        + '<ID>202</ID>'
+                        + '<CHAR>1</CHAR>'
+                        + '<TEXT>TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_1</TEXT>'
+                        + '<NUM>11.2</NUM>'
+                        + '<XH>1</XH>'
+                    + '</row>'
+                    + '<row>'
+                        + '<ID>201</ID>'
+                        + '<CHAR>111</CHAR>'
+                        + '<TEXT>TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_2</TEXT>'
+                        + '<XH>2</XH>'
+                    + '</row>'
+                    + '<row>'
+                        + '<ID>200</ID>'
+                        + '<CHAR>200</CHAR>'
+                        + '<TEXT>TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_3</TEXT>'
+                        + '<XH>3</XH>'
+                    + '</row>'
+                    + '<row>'
+                        + '<ID>199</ID>'
+                        + '<CHAR>199</CHAR>'
+                        + '<XH>4</XH>'
+                    + '</row>'
+                    + '<row>'
+                        + '<ID>32</ID>'
+                        + '<CHAR>34</CHAR>'
+                        + '<NUM>12.1</NUM>'
+                        + '<XH>5</XH>'
+                    + '</row>';
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            dataType: 'xml',
+            localData: localData,
+            // autoLoad: false,
+            pageSize: 2
+        });
+    });
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

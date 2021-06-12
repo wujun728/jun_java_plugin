@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Grid Move Column</title>
+    <link rel="stylesheet" href="../../builds/merged/grid.simple.min.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/util.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/grid.simple.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="30%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        // init column move
+        function initColumnMove(gridId, options) {
+            $('#' + options.gridId).css({'table-layout': 'fixed'});
+            var headObj = $.fn.bsgrid.getGridHeaderObject(options);
+            var headLen = headObj.length;
+            headObj.each(function (i) {
+                var obj = this;
+
+                // disable select text when mouse moving
+                $(obj).bind('selectstart', function () { // IE/Safari/Chrome
+                    return false;
+                });
+                $(obj).css('-moz-user-select', 'none'); // Firefox/Opera
+
+                $(obj).mousedown(function () {
+                    bindDownData(obj, i, headLen);
+                });
+                $(obj).mousemove(function (e) {
+                    e = e || event;
+                    var left = $(obj).offset().left;
+                    var nObj = 0, nLeft = 0;
+                    if (i != headLen - 1) {
+                        nObj = $(obj).next();
+                        nLeft = nObj.offset().left;
+                    }
+                    var mObj = obj;
+                    if (i != headLen - 1 && e.clientX - nLeft > -10) {
+                        mObj = nObj;
+                    }
+                    if ((i != 0 && e.clientX - left < 10) || (i != headLen - 1 && e.clientX - nLeft > -10)) {
+                        $(obj).css({ 'cursor': 'e-resize' });
+                        if ($.trim($(obj).data('ex_mousedown')) != 'mousedown') {
+                            return;
+                        }
+
+                        var mWidth = $(mObj).width();
+                        var newMWidth = mWidth - e.clientX + $(mObj).offset().left;
+                        var preMWidth = $(mObj).prev().width();
+                        var preNewMWidth = preMWidth + e.clientX - $(mObj).offset().left;
+                        if (parseInt(newMWidth) > 19 && parseInt(preNewMWidth) > 19) {
+                            $(mObj).width(newMWidth).prev().width(preNewMWidth);
+                        }
+                    } else {
+                        $(mObj).css({ 'cursor': 'default' });
+                        releaseDownData(obj, i, headLen);
+                    }
+                });
+                $(obj).mouseup(function () {
+                    releaseDownData(obj, i, headLen);
+                });
+                $(obj).mouseout(function (e) {
+                    e = e || event;
+                    var objOffect = $(obj).offset();
+                    if (objOffect.top > e.clientY || objOffect.top + $(obj).height() < e.clientY) {
+                        releaseDownData(obj, i, headLen);
+                    }
+                });
+                function bindDownData(obj, i, headLen) {
+                    if (i != 0) {
+                        $(obj).prev().data('ex_mousedown', 'mousedown');
+                    }
+                    $(obj).data('ex_mousedown', 'mousedown');
+                    if (i != headLen - 1) {
+                        $(obj).next().data('ex_mousedown', 'mousedown');
+                    }
+                }
+
+                function releaseDownData(obj, i, headLen) {
+                    if (i != 0) {
+                        $(obj).prev().data('ex_mousedown', '');
+                    }
+                    $(obj).data('ex_mousedown', '');
+                    if (i != headLen - 1) {
+                        $(obj).next().data('ex_mousedown', '');
+                    }
+                }
+            });
+        };
+
+        $.bsgrid.forcePushPropertyInObject($.fn.bsgrid.defaults.extend.initGridMethods, 'initColumnMove', initColumnMove);
+
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: 'data/json.jsp',
+            // autoLoad: false,
+            pageSizeSelect: true,
+            pageSize: 10
+        });
+    });
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

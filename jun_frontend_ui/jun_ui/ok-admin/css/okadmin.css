@@ -1,0 +1,1022 @@
+@import "../lib/layui/css/layui.css";
+@import "../lib/fonts/iconfont.css";
+@import "./okadmin.theme.css";
+@import "./okadmin.animate.css";
+@import "../lib/layui/css/okmodules/jquery.contextMenu.css";
+
+/*html{
+    webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+    filter: gray;
+}*/
+/*边距*/
+.ptb20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.ptb10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#navBar .layui-nav-child {
+    overflow: hidden;
+    padding: 0 !important;
+}
+
+#navBar .layui-nav-itemed .layui-nav-child,
+#navBar .layui-nav-child dd {
+    overflow: hidden;
+}
+
+[class^="ok-icon"], [class*=" ok-icon"] {
+    line-height: inherit;
+    font-size: 16px;
+}
+
+/*不显示滚动条样式*/
+.not-scroll::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+    background: transparent;
+    display: none;
+}
+
+.scrollBody::-webkit-scrollbar {
+    display: none;
+}
+
+/*去掉after*/
+.no-line.layui-this:after {
+    background: transparent !important;
+    color: transparent !important;
+}
+
+/*通用*/
+.ok-none-select {
+    -moz-user-select: none; /*火狐*/
+    -webkit-user-select: none; /*webkit浏览器*/
+    -ms-user-select: none; /*IE10*/
+    user-select: none;
+}
+
+.okadmin-text-center {
+    text-align: center;
+}
+
+.okadmin-bg-20222A {
+    background: #20222A;
+}
+
+.post-left220 {
+    left: 220px !important;
+}
+
+.flex-vc {
+    display: flex !important;
+    display: -webkit-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.pl0 {
+    padding-left: 0 !important;
+}
+
+.pr0 {
+    padding-right: 0 !important;
+}
+
+.pl10 {
+    padding-left: 10px !important;
+}
+
+.pr10 {
+    padding-right: 10px !important;
+}
+
+#noticeQQ {
+    cursor: pointer;
+    color: #FF5722;
+    font-weight: bolder;
+}
+
+/*框架布局样式*/
+.okadmin-header .layui-nav-bar,
+.okadmin-header .layui-nav-tree .layui-nav-itemed:after {
+    background: #20222A !important;
+    bottom: auto;
+    top: 0 !important;
+    height: 2px;
+}
+
+.okadmin-header .layui-nav .layui-this:after {
+    background: transparent !important;
+    color: transparent !important;
+}
+
+.layui-side-menu, .layadmin-pagetabs .layui-tab-title li:after, .layadmin-pagetabs .layui-tab-title li.layui-this:after, .layui-layer-admin .layui-layer-title, .layadmin-side-shrink .layui-side-menu .layui-nav > .layui-nav-item > .layui-nav-child {
+    /*background: #20222A !important;*/
+    background: #001529 !important;
+}
+
+.layui-tab-brief > .layui-tab-title .layui-this {
+    color: #000;
+}
+
+/*在tab导航中去掉首页标签的删除按钮*/
+.ok-tab-title li strong[is-close="false"] ~ i.layui-tab-close,
+.ok-tab-title li[tab="index"] i.layui-tab-close {
+    display: none !important;
+}
+
+/*头部*/
+.okadmin .okadmin-header {
+    background: #FFFFFF;
+    height: 49px;
+    line-height: 49px;
+    border-bottom: 1px solid #f6f6f6;
+}
+
+.okadmin-header .layui-nav-item .layui-icon {
+    font-size: 16px;
+}
+
+.okadmin-header .layui-nav .layui-nav-item a,
+.okadmin-header .layui-nav-child dd.layui-this a {
+    color: #000;
+}
+
+#userInfo .layui-this,
+#userInfo .layui-this a {
+    background: transparent;
+}
+
+#userInfo .layui-this a:hover {
+    background: #f2f2f2;
+}
+
+/*天气样式*/
+.weather {
+    color: #000;
+}
+
+#tp-weather-widget .tpwthwidt .title_2I35arv,
+#tp-weather-widget .tpwthwidt .text_1vUR5ag {
+    margin: 0 !important;
+    color: #000 !important;
+}
+
+/*菜单显隐按钮*/
+.ok-show-menu {
+    font-size: 18px;
+}
+
+.ok-show-menu .layui-icon {
+    font-size: 18px !important;
+}
+
+.ok-show-menu .ok-menu-hide:before {
+    content: "\e66b";
+}
+
+#fullScreen i.okicon-screen-restore:before {
+    content: "\e758";
+}
+
+.okadmin-header .layui-input-search {
+    display: inline-block;
+    vertical-align: middle;
+    height: 32px;
+    border: none;
+    cursor: text;
+}
+
+.okadmin-header .layui-nav .layui-nav-item {
+    height: 49px;
+    line-height: 49px;
+}
+
+.okadmin-header .layui-layout-left .layui-nav-item {
+    margin: 0 20px;
+}
+
+.okadmin-header .layui-layout-left .layui-nav-item.layui-this:after {
+    display: none !important;
+}
+
+.okadmin-header .layui-layout-left .layui-nav-item a {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.okadmin .menu-switch {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 220px;
+    top: 16px;
+    color: #FFF;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.okadmin-header .layui-nav .layui-nav-more {
+    border-color: #000 transparent transparent;
+}
+
+.okadmin-header .layui-nav .layui-nav-mored,
+.okadmin-header .layui-nav-itemed > a .layui-nav-more {
+    border-color: transparent transparent #000;
+}
+
+.okadmin-header .layui-nav-child {
+    top: 50px;
+}
+
+.icon-head-i {
+    font-size: 18px;
+    padding-right: 5px;
+    /*color:#333!important;*/
+}
+
+/*左边菜单导航*/
+.ok-left {
+    top: 0 !important;
+    width: 220px !important;
+    z-index: 9999;
+}
+
+.ok-left .okadmin-logo {
+    line-height: 49px;
+    text-align: center;
+    color: #FFF;
+    font-size: 16px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1002;
+    width: 220px;
+    height: 49px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-weight: 300;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background: #20222A;
+}
+
+.layui-side-menu .layui-nav {
+    width: 220px;
+    background: 0 0;
+}
+
+.layui-side-menu .layui-side-scroll {
+    width: 240px !important;
+}
+
+.layui-side-menu .layui-side-scroll:before {
+    content: " ";
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    width: 1px;
+}
+
+.okadmin-side .user-photo {
+    /*margin-top: 50px;*/
+    width: 220px !important;
+    border-top: 1px solid #333555;
+}
+
+.ok-left.layui-side-menu .layui-nav .layui-nav-item a,
+.ok-left.layui-side-menu .layui-nav .layui-nav-item .layui-nav-child a {
+    height: 40px;
+    line-height: 40px;
+    /*padding-left: 25px;*/
+    padding-left: 45px;
+    padding-right: 30px;
+    color: #FFF;
+    position: relative;
+    /*color: #f2f2f2;*/
+}
+
+.ok-left.layui-side-menu .layui-nav .layui-nav-item.layui-this a,
+.ok-left.layui-side-menu .layui-nav .layui-nav-item.layui-this .layui-nav-child a {
+    color: #FFF !important;
+}
+
+.ok-left.layui-side-menu .layui-nav-item a:hover {
+    background-color: #4E5465;
+}
+
+.ok-left.layui-side-menu .layui-this a:hover {
+    background-color: inherit;
+}
+
+.ok-left.layui-side-menu .layui-nav .layui-nav-item .layui-icon,
+.ok-left.layui-side-menu .layui-nav .layui-nav-item a i {
+    position: absolute;
+    padding-right: 10px;
+    left: 20px;
+}
+
+.ok-left.layui-side-menu .layui-nav .layui-nav-item .layui-nav-child a i {
+    position: static !important;
+    padding-right: 10px;
+}
+
+/*第三级菜单及其一下的缩进样式*/
+#navBar .layui-nav-child .layui-nav-child > dd > a {
+    padding-left: 65px;
+}
+
+/*第四级菜单及其一下的缩进样式*/
+#navBar .layui-nav-child .layui-nav-child .layui-nav-child > dd > a {
+    padding-left: 90px;
+}
+
+/*第五级菜单及其一下的缩进样式*/
+#navBar .layui-nav-child .layui-nav-child .layui-nav-child .layui-nav-child > dd > a {
+    padding-left: 115px;
+}
+
+.ok-left .user-photo {
+    width: 200px;
+    height: 120px;
+    padding: 15px 0 5px;
+}
+
+.ok-left .user-photo a.img {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px;
+}
+
+.ok-left .user-photo a.img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border: 4px solid #44576b;
+    box-sizing: border-box;
+}
+
+.ok-left .user-photo p {
+    display: block;
+    width: 100%;
+    height: 25px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 12px;
+    white-space: nowrap;
+    line-height: 25px;
+    overflow: hidden;
+}
+
+#navBar ul {
+    margin: 0 !important;
+}
+
+/*顶部tab标签样式*/
+.ok-tab {
+    background: #F5F7F9;
+}
+
+.okadmin-pagetabs {
+    padding: 0 80px 0 40px;
+    background-color: transparent;
+    width: 100%;
+    position: absolute;
+    height: 40px;
+    z-index: 1;
+}
+
+.okadmin-tabs-control {
+    height: 32px;
+    line-height: 32px;
+    position: absolute;
+    top: 4px;
+    width: 32px;
+    right: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    background: #F5F7F9;
+    /*border-left: 1px solid #E6E6E6;*/
+    /*border-bottom: 1px solid #E6E6E6;*/
+    /*background: #FFF;*/
+    z-index: 10;
+}
+
+.okadmin-tabs-control:hover {
+    /*background: #F2F2F2;*/
+    color: #009688;
+}
+
+.ok-tab .move-left {
+    left: 0;
+    border-left: none;
+}
+
+.ok-tab .move-right {
+    right: 40px;
+}
+
+.layui-icon-down {
+    right: 0;
+}
+
+.okadmin-tabs-select.layui-nav {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: 0 0;
+}
+
+/**tab的菜单**/
+.okadmin-nav a,
+.okadmin-tab a {
+    cursor: pointer;
+}
+
+.ok-right-nav-menu {
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    line-height: normal;
+    background: #F5F7F9;
+    display: flex;
+    align-items: center;
+}
+
+.okadmin-tab {
+    height: 32px;
+    line-height: 32px;
+    width: 32px;
+}
+
+.okadmin-tab .okadmin-tab-item .okadmin-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    border-radius: 3px;
+}
+
+.ok-right-nav-menu:hover .okadmin-tab-item .okadmin-tab-child {
+    display: block !important;
+}
+
+.okadmin-tab .okadmin-tab-item .okadmin-tab-child {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    display: none;
+    white-space: nowrap;
+    line-height: 36px;
+    padding: 5px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12);
+    border: 1px solid #d2d2d2;
+    background-color: #fff;
+    z-index: 100;
+    border-radius: 2px;
+}
+
+.okadmin-tab .okadmin-tab-item a {
+    display: block;
+    padding: 0 20px;
+    color: #000;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    font-size: 14px;
+}
+
+.okadmin-tab .okadmin-tab-item a:hover {
+    background: #F5F7F9;
+}
+
+.okadmin-tab .okadmin-tab-item .okadmin-tab-child:visited {
+    display: none !important;
+}
+
+.ok-tab .layui-tab-title {
+    margin: 0 80px 0 40px;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    width: max-content !important;
+    z-index: 9;
+    position: relative;
+    left: 0;
+    height: 40px;
+    line-height: 40px;
+    border: 0;
+}
+
+.ok-tab .layui-tab-title li {
+    height: 32px;
+    line-height: 32px;
+    background: #fff;
+    border-radius: 3px;
+    margin-right: 15px;
+}
+
+.ok-tab .layui-tab-brief > .layui-tab-more li.layui-this,
+.ok-tab .layui-tab-brief > .layui-tab-title .layui-this,
+.ok-tab .layui-tab-title li.layui-this {
+    background-color: #ffffff;
+    color: #009688;
+    /*background: #F6F6F6;*/
+}
+
+.ok-tab .layui-tab-brief > .layui-tab-more li.layui-this:after,
+.ok-tab .layui-tab-brief > .layui-tab-title .layui-this:after,
+.ok-tab .layui-tab-title .layui-this:after {
+    display: none;
+}
+
+.ok-tab .layui-tab-title .layui-this:after {
+    display: none;
+}
+
+.ok-tab-title cite {
+    padding-left: 5px;
+    font-style: normal;
+}
+
+/*中国天气样式*/
+.weather-ok {
+    height: 49px;
+    line-height: 49px;
+}
+
+.weather-ok .iframe-style {
+    /*height: 415px;*/
+    /*height: 375px;*/
+    height: 50px;
+    padding-top: 9px;
+    box-sizing: border-box;
+}
+
+.weather-ok .iframe-style:hover {
+    height: 400px;
+}
+
+/*主体内容样式*/
+.okadmin .content-body {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    bottom: 42px;
+    left: 220px;
+    z-index: 1;
+    overflow: hidden
+}
+
+.okadmin-tabs-select.layui-nav .layui-nav-item {
+    line-height: 40px;
+}
+
+.ok-nav-item {
+    height: 49px;
+    line-height: 49px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    width: auto;
+}
+
+/*主体内容选项卡内容样式*/
+.content-body .layui-tab {
+    margin: 0;
+    /*position: relative;*/
+}
+
+.okadmin .content-body .layui-tab-content {
+    position: absolute;
+    top: 40px;
+    bottom: 0;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    left: 0;
+    right: 0;
+}
+
+/*使iframe高度100%,它的父类高度也需要100%*/
+.okadmin .content-body .layui-tab-content .layui-tab-item {
+    height: 100%
+}
+
+/*使iframe高度100*/
+.okadmin .content-body .layui-tab-content .layui-tab-item iframe {
+    height: 100%
+}
+
+/**隐藏左侧菜单**/
+.layui-layout-admin.ok-left-hide .ok-left,
+.layui-layout-admin.ok-left-hide .ok-left .okadmin-logo {
+    left: -220px;
+}
+
+.layui-layout-admin.ok-left-hide .layui-header .layui-layout-left {
+    left: -20px;
+}
+
+.layui-layout-admin.ok-left-hide .content-body,
+.layui-layout-admin.ok-left-hide .layui-footer {
+    left: 0;
+}
+
+/**
+ 弹出系统设置
+*/
+.layui-layer.ok-setting {
+    -webkit-animation-duration: .25s;
+    animation-duration: .25s;
+    top: 50px !important;
+    bottom: 0;
+    height: 100%;
+    min-height: 500px;
+    overflow-y: auto;
+}
+
+/**==================锁屏样式 Start==================*/
+.lock-screen {
+    position: fixed;
+    z-index: 99999999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #0C0C0C;
+    display: none;
+}
+
+.lock-screen .lock-bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 8;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+.lock-screen .lock-bg img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.lock-screen .lock-bg img.active {
+    display: block;
+}
+
+.lock-screen .lock-content {
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    position: relative;
+    z-index: 9;
+}
+
+.lock-screen .time {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    color: #f4f4f4;
+    font-weight: 500;
+}
+
+.lock-screen .time .hhmmss,
+.lock-screen .time .yyyymmdd,
+.lock-screen .quit .layui-icon,
+.lock-screen .lock-content p[lock='lock'] {
+    color: #4690FF;
+    /*color: transparent;
+    background: linear-gradient(to bottom right, #1E9FFF, #6086ff);
+    -webkit-background-clip: text;*/
+}
+
+.lock-screen .time .hhmmss {
+    font-size: 64px;
+    letter-spacing: 5px;
+}
+
+.lock-screen .time .yyyymmdd {
+    font-size: 32px;
+    letter-spacing: 5px;
+}
+
+.lock-screen .quit {
+    position: absolute;
+    z-index: 19;
+    right: 10%;
+    bottom: 10%;
+    transition: all .5s;
+}
+
+.lock-screen .quit .layui-icon {
+    font-size: 64px;
+    cursor: pointer;
+    height: 64px;
+    line-height: 64px;
+    /*color: transparent;
+    background: linear-gradient(to bottom right, red, yellow);
+    -webkit-background-clip: text;*/
+    font-weight: bolder;
+}
+
+.lock-screen .quit:hover {
+    transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+}
+
+.lock-screen .unlock {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 9;
+    color: #f4f4f4;
+    background: transparent;
+    box-sizing: border-box;
+}
+
+.lock-screen .unlock tr,
+.lock-screen .unlock td {
+    text-align: center;
+    align-content: center;
+}
+
+.lock-screen .unlock .lock-text {
+    font-size: 42px;
+    font-weight: bolder;
+    color: transparent;
+    background: linear-gradient(to top right, green, greenyellow);
+    -webkit-background-clip: text;
+    text-shadow: 0 0 15px rgba(173, 255, 47, .8);
+    letter-spacing: 5px;
+    font-family: '微软雅黑', '新宋体', '宋体', arial, tahoma, sans-serif;
+}
+
+.lock-screen .lock-form {
+    position: relative;
+    bottom: 64px;
+}
+.unlock{
+    /*background: black!important;*/
+}
+.unlock .lock-head {
+    width: 96px;
+    height: 96px;
+    padding: 2px;
+    background: #FFFFFF;
+    margin: 24px auto;
+    text-align: center;
+    border-radius: 100%;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0 0 10px #FFFFFF;
+    overflow: hidden;
+    animation-name: lock-head;
+    -webkit-animation-name: lock-head;
+
+    animation-delay: 1s;
+    -webkit-animation-delay: 1s;
+
+    animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+
+    animation-timing-function: ease-in-out; /**播放的速度曲线 动画从头到尾的速度是相同的*/
+    -webkit-animation-timing-function: ease-in-out;
+
+    animation-iteration-count: infinite; /**无限循环播放*/
+    -webkit-animation-iteration-count: infinite;
+
+    animation-direction: alternate; /**规定动画在下一周期逆向地播放*/
+    -webkit-animation-direction: alternate;
+}
+
+.unlock .lock-head img {
+    display: inline-block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.lock-screen .lock-form .layui-form-item {
+    width: 80%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+/**雪花*/
+.lock-screen .snowflake {
+    position: absolute;
+    z-index: 8;
+    height: 100%;
+    width: 100%;
+}
+
+.lock-screen .lock-content p[lock='lock'] {
+    display: inline-block;
+    animation-name: lock-cursor;
+    -webkit-animation-name: lock-cursor;
+
+    animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+
+    animation-iteration-count: infinite; /**无限循环播放*/
+    -webkit-animation-iteration-count: infinite;
+
+}
+
+.lock-gradual {
+    animation-name: lock-gradual;
+    -webkit-animation-name: lock-gradual;
+
+    animation-duration: 4s;
+    -webkit-animation-duration: 4s;
+
+    animation-iteration-count: infinite; /**无限循环播放*/
+    -webkit-animation-iteration-count: infinite;
+
+    animation-timing-function: linear; /**播放的速度曲线 动画从头到尾的速度是相同的*/
+    -webkit-animation-timing-function: linear;
+
+    animation-direction: alternate; /**规定动画在下一周期逆向地播放*/
+    -webkit-animation-direction: alternate;
+}
+
+@keyframes lock-head {
+    0% {
+        box-shadow: 0 0 10px #FFFFFF;
+    }
+    100% {
+        box-shadow: 0 0 30px #FFFFFF;
+    }
+
+}
+
+@keyframes lock-gradual {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes lock-cursor {
+    0% {
+        color: #4690FF;
+        /*color: transparent;
+        background: linear-gradient(to bottom right, #1E9FFF, #6086ff);
+        -webkit-background-clip: text;*/
+    }
+    25% {
+        color: transparent;
+        background: transparent;
+    }
+    50% {
+        color: #4690FF;
+        /*color: transparent;
+        background: linear-gradient(to bottom right, #1E9FFF, #6086ff);
+        -webkit-background-clip: text;*/
+    }
+    75% {
+        color: transparent;
+        background: transparent;
+    }
+    100% {
+        color: #4690FF;
+        /*color: transparent;
+        background: linear-gradient(to bottom right, #1E9FFF, #6086ff);
+        -webkit-background-clip: text;*/
+    }
+}
+
+/**==================锁屏样式 End==================*/
+
+/*
+* 以下都是移动端的处理响应
+*/
+
+/*这里只是给元素加一些额外的效果也可以,去掉媒体查询效果一样*/
+@media screen {
+    .layui-layout-admin .ok-left,
+    .ok-left .okadmin-logo,
+    .layui-header .layui-layout-left,
+    .layui-layout-admin .content-body,
+    .layui-layout-admin .layui-footer {
+        transition: left .5s;
+    }
+}
+
+/*移动端遮罩层*/
+.ok-make {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 9998;
+    background: rgba(0, 0, 0, .5);
+    display: none;
+}
+
+@media screen and (max-width: 970px) {
+    /*当屏幕宽度小于970时执行*/
+    .ok-hide-md {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    [pc-show] {
+        display: none !important;
+    }
+
+    .layui-layout-admin .ok-left {
+        position: fixed;
+    }
+
+    .ok-input-search {
+        width: 7rem;
+    }
+
+    .layui-layout-admin.ok-left-hide .ok-left,
+    .layui-layout-admin.ok-left-hide .ok-left .okadmin-logo {
+        left: 0;
+    }
+
+    .okadmin-header .layui-layout-left .layui-nav-item {
+        margin: 0 5px;
+    }
+
+    .layui-layout-admin.ok-left-hide .ok-make {
+        display: block;
+    }
+
+    .layui-layout-admin .ok-left,
+    .ok-left .okadmin-logo {
+        transition: left .5s;
+        left: -220px;
+    }
+
+    .layui-header .layui-layout-left {
+        transition: left .5s;
+        left: -20px;
+    }
+
+    .layui-layout-admin .content-body,
+    .layui-layout-admin .layui-footer {
+        transition: left .5s;
+        left: 0;
+    }
+
+    .ok-left .okadmin-side .user-photo {
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .ok-left .user-photo a.img {
+        width: 50px;
+        height: 50px;
+    }
+
+    /*
+    * 移动端菜单的宽度
+    */
+    .layui-side-menu .layui-side-scroll {
+        width: 200px !important;
+    }
+
+    .ok-left,
+    .ok-left .okadmin-logo,
+    .ok-left .okadmin-side .user-photo,
+    .ok-left.layui-side-menu .layui-nav {
+        width: 180px !important;
+        margin: 0;
+    }
+}
+

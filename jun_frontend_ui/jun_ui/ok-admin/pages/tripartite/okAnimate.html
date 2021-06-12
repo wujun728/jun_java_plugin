@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>okAnimate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+</head>
+<body>
+    <div class="ok-body">
+        <blockquote class="layui-elem-quote">
+            <p>Animate.css 一款强大的预设css3动画库</p>
+        </blockquote>
+        <pre>
+// Step1
+引入：css/oksub.css
+// Step2
+<span class="ok-anim shake">文字特效</span>>
+        </pre>
+        <button type="button" class="layui-btn" id="try">试一下</button>
+    </div>
+    <!--js逻辑-->
+    <script src="../../lib/layui/layui.js"></script>
+    <script>
+        layui.use(["code"], function () {
+            let code = layui.code;
+            let $ = layui.jquery;
+
+            code({
+                elem: "pre",
+                title: "代码示例",
+                encode: true
+            });
+
+            $("#try").click(function () {
+                $(this).addClass("ok-anim shake");
+            });
+        });
+    </script>
+</body>
+</html>

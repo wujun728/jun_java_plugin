@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Util</title>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/common.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/util.min.js"></script>
+</head>
+<body>
+<center>
+    <form id="editForm">
+        <table style="width: 500px;">
+            <tr>
+                <td style="width: 25%;">Input</td>
+                <td><input type="text" value="输入" name="input" style="width: 98%;"/></td>
+            </tr>
+            <tr>
+                <td>TextArea</td>
+                <td><textarea rows="2" cols="10" name="textarea" style="width: 98%;">Textarea</textarea></td>
+            </tr>
+            <tr>
+                <td>Single Select</td>
+                <td><select name="single" style="width: 100%;">
+                    <option>Single</option>
+                    <option>Single2</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Multiple Select</td>
+                <td><select name="multiple" multiple="multiple" style="width: 100%;">
+                    <option selected="selected">Multiple</option>
+                    <option selected="selected">Multiple2</option>
+                    <option>Multiple3</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Checkbox</td>
+                <td><input type="checkbox" name="check" value="check1" checked="checked"/> check1
+                    <input type="checkbox" name="check" value="check2" checked="checked"/> check2
+                </td>
+            </tr>
+            <tr>
+                <td>Radio</td>
+                <td><input type="radio" name="radio" value="radio1" checked="checked"/> radio1
+                    <input type="radio" name="radio" value="radio2"/> radio2
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" name="param" value="param"
+                           onclick="alert($.bsgrid.param($('#editForm').serializeArray()));"/>
+                    <input type="button" name="param twice" value="param twice"
+                           onclick="alert($.bsgrid.param($('#editForm').serializeArray(), true));"/>
+                    <input type="button" name="getKeysString" value="getKeysString"
+                           onclick="alert($.bsgrid.getKeysString($('#editForm').serializeArray()));"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</center>
+</body>
+</html>

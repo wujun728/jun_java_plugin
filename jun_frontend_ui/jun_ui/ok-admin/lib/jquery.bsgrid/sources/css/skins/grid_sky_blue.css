@@ -1,0 +1,48 @@
+@CHARSET "UTF-8";
+
+/* grid header and column */
+.bsgrid th, .bsgrid td {
+    border-color: #a4bed4;
+    background-color: white;
+    color: black;
+}
+
+/* grid header */
+.bsgrid th {
+    background-image: url(../../images/skins/sky_blue/bg.gif);
+}
+
+/* grid even index row column color */
+.bsgrid tr.even_index_row td {
+    background-color: #e3efff;
+}
+
+/* grid row hover column color */
+.bsgrid tr.row_hover td {
+    background-color: #fff1cc !important;
+}
+
+/* grid selected row column color */
+.bsgrid tr.selected.selected_color td {
+    background-color: #fff1cc !important;
+}
+
+/* paging toolbar out table */
+.bsgridPagingOutTab {
+    border-color: #a4bed4;
+    background-color: white;
+}
+
+.bsgridPaging {
+    color: black;
+}
+
+/* paging toolbar button */
+.bsgridPaging .pagingBtn {
+    background-image: url(../../images/skins/sky_blue/bg.gif);
+    border-color: #a4bed4;
+}
+
+.bsgridPaging .gotoPageInput {
+    border-color: #a4bed4;
+}

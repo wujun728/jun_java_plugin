@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>树组件</title>
+<link href="../assets/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="../assets/js/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/layout.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/theme_orange_skin.css" rel="stylesheet" type="text/css" />
+<script src="../assets/json/tree_data1.js" type="text/javascript"></script>
+
+	<style type="text/css">
+		.panel-htop{width:49%;float: left;margin:5px;}
+	</style>
+
+</head>
+<body class="padding10">
+	<div class="easyui-panel comTable" title="基础实例" data-options="iconCls:'fa fa-save',collapsible:true,maximizable:true,closable:true">
+		<p style="font-size:14px">easyUI tree实例</p>
+		<ul id="dome-tree1" class="easyui-tree">     
+			<li><span>后台管理</span>
+				<ul>
+					<li><span>管理系统ＵＩ</span>
+						<ul>
+							<li><span>一劳永逸UI系统</span></li>  
+						</ul>
+					</li>
+					<li><span>登录系统psd后台界面模板</span></li>
+				</ul>  
+			</li>
+			<li><span>招银设计</span>
+				<ul>
+					<li><span>2016招银足球赛</span>
+						<ul>
+							<li><span>英语学习海报</span></li>  
+							<li><span>应用版本13.12.4</span></li>  
+						</ul>
+					</li>
+					<li><span>自行车logo场景</span></li>
+				</ul>  
+			</li>
+			<li><span>统一授权转移</span></li>  
+		</ul>
+	</div>
+
+	<div class="easyui-panel comTable" title="checkbox tree面板" data-options="iconCls:'fa fa-save',collapsible:true,maximizable:true,closable:true">
+		<p style="font-size:14px">checkbox tree实例</p>
+		<ul id="tt" class="easyui-tree" data-options="data:resourceTree,method:'get',animate:true,checkbox:true"></ul>
+	</div>
+
+	<div class="easyui-panel comTable" title="lines tree面板" data-options="iconCls:'fa fa-save',collapsible:true,maximizable:true,closable:true">
+		<p style="font-size:14px">lines tree实例</p>
+		<ul id="tt" class="easyui-tree" data-options="data:resourceTree,method:'get',animate:true,lines:true"></ul>
+	</div>
+
+	<div class="easyui-panel comTable" title="icon true面板" data-options="iconCls:'fa fa-save',collapsible:true,maximizable:true,closable:true">
+		<p style="font-size:14px">icon true实例</p>
+		<ul id="tt" class="easyui-tree" data-options="data:resourceTree2,method:'get',animate:true"></ul>
+	</div>
+
+
+	<div class="easyui-panel comTable" title="右键下拉 true面板" data-options="iconCls:'fa fa-save',collapsible:true,maximizable:true,closable:true">
+		<p style="font-size:14px">右键下拉实例</p>
+
+		<ul id="tt" class="easyui-tree" data-options="data:resourceTree2,method: 'get',
+                animate: true,
+                onContextMenu: function(e,node){
+                    e.preventDefault();
+                    $(this).tree('select',node.target);
+                    $('#mm').menu('show',{
+                        left: e.pageX,
+                        top: e.pageY
+                    });
+                }"></ul>
+        <div id="mm" class="easyui-menu" style="width:120px;">
+	        <div onclick="append()" data-options="iconCls:'fa fa-plus-square'">新增</div>
+	        <div onclick="removeit()" data-options="iconCls:'fa fa-times-rectangle'">删除</div>
+	        <div class="menu-sep"></div>
+	        <div onclick="expand()">修改</div>
+	        <div onclick="collapse()">配置</div>
+	    </div>
+	</div>
+
+	<div class="easyui-panel comTable" title="可编辑 true面板" data-options="iconCls:'fa fa-save',collapsible:true,maximizable:true,closable:true">
+		<p style="font-size:14px">可编辑 true实例</p>
+		<ul id="tt" class="easyui-tree" data-options="data:resourceTree2,method:'get',animate:true,onClick: function(node){$(this).tree('beginEdit',node.target);}"></ul>
+	</div>
+
+<script src="../assets/js/jquery2.1.1.js" type="text/javascript"></script>
+<script src="../assets/js/jquery.easyui.min.js" type="text/javascript"></script>
+<!-- dome-tree-checkbox -->
+<script type="text/javascript">
+	function getChecked(){
+		var nodes = $('#dome-tree-checkbox').tree('getChecked');
+		var s = '';
+		for(var i=0; i<nodes.length; i++){
+			if (s != '') s += ',';
+			s += nodes[i].text;
+		}
+		alert(s);
+	}
+
+	// 
+	function append(){
+            var t = $('#tt-t5');
+            var node = t.tree('getSelected');
+            t.tree('append', {
+                parent: (node?node.target:null),
+                data: [{
+                    text: 'new item1'
+                },{
+                    text: 'new item2'
+                }]
+            });
+        }
+        function removeit(){
+            var node = $('#tt-t5').tree('getSelected');
+            $('#tt-t5t').tree('remove', node.target);
+        }
+        function collapse(){
+            var node = $('#tt-t5').tree('getSelected');
+            $('#tt-t5').tree('collapse',node.target);
+        }
+        function expand(){
+            var node = $('#tt-t5').tree('getSelected');
+            $('#tt-t5').tree('expand',node.target);
+        }
+</script>
+
+</body>
+</html>

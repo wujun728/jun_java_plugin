@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Multi Grid</title>
+    <!-- grid.all.min.css, grid.all.min.js -->
+    <link rel="stylesheet" href="../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/bsgrid.all.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<table id="searchTable">
+    <tr>
+        <th w_check="true" w_index="XH" width="5%;">XH<input class="bsgrid_editgrid_checkbox" type="checkbox"/></th>
+        <th w_check="true" w_index="ID" width="5%;">ID<input class="bsgrid_editgrid_checkbox" type="checkbox"/></th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" w_length="30" width="30%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<p/>
+<table id="searchTable2">
+    <tr>
+        <th w_num="total_line" width="3%;"></th>
+        <th w_check="true" w_index="XH" width="5%;"></th>
+        <th w_edit="text" w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <!-- default max length 40 -->
+        <th w_index="TEXT" w_align="left" width="27%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<p/>
+<table id="searchTable3">
+    <tr>
+        <th w_num="line" width="3%;"></th>
+        <th w_edit="button" w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="27%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<script type="text/javascript">
+    $(function () {
+        $.fn.bsgrid.init('searchTable', {
+            url: 'data/json.jsp',
+            pageSizeSelect: true,
+            pageSize: 3
+        });
+
+        $.fn.bsgrid.init('searchTable2', {
+            url: 'data/json.jsp',
+            pageSizeSelect: true,
+            pageSize: 5,
+            extend: {
+                settings: {
+                    supportGridEdit: true, // default false, if support extend grid edit
+                    supportGridEditTriggerEvent: 'rowClick' // default 'rowClick', values: '', 'rowClick', 'rowDoubleClick', 'cellClick', 'cellDoubleClick'
+                }
+            },
+            pagingToolbarAlign: 'center'
+        });
+
+        $.fn.bsgrid.init('searchTable3', {
+            url: 'data/json.jsp',
+            pageAll: true,
+            showPageToolbar: false,
+            extend: {
+                settings: {
+                    supportGridEdit: true,
+                    supportGridEditTriggerEvent: 'rowClick'
+                }
+            },
+            pagingToolbarAlign: 'left'
+        });
+    });
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + $.fn.bsgrid.getGridObj(options.gridId).getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

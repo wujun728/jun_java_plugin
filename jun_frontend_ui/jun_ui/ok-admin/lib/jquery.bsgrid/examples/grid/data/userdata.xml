@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gridData>
+    <success>true</success>
+    <totalRows>20</totalRows>
+    <curPage>1</curPage>
+    <data>
+        <row>
+            <ID>202</ID>
+            <CHAR>1</CHAR>
+            <TEXT>TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_1</TEXT>
+            <NUM>11.2</NUM>
+            <XH>1</XH>
+        </row>
+        <row>
+            <ID>201</ID>
+            <CHAR>111</CHAR>
+            <TEXT>TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_2</TEXT>
+            <XH>2</XH>
+        </row>
+        <row>
+            <ID>200</ID>
+            <CHAR>200</CHAR>
+            <TEXT>TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_3</TEXT>
+            <XH>3</XH>
+        </row>
+        <row>
+            <ID>199</ID>
+            <CHAR>199</CHAR>
+            <XH>4</XH>
+        </row>
+        <row>
+            <ID>32</ID>
+            <CHAR>34</CHAR>
+            <NUM>12.1</NUM>
+            <XH>5</XH>
+        </row>
+    </data>
+    <userdata>
+        <description>userdata can be a value or xml string</description>
+    </userdata>
+</gridData>

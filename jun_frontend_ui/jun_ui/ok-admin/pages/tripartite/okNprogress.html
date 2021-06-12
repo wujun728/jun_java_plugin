@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>okNprogress</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+</head>
+<body>
+    <div class="ok-body">
+        <blockquote class="layui-elem-quote">
+            <p>NProgress.js提供页面加载进度条效果，当页面打开加载时，在页面顶部会出现进度条加载动画。</p>
+            <p>NProgress.js是轻量级的进度条组件，使用简便，可以很方便集成到单页面应用中。</p>
+        </blockquote>
+        <pre>
+layui.use(["okNprogress"], function () {
+    let okNprogress = layui.okNprogress;
+    <br/>
+    // 开始进度条
+    okNprogress.start();
+    // 结束进度条
+    okNprogress.done();
+});
+        </pre>
+        <button type="button" class="layui-btn" id="start">开始进度条</button>
+        <button type="button" class="layui-btn" id="done">结束进度条</button>
+    </div>
+    <!--js逻辑-->
+    <script src="../../lib/layui/layui.js"></script>
+    <script>
+        layui.use(["code", "okNprogress"], function () {
+            let code = layui.code;
+            let okNprogress = layui.okNprogress;
+            let $ = layui.jquery;
+
+            code({
+                elem: "pre",
+                title: "代码示例"
+            });
+
+            okNprogress.start();
+            if (document.readyState == "complete" || document.readyState == "interactive") {
+                okNprogress.done();
+            }
+
+            $("#start").click(function () {
+                okNprogress.start();
+            });
+
+            $("#done").click(function () {
+                okNprogress.done();
+            });
+        });
+    </script>
+</body>
+</html>

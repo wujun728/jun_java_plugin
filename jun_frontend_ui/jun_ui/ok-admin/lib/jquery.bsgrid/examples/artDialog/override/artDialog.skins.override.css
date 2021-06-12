@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+.d-mask {
+    /* Modify transparency. Original opacity=70, opacity:.7 at blue.css line 35. */
+    background: #000;
+    filter: alpha(opacity=10);
+    opacity: .1;
+    -moz-opacity:0.1;
+}
+
+/* Modify pop window's background color. Original #f7f7f7 at blue.css line 38. */
+.d-inner {
+    background: white;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Simple Little Paging</title>
+    <link rel="stylesheet" href="../../builds/css/grid.paging.min.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/common.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/grid.paging.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<div id="page-result" style="width: 768px; height: 300px; padding:5px; border: solid 1px #888;"></div>
+<div id="simple-pt"></div>
+<script type="text/javascript">
+    var pagingObj;
+    $(function () {
+        // init
+        pagingObj = $.fn.bsgrid_paging.init('simple-pt', {
+            pageSize: 2,
+            pageSizeSelect: true,
+            pagingLittleToolbar: true
+        });
+        // overwrite page method
+        $.fn.bsgrid_paging.page = function (curPage, options) {
+            // do something to get totalRows
+            var totalRows = 10;
+
+            // this below must exist, to set paging values and css styles
+            pagingObj.setPagingValues(curPage, totalRows); // setPagingValues(curPage, totalRows)
+
+            // paged properties values
+            $('#page-result').html('Total Rows = ' + options.totalRows
+                    + '<br />' + 'Total Page = ' + options.totalPages
+                    + '<br />' + 'Page Size = ' + options.settings.pageSize
+                    + '<br />' + 'Cuurent Page = ' + options.curPage
+                    + '<br />' + 'Start Row = ' + options.startRow
+                    + '<br />' + 'End Row = ' + options.endRow);
+        };
+        // page first
+        pagingObj.page(1);
+    });
+</script>
+</body>
+</html>

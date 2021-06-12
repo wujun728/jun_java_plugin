@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>okSweetalert2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+</head>
+<body>
+    <div class="ok-body">
+        <blockquote class="layui-elem-quote">
+            <p>SweetAlert2 - 一个强大的纯Js模态消息对话框插件</p>
+        </blockquote>
+        <pre>
+layui.use(["okSweetAlert2"], function () {
+    let okSweetAlert2 = layui.okSweetAlert2;
+    <br/>
+    okSweetAlert2.fire("欢迎使用ok-admin");
+    <br/>
+    okSweetAlert2.fire(
+        "关于ok-admin的问题",
+        "你觉得ok-admin好用吗？",
+        "question"
+    );
+    <br/>
+    okSweetAlert2.fire({
+            type: "error",
+            title: "糟糕",
+            text: "服务器好像开小差了！",
+            footer: "<a href='http://git.xlbweb.cn/ok-admin' target='_blank'>为什么会有这个问题？</a>"
+    });
+    <br/>
+    okSweetAlert2.fire({
+        type: "info",
+        title: "<strong>HTML <u>example</u></strong>",
+        html: "You can use <b>bold text</b>, <a href='http://git.xlbweb.cn/ok-admin' target='_blank'>links</a> and other HTML tags",
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonText: "<span class='ok-icon'>&#xe644;</span> Great!",
+        confirmButtonAriaLabel: "Thumbs up, great!",
+        cancelButtonText: "<span class='ok-icon'>&#xe64a;</span>",
+        cancelButtonAriaLabel: "Thumbs down"
+    });
+    <br/>
+    okSweetAlert2.fire({
+        type: "warning",
+        title: "你确定要这样操作吗？",
+        text: "此操作您将无法还原！",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "确定",
+        cancelButtonText: "取消"
+    }).then((result) => {
+        if (result.value) {
+            okSweetAlert2.fire(
+                "删除成功",
+                "您已经将该记录删除成功！",
+                "success"
+            )
+        }
+    });
+});
+        </pre>
+        <button type="button" class="layui-btn" id="btn1">btn1</button>
+        <button type="button" class="layui-btn" id="btn2">btn2</button>
+        <button type="button" class="layui-btn" id="btn3">btn3</button>
+        <button type="button" class="layui-btn" id="btn4">btn4</button>
+        <button type="button" class="layui-btn" id="btn5">btn5</button>
+    </div>
+    <!--js逻辑-->
+    <script src="../../lib/layui/layui.js"></script>
+    <script>
+        layui.use(["util", "code", "okSweetAlert2"], function () {
+            let util = layui.util;
+            let code = layui.code;
+            let okSweetAlert2 = layui.okSweetAlert2;
+            let $ = layui.jquery;
+
+            util.fixbar({});
+
+            code({
+                elem: "pre",
+                title: "代码示例"
+            });
+
+            $("#btn1").click(function () {
+                okSweetAlert2.fire("欢迎使用ok-admin");
+            });
+
+            $("#btn2").click(function () {
+                okSweetAlert2.fire(
+                    "关于ok-admin的问题",
+                    "你觉得ok-admin好用吗？",
+                    "question"
+                );
+            });
+
+            $("#btn3").click(function () {
+                okSweetAlert2.fire({
+                    type: "error",
+                    title: "糟糕",
+                    text: "服务器好像开小差了！",
+                    footer: "<a href='http://git.xlbweb.cn/ok-admin' target='_blank'>为什么会有这个问题？</a>"
+                });
+            });
+
+            $("#btn4").click(function () {
+                okSweetAlert2.fire({
+                    type: "info",
+                    title: "<strong>HTML <u>example</u></strong>",
+                    html: "You can use <b>bold text</b>, <a href='http://git.xlbweb.cn/ok-admin' target='_blank'>links</a> and other HTML tags",
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText: "<span class='ok-icon'>&#xe644;</span> Great!",
+                    confirmButtonAriaLabel: "Thumbs up, great!",
+                    cancelButtonText: "<span class='ok-icon'>&#xe64a;</span>",
+                    cancelButtonAriaLabel: "Thumbs down"
+                });
+            });
+
+            $("#btn5").click(function () {
+                okSweetAlert2.fire({
+                    type: "warning",
+                    title: "你确定要这样操作吗？",
+                    text: "此操作您将无法还原！",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消"
+                }).then((result) => {
+                    if (result.value) {
+                        okSweetAlert2.fire(
+                            "删除成功",
+                            "您已经将该记录删除成功！",
+                            "success"
+                        )
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

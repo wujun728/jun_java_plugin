@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Grid And Form with ArtDialog</title>
+    <link rel="stylesheet" href="../../builds/merged/bsgrid.all.min.css"/>
+    <link rel="stylesheet" href="../form/example.css"/>
+    <style type="text/css">
+        .d-content {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+    </style>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/bsgrid.all.min.js"></script>
+    
+    <link rel="stylesheet" href="../../plugins/artDialog/skins/blue.css"/>
+    <link rel="stylesheet" href="override/artDialog.skins.override.css"/>
+    <script type="text/javascript" src="../../plugins/artDialog/jquery.artDialog.min.js"></script>
+    <script type="text/javascript" src="../../plugins/artDialog/artDialog.plugins.min.js"></script>
+    <script type="text/javascript" src="override.grid.js"></script>
+    <script type="text/javascript" src="override/artDialog.plugin.override.en.js"></script>
+    <script type="text/javascript" src="override/artDialog.plugin.override.js"></script>
+    <script type="text/javascript" src="override.pop.js"></script>
+</head>
+<body style="background-color: #fff;">
+<form id="searchForm">
+    XH:<input type="text" name="xh" value="12"/>
+    &emsp;
+    <input type="button" onclick="doSearch();" value="Search"/>
+    &emsp;
+    <input type="button" onclick="doAdd();" value="Add"/>
+</form>
+
+<p/>
+<div id="searchParams_view" style="width: 96%; border: solid 1px #ccc; padding: 10px;">
+</div>
+
+<p/>
+<table id="searchTable">
+    <tr>
+        <th w_check="true" width="3%;"></th>
+        <th w_index="XH" w_sort="XH,desc" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" w_length="30" width="27%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_index="ID" w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<div id="artDialog-gridForm" style="display: none;">
+    <form id="gridForm" class="bsgrid_form">
+        <table>
+            <tr showType="false">
+                <td class="formLabel">ID:</td>
+                <td class="formInput"><input name="ID" type="text" /></td>
+            </tr>
+            <tr>
+                <td class="formLabel"><span class="require">*</span>XH:</td>
+                <td class="formInput">
+                    <input name="XH" type="text" editAble="false" />
+                    <span class="inputTip" showType="add">Must unique</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="formLabel">CHAR:</td>
+                <td class="formInput"><input name="CHAR" type="text" /></td>
+            </tr>
+            <tr>
+                <td class="formLabel">TEXT:</td>
+                <td class="formInput"><textarea name="TEXT"></textarea></td>
+            </tr>
+            <tr>
+                <td class="formLabel">DATE:</td>
+                <td class="formInput"><input name="DATE" type="text" /></td>
+            </tr>
+            <tr>
+                <td class="formLabel">TIME:</td>
+                <td class="formInput"><input name="TIME" type="text" /></td>
+            </tr>
+            <tr>
+                <td class="formLabel">NUM:</td>
+                <td class="formInput"><input name="NUM" type="text" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center; border-left-width: 0; border-right-width: 0; border-bottom-width: 0;">
+                    <input type="button" value="Save" onclick="doCommit();" />
+                    &emsp;
+                    <input type="button" value="Cancel" onclick="gridFormDialog.hidden();" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+    var gridObj;
+
+    var gridFormObject;
+    var gridFormDialog;
+
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: '../grid/data/json.jsp',
+            pageSizeSelect: true,
+            pageSize: 10,
+            autoLoad: false,
+            beforeSend: function (options, XMLHttpRequest) {
+                $('#searchParams_view').html('Search params: ' + gridObj.getPageCondition(gridObj.getCurPage()));
+            }
+        });
+
+        if ($('#artDialog-gridForm').length == 1) {
+            var gridFormHtml = $("#artDialog-gridForm").html();
+            $("#artDialog-gridForm").html('');
+            gridFormDialog = $.dialog({
+                id: 'artDialog-gridForm-dialog',
+                title: 'Form',
+                width: 400,
+                height: 350,
+                padding: '0px 0px 0px 0px',
+                content: gridFormHtml,
+                lock: true,
+                fixed: true,
+                ok: false,
+                okValue: false,
+                cancel: function () {
+                    gridFormDialog.hidden();
+                    return false;
+                },
+                visible: false
+            });
+        }
+
+        // grid form obj, note grid form should init after artDialog
+        gridFormObject = $.fn.bsgrid_form.init('gridForm', {});
+
+        doSearch();
+
+        doAdd();
+    });
+
+    function doSearch() {
+        var searchParames = $('#searchForm').serializeArray();
+        gridObj.search(searchParames);
+    }
+
+    function operate(record, rowIndex, colIndex, options, options) {
+        return '<a href="#" onclick="doView(' + rowIndex + ');">View</a>'
+                + '&emsp;<a href="#" onclick="doEdit(' + rowIndex + ');">Edit</a>'
+                + '&emsp;<a href="#" onclick="doDelete(' + rowIndex + ');">Delete</a>';
+    }
+
+    function doAdd() {
+        $('#gridForm')[0].reset();
+        showFormDialog('add');
+    }
+
+    function doView(rowIndex) {
+        fillDataAndShowFormDialog('view', rowIndex);
+    }
+
+    function doEdit(rowIndex) {
+        fillDataAndShowFormDialog('edit', rowIndex);
+    }
+
+    function fillDataAndShowFormDialog(type, rowIndex) {
+        // get record by rowIndex: gridObj.getRecord(rowIndex)
+        // get column value by record and index: gridObj.getRecordIndexValue(record, index)
+        // get column value by rowIndex and index: gridObj.getColumnValue(rowIndex, index)
+        var record = gridObj.getRecord(rowIndex);
+        $('#gridForm :input').each(function () {
+            var input_name = $.trim($(this).attr('name'));
+            if (input_name != '') {
+                var input_value = gridObj.getRecordIndexValue(record, input_name);
+                if ($(this).attr('type') == 'radio' || $(this).attr('type') == 'checkbox') {
+                    if ((',' + input_value + ',').indexOf(',' + $(this).val() + ',') > -1) {
+                        $.bsgrid.adaptAttrOrProp($(this), 'checked', true);
+                    } else {
+                        $.bsgrid.adaptAttrOrProp($(this), 'checked', false);
+                    }
+                } else {
+                    $(this).val(input_value);
+                }
+            }
+        });
+        showFormDialog(type);
+    }
+
+    function showFormDialog(type) {
+        gridFormObject.showForm(type);
+        if (type == 'view') {
+            $('#gridForm :button[value=Save]').hide();
+        } else {
+            $('#gridForm :button[value=Save]').show();
+        }
+        gridFormDialog.title(type);
+        // hide artDialog footer
+        $('div[aria-labelledby=d-title-artDialog-gridForm-dialog] .d-footer').hide();
+        gridFormDialog.visible();
+    }
+
+    function doDelete(rowIndex) {
+        var id = gridObj.getColumnValue(rowIndex, 'ID');
+        $.confirm('Delete?', function () {
+            alert('delete. ID=' + id);
+        });
+    }
+
+    function doCommit() {
+        var type = gridFormObject.options.formType;
+        if (type == 'view') {
+            alert('This is view.');
+        } else if (type == 'add') {
+            alert($('#gridForm').serialize() + '&formType=' + type);
+        } else if (type == 'edit') {
+            // editAble false not commit
+            alert($('#gridForm :not([editAble="false"])').serialize() + '&formType=' + type);
+        } else {
+            alert('None.');
+        }
+    }
+</script>
+</body>
+</html>

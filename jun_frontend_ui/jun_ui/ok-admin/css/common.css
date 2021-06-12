@@ -1,0 +1,103 @@
+@import "../lib/fonts/iconfont.css";
+/*html{
+    webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+    filter: gray;
+}*/
+[v-cloak]{display:none!important}
+.ok-body{padding:10px}
+
+/*多条件搜索框*/
+/*.ok-search{margin-top:15px}*/
+.ok-search .layui-input{width:190px;padding-left:10px;margin-left:10px;float:left}
+.ok-search .layui-input:first-child{margin-left:0}
+.ok-search .layui-btn{margin-left:10px}
+@media screen and (max-width:768px){
+    .ok-search .layui-input{width:100%;margin-left:0;margin-top:10px}
+    .ok-search .layui-btn{margin-left:0;margin-top:10px}
+}
+
+.ok-search-form {margin-bottom: -15px;}
+.ok-search-form .layui-form-item .layui-inline .layui-input-inline{margin-bottom: 5px;}
+
+/*表单*/
+.ok-form{margin-top:10px}
+
+/*滚动条样式一*/
+::-webkit-scrollbar{width: 8px; height: 8px;}
+::-webkit-scrollbar-button:vertical{display: none;}
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner{background-color: #e2e2e2;}
+::-webkit-scrollbar-thumb{border-radius: 0; background-color: rgba(0,0,0,.3);}
+::-webkit-scrollbar-thumb:vertical:hover{background-color: rgba(0,0,0,.35);}
+::-webkit-scrollbar-thumb:vertical:active{background-color: rgba(0,0,0,.38);}
+
+/*滚动条样式二*/
+/*
+.not-scroll::-webkit-scrollbar{height:0;width:0;background:0 0;display:none}
+.scrollBody::-webkit-scrollbar{display:none}
+.scrollBody::-webkit-scrollbar,::-webkit-scrollbar{width:8px;height:8px;background-color:#f5f5f5}
+.scrollBody::-webkit-scrollbar-track,::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.1);background-color:#fff}
+.scrollBody::-webkit-scrollbar-thumb,::-webkit-scrollbar-thumb{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);background-color:#a8a8a8}
+.ok-body-scroll::-webkit-scrollbar,::-webkit-scrollbar{width:8px;height:8px;background-color:#fff}
+.ok-body-scroll::-webkit-scrollbar-track,::-webkit-scrollbar-track{background-color:#fff;-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.2)}
+.ok-body-scroll::-webkit-scrollbar-thumb,::-webkit-scrollbar-thumb{border-radius:10px;-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.1);background-color:#dadada}
+*/
+
+/**占满屏幕**/
+.page-fill{width:100%;height:100%;display:block;box-sizing:border-box}
+
+/**card**/
+.ok-card-body{padding:20px;position:relative;width:100%;box-sizing:border-box}
+.ok-card-body-tb{padding:20px 0;position:relative;width:100%;box-sizing:border-box}
+.ok-card-title{color:#212529;font-size:16px;padding-bottom:20px;font-weight:bolder}
+.ok-card{-webkit-box-shadow:0 0 20px rgba(0,0,0,.08);box-shadow:0 0 20px rgba(0,0,0,.08);border-radius:5px}
+
+/**断行**/
+.wp1{word-break:break-all}
+
+/*只对英文起作用，以字母作为换行依据*/
+.wp2{word-wrap:break-word}
+
+/*只对英文起作用，以单词作为换行依据*/
+.wp3{white-space:pre-wrap}
+
+/*只对中文起作用，强制换行*/
+.wp4{white-space:nowrap}
+
+/**边距**/
+.p0{padding:0!important}
+.ptb0{padding-top:0!important;padding-bottom:0!important}
+.plr0{padding-left:0!important;padding-right:0!important}
+.p20{padding:20px!important;}
+.ptb20{padding-top:20px!important;padding-bottom:20px!important}
+.plr20{padding-left:20px!important;padding-right:20px!important}
+.pl20{padding-left:20px!important}
+.pr20{padding-right:20px!important}
+
+/**浮动**/
+.f-left{float:left}
+.f-right{float:right}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+
+/**卡片样式**/
+.my-cart{-webkit-box-shadow:0 0 20px rgba(0,0,0,.08);box-shadow:0 0 20px rgba(0,0,0,.08);border-radius:5px}
+
+/**颜色**/
+.bg-white{background:#fff!important}
+.col-white{color:#fff!important}
+.childrenBody{padding:15px;background-color:#f1f2f7}
+.ok-card-list{padding:15px}
+.ok-card-list .ok-big-font{font-size:36px;color:#666;line-height:36px;padding:5px 0 10px;overflow:hidden;text-overflow:ellipsis;word-break:break-all;white-space:nowrap}
+
+/*进度条颜色*/
+.per-bg-a{background:#00c292!important}
+.per-bg-b{background:#9a66e4!important}
+.per-bg-c{background:#03a9f3!important}
+.per-bg-d{background:#fb9678!important}
+.per-bg-e{background:#ed4014!important}
+.per-bg-f{background:#ab8ce4!important}
+.per-bg-g{background:#e46cbb!important}

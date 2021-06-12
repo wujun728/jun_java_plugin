@@ -1,0 +1,6 @@
+/**
+* jQuery.bsgrid v1.38 by @Baishui2004
+* Copyright 2014 Apache v2 License
+* https://github.com/baishui2004/jquery.bsgrid
+*/
+String.prototype.startWith=function(a){if(a==null||a==""||this.length==0||a.length>this.length){return false}else{return this.substr(0,a.length)==a}};String.prototype.endWith=function(a){if(a==null||a==""||this.length==0||a.length>this.length){return false}else{return this.substring(this.length-a.length)==a}};String.prototype.replaceAll=function(a,b){return this.replace(new RegExp(a,"gm"),b)};function StringBuilder(){if(arguments.length){this.append.apply(this,arguments)}}StringBuilder.prototype=function(){var c=Array.prototype.join,d=Array.prototype.slice,a=/\{(\d+)\}/g,b=function(){return c.call(this,"")};return{constructor:StringBuilder,length:0,append:Array.prototype.push,appendFormat:function(e){var g=0,f=d.call(arguments,1);this.append(a.test(e)?e.replace(a,function(h,j){return f[j]}):e.replace(/\?/g,function(){return f[g++]}));return this},size:function(){return this.toString().length},toString:b,valueOf:b}}();

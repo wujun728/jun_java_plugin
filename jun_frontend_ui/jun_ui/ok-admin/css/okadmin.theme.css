@@ -1,0 +1,81 @@
+.okadmin.orange_theme .ok-left .okadmin-nav .layui-nav-bar {
+    background: #FF4806; }
+
+.okadmin.orange_theme .ok-left .okadmin-nav .layui-nav-item.layui-this a {
+    background: #FF4806; }
+
+.okadmin.orange_theme .ok-left .okadmin-nav .layui-nav-item .layui-nav-child .layui-this a {
+    background: #FF4806; }
+
+.okadmin.orange_theme .ok-tab .okadmin-tabs-control:hover, .okadmin.orange_theme .ok-tab .layui-tab-title li.layui-this {
+    color: #FF4806; }
+
+.okadmin.blue_theme .ok-left .okadmin-nav .layui-nav-bar {
+    background: #2D8CF0; }
+
+.okadmin.blue_theme .ok-left .okadmin-nav .layui-nav-item.layui-this a {
+    background: #2D8CF0; }
+
+.okadmin.blue_theme .ok-left .okadmin-nav .layui-nav-item .layui-nav-child .layui-this a {
+    background: #2D8CF0; }
+
+.okadmin.blue_theme .ok-tab .okadmin-tabs-control:hover, .okadmin.blue_theme .ok-tab .layui-tab-title li.layui-this {
+    color: #2D8CF0; }
+
+/**============================导航菜单的箭头 start============================*/
+#navBar.ok-arrow2 .layui-nav-item a span,
+#navBar.ok-arrow3 .layui-nav-item a span,
+#navBar.ok-arrow2 .layui-nav-item.layui-nav-itemed dd a span,
+#navBar.ok-arrow3 .layui-nav-item.layui-nav-itemed dd a span{
+    top: 14px!important;
+}
+#navBar.ok-arrow2 .layui-nav-item.layui-nav-itemed a span,
+#navBar.ok-arrow2 .layui-nav-item dd.layui-nav-itemed a span,
+#navBar.ok-arrow3 .layui-nav-item.layui-nav-itemed a span,
+#navBar.ok-arrow3 .layui-nav-item dd.layui-nav-itemed a span {
+    top: 20px!important;
+}
+
+#navBar.ok-arrow2 .layui-nav-item a span.layui-nav-more,
+#navBar.ok-arrow3 .layui-nav-item a span.layui-nav-more {
+    font-family: ok-icon !important;
+    font-size: 12px;
+    font-weight: 600;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 12px;
+    height: 12px;
+    color: #FFFFFF;
+    border: 0;
+    display: block;
+}
+#navBar.ok-arrow2 .layui-nav-item a span.layui-nav-more:before,
+#navBar.ok-arrow3 .layui-nav-item a span.layui-nav-more:before{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 12px;
+    line-height: 12px;
+    width: 100%;
+    font-size: 12px;
+    color: #FFFFFF;
+    transition: all .2s ease-in-out;
+}
+#navBar.ok-arrow2 .layui-nav-item a span.layui-nav-more:before {
+    content: "\e661";
+}
+#navBar.ok-arrow2 .layui-nav-itemed > a > span.layui-nav-more:before{
+    /*content: "\e6de";*/
+     transform: rotate(180deg);
+}
+
+#navBar.ok-arrow3 .layui-nav-item a span.layui-nav-more:before{
+    content: "\e767";
+}
+#navBar.ok-arrow3 .layui-nav-itemed > a > span.layui-nav-more:before{
+    content: "\e768";
+}
+
+/**============================导航菜单的箭头 end============================*/

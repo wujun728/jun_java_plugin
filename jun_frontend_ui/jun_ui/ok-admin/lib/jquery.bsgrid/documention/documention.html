@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Documention</title>
+</head>
+<body style="line-height: 1.2em; background-color: #fff;">
+<pre>
+1, skins css
+   files: builds/css/skins/grid_*.min.css, source: source/css/skins/grid_*.css
+   language js
+   files: builds/js/lang/grid.*.min.js, source: source/js/lang/grid.*.js
+
+2, settings: $.fn.bsgrid.defaults or $.fn.bsgrid.init(gridId, settings) second param settings
+   dataType: 'json', 'jsonp', 'xml', default 'json'
+   dataTrim: true, false, if trim render cell value
+   ajaxType: 'post', 'get', default 'post'
+   localData: json data, xml data, default false
+   url: page request url
+   otherParames: other parameters, values: false, A Search String, A Object or A jquery serialize Array, default false
+                 Samples, First: 'param1=val1&amp;param2=val2'
+                          Second: {'param1': 'val1', 'param2': 'val2'}
+                          Third: $('#searchForm').serializeArray()
+   autoLoad: load onReady, default true
+   pageAll: display all datas, no paging only count, default false
+   showPageToolbar: if show page toolbar, default true
+   pageSize: if set value little then 1, then pageAll will auto set true, default 20
+   pageSizeSelect: if display pageSize select option, use with property pageSizeForGrid, default false
+   pageSizeForGrid: pageSize select option
+   pageIncorrectTurnAlert: if turn incorrect page alert(firstPage, prevPage, nextPage, lastPage), default true
+   multiSort: multi column sort support, default false
+   displayBlankRows: true or false, default true
+   lineWrap: if grid cell content wrap, default false, if false then td use style: grid.css -> .bsgrid td.lineNoWrap
+                                                       if true then td use style: grid.css -> .bsgrid td.lineWrap
+   stripeRows: true or false, default false, css: grid.css -> .bsgrid tr.even_index_row td
+   rowHoverColor: true or false, default false, css: grid.css -> .bsgrid tr.row_hover td
+   rowSelectedColor: true or false, default true, css: grid.css -> .bsgrid tr.selected.selected_color td
+   pagingLittleToolbar: if display page little toolbar, default false
+   pagingToolbarAlign: default 'right', other values 'left', 'center'
+   pagingBtnClass: paging toolbar button css class, default 'pagingBtn', write in grid.paging.css
+   displayPagingToolbarOnlyMultiPages: true or false, default false means alway diaplay pagingToolbar
+   isProcessLockScreen: process lock screen, default true
+   longLengthAotoSubAndTip: if column's value length longer than it, auto sub and tip it, default true
+       sub: content.substring(0, MaxLength-3) + '...'. if column's render is not false then not make effective to it
+       method: $.fn.bsgrid.longLengthSubAndTip, global method
+   beforeSend: method before page ajax request send, params: options, XMLHttpRequest
+   complete: method after page ajax request complete, params: options, XMLHttpRequest, textStatus
+   processUserdata: method process userdata, process before grid render data, params: userdata, options
+   extend.settings: supportGridEdit: if support extend grid edit, default false
+                    supportGridEditTriggerEvent: values: ''(means no need Trigger), 'rowClick', 'rowDoubleClick',
+                                                         'cellClick', 'cellDoubleClick', default 'rowClick'
+                    supportColumnMove: if support extend column move, default false
+                    searchConditions: simple search conditions's container id, default ''
+                    fixedGridHeader: fixed grid header, auto height scroll, default false
+                    fixedGridHeight: fixed grid height, auto scroll, default '320px'
+   extend config methods, note these methods execute before same means's additional method, write in grid.extend.js:
+       extend.initGridMethods: init grid methods
+       extend.beforeRenderGridMethods: before render grid methods
+       extend.renderPerColumnMethods: render per column methods, no matter blank not blank column
+       extend.renderPerRowMethods: render per row methods, no matter blank or not blank row, after render per column methods
+       extend.afterRenderGridMethods: after render grid methods
+   additional render methods:
+       additionalBeforeRenderGrid: additional before render grid
+       additionalRenderPerColumn: additional render per column, no matter blank column or not blank column
+       additionalRenderPerRow: additional render per row, no matter blank or not blank row, after additional render per column
+       additionalAfterRenderGrid: additional after render grid
+
+3, th properties
+   w_index: column index, mapping load data's column key, case senstive
+   w_sort:  like "id", "id,desc", "id,asc", "id" is column index
+   w_align: body column align, not header th
+   w_length: if column's value length longer than it, auto sub and title it
+             sub: txt.substring(0, MaxLength-3) + '...'
+             if column's render is not false, then this property is not make effective to it
+   w_render: use js function name, it will use eval(funName) to execute it, have params: record, rowIndex, colIndex, options
+             Note: if column has property w_render, then ignore property w_index. It's be allowed to no property w_index or w_render
+   w_hidden: if set "true", then will not display this column
+   w_tip: if set "true", then will tip column, ignore if it's length is longer than w_length
+          method, $.fn.bsgrid.columnTip, global method
+
+   th extend properties
+   w_num: line number, value: line, total_line
+   w_check: render checkbox to check rows, value: true
+   w_edit: extend render column, values: text, hidden, password, radio, button, checkbox, textarea
+   tfoot td properties
+   w_agg: aggregation, values: count, countNotNone, sum, avg, max, min, concat, custom
+
+4, these get pagination values, get record or column's value methods, get userdata's value, could call after grid data rendered
+   gridObj.getPageSize(): get page size
+   gridObj.getTotalRows(): get total rows number
+   gridObj.getTotalPages(): get total pages number
+   gridObj.getCurPage(): get current page number
+   gridObj.getCurPageRowsNum(): get current page rows number
+   gridObj.getStartRow(): get start row number in current page, from 1
+   gridObj.getEndRow(): get end row number in current page
+   gridObj.getSortName(): get sort name
+   gridObj.getSortOrder(): get sort order
+   gridObj.getAllRecords(): get all records
+   gridObj.getRecord(rowIndex): get record by rowIndex, note that index from 0
+   gridObj.getRowRecord(rowObj): get row record by row's tr object
+   gridObj.getRecordIndexValue(record, index): get column value by record and index
+   gridObj.getColumnValue(rowIndex, index): get column value by rowIndex and index
+   gridObj.getCellRecordValue(rowIndex, colIndex): get column value by rowIndex and colIndex
+   gridObj.getRows(): get all rows dom object
+   gridObj.getRow(rowIndex): get row dom object by rowIndex
+   gridObj.getRowCells(rowIndex): get row cells dom object by rowIndex
+   gridObj.getColCells(colIndex): get col cells dom object by colIndex
+   gridObj.getCell(rowIndex, colIndex): get cell dom object by rowIndex and colIndex
+   gridObj.getUserdata(): get userdata's value
+
+5, these three select row methods and two check row methods could call after grid data rendered
+   gridObj.selectRow(rowIndex): select row by rowIndex, note that index from 0
+   gridObj.unSelectRow(): unSelect row
+   gridObj.getSelectedRow(): get selected row's tr object
+   gridObj.getSelectedRowIndex(): get selected row's tr index from 0, if not selected return -1
+   gridObj.getCheckedRowsIndexs(): get checked rows indexs, note that index from 0
+   gridObj.getCheckedRowsRecords(): get checked rows records
+   gridObj.getCheckedValues(index): get checked values by index
+
+6, grid other methods list
+   gridObj.getPageCondition(curPage)
+   gridObj.refreshPage()
+   gridObj.firstPage()
+   gridObj.prevPage()
+   gridObj.nextPage()
+   gridObj.lastPage()
+   gridObj.gotoPage(pageNo)
+   gridObj.page(curPage)
+
+   gridObj.sort(thObj)
+   gridObj.getGridHeaderObject(): note only return thead last tr's th
+   gridObj.getColumnModel(colIndex)
+   gridObj.clearGridBodyData()
+
+   gridObj.setGridBlankBody()
+   gridObj.appendHeaderSort()
+   gridObj.createPagingOutTab()
+   gridObj.initPaging()
+   gridObj.setPagingValues()
+
+7, bsgrid other useful methods
+   $.fn.bsgrid.getGridObj(gridId): get grid object
+   $.fn.bsgrid.columnTip(tdObj, value, record): tip column
+   $.fn.bsgrid.longLengthSubAndTip(tdObj, value, maxLen, record): if column's value length longer than it, auto sub and tip it.
+                                                                sub: txt.substring(0, MaxLength-3) + '...'
+
+8, bsgrid edit methods
+   gridObj.activeGridEditMode: active grid edit mode
+   gridObj.getChangedRowsIndexs: get changed rows indexs, from 0
+   gridObj.getChangedRowsOldRecords: get changed rows old records
+   gridObj.getRowsChangedColumnsValue: get rows changed columns value, return Object's key is 'row_'+rowIndex, value is a object
+
+9, process lock screen: global method
+   $.fn.bsgrid.lockScreen: lock screen method
+   $.fn.bsgrid.unlockScreen: unlock screen method
+
+10, Paging Toolbar
+    How to Change Paging Toolbar, global method
+      $.fn.bsgrid.createPagingOutTab(options): grid.js
+      $.fn.bsgrid.createPagingToolbar(options): grid.paging.js
+      $.fn.bsgrid.setPagingToolbarEvents(options): grid.paging.js
+      $.fn.bsgrid.dynamicChangePagingButtonStyle(options): grid.paging.js
+
+11, th properties default
+    $.fn.bsgrid.defaults.colsProperties, properties follow:
+      body row every column config: align(default 'center'), maxLength(default 40)
+      config properties's name: indexAttr, sortAttr, alignAttr, lengthAttr, renderAttr, hiddenAttr, tipAttr
+      extend properties's name: editAttr
+
+12, request post params names
+    to modify that: $.fn.bsgrid.defaults.requestParamsName.X = '', X may pageSize, curPage, sortName, sortOrder
+</pre>
+</body>
+</html>

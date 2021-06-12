@@ -1,0 +1,10 @@
+http://www.layui.com/
+
+layer        v1.9.3
+laypage      v1.2
+laydate      v1.1
+
+License: LGPL
+
+With bsgrid(use laypage-adapter.js), Not Support properties: pagingBtnClass
+                                     Multi Pagination Support: Not test yet

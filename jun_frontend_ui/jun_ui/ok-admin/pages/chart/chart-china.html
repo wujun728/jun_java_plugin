@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>中国地图</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+	<link rel="stylesheet" href="../../css/common.css"/>
+	<link rel="stylesheet" href="../../lib/layui/css/layui.css" media="all"/>
+	<script type="text/javascript" src="../../lib/echarts/echarts.min.js"></script>
+	<script type="text/javascript" src="../../lib/echarts/world/js/china.js"></script>
+	<style type="text/css">
+		.map {
+			padding: 20px;
+			height: 350px;
+		}
+	</style>
+</head>
+<body class="childrenBody ok-body-scroll">
+<div class="layui-row layui-col-space15">
+	<div class="layui-col-md6">
+		<div class="layui-card">
+			<div class="map" id="chinaChart1"></div>
+		</div>
+	</div>
+	<div class="layui-col-md6">
+		<div class="layui-card">
+			<div class="map" id="chinaChart2"></div>
+		</div>
+	</div>
+	<div class="layui-col-md6">
+		<div class="layui-card">
+			<div class="map" id="chinaChart3"></div>
+		</div>
+	</div>
+	<div class="layui-col-md6">
+		<div class="layui-card">
+			<div class="map" id="chinaChart4"></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../../lib/layui/layui.js"></script>
+<script type="text/javascript">
+	layui.use(["okUtils"], function () {
+		let $ = layui.jquery;
+		let okUtils = layui.okUtils;
+		okLoading.close();
+		let data = [{"name": "北京", "value": 100}, {"name": "天津", "value": 83}, {"name": "上海", "value": 113}, {
+			"name": "重庆",
+			"value": 188
+		}, {"name": "河北", "value": 197}, {"name": "河南", "value": 327}, {"name": "云南", "value": 371}, {
+			"name": "辽宁",
+			"value": 224
+		}, {"name": "黑龙江", "value": 295}, {"name": "湖南", "value": 463}, {"name": "安徽", "value": 7}, {
+			"name": "山东",
+			"value": 176
+		}, {"name": "新疆", "value": 0}, {"name": "江苏", "value": 396}, {"name": "浙江", "value": 472}, {
+			"name": "江西",
+			"value": 243
+		}, {"name": "湖北", "value": 226}, {"name": "广西", "value": 404}, {"name": "甘肃", "value": 210}, {
+			"name": "山西",
+			"value": 451
+		}, {"name": "内蒙古", "value": 97}, {"name": "陕西", "value": 369}, {"name": "吉林", "value": 221}, {
+			"name": "福建",
+			"value": 216
+		}, {"name": "贵州", "value": 221}, {"name": "广东", "value": 85}, {"name": "青海", "value": 21}, {
+			"name": "西藏",
+			"value": 414
+		}, {"name": "四川", "value": 380}, {"name": "宁夏", "value": 205}, {"name": "海南", "value": 73}, {
+			"name": "台湾",
+			"value": 348
+		}, {"name": "香港", "value": 54}, {"name": "澳门", "value": 340}];
+		let chinaChartOption = {
+			"title": {"text": "用户家庭所在地统计", "subtext": "", "x": "center"},
+			"tooltip": {"trigger": "item"},
+			"visualMap": {
+				"show": true,
+				"min": 0,
+				"max": 1,
+				"left": 10,
+				"top": "center",
+				"orient": "vertical",
+				"text": ["高", "低"],
+				"realtime": false,
+				"calculable": true,
+				"inRange": {"color": ["#E0FFFF", "#BEEFEC", "#6cd2d2", "#6CC8C1",]}
+			},
+			"series": [
+				{
+					"name": "用户家庭所在地统计",
+					"roam": true,
+					"type": "map",
+					"mapType": "china",
+					"data": [],
+					"itemStyle": {
+						"normal": {"areaColor": "#eeeeee", "borderColor": "#aaaaaa", "borderWidth": 0.5},
+						"emphasis": {"areaColor": "rgba(63,177,227,0.25)", "borderColor": "#3fb1e3", "borderWidth": 1}
+					},
+					"label": {"normal": {"textStyle": {"color": "#000"}}, "emphasis": {"textStyle": {"color": "#000"}}}
+				}
+			]
+		};
+
+		/**
+		 * 图表1
+		 */
+		function chinaChart1() {
+			// 获取最大值
+			let max = 1;
+			for (let i = 0; i < data.length; i++) {
+				if (data[i].value > max) {
+					max = data[i].value;
+				}
+			}
+			chinaChartOption.visualMap.max = max;
+			// 数据源
+			chinaChartOption.series[0].data = data;
+			// 初始化图表
+			let chinaChart1 = echarts.init($('#chinaChart1')[0]);
+			chinaChart1.setOption(chinaChartOption);
+			okUtils.echartsResize([chinaChart1]);
+		}
+
+		/**
+		 * 图表2
+		 */
+		function chinaChart2() {
+			chinaChartOption.visualMap.show = false;
+			let chinaChart2 = echarts.init($('#chinaChart2')[0]);
+			chinaChart2.setOption(chinaChartOption);
+			okUtils.echartsResize([chinaChart2]);
+		}
+
+		function randomData() {
+			return Math.round(Math.random() * 500);
+		}
+
+		let data2 = [
+			{name: '北京', value: '100'}, {name: '天津', value: randomData()},
+			{name: '上海', value: randomData()}, {name: '重庆', value: randomData()},
+			{name: '河北', value: randomData()}, {name: '河南', value: randomData()},
+			{name: '云南', value: randomData()}, {name: '辽宁', value: randomData()},
+			{name: '黑龙江', value: randomData()}, {name: '湖南', value: randomData()},
+			{name: '安徽', value: randomData()}, {name: '山东', value: randomData()},
+			{name: '新疆', value: randomData()}, {name: '江苏', value: randomData()},
+			{name: '浙江', value: randomData()}, {name: '江西', value: randomData()},
+			{name: '湖北', value: randomData()}, {name: '广西', value: randomData()},
+			{name: '甘肃', value: randomData()}, {name: '山西', value: randomData()},
+			{name: '内蒙古', value: randomData()}, {name: '陕西', value: randomData()},
+			{name: '吉林', value: randomData()}, {name: '福建', value: randomData()},
+			{name: '贵州', value: randomData()}, {name: '广东', value: randomData()},
+			{name: '青海', value: randomData()}, {name: '西藏', value: randomData()},
+			{name: '四川', value: randomData()}, {name: '宁夏', value: randomData()},
+			{name: '海南', value: randomData()}, {name: '台湾', value: randomData()},
+			{name: '香港', value: randomData()}, {name: '澳门', value: randomData()}
+		];
+
+		let chinaChartOption2 = {
+			backgroundColor: '#FFFFFF',
+			title: {text: '全国地图大数据', subtext: '', x: 'center'},
+			tooltip: {trigger: 'item'},
+			visualMap: {
+				show: true,
+				x: 'left',
+				y: 'center',
+				splitList: [{start: 500, end: 600}, {start: 400, end: 500}, {start: 300, end: 400}, {
+					start: 200,
+					end: 300
+				}, {start: 100, end: 200}, {start: 0, end: 100},],
+				color: ['#5475f5', '#9feaa5', '#85daef', '#74e2ca', '#e6ac53', '#9fb5ea']
+			},
+			series: [{
+				name: '数据统计',
+				type: 'map',
+				mapType: 'china',
+				roam: false,
+				label: {normal: {show: true}, emphasis: {show: false}},
+				data: data2
+			}]
+		};
+
+		/**
+		 * 图表3
+		 */
+		function chinaChart3() {
+			let chinaChart3 = echarts.init($('#chinaChart3')[0]);
+			chinaChart3.setOption(chinaChartOption2);
+			okUtils.echartsResize([chinaChart3]);
+		}
+
+		/**
+		 * 图表4
+		 */
+		function chinaChart4() {
+			chinaChartOption2.visualMap.show = false;
+			let chinaChart4 = echarts.init($('#chinaChart4')[0]);
+			chinaChart4.setOption(chinaChartOption2);
+			okUtils.echartsResize([chinaChart4]);
+		}
+
+		chinaChart1();
+		chinaChart2();
+		chinaChart3();
+		chinaChart4();
+	});
+</script>

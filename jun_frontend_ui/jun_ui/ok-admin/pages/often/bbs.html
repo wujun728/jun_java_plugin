@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>帖子列表</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../../css/oksub.css">
+	<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body>
+<div class="ok-body">
+	<!--模糊搜索区域-->
+	<div class="layui-row">
+		<form class="layui-form layui-col-md12 ok-search">
+			<input class="layui-input" placeholder="开始日期" autocomplete="off" id="startTime" name="startTime">
+			<input class="layui-input" placeholder="截止日期" autocomplete="off" id="endTime" name="endTime">
+			<input class="layui-input" placeholder="请输入标题" autocomplete="off" name="title">
+			<button class="layui-btn" lay-submit="" lay-filter="search">
+				<i class="layui-icon layui-icon-search"></i>
+			</button>
+		</form>
+	</div>
+	<!--数据表格-->
+	<table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+</div>
+<!--js逻辑-->
+<script src="../../lib/layui/layui.js"></script>
+<script>
+	layui.use(["element", "table", "form", "laydate", "okLayer", "okUtils", "okMock"], function () {
+		let element = layui.element;
+		let table = layui.table;
+		let form = layui.form;
+		let util = layui.util;
+		let laydate = layui.laydate;
+		let okLayer = layui.okLayer;
+		let okUtils = layui.okUtils;
+		let okMock = layui.okMock;
+		okLoading.close();
+		util.fixbar({});
+
+		laydate.render({elem: "#startTime", type: "datetime"});
+		laydate.render({elem: "#endTime", type: "datetime"});
+
+		let articleTable = table.render({
+			elem: "#tableId",
+			url: okMock.api.listBbs,
+			limit: 20,
+			page: true,
+			even: true,
+			toolbar: "#toolbarTpl",
+			size: "sm",
+			cols: [[
+				{type: "checkbox", fixed: "left"},
+				{field: "id", title: "ID", width: 170, sort: true},
+				{field: "poster", title: "发帖人", width: 100},
+				{field: "title", title: "标题", width: 150},
+				{field: "summary", title: "摘要", width: 250},
+				{field: "content", title: "内容", width: 350},
+				{field: "status", title: "状态", width: 110, align: "center", templet: "#statusTpl"},
+				{field: "createTime", title: "发帖时间", width: 150},
+				{field: "updateTime", title: "更新时间", width: 150},
+				{title: "操作", width: 100, align: "center", fixed: "right", templet: "#operationTpl"}
+			]],
+			done: function (res, curr, count) {
+				console.log(res, curr, count);
+				element.init();
+			}
+		});
+
+		form.on("submit(search)", function (data) {
+			articleTable.reload({
+				where: data.field,
+				page: {curr: 1}
+			});
+			return false;
+		});
+
+		table.on("toolbar(tableFilter)", function (obj) {
+			switch (obj.event) {
+				case "batchEnabled":
+					batchEnabled();
+					break;
+				case "batchDisabled":
+					batchDisabled();
+					break;
+				case "batchDel":
+					batchDel();
+					break;
+				case "add":
+					add();
+					break;
+			}
+		});
+
+		table.on("tool(tableFilter)", function (obj) {
+			let data = obj.data;
+			switch (obj.event) {
+				case "edit":
+					edit(data.id);
+					break;
+				case "del":
+					del(data.id);
+					break;
+			}
+		});
+
+		function batchEnabled() {
+			okLayer.confirm("确定要批量上架吗？", function (index) {
+				layer.close(index);
+				let idsStr = okUtils.tableBatchCheck(table);
+				if (idsStr) {
+					okUtils.ajax("/bbs/update-bbs-status", "put", {idsStr: idsStr}, true).done(function (response) {
+						okUtils.tableSuccessMsg(response.msg);
+					}).fail(function (error) {
+						console.log(error)
+					});
+				}
+			});
+		}
+
+		function batchDisabled() {
+			okLayer.confirm("确定要批量下架吗？", function (index) {
+				layer.close(index);
+				let idsStr = okUtils.tableBatchCheck(table);
+				if (idsStr) {
+					okUtils.ajax("/bbs/update-bbs-status", "put", {idsStr: idsStr}, true).done(function (response) {
+						okUtils.tableSuccessMsg(response.msg);
+					}).fail(function (error) {
+						console.log(error)
+					});
+				}
+			});
+		}
+
+		function batchDel() {
+			okLayer.confirm("确定要批量删除吗？", function (index) {
+				layer.close(index);
+				let idsStr = okUtils.tableBatchCheck(table);
+				if (idsStr) {
+					okUtils.ajax("/bbs/deleteBbs", "delete", {idsStr: idsStr}, true).done(function (response) {
+						okUtils.tableSuccessMsg(response.msg);
+					}).fail(function (error) {
+						console.log(error);
+					});
+				}
+			});
+		}
+
+		function add() {
+			okLayer.open("添加帖子", "bbs-add.html", "90%", "90%", null, function () {
+				articleTable.reload();
+			})
+		}
+
+		function edit(id) {
+			okLayer.open("编辑帖子", "bbs-edit.html?id=" + id, "90%", "90%", null, function () {
+				articleTable.reload();
+			})
+		}
+
+		function del(id) {
+			okLayer.confirm("确定要删除吗？", function () {
+				okUtils.ajax("/bbs/deleteBbs", "delete", {idsStr: id}, true).done(function (response) {
+					okUtils.tableSuccessMsg(response.msg);
+				}).fail(function (error) {
+					console.log(error);
+				});
+			})
+		}
+	})
+</script>
+<!-- 头工具栏模板 -->
+<script type="text/html" id="toolbarTpl">
+	<div class="layui-btn-container">
+		<button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">批量上架</button>
+		<button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchDisabled">批量下架</button>
+		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">批量删除</button>
+		<button class="layui-btn layui-btn-sm" lay-event="add">添加帖子</button>
+	</div>
+</script>
+<!-- 行工具栏模板 -->
+<script type="text/html" id="operationTpl">
+	<a href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+	<a href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+</script>
+
+<script type="text/html" id="statusTpl">
+	{{#  if(d.status == 0){ }}
+	<span class="layui-btn layui-btn-normal layui-btn-xs">已置顶</span>
+	{{#  } else if(d.status == 1) { }}
+	<span class="layui-btn layui-btn-warm layui-btn-xs">已加密</span>
+	{{#  } else if(d.status == 2) { }}
+	<span class="layui-btn layui-btn-danger layui-btn-xs">已删除</span>
+	{{#  } }}
+</script>
+</body>
+</html>

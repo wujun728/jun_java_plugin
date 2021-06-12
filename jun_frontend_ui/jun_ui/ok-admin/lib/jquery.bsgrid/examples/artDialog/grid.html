@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Grid with ArtDialog</title>
+    <!-- grid.simple.min.css, grid.simple.min.js -->
+    <link rel="stylesheet" href="../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/bsgrid.all.min.js"></script>
+
+    <link rel="stylesheet" href="../../plugins/artDialog/skins/blue.css"/>
+    <link rel="stylesheet" href="override/artDialog.skins.override.css"/>
+    <script type="text/javascript" src="../../plugins/artDialog/jquery.artDialog.min.js"></script>
+    <script type="text/javascript" src="../../plugins/artDialog/artDialog.plugins.min.js"></script>
+    <script type="text/javascript" src="override.grid.js"></script>
+    <script type="text/javascript" src="override/artDialog.plugin.override.en.js"></script>
+    <script type="text/javascript" src="override/artDialog.plugin.override.js"></script>
+    <script type="text/javascript" src="override.pop.js"></script>
+</head>
+<body style="background-color: #fff;">
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" w_length="30" width="30%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_index="ID" w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<script type="text/javascript">
+    var gridObj;
+
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: '../grid/data/json.jsp',
+            pageSizeSelect: true,
+            pageSize: 10
+        });
+    });
+
+    function operate(record, rowIndex, colIndex, options, options) {
+        // get record by rowIndex: gridObj.getRecord(rowIndex)
+        // get column value by record and index: gridObj.getRecordIndexValue(record, index)
+        // get column value by rowIndex and index: gridObj.getColumnValue(rowIndex, index)
+        return '<a href="#" onclick="alert(\'edit. ID=' + gridObj.getRecordIndexValue(gridObj.getRecord(rowIndex), 'ID') + '\');">edit</a>'
+                + '&emsp;<a href="#" onclick="doDelete(' + gridObj.getColumnValue(rowIndex, 'ID') + ');">delete</a>';
+    }
+
+    function doDelete(id) {
+        $.confirm('Delete?', function () {
+            alert('delete. ID=' + id);
+        });
+    }
+</script>
+</body>
+</html>

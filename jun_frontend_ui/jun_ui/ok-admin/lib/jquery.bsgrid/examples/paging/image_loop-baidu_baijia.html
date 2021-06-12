@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Image Loop (Baidu Baijia)</title>
+    <link rel="stylesheet" href="../../builds/css/grid.paging.min.css"/>
+    <style type="text/css">
+   		#simple-title {
+    		text-align: left;
+    		padding-left: 15px;
+			font-size: 30px;
+			line-height: 40px;
+    	}
+    	#simple-title a{
+    		text-decoration: none;
+    		color: white;
+    	}
+    	#simple-title a:hover{
+    		text-decoration: underline;
+    	}
+    	#simple-zoom table {
+    		border-collapse: collapse; 
+    	}
+    	#simple-zoom table td {
+    		padding: 0;
+    		border: solid 1px black; 
+    		margin: 0;
+    	}
+    	#simple-zoom img.active {
+    		filter: alpha(opacity=100) !important;
+    		opacity: 1.0 !important;
+            -moz-opacity: 1.0 !important;
+    	}
+    </style>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/common.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/grid.paging.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<div id="page-result" style="width: 512px; height: 384px; padding:0px; border: solid 0px #888;"></div>
+<div id="simple-pt"></div>
+<div id="simple-pt-least">
+    <table style="width: 100%;">
+        <tr>
+            <td style="text-align: left; padding-left: 5px;">
+                <button style="cursor: pointer; border-width: 0; width: 70px; height: 80px; background: transparent url(../images/image_loop-baidu_baijia-_prev_btn.png) no-repeat;" onclick="pagingObj.prevPage();">&emsp;</button>
+            </td>
+            <td style="text-align: right; padding-right: 5px;">
+                <button style="cursor: pointer; border-width: 0; width: 70px; height: 80px; background: transparent url(../images/image_loop-baidu_baijia-next_btn.png) no-repeat;" onclick="pagingObj.nextPage();">&emsp;</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="simple-title">
+</div>
+<div id="simple-zoom">
+    <table style="width: 100%;">
+        <tr>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    var pagingObj;
+    var images_totalRows = 3; // images number
+    $(function () {
+        // init
+        pagingObj = $.fn.bsgrid_paging.init('simple-pt', {
+            loopback: true, // default false, true means: page 1 prev then totalPages, totalPages next then 1
+            pageSize: 1
+        });
+        // overwrite page method
+        $.fn.bsgrid_paging.page = function (curPage, options) {
+            // do something to get totalRows
+            var totalRows = images_totalRows;
+
+            // this below must exist, to set paging values and css styles
+            pagingObj.setPagingValues(curPage, totalRows); // setPagingValues(curPage, totalRows)
+
+            // paged properties values
+            var imgSrc = '../images/' + ((curPage % images_totalRows) == 0 ? images_totalRows : (curPage % images_totalRows)) + '.jpg';
+            $('#page-result').html('<img style="cursor: pointer;" src="' + imgSrc + '" onclick="window.open(\'' + imgSrc + '\');" />');
+            switchZoomImageClass(curPage - 1, $('#simple-zoom img:eq('+ (curPage - 1) +')'));
+        };
+        // page first
+        pagingObj.page(1);
+    });
+
+    // least paging
+    $(function () {
+        $('#simple-pt').css('display', 'none');
+        
+        var simpleContainerWidth = $('#page-result').width() + 2 * (parseIntByDefault($('#page-result').css('padding'), 0) + parseIntByDefault($('#page-result').css('border-width'), 0));
+        
+        // image prev and next button
+        $('#simple-pt-least').css({
+            width: simpleContainerWidth,
+            'border-with': 0,
+            position: 'relative',
+            top: (-($('#page-result').height() + $('#simple-pt-least').height()) / 2 - parseIntByDefault($('#page-result').css('padding'), 0)) + 'px',
+            'z-index': 99
+        });
+
+        // image title
+        $('#simple-title').css({
+            width: simpleContainerWidth,
+            height: '50px',
+            // 'background-color': 'black',
+            // filter: 'alpha(opacity=30)',
+            // opacity: '.3',
+            // '-moz-opacity': '.3',
+            'border': 'solid 0px #888',
+            position: 'relative',
+            top: (-($('#simple-pt-least').height() + 50)) + 'px',
+            'z-index': 99
+        });
+        
+        // image zoom
+        $('#simple-zoom').css({
+            width: simpleContainerWidth,
+            // 'background-color': 'black',
+            // filter: 'alpha(opacity=30)',
+            // opacity: '.3',
+            // '-moz-opacity': '.3',
+            'border': 'solid 0px #888',
+            position: 'relative',
+            top: (-($('#simple-pt-least').height() + 50)) + 'px',
+            'z-index': 99
+        });
+
+        // hover zoom image
+        var circle_zoom = '';
+        var zoomImageWidth = parseInt((simpleContainerWidth - images_totalRows - 1) / images_totalRows);
+        for (var i = 1; i <= images_totalRows; i++) {
+            circle_zoom += '<td><img style="cursor: pointer; filter: alpha(opacity=30); opacity: .3; -moz-opacity: .3; width: ' + zoomImageWidth + 'px;" src="' + getImageSrc(i) + '" onclick="openImage(' + i + ');" /></td>';
+        }
+        $('#simple-zoom tr').html(circle_zoom);
+        $('#simple-zoom img:eq(0)').addClass('active');
+        $('#simple-zoom img').each(function(ai) {
+            $(this).hover(function(){
+                pagingObj.page(ai + 1);
+                switchZoomImageClass(ai, $(this));
+            });
+        });
+    });
+
+    function switchZoomImageClass(ai, imgObj){
+        $('#simple-title').html('<a href="javascript:openImage(' + (ai + 1) + ');">Image: ' + (ai + 1) + '.jpg</a>');
+        $('#simple-zoom img').removeClass('active');
+        imgObj.addClass('active');
+    }
+    
+    function getImageSrc(i) {
+    	return imgSrc = '../images/' + ((i % images_totalRows) == 0 ? images_totalRows : (i % images_totalRows)) + '.jpg';
+    }
+    
+    function openImage(i) {
+    	window.open(getImageSrc(i));
+    }
+    
+    function parseIntByDefault(obj){
+    	if(isNaN(parseInt(obj))) {
+    		return 0;
+    	} else {
+    		return parseInt(obj);
+    	}
+    }
+</script>
+</body>
+</html>

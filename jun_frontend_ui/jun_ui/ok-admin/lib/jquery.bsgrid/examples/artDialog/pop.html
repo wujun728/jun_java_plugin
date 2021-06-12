@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>ArtDialog pop</title>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+
+    <link rel="stylesheet" href="../../plugins/artDialog/skins/blue.css"/>
+    <link rel="stylesheet" href="override/artDialog.skins.override.css"/>
+    <script type="text/javascript" src="../../plugins/artDialog/jquery.artDialog.min.js"></script>
+    <script type="text/javascript" src="../../plugins/artDialog/artDialog.plugins.min.js"></script>
+    <script type="text/javascript" src="override/artDialog.plugin.override.en.js"></script>
+    <script type="text/javascript" src="override/artDialog.plugin.override.js"></script>
+    <script type="text/javascript" src="override.pop.js"></script>
+</head>
+<body style="background-color: #fff;">
+    <br />
+    <pre>
+  ArtDialog Pop:
+    1, Once time only can display a pop, alert or confirm or prompt;
+    2, Compared with browser js native pop method, pop used artDialog is Not Blocked;
+    </pre>
+    <input type="button" value="alert" onclick="doAlert('Hi!');"/>
+    <input type="button" value="alert with callback" onclick="doAlertWithCallback('Callback, look it in browser console.');"/>
+
+    <input type="button" value="confirm" onclick="doConfirm('Confirm?');"/>
+    <input type="button" value="confirm with callback" onclick="doConfirmWithCallback('Callback, look it in browser console.');"/>
+
+    <input type="button" value="prompt" onclick="doPrompt('Prompt', 'default');"/>
+    <input type="button" value="prompt with callback" onclick="doPromptWithCallback('Prompt, Callback, look it in browser console.', 'default');"/>
+
+    <script type="text/javascript">
+        function doAlert(text) {
+            alert(text); // equals: $.alert(text);
+            console.log('Not Blocked.');
+        }
+
+        function doAlertWithCallback(text) {
+            $.alert(text, function () {
+                console.log('Callback!');
+            });
+        }
+
+        function doConfirm(text) {
+            confirm(text); // equals: $.confirm(text);
+            console.log('Not Blocked.');
+        }
+
+        function doConfirmWithCallback(text) {
+            $.confirm(text, function () {
+                console.log('Callback, Ok!');
+            }, function () {
+                console.log('Callback, Cancel!');
+            });
+        }
+
+        function doPrompt(text, defaultText) {
+            prompt(text, defaultText); // equals: $.prompt(text, defaultText);
+            console.log('Not Blocked.');
+        }
+
+        function doPromptWithCallback(text, defaultText) {
+            $.prompt(text, defaultText, function (newText) {
+                console.log('Callback, ' + newText + '!');
+            }, function () {
+                console.log('Callback, Cancel!');
+            });
+        }
+    </script>
+</body>
+</html>

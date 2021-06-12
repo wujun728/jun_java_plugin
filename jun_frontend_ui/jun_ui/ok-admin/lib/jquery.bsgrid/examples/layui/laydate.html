@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Edit Grid Use Laydate</title>
+    <!-- grid.all.min.css, grid.all.min.js -->
+    <link rel="stylesheet" href="../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.en.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/bsgrid.all.min.js"></script>
+    <!-- laydate: only need import laydate.js(auto load css) -->
+    <script type="text/javascript" src="../../plugins/layui/laydate/laydate.js"></script>
+</head>
+<body style="background-color: #fff;">
+<p />
+Note:
+<br />1, Laydate v1.1 may not render display none input;
+<br />2, Laydate v1.1 may prevent input date change event;
+<br />
+<br /><input type="button" value="Get Rows Changed Columns value" onclick="getRowsChangedColumnsValue()"  />
+<p />
+<table id="searchTable">
+    <tr>
+        <th w_check="true" width="3%;"></th>
+        <th w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="27%;">TEXT</th>
+        <th w_edit="datetime" w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+        	//autoLoad: false,
+            url: '../grid/data/json.jsp',
+            pageSizeSelect: true,
+            pageSize: 5,
+            extend: {
+                settings: {
+                    supportGridEdit: true, // default false, if support extend grid edit
+                    supportGridEditTriggerEvent: '', // default 'rowClick', values: ''(means no need Trigger), 'rowClick', 'rowDoubleClick', 'cellClick', 'cellDoubleClick'
+                    gridEditConfigs: {
+                        datetime: {
+                            build: function (edit, value, record, rowIndex, colIndex, tdObj, trObj, options) {
+                                // Laydate v1.1 may not render display none input, so use onclick
+                                return value + '<input id="date_' + rowIndex + '_' + colIndex + '" class="bsgrid_editgrid_hidden laydate-icon" value="' + value + '" onclick="viewDatetimeChoose(this)" />';
+                            },
+                            val: function (formObj) {
+                                return formObj.val();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+    function viewDatetimeChoose(formObj) {
+        laydate({
+            elem: '#' + $.bsgrid.adaptAttrOrProp($(formObj), 'id'),
+            format: 'YYYY-MM-DD hh:mm:ss',
+            istime: true,
+            choose: function (newVal) {
+                // Laydate v1.1 may prevent input date change event, so trigger it manually
+                $(formObj).val(newVal).change(); // only trigger change, and value may not change
+            }
+        });
+    }
+
+    function getRowsChangedColumnsValue() {
+        var valsStr = '';
+        $.each(gridObj.getRowsChangedColumnsValue(), function (key, object) {
+            valsStr += '\n' + key + ' [';
+            var cvalsStr = '';
+            $.each(object, function (ckey, cvalue) {
+                cvalsStr += ', ' + ckey + ': ' + cvalue;
+            });
+            valsStr += cvalsStr.substring(2) + ']';
+        });
+        alert(valsStr.length > 0 ? valsStr.substring(1) : '');
+    }
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Least Paging</title>
+    <link rel="stylesheet" href="../../builds/css/grid.paging.min.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/common.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/grid.paging.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<div id="page-result" style="width: 512px; height: 384px; padding:5px; border: solid 1px #888;"></div>
+<div id="simple-pt"></div>
+<div id="simple-pt-least">
+    <table style="width: 100%;">
+        <tr>
+            <td style="text-align: left;">
+                <button type="button" onclick="pagingObj.prevPage();">&lt;--</button>
+            </td>
+            <td style="text-align: right;">
+                <button type="button" onclick="pagingObj.nextPage();">--&gt;</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    var pagingObj;
+    $(function () {
+        // init
+        pagingObj = $.fn.bsgrid_paging.init('simple-pt', {
+            loopback: true, // default false, true means: page 1 prev then totalPages, totalPages next then 1
+            pageSize: 1
+        });
+        // overwrite page method
+        $.fn.bsgrid_paging.page = function (curPage, options) {
+            // do something to get totalRows
+            var totalRows = 3;
+
+            // this below must exist, to set paging values and css styles
+            pagingObj.setPagingValues(curPage, totalRows); // setPagingValues(curPage, totalRows)
+
+            // paged properties values
+            $('#page-result').html('<img src="../images/' + ((curPage % 3) == 0 ? 3 : (curPage % 3)) + '.jpg" />');
+        };
+        // page first
+        pagingObj.page(1);
+    });
+
+    // least paging
+    $(function () {
+        $('#simple-pt').css('display', 'none');
+        $('#simple-pt-least').css({
+            width: $('#page-result').width() + 2 * (parseIntByDefault($('#page-result').css('padding'), 0) + parseIntByDefault($('#page-result').css('border-width'), 0)),
+            'border-with': 0
+        });
+    });
+    
+    
+    function parseIntByDefault(obj){
+    	if(isNaN(parseInt(obj))) {
+    		return 0;
+    	} else {
+    		return parseInt(obj);
+    	}
+    }
+</script>
+</body>
+</html>

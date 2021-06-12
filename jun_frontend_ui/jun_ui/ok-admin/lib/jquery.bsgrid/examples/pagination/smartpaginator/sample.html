@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Grid With smartpaginator</title>
+    <!-- grid.min.css, common.min.js, grid.min.js -->
+    <link rel="stylesheet" href="../../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../../builds/js/lang/grid.en.min.js"></script>
+    <script type="text/javascript" src="../../../builds/merged/bsgrid.all.min.js"></script>
+    <link rel="stylesheet" href="css/smartpaginator.css"/>
+    <script type="text/javascript" src="js/smartpaginator.js"></script>
+    <script type="text/javascript">
+        $.fn.bsgrid.initPaging = function (options) {
+            //
+        };
+        $.fn.bsgrid.setPagingValues = function (options) {
+            $('#searchTable_pt').smartpaginator({
+                totalrecords: options.totalRows,
+                recordsperpage: options.settings.pageSize,
+                initval: options.curPage,
+                // length: 10, // display page number length
+                theme: 'black', // 'red', 'green', 'black'
+                controlsalways: true,
+                // display: 'double', // 'double', display page input and goto page button; 'single', hide page input and goto page button
+                first: $.bsgridLanguage.pagingToolbar.firstPage, // 'First'
+                prev: $.bsgridLanguage.pagingToolbar.prevPage, // 'Prev'
+                next: $.bsgridLanguage.pagingToolbar.nextPage, // 'Next'
+                last: $.bsgridLanguage.pagingToolbar.lastPage, // 'Last'
+                go: $.bsgridLanguage.pagingToolbar.gotoPage, //'Go'
+                onchange: function (newPage) {
+                    $.fn.bsgrid.getGridObj(options.gridId).page(newPage);
+                }
+            });
+        };
+    </script>
+</head>
+<body style="background-color: #fff;">
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="30%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<div id="searchTable_pt"></div>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: '../../grid/data/json.jsp',
+            // autoLoad: false,
+            pageSize: 2
+        });
+        $('#searchTable_pt_outTab').css('border-width', '0');
+    });
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

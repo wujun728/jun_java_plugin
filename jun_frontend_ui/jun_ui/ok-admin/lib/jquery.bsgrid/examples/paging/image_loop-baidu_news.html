@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Image Loop (Baidu News)</title>
+    <link rel="stylesheet" href="../../builds/css/grid.paging.min.css"/>
+    <style type="text/css">
+    	#image_title a{
+    		text-decoration: none;
+    		color: white;
+    	}
+        #circle_icon .active {
+            background: url(../images/image_loop-baidu_news.png) 35px -126px !important;
+        }
+    </style>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/common.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/grid.paging.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<div id="page-result" style="width: 512px; height: 384px; padding:0px; border: solid 0px #888;"></div>
+<div id="simple-pt"></div>
+<div id="simple-pt-least">
+    <table style="width: 100%;">
+        <tr>
+            <td style="text-align: left; padding-left: 5px;">
+                <button style="cursor: pointer; border-width: 0; width: 45px; height: 45px; background: transparent url(../images/image_loop-baidu_news.png) no-repeat left top;" onclick="pagingObj.prevPage();">&emsp;</button>
+            </td>
+            <td style="text-align: right; padding-right: 5px;">
+                <button style="cursor: pointer; border-width: 0; width: 45px; height: 45px; background: transparent url(../images/image_loop-baidu_news.png) no-repeat left -45px;" onclick="pagingObj.nextPage();">&emsp;</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="simple-title">
+    <table style="width: 100%;">
+        <tr>
+            <td id="image_title" style="text-align: left; width: 65%; padding-left: 5px; color: white; font-size: 30px; line-height: 40px;">
+            </td>
+            <td id="circle_icon" style="text-align: center; width: 35%; padding-right: 5px; padding-top: 12px;">
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    var pagingObj;
+    var images_totalRows = 3; // images number
+    $(function () {
+        // init
+        pagingObj = $.fn.bsgrid_paging.init('simple-pt', {
+            loopback: true, // default false, true means: page 1 prev then totalPages, totalPages next then 1
+            pageSize: 1
+        });
+        // overwrite page method
+        $.fn.bsgrid_paging.page = function (curPage, options) {
+            // do something to get totalRows
+            var totalRows = images_totalRows;
+
+            // this below must exist, to set paging values and css styles
+            pagingObj.setPagingValues(curPage, totalRows); // setPagingValues(curPage, totalRows)
+
+            // paged properties values
+            $('#page-result').html('<img style="cursor: pointer;" src="' + getImageSrc(curPage) + '" onclick="openImage(' + curPage + ');" />');
+            switchImageClass(curPage - 1, $('#circle_icon a:eq('+ (curPage - 1) +')'));
+        };
+        // page first
+        pagingObj.page(1);
+    });
+
+    // least paging
+    $(function () {
+        $('#simple-pt').css('display', 'none');
+        
+        var simpleContainerWidth = $('#page-result').width() + 2 * (parseIntByDefault($('#page-result').css('padding'), 0) + parseIntByDefault($('#page-result').css('border-width'), 0));
+        
+        // image prev and next button
+        $('#simple-pt-least').css({
+            width: simpleContainerWidth,
+            'border-with': 0,
+            position: 'relative',
+            top: (-($('#page-result').height() + $('#simple-pt-least').height()) / 2 - parseIntByDefault($('#page-result').css('padding'), 0)) + 'px',
+            'z-index': 99
+        });
+
+        // image title
+        $('#simple-title').css({
+            width: simpleContainerWidth,
+            height: '50px',
+            'background-color': 'black',
+            filter: 'alpha(opacity=30)',
+            opacity: '.3',
+            '-moz-opacity': '.3',
+            'border': 'solid 0px #888',
+            position: 'relative',
+            top: (-($('#simple-pt-least').height() + 50)) + 'px',
+            'z-index': 99
+        });
+
+        // image hover circle icon
+        var circle_icon = '';
+        for (var i = 1; i <= images_totalRows; i++) {
+            circle_icon += '&nbsp;&nbsp;<a style="cursor: pointer; font-size: 10px; height: 12px; background: url(../images/image_loop-baidu_news.png) 20px -126px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>';
+        }
+        $('#circle_icon').html(circle_icon);
+        $('#circle_icon a:eq(0)').addClass('active');
+        $('#circle_icon a').each(function(ai) {
+            $(this).hover(function(){
+                pagingObj.page(ai + 1);
+                switchImageClass(ai, $(this));
+            });
+        });
+    });
+
+    function switchImageClass(ai, aObj){
+        $('#image_title').html('<a href="javascript:openImage(' + (ai + 1) + ');">Image: ' + (ai + 1) + '.jpg</a>');
+        $('#circle_icon a').removeClass('active');
+        aObj.addClass('active');
+    }
+    
+    function getImageSrc(i) {
+    	return imgSrc = '../images/' + ((i % images_totalRows) == 0 ? images_totalRows : (i % images_totalRows)) + '.jpg';
+    }
+    
+    function openImage(i) {
+    	window.open(getImageSrc(i));
+    }
+    
+    function parseIntByDefault(obj){
+    	if(isNaN(parseInt(obj))) {
+    		return 0;
+    	} else {
+    		return parseInt(obj);
+    	}
+    }
+</script>
+</body>
+</html>

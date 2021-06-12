@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Standard Form</title>
+    <link rel="stylesheet" href="../../builds/css/form.min.css"/>
+    <link rel="stylesheet" href="example.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/common.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/util.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/form.min.js"></script>
+</head>
+<body>
+<form id="formDemo" class="bsgrid_form">
+    <table>
+        <tr showType="false">
+            <td class="formLabel">ID:</td>
+            <td class="formInput" colspan="3"><input name="id" type="text" value="100" /></td>
+        </tr>
+        <tr>
+            <td class="formLabel"><span class="require">*</span>Account:</td>
+            <td class="formInput" style="width: 30%;">
+                <input name="account" type="text" editAble="false" value="Account" />
+                <span class="inputTip" showType="add">Unique</span>
+                <span class="inputTip" showType="edit,edit-custom">No modify</span>
+            </td>
+            <td class="formLabel"><span class="require">*</span>Name:</td>
+            <td class="formInput" style="width: 30%;"><input name="name" edit-customAble="false" type="text" value="Name" /></td>
+        </tr>
+        <tr showType="add,edit-custom">
+            <td class="formLabel">Password:</td>
+            <td class="formInput" colspan="3">
+                <input name="password" editAble="false" type="password" value="123456" />
+            </td>
+        </tr>
+        <tr showType="view,add,edit">
+            <td class="formLabel">Sex:</td>
+            <td class="formInput" colspan="3"><select name="sex" editAble="false" edit-customAble="false"><option value="1">male</option><option value="2">female</option></select></td>
+        </tr>
+        <tr showType="view,add,edit">
+            <td class="formLabel">Remark:</td>
+            <td class="formInput" colspan="3">
+                <textarea name="remark" editAble="false" edit-customAble="false">This textarea is editAble false.This textarea is editAble false.This textarea is editAble false.This textarea is editAble false.This textarea is editAble false.</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align: center;">
+                <input type="button" value="Refresh" onclick="location.href = location.href;" />
+                &emsp;
+                <input type="button" value="view style" onclick="formObj.showForm('view');" />
+                &emsp;
+                <input type="button" value="add style" onclick="formObj.showForm('add');" />
+                &emsp;
+                <input type="button" value="edit style" onclick="formObj.showForm('edit');" />
+                &emsp;
+                <input type="button" value="edit-custom style" onclick="formObj.showForm('edit-custom');" />
+                &emsp;
+                <input type="button" value="Commit" onclick="doCommit();" />
+            </td>
+        </tr>
+    </table>
+</form>
+<pre>
+Documention:
+
+1, .bsgrid_form *:
+   showType: 'view*', 'add*', 'edit*', 'add*,edit*', and so on, no deal blank, '*' means zero or more characters.
+2, .bsgrid_form :input:
+   edit*Able: 'false', other value display and can edit, '*' means zero or more characters.
+</pre>
+<script type="text/javascript">
+    var formObj;
+    $(function () {
+        formObj = $.fn.bsgrid_form.init('formDemo', {});
+    });
+
+    function doCommit() {
+        var type = formObj.options.formType;
+        if (type == 'view') {
+            alert('This is view.');
+        } else if (type == 'add') {
+            alert($('#formDemo').serialize() + '&formType=' + type);
+        } else if (type == 'edit') {
+        	// editAble false not commit
+            alert($('#formDemo :not([editAble="false"])').serialize() + '&formType=' + type);
+        } else if (type == 'edit-custom') {
+        	// edit-customAble false not commit
+            alert($('#formDemo :not([edit-customAble="false"])').serialize() + '&formType=' + type);
+        } else {
+            alert('None.');
+        }
+    }
+</script>
+</body>
+</html>

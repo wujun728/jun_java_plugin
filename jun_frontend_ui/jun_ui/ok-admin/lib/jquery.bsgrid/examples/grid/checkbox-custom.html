@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Grid With Checkbox</title>
+    <link rel="stylesheet" href="../../builds/merged/grid.simple.min.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/util.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/grid.simple.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<input type="button" value="Get Checked Ids" onclick="getCheckedIds()"  />
+<table id="searchTable">
+    <tr>
+        <th w_render="checkbox" w_index="ID" width="3%;"><input type="checkbox"/></th>
+        <th w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="27%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: 'data/json.jsp',
+            pageSizeSelect: true,
+            pageSize: 10
+        });
+
+    	// 表格的checkbox选择
+    	if($('#searchTable thead tr th:eq(0) input[type=checkbox]').length == 1) {
+    	    $('#searchTable thead tr th:eq(0) input[type=checkbox]').change(function () {
+                var checked = $.bsgrid.adaptAttrOrProp($(this), 'checked') ? true : false;
+                $.bsgrid.adaptAttrOrProp($('#searchTable tbody tr td:nth-child(1)>input[type=checkbox]'), 'checked', checked);
+    	    });
+    	}
+
+    });
+
+    function checkbox(record, rowIndex, colIndex, options) {
+    	return '<input type="checkbox" value="' + gridObj.getColumnValue(rowIndex, gridObj.getColumnModel(colIndex).index) + '"/>';
+    }
+
+    function getCheckedIds() {
+    	var records = getCheckedRecords();
+        var ids = '';
+        for(var i = 0; i < records.length; i++) {
+        	ids += ',' + gridObj.getRecordIndexValue(records[i], 'ID');
+        }
+        alert(ids.length > 0 ? ids.substring(1) : '');
+    }
+    
+    function getCheckedRecords() {
+        var records = new Array();
+        $('#searchTable tbody tr').each(function() {
+        	if($(this).find('td:eq(0)>input:checked').length == 1){
+        		records[records.length] = gridObj.getRowRecord($(this));
+        	}
+        });
+        return records;
+    }
+    
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

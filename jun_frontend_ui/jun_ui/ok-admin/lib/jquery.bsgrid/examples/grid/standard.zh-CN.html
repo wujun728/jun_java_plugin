@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>方法演示</title>
+    <!-- grid.simple.min.css, grid.simple.min.js -->
+    <link rel="stylesheet" href="../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/bsgrid.all.min.js"></script>
+</head>
+<body style="line-height: 1.2em; background-color: #fff;">
+<form id="searchParams">
+    &emsp;参数1:<input type="text" name="param1" value="参数1"/>
+    &emsp;参数2:<input type="text" name="param2" value="参数2"/>
+    &emsp;<input type="button" value="设置查询参数"
+                 onclick="gridObj.options.otherParames = $('#searchParams').serializeArray(); alert('设置成功！')"/>
+    &emsp;<input type="button" value="获取请求条件"
+                 onclick="alert(gridObj.getPageCondition(gridObj.getCurPage()));"/>
+</form>
+
+<p/>
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" w_sort="XH,desc" width="5%;">XH</th>
+        <th w_index="ID" w_sort="ID" w_hidden="true" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="30%;" style="text-align: left;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+
+<p/>
+&emsp;<input type="button" value="获取分页大小" onclick="alert(gridObj.getPageSize());"/>
+&emsp;<input type="button" value="获取总行数" onclick="alert(gridObj.getTotalRows());"/>
+&emsp;<input type="button" value="获取总页数" onclick="alert(gridObj.getTotalPages());"/>
+&emsp;<input type="button" value="获取当前页码" onclick="alert(gridObj.getCurPage());"/>
+&emsp;<input type="button" value="获取当前页数据行数" onclick="alert(gridObj.getCurPageRowsNum());"/>
+&emsp;<input type="button" value="获取当前页开始行数值" onclick="alert(gridObj.getStartRow());"/>
+&emsp;<input type="button" value="获取当前页结束行数值" onclick="alert(gridObj.getEndRow());"/>
+
+<p/>
+&emsp;<input type="button" value="刷新" onclick="gridObj.refreshPage();"/>
+&emsp;<input type="button" value="首页" onclick="gridObj.firstPage();"/>
+&emsp;<input type="button" value="上一页" onclick="gridObj.prevPage();"/>
+&emsp;<input type="button" value="下一页" onclick="gridObj.nextPage();"/>
+&emsp;<input type="button" value="末页" onclick="gridObj.lastPage();"/>
+&emsp;<input type="button" value="第二页" onclick="gridObj.gotoPage(2);"/>
+&emsp;<input type="button" value="获取排序字段" onclick="alert(gridObj.getSortName());"/>
+&emsp;<input type="button" value="获取排序方向" onclick="alert(gridObj.getSortOrder());"/>
+&emsp;<input type="button" value="根据XH排序"
+             onclick="gridObj.sort($('#' + gridObj.options.gridId + ' thead tr th:eq(0)'));"/>
+
+<p/>
+&emsp;<input type="button" value="选中第三行" onclick="gridObj.selectRow(2);"/>
+&emsp;<input type="button" value="去掉行选中" onclick="gridObj.unSelectRow();"/>
+&emsp;<input type="button" value="获取选中行索引" onclick="alert(gridObj.getSelectedRowIndex());"/>
+&emsp;<input type="button" value="获取选中行(Dom对象)" onclick="alert(gridObj.getSelectedRow());"/>
+&emsp;<input type="button" value="获取选中行(内部HTML)" onclick="alert(gridObj.getSelectedRow().html());"/>
+
+<p/>
+&emsp;<input type="button" value="获取所有记录值" onclick="alert(gridObj.getAllRecords()); console.log(gridObj.getAllRecords());"/>
+&emsp;<input type="button" value="获取第三行记录值" onclick="alert(gridObj.getRecord(2)); console.log(gridObj.getRecord(2));"/>
+&emsp;<input type="button" value="获取选中行记录值" onclick="alert(gridObj.getRowRecord(gridObj.getSelectedRow())); console.log(gridObj.getRowRecord(gridObj.getSelectedRow()));"/>
+&emsp;<input type="button" value="获取选中行的XH值" onclick="alert(gridObj.getRecordIndexValue(gridObj.getRowRecord(gridObj.getSelectedRow()), 'XH'));"/>
+&emsp;<input type="button" value="获取第三行的XH值" onclick="alert(gridObj.getColumnValue(2, 'XH'));"/>
+&emsp;<input type="button" value="获取第三行第一列的XH值" onclick="alert(gridObj.getCellRecordValue(2, 0));"/>
+
+<p/>
+&emsp;<input type="button" value="获取所有行(Dom对象个数)" onclick="alert(gridObj.getRows().length);"/>
+&emsp;<input type="button" value="获取三行(Dom 对象 outerHTML)" onclick="alert($.bsgrid.adaptAttrOrProp(gridObj.getRow(2), 'outerHTML'));"/>
+&emsp;<input type="button" value="获取第一行单元格(Dom对象个数)" onclick="alert(gridObj.getRowCells(0).length);"/>
+&emsp;<input type="button" value="获取第一列单元格(Dom对象个数)" onclick="alert(gridObj.getColCells(0).length);"/>
+&emsp;<input type="button" value="获取第三行第一列单元格(Dom对象outerHTML)" onclick="alert($.bsgrid.adaptAttrOrProp(gridObj.getCell(2, 0), 'outerHTML'));"/>
+
+<p/>
+&emsp;<input type="button" value="清空第一行数据" onclick="gridObj.clearRowData(0);"/>
+&emsp;<input type="button" value="用第二行数据替换第一行" onclick="gridObj.loadRowData(gridObj.getRecord(1), 0);"/>
+&emsp;<input type="button" value="清空表格数据" onclick="gridObj.clearGridBodyData();"/>
+
+<p/>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        // $.fn.bsgrid.defaults.pagingToolbarAlign = 'center'; // 默认值'right'
+
+        // 重写锁屏遮罩
+        // $.fn.bsgrid.lockScreen = function (options, xhr) {
+        //     console.log('Lock Screen!');
+        // };
+        // $.fn.bsgrid.unlockScreen = function (options, xhr, ts) {
+        //     console.log('Unlock Screen!');
+        // };
+
+        $.fn.bsgrid.defaults.stripeRows = true;
+
+        // 在渲染表格数据前执行的方法
+        $.fn.bsgrid.defaults.additionalBeforeRenderGrid = function (parseSuccess, gridData, options) {
+            console.log('[additional before render grid]   ' + 'parseSuccess=' + parseSuccess);
+        };
+        // 渲染行数据执行方法, 不论此行是否为空行(即无数据渲染), 在渲染单元格数据方法执行后执行
+        $.fn.bsgrid.defaults.additionalRenderPerRow = function (record, rowIndex, trObj, options) {
+            if (record != null) { // null record render blank row
+                console.log('[additional render per row]      ' + 'ID=' + gridObj.getRecordIndexValue(record, 'ID') + ', rowIndex=' + rowIndex);
+            }
+        };
+        // 在渲染表格数据后执行的方法
+        $.fn.bsgrid.defaults.additionalAfterRenderGrid = function (parseSuccess, gridData, options) {
+            console.log('[additional after render grid]   ' + 'parseSuccess=' + parseSuccess);
+        };
+
+        // 重新刷新方法
+        $.fn.bsgrid.refreshPage = function (options) {
+            console.log('rewrite refreshPage method');
+            $.fn.bsgrid.page($.fn.bsgrid.getCurPage(options), options);
+        };
+
+        // 初始化
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: 'data/json.jsp',
+            // autoLoad: false,
+            pageSizeSelect: true,
+            // pageAll: true,
+            pageSize: 5
+        });
+    });
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + ', rowIndex=' + rowIndex + ', colIndex=' + colIndex + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

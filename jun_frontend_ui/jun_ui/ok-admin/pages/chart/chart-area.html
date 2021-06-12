@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>区域地图</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../css/common.css"/>
+	<link rel="stylesheet" href="../../lib/layui/css/layui.css" media="all"/>
+	<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+	<script type="text/javascript" src="../../lib/echarts/echarts.min.js"></script>
+	<script type="text/javascript" src="../../lib/echarts/world/js/china.js"></script>
+	<script type="text/javascript" src="../../lib/echarts/world/js/province/chongqing.js"></script>
+	<script type="text/javascript" src="../../lib/echarts/world/js/province/sichuan.js"></script>
+	<script type="text/javascript" src="../../lib/echarts/world/js/province/guangdong.js"></script>
+	<style type="text/css">
+		.map {
+			padding: 20px;
+			height: 350px;
+		}
+	</style>
+</head>
+<body class="childrenBody ok-body-scroll">
+<div class="layui-row layui-col-space15">
+	<div class="layui-col-md6">
+		<div class="layui-card">
+			<div class="map" id="china_a"></div>
+		</div>
+	</div>
+	<div class="layui-col-md6">
+		<div class="layui-card">
+			<div class="map" id="china_b"></div>
+		</div>
+	</div>
+	<div class="layui-col-md6">
+		<div class="layui-card">
+			<div class="map" id="china_c"></div>
+		</div>
+	</div>
+	<div class="layui-col-md6">
+		<div class="layui-card">
+			<div class="map" id="china_d"></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../../lib/layui/layui.js"></script>
+<script type="text/javascript">
+	function clone(origin) {
+		return JSON.parse(JSON.stringify(origin))
+	}
+
+	okLoading.close();
+	layui.config({
+		base: "../../js/"
+	}).use(["okUtils", "chartArea"], function () {
+		let $ = layui.jquery;
+		let chartArea = layui.chartArea;
+		let okUtils = layui.okUtils;
+
+		let option_a = chartArea.option_a;
+		let option_b = chartArea.option_b;
+		let option_c = chartArea.option_c;
+		let option_d = chartArea.option_d;
+
+		let china_a = echarts.init($('#china_a')[0]);
+		let china_b = echarts.init($('#china_b')[0]);
+		let china_c = echarts.init($('#china_c')[0]);
+		let china_d = echarts.init($('#china_d')[0]);
+		china_a.setOption(option_a);
+		china_b.setOption(option_b);
+		china_c.setOption(option_c);
+		china_d.setOption(option_d);
+		okUtils.echartsResize([china_a, china_b, china_c, china_d]);
+	});
+</script>

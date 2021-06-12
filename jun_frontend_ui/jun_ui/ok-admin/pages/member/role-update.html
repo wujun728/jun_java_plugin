@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>编辑角色</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../../css/oksub.css">
+	<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body>
+<div class="ok-body">
+	<!--form表单-->
+	<form class="layui-form ok-form">
+		<div class="layui-form-item">
+			<label class="layui-form-label">角色名称</label>
+			<div class="layui-input-block">
+				<input type="text" name="name" placeholder="角色名称" autocomplete="off" class="layui-input" lay-verify="required">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">角色备注</label>
+			<div class="layui-input-block">
+				<input type="text" name="remarks" placeholder="角色备注" autocomplete="off" class="layui-input" lay-verify="required">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">角色权限</label>
+			<div class="layui-input-block">
+				<div id="permissionTree"></div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="edit">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+</div>
+<!--js逻辑-->
+<script src="../../lib/layui/layui.js"></script>
+<script>
+	layui.use(['form', "tree"], function () {
+		let form = layui.form;
+		let tree = layui.tree;
+
+		okLoading.close();
+
+		let data = [{
+			"title": "根目录",
+			"spread": true,
+			"children": [{
+				"title": "会员管理",
+				"spread": true,
+				"children": [{
+					"title": "用户管理",
+					"spread": true,
+					"children": [{"title": "添加用户"}, {"title": "编辑用户"}, {"title": "删除用户"}]
+				}, {
+					"title": "角色管理",
+					"spread": true,
+					"children": [{"title": "添加角色"}, {"title": "编辑角色"}, {"title": "删除角色"}]
+				}, {
+					"title": "权限管理",
+					"spread": true,
+					"children": [{"title": "添加权限"}, {"title": "编辑权限"}, {"title": "删除权限"}]
+				}]
+			}]
+		}];
+
+		tree.render({
+			elem: "#permissionTree",
+			// data: okMock.permission.list,
+			data: data,
+			showCheckbox: true
+		});
+
+		form.on('submit(edit)', function (data) {
+			console.log(data.field);
+			layer.msg("编辑成功！", {icon: 6, time: 1000, anim: 4}, function () {
+				parent.layer.close(parent.layer.getFrameIndex(window.name));
+			});
+			return false;
+		});
+	})
+</script>
+</body>
+</html>

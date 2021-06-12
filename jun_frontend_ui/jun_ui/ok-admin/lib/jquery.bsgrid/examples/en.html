@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Samples Index - jQuery.bsgrid</title>
+<link rel="stylesheet" href="../plugins/sidemenu/arrowsidemenu.css" />
+<style type="text/css">
+/* modify to gray style */
+.arrowsidemenu div a { /*header bar links*/
+	background: transparent url(../plugins/sidemenu/arrowgray.gif) 100% 0;
+}
+
+.arrowsidemenu ul li {
+	border-bottom: 1px solid #ccc;
+}
+
+.arrowsidemenu ul li a {
+	border-left: 10px double #ccc;
+}
+
+/* modify nav href font style */
+.arrowsidemenu div a {
+	font-size: 14px;
+	font-family: arial, tahoma, sans-serif;
+}
+
+.arrowsidemenu ul li a {
+	font-size: 12px;
+	font-family: arial, tahoma, sans-serif;
+}
+
+.menuheaders, .menucontents {
+    border: solid white;
+    border-width: 0 0 1px 0;
+}
+
+.arrowsidemenu div.selected a, .arrowsidemenu div.unselected a, .arrowsidemenu div a:link, .arrowsidemenu div a:visited {
+    color: #333;
+}
+</style>
+<script type="text/javascript" src="../plugins/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../plugins/sidemenu/ddaccordion.js"
+	charset="UTF-8">
+	/***********************************************
+	 * Accordion Content script- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+	 * Visit http://www.dynamicDrive.com for hundreds of DHTML scripts
+	 * This notice must stay intact for legal use
+	 ***********************************************/
+</script>
+<script type="text/javascript">
+	//Initialize Arrow Side Menu:
+	ddaccordion.init({
+		headerclass : "menuheaders", //Shared CSS class name of headers group
+		contentclass : "menucontents", //Shared CSS class name of contents group
+		revealtype : "clickgo", //Reveal content when user clicks or onmouseover the header? Valid value: "click", or "mouseover"
+		mouseoverdelay : 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+		collapseprev : true, //Collapse previous content (so only one open at any time)? true/false 
+		defaultexpanded : [ 0 ], //index of content(s) open by default [index1, index2, etc]. [] denotes no content.
+		onemustopen : false, //Specify whether at least one header should be open always (so never all headers closed)
+		animatedefault : false, //Should contents open by default be animated into view?
+		persiststate : true, //persist state of opened contents within browser session?
+		toggleclass : [ "unselected", "selected" ], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+		togglehtml : [ "none", "", "" ], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+		animatespeed : "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+		oninit : function(expandedindices) { //custom code to run when headers have initalized
+			//do nothing
+		},
+		onopenclose : function(header, index, state, isuseractivated) { //custom code to run whenever a header is opened or closed
+			//do nothing
+		}
+	});
+
+    $(function () {
+        var pageHref = window.location.href;
+        var pIndex = pageHref.indexOf('#href=');
+        var href = 'examples/grid/simple.html';
+        if (pIndex > -1) {
+            var href = pageHref.substring(pIndex + 6);
+        }
+        $('.arrowsidemenu>.menucontents>li>a[href$=' + href + ']').parent('li').parent('.menucontents').prev('.menuheaders').click();
+        $('#right').attr('src', '../' + href);
+    });
+</script>
+<style type="text/css">
+html,body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+    background-color: white;
+    font-size: 14px;
+    margin: 0;
+}
+
+table.singleTrTable {
+	width: 100%;
+	height: 99%;
+	border-collapse: collapse;
+}
+
+table.singleTrTable td {
+	vertical-align: top;
+	height: 100%;
+	border: solid 0 #999;
+}
+
+table.singleTrTable td iframe {
+	width: 100%;
+	height: 100%;
+	border-width: 0;
+}
+</style>
+</head>
+<body>
+	<!-- 
+	<div style="padding-top: 8px; padding-left: 8px; font-size: 24px;font-weight: 900;color: blue;">&nbsp;Samples Index</div>
+	-->
+	<table class="singleTrTable">
+		<tr>
+			<td style="width: 185px; padding-top: 8px; padding-left: 8px;">
+				<div class="arrowsidemenu">
+					<div class="menuheaders">
+						<a href="#" title="Grid Skins">Grid Skins</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/grid/simple.html" target="right">Default Style</a></li>
+						<li><a href="../examples/grid/themes/flexigrid.html" target="right">FlexiGrid Gray Style</a></li>
+						<li><a href="../examples/grid/themes/pure_gray.html" target="right">Pure Gray Style</a></li>
+						<li><a href="../examples/grid/themes/gray.html" target="right">ExtJS Gray Style</a></li>
+						<li><a href="../examples/grid/themes/blue.html" target="right">ExtJS Blue Style</a></li>
+						<li><a href="../examples/grid/themes/access.html" target="right">ExtJS Access Style</a></li>
+						<li><a href="../examples/grid/themes/sky_blue.html" target="right">Dhtmlx Sky Blue Style</a></li>
+						<li><a href="../examples/grid/themes/jqgrid.html" target="right">jqGrid Style</a></li>
+						<li><a href="../examples/grid/themes/easyui.html" target="right">EasyUI Style</a></li>
+						<li><a href="../examples/grid/themes/bootstrap.html" target="right">Bootstrap Style</a></li>
+						<li><a href="../examples/grid/themes/custom.html" target="right">Custom Blue Style</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid Samples">Grid Samples</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/grid/simple.html" target="right">Simple Grid</a></li>
+						<li><a href="../examples/grid/search.en.html" target="right">Grid With Search</a></li>
+						<li><a href="../examples/grid/simple.en.html" target="right">Simple en Grid</a></li>
+						<li><a href="../examples/grid/stripe-row.html" target="right">Stripe Row</a></li>
+						<li><a href="../examples/grid/row-hover.html" target="right">Row Hover</a></li>
+						<li><a href="../examples/grid/simple-with-images.html" target="right">Grid With Images</a></li>
+                        <li><a href="../examples/grid/simple-fixed-width.html" target="right">Fixed Grid Width</a></li>
+                        <li><a href="../examples/grid/simple-xml.html" target="right">Load XML Data</a></li>
+						<li><a href="../examples/grid/jsonp.html" target="right">Load Jsonp Data</a></li>
+						<li><a href="../examples/grid/paging.little.html" target="right">With Little Paging</a></li>
+						<li><a href="../examples/grid/local/json.html" target="right">Local Json Data</a></li>
+                        <li><a href="../examples/grid/local/xml.html" target="right">Local XML Data</a></li>
+                        <li><a href="../examples/grid/select-row-event.html" target="right">Select Row Event</a></li>
+                        <li><a href="../examples/grid/no-pagation.html" target="right">No Pagation</a></li>
+						<li><a href="../examples/grid/no-display-blank-rows.html" target="right">No Diaplay Blank Rows</a></li>
+						<li><a href="../examples/grid/no-data.html" target="right">No Data</a></li>
+						<li><a href="../examples/grid/sort.html" target="right">Sort Grid</a></li>
+						<li><a href="../examples/grid/checkbox-extend.html" target="right">With Checkbox</a></li>
+						<li><a href="../examples/grid/standard.html" target="right">Standard Grid</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid Advanced Samples">Grid Advanced Samples</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/grid/edit.html" target="right">Edit Grid</a></li>
+						<li><a href="../examples/grid/edit-advanced.html" target="right">Advanced Edit</a></li>
+						<li><a href="../examples/grid/event.html" target="right">Grid Events</a></li>
+                        <li><a href="../examples/grid/extend.html" target="right">Extend Grid</a></li>
+                        <li><a href="../examples/grid/export.html" target="right">Export Grid</a></li>
+                        <li><a href="../examples/grid/multi-header.html" target="right">Multi Header Grid</a></li>
+                        <li><a href="../examples/grid/multi-sort.html" target="right">Multi Sort Grid</a></li>
+                        <li><a href="../examples/grid/foot.html" target="right">Grid With Footer</a></li>
+                        <li><a href="../examples/grid/userdata.html" target="right">Grid Userdata</a></li>
+                        <li><a href="../examples/grid/userdata-xml.html" target="right">Grid Userdata(XML Data)</a></li>
+                        <li><a href="../examples/grid/nested-json.html" target="right">Nested Json Data</a></li>
+                        <li><a href="../examples/grid/paging.button.html" target="right">Paging Additional Button</a></li>
+                        <li><a href="../examples/grid/paging.little.button.html" target="right">Little Paging Additional Button</a></li>
+                        <li><a href="../examples/grid/dynamic-header.html" target="right">Dynamic Header Grid</a></li>
+						<li><a href="../examples/grid/multi.html" target="right">Multi Grid</a></li>
+						<li><a href="../examples/grid/multi-extend.html" target="right">Multi Edit Grid</a></li>
+						<li><a href="../examples/grid/move-column-extend.html" target="right">Move Column</a></li>
+                        <li><a href="../examples/grid/fixed-header/fixed-header-extend.html" target="right">Fixed Grid</a></li>
+						<li><a href="../examples/grid/simple-conditions.html" target="right">Extend Conditions</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid Extend Samples">Grid Extend Samples</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/grid/checkbox-custom.html" target="right">With Custom Checkbox</a></li>
+						<li><a href="../examples/grid/move-column-custom.html" target="right">Custom Move Column</a></li>
+                        <li><a href="../examples/grid/fixed-header/simple.html" target="right">Fixed Table Header</a></li>
+                        <li><a href="../examples/grid/fixed-header/fixed-header-custom.html" target="right">Fixed Grid Custom</a></li>
+                    </ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid Test Samples">Grid Test Samples</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/html5/grid.html" target="right">HTML5</a></li>
+						<li><a href="../examples/bootstrap/grid.html" target="right">With Bootstrap</a></li>
+                        <li><a href="../examples/grid/load-time-test.html" target="right">Grid Load Time Test</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid With Layui">Grid With Layui</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/layui/layer.html" target="right">Grid with layer</a></li>
+						<li><a href="../examples/layui/laypage.html" target="right">Grid with laypage</a></li>
+						<li><a href="../examples/layui/laydate.html" target="right">Grid with laydate</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid With ArtDialog">Grid With ArtDialog</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/artDialog/pop.html" target="right">Pop with ArtDialog</a></li>
+						<li><a href="../examples/artDialog/grid.html" target="right">Grid with ArtDialog</a></li>
+						<li><a href="../examples/artDialog/gridAndForm.html" target="right">Grid And Form with ArtDialog</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid With Pagination">Grid With Pagination</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/pagination/readme" target="right">Note</a></li>
+						<li><a href="../examples/pagination/jqPagination/sample.html" target="right">With jqPagination</a></li>
+						<li><a href="../examples/pagination/jqPagination/sample-adapter.html" target="right">Adapter jqPagination</a></li>
+						<li><a href="../examples/pagination/jquery_pagination/sample.html" target="right">With jquery_pagination</a></li>
+						<li><a href="../examples/pagination/jquery_pagination/sample-adapter.html" target="right">Adapter jquery_pagination</a></li>
+						<li><a href="../examples/pagination/jPaginate/sample.html" target="right">With jPaginate</a></li>
+						<li><a href="../examples/pagination/jPaginate/sample-adapter.html" target="right">Adapter jPaginate</a></li>
+						<li><a href="../examples/pagination/jPages/sample.html" target="right">With jPages</a></li>
+						<li><a href="../examples/pagination/jPages/sample-adapter.html" target="right">Adapter jPages</a></li>
+						<li><a href="../examples/pagination/smartpaginator/sample.html" target="right">With smartpaginator</a></li>
+						<li><a href="../examples/pagination/smartpaginator/sample-adapter.html" target="right">Adapter  smartpaginator</a></li>
+						<li><a href="../examples/pagination/jPaginator/sample.html" target="right">With jPaginator</a></li>
+						<li><a href="../examples/pagination/jPaginator/sample-adapter.html" target="right">Adapter jPaginator</a></li>
+					</ul>
+					<div style="border: solid white; border-width: 0 0 1px 0;">
+						<a href="../examples/util/util.html" target="right" title="Util">Util</a>
+					</div>
+					<div style="border: solid white; border-width: 0 0 1px 0;">
+						<a href="../examples/button/button.html" target="right"
+							title="Button">Button</a>
+					</div>
+					<div class="menuheaders">
+						<a href="#" title="Form">Form</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/form/simple.html" target="right">Simple Form</a></li>
+						<li><a href="../examples/form/standard.html" target="right">Standard Form</a></li>
+						<li><a href="../examples/form/validation.html" target="right">Validation Form</a></li>
+						<li><a href="../examples/form/validation-ajax.html" target="right">With Ajax Validation Form</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Paging">Paging</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/paging/simple.html" target="right">Simple Paging</a></li>
+						<li><a href="../examples/paging/simple.little.html" target="right">Simple Little Pagin</a></li>
+						<li><a href="../examples/paging/least.html" target="right">Least Paging</a></li>
+						<li><a href="../examples/paging/image_loop-baidu_news.html" target="right">Image Loop (Baidu News)</a></li>
+						<li><a href="../examples/paging/image_loop-baidu_baijia.html" target="right">Image Loop (Baidu Baijia)</a></li>
+					</ul>
+				</div>
+			</td>
+			<td><iframe src="grid/simple.html" name="right"></iframe></td>
+		</tr>
+	</table>
+</body>
+</html>

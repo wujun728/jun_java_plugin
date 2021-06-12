@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Grid With Search</title>
+    <!-- grid.simple.min.css, grid.simple.min.js -->
+    <link rel="stylesheet" href="../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/bsgrid.all.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<p/>
+<form id="searchParams">
+    XH:<input type="text" name="xh" value="12"/>
+    &emsp;<input type="button" value="查询 (方式 1)" onclick="doSearch(1);"/>
+    &emsp;<input type="button" value="查询 (方式 2)" onclick="doSearch(2);"/>
+    &emsp;<input type="button" value="查询 (方式 3)" onclick="doSearch(3);"/>
+    &emsp;<input type="button" value="清除参数" onclick="$('#searchParams input[name=xh]').val('');doSearch();"/>
+</form>
+
+<p/>
+<div id="searchParams_view" style="width: 96%; border: solid 1px #ccc; padding: 10px;">
+</div>
+
+<p/>
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" w_sort="XH,desc" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="30%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: 'data/json.jsp',
+            autoLoad: false, // not auto load
+            pageSizeSelect: true,
+            pageSize: 10,
+            beforeSend: function (options, XMLHttpRequest) {
+                $('#searchParams_view').html('<b>查询请求参数: </b>' + gridObj.getPageCondition(gridObj.getCurPage()));
+            }
+        });
+        doSearch(1);
+    });
+
+    function doSearch(style) {
+        // 提供以下三种带参数方式，可任选其中任意一种
+        var searchParames = '';
+        if (style == 1) {
+            searchParames = $('#searchParams').serializeArray();      // jQuery推荐方式
+        } else if (style == 2) {
+            searchParames = 'xh=' + $('#searchParams input[name=xh]').val();
+        } else if (style == 3) {
+            searchParames = {'xh': $('#searchParams input[name=xh]').val()}
+        }
+        gridObj.search(searchParames);
+    }
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

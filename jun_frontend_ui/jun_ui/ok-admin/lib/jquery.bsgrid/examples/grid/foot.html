@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Grid With Footer</title>
+    <!-- grid.simple.min.css, grid.all.min.js -->
+    <link rel="stylesheet" href="../../builds/merged/bsgrid.all.min.css"/>
+    <style type="text/css">
+        .bsgrid .aggLabel {
+            text-align: right;
+            border-right-width: 0;
+        }
+        .bsgrid .aggValue {
+            text-align: left;
+            border-left-width: 0;
+        }
+    </style>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/bsgrid.all.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="30%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="12%;">TIME</th>
+        <th w_index="NUM" width="8%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+    <tfoot>
+        <tr>
+            <td class="aggLabel">Count:</td>
+            <td w_agg="count" class="aggValue"></td>
+            <td class="aggLabel">Count(XH*ID):</td>
+            <td w_agg="custom,countXhMultId" class="aggValue"></td>
+            <td class="aggLabel">Max(NUM):</td>
+            <td w_agg="max,NUM" class="aggValue"></td>
+            <td class="aggLabel">Sum(NUM):</td>
+            <td w_agg="sum,NUM" class="aggValue"></td>
+        </tr>
+    </tfoot>
+</table>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: 'data/json.jsp',
+            // autoLoad: false,
+            pageSizeSelect: true,
+            pageSize: 10
+        });
+    });
+
+    function countXhMultId(gridObj, options) {
+        var count = 0;
+        for (var i = 0; i < options.curPageRowsNum; i++) {
+            var id = gridObj.getColumnValue(i, 'ID');
+            var xh = gridObj.getColumnValue(i, 'XH');
+            count += parseInt(id) * parseInt(xh);
+        }
+        return count;
+    }
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

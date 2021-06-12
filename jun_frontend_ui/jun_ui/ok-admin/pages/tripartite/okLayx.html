@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>okLayx</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+</head>
+<body>
+	<div class="ok-body">
+	    <blockquote class="layui-elem-quote">
+	        <p>Layx 新一代Web弹窗组件。</p>
+	    </blockquote>
+		<pre>
+			// Step1. 引入依赖
+			let okLayx = layui.okLayx;.
+			
+			<br/>
+			// Step2. 使用
+			okLayx.notice({
+			    title: "消息提示",
+			    message: "我是消息提示消息提示消息提示消息提示"
+			});
+			
+			okLayx.notice({
+			    title: "成功提示",
+			    type: "success",
+			    message: "我是消息提示消息提示消息提示消息提示"
+			});
+			
+			okLayx.notice({
+			    title: "警告提示",
+			    type: "warning",
+			    message: "我是消息提示消息提示消息提示消息提示"
+			});
+			
+			okLayx.notice({
+			    title: "错误提示",
+			    type: "error",
+			    message: "我是消息提示消息提示消息提示消息提示"
+			});
+		</pre>
+		<button type="button" class="layui-btn" id="notice">消息提示</button>
+		<button type="button" class="layui-btn" id="notice2">成功提示</button>
+		<button type="button" class="layui-btn" id="notice3">警告提示</button>
+		<button type="button" class="layui-btn" id="notice4">错误提示</button>
+	</div>
+    <!--js逻辑-->
+    <script src="../../lib/layui/layui.js"></script>
+    <script>
+        layui.use(["code", "okLayx"], function () {
+            let code = layui.code;
+            let okLayx = layui.okLayx;
+            let $ = layui.jquery;
+			
+			code({elem: "pre", title: "代码示例"});
+
+            $("#notice").click(function () {
+                okLayx.notice({
+                    title: "消息提示",
+                    message: "我是消息提示消息提示消息提示消息提示"
+                });
+            });
+
+            $("#notice2").click(function () {
+                okLayx.notice({
+                    title: "成功提示",
+                    type: "success",
+                    message: "我是消息提示消息提示消息提示消息提示"
+                });
+            });
+
+            $("#notice3").click(function () {
+                okLayx.notice({
+                    title: "警告提示",
+                    type: "warning",
+                    message: "我是消息提示消息提示消息提示消息提示"
+                });
+            });
+
+            $("#notice4").click(function () {
+                okLayx.notice({
+                    title: "错误提示",
+                    type: "error",
+                    message: "我是消息提示消息提示消息提示消息提示"
+                });
+            });
+        });
+    </script>
+</body>
+</html>

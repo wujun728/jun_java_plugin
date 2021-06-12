@@ -1,0 +1,84 @@
+@CHARSET "UTF-8";
+
+/* font style */
+.bsgrid {
+    font-size: 11px;
+}
+
+/* grid header and column */
+.bsgrid th, .bsgrid td {
+    padding: 2px;
+    border-color: #a6c9e2;
+    background-color: #fcfdfd;
+    color: black;
+}
+
+/* grid header */
+.bsgrid th {
+    background: #dfeffc url(../../images/skins/jqgrid/ui-bg_glass_1x400.png);
+    color: #2e6e9e;
+}
+
+/* grid even index row column color */
+.bsgrid tr.even_index_row td {
+    background-color: #fcfdfd;
+}
+
+/* grid row hover column color */
+.bsgrid tr.row_hover td {
+    background-color: #fbec88 !important;
+}
+
+/* grid selected row column color */
+.bsgrid tr.selected.selected_color td {
+    background-color: #fbec88 !important;
+}
+
+/* paging toolbar out table */
+.bsgridPagingOutTab {
+    border-color: #a6c9e2;
+    background-color: white;
+}
+
+.bsgridPaging {
+    font-size: 11px;
+    color: black;
+}
+
+/* paging toolbar button */
+.bsgridPaging .pagingBtn {
+    background: none #fcfdfd;
+    border-color: #a6c9e2;
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn {
+    background: url(../../images/skins/jqgrid/ui-icons_256x240.png) transparent no-repeat !important;
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn.firstPage {
+    background-position: -80px -161px !important;
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn.prevPage {
+    background-position: -48px -161px !important;
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn.nextPage {
+    background-position: -32px -161px !important;
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn.lastPage {
+    background-position: -64px -161px !important;
+}
+
+.bsgridPaging .gotoPageInput {
+    border-color: #a6c9e2;
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn.gotoPage {
+    background-position: -48px -193px !important;
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn.refreshPage {
+    background-position: -64px -82px !important;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>用户列表</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+   <style>
+      .ok-body {
+         padding: 20px;
+      }
+   </style>
+</head>
+<body>
+<div class="ok-body">
+   <blockquote class="layui-elem-quote">
+      <p>主要讲述导航参数的说明。</p>
+   </blockquote>
+   <pre lay-title="导航参数">
+{
+   "title": "后台首页",           //导航标题
+   "fontFamily": "ok-icon",      //标题的字体图标来源
+   "icon": "ok-iconairplay",     //制定字体图标
+   "href": "pages/home.html",    //指向的页面路径
+   "isClose": true,            //设置导航页是否关闭(默认true)
+   "spread": false,              //设置是否打开
+   "isCheck": false              //是否选中
+   "target":"_blank"             //打开方式 _blank：覆盖当前窗口
+   "children": [{}]              //子导航 参数同上（可嵌套无限个）
+}
+   </pre>
+</div>
+</body>
+</html>
+<script src="../../lib/layui/layui.js"></script>
+<script type="text/javascript">
+  layui.use(['code'], function () {
+    var code = layui.code;
+    code({
+      elem: 'pre'
+    });
+  });
+</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>插件目录</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+  <style>
+    .ok-body {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="ok-body">
+  <blockquote class="layui-elem-quote">
+    <p>主要描述插件的目录和插件的引入。</p>
+  </blockquote>
+  <blockquote class="layui-elem-quote layui-quote-nm">
+    <p>1.如果你想使用okCountUp数字步进器，那么你需要引入一个okCountUp插件</p>
+  </blockquote>
+  <pre lay-title="导航参数">
+引入插件并加载一个插件
+layui.use(['okCountUp'], function () {
+	var countUp = layui.okCountUp;
+	var okTab = parent.objOkTab;//获取父级的okTab;layui.okTab()不推荐这样获取
+	var page = '&lt;div lay-id="add-1" data-url="/pages/user/user.html"&gt;个人中心&lt;/div&gt;';
+	okTab.tabAdd(page);
+});
+   </pre>
+</div>
+</body>
+</html>
+<script src="../../lib/layui/layui.js"></script>
+<script type="text/javascript">
+  layui.use(['code'], function () {
+    var code = layui.code;
+    code({
+      elem: 'pre'
+    });
+  });
+</script>

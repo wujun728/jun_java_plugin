@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>基本资料</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../../css/oksub.css">
+	<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body class="user-info">
+<form class="layui-form">
+	<div class="user_left">
+		<div class="layui-form-item">
+			<label class="layui-form-label">用户名</label>
+			<div class="layui-input-block">
+				<input type="text" value="智走" disabled class="layui-input layui-disabled">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">出生年月</label>
+			<div class="layui-input-block">
+				<input id="uDate" type="text" value="" placeholder="请输入出生年月" lay-verify="required"
+				       class="layui-input userBirthday">
+			</div>
+		</div>
+		<div class="layui-form-item userAddress">
+			<label class="layui-form-label">家庭住址</label>
+			<div class="layui-input-inline">
+				<select name="province" lay-filter="province">
+					<option value="">请选择省</option>
+				</select>
+			</div>
+			<div class="layui-input-inline">
+				<select name="city" lay-filter="city" disabled>
+					<option value="">请选择市</option>
+				</select>
+			</div>
+			<div class="layui-input-inline">
+				<select name="area" lay-filter="area" disabled>
+					<option value="">请选择县/区</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="layui-form-item" style="margin-left: 5%;">
+		<div class="layui-input-block">
+			<button class="layui-btn" lay-submit="" lay-filter="changeUser">立即提交</button>
+			<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		</div>
+	</div>
+</form>
+<script type="text/javascript" src="../../lib/layui/layui.js"></script>
+<script type="text/javascript" src="user-info.js"></script>
+</body>
+</html>

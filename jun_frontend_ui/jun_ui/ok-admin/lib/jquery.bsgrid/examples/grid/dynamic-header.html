@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Dynamic Header Grid</title>
+    <!-- grid.simple.min.css, grid.simple.min.js -->
+    <link rel="stylesheet" href="../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/bsgrid.all.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<table id="searchTable">
+    <tr>
+        <th w_index="XH">XH</th>
+        <th w_index="ID">ID</th>
+        <th w_index="CHAR">CHAR</th>
+    </tr>
+</table>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: 'data/dynamic-header.jsp',
+            // autoLoad: false,
+            pageSize: 2,
+            processUserdata: function (userdata, options) {
+                $('#searchTable tr th').remove();
+                var dynamic_columns = userdata['dynamic_columns'];
+                var cNum = dynamic_columns.length;
+                for (var i = 0; i < cNum; i++) {
+                    $('#searchTable tr').append('<th w_index="' + dynamic_columns[i] + '">' + dynamic_columns[i] + '</th>');
+                }
+                options.columnsModel = $.fn.bsgrid.initColumnsModel(options);
+            }
+        });
+    });
+</script>
+</body>
+</html>

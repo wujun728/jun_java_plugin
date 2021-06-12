@@ -1,0 +1,64 @@
+1, jqPagination              Require jQuery 1.7.2+
+Website: http://beneverard.github.io/jqPagination/
+Source:  https://github.com/beneverard/jqPagination/
+License: GPL v3
+Version: Version bump (1.4)  Commit: 33b19cb
+
+With bsgrid(use adapter.js), Not Support properties: pagingBtnClass
+                             Multi Pagination Support: Yes
+
+
+
+2, jquery_pagination         Require jQuery 1.4.2+
+Source:  https://github.com/gbirke/jquery_pagination/
+License: GPL v2
+Version: v2.2.1
+
+With bsgrid(use adapter.js), Not Support properties: pagingToolbarAlign, pagingBtnClass
+                             Multi Pagination Support: Yes
+
+
+
+3, jPaginate                 Require jQuery 1.3.2+
+Website: http://tympanus.net/codrops/2009/11/17/jpaginate-a-fancy-jquery-pagination-plugin/
+Demo:    http://tympanus.net/jPaginate/
+Source:  http://tympanus.net/jPaginate/jPaginate.zip
+License: None
+Version: 2009-12-09 15:40
+
+With bsgrid(use adapter.js), Not Support properties: pagingToolbarAlign, pagingBtnClass
+                             Multi Pagination Support: Yes
+
+
+
+4, jPages                    Require jQuery 1.8+, Client side pagination with jQuery and CSS3
+Website: http://luis-almeida.github.io/jPages/
+Source:  https://github.com/luis-almeida/jPages/
+License: MIT
+Version: v0.7 (21.10.2012) Commit: b6a51c9
+
+With bsgrid(use adapter.js), Not Support properties: pagingBtnClass
+                             Multi Pagination Support: Yes
+
+
+
+5, smartpaginator            Require jQuery 1.4.4+
+Website: http://www.egrappler.com/jquery-pagination-plugin-smart-paginator/
+Demo:    http://www.egrappler.com/contents/smartpaginator/demo/smartpaginator.htm
+Source:  http://www.egrappler.com/contents/smartpaginator/source/smartpaginator.zip
+License: GPL
+Version: 2012-02-23
+
+With bsgrid(use adapter.js), Not Support properties: pagingBtnClass
+                             Multi Pagination Support: Yes
+
+
+
+6, jPaginator                Require jQuery 1.6+ , jQuery UI 1.9.1+
+Website: http://remylab.github.io/jpaginator/
+Source:  https://github.com/remylab/jpaginator/
+License: MIT
+Version: Sep 14, 2013 Commit: 81685b0
+
+With bsgrid(use adapter.js), Not Support properties: pageSizeSelect, pageSizeForGrid, pagingToolbarAlign, pagingBtnClass
+                             Multi Pagination Support: Yes

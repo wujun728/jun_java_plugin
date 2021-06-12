@@ -1,0 +1,13 @@
+来源：http://www.dynamicdrive.com/dynamicindex17/ddaccordionmenu.htm
+
+arrowgreen.gif是原版，
+arrowblue.gif是后做的图片，配合以下样式使用：
+	.arrowsidemenu div a{ /*header bar links*/
+		background: transparent url(arrowblue.gif) 100% 0;
+	}
+	.arrowsidemenu ul li{
+		border-bottom: 1px solid #68b2e3;
+	}
+	.arrowsidemenu ul li a{
+	    border-left: 10px double #68b2e3;
+	}

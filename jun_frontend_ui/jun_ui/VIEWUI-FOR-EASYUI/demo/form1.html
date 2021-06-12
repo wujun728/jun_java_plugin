@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>表单一列布局</title>
+<link href="../assets/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="../assets/js/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="padding10">
+<div class="form1-column">
+	<h2>表单一列布局</h2>
+	<form id="ff" method="post">
+		<div class="form-column1">
+			<div class="form-column-left">
+				<input class="easyui-textbox" name="name" style="width:100%" data-options="label:'联系人:',required:true">
+			</div>
+		</div>
+		<div class="form-column1">
+			<div class="form-column-left">
+			<input class="easyui-textbox" name="email" style="width:100%" data-options="label:'联系人邮箱:',required:true,validType:'email'">
+		</div>
+		<div class="form-column1">
+			<div class="form-column-left">
+				<input class="easyui-textbox" name="subject" style="width:100%" data-options="label:'部门名称:',required:true">
+			</div>
+		</div>
+		<div class="form-column1">
+			<div class="form-column-left">
+				<input class="easyui-textbox" name="message" style="width:100%;height:60px" data-options="label:'所属机构:',multiline:true">
+			</div>
+		</div>
+		<div class="form-column1">
+			<div class="form-column-left">
+				<input type="text" id="selest-item" name="" class="easyui-combobox" name="language" label="供应商名称:" style="width:100%;" />
+			</div>
+		</div>
+		<div class="form-column1">
+			<div class="form-column-left">
+				<input type="text" class="easyui-combobox easyui-datetimebox"" name="time" label="日期时间:" style="width:100%;" />
+			</div>
+		</div>
+		<div class="form-btnBar pl75">
+			<a href="javascript:;" class="easyui-linkbutton btnPrimary" onclick="loadRemote()">保存</a>
+			<a href="javascript:;" class="easyui-linkbutton btnDefault" onclick="clearForm()">重置</a>
+		</div>
+	</form>
+</div>
+
+<script src="../assets/js/jquery2.1.1.js" type="text/javascript"></script>
+<script src="../assets/js/jquery.easyui.min.js" type="text/javascript"></script>
+<script src="../assets/json/combobox_data.js" type="text/javascript"></script>
+<script  type="text/javascript">
+// $(document).ready(function(){
+		$('#selest-item').combobox({
+			data:companyNemw,
+			valueField:'id',
+			textField:'text'
+		});
+		function loadLocal(){
+			$('#ff').form('load',{
+				name:'Poya',
+				email:'djcbp@163.com',
+				subject:'subject',
+				message:'message',
+				language:'en'
+			});
+		}
+		function loadRemote(){
+			$('#ff').form('load', 'assets/json/form_data.json');
+		}
+		function clearForm(){
+			$('#ff').form('clear');
+		}
+// });
+</script>
+</body>
+</html>

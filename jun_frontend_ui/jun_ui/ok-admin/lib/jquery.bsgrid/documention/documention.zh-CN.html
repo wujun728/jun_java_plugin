@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>文档</title>
+</head>
+<body style="line-height: 1.2em; background-color: #fff;">
+<pre>
+1, 皮肤样式
+   文件: builds/css/skins/grid_*.min.css, 源码: source/css/skins/grid_*.css
+   本地化脚本
+   文件: builds/js/lang/grid.*.min.js, 源码: source/js/lang/grid.*.js
+
+2, 配置参数: $.fn.bsgrid.defaults 或 $.fn.bsgrid.init(gridId, settings) 第二个参数
+   dataType: 'json', 'jsonp', 'xml', 默认值'json'
+   dataTrim: true, false, 是否trim单元格值
+   ajaxType: 'post', 'get', 默认值 'post'
+   localData: json数据, xml数据, 默认值false
+   url: 分页请求URL
+   otherParames: 额外的参数, 可设值: false, 字符查询查询串, Object对象或jquery序列化数组, 默认值false
+                 格式  一: 'param1=val1&amp;param2=val2'
+                       二: {'param1': 'val1', 'param2': 'val2'}
+                       三: $('#searchForm').serializeArray()
+   autoLoad: 是否自动加载数据, 默认值true即初始化表格后自动加载localData或请求URL的数据
+   pageAll: 是否显示全部数据, 显示全部数据时只显示总数据行数不加载分页工具条, 默认值false
+   showPageToolbar: 是否显示分页工具条，默认值true
+   pageSize: 分页大小, 如果设置值小于1则不分页且展示全部数据(即自动将pageAll设置为true), 默认值20
+   pageSizeSelect: 是否显示分页大小选择下拉框, 配合参数pageSizeForGrid, 默认值false
+   pageSizeForGrid: 分页大小选择下拉框显示的值数组
+   pageIncorrectTurnAlert: 翻页是是否显示无页可翻的提示(首页, 上一页, 下一页, 末页), 默认值true
+   multiSort: 是否支持多列排序, 默认值false
+   displayBlankRows: 是否显示空白行, 默认值true
+   lineWrap: 单元格值是否自动换行, 默认值false, 设置false对单元格起效果的样式是: grid.css -> .bsgrid td.lineNoWrap
+                                             设置true对单元格起效果的样式是: grid.css -> .bsgrid td.lineWrap
+   stripeRows: 隔行变色, 默认值false, 对应样式是: grid.css -> .bsgrid tr.even_index_row td
+   rowHoverColor: 划过行变色, 默认值false, 对应样式是: grid.css -> .bsgrid tr.row_hover td
+   rowSelectedColor: 是否显示选中行背景色, 默认值true, 对应样式是: grid.css -> .bsgrid tr.selected.selected_color td
+   pagingLittleToolbar: 是否显示精简的图标按钮分页工具条, 默认值false
+   pagingToolbarAlign: 分页工具条的显示位置, 默认值'right'居右, 其他值'left', 'center'
+   pagingBtnClass: 分页工具条按钮的样式, 默认值'pagingBtn', 样式在文件grid.paging.css中
+   displayPagingToolbarOnlyMultiPages: 仅当多页时才显示分页工具条, 默认值false
+   isProcessLockScreen: 数据请求加载过程中是否显示遮罩, 默认值true
+   longLengthAotoSubAndTip: 单元格需要被渲染内容超长时是否截断并tip显示完整内容, 默认值true
+       截断算法: content.substring(0, MaxLength-3) + '...'. 如果单元格自定义render方法则此配置无意义
+       截断及tip方法: $.fn.bsgrid.longLengthSubAndTip, 这是一个全局方法
+   beforeSend: Ajax请求提交前执行方法, 参数: options, XMLHttpRequest
+   complete: Ajax请求完成后执行方法, 参数: options, XMLHttpRequest, textStatus
+   processUserdata: 处理userdata的方法, 在表格渲染数据之前执行, 参数: userdata, options
+   extend.settings: supportGridEdit: 是否支持表格编辑, 默认值false
+                    supportGridEditTriggerEvent: 触发表格编辑的事件: ''(直接显示编辑状态), 'rowClick', 'rowDoubleClick',
+                                                                   'cellClick', 'cellDoubleClick', 默认值'rowClick'
+                    supportColumnMove: 是否支持拖动表头改变表头宽度, 默认值false
+                    searchConditions: 构造下拉框查询表单存放的容器ID, 默认值''
+                    fixedGridHeader: 是否固定表格表头并滚动表体数据, 默认值false
+                    fixedGridHeight: 固定表格的高度, 默认值'320px'
+   扩展方法, 此系列各方法在additional系列同义方法前执行, 内置扩展写在grid.extend.js文件中:
+       extend.initGridMethods: 初始化表格完成后额外执行的方法
+       extend.beforeRenderGridMethods: 在渲染表格数据前执行的方法
+       extend.renderPerColumnMethods: 渲染单元格数据执行方法, 不论此单元格是否为空单元格(即无数据渲染)
+       extend.renderPerRowMethods: 渲染行数据执行方法, 不论此行是否为空行(即无数据渲染), 在渲染单元格数据方法执行后执行
+       extend.afterRenderGridMethods: 在渲染表格数据后执行的方法
+   additional render methods:
+       additionalBeforeRenderGrid: 在渲染表格数据前执行的方法
+       additionalRenderPerColumn: 渲染单元格数据执行方法, 不论此单元格是否为空单元格(即无数据渲染)
+       additionalRenderPerRow: 渲染行数据执行方法, 不论此行是否为空行(即无数据渲染), 在渲染单元格数据方法执行后执行
+       additionalAfterRenderGrid: 在渲染表格数据后执行的方法
+
+3, 列/表头属性
+   w_index: 列index, 对应加载数据的列key, 区分大小写
+   w_sort:  类似值"id", "id,desc", "id,asc", 其中"id"是列index
+   w_align: 表格单元格数据的对齐方式, 非表头
+   w_length: 单元格需要被渲染内容超过此长度则截断并tip显示完整内容,
+             截断算法: content.substring(0, MaxLength-3) + '...'
+             如果单元格自定义render方法则此配置无意义
+   w_render: 自定义列单元格渲染方法名, 插件使用eval(funName)执行此方法, 具有的四个参数是record, rowIndex, colIndex, options
+             注意如果列有w_render属性设置w_index则无意义. 列可以无w_index或w_render属性
+   w_hidden: 设置为"true"则隐藏此列
+   w_tip: 设置为"true"则同时tip单元格内容, 而不论其长度是否超过w_length设置的长度
+          tip方法: $.fn.bsgrid.columnTip, 这是一个全局方法
+
+   列/表头扩展属性
+   w_num: 行号, 值为line, total_line, 分别表示当前页的数据行号, 所有记录的数据行号
+   w_check: 设置为true时为列渲染checkbox以选中行
+   w_edit: 单元格编辑, 值: text, hidden, password, radio, button, checkbox, textarea
+   表底扩展属性
+   w_agg: 聚合, 值: count, countNotNone, sum, avg, max, min, concat, custom
+
+4, 获取分页相关、行记录值、单元格值以及userdata值的方法, 在表格数据渲染后使用
+   gridObj.getPageSize(): 获取分页大小
+   gridObj.getTotalRows(): 获取总行数
+   gridObj.getTotalPages(): 获取总页数
+   gridObj.getCurPage(): 获取当前页码
+   gridObj.getCurPageRowsNum(): 获取当前页记录条数
+   gridObj.getStartRow(): 获取当前页记录起始行数, 从1开始
+   gridObj.getEndRow(): 获取当前页技术行数
+   gridObj.getSortName(): 获取排序属性name
+   gridObj.getSortOrder(): 获取排序方向
+   gridObj.getAllRecords(): 获取所有记录值
+   gridObj.getRecord(rowIndex): 根据行索引获取行记录值, 行索引从0开始
+   gridObj.getRowRecord(rowObj): 根据行dom对象获取行记录值
+   gridObj.getRecordIndexValue(record, index): 获取单元格值, 根据行记录值及列index
+   gridObj.getColumnValue(rowIndex, index): 获取单元格值, 根据行索引值及列index
+   gridObj.getCellRecordValue(rowIndex, colIndex): 获取单元格值, 根据行索引值及列索引
+   gridObj.getRows(): 获取所有行dom对象
+   gridObj.getRow(rowIndex): 获取行dom对象, 根据行index
+   gridObj.getRowCells(rowIndex): 获取行单元格dom对象, 根据行索引值
+   gridObj.getColCells(colIndex): 获取列单元格dom对象, 根据列索引值
+   gridObj.getCell(rowIndex, colIndex): 获取单元格dom对象, 根据行及列索引值
+   gridObj.getUserdata(): 获取userdata值
+
+5, select以及check选中行相关方法, 在表格数据渲染后使用
+   gridObj.selectRow(rowIndex): 根据行索引选中行, 行索引从0开始
+   gridObj.unSelectRow(): 反选行
+   gridObj.getSelectedRow(): 获取选中行dom对象
+   gridObj.getSelectedRowIndex(): 获取选中行的索引值, 行索引从0开始, 如果没有选择则返回-1
+   gridObj.getCheckedRowsIndexs(): 获取checked行的索引值, 行索引从0开始
+   gridObj.getCheckedRowsRecords(): 获取checked行的记录值
+   gridObj.getCheckedValues(index): 获取checked行的index值
+
+6, 表格的其他方法
+   gridObj.getPageCondition(curPage): 获取当前页请求条件
+   gridObj.refreshPage(): 刷新
+   gridObj.firstPage(): 首页
+   gridObj.prevPage(): 上一页
+   gridObj.nextPage(): 下一页
+   gridObj.lastPage(): 末页
+   gridObj.gotoPage(pageNo): 转到指定页
+   gridObj.page(curPage): 此方法不严谨, 使用gridObj.gotoPage(pageNo)代替
+
+   gridObj.sort(thObj): 列排序, 参数是表头dom对象
+   gridObj.getGridHeaderObject(): 获取表头dom对象, 注意获取的是表头的最后一行(最后一行是对于多行表头而言)th的dom对象
+   gridObj.getColumnModel(colIndex): 获取列model值, 参数是列索引
+   gridObj.clearGridBodyData(): 清空表格数据
+
+   gridObj.setGridBlankBody(): 设置表格空白表体
+   gridObj.appendHeaderSort(): append表头的排序
+   gridObj.createPagingOutTab(): 创建存放分页工具条的表格
+   gridObj.initPaging(): 初始化分页工具条
+   gridObj.setPagingValues(): 设置分页工具条的相关值, 注意这是一个接口, 实现方法由分页工具条自身或适配方法实现
+
+7, 表格的其他有用方法
+   $.fn.bsgrid.getGridObj(gridId): 根据表格ID获取表格对象
+   $.fn.bsgrid.columnTip(tdObj, value, record): tip单元格值
+   $.fn.bsgrid.longLengthSubAndTip(tdObj, value, maxLen, record): 单元格需要被渲染内容超过此长度则截断并tip显示完整内容,
+                                                                截断算法: content.substring(0, MaxLength-3) + '...'
+
+8, 表格编辑方法
+   gridObj.activeGridEditMode: 激活可被编辑的表格单元格
+   gridObj.getChangedRowsIndexs: 获取changed行的索引值, 行索引从0开始
+   gridObj.getChangedRowsOldRecords: 获取changed行的旧记录值
+   gridObj.getRowsChangedColumnsValue: 获取changed单元格的值, 返回Object对象, 其key是'row_'+rowIndex, 值也是Object对象
+
+9, 锁屏遮罩: 全局方法
+   $.fn.bsgrid.lockScreen: 加载锁屏遮罩
+   $.fn.bsgrid.unlockScreen: 解除锁屏遮罩
+
+10, 分页工具条
+    如何重新构建分页工具条
+      $.fn.bsgrid.createPagingOutTab(options): grid.js
+      $.fn.bsgrid.createPagingToolbar(options): grid.paging.js
+      $.fn.bsgrid.setPagingToolbarEvents(options): grid.paging.js
+      $.fn.bsgrid.dynamicChangePagingButtonStyle(options): grid.paging.js
+
+11, 列/表头部分配置参数
+    $.fn.bsgrid.defaults.colsProperties, 参数如下:
+      表格表体数据列配置: align(默认值'center'), maxLength(默认值40)
+      配置参数: indexAttr, sortAttr, alignAttr, lengthAttr, renderAttr, hiddenAttr, tipAttr
+      扩展配置参数: editAttr
+
+12, 请求参数名
+    使用如下方法修改默认配置: $.fn.bsgrid.defaults.requestParamsName.X = '', X可以是pageSize, curPage, sortName, sortOrder
+</pre>
+</body>
+</html>

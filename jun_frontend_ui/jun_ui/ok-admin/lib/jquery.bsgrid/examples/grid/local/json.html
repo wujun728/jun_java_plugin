@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Local JSON Data Grid</title>
+    <!-- grid.simple.min.css, grid.simple.min.js -->
+    <link rel="stylesheet" href="../../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../../builds/merged/bsgrid.all.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="30%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<script type="text/javascript">
+    var localData = [
+    {
+        "ID": 202,
+        "CHAR": "1",
+        "TEXT": "TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_1",
+        "NUM": 11.2,
+        "XH": 1
+    },
+    {
+        "ID": 201,
+        "CHAR": "111",
+        "TEXT": "TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_2",
+        "XH": 2
+    },
+    {
+        "ID": 200,
+        "CHAR": "200",
+        "TEXT": "TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_3",
+        "XH": 3
+    },
+    {
+        "ID": 199,
+        "CHAR": "199",
+        "XH": 4
+    },
+    {
+        "ID": 32,
+        "CHAR": "34",
+        "NUM": 12.1,
+        "XH": 5
+    }];
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            localData: localData,
+            // autoLoad: false,
+            pageSize: 2
+        });
+    });
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

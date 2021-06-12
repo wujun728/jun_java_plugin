@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>下拉按钮</title>
+<link href="../assets/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="../assets/js/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/layout.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/theme_orange_skin.css" rel="stylesheet" type="text/css" />
+<!-- <script src="../assets/json/tree_data1.js" type="text/javascript"></script> -->
+
+	<style type="text/css">
+		.panel-htop{width:49%;float: left;margin:5px;}
+	</style>
+
+</head>
+<body class="padding10">
+	<div class="easyui-panel comTable" title="菜单按钮的大小" data-options="iconCls:'fa fa-save',collapsible:true,maximizable:true,closable:true">
+		<div style="margin:20px 0;">
+			<a href="#" class="easyui-linkbutton" onclick="$('#btn-edit').menubutton('disable')">Disable Edit</a>
+			<a href="#" class="easyui-linkbutton" onclick="$('#btn-edit').menubutton('enable')">Enable Edit</a>
+		</div>
+		<div class="easyui-panel" style="padding:5px;">
+			<a href="#" class="easyui-linkbutton" data-options="plain:true">Home</a>
+			<a id="btn-edit" href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">Edit</a>
+			<a href="#" class="easyui-menubutton" data-options="menu:'#mm2',iconCls:'icon-help'">Help</a>
+			<a href="#" class="easyui-menubutton" data-options="menu:'#mm3'">About</a>
+		</div>
+		<div id="mm1" style="width:150px;">
+			<div data-options="iconCls:'icon-undo'">Undo</div>
+			<div data-options="iconCls:'icon-redo'">Redo</div>
+			<div class="menu-sep"></div>
+			<div>Cut</div>
+			<div>Copy</div>
+			<div>Paste</div>
+			<div class="menu-sep"></div>
+			<div>
+				<span>Toolbar</span>
+				<div>
+					<div>Address</div>
+					<div>Link</div>
+					<div>Navigation Toolbar</div>
+					<div>Bookmark Toolbar</div>
+					<div class="menu-sep"></div>
+					<div>New Toolbar...</div>
+				</div>
+			</div>
+			<div data-options="iconCls:'icon-remove'">Delete</div>
+			<div>Select All</div>
+		</div>
+		<div id="mm2" style="width:100px;">
+			<div>Help</div>
+			<div>Update</div>
+			<div>About</div>
+		</div>
+		<div id="mm3" class="menu-content" style="background:#f0f0f0;padding:10px;text-align:left">
+			<img src="http://www.jeasyui.com/images/logo1.png" style="width:150px;height:50px">
+			<p style="font-size:14px;color:#444;">Try jQuery EasyUI to build your modern, interactive, javascript applications.</p>
+		</div>
+
+		<!-- // -->
+	</div>
+
+	<div class="easyui-panel comTable" title="菜单按钮" data-options="iconCls:'fa fa-save',collapsible:true,maximizable:true,closable:true">
+		<p style="font-size:14px">菜单按钮</p>
+		<a href="javascript:void(0)" id="mb" class="easyui-menubutton"
+    data-options="menu:'#mm',iconCls:'icon-edit'">Edit</a>
+		<div id="mm" style="width:150px;">
+		    <div data-options="iconCls:'icon-undo'">Undo</div>
+		    <div data-options="iconCls:'icon-redo'">Redo</div>
+		    <div class="menu-sep"></div>
+		    <div>Cut</div>
+		    <div>Copy</div>
+		    <div>Paste</div>
+		    <div class="menu-sep"></div>
+		    <div data-options="iconCls:'icon-remove'">Delete</div>
+		    <div>Select All</div>
+		</div>
+	</div>
+
+	<div class="easyui-panel comTable" title="lines tree面板" data-options="iconCls:'fa fa-save',collapsible:true,maximizable:true,closable:true">
+		<p style="font-size:14px">lines tree实例</p>
+		<ul id="tt" class="easyui-tree" data-options="data:resourceTree,method:'get',animate:true,lines:true"></ul>
+	</div>
+
+	<div class="easyui-panel comTable" title="icon true面板" data-options="iconCls:'fa fa-save',collapsible:true,maximizable:true,closable:true">
+		<p style="font-size:14px">icon true实例</p>
+		<ul id="tt" class="easyui-tree" data-options="data:resourceTree2,method:'get',animate:true"></ul>
+	</div>
+
+
+	<div class="easyui-panel comTable" title="右键下拉 true面板" data-options="iconCls:'fa fa-save',collapsible:true,maximizable:true,closable:true">
+		<p style="font-size:14px">右键下拉实例</p>
+
+		<ul id="tt" class="easyui-tree" data-options="data:resourceTree2,method: 'get',
+                animate: true,
+                onContextMenu: function(e,node){
+                    e.preventDefault();
+                    $(this).tree('select',node.target);
+                    $('#mm').menu('show',{
+                        left: e.pageX,
+                        top: e.pageY
+                    });
+                }"></ul>
+        <div id="mm" class="easyui-menu" style="width:120px;">
+	        <div onclick="append()" data-options="iconCls:'fa fa-plus-square'">新增</div>
+	        <div onclick="removeit()" data-options="iconCls:'fa fa-times-rectangle'">删除</div>
+	        <div class="menu-sep"></div>
+	        <div onclick="expand()">修改</div>
+	        <div onclick="collapse()">配置</div>
+	    </div>
+	</div>
+
+	<div class="easyui-panel comTable" title="可编辑 true面板" data-options="iconCls:'fa fa-save',collapsible:true,maximizable:true,closable:true">
+		<p style="font-size:14px">可编辑 true实例</p>
+		<ul id="tt" class="easyui-tree" data-options="data:resourceTree2,method:'get',animate:true,onClick: function(node){$(this).tree('beginEdit',node.target);}"></ul>
+	</div>
+
+<script src="../assets/js/jquery2.1.1.js" type="text/javascript"></script>
+<script src="../assets/js/jquery.easyui.min.js" type="text/javascript"></script>
+<!-- dome-tree-checkbox -->
+<script type="text/javascript">
+$('#mb').menubutton({
+    iconCls: 'icon-edit',
+    menu: '#mm'
+});
+</script>
+
+</body>
+</html>

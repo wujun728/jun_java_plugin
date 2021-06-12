@@ -1,0 +1,6 @@
+/**
+* jQuery.bsgrid v1.38 by @Baishui2004
+* Copyright 2014 Apache v2 License
+* https://github.com/baishui2004/jquery.bsgrid
+*/
+$.bsgrid={param:function(c,b){if(b==undefined){b=false}if(!b){return $.param(c)}var d=new StringBuilder();if(c instanceof Array){$.each(c,function(f,e){d.append("&"+e.name+"=");d.append(encodeURIComponent(encodeURIComponent(e.value)))})}else{for(var a in c){d.append("&"+a+"=");d.append(encodeURIComponent(encodeURIComponent(c[a])))}}return d.length>0?d.toString().substring(1):""},getKeysString:function(c,a){if(a==undefined){a=","}var d=new StringBuilder();if(c instanceof Array){$.each(c,function(f,e){if((d.toString()+a).indexOf(a+e.name+a)==-1){d.append(a+e.name)}})}else{for(var b in c){d.append(a+b)}}return d.length>0?d.toString().substring(1):""},forcePushPropertyInObject:function(b,a,c){if(b.hasOwnProperty(a)){b[a+"_f"]=c}else{b[a]=c}},adaptAttrOrProp:function(b,d,c){var a=parseInt($.fn.jquery.substring(0,$.fn.jquery.indexOf(".",2)).replace(".",""));if(c==undefined){if(a>=16){return b.prop(d)}else{return b.attr(d)}}else{if(a>=16){b.prop(d,c)}else{b.attr(d,c)}}},alert:function(a){alert(a)}};

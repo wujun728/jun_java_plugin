@@ -1,0 +1,26 @@
+### zh-CN ###
+builds/merged/grid.simple.min.css   合并grid、paging分页css样式
+builds/merged/grid.simple.min.js    合并grid、paging分页js脚本
+
+builds/merged/grid.all.min.css      合并grid、paging分页、grid扩展、icon图标css样式
+builds/merged/grid.all.min.js       合并grid、paging分页、grid扩展、grid导出构建js脚本
+
+builds/merged/form.all.min.css      合并form表单、icon图标css样式
+builds/merged/form.all.min.js       合并form表单及其依赖js脚本
+
+builds/merged/bsgrid.all.min.css    合并grid、paging分页、grid扩展、icon图标、form表单css样式
+builds/merged/bsgrid.all.min.js     合并grid、paging分页、grid扩展、grid导出构建、form表单js脚本
+
+
+### en ###
+builds/merged/grid.simple.min.css   merged builds/css: grid.min.css, grid.paging.min.css
+builds/merged/grid.simple.min.js    merged builds/js:  common.min.js, grid.paging.min.js, grid.min.js
+
+builds/merged/grid.all.min.css      merged builds/css: grid.min.css, grid.paging.min.css, grid.extend.min.css, icon.min.css
+builds/merged/grid.all.min.js       merged builds/js:  common.min.js, util.min.js, grid.paging.min.js, grid.min.js, grid.extend.min.js, export.min.js
+
+builds/merged/form.all.min.css      merged builds/css: form.min.css, icon.min.css
+builds/merged/form.all.min.js       merged builds/js:  common.min.js, util.min.js, form.min.js
+
+builds/merged/bsgrid.all.min.css    merged builds/css: grid.min.css, grid.paging.min.css, grid.extend.min.css, icon.min.css, form.min.css
+builds/merged/bsgrid.all.min.js     merged builds/js:  common.min.js, util.min.js, grid.paging.min.js, grid.min.js, grid.extend.min.js, export.min.js, form.min.js

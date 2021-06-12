@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+/* grid header and column */
+.bsgrid th, .bsgrid td {
+    border-color: #18181a;
+    background-color: #232d38;
+    color: white;
+}
+
+/* grid header */
+.bsgrid th {
+    background-image: url(../../images/skins/access/bg.gif);
+}
+
+/* grid even index row column color */
+.bsgrid tr.even_index_row td {
+    background-color: #1a232b;
+}
+
+/* grid row hover column color */
+.bsgrid tr.row_hover td {
+    background-color: #e48627 !important;
+}
+
+/* grid selected row column color */
+.bsgrid tr.selected.selected_color td {
+    background-color: #e48627 !important;
+}
+
+/* paging toolbar out table */
+.bsgridPagingOutTab {
+    border-color: #18181a;
+    background-color: #232d38;
+}
+
+.bsgridPaging {
+    color: white;
+}
+
+/* paging toolbar button */
+.bsgridPaging .pagingBtn {
+    background-image: url(../../images/skins/access/bg.gif);
+    border-color: #18181a;
+}
+
+.bsgridPaging .gotoPageInput {
+    border-color: #18181a;
+    color: black;
+}

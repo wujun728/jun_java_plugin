@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Grid With Laypage</title>
+    <!-- grid.min.css, common.min.js, grid.min.js -->
+    <link rel="stylesheet" href="../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.en.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/bsgrid.all.min.js"></script>
+    <!-- laypage: only need import laypage.js(auto load css) -->
+    <script type="text/javascript" src="../../plugins/layui/laypage/laypage.js"></script>
+
+    <script type="text/javascript" src="laypage-adapter.js"></script>
+</head>
+<body style="background-color: #fff;">
+<p/>
+<input type="button" value="Refresh page" onclick="gridObj.refreshPage();"/>
+&emsp;<input type="button" value="First page" onclick="gridObj.firstPage();"/>
+&emsp;<input type="button" value="Prev page" onclick="gridObj.prevPage();"/>
+&emsp;<input type="button" value="Next page" onclick="gridObj.nextPage();"/>
+&emsp;<input type="button" value="Last page" onclick="gridObj.lastPage();"/>
+&emsp;<input type="button" value="Goto page 2" onclick="gridObj.gotoPage(2);"/>
+<p/>
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="30%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<ul id="searchTable_pt-ul" style="width: 0; height: 0; overflow: hidden;"></ul>
+<div id="searchTable_pt" class="holder" style="margin-top: -30px;"></div>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: '../grid/data/json.jsp',
+            // autoLoad: false,
+            pageSize: 5,
+            pageSizeSelect: true
+        });
+    });
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

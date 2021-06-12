@@ -1,0 +1,10 @@
+From: EasyUI 1.2.6
+      path: jquery-easyui-1.2.6.zip/themes/gray/images/
+
+bg.gif                       datagrid_header_bg.gif    modify by GIMP
+layout_button_right.gif
+pagination_first.gif
+pagination_last.gif
+pagination_next.gif
+pagination_prev.gif
+pagination_load.png

@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Standard Grid</title>
+    <!-- grid.simple.min.css, grid.simple.min.js -->
+    <link rel="stylesheet" href="../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.en.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/bsgrid.all.min.js"></script>
+</head>
+<body style="line-height: 1.2em; background-color: #fff;">
+<form id="searchParams">
+    &emsp;param1:<input type="text" name="param1" value="param1"/>
+    &emsp;param2:<input type="text" name="param2" value="param2"/>
+    &emsp;<input type="button" value="Set other parames"
+                 onclick="gridObj.options.otherParames = $('#searchParams').serializeArray(); alert('set success!')"/>
+    &emsp;<input type="button" value="Get page request condition"
+                 onclick="alert(gridObj.getPageCondition(gridObj.getCurPage()));"/>
+</form>
+
+<p/>
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" w_sort="XH,desc" width="5%;">XH</th>
+        <th w_index="ID" w_sort="ID" w_hidden="true" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="30%;" style="text-align: left;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+
+<p/>
+&emsp;<input type="button" value="Get pageSize" onclick="alert(gridObj.getPageSize());"/>
+&emsp;<input type="button" value="Get totalRows" onclick="alert(gridObj.getTotalRows());"/>
+&emsp;<input type="button" value="Get totalPages" onclick="alert(gridObj.getTotalPages());"/>
+&emsp;<input type="button" value="Get curPage" onclick="alert(gridObj.getCurPage());"/>
+&emsp;<input type="button" value="Get curPage RowsNum" onclick="alert(gridObj.getCurPageRowsNum());"/>
+&emsp;<input type="button" value="Get startRow" onclick="alert(gridObj.getStartRow());"/>
+&emsp;<input type="button" value="Get endRow" onclick="alert(gridObj.getEndRow());"/>
+
+<p/>
+&emsp;<input type="button" value="Refresh page" onclick="gridObj.refreshPage();"/>
+&emsp;<input type="button" value="First page" onclick="gridObj.firstPage();"/>
+&emsp;<input type="button" value="Prev page" onclick="gridObj.prevPage();"/>
+&emsp;<input type="button" value="Next page" onclick="gridObj.nextPage();"/>
+&emsp;<input type="button" value="Last page" onclick="gridObj.lastPage();"/>
+&emsp;<input type="button" value="Goto page 2" onclick="gridObj.gotoPage(2);"/>
+&emsp;<input type="button" value="Get sort name" onclick="alert(gridObj.getSortName());"/>
+&emsp;<input type="button" value="Get sort order" onclick="alert(gridObj.getSortOrder());"/>
+&emsp;<input type="button" value="Sort by XH"
+             onclick="gridObj.sort($('#' + gridObj.options.gridId + ' thead tr th:eq(0)'));"/>
+
+<p/>
+&emsp;<input type="button" value="select row 2" onclick="gridObj.selectRow(2);"/>
+&emsp;<input type="button" value="unSelect row" onclick="gridObj.unSelectRow();"/>
+&emsp;<input type="button" value="get Selected Row Index" onclick="alert(gridObj.getSelectedRowIndex());"/>
+&emsp;<input type="button" value="get Selected Row(Dom Object)" onclick="alert(gridObj.getSelectedRow());"/>
+&emsp;<input type="button" value="get Selected Row(inner html)" onclick="alert(gridObj.getSelectedRow().html());"/>
+
+<p/>
+&emsp;<input type="button" value="get All records" onclick="alert(gridObj.getAllRecords()); console.log(gridObj.getAllRecords());"/>
+&emsp;<input type="button" value="get Row 2 record" onclick="alert(gridObj.getRecord(2)); console.log(gridObj.getRecord(2));"/>
+&emsp;<input type="button" value="get Selected Row record" onclick="alert(gridObj.getRowRecord(gridObj.getSelectedRow())); console.log(gridObj.getRowRecord(gridObj.getSelectedRow()));"/>
+&emsp;<input type="button" value="get Selected Row record XH value" onclick="alert(gridObj.getRecordIndexValue(gridObj.getRowRecord(gridObj.getSelectedRow()), 'XH'));"/>
+&emsp;<input type="button" value="get Row 2 XH value" onclick="alert(gridObj.getColumnValue(2, 'XH'));"/>
+&emsp;<input type="button" value="get Row 2 Col 0 Cell XH value" onclick="alert(gridObj.getCellRecordValue(2, 0));"/>
+
+<p/>
+&emsp;<input type="button" value="get Rows(Dom Object length)" onclick="alert(gridObj.getRows().length);"/>
+&emsp;<input type="button" value="get Row 2(Dom Object outerHTML)" onclick="alert($.bsgrid.adaptAttrOrProp(gridObj.getRow(2), 'outerHTML'));"/>
+&emsp;<input type="button" value="get Row 0 Cells(Dom Object length)" onclick="alert(gridObj.getRowCells(0).length);"/>
+&emsp;<input type="button" value="get Col 0 Cells(Dom Object length)" onclick="alert(gridObj.getColCells(0).length);"/>
+&emsp;<input type="button" value="get Cell(Row 2 Col 0, Dom Object outerHTML)" onclick="alert($.bsgrid.adaptAttrOrProp(gridObj.getCell(2, 0), 'outerHTML'));"/>
+
+<p/>
+&emsp;<input type="button" value="Clear Rows 0 data" onclick="gridObj.clearRowData(0);"/>
+&emsp;<input type="button" value="Replace Row 0 data with Row 1" onclick="gridObj.loadRowData(gridObj.getRecord(1), 0);"/>
+&emsp;<input type="button" value="Clear grid body data" onclick="gridObj.clearGridBodyData();"/>
+
+<p/>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        // $.fn.bsgrid.defaults.pagingToolbarAlign = 'center'; // default 'right'
+
+        // rewrite lock and unlock screen
+        // $.fn.bsgrid.lockScreen = function (options, xhr) {
+        //     console.log('Lock Screen!');
+        // };
+        // $.fn.bsgrid.unlockScreen = function (options, xhr, ts) {
+        //     console.log('Unlock Screen!');
+        // };
+
+        $.fn.bsgrid.defaults.stripeRows = true;
+
+        // additional before render grid
+        $.fn.bsgrid.defaults.additionalBeforeRenderGrid = function (parseSuccess, gridData, options) {
+            console.log('[additional before render grid]   ' + 'parseSuccess=' + parseSuccess);
+        };
+        // additional render per row, no matter blank row or not blank row, after additional render per column
+        $.fn.bsgrid.defaults.additionalRenderPerRow = function (record, rowIndex, trObj, options) {
+            if (record != null) { // null record render blank row
+                console.log('[additional render per row]      ' + 'ID=' + gridObj.getRecordIndexValue(record, 'ID') + ', rowIndex=' + rowIndex);
+            }
+        };
+        // additional after render grid
+        $.fn.bsgrid.defaults.additionalAfterRenderGrid = function (parseSuccess, gridData, options) {
+            console.log('[additional after render grid]   ' + 'parseSuccess=' + parseSuccess);
+        };
+
+        // rewrite refreshPage method
+        $.fn.bsgrid.refreshPage = function (options) {
+            console.log('rewrite refreshPage method');
+            $.fn.bsgrid.page($.fn.bsgrid.getCurPage(options), options);
+        };
+
+        // init
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: 'data/json.jsp',
+            // autoLoad: false,
+            pageSizeSelect: true,
+            // pageAll: true,
+            pageSize: 5
+        });
+    });
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + ', rowIndex=' + rowIndex + ', colIndex=' + colIndex + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Dom Load Test</title>
+    <style type="text/css">
+        #tableId {
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        #tableId th, #tableId td {
+            border: solid 1px #aaa;
+        }
+
+        #tableId td.lineNoWrap {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/common.min.js"></script>
+</head>
+times:&nbsp;
+<input id="times" type="text" value="1000"/>
+<input type="button" onclick="loadTime(0);" value="jqueryAppend"/>
+<input type="button" onclick="loadTime(1, 1);" value="jsContact html"/>
+<input type="button" onclick="loadTime(2, 1);" value="arrayJoin html"/>
+<input type="button" onclick="loadTime(3, 1);" value="customStringBuilder html"/>
+<input type="button" onclick="loadTime(1, 2);" value="jsContact innerHTML"/>
+<input type="button" onclick="loadTime(2, 2);" value="arrayJoin innerHTML"/>
+<input type="button" onclick="loadTime(3, 2);" value="customStringBuilder innerHTML"/>
+<body style="background-color: #fff;">
+<div id="load_time"></div>
+<table id="tableId">
+    <thead>
+    <tr>
+        <th width="5%;">XH</th>
+        <th width="5%;">ID</th>
+        <th width="15%;">CHAR</th>
+        <th width="30%;">TEXT</th>
+        <th width="15%;">DATE</th>
+        <th width="15%;">TIME</th>
+        <th width="5%;">NUM</th>
+        <th width="10%;">Operate</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td style="text-align: center;" class="lineNoWrap">2600</td>
+        <td style="text-align: center;" class="lineNoWrap">-2499</td>
+        <td style="text-align: left;" class="lineNoWrap">char_2599</td>
+        <td style="text-align: left;" class="lineNoWrap" title="TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_2599">TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TEXT_TE...</td>
+        <td style="text-align: center;" class="lineNoWrap">2012-12-12 15:01:01</td>
+        <td style="text-align: center;" class="lineNoWrap">15:01:01</td>
+        <td style="text-align: center;" class="lineNoWrap">25990</td>
+        <td style="text-align: center;" class="lineNoWrap"><a href="#" onclick="alert('ID=-2499');">Operate</a></td>
+    </tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+    var rowHtml;
+    $(function () {
+        rowHtml = $.trim($('#tableId tbody').html());
+        loadTime(0);
+    });
+
+    function loadTime(contactType, innerType) {
+        $('#load_time').html('');
+        if (innerType == 1) {
+            $('#tableId tbody').html('');
+        } else {
+            document.getElementById('tableId').getElementsByTagName('tbody')[0].innerHTML = '';
+        }
+        var times = parseInt($.trim($('#times').val()));
+        var date = new Date().getTime();
+        if ((contactType == 0)) {
+            var tableBody = $('#tableId tbody');
+            for (var i = 0; i < times - 1; i++) {
+                tableBody.append(rowHtml);
+            }
+            $('#load_time').html('Load: ' + (new Date().getTime() - date) + 'ms');
+        } else {
+            var rowsHtml;
+            if (contactType == 1) {
+                rowsHtml = jsContact(times, rowHtml)
+            } else if (contactType == 2) {
+                rowsHtml = arrayJoin(times, rowHtml)
+            } else if (contactType == 3) {
+                rowsHtml = customStringBuilder(times, rowHtml)
+            }
+            var contactTime = new Date().getTime() - date;
+            if (innerType == 1) {
+                $('#tableId tbody').html(rowsHtml);
+            } else {
+                document.getElementById('tableId').getElementsByTagName('tbody')[0].innerHTML = rowsHtml;
+            }
+            $('#load_time').html('Contact: ' + contactTime + 'ms, Load: ' + (new Date().getTime() - contactTime - date) + 'ms');
+        }
+    }
+
+    function jsContact(times, rowHtml) {
+        var rowsHtml = '';
+        for (var i = 0; i < times; i++) {
+            rowsHtml += rowHtml;
+        }
+        return rowsHtml;
+    }
+
+    function arrayJoin(times, rowHtml) {
+        var rowsHtmlArr = new Array(times);
+        for (var i = 0; i < times; i++) {
+            rowsHtmlArr.push(rowHtml);
+        }
+        return rowsHtmlArr.join('');
+    }
+
+    function customStringBuilder(times, rowHtml) {
+        var rowsHtml = new StringBuilder();
+        for (var i = 0; i < times; i++) {
+            rowsHtml.append(rowHtml);
+        }
+        return rowsHtml.toString();
+    }
+</script>
+</body>
+</html>

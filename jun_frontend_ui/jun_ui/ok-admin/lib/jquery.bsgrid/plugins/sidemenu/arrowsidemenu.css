@@ -1,0 +1,62 @@
+@CHARSET "UTF-8";
+
+.arrowsidemenu{
+	width: 180px; /*width of menu*/
+	border-style: solid solid none solid;
+	border-color: #94AA74;
+	border-size: 1px;
+	border-width: 1px;
+}
+	
+.arrowsidemenu div a{ /*header bar links*/
+	font: bold 12px Verdana, Arial, Helvetica, sans-serif;
+	display: block;
+	background: transparent url(arrowgreen.gif) 100% 0;
+    height: 24px; /*Set to height of bg image-padding within link (ie: 32px - 4px - 4px)*/
+	padding: 4px 0 4px 10px;
+	line-height: 24px; /*Set line-height of bg image-padding within link (ie: 32px - 4px - 4px)*/
+	text-decoration: none;
+}
+	
+.arrowsidemenu div a:link, .arrowsidemenu div a:visited{
+	color: #26370A;
+}
+
+.arrowsidemenu div a:hover{
+	background-position: 100% -32px;
+}
+
+.arrowsidemenu div.unselected a{ /*header that's currently not selected*/
+	color: #6F3700;
+}
+
+	
+.arrowsidemenu div.selected a{ /*header that's currently selected*/
+	color: blue;
+	background-position: 100% -64px !important;
+}
+
+.arrowsidemenu ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.arrowsidemenu ul li{
+	border-bottom: 1px solid #a1c67b;
+}
+
+
+.arrowsidemenu ul li a{ /*sub menu links*/
+	display: block;
+	font: normal 12px Verdana, Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	color: black;
+	padding: 5px 0;
+	padding-left: 10px;
+	border-left: 10px double #a1c67b;
+}
+
+.arrowsidemenu ul li a:hover{
+	background: #d5e5c1;
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>示例索引 - jQuery.bsgrid</title>
+<link rel="stylesheet" href="../plugins/sidemenu/arrowsidemenu.css" />
+<style type="text/css">
+/* 改成灰色样式 */
+.arrowsidemenu div a { /*header bar links*/
+	background: transparent url(../plugins/sidemenu/arrowgray.gif) 100% 0;
+}
+
+.arrowsidemenu ul li {
+	border-bottom: 1px solid #ccc;
+}
+
+.arrowsidemenu ul li a {
+	border-left: 10px double #ccc;
+}
+
+/* 改变导航链接字体样式 */
+.arrowsidemenu div a {
+	font-size: 14px;
+	font-family: '微软雅黑', '新宋体', '宋体', arial, tahoma, sans-serif;
+}
+
+.arrowsidemenu ul li a {
+	font-size: 12px;
+	font-family: '微软雅黑', '新宋体', '宋体', arial, tahoma, sans-serif;
+}
+
+.menuheaders, .menucontents {
+    border: solid white;
+    border-width: 0 0 1px 0;
+}
+
+.arrowsidemenu div.selected a, .arrowsidemenu div.unselected a, .arrowsidemenu div a:link, .arrowsidemenu div a:visited {
+    color: #333;
+}
+</style>
+<script type="text/javascript" src="../plugins/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../plugins/sidemenu/ddaccordion.js"
+	charset="UTF-8">
+	/***********************************************
+	 * Accordion Content script- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+	 * Visit http://www.dynamicDrive.com for hundreds of DHTML scripts
+	 * This notice must stay intact for legal use
+	 ***********************************************/
+</script>
+<script type="text/javascript">
+	//Initialize Arrow Side Menu:
+	ddaccordion.init({
+		headerclass : "menuheaders", //Shared CSS class name of headers group
+		contentclass : "menucontents", //Shared CSS class name of contents group
+		revealtype : "clickgo", //Reveal content when user clicks or onmouseover the header? Valid value: "click", or "mouseover"
+		mouseoverdelay : 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+		collapseprev : true, //Collapse previous content (so only one open at any time)? true/false 
+		defaultexpanded : [ 0 ], //index of content(s) open by default [index1, index2, etc]. [] denotes no content.
+		onemustopen : false, //Specify whether at least one header should be open always (so never all headers closed)
+		animatedefault : false, //Should contents open by default be animated into view?
+		persiststate : true, //persist state of opened contents within browser session?
+		toggleclass : [ "unselected", "selected" ], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+		togglehtml : [ "none", "", "" ], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+		animatespeed : "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+		oninit : function(expandedindices) { //custom code to run when headers have initalized
+			//do nothing
+		},
+		onopenclose : function(header, index, state, isuseractivated) { //custom code to run whenever a header is opened or closed
+			//do nothing
+		}
+	});
+
+    $(function () {
+        var pageHref = window.location.href;
+        var pIndex = pageHref.indexOf('#href=');
+        var href = 'examples/grid/simple.html';
+        if (pIndex > -1) {
+            var href = pageHref.substring(pIndex + 6);
+        }
+        $('.arrowsidemenu>.menucontents>li>a[href$=' + href + ']').parent('li').parent('.menucontents').prev('.menuheaders').click();
+        $('#right').attr('src', '../' + href);
+    });
+</script>
+<style type="text/css">
+html,body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+    background-color: white;
+    font-size: 14px;
+    margin: 0;
+}
+
+table.singleTrTable {
+	width: 100%;
+	height: 99%;
+	border-collapse: collapse;
+}
+
+table.singleTrTable td {
+	vertical-align: top;
+	height: 100%;
+	border: solid 0 #999;
+}
+
+table.singleTrTable td iframe {
+	width: 100%;
+	height: 100%;
+	border-width: 0;
+}
+</style>
+</head>
+<body>
+	<!-- 
+	<div style="padding-top: 8px; padding-left: 8px; font-size: 24px;font-weight: 900;color: blue;">&nbsp;示例索引</div>
+	-->
+	<table class="singleTrTable">
+		<tr>
+			<td style="width: 185px; padding-top: 8px; padding-left: 8px;">
+				<div class="arrowsidemenu">
+					<div class="menuheaders">
+						<a href="#" title="Grid Skins">表格皮肤</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/grid/simple.html" target="right">默认</a></li>
+						<li><a href="../examples/grid/themes/flexigrid.html" target="right">灰色 (FlexiGrid)</a></li>
+						<li><a href="../examples/grid/themes/pure_gray.html" target="right">灰色 (纯色)</a></li>
+						<li><a href="../examples/grid/themes/gray.html" target="right">灰色 (ExtJS)</a></li>
+						<li><a href="../examples/grid/themes/blue.html" target="right">蓝色 (ExtJS)</a></li>
+						<li><a href="../examples/grid/themes/access.html" target="right">Access (ExtJS)</a></li>
+						<li><a href="../examples/grid/themes/sky_blue.html" target="right">天空蓝 (Dhtmlx)</a></li>
+						<li><a href="../examples/grid/themes/jqgrid.html" target="right">jqGrid</a></li>
+						<li><a href="../examples/grid/themes/easyui.html" target="right">EasyUI</a></li>
+						<li><a href="../examples/grid/themes/bootstrap.html" target="right">Bootstrap</a></li>
+						<li><a href="../examples/grid/themes/custom.html" target="right">自定义蓝</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid Samples">常用示例</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/grid/simple.html" target="right">入门示例</a></li>
+						<li><a href="../examples/grid/search.html" target="right">带参数查询</a></li>
+						<li><a href="../examples/grid/simple.en.html" target="right">英文本地化</a></li>
+						<li><a href="../examples/grid/stripe-row.html" target="right">间隔行色</a></li>
+						<li><a href="../examples/grid/row-hover.html" target="right">滑过行变色</a></li>
+						<li><a href="../examples/grid/simple-with-images.html" target="right">表格展示图片</a></li>
+                        <li><a href="../examples/grid/simple-fixed-width.html" target="right">固定表格宽度</a></li>
+						<li><a href="../examples/grid/simple-xml.html" target="right">加载XML数据</a></li>
+						<li><a href="../examples/grid/jsonp.html" target="right">加载Jsonp数据</a></li>
+						<li><a href="../examples/grid/paging.little.html" target="right">精简分页工具条</a></li>
+						<li><a href="../examples/grid/local/json.html" target="right">加载本地Json数据</a></li>
+                        <li><a href="../examples/grid/local/xml.html" target="right">加载本地XML数据</a></li>
+                        <li><a href="../examples/grid/select-row-event.html" target="right">选择行事件</a></li>
+                        <li><a href="../examples/grid/no-pagation.html" target="right">不分页效果</a></li>
+						<li><a href="../examples/grid/no-display-blank-rows.html" target="right">不显示空白行</a></li>
+						<li><a href="../examples/grid/no-data.html" target="right">无数据样式</a></li>
+						<li><a href="../examples/grid/sort.html" target="right">字段排序</a></li>
+						<li><a href="../examples/grid/checkbox-extend.html" target="right">Checkbox选中行</a></li>
+						<li><a href="../examples/grid/standard.zh-CN.html" target="right">方法演示</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid Advanced Samples">高级示例</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/grid/edit.html" target="right">表格编辑</a></li>
+						<li><a href="../examples/grid/edit-advanced.html" target="right">高级编辑</a></li>
+						<li><a href="../examples/grid/event.html" target="right">表格事件</a></li>
+                        <li><a href="../examples/grid/extend.html" target="right">表格扩展</a></li>
+                        <li><a href="../examples/grid/export.html" target="right">表格导出</a></li>
+                        <li><a href="../examples/grid/multi-header.html" target="right">多行表头</a></li>
+                        <li><a href="../examples/grid/multi-sort.html" target="right">多字段排序</a></li>
+                        <li><a href="../examples/grid/foot.html" target="right">表格底部聚合</a></li>
+                        <li><a href="../examples/grid/userdata.html" target="right">处理Userdata</a></li>
+                        <li><a href="../examples/grid/userdata-xml.html" target="right">处理Userdata(XML数据)</a></li>
+                        <li><a href="../examples/grid/nested-json.html" target="right">单元格嵌套Json数据</a></li>
+                        <li><a href="../examples/grid/paging.button.html" target="right">添加按钮到分页工具条</a></li>
+                        <li><a href="../examples/grid/paging.little.button.html" target="right">添加按钮到精简分页工具条</a></li>
+                        <li><a href="../examples/grid/dynamic-header.html" target="right">动态表头</a></li>
+						<li><a href="../examples/grid/multi.html" target="right">单页多表格</a></li>
+						<li><a href="../examples/grid/multi-extend.html" target="right">单页多编辑表格</a></li>
+						<li><a href="../examples/grid/move-column-extend.html" target="right">拖动列宽</a></li>
+                        <li><a href="../examples/grid/fixed-header/fixed-header-extend.html" target="right">滚动表格数据</a></li>
+						<li><a href="../examples/grid/simple-conditions.html" target="right">下拉框查询表单构造</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid Extend Samples">扩展示例</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/grid/checkbox-custom.html" target="right">Checkbox选中行</a></li>
+						<li><a href="../examples/grid/move-column-custom.html" target="right">拖动列宽</a></li>
+                        <li><a href="../examples/grid/fixed-header/simple.html" target="right">固定表头示例</a></li>
+                        <li><a href="../examples/grid/fixed-header/fixed-header-custom.html" target="right">滚动表格数据</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid Test Samples">实验示例</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/html5/grid.html" target="right">HTML5</a></li>
+						<li><a href="../examples/bootstrap/grid.html" target="right">集成Bootstrap</a></li>
+                        <li><a href="../examples/grid/load-time-test.html" target="right">大量数据加载测试</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid With Layui">集成Layui</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/layui/layer.html" target="right">集成layer</a></li>
+						<li><a href="../examples/layui/laypage.html" target="right">集成laypage</a></li>
+						<li><a href="../examples/layui/laydate.html" target="right">集成laydate</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid With ArtDialog">集成ArtDialog</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/artDialog/pop.html" target="right">弹出框(ArtDialog确认效果)</a></li>
+						<li><a href="../examples/artDialog/grid.html" target="right">表格集成ArtDialog</a></li>
+						<li><a href="../examples/artDialog/gridAndForm.html" target="right">表格及表单集成ArtDialog</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Grid With Pagination">集成第三方分页工具条</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/pagination/readme" target="right">说明</a></li>
+						<li><a href="../examples/pagination/jqPagination/sample.html" target="right">集成jqPagination</a></li>
+						<li><a href="../examples/pagination/jqPagination/sample-adapter.html" target="right">适配jqPagination</a></li>
+						<li><a href="../examples/pagination/jquery_pagination/sample.html" target="right">集成jquery_pagination</a></li>
+						<li><a href="../examples/pagination/jquery_pagination/sample-adapter.html" target="right">适配jquery_pagination</a></li>
+						<li><a href="../examples/pagination/jPaginate/sample.html" target="right">集成jPaginate</a></li>
+						<li><a href="../examples/pagination/jPaginate/sample-adapter.html" target="right">适配jPaginate</a></li>
+						<li><a href="../examples/pagination/jPages/sample.html" target="right">集成jPages</a></li>
+						<li><a href="../examples/pagination/jPages/sample-adapter.html" target="right">适配jPages</a></li>
+						<li><a href="../examples/pagination/smartpaginator/sample.html" target="right">集成smartpaginator</a></li>
+						<li><a href="../examples/pagination/smartpaginator/sample-adapter.html" target="right">适配 smartpaginator</a></li>
+						<li><a href="../examples/pagination/jPaginator/sample.html" target="right">集成jPaginator</a></li>
+						<li><a href="../examples/pagination/jPaginator/sample-adapter.html" target="right">适配jPaginator</a></li>
+					</ul>
+					<div style="border: solid white; border-width: 0 0 1px 0;">
+						<a href="../examples/util/util.html" target="right" title="Util">工具JS</a>
+					</div>
+					<div style="border: solid white; border-width: 0 0 1px 0;">
+						<a href="../examples/button/button.html" target="right"
+							title="Button">按钮</a>
+					</div>
+					<div class="menuheaders">
+						<a href="#" title="Form">表单示例</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/form/simple.html" target="right">简易表单</a></li>
+						<li><a href="../examples/form/standard.html" target="right">标准表单</a></li>
+						<li><a href="../examples/form/validation.html" target="right">表单校验<br/>(使用validationEngine)</a></li>
+						<li><a href="../examples/form/validation-ajax.html" target="right">表单Ajax校验<br/>(使用validationEngine)</a></li>
+					</ul>
+					<div class="menuheaders">
+						<a href="#" title="Paging">分页工具条</a>
+					</div>
+					<ul class="menucontents">
+						<li><a href="../examples/paging/simple.html" target="right">入门示例</a></li>
+						<li><a href="../examples/paging/simple.little.html" target="right">精简分页工具条</a></li>
+						<li><a href="../examples/paging/least.html" target="right">自定义最小分页工具条</a></li>
+						<li><a href="../examples/paging/image_loop-baidu_news.html" target="right">图片轮播(百度新闻效果)</a></li>
+						<li><a href="../examples/paging/image_loop-baidu_baijia.html" target="right">图片轮播(百度百家效果)</a></li>
+					</ul>
+				</div>
+			</td>
+			<td><iframe id="right" name="right"></iframe></td>
+		</tr>
+	</table>
+</body>
+</html>

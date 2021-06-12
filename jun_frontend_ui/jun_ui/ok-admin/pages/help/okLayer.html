@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>okLayer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+    <style>
+        .ok-body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ok-body">
+		<!--########################okLayer.confirm()########################-->
+        <blockquote class="layui-elem-quote">
+            <p>询问框</p>
+        </blockquote>
+        <blockquote class="layui-elem-quote layui-quote-nm">
+            okLayer.confirm(content, yesFunction)
+        </blockquote>
+        <pre>
+okLayer.confirm("确定要删除吗？", function () {
+	// 请求后台api
+})
+        </pre>
+        <table class="layui-table">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <thead>
+            <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>描述</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>content</td>
+                <td>String</td>
+                <td>内容</td>
+            </tr>
+            <tr>
+                <td>yesFunction</td>
+                <td>String</td>
+                <td>回调函数</td>
+            </tr>
+            </tbody>
+        </table>
+		
+		<!--########################okLayer.open()########################-->
+		<blockquote class="layui-elem-quote">
+		    <p>弹窗</p>
+		</blockquote>
+		<blockquote class="layui-elem-quote layui-quote-nm">
+			okLayer.open(title, content, width, height, successFunction, endFunction)
+		</blockquote>
+		<pre>
+okLayer.open("编辑用户", "user-edit.html", "90%", "90%", function (layero) {
+	// 打开弹窗后的操作
+}, function () {
+	// 关闭弹窗后的操作
+})
+		</pre>
+		<table class="layui-table">
+			<colgroup>
+				<col>
+				<col>
+				<col>
+			</colgroup>
+			<thead>
+			<tr>
+				<th>参数</th>
+				<th>类型</th>
+				<th>描述</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>title</td>
+				<td>String</td>
+				<td>标题</td>
+			</tr>
+			<tr>
+				<td>content</td>
+				<td>String</td>
+				<td>内容</td>
+			</tr>
+			<tr>
+				<td>width</td>
+				<td>String</td>
+				<td>弹窗宽度</td>
+			</tr>
+			<tr>
+				<td>height</td>
+				<td>String</td>
+				<td>弹窗高度</td>
+			</tr>
+			<tr>
+				<td>successFunction</td>
+				<td>Function</td>
+				<td>打开弹窗后执行函数</td>
+			</tr>
+			<tr>
+				<td>endFunction</td>
+				<td>Function</td>
+				<td>关闭弹窗后执行函数</td>
+			</tr>
+			</tbody>
+		</table>
+    </div>
+</body>
+</html>
+<script src="../../lib/layui/layui.js"></script>
+<script type="text/javascript">
+    layui.use(["util", "code"], function () {
+        let util = layui.util;
+        let code = layui.code;
+
+        util.fixbar({});
+
+        code({
+            elem: 'pre',
+            title: "代码示例"
+        });
+    });
+</script>

@@ -1,0 +1,84 @@
+@CHARSET "UTF-8";
+
+/* font style */
+.bsgrid {
+    font-size: 12px;
+}
+
+/* grid header and column */
+.bsgrid th, .bsgrid td {
+    padding: 2px;
+    border: 1px dotted #ccc;
+    background-color: white;
+    color: black;
+}
+
+/* grid header */
+.bsgrid th {
+    border-style: solid;
+    background-image: url(../../images/skins/easyui/bg.gif);
+}
+
+/* grid even index row column color */
+.bsgrid tr.even_index_row td {
+    background-color: #fafafa;
+}
+
+/* grid row hover column color */
+.bsgrid tr.row_hover td {
+    background-color: #0092dc !important;
+}
+
+/* grid selected row column color */
+.bsgrid tr.selected.selected_color td {
+    background-color: #0092dc !important;
+}
+
+/* paging toolbar out table */
+.bsgridPagingOutTab {
+    border-color: #ccc;
+    background-color: white;
+}
+
+.bsgridPaging {
+    font-size: 12px;
+    color: black;
+}
+
+/* paging toolbar button */
+.bsgridPaging .pagingBtn {
+    background: none white;
+    border-color: #ccc;
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn {
+    background: none transparent no-repeat;
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn.firstPage {
+    background-image: url(../../images/skins/easyui/pagination_first.gif);
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn.prevPage {
+    background-image: url(../../images/skins/easyui/pagination_prev.gif);
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn.nextPage {
+    background-image: url(../../images/skins/easyui/pagination_next.gif);
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn.lastPage {
+    background-image: url(../../images/skins/easyui/pagination_last.gif);
+}
+
+.bsgridPaging .gotoPageInput {
+    border-color: #ccc;
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn.gotoPage {
+    background-image: url(../../images/skins/easyui/layout_button_right.gif);
+}
+
+.bsgridPaging.pagingLittleToolbar .pagingBtn.refreshPage {
+    background-image: url(../../images/skins/easyui/pagination_load.png);
+}

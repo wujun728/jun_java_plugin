@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Fixed Table Header</title>
+    <script type="text/javascript" src="../../../plugins/jquery-1.4.4.min.js"></script>
+    <style type="text/css">
+        #searchDiv {
+            border: solid 0 #ccc;
+            width: 632px;
+            height: 310px;
+            overflow-y: scroll;
+        }
+
+        #searchTable {
+            border-collapse: collapse;
+            width: 614px;
+        }
+
+        #searchTable th, #searchTable td {
+            padding: 3px;
+            border: solid 2px #ccc;
+        }
+    </style>
+</head>
+<body style="background-color: #fff;">
+<div id="searchDiv">
+    <table id="searchTable">
+        <tr style="background-color: #eaeaea;">
+            <th>Column1</th>
+            <th>Column2</th>
+            <th>Column3</th>
+            <th>Column4</th>
+            <th>Column5</th>
+            <th>Column6</th>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var lineTrs = '';
+        for (var i = 1; i <= 20; i++) {
+            lineTrs += '<tr><td>Value' + i + '1</td><td>Value' + i + '2</td><td>Value' + i + '3</td><td>Value' + i + '4</td><td>Value' + i + '5</td><td>Value' + i + '6</td></tr>'
+        }
+        $('#searchTable').append(lineTrs);
+
+        $('#searchTable tr:eq(0)').clone().prependTo("#searchTable");
+        $('#searchTable tr:eq(0)').css({'z-index': 10, position: 'fixed'}).width($('#searchTable tr:eq(1)').width());
+
+        var thObjs = $('#searchTable tr:eq(1) th');
+        thObjs.each(function (i) {
+            var thObj = $(this);
+            $('#searchTable tr:eq(0) th:eq(' + i + ')').height(thObj.height()).width(thObj.width() + getWidth(thObj.css('border-left-width')));
+        });
+    });
+
+    function getWidth(widthObj) {
+        var widthStr = $.trim(widthObj).toLowerCase().replace('px', '');
+        var widthInt = parseInt(widthStr);
+        if (isNaN(widthInt)) {
+            return 0;
+        } else {
+            return widthInt;
+        }
+    }
+</script>
+</body>
+</html>

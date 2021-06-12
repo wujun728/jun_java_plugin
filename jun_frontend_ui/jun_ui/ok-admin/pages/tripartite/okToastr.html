@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>okToastr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+</head>
+<body>
+    <div class="ok-body">
+        <blockquote class="layui-elem-quote">
+            <p>toastr是非阻塞通知的JavaScript库</p>
+        </blockquote>
+        <pre>
+layui.use(["okToastr"], function () {
+    // 引入okToastr
+    let okToastr = layui.okToastr;
+    // 是否显示关闭按钮
+    okToastr.options.closeButton = true;
+    // 回调函数
+    okToastr.options.onShown = function () {
+        console.log("hello");
+    }
+    okToastr.options.onHidden = function () {
+        console.log("goodbye");
+    }
+    okToastr.options.onclick = function () {
+        console.log("clicked");
+    }
+    okToastr.options.onCloseClick = function () {
+        console.log("close button clicked");
+    }
+    <br/>
+    // info
+    okToastr.info("ok-admin");
+    // success
+    okToastr.success("ok-admin");
+    // warning
+    okToastr.warning("ok-admin");
+    // error
+    okToastr.error("ok-admin");
+    // remove
+    okToastr.remove();
+    // clear
+    okToastr.clear();
+});
+        </pre>
+        <button type="button" class="layui-btn" id="info">info</button>
+        <button type="button" class="layui-btn" id="success">success</button>
+        <button type="button" class="layui-btn" id="warning">warning</button>
+        <button type="button" class="layui-btn" id="error">error</button>
+        <button type="button" class="layui-btn" id="remove">remove</button>
+        <button type="button" class="layui-btn" id="clear">clear</button>
+    </div>
+    <!--js逻辑-->
+    <script src="../../lib/layui/layui.js"></script>
+    <script>
+        layui.use(["code", "okToastr"], function () {
+            let code = layui.code;
+            let okToastr = layui.okToastr;
+            let $ = layui.jquery;
+
+            code({
+                elem: "pre",
+                title: "代码示例"
+            });
+
+            // 是否显示关闭按钮
+            okToastr.options.closeButton = true;
+            // 回调函数
+            okToastr.options.onShown = function () {
+                console.log("hello");
+            }
+            okToastr.options.onHidden = function () {
+                console.log("goodbye");
+            }
+            okToastr.options.onclick = function () {
+                console.log("clicked");
+            }
+            okToastr.options.onCloseClick = function () {
+                console.log("close button clicked");
+            }
+
+            $("#info").click(function () {
+                okToastr.info("ok-admin");
+            });
+
+            $("#success").click(function () {
+                okToastr.success("ok-admin");
+            });
+
+            $("#warning").click(function () {
+                okToastr.warning("ok-admin");
+            });
+
+            $("#error").click(function () {
+                okToastr.error("ok-admin");
+            });
+
+            $("#remove").click(function () {
+                okToastr.remove();
+            });
+
+            $("#clear").click(function () {
+                okToastr.clear();
+            });
+        });
+    </script>
+</body>
+</html>

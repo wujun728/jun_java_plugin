@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Validation Form</title>
+    <link rel="stylesheet" href="../../builds/css/form.min.css"/>
+    <link rel="stylesheet" href="example.css"/>
+    <script type="text/javascript" src="../pagination/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/common.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/util.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/form.min.js"></script>
+    
+    <link rel="stylesheet" href="validationEngine/css/validationEngine.jquery.css"/>
+    <script type="text/javascript" src="validationEngine/js/languages/jquery.validationEngine-zh_CN.js"></script>
+    <script type="text/javascript" src="validationEngine/js/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="validationEngine-addition-rules.js"></script>
+</head>
+<body>
+<br />&nbsp;
+<br />&nbsp;
+<form id="formDemo" class="bsgrid_form">
+    <table>
+        <tr showType="false">
+            <td class="formLabel">ID:</td>
+            <td class="formInput"><input name="id" type="text" value="100" /></td>
+        </tr>
+        <tr>
+            <td class="formLabel"><span class="require">*</span>Account:</td>
+            <td class="formInput">
+                <input name="account" type="text" editAble="false" class="validate[required,funcCall[checkAccount]]" value="Account" />
+                <span class="inputTip" showType="add">以字母开头可含数字</span>
+                <span class="inputTip" showType="edit">不可更改</span>
+            </td>
+        </tr>
+        <tr showType="add,edit">
+            <td class="formLabel">Password:</td>
+            <td class="formInput">
+                <input name="password" type="password" value="123456" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <input type="button" value="Refresh" onclick="location.href = location.href;" />
+                &emsp;
+                <input type="button" value="view style" onclick="$('#formDemo').validationEngine('hideAll'); formObj.showForm('view');" />
+                &emsp;
+                <input type="button" value="add style" onclick="$('#formDemo').validationEngine('hideAll'); formObj.showForm('add');" />
+                &emsp;
+                <input type="button" value="edit style" onclick="$('#formDemo').validationEngine('hideAll'); formObj.showForm('edit');" />
+                &emsp;
+                <input type="button" value="Commit" onclick="doCommit();" />
+            </td>
+        </tr>
+    </table>
+</form>
+<script type="text/javascript">
+    var formObj;
+    $(function () {
+        formObj = $.fn.bsgrid_form.init('formDemo', {});
+        
+        
+        // validationEngine校验全局设置
+	    $.validationEngine.defaults.custom_error_messages = {
+	    		'custom[onlyLetterNumber]': {
+	    			'message': '* 只能填写数字与英文字母'
+	    			}
+	    	};
+        
+	 	// validationEngine校验全局设置，在表单验证结果为通过时的回调函数（不包括ajax校验）
+	    $.validationEngine.defaults.onSuccess = doCommitActually;
+	 	
+	    // 校验插件初始化，注意校验只能初始化一遍（注意需要在全局设置之后进行初始化，这样全局设置才起作用）
+        $("#formDemo").validationEngine();
+	    
+        // 隐藏所有校验提示
+        // $('#formDemo').validationEngine('hideAll');
+    });
+
+    function doCommit() {
+    	// 对form表单全部进行校验，校验后通过回调函数提交
+    	$("#formDemo").validationEngine("validate");
+    }
+    
+    function doCommitActually() {
+        var type = formObj.options.formType;
+        if (type == 'view') {
+            alert('This is view.');
+        } else if (type == 'add') {
+            alert($('#formDemo').serialize() + '&formType=' + type);
+        } else if (type == 'edit') {
+        	// editAble false not commit
+            alert($('#formDemo :not([editAble="false"])').serialize() + '&formType=' + type);
+        } else {
+            alert('None.');
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>With Ajax Validation Form</title>
+    <link rel="stylesheet" href="../../builds/css/form.min.css"/>
+    <link rel="stylesheet" href="example.css"/>
+    <script type="text/javascript" src="../pagination/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/common.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/util.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/form.min.js"></script>
+    
+    <link rel="stylesheet" href="validationEngine/css/validationEngine.jquery.css"/>
+    <script type="text/javascript" src="validationEngine/js/languages/jquery.validationEngine-zh_CN.js"></script>
+    <script type="text/javascript" src="validationEngine/js/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="validationEngine-addition-rules.js"></script>
+</head>
+<body>
+<br />&nbsp;
+<br />说明：示例中仅当Account所填值为"Account"时，才满足唯一性校验。
+<br />&emsp;&emsp;&emsp;使用validationEngine进行form提交校验时，提交button的type值必须是submit。
+<form id="formDemo" class="bsgrid_form">
+    <table>
+        <tr showType="false">
+            <td class="formLabel">ID:</td>
+            <td class="formInput"><input name="id" type="text" value="100" /></td>
+        </tr>
+        <tr>
+            <td class="formLabel"><span class="require">*</span>Account:</td>
+            <td class="formInput">
+            	<input id="formType" type="hidden" />
+                <input id="account" name="account" type="text" editAble="false" class="validate[required,funcCall[checkAccount],ajax[checkAccountUnique]]" value="Account" />
+                <span class="inputTip" showType="add">须唯一且以字母开头可含数字</span>
+                <span class="inputTip" showType="edit">不可更改</span>
+            </td>
+        </tr>
+        <tr showType="add,edit">
+            <td class="formLabel">Password:</td>
+            <td class="formInput">
+                <input name="password" type="password" value="123456" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <input type="button" value="Refresh" onclick="location.href = location.href;" />
+                &emsp;
+                <input type="button" value="view style" onclick="$('#formType').val('view'); $('#formDemo').validationEngine('hideAll'); formObj.showForm('view');" />
+                &emsp;
+                <input type="button" value="add style" onclick="$('#formType').val('add'); $('#formDemo').validationEngine('hideAll'); formObj.showForm('add');" />
+                &emsp;
+                <input type="button" value="edit style" onclick="$('#formType').val('edit'); $('#formDemo').validationEngine('hideAll'); formObj.showForm('edit');" />
+                &emsp;
+                <input type="submit" value="Commit" />
+            </td>
+        </tr>
+    </table>
+</form>
+<script type="text/javascript">
+    var formObj;
+    $(function () {
+        formObj = $.fn.bsgrid_form.init('formDemo', {});
+        
+        
+     	// validationEngine校验全局设置，自定义 ajax 验证，注意需要在调用$("#formDemo").validationEngine()之前写规则，否则规则不起作用且报错：Uncaught TypeError: Cannot read property 'extraData' of undefined
+        $.validationEngineLanguage.allRules["checkAccountUnique"] = {
+        	// 校验参数：validationEngine默认传参数fieldId(即表单的id，表单的id值非必须设置，如果不设置则validationEngine会给其设定一个值)，以及fieldValue(即表单的value)
+			"url": 'validation-ajax.json.jsp', // Ajax 校验提交地址，需要返回json值[String,Boolean]，第一个值是接收到表单的fieldId的值，第二个值验证通过返回 true而不通过返回 false
+			// "extraData":"name=eric", // 额外参数-静态，设置后不可修改
+			"extraDataDynamic": "#formType", // 额外参数-动态，指定的是表单的id，多个参数的格式：['#formType', '#param']
+			// "alertTextOk": "* 该账号可用",
+			// "alertTextLoad": "* 正在验证账号是否可用",
+			"alertText":"* 该账号已被使用" // 仅对非唯一进行提示
+        };
+        
+	 	// validationEngine校验全局设置
+	    $.validationEngine.defaults.onSuccess = false;
+        $.validationEngine.defaults.ajaxFormValidation = true;
+        $.validationEngine.defaults.ajaxFormValidationURL = 'validation-ajax.json.jsp'; // 校验提交地址，此处的地址不必和checkAccountUnique rules的地址一样，因为接受参数的方式不一样，但需要返回的一样的json值
+        $.validationEngine.defaults.ajaxFormValidationMethod = 'post'; // 设置 Ajax 提交时，发送数据的方式
+        $.validationEngine.defaults.onAjaxFormComplete = function(status, form, json, options){
+			console.log('status=' + status);
+			console.log('json=' + json);
+			// 通过status == true 以及后台返回的值检验是否校验成功
+			if(status && json.toString().indexOf('true') > -1 ){
+			    doCommitActually();
+			}
+        };
+	 	
+	    // 校验插件初始化，注意校验只能初始化一遍（注意需要在全局设置之后进行初始化，这样全局设置才起作用）
+        $("#formDemo").validationEngine();
+	    
+        // 隐藏所有校验提示
+        // $('#formDemo').validationEngine('hideAll');
+        
+        // 对form表单全部进行校验，校验后通过回调函数提交
+    	// $("#formDemo").validationEngine("validate");
+    });
+
+    function doCommitActually() {
+        var type = formObj.options.formType;
+        if (type == 'view') {
+            alert('This is view.');
+        } else if (type == 'add') {
+            alert($('#formDemo').serialize() + '&formType=' + type);
+        } else if (type == 'edit') {
+        	// editAble false not commit
+            alert($('#formDemo :not([editAble="false"])').serialize() + '&formType=' + type);
+        } else {
+            alert('None.');
+        }
+    }
+</script>
+</body>
+</html>

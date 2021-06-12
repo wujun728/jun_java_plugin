@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>layedit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+</head>
+<body>
+    <div class="ok-body">
+        <textarea id="editor" style="display: none;">
+            <p>欢迎使用 <b>ok-admin v2.0</b> <a href="https://gitee.com/bobi1234/ok-admin" target="_blank">Link</a> </p>
+        </textarea>
+        <br/>
+        <button type="button" class="layui-btn" id="contentBtn">获取HTML内容</button>
+        <button type="button" class="layui-btn" id="textBtn">获取TEXT内容</button>
+        <button type="button" class="layui-btn" id="selectionBtn">获取选中文本内容</button>
+    </div>
+    <!--js逻辑-->
+    <script src="../../lib/layui/layui.js"></script>
+    <script type="text/javascript">
+        layui.use(["layedit"], function () {
+            let $ = layui.jquery;
+            let layedit = layui.layedit;
+
+            let index = layedit.build("editor");
+
+            $("#contentBtn").click(function () {
+                alert(layedit.getContent(index));
+            });
+
+            $("#textBtn").click(function () {
+                alert(layedit.getText(index));
+            });
+
+            $("#selectionBtn").click(function () {
+                alert(layedit.getSelection(index));
+            });
+        });
+    </script>
+</body>
+</html>

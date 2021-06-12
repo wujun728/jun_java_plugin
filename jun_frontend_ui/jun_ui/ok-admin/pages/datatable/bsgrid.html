@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>bsgrid</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../../css/oksub.css">
+	<link rel="stylesheet" href="../../lib/jquery.bsgrid/builds/merged/bsgrid.all.min.css">
+	<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+	<style>
+		#bsgrid {
+			width: 100%;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+<div class="ok-body">
+	<!--模糊搜索区域-->
+	<div class="layui-row">
+		<form class="layui-form layui-col-md12 ok-search">
+			<input class="layui-input" placeholder="开始日期" autocomplete="off" id="startTime" name="startTime">
+			<input class="layui-input" placeholder="截止日期" autocomplete="off" id="endTime" name="endTime">
+			<input class="layui-input" placeholder="账号" autocomplete="off" name="username">
+			<button class="layui-btn" lay-submit="" lay-filter="search">
+				<i class="layui-icon">&#xe615;</i>
+			</button>
+		</form>
+	</div>
+	<!--数据表格-->
+	<table id="bsgrid">
+		<tr>
+			<th w_index="id" w_check="true"></th>
+			<th w_index="id">ID</th>
+			<th w_index="username" w_align="left">账号</th>
+			<th w_index="password" w_align="left">密码</th>
+			<th w_index="nickname">昵称</th>
+			<th w_index="name">姓名</th>
+			<th w_index="role" w_render="roleFmt" w_align="left">角色</th>
+			<th w_index="status" w_render="statusFmt">状态</th>
+			<th w_index="email" w_align="left">邮箱</th>
+			<th w_index="phone">手机</th>
+			<th w_index="createTime">创建时间</th>
+			<th w_index="updateTime">修改时间</th>
+			<th w_render="toolbar" w_align="center">工具栏</th>
+		</tr>
+	</table>
+</div>
+<!--js逻辑-->
+<script src="../../lib/layui/layui.js"></script>
+<script src="../../lib/jquery.bsgrid/plugins/jquery-1.4.4.min.js"></script>
+<script src="../../lib/jquery.bsgrid/builds/js/lang/grid.zh-CN.min.js"></script>
+<script src="../../lib/jquery.bsgrid/builds/merged/bsgrid.all.min.js"></script>
+<script>
+	layui.use(["element", "util", "form", "laydate", "okMock", "okUtils"], function () {
+		let util = layui.util;
+		let okMock = layui.okMock;
+		let form = layui.form;
+		let laydate = layui.laydate;
+		okLoading.close();
+		util.fixbar({});
+
+		laydate.render({elem: "#startTime", type: "datetime"});
+		laydate.render({elem: "#endTime", type: "datetime"});
+
+		let gridObj = $.fn.bsgrid.init("bsgrid", {
+			url: okMock.api.bsgrid,
+			pageSizeSelect: true,
+			pageSize: 20,
+			rowHoverColor: true,
+			complete: function () {
+			}
+		});
+
+		form.on("submit(search)", function (data) {
+			gridObj.search(data.field);
+			return false;
+		});
+	});
+
+	function roleFmt(row) {
+		let role = row.role;
+		if (role == 0) {
+			return "超级会员";
+		} else if (role == 1) {
+			return "普通用户";
+		}
+	}
+
+	function statusFmt(row) {
+		let status = row.status;
+		if (status == 0) {
+			return "已启用";
+		} else if (status == 1) {
+			return "已停用";
+		}
+	}
+
+	function toolbar(row) {
+		let id = row.id;
+		let html = "";
+		html += '<a title="编辑" href="javascript:;" onclick="updateUser(\'' + id + '\')"><span class="ok-icon">&#xe649;</span></a>';
+		html += '<a title="删除" href="javascript:;" onclick="deleteUser(\'' + id + '\')"><span class="ok-icon">&#xe6b4;</span></a>';
+		return html;
+	}
+
+	function updateUser(id) {
+		alert("updateUser id=" + id);
+	}
+
+	function deleteUser(id) {
+		alert("deleteUser id=" + id);
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,target-densitydpi=device-dpi">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+
+    <title>Html5 bsgrid Test</title>
+    <!-- grid.simple.min.css, grid.simple.min.js -->
+    <link rel="stylesheet" href="../../builds/merged/bsgrid.all.min.css"/>
+    <style type="text/css">
+        html {
+            font-size: 62.5%;
+        }
+
+        @media (min-width: 640px) {
+            .bsgrid, .bsgridPaging, .bsgrid_form, .bsgrid_form .formInput .inputTip .bsgrid_icon {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (min-width: 960px) {
+            .bsgrid, .bsgridPaging, .bsgrid_form, .bsgrid_form .formInput .inputTip .bsgrid_icon {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (min-width: 1100px) {
+            .bsgrid, .bsgridPaging, .bsgrid_form, .bsgrid_form .formInput .inputTip .bsgrid_icon {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/bsgrid.all.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" width="5%;">XH</th>
+        <th w_index="CHAR" w_align="left" width="10%;">CHAR</th>
+        <th w_index="TEXT" w_length="100" w_align="left" width="55%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_render="operate" width="15%;">Operate</th>
+    </tr>
+</table>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: '../grid/data/json.jsp',
+            // autoLoad: false,
+            pageSizeSelect: true,
+            pageSize: 10
+        });
+    });
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>'
+                + "&emsp;"
+                + '<a href="#" onclick="if(confirm(\'Delete?\')){alert(\'delete\')}else{alert(\'none\')};">Delete</a>';
+    }
+</script>
+</body>
+</html>

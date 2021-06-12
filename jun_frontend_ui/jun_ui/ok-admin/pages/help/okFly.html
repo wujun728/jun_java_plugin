@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>okFly</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../../css/oksub.css">
+	<style>
+		.ok-body {
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+<div class="ok-body">
+	<!--########################okLayer.confirm()########################-->
+	<blockquote class="layui-elem-quote">
+		<p>okFly（网络请求）</p>
+	</blockquote>
+	<blockquote class="layui-elem-quote layui-quote-nm">
+		okFly.get(url, params, options).then(function(res){
+		console.log(res);
+		});
+	</blockquote>
+	<pre>
+/**get请求*/
+okFly.get("/test", {a:1,b:2});
+
+/**post请求*/
+okFly.post("/test", {a:1,b:2}).then(function(res){
+  console.log(res);
+}).catch(function(err) {
+  console.log(err);
+});
+        </pre>
+	<table class="layui-table">
+		<colgroup>
+			<col>
+			<col>
+			<col>
+		</colgroup>
+		<thead>
+		<tr>
+			<th>参数</th>
+			<th>类型</th>
+			<th>描述</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>url</td>
+			<td>String</td>
+			<td>请求地址</td>
+		</tr>
+		<tr>
+			<td>params</td>
+			<td>Object</td>
+			<td>请求参数</td>
+		</tr>
+		<tr>
+			<td>options</td>
+			<td>Object</td>
+			<td>配置项</td>
+		</tr>
+		</tbody>
+	</table>
+
+	<blockquote class="layui-elem-quote layui-quote-nm">
+		options: 配置说明
+	</blockquote>
+	<table class="layui-table">
+		<colgroup>
+			<col>
+			<col>
+			<col>
+		</colgroup>
+		<thead>
+		<tr>
+			<th>参数</th>
+			<th>类型</th>
+			<th>描述</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>headers</td>
+			<td>Object</td>
+			<td>配置请求头</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
+<script src="../../lib/layui/layui.js"></script>
+<script type="text/javascript">
+	layui.use(["util", "code", "okFly"], function () {
+		let util = layui.util;
+		let code = layui.code;
+		let okFly = layui.okFly;
+
+		util.fixbar({});
+
+		code({
+			elem: 'pre',
+			title: "代码示例"
+		});
+		okFly.get("api/music/listmusic", {
+			id: 8,
+			a: "1",
+			b: 2
+		}, {
+			headers: {
+				"adfasd": 456465
+			}
+		}).then(function (res) {
+			console.log(res);
+		})
+
+		okFly.post("api/music/listmusic", {
+			id: 8,
+			a: "1",
+			b: 2
+		}, {
+			headers: {
+				"hello": 456465
+			}
+		}).then(function (res) {
+			console.log(res);
+		})
+	});
+</script>

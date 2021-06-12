@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>屏蔽词</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+</head>
+<body>
+<div class="ok-body">
+    <!--form表单-->
+    <form class="layui-form layui-form-pane ok-form">
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">屏蔽词</label>
+            <div class="layui-input-block">
+                <textarea name="content" placeholder="请输入屏蔽词" class="layui-textarea" lay-verify="required"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--js逻辑-->
+<script src="../../lib/layui/layui.js"></script>
+<script type="text/javascript">
+    layui.use(["element", "form"], function () {
+        let $ = layui.jquery;
+        let content = "aa|bb|cc|dd";
+        $("textarea[name='content']").val(content);
+    });
+</script>
+</body>
+</html>

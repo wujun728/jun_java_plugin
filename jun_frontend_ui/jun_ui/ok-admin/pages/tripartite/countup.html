@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>让数字动起来</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+   <link rel="stylesheet" href="../../css/common.css">
+   <style>
+      .ok-body {
+         padding: 20px;
+      }
+
+      blockquote {
+         font-size: 16px;
+      }
+      .b1 {
+         border: 1px solid #EAEBF0;
+      }
+      .layui-card-header {
+         font-size: 16px;
+      }
+      .layui-card-body {
+         font-size: 20px;
+      }
+   </style>
+</head>
+<body class="ok-body-scroll">
+<div class="ok-body">
+   <blockquote class="layui-elem-quote">
+      <p>让数字动起来 okCountUp</p>
+      <p>1. 创建对象</p>
+      <p>2. 调用对象的start方法执行</p>
+   </blockquote>
+   <pre lay-title="JavaScript">
+layui.use('okCountUp', function () {
+   var countUp = layui.okCountUp;
+   var count_up = new countUp({
+      target: $('#countUp1'),
+      startVal:5, //目标开始的值，默认值为0
+      endVal: 1000, //到达目标值,默认值为元素的值
+      decimals:2, //小数位数，默认值为0
+      duration: 5, //动画持续时间为秒，默认值为2
+   });
+   count_up.start();
+});
+   </pre>
+   <div class="layui-row layui-col-space15">
+      <div class="layui-col-md3">
+         <div class="layui-card b1">
+            <div class="layui-card-header">最简单的例子</div>
+            <div class="layui-card-body">
+               <div id="countUp1"></div>
+            </div>
+         </div>
+      </div>
+      <div class="layui-col-md3">
+         <div class="layui-card b1">
+            <div class="layui-card-header">指定延时动画</div>
+            <div class="layui-card-body">
+               <div id="countUp2"></div>
+            </div>
+         </div>
+      </div>
+      <div class="layui-col-md3">
+         <div class="layui-card b1">
+            <div class="layui-card-header">指定小数位数</div>
+            <div class="layui-card-body">
+               <div id="countUp3"></div>
+            </div>
+         </div>
+      </div>
+      <div class="layui-col-md3">
+         <div class="layui-card b1">
+            <div class="layui-card-header">随机数字</div>
+            <div class="layui-card-body">
+               <div id="countUp4"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+</body>
+</html>
+<script src="../../lib/layui/layui.js"></script>
+<script type="text/javascript">
+   layui.use(['code', 'jquery', 'okCountUp'], function () {
+      var $ = layui.jquery,
+         countUp = layui.okCountUp,
+         code = layui.code;
+      code({
+         elem: 'pre'
+      });
+      new countUp({
+         target: $('#countUp1'),
+         endVal: 1000,
+      }).start();
+      new countUp({
+         target: $('#countUp2'),
+         duration: 5,//动画的持续时间为5秒默认为2秒
+         endVal: 2000,
+      }).start();
+      new countUp({
+         target: $('#countUp3'),
+         decimals: 2,//小数位数
+         endVal: 3000,
+      }).start();
+      new countUp({
+         target: $('#countUp4'),
+         duration: 8,
+         decimals: 2,
+         endVal: (Math.random() * 1900 + 100),
+      }).start();
+
+   });
+</script>

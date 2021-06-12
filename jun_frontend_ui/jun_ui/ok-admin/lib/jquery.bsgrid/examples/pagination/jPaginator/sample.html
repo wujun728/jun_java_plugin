@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Grid With jPaginator</title>
+    <!-- grid.min.css, common.min.js, grid.min.js -->
+    <link rel="stylesheet" href="../../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../../builds/merged/bsgrid.all.min.js"></script>
+    <link rel="stylesheet" href="css/jPaginator.css"/>
+    <link rel="stylesheet" href="sample.css"/>
+    <script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script type="text/javascript" src="js/jPaginator-min.js"></script>
+    <script type="text/javascript">
+        $.fn.bsgrid.initPaging = function (options) {
+            //
+        };
+        $.fn.bsgrid.setPagingValues = function (options) {
+            $("#searchTable_pt").jPaginator({
+                nbPages: options.totalPages,
+                selectedPage: options.curPage,
+                overBtnLeft: '#searchTable_pt .o_left',
+                overBtnRight: '#searchTable_pt .o_right',
+                maxBtnLeft: '#searchTable_pt .m_left',
+                maxBtnRight: '#searchTable_pt .m_right',
+                minSlidesForSlider: 0,
+                speed: 1,
+                onPageClicked: function (a, num) {
+                    $.fn.bsgrid.getGridObj(options.gridId).page(num);
+                }
+            });
+        };
+    </script>
+</head>
+<body style="background-color: #fff;">
+<table id="searchTable">
+    <tr>
+        <th w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_index="TEXT" w_align="left" width="30%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<div id="searchTable_pt" class="jPaginator-adapter">
+    <!-- optional left control buttons -->
+    <nav class="m_left"></nav>
+    <nav class="o_left"></nav>
+
+    <div class="paginator_p_wrap">
+        <div class="paginator_p_bloc">
+            <!--<a class="paginator_p"></a> // page number : dynamically added -->
+        </div>
+    </div>
+
+    <!-- optional right control buttons -->
+    <nav class="o_right"></nav>
+    <nav class="m_right"></nav>
+
+    <!-- slider -->
+    <div class="paginator_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+        <a class="ui-slider-handle ui-state-default ui-corner-all" href="#"></a>
+    </div>
+</div>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: '../../grid/data/json.jsp',
+            // autoLoad: false,
+            pageSize: 2
+        });
+        $('#searchTable_pt_outTab').css('border-width', '0');
+    });
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

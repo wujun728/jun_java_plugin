@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>捐助-支持长远发展，感谢您的认可！</title>
+    <!-- grid.simple.min.css, grid.simple.min.js -->
+    <link rel="stylesheet" href="builds/merged/bsgrid.all.min.css"/>
+    <link rel="stylesheet" href="builds/css/skins/grid_bootstrap.min.css"/>
+    <style type="text/css">
+        body {
+            font-size: 16px;
+            color: #555;
+            line-height: 28px;
+            background-color: white;
+            padding: 3px;
+        }
+
+        .title {
+            font-weight: 700;
+        }
+
+        #searchTable {
+            width: 410px;;
+        }
+    </style>
+    <script type="text/javascript" src="plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="builds/merged/bsgrid.all.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<table>
+    <tr>
+        <td class="title">支付宝：</td>
+        <td class="title">微信：</td>
+    </tr>
+    <tr>
+        <td><img src="documention/images/donate/zhifubao.jpg" width="200px" height="200px"/></td>
+        <td><img src="documention/images/donate/weixin.png" width="200px" height="200px"/></td>
+    </tr>
+</table>
+<span class="title" id="countMoney">捐助总额：</span>
+<table id="searchTable">
+    <tr>
+        <th w_index="date" width="25%;">日期</th>
+        <th w_index="name" width="25%;">姓名</th>
+        <th w_index="money" w_align="right" width="25%;">数额</th>
+        <th w_index="type" width="25%;">捐助方式</th>
+    </tr>
+</table>
+<script type="text/javascript">
+    var localData = [
+        {"date": "2016.11.24", "name": "微信未显示", "money": "0.50元", "type": "微信"},
+        {"date": "2016.11.11", "name": "微信未显示", "money": "30.00元", "type": "微信"},
+        {"date": "2016.11.09", "name": "微信未显示", "money": "1.00元", "type": "微信"},
+        {"date": "2016.11.08", "name": "微信未显示", "money": "0.50元", "type": "微信"},
+        {"date": "2016.10.12", "name": "微信未显示", "money": "5.00元", "type": "微信"},
+        {"date": "2016.10.01", "name": "微信未显示", "money": "100.00元", "type": "微信"},
+        {"date": "2016.09.20", "name": "微信未显示", "money": "10.00元", "type": "微信"},
+        {"date": "2016.09.12", "name": "四有", "money": "1.00元", "type": "支付宝"},
+        {"date": "2016.08.12", "name": "微信未显示", "money": "3.00元", "type": "微信"},
+        {"date": "2016.08.09", "name": "陈伟", "money": "0.50元", "type": "支付宝"},
+        {"date": "2016.07.09", "name": "宋颖超", "money": "5.00元", "type": "微信"},
+        {"date": "2016.06.17", "name": "(Miss)", "money": "4.00元", "type": "微信"},
+        {"date": "2016.06.15", "name": "(Miss)", "money": "1.00元", "type": "微信"},
+        {"date": "2016.05.04", "name": "AndyChen", "money": "9.00元", "type": "微信"},
+        {"date": "2016.04.26", "name": "张_San", "money": "10.00元", "type": "微信"},
+        {"date": "2016.04.22", "name": "德昌", "money": "10.00元", "type": "支付宝"},
+        {"date": "2016.04.02", "name": "刘付强", "money": "4.00元", "type": "微信"},
+        {"date": "2016.03.17", "name": "锋", "money": "5.00元", "type": "支付宝"},
+        {"date": "2016.03.01", "name": "EndualSX", "money": "5.00元", "type": "支付宝"},
+        {"date": "2016.03.01", "name": "黄杰", "money": "10.00元", "type": "支付宝"},
+        {"date": "2015.10.14", "name": "周昱昊", "money": "5.00元", "type": "支付宝"},
+        {"date": "2015.08.19", "name": "水枪首", "money": "0.10元", "type": "支付宝"},
+        {"date": "2015.07.24", "name": "粉饰太平", "money": "2.00元", "type": "微信"},
+        {"date": "2015.07.15", "name": "韦德shen", "money": "5.00元", "type": "微信"},
+        {"date": "2015.07.13", "name": "永成", "money": "11.10元", "type": "支付宝"},
+        {"date": "2015.07.08", "name": "宋强强", "money": "1.00元", "type": "支付宝"},
+        {"date": "2015.07.03", "name": "贡华", "money": "9.90元", "type": "支付宝"},
+        {"date": "2015.06.28", "name": "胡正伟", "money": "20.00元", "type": "支付宝"},
+        {"date": "2015.06.26", "name": "monster", "money": "0.20元", "type": "微信"},
+        {"date": "2015.06.05", "name": "Pany", "money": "100.00元", "type": "微信"},
+        {"date": "2015.06.02", "name": "黄国杰", "money": "10.00元", "type": "支付宝"},
+        {"date": "2015.04.03", "name": "王明杰", "money": "30.00元", "type": "支付宝"},
+        {"date": "2015.03.12", "name": "汤飞飞", "money": "9.90元", "type": "支付宝"},
+        {"date": "2015.02.25", "name": "王鑫", "money": "88.00元", "type": "支付宝"},
+        {"date": "2015.01.27", "name": "李凯鹏", "money": "9.90元", "type": "支付宝"},
+        {"date": "2015.01.22", "name": "妍", "money": "9.90元", "type": "支付宝"},
+        {"date": "2014.12.08", "name": "May", "money": "21.00元", "type": "微信"}
+    ];
+    var countMoney = 0;
+    $.each(localData, function (i, data) {
+        if (!isNaN(data['money'].replace('元', ''))) {
+            countMoney += parseFloat(data['money'].replace('元', ''));
+        }
+    });
+    $('#countMoney').append(countMoney.toFixed(2) + '元');
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            localData: localData,
+            pageSize: 5,
+            pageSizeSelect: true,
+            pagingLittleToolbar: true,
+            pageIncorrectTurnAlert: false
+        });
+    });
+</script>
+</body>
+</html>

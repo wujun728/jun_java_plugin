@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Edit Grid</title>
+    <!-- grid.all.min.css, grid.all.min.js -->
+    <link rel="stylesheet" href="../../builds/merged/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="../../plugins/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../builds/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../builds/merged/bsgrid.all.min.js"></script>
+</head>
+<body style="background-color: #fff;">
+<p />
+<input type="button" value="Get Checked Ids" onclick="getCheckedIds()"  />
+&emsp;
+<input type="button" value="Active Grid Edit mode" onclick="gridObj.activeGridEditMode()"  />
+&emsp;
+<input type="button" value="Get Changed Rows Number" onclick="alert(gridObj.getChangedRowsIndexs().length)"  />
+&emsp;
+<input type="button" value="Get Changed Rows Indexs" onclick="alert(gridObj.getChangedRowsIndexs().toString())"  />
+&emsp;
+<input type="button" value="Get Changed Ids" onclick="getChangedIds()"  />
+&emsp;
+<input type="button" value="Get Rows Changed Columns value" onclick="getRowsChangedColumnsValue()"  />
+&emsp;
+
+<p />
+<input type="button" value="Delete Row 0" onclick="gridObj.deleteRow(0)"  />
+&emsp;
+<input type="button" value="Add New Edit Row" onclick="gridObj.addNewEditRow()"  />
+<p />
+<table id="searchTable">
+    <tr>
+        <th w_check="true" width="3%;"></th>
+        <th w_edit="text" w_index="XH" width="5%;">XH</th>
+        <th w_index="ID" width="5%;">ID</th>
+        <th w_edit="text" w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+        <th w_edit="textarea" w_index="TEXT" w_align="left" width="27%;">TEXT</th>
+        <th w_index="DATE" width="15%;">DATE</th>
+        <th w_index="TIME" width="15%;">TIME</th>
+        <th w_index="NUM" width="5%;">NUM</th>
+        <th w_render="operate" width="10%;">Operate</th>
+    </tr>
+</table>
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+        	//autoLoad: false,
+            url: 'data/json.jsp',
+            pageSizeSelect: true,
+            pageSize: 10,
+            extend: {
+                settings: {
+                    supportGridEdit: true, // default false, if support extend grid edit
+                    supportGridEditTriggerEvent: 'rowClick' // default 'rowClick', values: ''(means no need Trigger), 'rowClick', 'rowDoubleClick', 'cellClick', 'cellDoubleClick'
+                }
+            }
+        });
+    });
+
+    function getCheckedIds() {
+    	var records = gridObj.getCheckedRowsRecords();
+        var ids = '';
+        for(var i = 0; i < records.length; i++) {
+        	ids += ',' + gridObj.getRecordIndexValue(records[i], 'ID');
+        }
+        alert(ids.length > 0 ? ids.substring(1) : '');
+    }
+
+    function getChangedIds() {
+    	var records = gridObj.getChangedRowsOldRecords();
+        var ids = '';
+        for(var i = 0; i < records.length; i++) {
+        	ids += ',' + gridObj.getRecordIndexValue(records[i], 'ID');
+        }
+        alert(ids.length > 0 ? ids.substring(1) : '');
+    }
+
+    function getRowsChangedColumnsValue() {
+        var valsStr = '';
+        $.each(gridObj.getRowsChangedColumnsValue(), function (key, object) {
+            valsStr += '\n' + key + ' [';
+            var cvalsStr = '';
+            $.each(object, function (ckey, cvalue) {
+                cvalsStr += ', ' + ckey + ': ' + cvalue;
+            });
+            valsStr += cvalsStr.substring(2) + ']';
+        });
+        alert(valsStr.length > 0 ? valsStr.substring(1) : '');
+    }
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

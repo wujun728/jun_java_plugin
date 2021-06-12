@@ -1,0 +1,3 @@
+﻿# 忽略.idea目录及其子目录、子文件
+.idea/
+node_modules/

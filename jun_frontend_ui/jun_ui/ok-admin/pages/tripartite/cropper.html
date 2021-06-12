@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>图片裁剪工具</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+   <link rel="stylesheet" href="../../css/common.css">
+   <style>
+      .ok-body {
+         padding: 20px;
+      }
+
+      blockquote {
+         font-size: 16px;
+      }
+   </style>
+</head>
+<body>
+<div class="ok-body ok-body-scroll">
+   <blockquote class="layui-elem-quote">
+      <p>图片裁剪工具</p>
+      <p><a target="_blank" href="http://fengyuanchen.github.io/cropper/">cropper</a>
+      </p>
+   </blockquote>
+   <pre lay-title="JavaScript">
+
+   </pre>
+
+</div>
+</body>
+</html>
+<script src="../../lib/layui/layui.js"></script>
+<script type="text/javascript">
+  layui.use(['code', 'jquery'], function () {
+    var $ = layui.jquery,
+      code = layui.code;
+    code({
+      elem: 'pre'
+    });
+  });
+</script>

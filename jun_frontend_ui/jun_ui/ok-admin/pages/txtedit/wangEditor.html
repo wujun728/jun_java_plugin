@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>wangEditor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+</head>
+<body>
+    <div class="ok-body">
+        <div id="editor">
+            <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+        </div>
+        <br/>
+        <button type="button" class="layui-btn" onclick="setContent()">设置内容</button>
+        <button type="button" class="layui-btn" onclick="appendContent()">追加内容</button>
+        <button type="button" class="layui-btn" onclick="clearContent()">清空内容</button>
+        <button type="button" class="layui-btn" onclick="getHtmlContent()">获取HTML内容</button>
+        <button type="button" class="layui-btn" onclick="getTextContent()">获取TEXT内容</button>
+    </div>
+    <!--js逻辑-->
+    <script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.min.js"></script>
+    <script type="text/javascript">
+        let E = window.wangEditor;
+        let editor = new E("#editor");
+        editor.create();
+
+        function setContent() {
+            editor.txt.html("<p>欢迎使用 <b>ok-admin v2.0</b> :) </p>");
+        }
+
+        function appendContent() {
+            editor.txt.append("<p>追加的内容</p>");
+        }
+
+        function clearContent() {
+            editor.txt.clear();
+        }
+
+        function getHtmlContent() {
+            alert(editor.txt.html());
+        }
+
+        function getTextContent() {
+            alert(editor.txt.text());
+        }
+    </script>
+</body>
+</html>

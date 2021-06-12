@@ -1,0 +1,40 @@
+From: open_icon_library png 16x16
+      path: open_icon_library-full/icons/png/16*16/actions
+
+help-about-3.png
+dialog-accept-2.png
+list-add-6.png
+edit-copy-7.png
+edit-cut-7.png
+edit-delete-6.png
+edit-delete-7.png
+documentation.png
+download.png
+page-edit.png
+edit-find-8.png
+flag.png
+help.png
+mail-generic.png
+edit-paste-7.png
+document-print-2.png
+arrow-refresh.png
+document-save-6.png
+system-search-6.png
+view-sort-descending-2.png
+view-sort-ascending-2.png
+view-list-details-5.png
+window-close.png
+window-close-4.png
+configure-2.png
+
+
+sort-view.gif           merge view-sort-descending-2.png and view-sort-ascending-2.png by GIMP
+
+
+
+
+
+From: open_icon_library png 16x16
+      path: open_icon_library-full/icons/png/16*16/apps
+
+system-config-boot.png

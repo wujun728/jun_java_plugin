@@ -1,0 +1,85 @@
+@import "../css/common.css";
+@import "../lib/layui/css/layui.css";
+@import "okadmin.animate.css";
+@import "../lib/loading/okLoading.css";
+
+/**控制台样式*/
+.console .map-body{height:360px}
+.console .map-china{height:360px}
+.console .home .layui-card{-webkit-box-shadow:0 0 20px rgba(0,0,0,.08);box-shadow:0 0 20px rgba(0,0,0,.08);border-radius:5px}
+.console .home .layui-card{-webkit-box-shadow:0 0 20px rgba(0,0,0,.08);box-shadow:0 0 20px rgba(0,0,0,.08);border-radius:5px}
+.console .ok-card-body{padding:20px;position:relative;width:100%;box-sizing:border-box}
+.console .ok-card-body .stat-text{color:#455a64;font-size:24px;padding-bottom:5px}
+.console .ok-card-body .stat-heading{color:#99abb4}
+.console .ok-card-body .img-box{display:inline-block;vertical-align:middle;padding-right:20px}
+.console .ok-card-body .img-box img{width:60px}
+.console .ok-card-body .cart-r{display:inline-block;vertical-align:middle}
+.console .progress-box{margin-bottom:20px;display:flex}
+.console .progress-box .por-title{font-weight:600;color:#868e96;padding-bottom:5px}
+.console .progress-box .por-txt{font-size:13px;padding-bottom:5px}
+.console .progress-box .pro-head{width:50px;height:50px;line-height:50px;display:inline-block;vertical-align:middle;float:left;overflow:hidden;padding-right:20px}
+.console .progress-box .pro-head img{background:#bea8ab;width:100%;height:100%;border-radius:100%}
+.console .progress-box .pro-data{display:inline-block;vertical-align:middle;flex:1}
+.console .ok-card-body .stat-text{color:#455a64;font-size:24px;padding-bottom:5px}
+.console .ok-card-body .stat-heading{color:#99abb4}
+.console .ok-card-body .img-box{display:inline-block;vertical-align:middle}
+.console .ok-card-body .img-box img{width:60px}
+.console .ok-card-body .cart-r{display:inline-block;vertical-align:middle;padding-left:20px}
+
+
+/*控制台1*/
+.console1 .data-body .w-img{width:60px;height:60px}
+.console1 .data-body .w-img img{width:100%;height:100%}
+.console1 .line-home-a{height:60px}
+.console1 .data-body .media-cont .tit{font-size:16px;padding-bottom:5px}
+.console1 .data-body .media-cont .num{font-size:24px;line-height:22px}
+.console1 .data-body .media-cont{-ms-flex-align:center!important;align-items:center!important;-ms-flex:1 1 auto;flex:1 1 auto}
+.console1 .data-body{display:flex;padding:20px;padding-bottom:0;color:#333}
+
+/*登录*/
+#login .layui-icon{font-size:16px!important}
+#login .mag0{margin:0!important}
+#login ::selection{background:#ff5722;color:#fff}
+#login .layui-red{color:red!important;font-weight:700}
+#login .layui-blue{color:#01aaed!important}
+#login .layui-form-item.layui-input-focus input{border-color:#ff6700!important}
+#login .layui-block{width:100%!important}
+#login{width:100%;height:100%;background-image:url(../images/login-bg.jpg);position:relative}
+#login form.layui-form{padding:0 20px 20px 20px;width:300px;position:absolute;left:50%;top:50%;margin:-150px 0 0 -150px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;background:#fff;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;box-shadow:0 0 50px #009688}
+#login .login_face{margin:-55px auto 20px;width:100px;height:100px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;border:5px solid #fff;overflow:hidden;box-shadow:0 0 30px #009688;background:#fff}
+#login .login_face img{width:100%}
+#login .layui-form-item{position:relative}
+#login .layui-form-item label{position:absolute;color:#757575;left:10px;top:9px;line-height:20px;background:0 0;padding:0 5px;font-size:14px;cursor:text}
+#login #code{padding-right:110px}
+#login .captcha-box .img{position:absolute;top:1px;bottom:1px;right:1px;cursor:pointer;width:100px;background:#c4e1ce}
+#login .layui-form-item input{background:#fff!important}
+#login .layui-form-item input,#login .layui-form-item label{transition:all .3s ease-in-out;-webkit-transition:all .3s ease-in-out}
+#login .layui-form-item input::placeholder{color:transparent!important}
+#login .layui-form-item.layui-input-focus input::placeholder{color:#757575!important}
+#login .layui-form-item.layui-input-active label,#login .layui-form-item.layui-input-focus label{top:-10px;font-size:12px;color:#ff6700;background:#fff!important}
+#login .login-link{display:block;font-size:12px}
+#login .login-link a{display:inline-block;margin-right:20px}
+
+/*基本资料*/
+.user-info .user_left{float:left;margin:20px 0 0 5%}
+.user-info .user_right p{margin:10px 0 25px;font-size:12px;text-align:center;color:#ff5722}
+.user-info .userAddress.layui-form-item .layui-input-inline{width:23%}
+.user-info .userAddress.layui-form-item .layui-input-inline:last-child{margin-right:0}
+@media screen and (max-width:450px){
+    .user-info .userAddress.layui-form-item .layui-input-inline{width:auto}
+}
+
+/*修改密码*/
+.seting-pass{background: #FFFFFF;}
+.seting-pass .user_right p{margin:10px 0 25px;font-size:12px;text-align:center;color:#ff5722}
+.seting-pass .layui-table th{text-align:center}
+.seting-pass .changePwd{width:100%;max-width: 480px;}
+
+
+/*响应样式*/
+@media screen and (max-width:750px){
+	.ok-in-hide-md{display:none!important}
+}
+@media screen and (max-width:548px){
+	.ok-in-hide-xs,[ok-pc-in-show]{display:none!important}
+}
