@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>图片查看器</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../plugin/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../plugin/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="../../adminlte/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../../adminlte/css/skins/all-skins.min.css">
+  <link rel="stylesheet" href="../../system/css/common.css">
+  <link href="../../plugin/magnific-popup/magnific-popup.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="hold-transition gray-bg sidebar-mini">
+<div class="wrapper">
+  <section class="content">
+    <div class="row" style="margin-top: 10px;">
+      <div class="col-md-12">
+        <div class="box box-primary">
+			<div class="box-header">
+				<h3 class="box-title">单图列表</h3>
+			</div>
+			<div class="box-body">
+				<a class="image-link" href="../../image/jingtian.jpg">
+				  <img src="../../image/jingtian.jpg" class="img-circle" style="width:100px;height:100px;">
+				</a>
+				<a class="image-link" href="../../image/zhaoyihuan.jpg">
+				  <img src="../../image/zhaoyihuan.jpg" class="img-circle" style="width:100px;height:100px;">
+				</a>
+				<a class="image-link" href="../../image/yaya.jpg">
+				  <img src="../../image/yaya.jpg" class="img-circle" style="width:100px;height:100px;">
+				</a>
+				<a class="image-link" href="../../image/jiangshuying.jpg">
+				  <img src="../../image/jiangshuying.jpg" class="img-circle" style="width:100px;height:100px;">
+				</a>
+			</div>
+        </div>
+		<div class="box-footer">
+			访问 <a href="https://dimsemenov.com/plugins/magnific-popup/documentation.html" target="_blank">magnific-popup 插件</a> 获取更多信息和样例.
+		</div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 10px;">
+      <div class="col-md-12">
+        <div class="box box-primary">
+			<div class="box-header">
+				<h3 class="box-title">多图列表</h3>
+			</div>
+			<div class="box-body">
+				<div class="parent-container">
+					<a href="../../image/jingtian.jpg">
+					  <img src="../../image/jingtian.jpg" class="img-circle" style="width:100px;height:100px;">
+					</a>
+					<a href="../../image/zhaoyihuan.jpg">
+					  <img src="../../image/zhaoyihuan.jpg" class="img-circle" style="width:100px;height:100px;">
+					</a>
+					<a href="../../image/yaya.jpg">
+					  <img src="../../image/yaya.jpg" class="img-circle" style="width:100px;height:100px;">
+					</a>
+					<a href="../../image/jiangshuying.jpg">
+					  <img src="../../image/jiangshuying.jpg" class="img-circle" style="width:100px;height:100px;">
+					</a>
+				</div>
+			</div>
+			<div class="box-footer">
+				访问 <a href="https://dimsemenov.com/plugins/magnific-popup/documentation.html#gallery" target="_blank">magnific-popup 插件</a> 获取更多信息和样例.
+			</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row" style="margin-top: 10px;">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <div class="box-header">
+            <h3 class="box-title"><i class="fa fa-code"></i> magnific-popup的用法</h3>
+          </div>
+          <div class="box-body">
+            <pre style="font-weight: 600;">
+&lt;!-- 1. 引入文件 -->
+&lt;link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+&lt;script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+&lt;script src="https://cdn.bootcdn.net/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+&lt;!-- 2. 编写HTML -->
+&lt;a class="image-link" href="http://placehold.it/150x100">
+    &lt;img src="http://placehold.it/150x100" class="img-circle" style="width:100px;height:100px;">
+&lt;/a>
+
+&lt;!-- 3. 初始化 -->
+&lt;script>
+$(document).ready(function() {
+  $('.image-link').magnificPopup({type:'image'});
+});
+&lt;/script>
+            </pre>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <div class="control-sidebar-bg"></div>
+</div>
+
+<script src="../../plugin/jquery/jquery.min.js"></script>
+<script src="../../plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../plugin/fastclick/fastclick.js"></script>
+<script src="../../adminlte/js/adminlte.min.js"></script>
+<script src="../../plugin/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.image-link').magnificPopup({
+		type:'image',
+	});
+	$('.parent-container').magnificPopup({
+		delegate: 'a',
+		type: 'image',
+	    gallery: {
+			enabled: true
+	    },
+	});
+  });
+</script>
+</body>
+</html>

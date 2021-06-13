@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>基本表格</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../plugin/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../plugin/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="../../adminlte/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../../adminlte/css/skins/all-skins.min.css">
+  <link rel="stylesheet" href="../../system/css/common.css" />
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="hold-transition sidebar-mini gray-bg">
+<div class="wrapper">
+  <section class="content">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title">带边框的表格</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <table class="table table-bordered">
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>任务</th>
+                <th>进度</th>
+                <th style="width: 40px">标签</th>
+              </tr>
+              <tr>
+                <td>1.</td>
+                <td>更新软件</td>
+                <td>
+                  <div class="progress progress-xs">
+                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-red">55%</span></td>
+              </tr>
+              <tr>
+                <td>2.</td>
+                <td>清理数据</td>
+                <td>
+                  <div class="progress progress-xs">
+                    <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-yellow">70%</span></td>
+              </tr>
+              <tr>
+                <td>3.</td>
+                <td>运行定时任务</td>
+                <td>
+                  <div class="progress progress-xs progress-striped active">
+                    <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-light-blue">30%</span></td>
+              </tr>
+              <tr>
+                <td>4.</td>
+                <td>修复软件漏洞</td>
+                <td>
+                  <div class="progress progress-xs progress-striped active">
+                    <div class="progress-bar progress-bar-success" style="width: 90%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-green">90%</span></td>
+              </tr>
+            </table>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer clearfix">
+            <ul class="pagination pagination-sm no-margin pull-right">
+              <li><a href="#">&laquo;</a></li>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">&raquo;</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- /.box -->
+
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">压缩全宽表格</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body no-padding">
+            <table class="table table-condensed">
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>任务</th>
+                <th>进度</th>
+                <th style="width: 40px">标签</th>
+              </tr>
+              <tr>
+                <td>1.</td>
+                <td>更新软件</td>
+                <td>
+                  <div class="progress progress-xs">
+                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-red">55%</span></td>
+              </tr>
+              <tr>
+                <td>2.</td>
+                <td>清理数据</td>
+                <td>
+                  <div class="progress progress-xs">
+                    <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-yellow">70%</span></td>
+              </tr>
+              <tr>
+                <td>3.</td>
+                <td>执行定时任务</td>
+                <td>
+                  <div class="progress progress-xs progress-striped active">
+                    <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-light-blue">30%</span></td>
+              </tr>
+              <tr>
+                <td>4.</td>
+                <td>修复软件漏洞</td>
+                <td>
+                  <div class="progress progress-xs progress-striped active">
+                    <div class="progress-bar progress-bar-success" style="width: 90%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-green">90%</span></td>
+              </tr>
+            </table>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+      </div>
+      <!-- /.col -->
+      <div class="col-md-6">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">简单全宽表格</h3>
+
+            <div class="box-tools">
+              <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body no-padding">
+            <table class="table">
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>任务</th>
+                <th>进度</th>
+                <th style="width: 40px">标签</th>
+              </tr>
+              <tr>
+                <td>1.</td>
+                <td>更新软件</td>
+                <td>
+                  <div class="progress progress-xs">
+                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-red">55%</span></td>
+              </tr>
+              <tr>
+                <td>2.</td>
+                <td>清理数据</td>
+                <td>
+                  <div class="progress progress-xs">
+                    <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-yellow">70%</span></td>
+              </tr>
+              <tr>
+                <td>3.</td>
+                <td>执行定时任务</td>
+                <td>
+                  <div class="progress progress-xs progress-striped active">
+                    <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-light-blue">30%</span></td>
+              </tr>
+              <tr>
+                <td>4.</td>
+                <td>修复软件漏洞</td>
+                <td>
+                  <div class="progress progress-xs progress-striped active">
+                    <div class="progress-bar progress-bar-success" style="width: 90%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-green">90%</span></td>
+              </tr>
+            </table>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">条纹全宽表格</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body no-padding">
+            <table class="table table-striped">
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>任务</th>
+                <th>进度</th>
+                <th style="width: 40px">标签</th>
+              </tr>
+              <tr>
+                <td>1.</td>
+                <td>更新软件</td>
+                <td>
+                  <div class="progress progress-xs">
+                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-red">55%</span></td>
+              </tr>
+              <tr>
+                <td>2.</td>
+                <td>清理数据</td>
+                <td>
+                  <div class="progress progress-xs">
+                    <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-yellow">70%</span></td>
+              </tr>
+              <tr>
+                <td>3.</td>
+                <td>执行定时任务</td>
+                <td>
+                  <div class="progress progress-xs progress-striped active">
+                    <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-light-blue">30%</span></td>
+              </tr>
+              <tr>
+                <td>4.</td>
+                <td>修复软件漏洞</td>
+                <td>
+                  <div class="progress progress-xs progress-striped active">
+                    <div class="progress-bar progress-bar-success" style="width: 90%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-green">90%</span></td>
+              </tr>
+            </table>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">响应式悬浮表格</h3>
+
+            <div class="box-tools">
+              <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                <div class="input-group-btn">
+                  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+              <tr>
+                <th>编号</th>
+                <th>用户名</th>
+                <th>日期</th>
+                <th>状态</th>
+                <th>备注</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>张三丰</td>
+                <td>2021-4-15</td>
+                <td><span class="label label-success">已通过</span></td>
+                <td>一代宗师，高深莫测.</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>张无忌</td>
+                <td>2021-4-15</td>
+                <td><span class="label label-warning">审核中</span></td>
+                <td>武功高强，光明顶一战成名.</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>赵敏</td>
+                <td>2021-4-15</td>
+                <td><span class="label label-primary">待审核</span></td>
+                <td>古灵精怪，蒙古智囊.</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>珠儿</td>
+                <td>2021-4-15</td>
+                <td><span class="label label-danger">已拒绝</span></td>
+                <td>身世凄惨，痛恨父亲.</td>
+              </tr>
+            </table>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+      </div>
+    </div>
+  </section>
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="../../plugin/jquery/jquery.min.js"></script>
+<script src="../../plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../plugin/fastclick/fastclick.js"></script>
+<script src="../../adminlte/js/adminlte.min.js"></script>
+</body>
+</html>

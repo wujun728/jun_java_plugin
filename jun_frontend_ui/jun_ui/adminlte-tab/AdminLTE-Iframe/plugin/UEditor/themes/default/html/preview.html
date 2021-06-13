@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,viewport-fit=cover"/>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=no" />
+  <style>
+    .article-content{
+      padding: 10px 14px;
+    }
+  </style>
+</head>
+<body>
+    <div id="phone_preview_div"></div>
+    <!-- 注意这个文件的路径 -->
+    <script type="text/javascript" src="../../../dialogs/internal.js"></script>
+    <script>
+        var html = editor.getContent();//获取编辑器中的内容
+        var oPreview = document.querySelector("#phone_preview_div");//抓取dom
+        oPreview.innerHTML = html;//插入元素
+        dialog.onok = function() {
+           //TODO:
+        };
+    </script>
+</body>
+</html>
