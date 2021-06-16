@@ -1,0 +1,8 @@
+mybatis-plus:
+  global-config:
+    refresh-mapper: true  # Mapper 自动刷新热部署
+
+# 热刷新页面
+spring:
+  thymeleaf:
+    cache: false

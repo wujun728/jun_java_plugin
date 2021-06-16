@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" class="page-fill" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>初始化配置</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="后台图床管理系统">
+    <meta name="description" content="后台图床管理系统">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/css/oksub.css"/>
+    <style>
+        #login form.layui-form {
+            margin: 0;
+            transform: translate(-50%, -50%);
+        }
+
+        .register .tit {
+            padding-top: 15px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .register .code-box {
+            display: flex;
+        }
+
+        .register .code-box .btn-auth-code {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body class="page-fill">
+<div class="page-fill register" id="login">
+    <form class="layui-form ">
+        <div class="layui-form-item tit">系统初始化</div>
+        <div class="layui-form-item input-item">
+            <label for="prefix">URL前缀</label>
+            <input type="text" lay-verify="required" name="prefix" placeholder="请配置URL前缀" autocomplete="off"
+                   id="prefix"
+                   class="layui-input">
+        </div>
+        <div class="layui-form-item input-item">
+            <label for="filePath" th:if="${env!='docker'}">文件根路径</label>
+            <input type="text" lay-verify="required" th:disabled="${env=='docker'}"
+                   th:value="${env=='docker'?'/home':''}" name="rootPath" placeholder="请配置文件根路径"
+                   autocomplete="off"
+                   id="filePath"
+                   class="layui-input">
+            <div class="layui-form-mid layui-word-aux">服务器绝对路径</div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn layui-block" lay-filter="submit" lay-submit="">确认</button>
+        </div>
+    </form>
+</div>
+<!--js逻辑-->
+<script src="/lib/layui/layui.js"></script>
+<script>
+    layui.use(["form", "okGVerify", "okLayer", 'okUtils'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let okLayer = layui.okLayer;
+        var okUtils = layui.okUtils;
+
+        /**
+         * 表单提交
+         */
+        form.on("submit(submit)", function (data) {
+            okUtils.ajax("init/config", "post", data.field, true).done((data) => {
+                okLayer.msg.greenTick("配置成功,去登陆", function () {
+                    window.location = "/login";
+                });
+            });
+
+            return false;
+        });
+
+        /**
+         * 表单input组件单击时
+         */
+        $("#login .input-item .layui-input").click(function (e) {
+            e.stopPropagation();
+            $(this).addClass("layui-input-focus").find(".layui-input").focus();
+        });
+
+        /**
+         * 表单input组件获取焦点时
+         */
+        $("#login .layui-form-item .layui-input").focus(function () {
+            $(this).parent().addClass("layui-input-focus");
+        });
+
+        /**
+         * 表单input组件失去焦点时
+         */
+        $("#login .layui-form-item .layui-input").blur(function () {
+            $(this).parent().removeClass("layui-input-focus");
+            if ($(this).val() != "") {
+                $(this).parent().addClass("layui-input-active");
+            } else {
+                $(this).parent().removeClass("layui-input-active");
+            }
+        });
+    });
+</script>
+</body>
+</html>

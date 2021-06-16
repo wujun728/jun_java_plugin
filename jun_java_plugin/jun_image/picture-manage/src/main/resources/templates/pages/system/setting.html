@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>系统设置</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/css/oksub.css">
+    <style>
+        .content {
+            margin: 20px;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+<div class="ok-body">
+
+    <div class="content">
+        <form class="layui-form" action="" lay-filter="form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">URL前缀</label>
+                <div class="layui-input-block">
+                    <input type="text" name="prefix" required lay-verify="required" placeholder="请配置URL前缀"
+                           autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">文件名重写</label>
+                <div class="layui-input-block">
+                    <input lay-text="开启|关闭" type="checkbox" name="uuid" lay-skin="switch">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="ok">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+<!--js逻辑-->
+<script src="/lib/layui/layui.js"></script>
+<script>
+    "use strict";
+    layui.use(["okUtils", "form", 'okLayer', 'element'], function () {
+        let layer = layui.okLayer,
+            form = layui.form,
+            okUtils = layui.okUtils,
+            element = layui.element;
+
+        form.on("submit(ok)", function (data) {
+            console.log(data.field);
+            okUtils.ajax("conf/setBaseConf", "post", {
+                prefix: data.field.prefix,
+                uuid: data.field.uuid
+            }, true).done((data) => {
+                layer.msg.greenTick("配置成功")
+            })
+            return false;
+        });
+
+        function initVal() {
+            okUtils.ajax("conf/getBaseConf", "get", "", true).done(function (data) {
+                form.val("form", data);
+            });
+        }
+
+        initVal();
+    })
+</script>
+</body>
+</html>

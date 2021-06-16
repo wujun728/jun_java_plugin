@@ -1,0 +1,141 @@
+@import "/lib/layui/css/layui.css";
+@import "/lib/fonts/iconfont.css";
+
+#navBar .layui-nav-child{overflow:hidden;padding:0!important}
+#navBar .layui-nav-child dd,#navBar .layui-nav-itemed .layui-nav-child{overflow:hidden}
+[class*=" ok-icon"],[class^=ok-icon]{line-height:inherit;font-size:16px}
+.not-scroll::-webkit-scrollbar{height:0;width:0;background:0 0;display:none}
+.scrollBody::-webkit-scrollbar{display:none}
+.no-line.layui-this:after{background:0 0!important;color:transparent!important}
+.ok-none-select{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}
+.okadmin-text-center{text-align:center}
+.okadmin-bg-20222A{background:#20222a}
+.post-left220{left:220px!important}
+.flex-vc{display:flex!important;display:-webkit-flex!important;align-items:center!important;justify-content:center!important}
+.pl0{padding-left:0!important}
+.pr0{padding-right:0!important}
+.pl10{padding-left:10px!important}
+.pr10{padding-right:10px!important}
+#noticeQQ{cursor:pointer;color:#ff5722;font-weight:bolder}
+.okadmin-header .layui-nav-bar,.okadmin-header .layui-nav-tree .layui-nav-itemed:after{background:#20222a!important;bottom:auto;top:0!important;height:2px}
+.okadmin-header .layui-nav .layui-this:after{background:0 0!important;color:transparent!important}
+.layadmin-pagetabs .layui-tab-title li.layui-this:after,.layadmin-pagetabs .layui-tab-title li:after,.layadmin-side-shrink .layui-side-menu .layui-nav>.layui-nav-item>.layui-nav-child,.layui-layer-admin .layui-layer-title,.layui-side-menu{background:#001529!important}
+.layui-tab-brief>.layui-tab-title .layui-this{color:#000}
+.ok-tab-title li strong[is-close=false]~i.layui-tab-close,.ok-tab-title li[tab=index] i.layui-tab-close{display:none!important}
+.okadmin .okadmin-header{background:#fff;height:49px;line-height:49px;border-bottom:1px solid #f6f6f6}
+.okadmin-header .layui-nav-item .layui-icon{font-size:16px}
+.okadmin-header .layui-nav .layui-nav-item a,.okadmin-header .layui-nav-child dd.layui-this a{color:#000}
+#userInfo .layui-this,#userInfo .layui-this a{background:0 0}
+#userInfo .layui-this a:hover{background:#f2f2f2}
+.weather{color:#000}
+#tp-weather-widget .tpwthwidt .text_1vUR5ag,#tp-weather-widget .tpwthwidt .title_2I35arv{margin:0!important;color:#000!important}
+.ok-show-menu{font-size:18px}
+.ok-show-menu .layui-icon{font-size:18px!important}
+.ok-show-menu .ok-menu-hide:before{content:"\e66b"}
+#fullScreen i.okicon-screen-restore:before{content:"\e758"}
+.okadmin-header .layui-input-search{display:inline-block;vertical-align:middle;height:32px;border:none;cursor:text}
+.okadmin-header .layui-nav .layui-nav-item{height:49px;line-height:49px}
+.okadmin-header .layui-layout-left .layui-nav-item{margin:0 20px}
+.okadmin-header .layui-layout-left .layui-nav-item.layui-this:after{display:none!important}
+.okadmin-header .layui-layout-left .layui-nav-item a{padding-left:5px;padding-right:5px}
+.okadmin .menu-switch{width:30px;height:30px;position:relative;left:220px;top:16px;color:#fff;text-align:center;line-height:30px;cursor:pointer;z-index:9999}
+.okadmin-header .layui-nav .layui-nav-more{border-color:#000 transparent transparent}
+.okadmin-header .layui-nav .layui-nav-mored,.okadmin-header .layui-nav-itemed>a .layui-nav-more{border-color:transparent transparent #000}
+.okadmin-header .layui-nav-child{top:50px}
+.icon-head-i{font-size:18px;padding-right:5px}
+.ok-left{top:0!important;width:220px!important;z-index:9999}
+.ok-left .okadmin-logo{line-height:49px;text-align:center;color:#fff;font-size:16px;position:fixed;left:0;top:0;z-index:1002;width:220px;height:49px;padding:0 15px;box-sizing:border-box;overflow:hidden;font-weight:300;background-repeat:no-repeat;background-position:center center;background:#20222a}
+.layui-side-menu .layui-nav{width:220px;background:0 0}
+.layui-side-menu .layui-side-scroll{width:240px!important}
+.layui-side-menu .layui-side-scroll:before{content:" ";height:50px;line-height:50px;display:flex;width:1px}
+.okadmin-side .user-photo{width:220px!important;border-top:1px solid #333555}
+.ok-left.layui-side-menu .layui-nav .layui-nav-item .layui-nav-child a,.ok-left.layui-side-menu .layui-nav .layui-nav-item a{height:40px;line-height:40px;padding-left:45px;padding-right:30px;color:#fff}
+.ok-left.layui-side-menu .layui-nav .layui-nav-item.layui-this .layui-nav-child a,.ok-left.layui-side-menu .layui-nav .layui-nav-item.layui-this a{color:#fff!important}
+.ok-left.layui-side-menu .layui-nav-item a:hover{background-color:#4e5465}
+.ok-left.layui-side-menu .layui-this a:hover{background-color:inherit}
+.ok-left.layui-side-menu .layui-nav .layui-nav-item .layui-icon,.ok-left.layui-side-menu .layui-nav .layui-nav-item a i{position:absolute;padding-right:10px;left:20px}
+.ok-left.layui-side-menu .layui-nav .layui-nav-item .layui-nav-child a i{position:static!important;padding-right:10px}
+#navBar .layui-nav-child .layui-nav-child>dd>a{padding-left:65px}
+#navBar .layui-nav-child .layui-nav-child .layui-nav-child>dd>a{padding-left:90px}
+#navBar .layui-nav-child .layui-nav-child .layui-nav-child .layui-nav-child>dd>a{padding-left:115px}
+.ok-left .user-photo{width:200px;height:120px;padding:15px 0 5px}
+.ok-left .user-photo a.img{display:block;width:80px;height:80px;margin:0 auto 10px}
+.ok-left .user-photo a.img img{display:block;width:100%;height:100%;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;border:4px solid #44576b;box-sizing:border-box}
+.ok-left .user-photo p{display:block;width:100%;height:25px;color:#fff;text-align:center;font-size:12px;white-space:nowrap;line-height:25px;overflow:hidden}
+#navBar ul{margin:0!important}
+.ok-tab{background:#f5f7f9}
+.okadmin-pagetabs{padding:0 80px 0 40px;background-color:transparent;width:100%;position:absolute;height:40px;z-index:1}
+.okadmin-tabs-control{height:32px;line-height:32px;position:absolute;top:4px;width:32px;right:4px;text-align:center;cursor:pointer;transition:all .3s;-webkit-transition:all .3s;background:#f5f7f9;z-index:10}
+.okadmin-tabs-control:hover{color:#009688}
+.ok-tab .move-left{left:0;border-left:none}
+.ok-tab .move-right{right:40px}
+.layui-icon-down{right:0}
+.okadmin-tabs-select.layui-nav{position:absolute;left:0;top:0;width:100%;height:100%;padding:0;background:0 0}
+.okadmin-nav a,.okadmin-tab a{cursor:pointer}
+.ok-right-nav-menu{top:0;right:0;width:40px;height:40px;line-height:normal;background:#f5f7f9;display:flex;align-items:center}
+.okadmin-tab{height:32px;line-height:32px;width:32px}
+.okadmin-tab .okadmin-tab-item .okadmin-link{display:block;width:100%;height:100%;background:#fff;border-radius:3px}
+.ok-right-nav-menu:hover .okadmin-tab-item .okadmin-tab-child{display:block!important}
+.okadmin-tab .okadmin-tab-item .okadmin-tab-child{position:absolute;top:40px;right:0;display:none;white-space:nowrap;line-height:36px;padding:5px 0;box-shadow:0 2px 4px rgba(0,0,0,.12);border:1px solid #d2d2d2;background-color:#fff;z-index:100;border-radius:2px}
+.okadmin-tab .okadmin-tab-item a{display:block;padding:0 20px;color:#000;transition:all .3s;-webkit-transition:all .3s;font-size:14px}
+.okadmin-tab .okadmin-tab-item a:hover{background:#f5f7f9}
+.okadmin-tab .okadmin-tab-item .okadmin-tab-child:visited{display:none!important}
+.ok-tab .layui-tab-title{margin:0 80px 0 40px;overflow-x:hidden!important;overflow-y:hidden!important;width:max-content!important;z-index:9;position:relative;left:0;height:40px;line-height:40px;border:0}
+.ok-tab .layui-tab-title li{height:32px;line-height:32px;background:#fff;border-radius:3px;margin-right:15px}
+.ok-tab .layui-tab-brief>.layui-tab-more li.layui-this,.ok-tab .layui-tab-brief>.layui-tab-title .layui-this,.ok-tab .layui-tab-title li.layui-this{background-color:#fff;color:#009688}
+.ok-tab .layui-tab-brief>.layui-tab-more li.layui-this:after,.ok-tab .layui-tab-brief>.layui-tab-title .layui-this:after,.ok-tab .layui-tab-title .layui-this:after{display:none}
+.ok-tab .layui-tab-title .layui-this:after{display:none}
+.ok-tab-title cite{padding-left:5px;font-style:normal}
+.weather-ok{height:49px;line-height:49px}
+.weather-ok .iframe-style{height:50px;padding-top:9px;box-sizing:border-box}
+.weather-ok .iframe-style:hover{height:400px}
+.okadmin .content-body{position:absolute;top:50px;right:0;bottom:42px;left:220px;z-index:1;overflow:hidden}
+.okadmin-tabs-select.layui-nav .layui-nav-item{line-height:40px}
+.ok-nav-item{height:49px;line-height:49px;position:relative;display:inline-block;vertical-align:middle;font-size:14px;width:auto}
+.content-body .layui-tab{margin:0}
+.okadmin .content-body .layui-tab-content{position:absolute;top:40px;bottom:0;width:100%;padding:0;overflow:hidden;left:0;right:0}
+.okadmin .content-body .layui-tab-content .layui-tab-item{height:100%}
+.okadmin .content-body .layui-tab-content .layui-tab-item iframe{height:100%}
+.layui-layout-admin.ok-left-hide .ok-left,.layui-layout-admin.ok-left-hide .ok-left .okadmin-logo{left:-220px}
+.layui-layout-admin.ok-left-hide .layui-header .layui-layout-left{left:-20px}
+.layui-layout-admin.ok-left-hide .content-body,.layui-layout-admin.ok-left-hide .layui-footer{left:0}
+.page-fill{width:100%;height:100%;display:block;box-sizing:border-box}
+#login .layui-icon{font-size:16px!important}
+#login .mag0{margin:0!important}
+#login ::selection{background:#ff5722;color:#fff}
+#login .layui-red{color:red!important;font-weight:700}
+#login .layui-blue{color:#01aaed!important}
+#login .layui-form-item.layui-input-focus input{border-color:#ff6700!important}
+#login .layui-block{width:100%!important}
+#login{width:100%;height:100%;background-image:url(../images/login-bg.jpg);position:relative}
+#login form.layui-form{padding:0 20px 20px 20px;width:300px;position:absolute;left:50%;top:50%;margin:-150px 0 0 -150px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;background:#fff;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;box-shadow:0 0 50px #009688}
+#login .login_face{margin:-55px auto 20px;width:100px;height:100px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;border:5px solid #fff;overflow:hidden;box-shadow:0 0 30px #009688;background:#fff}
+#login .login_face img{width:100%}
+#login .layui-form-item{position:relative}
+#login .layui-form-item label{position:absolute;color:#757575;left:10px;top:9px;line-height:20px;background:0 0;padding:0 5px;font-size:14px;cursor:text}
+#login #code{padding-right:110px}
+#login .captcha-box .img{position:absolute;top:1px;bottom:1px;right:1px;cursor:pointer;width:100px;background:#c4e1ce}
+#login .layui-form-item input{background:#fff!important}
+#login .layui-form-item input,#login .layui-form-item label{transition:all .3s ease-in-out;-webkit-transition:all .3s ease-in-out}
+#login .layui-form-item input::placeholder{color:transparent!important}
+#login .layui-form-item.layui-input-focus input::placeholder{color:#757575!important}
+#login .layui-form-item.layui-input-active label,#login .layui-form-item.layui-input-focus label{top:-10px;font-size:12px;color:#ff6700;background:#fff!important}
+@media screen{.layui-header .layui-layout-left,.layui-layout-admin .content-body,.layui-layout-admin .layui-footer,.layui-layout-admin .ok-left,.ok-left .okadmin-logo{transition:left .5s}
+}
+.ok-make{position:fixed;left:0;right:0;bottom:0;top:0;z-index:9998;background:rgba(0,0,0,.5);display:none}
+@media screen and (max-width:970px){.ok-hide-md{display:none!important}
+}
+@media screen and (max-width:768px){[pc-show]{display:none!important}
+.layui-layout-admin .ok-left{position:fixed}
+.ok-input-search{width:7rem}
+.layui-layout-admin.ok-left-hide .ok-left,.layui-layout-admin.ok-left-hide .ok-left .okadmin-logo{left:0}
+.okadmin-header .layui-layout-left .layui-nav-item{margin:0 5px}
+.layui-layout-admin.ok-left-hide .ok-make{display:block}
+.layui-layout-admin .ok-left,.ok-left .okadmin-logo{transition:left .5s;left:-220px}
+.layui-header .layui-layout-left{transition:left .5s;left:-20px}
+.layui-layout-admin .content-body,.layui-layout-admin .layui-footer{transition:left .5s;left:0}
+.ok-left .okadmin-side .user-photo{height:auto;margin:0 auto}
+.ok-left .user-photo a.img{width:50px;height:50px}
+.layui-side-menu .layui-side-scroll{width:200px!important}
+.ok-left,.ok-left .okadmin-logo,.ok-left .okadmin-side .user-photo,.ok-left.layui-side-menu .layui-nav{width:180px!important;margin:0}
+}
