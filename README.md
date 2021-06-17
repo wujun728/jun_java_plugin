@@ -173,6 +173,117 @@ jun_bigdata    大数据开发，调整
 Vue+uniapp+Nodejs+WordPress+PHP+Android+Bigdata
 
 
+
+
+
+
+        ImmutableList<String> list = ImmutableList.of("1", "2");
+        List lists = Lists.newArrayList("abc","abcd","123");
+        System.err.println(Joiner.on(",").join(lists));
+        Map map = Maps.newHashMap();
+        Set set = Sets.newHashSet("1", "2");
+        ImmutableMap<String, String> map2 = ImmutableMap.of("key1", "value1", "key2", "value2");
+        System.err.println(Joiner.on(",").withKeyValueSeparator("=").join(map2));
+//        System.err.println(map2.get("key2"));
+//        map.forEach((key,value)->{System.out.println(key+""+value);});
+       
+        Multimap<String, String> m = ArrayListMultimap.create();
+        m.put("a", "1");
+        m.put("a", "2");
+        m.forEach((key,value)->{System.out.println(key+"-"+value);});
+//        System.err.println(m.get("a"));
+       
+        Stopwatch sw = Stopwatch.createStarted();
+        String str = "1-2-3-4-5-6";
+        System.err.println(Splitter.on("-").splitToList(str));
+        String str2 = "xiaoming=11,xiaohong=23";
+        System.err.println(Splitter.on(",").withKeyValueSeparator("=").split(str2));
+        Strings.isNullOrEmpty("");
+//        List<String> list = Splitter.on("-").splitToList(str);
+        long time = sw.elapsed(TimeUnit.MILLISECONDS);
+        System.err.println(time);
+        Thread.currentThread().sleep(500);
+        time = sw.elapsed(TimeUnit.MILLISECONDS);
+        System.err.println(time);
+ 
+
+
+
+
+
+
+TODO PLAN：
+
+为ssh项目写个代码生成器
+
+美化ssh项目
+
+上传服务器发布
+
+
+整理ssm项目，写模板，模板还没梳理完
+
+
+
+
+jun_code_generator 代码生成器，调整
+
+mvn_template 开发模板，调整，新增项目模板；新增SSH、SSM、SpringBoot、SpringCloud、Android、APP  
+
+    模板,新增+jun_ssh+ssm+springboot+mybatis+JPA
+
+jun_plugin 常用开发组件，调整，新增并优化项目组件
+
+
+jun_spring Spring开发组件，调整，新增Spring系常用plugin
+
+jun_springboot SpringBoot开发组件，调整，SpringBoot系组件
+
+jun_springcloud SpringCloud开发组件，调整，SpringCloud系组件
+
+jun_frontend  前端开发组件，调整
+
+jun_framework  干掉，迁移到jun_project里面来
+
+jun_projejct 常用项目模板及常用项目，调整，常用项目的集合，私有的
+
+jun_test  干掉，合并到其他项目
+
+jun_linux  Linux开发组件，调整
+
+
+jun_website  网站开发，调整
+
+jun_weixin   微信开发，调整
+
+jun_app   APP开发，调整
+
+jun_android   Android开发，调整
+
+jun_bigdata   大数据开发，调整
+
+  Vue+uniapp+Nodejs+WordPress+PHP+Android+Bigdata
+
+
+
+https://blog.csdn.net/xiaojinlai123/article/details/90694372
+
+https://blog.csdn.net/sxdtzhaoxinguo/article/details/77965226
+
+
+来自 <https://github.com/wujun728/vue-login-java>
+
+
+
+
+
+
+--------------------------------------------------
+吴俊
+Mobile: +86-18572807207
+Email: wujun60@h-partners.com
+
+
 来自 <https://github.com/wujun728/jun_plugin/blob/master/TODO.md> 
 	
 git checkout --orphan latest_branch2
