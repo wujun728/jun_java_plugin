@@ -20,8 +20,6 @@
 		<module>spring_plugin</module>
 		<module>springboot_plugin</module>
 		<module>springcloud_plugin</module>
-		<module>jquery_plugin</module>
-		<module>vue_plugin</module>
 		
 	</modules>
 
