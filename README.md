@@ -1,7 +1,8 @@
 ### `jun_plugin` 项目
 #### 项目说明
 jun_plugin 整合Java企业级各种开发组件、开箱即用、不写重复代码
-#### `笔者其他项目` 功能实现&使用
+#### `笔者其他项目` 功能实现&使用![](D:\Documents\Desktop\person.jpg)
+
 #### 基础篇：企业级开发组件功能列表（jun_plugin）
 - 【jun_activiti】[原生集成activity工作流，完成工作流常用操作](https://github.com/wujun728/jun_plugin)
 - 【jun_aliyun_sms】[发送阿里云短信及验证码等](https://github.com/wujun728/jun_plugin)
@@ -25,7 +26,7 @@ jun_plugin 整合Java企业级各种开发组件、开箱即用、不写重复�
 - 【jun_webservlet】[原生Servlet 3.0的实现](https://github.com/wujun728/jun_plugin)
 - 【jun_websocket】[原生的WebSocket的实现长链接](https://github.com/wujun728/jun_plugin)
 - 【jun_xml】[原生的XML解析及生产XML、提供SAX、DOM、DOM4J解析方式](https://github.com/wujun728/jun_plugin)
- 
+
 #### 开发环境
 - **JDK 1.8 
 - **Maven 3.5 
@@ -39,8 +40,8 @@ jun_test\
 jun_test11\
 About
 代码生成器jun_code_generator 默认提供Spring、Hibernate、MyBatis、Spring JDBC模板，也可以根据FreeMarker语法编写自定义模板生成代码。
- 
- 
+
+
 https://www.bejson.com/
 https://github.com/cncounter/cncounter
 Nginx优化
@@ -52,7 +53,7 @@ https://github.com/justjavac/awesome-wechat-weapp
 来自 <https://www.runoob.com/w3cnote/wx-xcx-repo.html> 
  https://github.com/wujun728/quark-h5
  https://github.com/wujun728/Android-ZBLibrary
- 
+
  https://github.com/wujun728/ssm-demo
 jun_boot
 jun_plugin
@@ -90,8 +91,8 @@ xxyms
 jun_temp1\
 jun_temp2\
 TODO PLAN：
- 
- 
+
+
 jun_spring  Spring开发组件，调整，新增Spring系常用plugin
 jun_projejct  常用项目模板及常用项目，调整，常用项目的集合，私有的
 jun_springboot  SpringBoot开发组件，调整，SpringBoot系组件
@@ -134,7 +135,7 @@ Vue+uniapp+Nodejs+WordPress+PHP+Android+Bigdata
         Thread.currentThread().sleep(500);
         time = sw.elapsed(TimeUnit.MILLISECONDS);
         System.err.println(time);
- 
+
 TODO PLAN：
 为ssh项目写个代码生成器
 美化ssh项目
@@ -166,6 +167,7 @@ https://blog.csdn.net/sxdtzhaoxinguo/article/details/77965226
 Mobile: +86-18572807207
 Email: wujun60@h-partners.com
 来自 <https://github.com/wujun728/jun_plugin/blob/master/TODO.md> 
+
 git checkout --orphan latest_branch2
 git add -A
 git commit -am "commit message"
@@ -265,7 +267,7 @@ API
 https://github.com/TommyLemon/APIAuto
 Android
 https://github.com/TommyLemon/Android-ZBLibrary
- 
+
 Jun_fontend
 https://github.com/Soliman/jqGrid.bootstrap
 treegrid
@@ -467,34 +469,34 @@ Uniapp
     
     
     
- 
+
 adminlte
 https://github.com/huanggeshuai/ssmwithTab
 资产管理-C#-Easyui
 https://github.com/qq283335746/Asset
 设备管理
 https://github.com/h-yazhe/device-manager
- 
+
 https://github.com/moshowgame/SpringBootCodeGenerator
 https://github.com/SpringCloud/spring-cloud-codegen
 http://github.com/thinkgem/jeesite_autocode
- 
+
 Readme.md template
- 
+
 plugin
 https://github.com/RudeCrab/rude-java/tree/master/project-practice
- 
- 
+
+
 干掉，放到plugin里面
 https://github.com/wujun728/jun_frontend_ui
- 
+
 boot
- 
+
 https://github.com/wujun728/jun_springboot 
 合并到jun_ssm,并重命名
- 
+
 https://github.com/wangyushuai/inspinia_admin_java_ssm
-  
+
 前端模板-合并到front里面
 https://github.com/wenfengSAT/wenfengSAT-UI
 迁移到CRM里面
@@ -512,7 +514,7 @@ spring-boot-starter-motan
 吴俊-补充TODO待办清单
 Jun_code-generator
 临时分支
-  
+
 jun_product-----
 吴俊:
 Jun_test111-----
