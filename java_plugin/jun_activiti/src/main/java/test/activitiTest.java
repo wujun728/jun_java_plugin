@@ -39,9 +39,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.StringUtils;
 
-import com.zml.oa.dao.IJdbcDao;
-import com.zml.oa.entity.ProcessDefine;
-import com.zml.oa.entity.ProcessModel;
+import com.jun.plugin.oa.dao.IJdbcDao;
+import com.jun.plugin.oa.entity.ProcessDefine;
+import com.jun.plugin.oa.entity.ProcessModel;
 
 /**
  * 动态创建流程信息
@@ -129,7 +129,7 @@ public class activitiTest {
 				String sql3 = "select * from t_process_instance where modelId = :modelId and procDefId = :procDefId";
 				List<Map<String, Object>> procInstlist = this.jdbcDao.find(sql3, paramMap);
 				for(Map<String, Object> procInstMap : procInstlist) {
-					com.zml.oa.entity.ProcessInstance processInstance = (com.zml.oa.entity.ProcessInstance) this.setValToObj(new com.zml.oa.entity.ProcessInstance(), procInstMap);
+					com.jun.plugin.oa.entity.ProcessInstance processInstance = (com.jun.plugin.oa.entity.ProcessInstance) this.setValToObj(new com.jun.plugin.oa.entity.ProcessInstance(), procInstMap);
 					if(processInstance.getTargetRef() == 0) {	// endEvent节点
 						process.addFlowElement(createSequenceFlow(proceDef.getTargetGateway(), "endEvent", "flow0", "", ""));
 						System.out.println(proceDef.getTargetGateway()+" ---同意---> endEvent"+" flow"+flowSeq2++);

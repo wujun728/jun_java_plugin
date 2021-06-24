@@ -24,7 +24,7 @@
 	<!-- 注：如果base-package=cn.zml 则注解事务不起作用 TODO 读源码 -->
 	<!-- 因为此处只应该加载表现层组件，如果此处还加载dao层或service层的bean会将之前容器加载的替换掉 -->
 	<!-- 而且此处不会进行AOP织入，所以会造成AOP失效问题（如事务不起作用） -->
-	<context:component-scan base-package="com.zml.oa.action">
+	<context:component-scan base-package="com.jun.plugin.oa.action">
 	    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
@@ -111,7 +111,7 @@
     	分页拦截器
     	<mvc:interceptor>
 	    	<mvc:mapping path="/**" />
-	    	<bean class="com.zml.oa.interceptor.PaginationInterceptor" />
+	    	<bean class="com.jun.plugin.oa.interceptor.PaginationInterceptor" />
     	</mvc:interceptor>
     	设置国际化信息的拦截器
     	<mvc:interceptor>
@@ -132,7 +132,7 @@
 		com.hdc.interceptors.DefaultMultipartResolver
 	-->
 	<bean id="multipartResolver"
-		class="com.zml.oa.interceptor.DefaultMultipartResolver">
+		class="com.jun.plugin.oa.interceptor.DefaultMultipartResolver">
 	 	<property name="maxInMemorySize">
 			<value>104857600</value><!-- 最大10M -->
 		</property>

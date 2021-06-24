@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
-  <process id="com.zml.oa.salary" name="薪资调整" isExecutable="true">
+  <process id="com.jun.plugin.oa.salary" name="薪资调整" isExecutable="true">
     <documentation>薪资调整流程演示</documentation>
     <startEvent id="startevent1" name="Start" activiti:initiator="applyUserId"></startEvent>
     <userTask id="directorAudit" name="总监审批">
@@ -72,8 +72,8 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isPass}]]></conditionExpression>
     </sequenceFlow>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_com.zml.oa.salary">
-    <bpmndi:BPMNPlane bpmnElement="com.zml.oa.salary" id="BPMNPlane_com.zml.oa.salary">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_com.jun.plugin.oa.salary">
+    <bpmndi:BPMNPlane bpmnElement="com.jun.plugin.oa.salary" id="BPMNPlane_com.jun.plugin.oa.salary">
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="20.0" y="140.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>

@@ -11,20 +11,20 @@
     <function>
         <description>obj in collection</description>
         <name>in</name>
-        <function-class>com.zml.oa.util.Functions</function-class>
+        <function-class>com.jun.plugin.oa.util.Functions</function-class>
         <function-signature>boolean in(java.lang.Iterable,java.lang.Object)</function-signature>
     </function>
 
   	<function>
         <description>用户身份</description>
         <name>principal</name>
-        <function-class>com.zml.oa.util.Functions</function-class>
+        <function-class>com.jun.plugin.oa.util.Functions</function-class>
         <function-signature>java.lang.String principal(org.apache.shiro.session.Session)</function-signature>
     </function>
     <function>
         <description>是否强制退出</description>
         <name>isForceLogout</name>
-        <function-class>com.zml.oa.util.Functions</function-class>
+        <function-class>com.jun.plugin.oa.util.Functions</function-class>
         <function-signature>boolean isForceLogout(org.apache.shiro.session.Session)</function-signature>
     </function>
 

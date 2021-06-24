@@ -450,9 +450,9 @@ CREATE TABLE `act_re_procdef` (
 -- Records of act_re_procdef
 -- ----------------------------
 INSERT INTO `act_re_procdef` VALUES ('CountSalary:1:2504', '1', 'http://www.activiti.org/test', '计算薪资', 'CountSalary', '1', '2501', 'CountSalary.bpmn', 'CountSalary.png', null, '0', '1', '');
-INSERT INTO `act_re_procdef` VALUES ('com.zml.oa.expense:1:2508', '1', 'http://www.activiti.org/test', '报销流程', 'com.zml.oa.expense', '1', '2505', 'ExpenseAccount.bpmn', 'ExpenseAccount.png', '报销流程演示', '0', '1', '');
-INSERT INTO `act_re_procdef` VALUES ('com.zml.oa.salary:1:2512', '1', 'http://www.activiti.org/test', '薪资调整', 'com.zml.oa.salary', '1', '2509', 'Salary.bpmn', 'Salary.png', '薪资调整流程演示', '0', '1', '');
-INSERT INTO `act_re_procdef` VALUES ('com.zml.oa.vacation:1:2516', '1', 'http://www.activiti.org/test', '请假流程', 'com.zml.oa.vacation', '1', '2513', 'Vacation.bpmn', 'Vacation.png', '请假流程演示', '0', '1', '');
+INSERT INTO `act_re_procdef` VALUES ('com.jun.plugin.oa.expense:1:2508', '1', 'http://www.activiti.org/test', '报销流程', 'com.jun.plugin.oa.expense', '1', '2505', 'ExpenseAccount.bpmn', 'ExpenseAccount.png', '报销流程演示', '0', '1', '');
+INSERT INTO `act_re_procdef` VALUES ('com.jun.plugin.oa.salary:1:2512', '1', 'http://www.activiti.org/test', '薪资调整', 'com.jun.plugin.oa.salary', '1', '2509', 'Salary.bpmn', 'Salary.png', '薪资调整流程演示', '0', '1', '');
+INSERT INTO `act_re_procdef` VALUES ('com.jun.plugin.oa.vacation:1:2516', '1', 'http://www.activiti.org/test', '请假流程', 'com.jun.plugin.oa.vacation', '1', '2513', 'Vacation.bpmn', 'Vacation.png', '请假流程演示', '0', '1', '');
 
 -- ----------------------------
 -- Table structure for act_ru_event_subscr
@@ -1075,16 +1075,16 @@ CREATE TABLE `t_user_task` (
 -- ----------------------------
 -- Records of t_user_task
 -- ----------------------------
-INSERT INTO `t_user_task` VALUES ('31', 'com.zml.oa.vacation', '请假流程', 'managerAudit', '经理审批', 'assignee', '经理', '15');
-INSERT INTO `t_user_task` VALUES ('32', 'com.zml.oa.vacation', '请假流程', 'directorAudit', '总监审批', 'candidateUser', '总监,总监2', '16,19');
-INSERT INTO `t_user_task` VALUES ('33', 'com.zml.oa.vacation', '请假流程', 'modifyApply', '调整申请', 'modify', '任务发起人', '0');
-INSERT INTO `t_user_task` VALUES ('34', 'com.zml.oa.vacation', '请假流程', 'hrAudit', '人力资源审批', 'candidateGroup', '人事组', '5');
-INSERT INTO `t_user_task` VALUES ('35', 'com.zml.oa.salary', '薪资调整', 'directorAudit', '总监审批', 'candidateGroup', '总监组', '2');
-INSERT INTO `t_user_task` VALUES ('36', 'com.zml.oa.salary', '薪资调整', 'hrAudit', '人事审批', 'assignee', '人事', '17');
-INSERT INTO `t_user_task` VALUES ('37', 'com.zml.oa.salary', '薪资调整', 'bossAudit', '老板审批', 'assignee', '老板', '4');
-INSERT INTO `t_user_task` VALUES ('38', 'com.zml.oa.salary', '薪资调整', 'modifyApply', '调整申请', 'modify', '任务发起人', '0');
-INSERT INTO `t_user_task` VALUES ('39', 'com.zml.oa.expense', '报销流程', 'financeAudit', '财务审批', 'assignee', '财务', '5');
-INSERT INTO `t_user_task` VALUES ('40', 'com.zml.oa.expense', '报销流程', 'payForMoney', '现金支付', null, '', '');
+INSERT INTO `t_user_task` VALUES ('31', 'com.jun.plugin.oa.vacation', '请假流程', 'managerAudit', '经理审批', 'assignee', '经理', '15');
+INSERT INTO `t_user_task` VALUES ('32', 'com.jun.plugin.oa.vacation', '请假流程', 'directorAudit', '总监审批', 'candidateUser', '总监,总监2', '16,19');
+INSERT INTO `t_user_task` VALUES ('33', 'com.jun.plugin.oa.vacation', '请假流程', 'modifyApply', '调整申请', 'modify', '任务发起人', '0');
+INSERT INTO `t_user_task` VALUES ('34', 'com.jun.plugin.oa.vacation', '请假流程', 'hrAudit', '人力资源审批', 'candidateGroup', '人事组', '5');
+INSERT INTO `t_user_task` VALUES ('35', 'com.jun.plugin.oa.salary', '薪资调整', 'directorAudit', '总监审批', 'candidateGroup', '总监组', '2');
+INSERT INTO `t_user_task` VALUES ('36', 'com.jun.plugin.oa.salary', '薪资调整', 'hrAudit', '人事审批', 'assignee', '人事', '17');
+INSERT INTO `t_user_task` VALUES ('37', 'com.jun.plugin.oa.salary', '薪资调整', 'bossAudit', '老板审批', 'assignee', '老板', '4');
+INSERT INTO `t_user_task` VALUES ('38', 'com.jun.plugin.oa.salary', '薪资调整', 'modifyApply', '调整申请', 'modify', '任务发起人', '0');
+INSERT INTO `t_user_task` VALUES ('39', 'com.jun.plugin.oa.expense', '报销流程', 'financeAudit', '财务审批', 'assignee', '财务', '5');
+INSERT INTO `t_user_task` VALUES ('40', 'com.jun.plugin.oa.expense', '报销流程', 'payForMoney', '现金支付', null, '', '');
 
 -- ----------------------------
 -- Table structure for t_vacation

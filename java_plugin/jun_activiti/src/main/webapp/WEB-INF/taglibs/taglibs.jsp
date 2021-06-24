@@ -5,7 +5,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="oa" %>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ page import="com.zml.oa.util.Constants" %>
+<%@ page import="com.jun.plugin.oa.util.Constants" %>
 <%
 	String easyuiThemeName="metro";
 	Cookie cookies[] =request.getCookies();

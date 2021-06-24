@@ -9,11 +9,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.zml.oa.dao.IJdbcDao;
-import com.zml.oa.pagination.Pagination;
-import com.zml.oa.pagination.PaginationThreadUtils;
+import com.jun.plugin.oa.dao.IJdbcDao;
+import com.jun.plugin.oa.pagination.Pagination;
+import com.jun.plugin.oa.pagination.PaginationThreadUtils;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:/applicationContext.xml", "classpath*:/springMVC.xml" })  

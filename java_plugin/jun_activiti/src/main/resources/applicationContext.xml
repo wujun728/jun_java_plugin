@@ -16,7 +16,7 @@
           
     <!-- 在applicationContext.xml中只加载除表现层之外的所有bean，因此下面一行中不需要加载@Controller -->                       
     <!-- 扫描注解Bean 不包括@Controller(表现层) 保证@Service @Repository的属性被注入-->
-    <context:component-scan base-package="com.zml.oa">
+    <context:component-scan base-package="com.jun.plugin.oa">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
     
@@ -45,7 +45,7 @@
 	
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"> 
         <property name="dataSource" ref="dataSource" /> 
-		<property name="packagesToScan" value="com.zml.oa.entity"/>
+		<property name="packagesToScan" value="com.jun.plugin.oa.entity"/>
         <property name="hibernateProperties"> 
          	<props>
 		         <prop key="hibernate.show_sql">true</prop>
@@ -66,7 +66,7 @@
 		<constructor-arg ref="dataSource" />
 	</bean>
 	
-	<bean id="applicationContextHelper" class="com.zml.oa.util.ApplicationContextHelper"/>
+	<bean id="applicationContextHelper" class="com.jun.plugin.oa.util.ApplicationContextHelper"/>
   	
    	<!-- 开启AOP监听 只对当前配置文件有效 -->
 	<aop:aspectj-autoproxy expose-proxy="true"/>
@@ -108,7 +108,7 @@
 
     <aop:config expose-proxy="true" proxy-target-class="true">
         <!-- 只对业务逻辑层实施事务 -->
-        <aop:pointcut id="txPointcut" expression="execution(* com.zml.oa..service..*.*(..))"/>
+        <aop:pointcut id="txPointcut" expression="execution(* com.jun.plugin.oa..service..*.*(..))"/>
         <aop:advisor id="txAdvisor" advice-ref="txAdvice" pointcut-ref="txPointcut"/>
     </aop:config>
     

@@ -55,7 +55,7 @@
         <init-param>
             <!-- Application class name -->
             <param-name>org.restlet.application</param-name>
-            <param-value>com.zml.oa.activiti.explorer.rest.ExplorerRestApplication</param-value>
+            <param-value>com.jun.plugin.oa.activiti.explorer.rest.ExplorerRestApplication</param-value>
         </init-param>
     </servlet>
 
@@ -89,7 +89,7 @@
     <!-- 验证码过滤器需要放到Shiro之后 因为Shiro将包装HttpSession 如果不，可能造成两次的sesison id 不一样 -->
     <filter>
         <filter-name>JCaptchaFilter</filter-name>
-        <filter-class>com.zml.oa.shiro.jcaptcha.JCaptchaFilter</filter-class>
+        <filter-class>com.jun.plugin.oa.shiro.jcaptcha.JCaptchaFilter</filter-class>
         <async-supported>true</async-supported>
     </filter>
     <filter-mapping>

@@ -9,12 +9,12 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 缓存管理器 -->
-    <bean id="cacheManager" class="com.zml.oa.shiro.cache.CacheManagerWrapper">
+    <bean id="cacheManager" class="com.jun.plugin.oa.shiro.cache.CacheManagerWrapper">
         <property name="cacheManager" ref="springCacheManager"/>
     </bean>
 
     <!-- 凭证匹配器 -->
-    <bean id="credentialsMatcher" class="com.zml.oa.shiro.credentials.RetryLimitHashedCredentialsMatcher">
+    <bean id="credentialsMatcher" class="com.jun.plugin.oa.shiro.credentials.RetryLimitHashedCredentialsMatcher">
         <constructor-arg ref="cacheManager"/>
         <property name="hashAlgorithmName" value="md5"/>
         <property name="hashIterations" value="2"/>
@@ -22,7 +22,7 @@
     </bean>
 
     <!-- Realm实现 -->
-    <bean id="userRealm" class="com.zml.oa.shiro.realm.UserRealm">
+    <bean id="userRealm" class="com.jun.plugin.oa.shiro.realm.UserRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
         <property name="cachingEnabled" value="false"/>
 		<property name="authenticationCachingEnabled" value="true"/><!-- 启用身份验证缓存，即缓存AuthenticationInfo信息，默认false -->
@@ -97,7 +97,7 @@
     </bean>
 
     <!-- 基于Form表单的身份验证过滤器 -->
-    <bean id="formAuthenticationFilter" class="com.zml.oa.shiro.filter.CustomFormAuthenticationFilter">
+    <bean id="formAuthenticationFilter" class="com.jun.plugin.oa.shiro.filter.CustomFormAuthenticationFilter">
         <property name="usernameParam" value="name"/>   <!-- 指定登录表单提交的用户名参数名 -->
         <property name="passwordParam" value="passwd"/>   <!-- 指定登录表单提交的密码参数名 -->
         <property name="rememberMeParam" value="rememberMe"/>
@@ -108,14 +108,14 @@
     </bean>
     
 	<!-- 验证码 -->
-    <bean id="jCaptchaValidateFilter" class="com.zml.oa.shiro.jcaptcha.JCaptchaValidateFilter">
+    <bean id="jCaptchaValidateFilter" class="com.jun.plugin.oa.shiro.jcaptcha.JCaptchaValidateFilter">
         <property name="jcaptchaEbabled" value="true"/>			<!-- 开启验证码支持 -->
         <property name="jcaptchaParam" value="jcaptchaCode"/>	<!-- 前台提交的验证码参数名 -->
         <property name="failureKeyAttribute" value="shiroLoginFailure"/>	<!-- 验证码验证失败后存储到的属性名 -->
     </bean>
 
 	<!-- 并发登录控制 -->
-	<bean id="kickoutSessionControlFilter" class="com.zml.oa.shiro.filter.KickoutSessionControlFilter">
+	<bean id="kickoutSessionControlFilter" class="com.jun.plugin.oa.shiro.filter.KickoutSessionControlFilter">
         <property name="cacheManager" ref="cacheManager"/>		<!-- 用于保存用户—会话之间的关系的 -->
         <property name="sessionManager" ref="sessionManager"/>	<!-- 用于根据会话ID，获取会话进行踢出操作的 -->
         <property name="kickoutAfter" value="false"/>			<!-- 是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户 -->
@@ -123,7 +123,7 @@
         <property name="kickoutUrl" value="/loginAction/login?kickout=1"/>	<!-- 被踢出后重定向到的地址 -->
     </bean>
 
-    <bean id="forceLogoutFilter" class="com.zml.oa.shiro.filter.ForceLogoutFilter"/>
+    <bean id="forceLogoutFilter" class="com.jun.plugin.oa.shiro.filter.ForceLogoutFilter"/>
 
     <!-- Shiro的Web过滤器 -->
     <!-- 

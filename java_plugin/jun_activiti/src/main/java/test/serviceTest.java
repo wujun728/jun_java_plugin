@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.zml.oa.entity.Group;
-import com.zml.oa.service.IBaseService;
-import com.zml.oa.service.IGroupService;
+import com.jun.plugin.oa.entity.Group;
+import com.jun.plugin.oa.service.IBaseService;
+import com.jun.plugin.oa.service.IGroupService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:/applicationContext.xml", "classpath*:/springMVC.xml" })
