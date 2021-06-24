@@ -1,4 +1,4 @@
-package com.baijob.commonTools;
+package com.jun.plugin.commons.util;
 
 import java.util.Calendar;
 import java.util.Date;

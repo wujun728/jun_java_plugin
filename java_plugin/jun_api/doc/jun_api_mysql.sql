@@ -1,5 +1,5 @@
-CREATE database if NOT EXISTS `xxl-api` default character set utf8 collate utf8_general_ci;
-use `xxl-api`;
+CREATE database if NOT EXISTS `db_api` default character set utf8 collate utf8_general_ci;
+use `db_api`;
 
 
 CREATE TABLE `xxl_api_biz` (

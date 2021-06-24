@@ -4,7 +4,7 @@
     <groupId>com.jun.plugin</groupId>
 	<artifactId>jun_apache_commons</artifactId>
 	<packaging>jar</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

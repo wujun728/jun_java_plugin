@@ -1,4 +1,4 @@
-package com.baijob.commonTools.wordSraech;
+package com.jun.plugin.commons.util.wordSraech;
 
 import java.util.List;
 

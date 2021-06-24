@@ -1,4 +1,4 @@
-package com.baijob.commonTools;
+package com.jun.plugin.commons.util;
 
 import org.junit.Assert;
 import org.junit.Test;

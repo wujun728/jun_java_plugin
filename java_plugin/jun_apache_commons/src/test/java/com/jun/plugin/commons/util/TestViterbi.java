@@ -1,8 +1,8 @@
-package com.getall.util.test;
+package com.jun.plugin.commons.util;
 
-import com.getall.util.log.LogUtil;
-import com.getall.util.maths.Matrix;
-import com.getall.util.maths.algorithm.Viterbi;
+import com.jun.plugin.commons.util.log.LogUtil;
+import com.jun.plugin.commons.util.maths.Matrix;
+import com.jun.plugin.commons.util.maths.algorithm.Viterbi;
 
 public class TestViterbi
 {
