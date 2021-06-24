@@ -1011,19 +1011,19 @@ CREATE TABLE `t_salary_adjust` (
 -- ----------------------------
 -- Records of t_salary_adjust
 -- ----------------------------
-INSERT INTO `t_salary_adjust` VALUES ('24', '10000.00', '2015-07-14', '薪资调整', '262526', '13', 'APPROVAL_SUCCESS');
-INSERT INTO `t_salary_adjust` VALUES ('25', '18000.00', '2015-07-15', '撤销看看评论', '270026', '13', 'APPROVAL_SUCCESS');
-INSERT INTO `t_salary_adjust` VALUES ('26', '20000.00', '2015-07-15', '删除评论', '272501', '13', 'APPROVAL_SUCCESS');
-INSERT INTO `t_salary_adjust` VALUES ('27', '20500.00', '2015-07-15', 'comment', '275005', '13', 'PENDING');
-INSERT INTO `t_salary_adjust` VALUES ('28', '26000.00', '2015-07-16', '1111', '280005', '13', 'APPROVAL_FAILED');
-INSERT INTO `t_salary_adjust` VALUES ('29', '25000.00', '2015-07-15', '111', '285001', '13', 'APPROVAL_SUCCESS');
-INSERT INTO `t_salary_adjust` VALUES ('30', '30000.00', '2015-07-16', '123', '295029', '13', 'APPROVAL_FAILED');
-INSERT INTO `t_salary_adjust` VALUES ('31', '31000.00', '2015-07-16', '232', '297501', '13', 'APPROVAL_FAILED');
-INSERT INTO `t_salary_adjust` VALUES ('32', '123456.00', '2015-07-16', '123', '297539', '13', 'PENDING');
-INSERT INTO `t_salary_adjust` VALUES ('33', '20000.00', '2015-07-16', '123', '300017', '13', 'APPROVAL_SUCCESS');
-INSERT INTO `t_salary_adjust` VALUES ('34', '20000.00', '2015-07-17', '123123', null, '16', 'PENDING');
-INSERT INTO `t_salary_adjust` VALUES ('35', '22000.00', '2015-07-17', '112233', '305001', '13', 'APPROVAL_SUCCESS');
-INSERT INTO `t_salary_adjust` VALUES ('36', '22000.00', '2015-07-20', '888', '310001', '13', 'PENDING');
+INSERT INTO `t_salary_adjust` VALUES ('24', '10000.00', '2020-07-14', '薪资调整', '262526', '13', 'APPROVAL_SUCCESS');
+INSERT INTO `t_salary_adjust` VALUES ('25', '18000.00', '2020-07-15', '撤销看看评论', '270026', '13', 'APPROVAL_SUCCESS');
+INSERT INTO `t_salary_adjust` VALUES ('26', '20000.00', '2020-07-15', '删除评论', '272501', '13', 'APPROVAL_SUCCESS');
+INSERT INTO `t_salary_adjust` VALUES ('27', '20500.00', '2020-07-15', 'comment', '275005', '13', 'PENDING');
+INSERT INTO `t_salary_adjust` VALUES ('28', '26000.00', '2020-07-16', '1111', '280005', '13', 'APPROVAL_FAILED');
+INSERT INTO `t_salary_adjust` VALUES ('29', '25000.00', '2020-07-15', '111', '285001', '13', 'APPROVAL_SUCCESS');
+INSERT INTO `t_salary_adjust` VALUES ('30', '30000.00', '2020-07-16', '123', '295029', '13', 'APPROVAL_FAILED');
+INSERT INTO `t_salary_adjust` VALUES ('31', '31000.00', '2020-07-16', '232', '297501', '13', 'APPROVAL_FAILED');
+INSERT INTO `t_salary_adjust` VALUES ('32', '123456.00', '2020-07-16', '123', '297539', '13', 'PENDING');
+INSERT INTO `t_salary_adjust` VALUES ('33', '20000.00', '2020-07-16', '123', '300017', '13', 'APPROVAL_SUCCESS');
+INSERT INTO `t_salary_adjust` VALUES ('34', '20000.00', '2020-07-17', '123123', null, '16', 'PENDING');
+INSERT INTO `t_salary_adjust` VALUES ('35', '22000.00', '2020-07-17', '112233', '305001', '13', 'APPROVAL_SUCCESS');
+INSERT INTO `t_salary_adjust` VALUES ('36', '22000.00', '2020-07-20', '888', '310001', '13', 'PENDING');
 
 -- ----------------------------
 -- Table structure for t_user
@@ -1045,16 +1045,16 @@ CREATE TABLE `t_user` (
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
-INSERT INTO `t_user` VALUES ('4', '老板', '16a995df59c545d7b5a1bb6c467335af', '2015-02-07', '1', '0', 'df619f4b54b71c4eb3ab46a3e77bb0df');
-INSERT INTO `t_user` VALUES ('5', '财务', '5663fe5a302c2cf4c09da32e71c576d2', '2015-02-07', '4', '0', '2db9ce54137dea81dcee95d43256c487');
+INSERT INTO `t_user` VALUES ('4', '老板', '16a995df59c545d7b5a1bb6c467335af', '2020-02-07', '1', '0', 'df619f4b54b71c4eb3ab46a3e77bb0df');
+INSERT INTO `t_user` VALUES ('5', '财务', '5663fe5a302c2cf4c09da32e71c576d2', '2020-02-07', '4', '0', '2db9ce54137dea81dcee95d43256c487');
 INSERT INTO `t_user` VALUES ('6', '员工2', '5c1ccd5c0311bf59b3d01a8143eac7a6', null, '3', '0', '06b3e93953b1c416db97aa95626b3919');
-INSERT INTO `t_user` VALUES ('13', 'zhao', 'cde49e4e9e04c67929164327cd406af7', '2015-01-12', '3', '0', 'fc0885339b523c7fe9fadaf05cbe5269');
-INSERT INTO `t_user` VALUES ('14', 'admin', 'e90a5c0116231c7d2bdfafaf92b4b6fe', '2015-01-19', '7', '0', '578288d20f818d9638df11cfdba4ba40');
-INSERT INTO `t_user` VALUES ('15', '经理', '72b0d9b72bd552983083bebc4b9f9ef4', '2015-02-07', '6', '0', 'b94b50d150fee37de6e9c389edb30397');
-INSERT INTO `t_user` VALUES ('16', '总监', '0067847e904e1295a23015cad660382c', '2015-02-07', '2', '0', '52e5a800953f810af2a3c1367c207e74');
-INSERT INTO `t_user` VALUES ('17', '人事', '377ba153f45e6d9ca243a62a8a055a97', '2015-02-07', '5', '0', 'ebabc4618cedbe831f848fef43038082');
-INSERT INTO `t_user` VALUES ('18', '经理2', '0273e7ce534e5e24e572c8b3b2e613a5', '2015-04-27', '6', '0', '899865f3edff41b3c1b420fd3e354426');
-INSERT INTO `t_user` VALUES ('19', '总监2', '06c8ce0fbf0693d20a873366c2062322', '2015-04-27', '2', '0', 'b0abe376c5429e0c07c65d6ea16a4142');
+INSERT INTO `t_user` VALUES ('13', 'zhao', 'cde49e4e9e04c67929164327cd406af7', '2020-01-12', '3', '0', 'fc0885339b523c7fe9fadaf05cbe5269');
+INSERT INTO `t_user` VALUES ('14', 'admin', 'e90a5c0116231c7d2bdfafaf92b4b6fe', '2020-01-19', '7', '0', '578288d20f818d9638df11cfdba4ba40');
+INSERT INTO `t_user` VALUES ('15', '经理', '72b0d9b72bd552983083bebc4b9f9ef4', '2020-02-07', '6', '0', 'b94b50d150fee37de6e9c389edb30397');
+INSERT INTO `t_user` VALUES ('16', '总监', '0067847e904e1295a23015cad660382c', '2020-02-07', '2', '0', '52e5a800953f810af2a3c1367c207e74');
+INSERT INTO `t_user` VALUES ('17', '人事', '377ba153f45e6d9ca243a62a8a055a97', '2020-02-07', '5', '0', 'ebabc4618cedbe831f848fef43038082');
+INSERT INTO `t_user` VALUES ('18', '经理2', '0273e7ce534e5e24e572c8b3b2e613a5', '2020-04-27', '6', '0', '899865f3edff41b3c1b420fd3e354426');
+INSERT INTO `t_user` VALUES ('19', '总监2', '06c8ce0fbf0693d20a873366c2062322', '2020-04-27', '2', '0', 'b0abe376c5429e0c07c65d6ea16a4142');
 
 -- ----------------------------
 -- Table structure for t_user_task
@@ -1107,4 +1107,4 @@ CREATE TABLE `t_vacation` (
 -- ----------------------------
 -- Records of t_vacation
 -- ----------------------------
-INSERT INTO `t_vacation` VALUES ('1', '2015-07-16', '2015-07-16', '6', '2015-07-23', '290001', '123123', 'APPROVAL_SUCCESS', '13', '1');
+INSERT INTO `t_vacation` VALUES ('1', '2020-07-16', '2020-07-16', '6', '2020-07-23', '290001', '123123', 'APPROVAL_SUCCESS', '13', '1');
