@@ -35,11 +35,13 @@
 			<module>spring_drools</module>
 			<module>spring_dubbo</module>
 			<module>spring_dynamic_job</module>
+			<module>spring_easyexcel</module>
 			<module>spring_elasticsearch</module>
 			<module>spring_email</module>
 			<module>spring_excel</module>
 			<module>spring_generator</module>
 			<module>spring_hibernate</module>
+			<module>spring_jasperreport</module>
 			<module>spring_jpa</module>
 			<module>spring_jqgrid</module>
 			<module>spring_jsonp</module>
@@ -62,12 +64,15 @@
 			<module>spring_shiro_redis</module>
 			<module>spring_simplessh14</module>
 			<module>spring_solr</module>
+			<module>spring_spider</module>
+			<module>spring_springbatch</module>
+			<module>spring_springjdbc</module>
+			<module>spring_springmvc</module>
 			<module>spring_ssh</module>
 			<module>spring_ssm_dubbo</module>
 			<module>spring_ssm_freemarker</module>
 			<module>spring_ssm_layui</module>
 			<module>spring_ssm2</module>
-			<module>spring_sso</module>
 			<module>spring_struts2</module>
 			<module>spring_swagger</module>
 			<module>spring_task</module>
