@@ -1,11 +1,8 @@
-SpringOA简介
+jun_activiti
 ========
 
-[![GitHub forks](https://img.shields.io/github/forks/zhaoml529/SpringMVC-Activiti5.16-Shiro.svg?style=social&label=Fork)](https://github.com/zhaoml529/SpringMVC-Activiti5.16-Shiro/tree/EasyUI)
-[![GitHub stars](https://img.shields.io/github/stars/zhaoml529/SpringMVC-Activiti5.16-Shiro.svg?style=social&label=Star)](https://github.com/zhaoml529/SpringMVC-Activiti5.16-Shiro/tree/EasyUI)
+基于SpringMVC+JPA+Shiro+ActivitiEasyUI的OA工作流系统，后续准备开发成公共流程引擎。
 
-基于SpringMVC+Shiro+Activiti 5.16 的简单OA，可以快速入门Activiti学习用。
-此版本前台使用的是EasyUI
 
 框架简介
 --------
@@ -35,34 +32,10 @@ Shiro实现登录认证和权限控制，结合Ehcache缓存权限列表，毕�
 <li>目前只支持MySql,建议MySql 5.5及以上</li>
 </ul>
 
-
-后续功能
---------
-1.加入安全框架Shiro. ---已实现<br>
-2.加入缓存 ehcache.  ---已实现<br>
-3.前端页面 EasyUI.   ---已实现<br>
+ 
 
 系统功能不断完善中,欢迎同学Fork并Pull requests.
 
 系统页面
 --------
-![github](https://raw.githubusercontent.com/zhaoml529/SpringOA/EasyUI/WebContent/images/git_main.jpg "github")
-
-![github](https://raw.githubusercontent.com/zhaoml529/SpringOA/EasyUI/WebContent/images/git_index.jpg "github") 
-
-![Activiti](https://git.oschina.net/uploads/images/2017/0520/203120_d1a09cc1_477149.jpeg "流程定义") 
-
-![Activiti](https://git.oschina.net/uploads/images/2017/0520/203219_7a619315_477149.jpeg "流程设计")
-
-![Activiti](https://git.oschina.net/uploads/images/2017/0520/203249_1f4bd714_477149.jpeg "任务处理人")
-
-![Activiti](https://git.oschina.net/uploads/images/2017/0520/203326_7d4f137b_477149.jpeg "流程跟踪")
-    
-![Activiti](https://git.oschina.net/uploads/images/2017/0520/203347_5b7ea002_477149.jpeg "待办任务")
-
-
-小广告
---------
-褥羊毛干饭，美团 饿了么外卖优惠券，天天领券给自己加个鸡腿，扫码关注吧！
-
-![github](https://ieee-image.oss-cn-beijing.aliyuncs.com/user-avatar/i3e_1620895574364.png "流程定义")
+  
