@@ -1,9 +1,9 @@
 package com.jun.permission.controller;
 
 import com.jun.permission.controller.annotation.PermessionType;
-import com.jun.permission.core.model.junPermissionMenu;
+import com.jun.permission.core.model.XxlPermissionMenu;
 import com.jun.permission.core.result.ReturnT;
-import com.jun.permission.dao.IjunPermissionRoleDao;
+import com.jun.permission.dao.IXxlPermissionRoleDao;
 import com.jun.permission.service.IUserPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * 权限相关
- * @author wujun
+ * @author wuXxl
  */
 @Controller
 @RequestMapping("/userPermission")
@@ -26,7 +26,7 @@ public class UserPermissionController {
 	@Autowired
 	private IUserPermissionService userPermissionService;
 	@Autowired
-	private IjunPermissionRoleDao adminRoleDao;
+	private IXxlPermissionRoleDao adminRoleDao;
 	
 	//-----------------------后台用户相关-----------------------
 	@RequestMapping("/userMain")
@@ -146,7 +146,7 @@ public class UserPermissionController {
 	@RequestMapping("/menuAdd")
 	@ResponseBody
 	@PermessionType(permessionId = 1000300)
-	public ReturnT<Integer> menuAdd(junPermissionMenu menu) {
+	public ReturnT<Integer> menuAdd(XxlPermissionMenu menu) {
 		return userPermissionService.menuAdd(menu);
 	}
 	
@@ -160,7 +160,7 @@ public class UserPermissionController {
 	@RequestMapping("/menuUpdate")
 	@ResponseBody
 	@PermessionType(permessionId = 1000300)
-	public ReturnT<Integer> menuUpdate(junPermissionMenu menu) {
+	public ReturnT<Integer> menuUpdate(XxlPermissionMenu menu) {
 		return userPermissionService.menuUpdate(menu);
 	}
 	

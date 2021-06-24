@@ -5,7 +5,7 @@ package com.jun.permission.core.model;
  * @author wujun
  *
  */
-public class junPermissionUser {
+public class XxlPermissionUser {
 	
 	private int id;
 	private String userName;

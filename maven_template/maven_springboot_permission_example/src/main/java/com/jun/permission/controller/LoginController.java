@@ -4,10 +4,10 @@ import com.jun.permission.controller.annotation.PermessionType;
 import com.jun.permission.controller.core.LoginIdentity;
 import com.jun.permission.core.constant.CommonDic;
 import com.jun.permission.core.constant.CommonDic.HttpSessionKeyDic;
-import com.jun.permission.core.model.junPermissionRole;
+import com.jun.permission.core.model.XxlPermissionRole;
 import com.jun.permission.core.result.ReturnT;
 import com.jun.permission.core.util.HttpSessionUtil;
-import com.jun.permission.dao.IjunPermissionRoleDao;
+import com.jun.permission.dao.IXxlPermissionRoleDao;
 import com.jun.permission.service.ILoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * @author wujun
+ * @author wuXxl
  */
 @Controller
 public class LoginController {
@@ -31,7 +31,7 @@ public class LoginController {
 	@Autowired
 	private ILoginService loginService;
 	@Autowired
-	private IjunPermissionRoleDao junPermissionRoleDao;
+	private IXxlPermissionRoleDao XxlPermissionRoleDao;
 	
 
 	@RequestMapping("")
@@ -44,7 +44,7 @@ public class LoginController {
 			return "redirect:/home";
 		}
 
-		List<junPermissionRole> roleList = junPermissionRoleDao.getAllRoles();
+		List<XxlPermissionRole> roleList = XxlPermissionRoleDao.getAllRoles();
 		model.addAttribute("roleList", roleList);
 		model.addAttribute("SUPER_ROLE_ID", CommonDic.SUPER_ROLE_ID);
 

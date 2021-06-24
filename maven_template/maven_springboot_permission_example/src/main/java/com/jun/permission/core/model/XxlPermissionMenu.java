@@ -7,7 +7,7 @@ import java.util.List;
  * 权限菜单[三级:模块-组-子项]
  * @author wujun
  */
-public class junPermissionMenu {
+public class XxlPermissionMenu {
 
 	private int id;					// 主键ID
 	private int parentId;			// 父节点ID
@@ -36,11 +36,11 @@ public class junPermissionMenu {
 	}
 	
 	// 子菜单：用于手动生成权限菜单
-	private List<junPermissionMenu> subMenus = new ArrayList<junPermissionMenu>();
-	public List<junPermissionMenu> getSubMenus() {
+	private List<XxlPermissionMenu> subMenus = new ArrayList<XxlPermissionMenu>();
+	public List<XxlPermissionMenu> getSubMenus() {
 		return subMenus;
 	}
-	public void setSubMenus(List<junPermissionMenu> subMenus) {
+	public void setSubMenus(List<XxlPermissionMenu> subMenus) {
 		this.subMenus = subMenus;
 	}
 

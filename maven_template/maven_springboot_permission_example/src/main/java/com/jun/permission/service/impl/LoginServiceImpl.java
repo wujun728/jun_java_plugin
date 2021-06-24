@@ -2,13 +2,13 @@ package com.jun.permission.service.impl;
 
 import com.jun.permission.controller.core.LoginIdentity;
 import com.jun.permission.core.constant.CommonDic;
-import com.jun.permission.core.model.junPermissionMenu;
-import com.jun.permission.core.model.junPermissionUser;
+import com.jun.permission.core.model.XxlPermissionMenu;
+import com.jun.permission.core.model.XxlPermissionUser;
 import com.jun.permission.core.result.ReturnT;
 import com.jun.permission.core.util.HttpSessionUtil;
-import com.jun.permission.dao.IjunPermissionMenuDao;
-import com.jun.permission.dao.IjunPermissionRoleDao;
-import com.jun.permission.dao.IjunPermissionUserDao;
+import com.jun.permission.dao.IXxlPermissionMenuDao;
+import com.jun.permission.dao.IXxlPermissionRoleDao;
+import com.jun.permission.dao.IXxlPermissionUserDao;
 import com.jun.permission.service.ILoginService;
 import com.jun.permission.service.helper.LoginIdentityHelper;
 import org.apache.commons.collections.CollectionUtils;
@@ -23,18 +23,18 @@ import java.util.List;
 
 /**
  * 后台用户
- * @author wujun
+ * @author wuXxl
  */
 @Service
 public class LoginServiceImpl implements ILoginService {
 	private static transient Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
 	
 	@Autowired
-	private IjunPermissionUserDao junPermissionUserDao;
+	private IXxlPermissionUserDao XxlPermissionUserDao;
 	@Autowired
-	private IjunPermissionRoleDao junPermissionRoleDao;
+	private IXxlPermissionRoleDao XxlPermissionRoleDao;
 	@Autowired
-	private IjunPermissionMenuDao junPermissionMenuDao;
+	private IXxlPermissionMenuDao XxlPermissionMenuDao;
 	
 	/*
 	 * 登陆
@@ -49,7 +49,7 @@ public class LoginServiceImpl implements ILoginService {
 		}
 		
 		// 用户校验--账号密码校验
-		junPermissionUser user = junPermissionUserDao.findUserByUserName(username);
+		XxlPermissionUser user = XxlPermissionUserDao.findUserByUserName(username);
 		if (user == null) {
 			return new ReturnT<String>(ReturnT.FAIL_CODE, "用户名不存在");
 		}
@@ -58,17 +58,17 @@ public class LoginServiceImpl implements ILoginService {
 		}
 
 		// 角色校验
-		int  userRoleCount = junPermissionRoleDao.findUserRoleCount(user.getId(), roleId);
+		int  userRoleCount = XxlPermissionRoleDao.findUserRoleCount(user.getId(), roleId);
 		if (userRoleCount < 1) {
 			return new ReturnT<String>(ReturnT.FAIL_CODE, "对不起,角色权限不足");
 		}
 
 		// 菜单校验
-		List<junPermissionMenu> menus = null;
+		List<XxlPermissionMenu> menus = null;
 		if (CommonDic.SUPER_ROLE_ID == roleId) {
-			menus = junPermissionMenuDao.getAllMenus();
+			menus = XxlPermissionMenuDao.getAllMenus();
 		} else {
-			menus = junPermissionMenuDao.getMenusByRoleId(roleId);
+			menus = XxlPermissionMenuDao.getMenusByRoleId(roleId);
 		}
 
 		if (CollectionUtils.isEmpty(menus)) {
@@ -126,12 +126,12 @@ public class LoginServiceImpl implements ILoginService {
 		}
 		
 		// 修改密码
-		junPermissionUser user = junPermissionUserDao.findUserByUserName(identity.getUserName());
+		XxlPermissionUser user = XxlPermissionUserDao.findUserByUserName(identity.getUserName());
 		if (user == null) {
 			return new ReturnT<String>(ReturnT.FAIL_CODE, "系统登录异常");
 		}
 		user.setPassword(newPwd);
-		int count = junPermissionUserDao.update(user);
+		int count = XxlPermissionUserDao.update(user);
 		if (count < 1) {
 			return new ReturnT<String>(ReturnT.FAIL_CODE, "密码修改失败，请稍后重试");
 		}

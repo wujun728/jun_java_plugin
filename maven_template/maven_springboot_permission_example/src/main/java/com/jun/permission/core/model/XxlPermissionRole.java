@@ -4,7 +4,7 @@ package com.jun.permission.core.model;
  * 角色表
  * @author wujun
  */
-public class junPermissionRole {
+public class XxlPermissionRole {
 	
 	private int id;
 	private String name;
