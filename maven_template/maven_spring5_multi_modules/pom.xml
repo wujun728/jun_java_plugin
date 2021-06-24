@@ -35,7 +35,7 @@
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <commons-collections4.version>4.1</commons-collections4.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
 
         <mockito-core.version>3.0.0</mockito-core.version>
         <httpclient.version>4.5.6</httpclient.version>
