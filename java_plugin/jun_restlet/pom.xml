@@ -15,7 +15,7 @@
 	</properties>
 
 	<modules> 
-		<module>jun_restlet</module>
+<!-- 		<module>jun_restlet</module> -->
 		 
 	</modules>
 

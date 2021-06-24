@@ -20,13 +20,13 @@
 		<module>jun_apache_commons</module>
 		<module>jun_api</module>
 		<module>jun_cache</module>
+		<module>jun_camel</module>
 		<module>jun_captcha</module>
 		<module>jun_crawler</module>
 		<module>jun_datasource</module>
 		<module>jun_dbutil</module>
 		<module>jun_demo</module>
 		<module>jun_designpattern</module>
-		<module>jun_distributed_session</module>
 		<module>jun_drools</module>
 		<module>jun_dubbo</module>
 		<module>jun_email</module>
@@ -37,6 +37,7 @@
 		<module>jun_hibernate</module>
 		<module>jun_httpclient</module>
 		<module>jun_image</module>
+		<module>jun_jar2maven</module>
 		<module>jun_jbpm</module>
 		<module>jun_jdk</module>
 		<module>jun_lucene</module>
@@ -53,6 +54,8 @@
 		<module>jun_webservlet</module>
 		<module>jun_websocket</module>
 		<module>jun_xml</module>
+		
+		
 	</modules>
 
 	<dependencies>

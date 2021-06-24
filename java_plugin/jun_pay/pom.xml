@@ -15,8 +15,8 @@
 	</properties>
 
 	<modules> 
-		<module>jun_pay_weixin</module>
-		<module>jun_pay_zhifubao</module>
+<!-- 		<module>jun_pay_weixin</module> -->
+<!-- 		<module>jun_pay_zhifubao</module> -->
 		 
 	</modules>
 
