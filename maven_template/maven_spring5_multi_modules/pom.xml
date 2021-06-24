@@ -33,7 +33,7 @@
         <zkclient.version>0.10</zkclient.version>
 
         <commons-lang3.version>3.9</commons-lang3.version>
-        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-collections4.version>4.1</commons-collections4.version>
         <junit.version>4.12</junit.version>
 
