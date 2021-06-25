@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jun.plugin</groupId>
-	<artifactId>java_plugin</artifactId>
+	<artifactId>jun_guava</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
 
@@ -14,51 +14,8 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
-	<modules>
-		<module>jun_activiti</module>
-		<module>jun_aliyun_sms</module>
-		<module>jun_apache_commons</module>
-		<module>jun_api</module>
-		<module>jun_cache</module>
-		<module>jun_camel</module>
-		<module>jun_captcha</module>
-		<module>jun_crawler</module>
-		<module>jun_datasource</module>
-		<module>jun_dbutil</module>
-		<module>jun_demo</module>
-		<module>jun_designpattern</module>
-		<module>jun_drools</module>
-		<module>jun_dubbo</module>
-		<module>jun_email</module>
-		<module>jun_excel</module>
-		<module>jun_fileupload</module>
-		<module>jun_freemarker</module>
-		<module>jun_guava</module>
-		<module>jun_guice</module>
-		<module>jun_gzip</module>
-		<module>jun_hibernate</module>
-		<module>jun_httpclient</module>
-		<module>jun_image</module>
-		<module>jun_jar2maven</module>
-		<module>jun_jbpm</module>
-		<module>jun_jdk</module>
-		<module>jun_lucene</module>
-		<module>jun_mybatisplus</module>
-		<module>jun_pay</module>
-		<module>jun_pdf</module>
-		<module>jun_qrcode</module>
-		<module>jun_quartz</module>
-		<module>jun_restlet</module>
-		<module>jun_serializable_json_protobuf_kyro_hessian</module>
-		<module>jun_shiro</module>
-		<module>jun_sso</module>
-		<module>jun_util</module>
-		<module>jun_webservice</module>
-		<module>jun_webservlet</module>
-		<module>jun_websocket</module>
-		<module>jun_xml</module>
-		
-		
+	<modules> 
+<!-- 		<module>jun_captcha_code</module> -->
 	</modules>
 
 	<dependencies>
