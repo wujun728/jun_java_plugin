@@ -72,23 +72,10 @@ https://github.com/yizhiwazi/springboot-socks
 
  
 待新增springboot_activiti
-
-springboot_flyway\
-springboot_freemarker\   调整
-springboot_graylog\
-springboot_helloworld\
-springboot_hibernate_validator\   调整
-springboot_https\
-springboot_jackson\ 调整
-springboot_jbpm6\   调整
-springboot_jms\    调整
-springboot_junit\ 调整
-springboot_jwt\   调整
-springboot_kafka_demo\   调整
-springboot_kaptcha_spring_boot_starter\    调整
-springboot_kisso_spring_boot\   调整到sso里面
-springboot_labs\    调整，拆分到boot跟cloud里面
-springboot_laydate_theme_bootstrap\
+  
+  
+  
+  
 springboot_ldap\
 springboot_learning\   调整
 springboot_learning_example\   调整
