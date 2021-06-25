@@ -23,7 +23,7 @@
 		<module>jun_camel</module>
 		<module>jun_captcha</module>
 		<module>jun_crawler</module>
-		<module>jun_datasource</module>
+		<module>jun_datasource_cluster</module>
 		<module>jun_dbutil</module>
 		<module>jun_demo</module>
 		<module>jun_designpattern</module>
