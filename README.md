@@ -66,28 +66,13 @@ https://github.com/yizhiwazi/springboot-socks
  
   
 	<groupId>com.jun.plugin</groupId>
-	<artifactId>springboot_drools</artifactId>
+	<artifactId>springboot_abc</artifactId>
 	<version>1.0</version>
+	<packaging>jar</packaging>
 
  
 待新增springboot_activiti
 
-springboot_cache\   调整
-springboot_codegen\
-springboot_data_jpa\   调整
-springboot_data_mybatis\
-springboot_distributed_seckill\
-springboot_docker\
-springboot_drools\   调整
-springboot_dubbo\
-springboot_dubbox\
-springboot_dynamic_datasource\
-springboot_elastic_job\    调整
-springboot_elasticsearch\
-springboot_email\
-springboot_exception_handler\
-springboot_fastdfs\   调整
-springboot_filemanager\   调整
 springboot_flyway\
 springboot_freemarker\   调整
 springboot_graylog\

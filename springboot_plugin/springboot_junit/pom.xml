@@ -3,13 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.yuan</groupId>
-	<artifactId>springbootjunit</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>com.jun.plugin</groupId>
+	<artifactId>springboot_junit</artifactId>
+	<version>1.0</version>
 	<packaging>jar</packaging>
-
-	<name>springboot-junit</name>
-	<description>Demo project for Spring Boot</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

@@ -8,9 +8,9 @@
     <version>1.5.4.RELEASE</version>
   </parent>
 
-  <groupId>me.chanjar</groupId>
-  <artifactId>springboot-jackson-datetime-examples</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+	<groupId>com.jun.plugin</groupId>
+	<artifactId>springboot_jackson</artifactId>
+	<version>1.0</version>
   <packaging>jar</packaging>
 
   <properties>
