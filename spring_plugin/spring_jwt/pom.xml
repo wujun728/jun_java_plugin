@@ -6,7 +6,7 @@
 
   <groupId>com.jun.plugin</groupId>
   <artifactId>jun_ssm_jwt</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>war</packaging>
 
   <name>jun_ssm_jwt Maven Webapp</name>

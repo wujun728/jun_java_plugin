@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-cn.zhangxd.platform.common.web.config.UploadConfig,\
-cn.zhangxd.platform.common.web.config.WebConfig

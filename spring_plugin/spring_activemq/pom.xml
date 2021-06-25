@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.jun.plugin</groupId>
   <artifactId>spring_activemq</artifactId>
+  <version>1.0</version>
   <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
   <name>spring_activemq</name>
   <url>http://maven.apache.org</url>
   <dependencies>
