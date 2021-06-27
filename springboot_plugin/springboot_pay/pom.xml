@@ -1,23 +1,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.itstyle.pay</groupId>
-	<artifactId>spring-boot-pay</artifactId>
-	<packaging>jar</packaging>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-pay</name>
-	<url>http://maven.apache.org</url>
-
+	
+	<groupId>com.jun.plugin</groupId>
+	<artifactId>springboot_pay</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging> 
+		
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 	</properties>
+	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.6.RELEASE</version>
 		<relativePath/>
 	</parent>
+	
+	<!-- ${basedir} 项目根目录
+	${project.build.directory} 构建目录，缺省为target
+	${project.build.outputDirectory} 构建过程输出目录，缺省为target/classes
+	${project.build.finalName} 产出物名称，缺省为${project.artifactId}-${project.version}
+	${project.packaging} 打包类型，缺省为jar
+	${project.xxx} 当前pom文件的任意节点的内容 -->
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -36,11 +44,36 @@
 		<!-- 支付宝 SDK(项目中的支付宝SDk需要自行去官网下载打入本地仓库或者私服)-->
 		<!-- 项目中的支付宝SDk需要自行去官网下载打入本地仓库或者私服，提供下载地址：https://pan.baidu.com/s/1B2_uyrz2uKN1Z_Ivbv7lgw -->
 		<!-- 再次声明一下，这个SDK是支付宝的官方SDK，只是没有加入maven仓库，需要自己自行导入或者打入本地私服！！！！-->
+        <!-- 
         <dependency>
 		    <groupId>vip.52itstyle</groupId>
 		    <artifactId>alipay-trade-sdk</artifactId>
 		    <version>1.0.0</version>
+		</dependency> 
+		-->
+		<dependency>
+		    <groupId>com.alipay.sdk</groupId>
+		    <artifactId>alipay-sdk-java</artifactId>
+		    <version>3.3.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/src/main/resources/lib/alipay-sdk-java-3.3.0.jar</systemPath>
 		</dependency>
+		<dependency>
+		    <groupId>com.alipay.sdk</groupId>
+		    <artifactId>alipay-trade-sdk</artifactId>
+		    <version>3.3.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/src/main/resources/lib/alipay-trade-sdk-3.3.0.jar</systemPath>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
+		<!-- maven 官网最新的
+		<dependency>
+		    <groupId>com.alipay.sdk</groupId>
+		    <artifactId>alipay-sdk-java</artifactId>
+		    <version>4.15.0.ALL</version>
+		</dependency> 
+		-->
+		
 		<!-- 官方SDK，时刻关注使用最新版  https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
 		<dependency>
 			<groupId>com.alipay.sdk</groupId>
@@ -193,6 +226,13 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+		        <groupId>org.springframework.boot</groupId>
+		        <artifactId>spring-boot-maven-plugin</artifactId>
+		        <configuration>
+		            <includeSystemScope>true</includeSystemScope>
+		        </configuration>
+		    </plugin>
 		</plugins>
 	</build>
 </project>

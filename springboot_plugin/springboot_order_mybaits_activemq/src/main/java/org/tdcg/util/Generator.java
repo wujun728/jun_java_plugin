@@ -1,4 +1,4 @@
-package org.tdcg;
+package org.tdcg.util;
 
 import com.baomidou.mybatisplus.annotations.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
