@@ -7,9 +7,12 @@
 		<artifactId>jun_springboot</artifactId>
 		<version>1.0</version>
     </parent>
-    <artifactId>springboot_tio</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <name>springboot_tio</name>
+    
+    <groupId>com.jun.plugin</groupId>
+	<artifactId>springboot_tio</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+	
     <description>Demo project for Spring Boot</description>
 
     <properties>

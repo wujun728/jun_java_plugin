@@ -1,20 +1,20 @@
 package com.zhaodui.springboot.buse.quartz;
 
-import cn.hutool.http.HttpUtil;
-import com.alibaba.fastjson.JSONObject;
-import com.zhaodui.springboot.baseutil.DateUtils;
-import com.zhaodui.springboot.buse.seeyon.RestFormDemorestsample;
-import com.zhaodui.springboot.buse.seeyon.WgCarorder01Entity;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Date;
+import java.util.List;
+
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.PersistJobDataAfterExecution;
 import org.springframework.scheduling.quartz.QuartzJobBean;
-import org.springframework.util.unit.DataUnit;
 
-import java.util.Date;
-import java.util.List;
+import com.alibaba.fastjson.JSONObject;
+import com.zhaodui.springboot.baseutil.DateUtils;
+import com.zhaodui.springboot.buse.seeyon.WgCarorder01Entity;
+
+import cn.hutool.http.HttpUtil;
+import lombok.extern.slf4j.Slf4j;
 
 @DisallowConcurrentExecution    //相同定义的jobDetail不能并发执行
 @PersistJobDataAfterExecution   //jobDataMap数据保存
@@ -222,7 +222,7 @@ public class QuartzJob extends QuartzJobBean {
 
 
                 System.out.println("xml=" + xml);
-            String result = RestFormDemorestsample.testImportBusinessFormData(xml);
+            String result = "";//RestFormDemorestsample.testImportBusinessFormData(xml);
                 System.out.println("result=" + result);
                 HttpUtil.get("http://47.113.88.244/fxj380/rest/wgCarorder01Controller/updateoa/"+t.getId()+"?fxjOut33="+result);
             }catch(Exception e){

@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.example</groupId>
-	<artifactId>webflux-demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>com.jun.plugin</groupId>
+	<artifactId>springboot_webflux_reactive_rest_api</artifactId>
+	<version>1.0</version>
 	<packaging>jar</packaging>
-
-	<name>webflux-demo</name>
+	
+	<name>springboot_webflux_reactive_rest_api</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>

@@ -8,14 +8,14 @@
 		<version>2.1.8.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.zhaodui</groupId>
-	<artifactId>bootutil</artifactId>
+	
+	<groupId>com.jun.plugin</groupId>
+	<artifactId>springboot_tools</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
-	<name>bootutil</name>
+		
 
 	<properties>
-
 		<java.version>1.8</java.version>
 		<springboot.version>2.1.8.RELEASE</springboot.version>
 		<swagger2.version>2.9.2</swagger2.version>
@@ -153,11 +153,13 @@
 			<version>${thymeleaf-shiro.version}</version>
 		</dependency>
 		<!--  oracle 11g-->
+		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc10 -->
 		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
-			<version>${ojdbc14.version}</version>
+		    <groupId>com.oracle.database.jdbc</groupId>
+		    <artifactId>ojdbc10</artifactId>
+		    <version>19.11.0.0</version>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -274,11 +276,11 @@
         <artifactId>jersey-client</artifactId>
         <version>2.27</version>
         </dependency>
-        <dependency>
+       <!--  <dependency>
             <groupId>com.seeyon</groupId>
             <artifactId>ctp</artifactId>
             <version>1.1.1</version>
-        </dependency>
+        </dependency> -->
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider -->
         <dependency>

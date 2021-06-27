@@ -8,10 +8,13 @@
         <version>2.0.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>cn.monitor4all</groupId>
-    <artifactId>springboot-websocket-demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-websocket-demo</name>
+    
+    <groupId>com.jun.plugin</groupId>
+	<artifactId>springboot_websocket_demo</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+	
+    <name>springboot_websocket_demo</name>
     <description>springboot websocket demo</description>
 
     <properties>

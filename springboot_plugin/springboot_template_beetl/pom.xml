@@ -3,10 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<groupId>com.jun.plugin</groupId>
 	<artifactId>springboot_template_beetl</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
-
+	
 	<name>springboot_template_beetl</name>
 	<description>Demo project for Spring Boot</description>
 
