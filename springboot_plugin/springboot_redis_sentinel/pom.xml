@@ -9,9 +9,11 @@
     <version>2.1.4.RELEASE</version>
   </parent>
 
-  <groupId>me.chanjar</groupId>
-  <artifactId>spring-boot-redis-sentinel-example</artifactId>
-  <version>0.1</version>
+	<groupId>com.jun.plugin</groupId>
+	<artifactId>springboot_redis_sentinel</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+	
 
   <dependencies>
     <dependency>

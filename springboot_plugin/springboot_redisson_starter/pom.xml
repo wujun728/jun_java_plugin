@@ -11,10 +11,11 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.baomidou</groupId>
-    <artifactId>redisson-spring-boot-starter</artifactId>
-    <version>1.0.0</version>
-    <packaging>jar</packaging>
+	<groupId>com.jun.plugin</groupId>
+	<artifactId>springboot_redisson_starter</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+	
 
     <name>dynamic-datasource-spring-boot-starter</name>
     <description>dynamic datasource with annotation</description>
