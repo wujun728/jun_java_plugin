@@ -73,12 +73,6 @@ https://github.com/yizhiwazi/springboot-socks
  
 待新增springboot_activiti
   
-    
-springboot_restful\   调整
-springboot_restful 2\
-springboot_roncoo_jui_springboot\   调整
-springboot_roncoo_spring_boot\ 调整
-springboot_samples\   调整
 springboot_sell\
 springboot_session\
 springboot_session2\   调整，合并到springboot_session
