@@ -1,9 +1,0 @@
-/target
-/.tern-project
-/.externalToolBuilders
-/*.log
-/logs
-/.classpath
-/.project
-/.settings
-/bin

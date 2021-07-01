@@ -1,9 +1,0 @@
-# for eclipse
-/.settings/
-/.project
-
-# for idea
-*.iml
-*/target
-/.idea
-.DS_Store
