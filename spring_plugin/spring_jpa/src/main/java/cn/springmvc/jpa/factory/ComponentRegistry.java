@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import cn.springmvc.jpa.common.memcached.MemcachedFactory;
-
 /**
  * @author Vincent.wang
  *
@@ -14,7 +12,6 @@ import cn.springmvc.jpa.common.memcached.MemcachedFactory;
 public class ComponentRegistry {
     private static ApplicationContext applicationContext;
 
-    private static MemcachedFactory memcachedFactory;
 
     public static ApplicationContext getApplicationContext() {
         return applicationContext;
@@ -33,13 +30,5 @@ public class ComponentRegistry {
         return applicationContext.getBean(className);
     }
 
-    public static MemcachedFactory getMemcachedFactory() {
-        return memcachedFactory;
-    }
-
-    @Autowired
-    public void setMemcachedFactory(MemcachedFactory memcachedFactory) {
-        ComponentRegistry.memcachedFactory = memcachedFactory;
-    }
 
 }

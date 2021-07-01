@@ -1,4 +1,4 @@
-package com.jun.base.httpclient;
+package com.jun.base.httpclient.test;
 
 
 import java.io.File;

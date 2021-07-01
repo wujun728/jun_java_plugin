@@ -389,15 +389,6 @@
 			<version>${sitemesh.version}</version>
 		</dependency>
 
-		<!-- memcached -->
-		<dependency>
-			<groupId>memcached</groupId>
-			<artifactId>memcached</artifactId>
-			<version>${memcached.version}</version>
-			<scope>system</scope>
-			<type>jar</type>
-			<systemPath>${basedir}/lib/memcached-2.6.jar</systemPath>
-		</dependency>
 
 		<!-- redis -->
 		<dependency>
