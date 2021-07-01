@@ -222,22 +222,7 @@ ShiroJwt\ 迁移到vue里面
 4、功能地图及产品中心规划
 5、整理胶片的模板发挥架构的优势
  
-API中心
-https://github.com/xulp951125/spring-boot-base
  
- 
-OA
-https://github.com/misstt123/oasys
- 
- 
-清空，rename jun_temp
- 
-
-
-
-
-
-
 
 #### 开发环境
 1
