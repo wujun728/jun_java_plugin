@@ -14,10 +14,12 @@ application.pid
 hs_err_pid*
 
 # Eclipse
-# .classpath
-# .project
+.classpath
+.project
 target
-# .settings
+classes
+.settings
+.factorypath
 
 # Idea
 .idea
