@@ -72,56 +72,168 @@ https://github.com/yizhiwazi/springboot-socks
 
  
 待新增springboot_activiti
-  
-springboot_sell\
-springboot_session\
-springboot_session2\   调整，合并到springboot_session
-springboot_session3\   调整
-springboot_sharding_jdbc\
-springboot_sharding_jdbc_demo\    调整
-springboot_sharding_jdbc_mybatis_plus_spring_boot_starter\    调整
-springboot_shiro\    调整，shiro
-springboot_smart_boot\
-springboot_social\
-springboot_sofa_boot\
-springboot_springside4\   调整
-springboot_springtime\
-springboot_ssh2_boot1\    调整
-springboot_ssm2\   调整
-springboot_starter_drools\   调整
-springboot_starter_dubbo\
-springboot_starter_dubbox\
-springboot_starter_swagger\   调整
-springboot_starter_weixin\
-springboot_startkit\
-springboot_study\   调整
-springboot_study 2\
-springboot_swagger\
-springboot_swagger_beauty\
-springboot_task\
-springboot_task_quartz\
-springboot_task_xxl_job\
-springboot_task2\   调整
-springboot_template_beetl\
-springboot_template_enjoy\
-springboot_template_freemarker\
-springboot_template_thymeleaf\
-springboot_templatemaven\   调整
-springboot_templates_layui_admin\   调整
-springboot_test_examples\   调整
-springboot_tio\
-springboot_tools\   迁移到jun_boot里面
-springboot_transaction\
-springboot_tyboot\
-springboot_tyboot2\
-springboot_tybootdemo\
-springboot_uflo\
-springboot_uniapp\
-springboot_unity\   调整
-springboot_unity 2\
-springboot_unity23\
-springboot_unity23 2\
+ 
+TODO PLAN：
  
+jun_java_plugin   常用Java开发组件，Spring系常用plugin，SpringBoot系组件SpringCloud系组件
+1、清空readme，新增readme图片，新增胶片方案模板供截图
+2、调整package，调整author，调整每个工程大小，调整每个项目jar包
+3、调整每个项目运行
+4、清空doc
+5、mvn_template 开发模板，调整，新增项目模板；新增
+分布式锁
+https://github.com/learninghard-lizhi/common-util
+https://www.cnblogs.com/zhili/p/redisdistributelock.html
+流程引擎
+https://github.com/snakerflow-starter/snakerflow-spring-boot-starter
+表单引擎
+https://github.com/xrogzu/dynamic-form
+https://github.com/9499574/layui-form-create
+https://github.com/9499574/layui-transfer
+https://github.com/9499574/transferTable
+jun_ssh_parent
+1、清空readme，新增readme图，新增胶片方案模板截图
+2、完成123
+3、调整两边的项目合并到Boot里面
+4、新增代码生成模板
+5、Ssh_boot 文件上传要调整报错问题，其他功能的Bug需要修复
+5、boot新增支持ssm，新增mybatisplus支持
+jun_ssm_springboot
+1、合并ry_gen进来到code_generator
+2、新增hibernate-validator支持
+3、Ssm_调整老的ssm的前端easyui到layui，前端已调整layui
+4、整ssm_jwt的代码生成器
+5、整ssm_jwt的common工具包
+6、整ssm_jwt的api跟rbac跟表结构
+jun_code_generator
+0、默认生成模板调整，默认下载zip包调整
+1、代码生成器jun_code_generator 默认提供Spring、Hibernate、MyBatis、Spring JDBC模板
+2、代码生成器，将easyexcel的demo合并到code_generator
+3、代码生成器的模板跟maven_template再整一下
+4、代码生成器新模板
+Ssm+easyUI
+SSM+jwt+layui
+boot+Bootstrap
+boot+jwt+vue
+5、单表生成
+6、关联表生成
+7、整理ssm项目
+8、整理boot项目
+9、SSH、SSM、SpringBoot、SpringCloud、Android、APP模板,
+10、新增+jun_ssh+ssm+springboot+mybatis+JPA
+jun_springboot_vue
+1、ruoyi-vue-pro    ---迁移到
+jun_product_center 产品中心，常用项目模板及常用项目工程，调整，常用项目的集合，私有的
+0、整chinasoft的login.html跟index.html的page，适配Nginx跟ssm_jwt；
+1、整理cs的login页面
+2、整理cs的index页面
+3、整理layui的静态前端页面并归档
+4、整理adminlte及hplus
+5、整理easyui的前端页面并归档
+6、整理代码生成器
+先根据邮件去掉非必须的项目
+综合配置login及index的页面的归档
+ 
+jun_frontend_ui     前端开发组件
+1、Bootstrap Adminlte
+2、Bootstrap hplus
+3、JQueryEasyUI
+4、LayUI
+5、Vue element Admin
+wujun728.github.io
+jun_springcloud
+jun_linux    Linux开发组件
+Nginx优化，nginx优化单台机器抗10万并发
+https://www.jianshu.com/p/5149a7a700b9
+jun_weixin   微信开发
+jun_android Android开发
+jun_app    APP开发，Vue+uniapp+Nodejs++Android
+jun_temp    临时仓库，干掉
+jun_website    网站开发,以WordPress+网站模板为主
+jun_bigdata   大数据开发
+ 
+
+
+
+合并到jun_plugin里面
+https://github.com/silently9527/JavaCore
+ 
+Uniapp+Springboot
+https://github.com/C-wx/Uni_Homestay_Manage
+https://github.com/musitei/Springboot-project
+https://github.com/VincentTung/emos_online
+https://blog.csdn.net/yf275908654/article/details/50171607
+ 
+ 
+合并到jun_ssh
+https://github.com/zhengyunfei/springboot-hadmin
+合并到前端模板hplus
+https://github.com/lantongxue/hAdmin
+ 
+ 
+Ssh_parent
+aicode\      干掉
+authority\ jsp hplus boot jpa
+biu\   迁移到vue里面
+mis\ 干掉
+ShiroJwt\ 迁移到vue里面
+ 
+不要的东西删掉，重新拟定计划跟技术选型及产品
+1、新增产品规划，产品及技术选型
+2、先技术规划，技术规划
+3、新增管理规划，功能点补充及二次开发规划
+4、功能地图及产品中心规划
+5、整理胶片的模板发挥架构的优势
+ 
+API中心
+https://github.com/xulp951125/spring-boot-base
+ 
+ 
+OA
+https://github.com/misstt123/oasys
+ 
+Temp合并到jun_plugin里面
+https://github.com/silently9527/JavaCore
+ 
+Uniapp+Springboot
+https://github.com/C-wx/Uni_Homestay_Manage
+https://github.com/musitei/Springboot-project
+https://github.com/VincentTung/emos_online
+https://blog.csdn.net/yf275908654/article/details/50171607
+ 
+ 
+合并到jun_ssh
+https://github.com/zhengyunfei/springboot-hadmin
+合并到前端模板hplus
+https://github.com/lantongxue/hAdmin
+ 
+ 
+Ssh_parent
+aicode\      干掉
+authority\ jsp hplus boot jpa
+biu\   迁移到vue里面
+mis\ 干掉
+ShiroJwt\ 迁移到vue里面
+ 
+不要的东西删掉，重新拟定计划跟技术选型及产品
+1、新增产品规划，产品及技术选型
+2、先技术规划，技术规划
+3、新增管理规划，功能点补充及二次开发规划
+4、功能地图及产品中心规划
+5、整理胶片的模板发挥架构的优势
+ 
+API中心
+https://github.com/xulp951125/spring-boot-base
+ 
+ 
+OA
+https://github.com/misstt123/oasys
+ 
+ 
+清空，rename jun_temp
+ 
+
+
 
 
 
