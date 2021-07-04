@@ -162,8 +162,8 @@
  
 <table>
     <tr>
-￼">https://raw.githubusercontent.com/lerry903/RuoYi/master/img/oper_log.jpg"/>
-￼">https://raw.githubusercontent.com/lerry903/RuoYi/master/img/login_log.jpg"/>
+		<td><img src="https://raw.githubusercontent.com/lerry903/RuoYi/master/img/oper_log.jpg"/>
+		<td><img src="https://raw.githubusercontent.com/lerry903/RuoYi/master/img/login_log.jpg"/>
     </tr>
 </table>
  
