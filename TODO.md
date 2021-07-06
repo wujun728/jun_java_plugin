@@ -8,8 +8,9 @@ Step1基础篇：
 	jun_code_generator 代码生成器-SpringBoot+Freemarker+API接口+EasyExcel
 	jun_frontend_ui    前端框架，Bootstrap、AdminLTE、Jquery、EasyUI、LayUI、LayAdmin、Vue、vue-element-admin
 	jun_linux    服务器部署、gitlab部署、Nginx部署、Redis部署、Docker部署、MySQL部署、等等
- 
+ 	---审视项目本身，给出待办调整清单，给出下步计划
 Step2微服务&大数据：
+	jun_api_service API接口服务框架，SpringBoot+RestFulAPI
 	jun_springboot_vue 前后端分离框架，SpringBoot+Vue+JWT
 	jun_springcloud 微服务框架，SpringCloud Netflix、SpringCloud Alibaba、Dubbo框架、Quarkus极速框架
 	jun_bigdata 大数据框架，支持数据清理、数据推荐、大数据分析、大数据企业看板、大数据报表等
@@ -25,6 +26,170 @@ Step4产品篇：
 	jun_weixin   微信开发平台、微信公众号、微信小程序、微信管理后台、微信API接口后台
 	jun_android Android移动开发框架，APP开发模板、后台管理系统、后台API接口平台
 	jun_temp     临时仓库
+
+
+
+ 
+2、jun_cache   ---干掉
+新增springcache
+https://github.com/iamsixer/spring-cache-demo
+https://github.com/zheng-zy/spring-boot-redis-guava-caffeine-cache
+ 
+3、camel 干掉，没啥用
+ 
+4、jun_crawler 调整，跑起来，净化
+ 
+5、jun_datasource_cluster rename 到 DataSource
+新增 https://github.com/ran-jit/tomcat-cluster-redis-session-manager
+ 
+6、分解jun_dbutils
+https://github.com/objcoding/jdbc-utils
+ 
+7、jun_demo rename到 jun_test
+ 
+8、设计模式，合并到一起，分三种合并，中文转英文
+ 
+9、jun_note 新增
+https://github.com/GourdErwa/review-notes
+ 
+10、新增jun_webservlet_guice_dbutil
+https://www.cnblogs.com/huzi007/p/5802022.html
+https://www.cnblogs.com/huzi007/p/5796372.html
+ 
+11、drools https://github.com/maxxbwsDemo
+ 
+12、email 调整，清理
+https://github.com/biezhi/oh-my-email/blob/master/pom.xml
+https://github.com/isliqian/NiceEmail
+ 
+13、excel 集成 easyexcel
+https://github.com/HowieYuan/easyexcel-encapsulation
+新增jun_poi demo
+ 
+14、jun_fileupload
+https://github.com/wemakebug/FileUpload.Java
+Spring fileupload
+https://github.com/jdmr/fileUpload
+ 
+15、freemarker boot https://github.com/JavaCodeMood/freemarker
+ 
+16、guava
+https://github.com/tiantiangao/guava-study
+https://github.com/tfnico/guava-examples
+ 
+17、guice
+https://github.com/timlien/servlet-guice
+https://github.com/greengerong/guice-demo
+https://github.com/lg625740749/GuiceDemo
+ 
+18、hibernate
+https://github.com/hibernate/hibernate-demos
+ 
+19、httpclient
+https://github.com/Arronlong/httpclientutil
+https://github.com/JourWon/httpclientutil
+ 
+20、image
+https://github.com/xuehuayous/ImageUpload
+https://github.com/jmitchener/spring-images
+https://github.com/woobong/spring-boot-jpa-summernote-image-upload-example
+https://github.com/mrmodise/java-spring-file-upload
+ 
+21、jbpm4
+https://github.com/xxg3053/jbpm-study
+https://github.com/American/workflow/tree/master/workflow
+ 
+22.jdk 清理，调整
+ 
+23、lucenne
+https://github.com/abel533/SearchEngine
+https://github.com/doushini/lucene
+https://github.com/pumadong/cl-search
+Springboot+ElasticSearch
+https://github.com/Motianshi/all-search
+ 
+24、pay
+https://github.com/kongzhidea/pay
+https://github.com/iyangyuan/pay-spring-boot
+ 
+Spring-cloud
+ 
+ 
+Spring-cloud
+Todo 25 :::::07-06
+ 
+25、pdf
+https://github.com/superad/pdf-kit
+ 
+26、qrcode
+https://github.com/binarywang/qrcode-utils
+https://github.com/hjzgg/QRCodeLoginDemo
+https://github.comJC/QRCodeLogin
+ 
+27、quartz
+https://github.com/dufyun/quartz-core-learning
+ 
+28、apiservice
+https://github.com/wangguobo/demo-spring-webflux-api-gateway
+ 
+29、restlet 干掉
+新增webflux
+https://github.com/basquiat78/WebFlux-R2DBC
+https://github.com/callicoder/spring-webflux-reactive-rest-api-demo
+ 
+30、rpc
+Grpc
+https://github.com/ChinaSilence/spring-boot-starter-grpc
+ 
+31、新增Jun_id_generator
+https://github.com/didi/tinyid
+ 
+32、序列化
+https://github.com/lgjlife/serialization
+ 
+00、SpringAll
+https://github.com/wuyouzhuguli/SpringAll
+https://github.com/febsteam/FEBS-Shiro
+ 
+00、新增单点登录
+Oauth2
+https://github.com/a466350665/smart-sso.git
+Spring_session
+https://github.com/hjzgg/SSO
+ 
+33、util清掉，新增util
+https://github.com/jayZheng87/Thusy
+ 
+34、干掉jun_webservice
+新增spring_webservice
+https://github.com/briansjavablog/spring-webservices-tutorial
+ 
+ 
+35、Spring_servlet
+https://github.com/zhangkaitao/servlet3-showcase
+Webservlet
+https://github.com/kingFeng666/webservlet01
+ 
+36、websocket
+调整websocket，curr
+ 
+37、xml
+https://github.com/clemontine/XMLParser
+ 
+38、jsoup
+https://github.com/code4craft/xsoup.git
+https://github.com/code4craft/jsoup-learning
+ 
+00、github.io blog
+https://github.com/dunwu/dunwu.github.io
+ 
+39、redis lock
+https://github.com/14251104246/redis-demo
+ 
+40、webmagic
+https://github.com/brianway/webporter
+ 
+
  
 JWT+VUE
 	https://github.com/cailichao/easyweb-jwt

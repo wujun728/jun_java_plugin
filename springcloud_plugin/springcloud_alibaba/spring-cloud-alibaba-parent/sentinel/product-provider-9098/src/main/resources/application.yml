@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: product-provider-9098
+
+  cloud:
+    nacos:
+      discovery:
+        # 配置 nacos 的服务地址
+        server-addr: localhost:8847
+        # 注册服务名，默认值就是获取spring.application.name的值
+        service: product-provider
+        # 设置元数据
+        metadata:
+          version: v1
+          author: huan
+        weight: 1
+    sentinel:
+      transport:
+        # 控制台的地址
+        dashboard: localhost:8080
+        # 与控制台通讯的端口，默认是8719，不可用会一直+1，知道找到一个可用的
+        port: 8719
+        # 和控制台保持心跳的ip地址
+        client-ip: 127.0.0.1
+        # 发送心跳的周期，默认是10s
+        heartbeat-interval-ms: 10000
+server:
+  port: 9098

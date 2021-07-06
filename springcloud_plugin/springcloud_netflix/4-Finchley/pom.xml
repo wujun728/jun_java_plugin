@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.didispace</groupId>
+    <artifactId>spring-cloud-finchley</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+
+    <modules>
+        <!-- spring cloud alibaba专题-->
+        <module>alibaba-nacos-discovery-server</module>                 <!-- 使用Nacos实现服务注册与发现：服务提供方-->
+        <module>alibaba-nacos-discovery-client-common</module>          <!-- 使用Nacos实现服务注册与发现：服务消费方（spring cloud common接口实现负载均衡）-->
+        <module>alibaba-nacos-config-client</module>                    <!-- 使用Nacos作为配置中心 -->
+
+        <module>alibaba-nacos-discovery-client-resttemplate</module>    <!-- 使用Nacos实现服务注册与发现：服务消费方（RestTemplate实现）-->
+        <module>alibaba-nacos-discovery-client-webclient</module>       <!-- 使用Nacos实现服务注册与发现：服务消费方（WebClient实现）-->
+        <module>alibaba-nacos-discovery-client-feign</module>           <!-- 使用Nacos实现服务注册与发现：服务消费方（Feign实现）-->
+
+        <module>alibaba-sentinel-rate-limiting</module>                 <!-- 使用Sentinel实现接口限流 -->
+        <module>alibaba-sentinel-datasource-nacos</module>              <!-- 使用Nacos存储规则 -->
+        <module>alibaba-sentinel-datasource-apollo</module>             <!-- 使用Apollo存储规则 -->
+        <module>alibaba-sentinel-dashboard-apollo</module>              <!-- 使用Apollo存储规则的Dashboard -->
+        <module>alibaba-sentinel-dashboard-nacos</module>               <!-- 使用Nacos存储规则的Dashboard -->
+        <module>alibaba-sentinel-annotation</module>                    <!-- @SentinelResource注解的使用 -->
+
+        <module>alibaba-dubbo-api</module>      <!-- Dubbo API定义 -->
+        <module>alibaba-dubbo-server</module>   <!-- Dubbo 服务端实现 -->
+        <module>alibaba-dubbo-client</module>   <!-- Dubbo 客户端实现 -->
+
+        <!--spring cloud stream专题-->
+        <module>stream-consumer-self</module>       <!-- 消费自己的消息 -->
+        <module>stream-exception-handler-1</module> <!-- 消息重试 -->
+        <module>stream-exception-handler-2</module> <!-- 自定义错误处理逻辑 -->
+        <module>stream-exception-handler-3</module> <!-- 使用DLQ队列（RabbitMQ） -->
+        <module>stream-exception-handler-4</module> <!-- 重入队列（RabbitMQ） -->
+        <module>stream-content-route</module>       <!-- @StreamListener根据内容路由 -->
+        <module>stream-delayed-message</module>     <!-- 使用延迟消息实现定时任务（RabbitMQ）-->
+
+    </modules>
+
+</project>

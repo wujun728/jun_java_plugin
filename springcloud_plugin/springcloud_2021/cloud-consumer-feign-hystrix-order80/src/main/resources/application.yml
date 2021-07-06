@@ -1,0 +1,15 @@
+server:
+  port: 80
+
+eureka:
+  client:
+    register-with-eureka: false   #是否将自己注册到注册中心,集群必须设置为true配合ribbon
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka # ,http://eureka7002.com:7002/eureka
+##设置feign客户端超时时间
+#ribbon:
+#  ReadTimeout: 5000
+#  ConnectTimeout: 5000
+feign:
+  hystrix:
+    enabled: true
