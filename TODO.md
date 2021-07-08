@@ -10,7 +10,7 @@ Step1基础篇：
 	jun_linux    服务器部署、gitlab部署、Nginx部署、Redis部署、Docker部署、MySQL部署、等等
  	---审视项目本身，给出待办调整清单，给出下步计划
 Step2微服务&大数据：
-	jun_api_service API接口服务框架，SpringBoot+RestFulAPI
+	jun_api_service API接口服务框架，SpringBoot+Rest API
 	jun_springboot_vue 前后端分离框架，SpringBoot+Vue+JWT
 	jun_springcloud 微服务框架，SpringCloud Netflix、SpringCloud Alibaba、Dubbo框架、Quarkus极速框架
 	jun_bigdata 大数据框架，支持数据清理、数据推荐、大数据分析、大数据企业看板、大数据报表等
@@ -22,7 +22,6 @@ Step3产品篇：
  
 Step4产品篇：
 	jun_app    移动APP开发平台、支持Uniapp开发独立APP、小程序、企业办公等
-	https://github.com/c1013529993/springboot-uniapp-21cake
 	jun_weixin   微信开发平台、微信公众号、微信小程序、微信管理后台、微信API接口后台
 	jun_android Android移动开发框架，APP开发模板、后台管理系统、后台API接口平台
 	jun_temp     临时仓库
@@ -189,7 +188,73 @@ https://github.com/14251104246/redis-demo
 40、webmagic
 https://github.com/brianway/webporter
  
-
+41、 webmagic
+https://github.com/scsfwgy/WebMagic_CSDN_Demo
+https://github.com/EzioL/neteasemusic
+ 
+42、api_service
+合并都api里面，其他的2个干掉
+ 
+Spring
+43、 jwt rename一下
+新增springboot jwt
+https://github.com/dolyw/VueStudy/tree/master/VueStudy08-JWT
+https://github.com/dolyw/ShiroJwt.git
+ 
+44、spring activemq
+清理代码，优化test及readme
+https://github.com/888xin/activeMQ
+ 
+45、camel 调整为zip里面的spring
+46、cas 干掉
+新增oauth
+ 
+47、cors 调整为filter过滤器
+ 
+48、config 迁移到cloud里面
+ 
+49、fastdfs
+ 
+50、dubbo
+https://github.com/GenshenWang/DubboDemo
+ 
+51、quartz
+https://github.com/ameizi/spring-quartz-cluster-sample
+ 
+52、新增xxl-job
+https://github.com/xuxueli/xxl-job
+ 
+53、email
+https://github.com/fangjieDevp/spring-email-master
+ 
+54、Excel 干掉
+ 
+55、hibernate
+https://github.com/zhonglinlin1305/Spring
+https://github.com/zhonglinlin1305/spring-projects/
+ 
+0、Boot&cloud
+https://github.com/zhonglinlin1305/spring-boot-sample/
+https://github.com/zhonglinlin1305/spring-cloud-microservice
+https://github.com/SpringForAll/springcloud-thoth
+ 
+56、kafka
+https://github.com/smallnest/spring-kafka-demo
+ 
+57、lucenne
+https://github.com/FuZhucheng/SSM
+ 
+ 
+ 
+00、boot starter
+https://github.com/battcn/extend-spring-boot
+ 
+00、util
+https://github.com/864381832/xJavaFxTool-spring
+ 
+00、ppt
+https://github.com/aalansehaiyang/technology-talk
+ 
  
 JWT+VUE
 	https://github.com/cailichao/easyweb-jwt

@@ -17,6 +17,7 @@ hs_err_pid*
 .classpath
 .project
 target
+bin
 classes
 .settings
 .factorypath
