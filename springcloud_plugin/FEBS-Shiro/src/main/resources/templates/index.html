@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="utf-8">
+    <title>FEBS 权限系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" th:href="${@mvcResourceUrlProvider.getForLookupPath('/layui/css/layui.css')}" media="all">
+    <link rel="stylesheet" th:href="${@mvcResourceUrlProvider.getForLookupPath('/febs/css/febs.css')}" media="all">
+    <link rel="stylesheet" th:href="${@mvcResourceUrlProvider.getForLookupPath('/febs/css/eleTree.css')}" media="all">
+    <link rel="stylesheet" th:href="${@mvcResourceUrlProvider.getForLookupPath('/febs/css/apexcharts.min.css')}" media="all">
+    <!-- 高德地图，key为演示作用，请勿滥用-->
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=0e8a587317998a5e03cf608649b229d6&plugin=AMap.Autocomplete"></script>
+    <link rel="icon" th:href="${@mvcResourceUrlProvider.getForLookupPath('/febs/images/favicon.ico')}" type="image/x-icon"/>
+</head>
+<body>
+<div id="febs"></div>
+<script th:src="${@mvcResourceUrlProvider.getForLookupPath('/layui/layui.js')}"></script>
+<script th:inline="javascript">
+    let ctx = [[@{/}]];
+    let currentUser = [[${user}]];
+    currentUser.roleSet = [[${roles}]];
+    currentUser.permissionSet = [[${permissions}]];
+
+    layui.config({
+        base: './febs/',
+        debug: true
+    }).extend({
+        xmSelect: 'lay/extends/xm-select',
+        apexcharts: 'lay/extends/apexcharts.min',
+        eleTree: 'lay/extends/eleTree'
+    }).use(['index']);
+</script>
+</body>
+</html>

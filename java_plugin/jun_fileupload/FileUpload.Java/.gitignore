@@ -1,0 +1,7 @@
+/out
+/build/
+.idea
+.gradle
+/classes/
+.clover
+src/main/webapp/upload/

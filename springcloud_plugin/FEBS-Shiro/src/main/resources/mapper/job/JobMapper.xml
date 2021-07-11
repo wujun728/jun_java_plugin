@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.job.mapper.JobMapper">
+    <select id="queryList" resultType="job">
+        select job_id          jobId,
+               bean_name       beanName,
+               method_name     methodName,
+               params,
+               cron_expression cronExpression,
+               status,
+               remark,
+               create_time     createTime
+        from t_job
+        order by job_id
+    </select>
+</mapper>

@@ -1,0 +1,159 @@
+spring:
+  profiles:
+    active: one-database-sharding-table
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.hbm2ddl.auto: create
+      hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+
+
+---
+# 单库分表
+spring:
+  profiles: one-database-sharding-table
+
+sharding:
+  jdbc:
+    datasource:
+      names: database1
+      database1:
+        type: org.apache.commons.dbcp.BasicDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/sharding-demo
+        username: root
+        password: root
+    config:
+      sharding:
+        tables:
+          t_order:
+            actual-data-nodes: database1.t_order_${0..2}
+            table-strategy:
+              inline:
+                sharding-column: order_id
+                algorithm-expression: t_order_${order_id % 3}
+            key-generator-column-name: order_id
+#            keyGeneratorClass: io.shardingjdbc.core.keygen.DefaultKeyGenerator
+#          t_order_item:
+#            actual-data-nodes: database1.t_order_item_${0..2}
+#            table-strategy:
+#              inline:
+#                sharding-column: order_id
+#                algorithm-expression: t_order_item_${order_id % 3}
+#            key-generator-column-name: order_item_id
+
+---
+# 仅分库
+spring:
+  profiles: two-database
+
+sharding:
+  jdbc:
+    datasource:
+      names: database_1,database_2
+      database_1:
+        type: org.apache.commons.dbcp.BasicDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/sharding-demo
+        username: root
+        password: root
+      database_2:
+        type: org.apache.commons.dbcp.BasicDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/sharding-demo-2
+        username: root
+        password: root
+    config:
+      sharding:
+        tables:
+          t_order:
+            actual-data-nodes: database_${1..2}.t_order
+            key-generator-column-name: order_id
+          t_order_item:
+            actual-data-nodes: database_${1..2}.t_order_item
+            key-generator-column-name: order_item_id
+        default-database-strategy:
+          inline:
+            algorithm-expression: database_${user_id % 2 + 1}
+            sharding-column: user_id
+
+---
+# 多库分表
+spring:
+  profiles: two-database-sharding-table
+
+sharding:
+  jdbc:
+    datasource:
+      names: database_1,database_2
+      database_1:
+        type: org.apache.commons.dbcp.BasicDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/sharding-demo
+        username: root
+        password: root
+      database_2:
+        type: org.apache.commons.dbcp.BasicDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/sharding-demo-2
+        username: root
+        password: root
+    config:
+      sharding:
+        tables:
+          t_order:
+            actual-data-nodes: database_${1..2}.t_order_${0..2}
+            table-strategy:
+              inline:
+                sharding-column: order_id
+                algorithm-expression: t_order_${order_id % 3}
+            key-generator-column-name: order_id
+            keyGeneratorClass: io.shardingjdbc.core.keygen.DefaultKeyGenerator
+          t_order_item:
+            actual-data-nodes: database_${1..2}.t_order_item_${0..2}
+            table-strategy:
+              inline:
+                sharding-column: order_id
+                algorithm-expression: t_order_item_${order_id % 3}
+            key-generator-column-name: order_item_id
+        default-database-strategy:
+          inline:
+            algorithm-expression: database_${user_id % 2 + 1}
+            sharding-column: user_id
+---
+# 读写分离
+spring:
+  profiles: more-database-read-write-sharding
+
+sharding:
+  jdbc:
+    datasource:
+      names: ds_master,ds_slave_0
+      ds_master:
+        type: org.apache.commons.dbcp.BasicDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/sharding-demo
+        username: root
+        password: root
+      ds_slave_0:
+        type: org.apache.commons.dbcp.BasicDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/sharding-demo-2
+        username: root
+        password: root
+      ds_slave_1:
+        type: org.apache.commons.dbcp.BasicDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/sharding-demo-3
+        username: root
+        password: root
+    config:
+      masterslave:
+        load-balance-algorithm-type: RANDOM
+        name: ds_master
+        master-data-source-name: ds_master
+        slave-data-source-names: ds_slave_0
+

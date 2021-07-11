@@ -1,0 +1,141 @@
+<style>
+    #febs-eximport-result .bold {
+        font-weight: 600;
+    }
+    #febs-eximport-result .layui-card {
+        box-shadow: none;
+    }
+</style>
+<div class="layui-fluid" id="febs-eximport-result" lay-title="导入结果">
+    <div class="layui-row febs-container">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <script type="text/html" template>
+                    {{#
+                    let successL = POPUP_DATA.data.length;
+                    let failL = POPUP_DATA.error.length;
+                    let time = POPUP_DATA.time;
+                    if(successL === 0 && failL === 0) {
+                    }}
+                    <span class="febs-alert-base febs-alert-info">暂无导入记录</span>
+                    {{#
+                    } else if (successL !== 0 && failL === 0) {
+                    }}
+                    <span class="febs-alert-base febs-alert-success">
+                        全部导入成功，共导入
+                        <a class="bold"> {{successL}} </a>条记录，
+                        耗时 <span class="bold">{{time}}</span>
+                    </span>
+                    {{#
+                    } else if (successL === 0 && failL !== 0) {
+                    }}
+                    <span class="febs-alert-base febs-alert-error">
+                        全部导入失败，共
+                        <a class="bold"> {{failL}} </a>条记录，
+                        耗时 <span class="bold">{{time}}</span>
+                    </span>
+                    {{#
+                    } else  {
+                    }}
+                    <span class="febs-alert-base febs-alert-warn">
+                        部分导入成功，导入成功
+                        <a class="bold"> {{successL}} </a>条记录，
+                        导入失败
+                        <a class="bold"> {{failL}} </a>条记录，
+                        耗时 <span class="bold">{{time}}</span>
+                    </span>
+                    {{# } }}
+                </script>
+                <div class="layui-tab layui-tab-brief" lay-filter="result-tab">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this" lay-id="success-tab">成功记录</li>
+                        <li lay-id="fail-tab">失败记录</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <table id="successTable" lay-filter="successTable" lay-data="{id: 'successTable'}"></table>
+                        </div>
+                        <div class="layui-tab-item">
+                            <table id="failTable" lay-filter="failTable" lay-data="{id: 'failTable'}"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="fail-row">
+    <span>第{{ d.row }}行</span>
+</script>
+<script type="text/html" id="fail-column">
+    <span>第{{ d.cellIndex + 1 }}列</span>
+</script>
+<script data-th-inline="none" type="text/javascript">
+    layui.use(['jquery', 'table', 'upload'], function () {
+        let $ = layui.jquery,
+            table = layui.table,
+            element = layui.element,
+            $view = $('#febs-eximport-result'),
+            result = POPUP_DATA;
+
+        initTabs();
+
+        function renderSuccessTable() {
+            table.render({
+                elem: '#successTable',
+                id: 'successTable',
+                data: result.data,
+                page: true,
+                limits: [6, 10, 20, 100],
+                limit: 6,
+                cols: [[
+                    {field: 'field1', title: '字段1'},
+                    {field: 'field2', title: '字段2'},
+                    {field: 'field3', title: '字段3'},
+                    {field: 'createTime', title: '导入时间'}
+                ]]
+            });
+        }
+
+        function renderFailTable() {
+            let data = [];
+            layui.each(result.error, function (key, item) {
+                let row = item.row;
+                layui.each(item.errorFields, function (k, v) {
+                    v.row = row;
+                    data.push(v);
+                });
+            });
+            table.render({
+                elem: '#failTable',
+                id: 'failTable',
+                data: data,
+                page: true,
+                limits: [6, 10, 20, 100],
+                limit: 6,
+                cols: [[
+                    {title: '行', templet: '#fail-row'},
+                    {title: '列', templet: '#fail-column'},
+                    {field: 'column', title: '列名'},
+                    {field: 'name', title: '对应字段'},
+                    {field: 'errorMessage', title: '错误信息', maxlength: 400}
+                ]]
+            });
+        }
+
+        function initTabs() {
+            if (result.data.length !== 0 && result.error.length === 0) {
+                renderSuccessTable();
+                element.tabDelete('result-tab', 'fail-tab');
+            } else if (result.data.length === 0 && result.error.length !== 0) {
+                renderFailTable();
+                element.tabDelete('result-tab', 'success-tab');
+            } else {
+                renderSuccessTable();
+                renderFailTable();
+            }
+        }
+
+
+    });
+</script>

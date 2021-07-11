@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+  <feature name="hibernate-osgi-managed-jpa">
+
+    <bundle>mvn:com.h2database/h2/1.3.170</bundle>
+    <bundle>blueprint:file:/[PATH]/datasource-h2.xml</bundle>
+
+    <!-- In order to utilize container-managed JPA, an Enterprise OSGi JPA container must be active in the runtime.
+    For Karaf, this means Aries JPA, which is included out-of-the-box.  So, here, we activate the "jpa" and
+    "transaction" features.  Originally, we intended to include those dependencies within ORM's published
+    features.xml.  However, after guidance from the Karaf and Aries teams, it was pulled out.
+    This allows Hibernate OSGi to be portable and not be directly tied to Aries versions, instead having
+    the user choose which to use. -->
+    <feature version="1.1.1">transaction</feature>
+    <feature version="2.1.0">jpa</feature>
+    <!-- If using Aries JPA 2.0+, explicitly starting Aries JNDI is no longer necessary.  But, in Karaf 3.0.x and
+    the 2.1.0 jpa feature (above), we're still using Aries JPA 1.0.x. -->
+    <feature version="3.0.4">jndi</feature>
+
+    <!-- Assumes that ORM's features.xml, found in the binary distro or in JBoss Nexus
+    (org.hibernate:hibernate-osgi:[VERSION]:karaf.xml), has been installed in Karaf! -->
+    <feature version="5.0.0.Final">hibernate-orm</feature>
+
+    <!-- Finally, this demo's bundle: -->
+    <bundle>mvn:org.hibernate.osgi/managed-jpa/1.0.0</bundle>
+  </feature>
+</features>

@@ -1,0 +1,284 @@
+<div class="layui-fluid layui-anim febs-anim" id="febs-role" lay-title="角色管理">
+    <div class="layui-row layui-col-space8 febs-container">
+        <div class="layui-col-md7 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-body febs-table-full">
+                    <form class="layui-form layui-table-form" lay-filter="role-table-form" id="role-table-form">
+                        <div class="layui-row">
+                            <div class="layui-col-md9 layui-col-sm9 layui-col-xs9">
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">角色名称</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="roleName" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md3 layui-col-sm12 layui-col-xs12 table-action-area">
+                                <div class="layui-btn layui-btn-sm layui-btn-primary febs-button-blue-plain  table-action" id="query">
+                                    <i class="layui-icon">&#xe848;</i>
+                                </div>
+                                <div class="layui-btn layui-btn-sm layui-btn-primary febs-button-green-plain  table-action" id="reset">
+                                    <i class="layui-icon">&#xe79b;</i>
+                                </div>
+                                <div class="layui-btn layui-btn-sm layui-btn-primary table-action action-more"
+                                     shiro:hasAnyPermissions="role:add,user:delete,role:export">
+                                    <i class="layui-icon">&#xe875;</i>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <table lay-filter="roleTable" lay-data="{id: 'roleTable'}"></table>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md5 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header" id="form-header">新增角色</div>
+                <div class="layui-card-body febs-table-full">
+                    <form class="layui-form layui-table-form" action="" lay-filter="role-form">
+                        <div class="layui-form-item febs-hide">
+                            <label class="layui-form-label febs-form-item-require">角色ID：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="roleId" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label febs-form-item-require">角色名称：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="roleName" autocomplete="off" class="layui-input" minlength="2"
+                                       maxlength="10" lay-verify="range">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">角色描述：</label>
+                            <div class="layui-input-block">
+                                <textarea name="remark" maxlength="50" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">角色权限：</label>
+                            <div class="layui-input-block menu-tree" style="margin-top: .8rem;"></div>
+                        </div>
+                        <div class="layui-form-item febs-hide">
+                            <button type="reset" class="layui-btn" id="reset-form"></button>
+                            <button class="layui-btn" lay-submit="" lay-filter="role-form-submit"
+                                    id="submit-form"></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-card-footer">
+                    <button class="layui-btn" id="submit">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="role-option">
+    <span shiro:lacksPermission="role:update,role:delete">
+        <span class="layui-badge-dot febs-bg-orange"></span> 无权限
+    </span>
+    <a lay-event="edit" shiro:hasPermission="role:update"><i class="layui-icon febs-edit-area febs-blue">&#xe7a4;</i></a>
+    <a lay-event="del" shiro:hasPermission="role:delete"><i class="layui-icon febs-edit-area febs-red">&#xe7f9;</i></a>
+</script>
+<script data-th-inline="none" type="text/javascript">
+    layui.use(['dropdown', 'jquery', 'laydate', 'febs', 'form', 'eleTree', 'table', 'validate'], function () {
+        let $ = layui.jquery,
+            laydate = layui.laydate,
+            febs = layui.febs,
+            form = layui.form,
+            table = layui.table,
+            eleTree = layui.eleTree,
+            dropdown = layui.dropdown,
+            validate = layui.validate,
+            $view = $('#febs-role'),
+            $query = $view.find('#query'),
+            $reset = $view.find('#reset'),
+            $submit = $view.find('#submit'),
+            $searchForm = $view.find('#role-table-form'),
+            $header = $view.find('#form-header'),
+            tableIns;
+
+        form.verify(validate);
+        form.render();
+
+        initTable();
+
+        laydate.render({
+            elem: '#createTime',
+            range: true
+        });
+
+        let menuTree = eleTree.render({
+            elem: '.menu-tree',
+            url: ctx + 'menu/tree',
+            showCheckbox: true,
+            where: {
+                "invalidate_ie_cache": new Date()
+            },
+            accordion: true,
+            checkStrictly: true,
+            renderAfterExpand: false,
+            request: {
+                name: "title",
+                key: "id",
+                children: "childs",
+                checked: "checked",
+                data: "data"
+            },
+            response: {
+                statusName: "code",
+                statusCode: 200,
+                dataName: "data"
+            }
+        });
+
+        dropdown.render({
+            elem: $view.find('.action-more'),
+            click: function (name, elem, event) {
+                let checkStatus = table.checkStatus('roleTable');
+                if (name === 'add') {
+                    resetRoleForm();
+                    febs.alert.info("请在表单中填写相关信息");
+                }
+                if (name === 'delete') {
+                    if (!checkStatus.data.length) {
+                        febs.alert.warn('请选择需要删除的角色');
+                    } else {
+                        febs.modal.confirm('删除角色', '确定删除所选角色？', function () {
+                            let roleIds = [];
+                            layui.each(checkStatus.data, function (key, item) {
+                                roleIds.push(item.roleId);
+                            });
+                            deleteRoles(roleIds.join(','));
+                        });
+                    }
+                }
+                if (name === 'export') {
+                    let params = getQueryParams();
+                    params.pageSize = $view.find(".layui-laypage-limits option:selected").val();
+                    params.pageNum = $view.find(".layui-laypage-em").next().html();
+                    febs.download(ctx + 'role/excel', params, '角色信息表.xlsx');
+                }
+            },
+            options: [{
+                name: 'add',
+                title: '新增角色',
+                perms: 'role:add'
+            }, {
+                name: 'delete',
+                title: '删除角色',
+                perms: 'role:delete'
+            }, {
+                name: 'export',
+                title: '导出Excel',
+                perms: 'role:export'
+            }]
+        });
+
+        table.on('tool(roleTable)', function (obj) {
+            let data = obj.data,
+                layEvent = obj.event;
+            if (layEvent === 'edit') {
+                $header.text('修改角色');
+                form.val("role-form", {
+                    "roleId": data.roleId,
+                    "roleName": data.roleName,
+                    "remark": data.remark
+                });
+                if (data.menuIds) {
+                    menuTree.setChecked(data.menuIds.split(','), true);
+                } else {
+                    menuTree.setChecked([], true);
+                }
+            }
+            if (layEvent === 'del') {
+                febs.modal.confirm('删除角色', '确定删除该角色？', function () {
+                    deleteRoles(data.roleId);
+                });
+            }
+        });
+
+        $query.on('click', function () {
+            resetRoleForm();
+            tableIns.reload({where: getQueryParams(), page: {curr: 1}});
+        });
+
+        $reset.on('click', function () {
+            resetRoleForm();
+            $searchForm[0].reset();
+            tableIns.reload({where: getQueryParams(), page: {curr: 1}});
+        });
+
+        $submit.on('click', function () {
+            $view.find('#submit-form').trigger('click');
+        });
+
+        function initTable() {
+            tableIns = febs.table.init({
+                elem: $view.find('table'),
+                id: 'roleTable',
+                url: ctx + 'role/list',
+                cols: [[
+                    {type: 'checkbox'},
+                    {field: 'roleName', title: '角色名称', minWidth: 120},
+                    {field: 'remark', title: '角色描述'},
+                    {field: 'createTime', title: '创建时间', minWidth: 180},
+                    {title: '操作', toolbar: '#role-option', width: 100}
+                ]]
+            });
+        }
+
+        function getQueryParams() {
+            let params = $searchForm.serializeJson();
+            params.invalidate_ie_cache = new Date();
+            return params;
+        }
+
+        function resetRoleForm() {
+            $view.find('#reset-form').trigger('click');
+            $header.text('新增角色');
+            menuTree.setChecked([], true);
+            menuTree.unExpandAll();
+        }
+
+        form.on('submit(role-form-submit)', function (data) {
+            let selected = menuTree.getChecked(false, true);
+            let menuIds = [];
+            layui.each(selected, function (key, item) {
+                menuIds.push(item.id)
+            });
+            data.field.menuIds = menuIds.join(',');
+            if (!menuIds.length) {
+                febs.modal.confirm('提示', '当前角色未授予任何权限，是否继续？', function () {
+                    addOrUpdateRole(data.field);
+                });
+            } else {
+                addOrUpdateRole(data.field);
+            }
+            return false;
+        });
+
+        function deleteRoles(roleIds) {
+            febs.get(ctx + 'role/delete/' + roleIds, null, function () {
+                febs.alert.success('删除角色成功');
+                $query.trigger('click');
+            })
+        }
+
+        let addOrUpdateRole = function (data) {
+            if (data.roleId && $header.text() === '修改角色') {
+                febs.post(ctx + 'role/update', data, function () {
+                    febs.alert.success('修改角色成功');
+                    $query.trigger('click');
+                });
+            } else {
+                febs.post(ctx + 'role', data, function () {
+                    febs.alert.success('新增角色成功');
+                    $query.trigger('click');
+                });
+            }
+        }
+    });
+</script>

@@ -1,0 +1,10 @@
+server:
+  port: 8081
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  data:
+    mongodb:
+      uri: mongodb://username:password@127.0.0.1 /test

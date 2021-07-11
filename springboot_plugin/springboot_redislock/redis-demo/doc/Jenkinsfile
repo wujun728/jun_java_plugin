@@ -1,0 +1,144 @@
+node {
+/*****************************git代码块***********************************/
+    // ! git 仓库路径
+    gitUrl = 'https://github.com/14251104246/spring-boot-ci-demo.git'
+    // ! git 分支
+    gitBranch = 'master'
+     // ! git 使用的jenkins证书id
+    gitCredential = '5b3912a8-0074-4955-b48f-c0af217785ac'
+
+    stage ('git') {
+        git branch: gitBranch,
+            credentialsId: gitCredential,
+            url: gitUrl
+    }
+
+/*****************************预处理代码块***********************************/
+    // ! maven最终构建项目ArtifactId（项目目录请和ArtifactId一致）(可改)
+    mavenArtifactId = 'yisike-parent'
+
+    // 文件夹分隔
+    DELIMITER = '/'
+    // jenkins挂载在宿主机的所有项目地址
+    volumeRoot = '/data/docker/ci/jenkins/home';
+    // jenkins在容器中的所有项目地址
+    jenkinsRoot = '/var/jenkins_home'
+    // 具体项目工作区
+    projectWorkspace = 'workspace'
+
+    // jenkins挂载在宿主机的项目地址
+    volumeDeployRootPath = volumeRoot + DELIMITER + projectWorkspace + DELIMITER + env.JOB_NAME
+    // jenkins在容器中的项目路径
+    jenkinsDeployRootPath = env.WORKSPACE
+    // jenkins挂载在宿主机的构建地址
+    volumeDeployPath = ''
+    // jenkins在容器中的构建路径
+    jenkinsDeployPath = ''
+    //是否只有一个项目
+    mavenSingleModule = true
+
+    String relativePath = ''
+
+    stage ('pre') {
+
+        echo '路径预处理'
+
+        volumeDeployPath = volumeDeployRootPath
+        jenkinsDeployPath = jenkinsDeployRootPath
+
+        println 'jenkins挂载在宿主机的项目地址：' + volumeDeployRootPath
+        println 'jenkins在容器中的项目路径：' + jenkinsDeployRootPath
+        println 'jenkins挂载在宿主机的构建地址：' + volumeDeployPath
+        println 'jenkins在容器中的构建路径：' + jenkinsDeployPath
+    }
+
+
+
+
+   /*******************************maven代码块*********************************/
+    // maven地址
+    MVN_HOME = 'docker run -t --rm --name my-maven-project -v '+volumeDeployPath+':/usr/src/mymaven -v $HOME/.m2:/root/.m2 -w /usr/src/mymaven maven:3.3-jdk-8 '
+
+    stage ('mvn') {
+        echo 'start mvn'
+        //暂时使用sh，后边替换为 ArtifactoryMavenBuild
+        stage ('mvn-clean') {
+            sh """
+			${MVN_HOME} mvn clean
+			"""
+        }
+
+
+        stage ('mvn-package') {
+            thisPath = jenkinsDeployRootPath + DELIMITER + (relativePath == null || relativePath.size() == 0 ? relativePath : relativePath + DELIMITER)+ DELIMITER
+
+            sh """
+            ${MVN_HOME} mvn package  -DskipTests
+            """
+
+        }
+
+        stage ('mvn-代码质量') {
+
+            sh """
+            ${MVN_HOME} mvn sonar:sonar \
+                            -Dsonar.host.url=http://172.17.0.1:19000 \
+                            -Dsonar.login=40aee4cc56ecf6d6742af9cb36fd0f00f896e306
+            """
+
+        }
+        echo 'stop mvn'
+    }
+
+/**********************************docker代码块************************************************************/
+/**********************************docker代码块************************************************************/
+    //服务名称（子模块目录名称）
+    def srvName = 'demo'
+    //仓库地址
+    def registryUrl = 'hboverseas.banggood.cn'
+    //远程服务器地址（用于部署）
+    def devHost = '122.152.225.111'
+    def devDockerDaemon = "tcp://${devHost}:2376"
+    //项目名称
+    def project = 'ad'
+    //远程docker容器启动参数
+    def dockerParam = "--name ${srvName} -v /etc/hosts:/etc/hosts -v /data/docker/logs/yisike/yisike-registry:/data/docker/logs --restart=always  -p 8090:8090"
+
+    stage ('docker') {
+        echo 'start docker'
+
+         stage ('构建镜像')
+         {
+            sh """
+                cd ${jenkinsDeployPath}/
+                docker build -t $registryUrl/$project/$srvName:$BUILD_NUMBER ./
+               """
+         }
+         //stage ('推送镜像')
+         //{
+         //    sh """
+         //       docker push $registryUrl/$project/$srvName:$BUILD_NUMBER
+         //       docker rmi $registryUrl/$project/$srvName:$BUILD_NUMBER
+         //       """
+         //}
+         //stage ('部署生产环境')
+         //{
+         // sh """
+         //   docker -H ${devDockerDaemon} pull $registryUrl/$project/$srvName:$BUILD_NUMBER
+         //   docker -H ${devDockerDaemon} rm -f ${srvName} | true
+         //   docker -H ${devDockerDaemon} run -d  ${dockerParam}  $registryUrl/$project/$srvName:$BUILD_NUMBER
+         //    """
+         //}
+         stage ('部署生产环境')
+         {
+          sh """
+            docker rm -f ${srvName} | true
+            docker run -d  ${dockerParam}  $registryUrl/$project/$srvName:$BUILD_NUMBER
+             """
+         }
+        echo 'complete docker'
+    }
+
+
+}
+

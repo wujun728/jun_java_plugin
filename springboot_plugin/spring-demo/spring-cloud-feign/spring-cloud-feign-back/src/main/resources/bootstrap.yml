@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: spring-cloud-feign-back
+  cloud:
+    consul:
+#      host: 可以配置具体的注册地址，不选默认向127.0.0.1注册
+#      port: 8500
+      enabled: true
+      config:
+        watch:
+          enabled: false # 是否配置更新观察
+      discovery:
+        health-check-url: http://buxiaoxia.top #指定健康检查url
+

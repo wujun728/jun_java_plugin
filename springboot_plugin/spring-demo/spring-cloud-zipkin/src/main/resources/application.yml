@@ -1,0 +1,23 @@
+server:
+  port: 9411
+
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    username: username
+    password: password
+    virtual-host: dev
+  sleuth:
+    enabled: false
+  application:
+    name: spring-cloud-zipkin
+
+zipkin:
+  storage:
+    type: elasticsearch
+    elasticsearch:
+      cluster: elasticsearch-zipkin-cluster
+      hosts: http://192.168.1.1:9200,http://192.168.1.2:9200,http://192.168.1.3:9200
+      index: ${ES_INDEX:zipkin}
+      index-shards: ${ES_INDEX_SHARDS:5}
+      index-replicas: ${ES_INDEX_REPLICAS:1}

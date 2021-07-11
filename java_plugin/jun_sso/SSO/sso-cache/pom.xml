@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+    	<groupId>com.hjz</groupId>
+    	<artifactId>sso</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>sso-cache</artifactId>
+    <name>sso-cache</name>
+
+    <properties>
+        <fastjson.version>1.2.3</fastjson.version>
+        <spring.version>4.2.5.RELEASE</spring.version>
+        <jedis.version>2.9.0</jedis.version>
+        <guava.version>19.0</guava.version>
+        <spring-data-redis.version>1.7.2.RELEASE</spring-data-redis.version>
+        <spring-session-data-redis.version>1.2.1.RELEASE</spring-session-data-redis.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${spring-data-redis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+            <version>1.11.4.RELEASE</version>
+        </dependency>
+        <dependency>
+		  <groupId>org.springframework.session</groupId>
+		  <artifactId>spring-session-data-redis</artifactId>
+		  <version>${spring-session-data-redis.version}</version>
+		</dependency>
+    </dependencies>
+</project>

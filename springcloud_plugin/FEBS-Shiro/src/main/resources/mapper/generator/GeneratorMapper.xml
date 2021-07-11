@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.generator.mapper.GeneratorMapper">
+    <!--查询可用数据库-->
+    <select id="getDatabases" resultType="java.lang.String">
+        SELECT DISTINCT TABLE_SCHEMA FROM information_schema.TABLES
+    </select>
+
+    <!--查询数据库下面的表-->
+    <select id="getTables" resultType="table" parameterType="string">
+        SELECT
+            CREATE_TIME createTime,
+            UPDATE_TIME updateTime,
+            TABLE_ROWS dataRows,
+            TABLE_NAME name,
+            TABLE_COMMENT remark
+        FROM
+            information_schema.TABLES
+        WHERE
+            TABLE_SCHEMA = #{schemaName}
+        <if test="tableName != null and tableName != ''">
+            AND TABLE_NAME = #{tableName}
+        </if>
+    </select>
+
+    <!--查询数据库表下面的列属性-->
+    <select id="getColumns" resultType="column">
+        SELECT
+        COLUMN_NAME name,
+        CASE
+            COLUMN_key
+        WHEN 'PRI' THEN
+                1 ELSE 0
+        END isKey,
+        DATA_TYPE type,
+        COLUMN_COMMENT remark
+        FROM information_schema.COLUMNS
+        WHERE TABLE_SCHEMA = #{schemaName} AND TABLE_NAME = #{tableName}
+    </select>
+
+</mapper>

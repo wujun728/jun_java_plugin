@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	">
+
+
+    <!-- 自定义切面配置start -->
+    <bean id="proxy"
+          class="cn.kiiwii.framework.proxy.MyProxy">
+    </bean>
+    <aop:config>
+        <!-- 设置自定义的切面 -->
+        <aop:pointcut id="pc"
+                      expression="execution(* cn.kiiwii.framework.service.impl.*.*(..))"/>
+        <aop:aspect ref="proxy">
+            <aop:before pointcut-ref="pc" method="breforPerformance"/>
+            <aop:after pointcut-ref="pc" method="afterPerformance"/>
+            <aop:around pointcut-ref="pc" method="aroundMethod"/>
+        </aop:aspect>
+    </aop:config>
+    <!-- 自定义切面配置 end -->
+
+
+    <!--性能监控开始-->
+    <bean id="performanceMonitor"
+          class="org.springframework.aop.interceptor.PerformanceMonitorInterceptor">
+    </bean>
+    <!-- 性能监控的切面配置 -->
+    <aop:config>
+        <aop:pointcut id="allServiceMethods"
+                      expression="execution(* cn.kiiwii.framework.service.impl.*.*(..))"/>
+        <aop:advisor pointcut-ref="allServiceMethods" advice-ref="performanceMonitor"
+                     order="2"/>
+    </aop:config>
+    <!--性能监控结束-->
+
+</beans>

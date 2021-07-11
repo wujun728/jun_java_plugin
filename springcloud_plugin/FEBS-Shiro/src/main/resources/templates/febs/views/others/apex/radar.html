@@ -1,0 +1,152 @@
+<style>
+    #febs-apex-radar .layui-card-header {
+        font-weight: 600;
+    }
+</style>
+<div class="layui-fluid layui-anim febs-anim" id="febs-apex-radar" lay-title="雷达图表">
+    <div class="layui-row layui-col-space8 febs-container">
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">基础雷达图</div>
+                <div class="layui-card-body">
+                    <div id="basicRadarChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">多层雷达图</div>
+                <div class="layui-card-body">
+                    <div id="multipleSeriesRadarChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">背景填充雷达图</div>
+                <div class="layui-card-body">
+                    <div id="multiRadarwithPolygonFillChart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-inline="javascript" type="text/javascript">
+    layui.use(['apexcharts'], function () {
+        // ---------------- basicRadarChart --------------
+        let basicRadarChartOptions = {
+            chart: {
+                height: 320,
+                type: 'radar',
+                toolbar: {
+                    show: false
+                }
+            },
+            series: [{
+                name: 'Series 1',
+                data: [80, 50, 30, 40, 100, 20]
+            }],
+            labels: ['January', 'February', 'March', 'April', 'May', 'June']
+        };
+
+        new ApexCharts(
+            document.querySelector("#basicRadarChart"),
+            basicRadarChartOptions
+        ).render();
+
+        // ----------- multipleSeriesRadarChart ----------
+        let multipleSeriesRadarChartOptions = {
+            chart: {
+                height: 320,
+                type: 'radar',
+                toolbar: {
+                    show: false
+                }
+            },
+            series: [{
+                name: 'Series 1',
+                data: [80, 50, 30, 40, 100, 20]
+            }, {
+                name: 'Series 2',
+                data: [20, 30, 40, 80, 20, 80]
+            }, {
+                name: 'Series 3',
+                data: [44, 76, 78, 13, 43, 10]
+            }],
+            stroke: {
+                width: 0
+            },
+            fill: {
+                opacity: 0.4
+            },
+            markers: {
+                size: 0
+            },
+            labels: ['2011', '2012', '2013', '2014', '2015', '2016']
+        };
+
+        new ApexCharts(
+            document.querySelector("#multipleSeriesRadarChart"),
+            multipleSeriesRadarChartOptions
+        ).render();
+
+        // ---------- multiRadarwithPolygonFillChart ------------
+        let multiRadarwithPolygonFillChartOptions = {
+            chart: {
+                height: 350,
+                type: 'radar',
+                toolbar: {
+                    show: false
+                }
+            },
+            series: [{
+                name: 'Series 1',
+                data: [20, 100, 40, 30, 50, 80, 33]
+            }],
+            labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            plotOptions: {
+                radar: {
+                    size: 140,
+                    polygons: {
+                        strokeColor: '#e9e9e9',
+                        fill: {
+                            colors: ['#f8f8f8', '#fff']
+                        }
+                    }
+                }
+            },
+            colors: ['#FF4560'],
+            markers: {
+                size: 4,
+                colors: ['#fff'],
+                strokeColor: '#FF4560',
+                strokeWidth: 2
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val
+                    }
+                }
+            },
+            yaxis: {
+                tickAmount: 7,
+                labels: {
+                    formatter: function (val, i) {
+                        if (i % 2 === 0) {
+                            return val
+                        } else {
+                            return ''
+                        }
+                    }
+                }
+            }
+        };
+
+        new ApexCharts(
+            document.querySelector("#multiRadarwithPolygonFillChart"),
+            multiRadarwithPolygonFillChartOptions
+        ).render();
+
+    });
+</script>

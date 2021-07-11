@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: spring-cloud-consul-demo
+  cloud:
+    consul:
+#      host: 可以配置具体的注册地址，不选默认向127.0.0.1注册
+#      port: 8500
+      enabled: true
+      config:
+        watch:
+          enabled: true # 是否配置更新观察
+        format: YAML # 这个属性指定了 配置在consul的读取方式，
+                     # YAML 必须放入到“data” key下面，就是平常的yml文件内容
+                     # FILES
+                     # PROPERTIES 这个方式就是对应的key-value的方式
+                     # 详见：https://cloud.spring.io/spring-cloud-consul/

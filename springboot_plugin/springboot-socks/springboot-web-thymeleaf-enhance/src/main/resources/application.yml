@@ -1,0 +1,4 @@
+spring:
+  thymeleaf:
+    cache: false #关闭缓存
+    prefix: classpath:/views/ #调整页面路径

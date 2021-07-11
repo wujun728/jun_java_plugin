@@ -1,0 +1,168 @@
+<style>
+    #febs-generator-configure .layui-form-label {
+        width: 130px
+    }
+
+    #febs-generator-configure .layui-input-block {
+        margin-left: 160px;
+    }
+</style>
+<div class="layui-fluid layui-anim febs-anim" id="febs-generator-configure" lay-title="生成配置">
+    <div class="layui-row febs-container">
+        <div class="layui-card">
+            <div class="layui-card-body" style="padding: 15px;">
+                <form class="layui-form" action="" lay-filter="generator-configure-form">
+                    <div class="layui-form-item febs-hide">
+                        <label class="layui-form-label febs-form-item-require">ID：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="id" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label febs-form-item-require">作者名称：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="author" autocomplete="off" maxlength="20" lay-verify="required"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label febs-form-item-require">基础包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="basePackage" autocomplete="off" maxlength="50"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label febs-form-item-require">entity包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="entityPackage" autocomplete="off" maxlength="20"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label febs-form-item-require">service包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="servicePackage" autocomplete="off" maxlength="20"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label febs-form-item-require">serviceImpl包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="serviceImplPackage" autocomplete="off" maxlength="20"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label febs-form-item-require">mapper包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="mapperPackage" autocomplete="off" maxlength="20"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label febs-form-item-require">mapperXml包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="mapperXmlPackage" autocomplete="off" maxlength="20"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label febs-form-item-require">controller包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="controllerPackage" autocomplete="off" maxlength="20"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">是否去除表前缀：</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="isTrim" value="1" lay-filter="isTrim" title="是" checked="">
+                            <input type="radio" name="isTrim" value="0" lay-filter="isTrim" title="否">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">表前缀：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="trimValue" autocomplete="off" maxlength="20" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" shiro:hasPermission="generator:configure:update">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit="" lay-filter="generator-configure-form-submit">保存配置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script data-th-inline="javascript">
+    layui.use(['febs', 'form'], function () {
+        let $ = layui.$,
+            febs = layui.febs,
+            form = layui.form,
+            $view = $('#febs-generator-configure'),
+            $trimValue = $view.find('input[name="trimValue"]'),
+            $trimValueItem = $trimValue.parents('.layui-form-item');
+
+        let config = [[${config}]];
+
+        form.render();
+        initFormValue();
+
+        form.on("radio(isTrim)", function (data) {
+            if (data.value === '1') {
+                trimValueItemShow();
+            } else {
+                trimValueItemHide();
+            }
+        });
+
+        function initFormValue() {
+            form.val("generator-configure-form", {
+                "id": config.id,
+                "author": config.author,
+                "basePackage": config.basePackage,
+                "entityPackage": config.entityPackage,
+                "mapperPackage": config.mapperPackage,
+                "mapperXmlPackage": config.mapperXmlPackage,
+                "servicePackage": config.servicePackage,
+                "serviceImplPackage": config.serviceImplPackage,
+                "controllerPackage": config.controllerPackage,
+                "isTrim": config.isTrim,
+                "trimValue": config.trimValue
+            });
+
+            if (config.isTrim === '1') {
+                trimValueItemShow();
+            } else {
+                trimValueItemHide();
+            }
+        }
+
+        function trimValueItemShow() {
+            $trimValueItem.show();
+        }
+
+        function trimValueItemHide() {
+            form.val("generator-configure-form", {
+                "trimValue": ''
+            });
+            $trimValueItem.hide();
+        }
+
+        form.on('submit(generator-configure-form-submit)', function (data) {
+            if (febs.nativeEqual(data.field, config)) {
+                febs.alert.warn('数据未作任何修改！');
+                return false;
+            }
+            febs.post(ctx + 'generatorConfig/update', data.field, function (r) {
+                febs.alert.success('修改成功');
+            });
+            return false;
+        });
+    });
+</script>

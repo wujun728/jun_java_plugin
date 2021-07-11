@@ -1,0 +1,123 @@
+<style>
+    #profile-update {
+        padding: 20px 25px 25px 0;
+    }
+</style>
+<div class="layui-fluid" id="profile-update">
+    <form class="layui-form" action="" lay-filter="profile-update-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名：</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" readonly class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机：</label>
+            <div class="layui-input-block">
+                <input type="tel" name="mobile" lay-verify="phone" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱：</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" lay-verify="email" maxlength="50" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">部门：</label>
+            <div class="layui-input-block" id="profile-update-dept">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label febs-form-item-require">性别：</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="0" title="男性">
+                <input type="radio" name="sex" value="1" title="女性">
+                <input type="radio" name="sex" value="2" title="保密">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注：</label>
+            <div class="layui-input-block">
+                <textarea name="description" maxlength="100" class="layui-textarea">
+                </textarea>
+            </div>
+        </div>
+        <div class="layui-form-item febs-hide">
+            <button class="layui-btn" lay-submit="" lay-filter="profile-update-form-submit" id="submit"></button>
+        </div>
+    </form>
+</div>
+
+<script data-th-inline="javascript">
+    layui.use(['febs', 'form', 'validate', 'xmSelect'], function () {
+        let $ = layui.$,
+            febs = layui.febs,
+            layer = layui.layer,
+            xmSelect = layui.xmSelect,
+            form = layui.form,
+            user = currentUser,
+            validate = layui.validate,
+            deptXmlSelect;
+
+        form.verify(validate);
+        form.render();
+
+        initUserValue();
+
+        deptXmlSelect = xmSelect.render({
+            el: '#profile-update-dept',
+            model: {label: {type: 'text'}},
+            tree: {
+                show: true,
+                strict: false,
+                showLine: false,
+                clickCheck: true,
+                expandedKeys: [-1],
+            },
+            name: 'deptId',
+            theme: {
+                color: '#52c41a',
+            },
+            prop: {
+                value: 'id'
+            },
+            height: 'auto',
+            on: function (data) {
+                if (data.isAdd) {
+                    return data.change.slice(0, 1)
+                }
+            }
+        });
+
+        febs.get(ctx + 'dept/select/tree', null, function (data) {
+            deptXmlSelect.update(data);
+            user.deptId && deptXmlSelect.setValue([user.deptId]);
+        });
+
+        function initUserValue() {
+            form.val("profile-update-form", {
+                "username": user.username,
+                "mobile": user.mobile,
+                "email": user.email,
+                "sex": user.sex,
+                "description": user.description
+            });
+        }
+
+        form.on('submit(profile-update-form-submit)', function (data) {
+            if (febs.nativeEqual(data.field, user)) {
+                febs.alert.warn('数据未作任何修改！');
+                return false;
+            }
+            febs.post(ctx + 'user/profile/update', data.field, function () {
+                layer.closeAll();
+                febs.modal.confirm('修改成功', '是否马上刷新页面生效？', function () {
+                    window.location.reload();
+                });
+            });
+            return false;
+        });
+    });
+</script>

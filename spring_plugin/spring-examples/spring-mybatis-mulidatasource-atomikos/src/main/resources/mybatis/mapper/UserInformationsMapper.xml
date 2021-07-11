@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="UserInformationsEntity">
+	<resultMap id="userInformationsMap" type="com.neo.entity.UserInformationsEntity">
+		<id column="ID" property="id" javaType="java.lang.Long" />
+		<id column="userid" property="userid" javaType="java.lang.Long" />
+		<result column="email" property="email" />
+		<result column="address" property="address" />
+	</resultMap>
+	
+	<update id="update"  parameterType="com.neo.entity.UserInformationsEntity">
+		update 
+			user_informations 
+		<set>
+		   	<if test="email != null">userName = #{email,jdbcType=VARCHAR},</if>
+		   	<if test="address != null">address = #{address,jdbcType=VARCHAR},</if>
+		</set>
+		where 
+			userid = #{userId}
+	</update>
+	
+</mapper>

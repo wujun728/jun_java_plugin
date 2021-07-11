@@ -1,0 +1,90 @@
+<div class="layui-fluid layui-anim febs-anim" id="febs-eximport" lay-title="导入导出">
+    <div class="layui-row febs-container">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body febs-table-full">
+                    <button class="layui-btn  layui-btn-sm layui-btn-primary febs-button-blue-plain" id="template-download"
+                            shiro:hasPermission="eximport:template">
+                        <i class="layui-icon">&#xe82a;</i> 模板下载
+                    </button>
+                    <button class="layui-btn  layui-btn-sm layui-btn-primary febs-button-green-plain " id="export"
+                            shiro:hasPermission="eximport:export">
+                        <i class="layui-icon">&#xe7a8;</i> 导出Excel
+                    </button>
+                    <button class="layui-btn  layui-btn-sm layui-btn-success" id="import"
+                            shiro:hasPermission="eximport:import">
+                        <i class="layui-icon">&#xe7aa;</i> 导入Excel
+                    </button>
+                    <table lay-filter="eximportTable" lay-data="{id: 'eximportTable'}"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-inline="none" type="text/javascript">
+    layui.use(['jquery', 'table', 'febs', 'upload'], function () {
+        let $ = layui.jquery,
+            febs = layui.febs,
+            upload = layui.upload,
+            table = layui.table,
+            $view = $('#febs-eximport'),
+            tableIns;
+
+        initTable();
+
+        upload.render({
+            elem: '#import',
+            url: ctx + 'eximport/import',
+            accept: 'file',
+            exts: 'xlsx', // 只能上传 .xlsx格式
+            size: 5 * 1024, // kb
+            before: function () {
+                febs.view.loadBar.start();
+            },
+            done: function (res) {
+                febs.view.loadBar.finish();
+                if (res.code === 200) {
+                    // 刷新 table
+                    tableIns.reload({page: {curr: 1}});
+                    let data = res.data;
+                    // 弹出导入结果
+                    febs.modal.open('导入结果', 'others/eximport/result', {
+                        area: $(window).width() <= 750 ? '95%' : '1000px',
+                        data: data
+                    });
+                }
+            }, error: function (res) {
+                //请求异常回调
+                console.error(res);
+                febs.view.loadBar.error();
+                febs.alert.error('导入失败！');
+            }
+        });
+
+        $view.on('click', '#template-download', function () {
+            febs.download(ctx + 'eximport/template', null, 'Excel导入模板.xlsx');
+        });
+
+        $view.on('click', '#export', function () {
+            let params = {};
+            params.pageSize = $view.find(".layui-laypage-limits option:selected").val();
+            params.pageNum = $view.find(".layui-laypage-em").next().html();
+            febs.download(ctx + 'eximport/excel', params, 'Excel导出结果.xlsx');
+        });
+
+        function initTable() {
+            tableIns = febs.table.init({
+                elem: $view.find('table'),
+                id: 'eximportTable',
+                url: ctx + 'eximport',
+                cols: [[
+                    {field: 'field1', title: '字段1'},
+                    {field: 'field2', title: '字段2'},
+                    {field: 'field3', title: '字段3'},
+                    {field: 'createTime', title: '导入时间'}
+                ]]
+            });
+        }
+
+    })
+</script>

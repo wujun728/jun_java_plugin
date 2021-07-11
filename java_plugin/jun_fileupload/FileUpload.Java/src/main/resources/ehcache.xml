@@ -1,0 +1,74 @@
+<ehcache>
+
+    <!-- Sets the path to the directory where cache .data files are created.
+
+         If the path is a Java System Property it is replaced by
+         its value in the running VM.
+
+         The following properties are translated:
+         user.home - User's home directory
+         user.dir - User's current working directory
+         java.io.tmpdir - Default temp file path -->
+    <!--  
+    	指定一个目录：当 EHCache 把数据写到硬盘上时, 将把数据写到这个目录下.
+    -->     
+    <diskStore path="/ehcacheTempDirectory"/>
+
+
+    <!--Default Cache configuration. These will applied to caches programmatically created through
+        the CacheManager.
+
+        The following attributes are required for defaultCache:
+
+        maxInMemory       - Sets the maximum number of objects that will be created in memory
+        eternal           - Sets whether elements are eternal. If eternal,  timeouts are ignored and the element
+                            is never expired.
+        timeToIdleSeconds - Sets the time to idle for an element before it expires. Is only used
+                            if the element is not eternal. Idle time is now - last accessed time
+        timeToLiveSeconds - Sets the time to live for an element before it expires. Is only used
+                            if the element is not eternal. TTL is now - creation time
+        overflowToDisk    - Sets whether elements can overflow to disk when the in-memory cache
+                            has reached the maxInMemory limit.
+
+        -->
+    <!--  
+    	设置缓存的默认数据过期策略 
+    -->    
+    <defaultCache
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        overflowToDisk="true"
+        />
+
+   	<!--  
+   		设定具体的命名缓存的数据过期策略。每个命名缓存代表一个缓存区域
+   		缓存区域(region)：一个具有名称的缓存块，可以给每一个缓存块设置不同的缓存策略。
+   		如果没有设置任何的缓存区域，则所有被缓存的对象，都将使用默认的缓存策略。即：<defaultCache.../>
+   		Hibernate 在不同的缓存区域保存不同的类/集合。
+			对于类而言，区域的名称是类名。如:com.zhangzhihao.SpringMVCSeedProject.User
+			对于集合而言，区域的名称是类名加属性名。如com.zhangzhihao.SpringMVCSeedProject.User.XXList
+   	-->
+   	<!--  
+   		name: 设置缓存的名字,它的取值为类的全限定名或类的集合的名字 
+		maxElementsInMemory: 设置基于内存的缓存中可存放的对象最大数目 
+		
+		eternal: 设置对象是否为永久的, true表示永不过期,
+		此时将忽略timeToIdleSeconds 和 timeToLiveSeconds属性; 默认值是false 
+		timeToIdleSeconds:设置对象空闲最长时间,以秒为单位, 超过这个时间,对象过期。
+		当对象过期时,EHCache会把它从缓存中清除。如果此值为0,表示对象可以无限期地处于空闲状态。 
+		timeToLiveSeconds:设置对象生存最长时间,超过这个时间,对象过期。
+		如果此值为0,表示对象可以无限期地存在于缓存中. 该属性值必须大于或等于 timeToIdleSeconds 属性值 
+		
+		overflowToDisk:设置基于内存的缓存中的对象数目达到上限后,是否把溢出的对象写到基于硬盘的缓存中 
+   	-->
+    <!--<cache name="com.zhangzhihao.SpringMVCSeedProject.User"-->
+        <!--maxElementsInMemory="1"-->
+        <!--eternal="false"-->
+        <!--timeToIdleSeconds="300"-->
+        <!--timeToLiveSeconds="600"-->
+        <!--overflowToDisk="true"-->
+        <!--/>-->
+
+</ehcache>

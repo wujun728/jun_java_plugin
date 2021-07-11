@@ -1,0 +1,428 @@
+<style>
+    #febs-index .welcome-info {
+        border: 1px solid #f1f1f1;
+        margin-bottom: .5rem;
+        padding: .5rem;
+    }
+
+    #febs-index .welcome-info-wrapper {
+        padding: .2rem;
+        display: inline-block
+    }
+
+    #febs-index .welcome-info-wrapper .user-header {
+        display: inline-block;
+        vertical-align: middle
+    }
+
+    #febs-index .welcome-info-wrapper .user-header img {
+        width: 5rem;
+        margin: .5rem 1rem;
+        border-radius: 50%
+    }
+
+    #febs-index .welcome-info-wrapper .user-info {
+        display: inline-block;
+        vertical-align: middle
+    }
+
+    #febs-index .welcome-info-wrapper .user-info .random-message {
+        font-size: 1rem;
+        margin-bottom: .2rem;
+        max-width: 21rem
+    }
+
+    #febs-index .welcome-info-wrapper .user-info .user-dept, #febs-index .welcome-info-wrapper .user-info .user-login-info {
+        color: rgba(0, 0, 0, 0.45);
+    }
+
+    #febs-index .login-count-table {
+        width: 100%;
+        margin: 1rem;
+    }
+
+    #febs-index .login-count-table .count {
+        padding-top: .8rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1890ff
+    }
+
+    #febs-index .project-table {
+        padding: .5rem;
+        border: 1px solid #f1f1f1;
+        width: 100%
+    }
+
+    #febs-index .project-table-td {
+        padding: .5rem 0.7rem;
+        border: 1px solid #f1f1f1;
+    }
+
+    #febs-index .project-table-td a {
+        color: #42b983;
+        font-size: .9rem;
+        font-weight: 600;
+    }
+
+    #febs-index .project-desc {
+        color: rgba(0, 0, 0, 0.45);
+    }
+</style>
+<div class="layui-fluid layui-anim febs-anim-up" id="febs-index" lay-title="系统首页">
+    <div class="layui-row layui-col-space8 febs-container">
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-body layui-anim layui-anim-fadein">
+                    <div class="layui-row welcome-info">
+                        <div class="layui-col-md6 layui-col-sm12 layui-col-xs12">
+                            <div class="layui-row welcome-info-wrapper">
+                                <div class="user-header">
+                                    <img alt="头像" id="user-avatar" data-th-src="@{febs/images/avatar/empty.jpg}">
+                                </div>
+                                <div class="user-info">
+                                    <div class="layui-row">
+                                        <div class="random-message">
+                                            <span id="welcome-message"></span>
+                                        </div>
+                                        <div class="user-dept">
+                                            <span id="user-dept"></span> | <span id="user-role"></span>
+                                        </div>
+                                        <div class="user-login-info">
+                                            上次登录时间：<span id="last-login-time">2019-05-23 18:45:12</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md6 layui-col-sm12 layui-col-xs12">
+                            <div class="layui-col-md-offset5">
+                                <table class="login-count-table">
+                                    <tr>
+                                        <td>今日IP</td>
+                                        <td>今日访问</td>
+                                        <td>总访问量</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="count" id="today-ip">
+                                            0
+                                        </td>
+                                        <td class="count" id="today-visit-count">
+                                            0
+                                        </td>
+                                        <td class="count" id="total-visit-count">
+                                            0
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div id="chart" style="height: 350px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <table class="project-table">
+                        <tr>
+                            <td style="padding: .8rem;">进行中的项目</td>
+                            <td style="padding: .8rem;text-align: right">
+                                <a target="_blank" href="https://github.com/wuyouzhuguli?tab=repositories">所有项目</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="project-table-td">
+                                <div class="layui-row">
+                                    <div class="layui-col-md12 layui-col-xs12">
+                                        <div class="layui-row">
+                                            <div class="layui-col-md12">
+                                                <a target="_blank" href="https://github.com/wuyouzhuguli/FEBS-Cloud">FEBS
+                                                    Cloud</a>
+                                            </div>
+                                            <div class="project-desc">
+                                                Spring Cloud 微服务权限管理系统。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="project-table-td">
+                                <div class="layui-row">
+                                    <div class="layui-col-md12 layui-col-xs12">
+                                        <div class="layui-row">
+                                            <div class="layui-col-md12">
+                                                <a target="_blank" href="https://github.com/wuyouzhuguli/FEBS-Cloud-Web">FEBS
+                                                    Cloud Web</a>
+                                            </div>
+                                            <div class="project-desc">
+                                                FEBS-Cloud前端，使用 vue-element-admin 构建。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="project-table-td">
+                                <div class="layui-row">
+                                    <div class="layui-col-md12 layui-col-xs12">
+                                        <div class="layui-row">
+                                            <div class="layui-col-md12">
+                                                <a target="_blank" href="https://github.com/wuyouzhuguli/FEBS-Shiro">FEBS
+                                                    Shiro</a>
+                                            </div>
+                                            <div class="project-desc">
+                                                Spring Boot 2.0.4 & Shiro1.4.0 权限管理系统。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="project-table-td">
+                                <div class="layui-row">
+                                    <div class="layui-col-md12 layui-col-xs12">
+                                        <div class="layui-row">
+                                            <div class="layui-col-md12">
+                                                <a target="_blank" href="https://github.com/wuyouzhuguli/FEBS-Security">FEBS
+                                                    Security</a>
+                                            </div>
+                                            <div class="project-desc">
+                                                Spring Boot 2.0.4 & Spring Security 5.0.7 权限管理系统。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="project-table-td">
+                                <div class="layui-row">
+                                    <div class="layui-col-md12 layui-col-xs12">
+                                        <div class="layui-row">
+                                            <div class="layui-col-md12">
+                                                <a target="_blank" href="https://github.com/wuyouzhuguli/FEBS-Actuator">FEBS
+                                                    Cloud K8S</a>
+                                            </div>
+                                            <div class="project-desc">
+                                                FEBS Cloud K8S集群部署脚本。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="project-table-td">
+                                <div class="layui-row">
+                                    <div class="layui-col-md12 layui-col-xs12">
+                                        <div class="layui-row">
+                                            <div class="layui-col-md12">
+                                                <a target="_blank" href="https://github.com/wuyouzhuguli/SpringAll">SpringAll</a>
+                                            </div>
+                                            <div class="project-desc">
+                                                循序渐进学习Spring Boot、Spring Cloud与Spring Security。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="project-table-td">
+                                <div class="layui-row">
+                                    <div class="layui-col-md12 layui-col-xs12">
+                                        <div class="layui-row">
+                                            <div class="layui-col-md12">
+                                                <a target="_blank" href="https://github.com/wuyouzhuguli/FEBS-Vue">FEBS
+                                                    Vue</a>
+                                            </div>
+                                            <div class="project-desc">
+                                                FEBS-Shiro前后端分离版本，前端架构采用Vue全家桶。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="project-table-td">
+                                <div class="layui-row">
+                                    <div class="layui-col-md12 layui-col-xs12">
+                                        <div class="layui-row">
+                                            <div class="layui-col-md12">
+                                                <a target="_blank" href="https://github.com/wuyouzhuguli/FEBS-Actuator">FEBS Actuator</a>
+                                            </div>
+                                            <div class="project-desc">
+                                                使用Spring Boot Admin 2.0.2构建，用于监控FEBS。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-inline="javascript" type="text/javascript">
+    layui.use(['apexcharts', 'febs', 'jquery', 'util'], function () {
+        let $ = layui.jquery,
+            util = layui.util,
+            $view = $('#febs-index'),
+            febs = layui.febs;
+
+        febs.get(ctx + 'index/' + currentUser.username, null, function (r) {
+            handleSuccess(r.data);
+        });
+
+        function handleSuccess(data) {
+            let hour = new Date().getHours();
+            let time = hour < 6 ? '早上好' : (hour <= 11 ? '上午好' : (hour <= 13 ? '中午好' : (hour <= 18 ? '下午好' : '晚上好')));
+            let welcomeArr = [
+                '喝杯咖啡休息下吧☕',
+                '要不要和朋友打局LOL',
+                '今天又写了几个Bug呢',
+                '今天在群里吹水了吗',
+                '今天吃了什么好吃的呢',
+                '今天您微笑了吗😊',
+                '今天帮助别人了吗',
+                '准备吃些什么呢',
+                '周末要不要去看电影？'
+            ];
+            let index = Math.floor((Math.random() * welcomeArr.length));
+            let welcomeMessage = time + '，<a id="febs-index-user">' + currentUser.username + '</a>，' + welcomeArr[index];
+            $view.find('#today-ip').text(data.todayIp).end()
+                .find('#today-visit-count').text(data.todayVisitCount).end()
+                .find('#total-visit-count').text(data.totalVisitCount).end()
+                .find('#user-dept').text(currentUser.deptName ? currentUser.deptName : '暂无所属部门').end()
+                .find('#user-role').text(currentUser.roleName ? currentUser.roleName : '暂无角色').end()
+                .find('#last-login-time').text(currentUser.lastLoginTime ? currentUser.lastLoginTime : '第一次访问系统').end()
+                .find('#welcome-message').html(welcomeMessage).end()
+                .find('#user-avatar').attr('src', ctx + "febs/images/avatar/" + currentUser.avatar);
+
+            let currentTime = new Date().getTime();
+            let yourVisitCount = [];
+            let totalVisitCount = [];
+            let lastTenDays = [
+                util.toDateString(new Date(currentTime - 1000 * 9 * 86400), 'MM-dd'),
+                util.toDateString(new Date(currentTime - 1000 * 8 * 86400), 'MM-dd'),
+                util.toDateString(new Date(currentTime - 1000 * 7 * 86400), 'MM-dd'),
+                util.toDateString(new Date(currentTime - 1000 * 6 * 86400), 'MM-dd'),
+                util.toDateString(new Date(currentTime - 1000 * 5 * 86400), 'MM-dd'),
+                util.toDateString(new Date(currentTime - 1000 * 4 * 86400), 'MM-dd'),
+                util.toDateString(new Date(currentTime - 1000 * 3 * 86400), 'MM-dd'),
+                util.toDateString(new Date(currentTime - 1000 * 2 * 86400), 'MM-dd'),
+                util.toDateString(new Date(currentTime - 1000 * 86400), 'MM-dd'),
+                util.toDateString(new Date(currentTime), 'MM-dd')
+            ];
+
+
+            layui.each(lastTenDays, function (k, i) {
+                let contain = false;
+                layui.each(data.lastSevenUserVisitCount, function (key, item) {
+                    if (i === item.days) {
+                        yourVisitCount.push(item.count);
+                        contain = true;
+                    }
+                });
+                if (!contain) yourVisitCount.push(0);
+                contain = false;
+                layui.each(data.lastSevenVisitCount, function (key, item) {
+                    if (i === item.days) {
+                        totalVisitCount.push(item.count);
+                        contain = true;
+                    }
+                });
+                if (!contain) totalVisitCount.push(0);
+            });
+
+            let options = {
+                chart: {
+                    height: 350,
+                    type: 'area',
+                    toolbar: {
+                        show: false
+                    }
+                },
+                colors: ['#1890ff', '#0acf97'],
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: '32rem'
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    width: [3, 3],
+                    curve: 'smooth'
+                },
+                series: [{
+                    name: '总数',
+                    data: totalVisitCount
+                }, {
+                    name: '您',
+                    data: yourVisitCount
+                }],
+                xaxis: {
+                    categories: lastTenDays,
+                    axisTicks: {
+                        show: true
+                    },
+                    axisBorder: {
+                        show: true,
+                        color: '#f1f1f1'
+                    }
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shadeIntensity: 1,
+                        inverseColors: false,
+                        opacityFrom: 0.5,
+                        opacityTo: 0,
+                        stops: [0, 90, 100]
+                    }
+                },
+                title: {
+                    text: '近10天系统访问记录',
+                    align: 'left',
+                    style: {
+                        color: 'rgba(0, 0, 0, .65)'
+                    }
+                },
+                tooltip: {
+                    y: {
+                        formatter: function (val) {
+                            return "访问次数 " + val + " 次"
+                        }
+                    }
+                },
+                grid: {
+                    row: {
+                        colors: ['transparent', 'transparent'],
+                        opacity: 0.2
+                    },
+                    borderColor: '#f1f1f1'
+                }
+            };
+
+            new ApexCharts(
+                document.querySelector("#chart"),
+                options
+            ).render();
+        }
+
+        $view.on('click', '#febs-index-user',function () {
+            febs.navigate("/user/profile");
+        })
+
+    });
+</script>

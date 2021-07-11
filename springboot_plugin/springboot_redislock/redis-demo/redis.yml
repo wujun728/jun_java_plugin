@@ -1,0 +1,10 @@
+# 测试用中间件服务器
+version: '3'
+services:
+  redis:
+    image: redis
+    hostname: redis
+    ports:
+      - "6379:6379"
+
+

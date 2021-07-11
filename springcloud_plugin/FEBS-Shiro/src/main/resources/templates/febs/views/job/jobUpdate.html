@@ -1,0 +1,109 @@
+<style>
+    #job-update {
+        padding: 20px 25px 25px 0;
+    }
+
+    #job-update .layui-form-label {
+        width: 88px;
+    }
+
+    #job-update .layui-input-block {
+        margin-left: 120px;
+    }
+</style>
+<div class="layui-fluid" id="job-update">
+    <form class="layui-form" action="" lay-filter="job-update-form">
+        <div class="layui-form-item febs-hide">
+            <label class="layui-form-label febs-form-item-require">id：</label>
+            <div class="layui-input-block">
+                <input type="text" name="jobId" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item febs-hide">
+            <label class="layui-form-label febs-form-item-require">状态：</label>
+            <div class="layui-input-block">
+                <input type="text" name="status" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label febs-form-item-require">Bean名称：</label>
+            <div class="layui-input-block">
+                <input type="text" name="beanName" maxlength="20" lay-verify="range|required"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label febs-form-item-require">方法名称：</label>
+            <div class="layui-input-block">
+                <input type="text" name="methodName" maxlength="50" lay-verify="range|required"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">方法参数：</label>
+            <div class="layui-input-block">
+                <input type="text" name="params" maxlength="50" lay-verify="range"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label febs-form-item-require">cron表达式：</label>
+            <div class="layui-input-block">
+                <input type="text" name="cronExpression" maxlength="20" lay-verify="range|required|cron"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">任务备注：</label>
+            <div class="layui-input-block">
+                <textarea name="remark" maxlength="50" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item febs-hide">
+            <button class="layui-btn" lay-submit="" lay-filter="job-update-form-submit" id="submit"></button>
+            <button type="reset" class="layui-btn" id="reset"></button>
+        </div>
+    </form>
+</div>
+
+<script data-th-inline="javascript">
+    layui.use(['jquery', 'febs', 'form', 'validate'], function () {
+        let $ = layui.jquery,
+            febs = layui.febs,
+            form = layui.form,
+            job = [[${job}]],
+            $view = $('#job-update'),
+            validate = layui.validate;
+
+        form.verify(validate);
+        form.render();
+
+        initJobValue();
+
+        function initJobValue() {
+            form.val("job-update-form", {
+                "jobId": job.jobId,
+                "status": job.status,
+                "beanName": job.beanName,
+                "methodName": job.methodName,
+                "params": job.params,
+                "cronExpression": job.cronExpression,
+                "remark": job.remark
+            });
+        }
+
+        form.on('submit(job-update-form-submit)', function (data) {
+            if (febs.nativeEqual(data.field, job)) {
+                febs.alert.warn('数据未作任何修改！');
+                return false;
+            }
+            febs.post(ctx + 'job/update', data.field, function () {
+                layer.closeAll();
+                febs.alert.success('任务修改成功');
+                $('#febs-job').find('#query').click();
+            });
+            return false;
+        });
+
+    });
+</script>

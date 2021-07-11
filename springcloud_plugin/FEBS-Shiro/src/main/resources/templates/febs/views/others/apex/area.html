@@ -1,0 +1,756 @@
+<style>
+    #febs-apex-area .layui-card-header {
+        font-weight: 600;
+    }
+</style>
+<div class="layui-fluid layui-anim febs-anim" id="febs-apex-area" lay-title="面积图表">
+    <div class="layui-row layui-col-space8 febs-container">
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">基础面积图</div>
+                <div class="layui-card-body">
+                    <div id="basicAreaChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">仿真图</div>
+                <div class="layui-card-body">
+                    <div id="splineAreaChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">带负值面积图</div>
+                <div class="layui-card-body">
+                    <div id="negativeAreaChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">层叠面积图</div>
+                <div class="layui-card-body">
+                    <div id="stackedAreaChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">不规则时间序列面积图</div>
+                <div class="layui-card-body">
+                    <div id="irregularTimeseriesAreaChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">非连续性面积图</div>
+                <div class="layui-card-body">
+                    <div id="nullValuesAreaChart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-src="@{febs/lay/data/dataSeries.js}"></script>
+<script data-th-inline="javascript" type="text/javascript">
+    layui.use(['apexcharts'], function () {
+        // ------------- basicAreaChart -------------------
+        let basicAreaChartOptions = {
+            chart: {
+                height: 320,
+                type: 'area',
+                zoom: {
+                    enabled: false
+                },
+                toolbar: {
+                    show: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight',
+                width: [3]
+            },
+            series: [{
+                name: "STOCK ABC",
+                data: series.monthDataSeries1.prices
+            }],
+            labels: series.monthDataSeries1.dates,
+            xaxis: {
+                type: 'datetime'
+            },
+            yaxis: {
+                opposite: true
+            },
+            legend: {
+                horizontalAlign: 'left'
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+
+        // --------------- basicAreaChart --------------
+        new ApexCharts(
+            document.querySelector("#basicAreaChart"),
+            basicAreaChartOptions
+        ).render();
+
+        let splineAreaChartOptions = {
+            chart: {
+                height: 320,
+                type: 'area',
+                toolbar: {
+                    show: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                width: [3, 3],
+                curve: 'smooth'
+            },
+            series: [{
+                name: 'series1',
+                data: [31, 40, 28, 51, 42, 109, 100]
+            }, {
+                name: 'series2',
+                data: [11, 32, 45, 32, 34, 52, 41]
+            }],
+            colors: ['#6c5ce7', '#ff3e6d'],
+            xaxis: {
+                type: 'datetime',
+                categories: ["2018-09-19T00:00:00", "2018-09-19T01:30:00", "2018-09-19T02:30:00", "2018-09-19T03:30:00", "2018-09-19T04:30:00", "2018-09-19T05:30:00", "2018-09-19T06:30:00"],
+            },
+            tooltip: {
+                x: {
+                    format: 'dd/MM/yy HH:mm'
+                }
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+
+        new ApexCharts(
+            document.querySelector("#splineAreaChart"),
+            splineAreaChartOptions
+        ).render();
+
+        // ------------- negativeAreaChart -----------------
+        let negativeAreaChartOptions = {
+            chart: {
+                height: 320,
+                type: 'area',
+                toolbar: {
+                    show: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                width: [3, 3],
+                curve: 'straight'
+            },
+            series: [{
+                name: 'north',
+                data: [{
+                    x: 1996,
+                    y: 322
+                },
+                    {
+                        x: 1997,
+                        y: 324
+                    },
+                    {
+                        x: 1998,
+                        y: 329
+                    },
+                    {
+                        x: 1999,
+                        y: 342
+                    },
+                    {
+                        x: 2000,
+                        y: 348
+                    },
+                    {
+                        x: 2001,
+                        y: 334
+                    },
+                    {
+                        x: 2002,
+                        y: 325
+                    },
+                    {
+                        x: 2003,
+                        y: 316
+                    },
+                    {
+                        x: 2004,
+                        y: 318
+                    },
+                    {
+                        x: 2005,
+                        y: 330
+                    },
+                    {
+                        x: 2006,
+                        y: 355
+                    },
+                    {
+                        x: 2007,
+                        y: 366
+                    },
+                    {
+                        x: 2008,
+                        y: 337
+                    },
+                    {
+                        x: 2009,
+                        y: 352
+                    },
+                    {
+                        x: 2010,
+                        y: 377
+                    },
+                    {
+                        x: 2011,
+                        y: 383
+                    },
+                    {
+                        x: 2012,
+                        y: 344
+                    },
+                    {
+                        x: 2013,
+                        y: 366
+                    },
+                    {
+                        x: 2014,
+                        y: 389
+                    },
+                    {
+                        x: 2015,
+                        y: 334
+                    }
+                ]
+            }, {
+                name: 'south',
+                data: [
+
+                    {
+                        x: 1996,
+                        y: 162
+                    },
+                    {
+                        x: 1997,
+                        y: 90
+                    },
+                    {
+                        x: 1998,
+                        y: 50
+                    },
+                    {
+                        x: 1999,
+                        y: 77
+                    },
+                    {
+                        x: 2000,
+                        y: 35
+                    },
+                    {
+                        x: 2001,
+                        y: -45
+                    },
+                    {
+                        x: 2002,
+                        y: -88
+                    },
+                    {
+                        x: 2003,
+                        y: -120
+                    },
+                    {
+                        x: 2004,
+                        y: -156
+                    },
+                    {
+                        x: 2005,
+                        y: -123
+                    },
+                    {
+                        x: 2006,
+                        y: -88
+                    },
+                    {
+                        x: 2007,
+                        y: -66
+                    },
+                    {
+                        x: 2008,
+                        y: -45
+                    },
+                    {
+                        x: 2009,
+                        y: -29
+                    },
+                    {
+                        x: 2010,
+                        y: -45
+                    },
+                    {
+                        x: 2011,
+                        y: -88
+                    },
+                    {
+                        x: 2012,
+                        y: -132
+                    },
+                    {
+                        x: 2013,
+                        y: -146
+                    },
+                    {
+                        x: 2014,
+                        y: -169
+                    },
+                    {
+                        x: 2015,
+                        y: -184
+                    }
+                ]
+            }],
+            xaxis: {
+                type: 'datetime',
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                }
+            },
+            yaxis: {
+                tickAmount: 4,
+                floating: false,
+
+                labels: {
+                    style: {
+                        color: '#8e8da4'
+                    },
+                    offsetY: -7,
+                    offsetX: 0
+                },
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                }
+            },
+            colors: ['#0acf97', '#FFA41B'],
+            fill: {
+                type: ['gradient', 'gradient'],
+                opacity: 1
+            },
+            tooltip: {
+                x: {
+                    format: "yyyy"
+                },
+                fixed: {
+                    enabled: false,
+                    position: 'topRight'
+                }
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+
+        new ApexCharts(
+            document.querySelector("#negativeAreaChart"),
+            negativeAreaChartOptions
+        ).render();
+
+        // ------------- stackedAreaChart ----------------
+        let stackedAreaChartOptions = {
+            chart: {
+                height: 320,
+                type: 'area',
+                stacked: true,
+                events: {
+                    selection: function (chart, e) {
+                        console.log(new Date(e.xaxis.min))
+                    }
+                },
+                toolbar: {
+                    show: false
+                }
+
+            },
+            colors: ['#008FFB', '#00E396', '#CED4DC'],
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                width: [3, 3, 3],
+                curve: 'smooth'
+            },
+
+            series: [{
+                name: 'South',
+                data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 20, {
+                    min: 10,
+                    max: 60
+                })
+            },
+                {
+                    name: 'North',
+                    data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 20, {
+                        min: 10,
+                        max: 20
+                    })
+                },
+
+                {
+                    name: 'Central',
+                    data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 20, {
+                        min: 10,
+                        max: 15
+                    })
+                }
+            ],
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    opacityFrom: 0.6,
+                    opacityTo: 0.8
+                }
+            },
+            legend: {
+                position: 'top',
+                horizontalAlign: 'left'
+            },
+            xaxis: {
+                type: 'datetime'
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+        new ApexCharts(
+            document.querySelector("#stackedAreaChart"),
+            stackedAreaChartOptions
+        ).render();
+
+        function generateDayWiseTimeSeries(baseval, count, yrange) {
+            let i = 0;
+            let series = [];
+            while (i < count) {
+                let x = baseval;
+                let y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+
+                series.push([x, y]);
+                baseval += 86400000;
+                i++;
+            }
+            return series;
+        }
+
+        // ------------------ irregularTimeseriesAreaChart ---------------
+
+        let ts1 = 1388534400000;
+        let ts2 = 1388620800000;
+        let ts3 = 1389052800000;
+
+        let dataSet1 = [];
+        let dataSet2 = [];
+        let dataSet3 = [];
+
+        for (let j = 0; j < 12; j++) {
+            ts1 = ts1 + 86400000;
+            let innerArr1 = [ts1, dataSeries[2][j].value];
+            dataSet1.push(innerArr1)
+        }
+        for (let k = 0; k < 18; k++) {
+            ts2 = ts2 + 86400000;
+            let innerArr2 = [ts2, dataSeries[1][k].value];
+            dataSet2.push(innerArr2)
+        }
+        for (let l = 0; l < 12; l++) {
+            ts3 = ts3 + 86400000;
+            let innerArr3 = [ts3, dataSeries[0][l].value];
+            dataSet3.push(innerArr3)
+        }
+
+        let irregularTimeseriesAreaChartOptions = {
+            chart: {
+                type: 'area',
+                stacked: false,
+                height: 320,
+                zoom: {
+                    enabled: false
+                },
+                toolbar: {
+                    show: false
+                }
+            },
+            plotOptions: {
+                line: {
+                    curve: 'smooth'
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            series: [{
+                name: 'PRODUCT A',
+                data: dataSet1
+            }, {
+                name: 'PRODUCT B',
+                data: dataSet2
+            }, {
+                name: 'PRODUCT C',
+                data: dataSet3
+            }],
+            markers: {
+                size: 0,
+                style: 'full'
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    inverseColors: false,
+                    opacityFrom: 0.45,
+                    opacityTo: 0.05,
+                    stops: [20, 100, 100, 100]
+                }
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        color: '#8e8da4'
+                    },
+                    offsetX: 0,
+                    formatter: function (val) {
+                        return (val / 1000000).toFixed(2);
+                    }
+                },
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                }
+            },
+            xaxis: {
+                type: 'datetime',
+                tickAmount: 8,
+                min: new Date("01/01/2014").getTime(),
+                max: new Date("01/20/2014").getTime(),
+                labels: {
+                    rotate: -15,
+                    rotateAlways: true
+                }
+            },
+            tooltip: {
+                shared: true
+            },
+            stroke: {
+                width: [3, 3, 3]
+            },
+            legend: {
+                position: 'top',
+                horizontalAlign: 'right',
+                offsetX: -10
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+
+        new ApexCharts(
+            document.querySelector("#irregularTimeseriesAreaChart"),
+            irregularTimeseriesAreaChartOptions
+        ).render();
+
+        // ------------- nullValuesAreaChart -------------------
+        let nullValuesAreaChartOptions = {
+            chart: {
+                height: 320,
+                type: 'area',
+                animations: {
+                    enabled: false
+                },
+                zoom: {
+                    enabled: false
+                },
+                toolbar: {
+                    show: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                width: [3],
+                curve: 'straight'
+            },
+            colors: ['#7b88ff'],
+            series: [{
+                name: 'Network',
+                data: [{
+                    x: 'Dec 23 2017',
+                    y: null
+                },
+                    {
+                        x: 'Dec 24 2017',
+                        y: 44
+                    },
+                    {
+                        x: 'Dec 25 2017',
+                        y: 31
+                    },
+                    {
+                        x: 'Dec 26 2017',
+                        y: 38
+                    },
+                    {
+                        x: 'Dec 27 2017',
+                        y: null
+                    },
+                    {
+                        x: 'Dec 28 2017',
+                        y: 32
+                    },
+                    {
+                        x: 'Dec 29 2017',
+                        y: 55
+                    },
+                    {
+                        x: 'Dec 30 2017',
+                        y: 51
+                    },
+                    {
+                        x: 'Dec 31 2017',
+                        y: 67
+                    },
+                    {
+                        x: 'Jan 01 2018',
+                        y: 22
+                    },
+                    {
+                        x: 'Jan 02 2018',
+                        y: 34
+                    },
+                    {
+                        x: 'Jan 03 2018',
+                        y: null
+                    },
+                    {
+                        x: 'Jan 04 2018',
+                        y: null
+                    },
+                    {
+                        x: 'Jan 05 2018',
+                        y: 11
+                    },
+                    {
+                        x: 'Jan 06 2018',
+                        y: 4
+                    },
+                    {
+                        x: 'Jan 07 2018',
+                        y: 15
+                    },
+                    {
+                        x: 'Jan 08 2018',
+                        y: null
+                    },
+                    {
+                        x: 'Jan 09 2018',
+                        y: 9
+                    },
+                    {
+                        x: 'Jan 10 2018',
+                        y: 34
+                    },
+                    {
+                        x: 'Jan 11 2018',
+                        y: null
+                    },
+                    {
+                        x: 'Jan 12 2018',
+                        y: null
+                    },
+                    {
+                        x: 'Jan 13 2018',
+                        y: 13
+                    },
+                    {
+                        x: 'Jan 14 2018',
+                        y: null
+                    }
+                ]
+            }],
+            markers: {
+                size: 4,
+                hover: {
+                    size: 5
+                }
+            },
+            tooltip: {
+                intersect: true,
+                shared: false
+            },
+            theme: {
+                palette: 'palette1'
+            },
+            xaxis: {
+                type: 'datetime'
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+
+        new ApexCharts(
+            document.querySelector("#nullValuesAreaChart"),
+            nullValuesAreaChartOptions
+        ).render();
+
+    });
+</script>

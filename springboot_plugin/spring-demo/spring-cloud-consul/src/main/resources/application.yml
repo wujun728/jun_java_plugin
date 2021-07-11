@@ -1,0 +1,12 @@
+server:
+  port: 8081
+spring:
+  cloud:
+    consul:
+      discovery:
+        tags: dev
+        hostname: buxiaoxa.top
+        # 服务发现过滤的tag
+        default-query-tag: dev
+  profiles:
+    active: dev

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-kafka="http://www.springframework.org/schema/integration/kafka"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration/kafka http://www.springframework.org/schema/integration/kafka/spring-integration-kafka.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <int:channel id="inputFromKafka">
+        <int:queue/>
+    </int:channel>
+    
+	<int-kafka:inbound-channel-adapter
+		id="kafkaInboundChannelAdapter" kafka-consumer-context-ref="consumerContext"
+		auto-startup="false" channel="inputFromKafka">
+		<int:poller fixed-delay="10" time-unit="MILLISECONDS"
+			max-messages-per-poll="5" />
+	</int-kafka:inbound-channel-adapter>
+
+	<bean id="consumerProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="auto.offset.reset">smallest</prop>
+				<prop key="socket.receive.buffer.bytes">10485760</prop> <!-- 10M -->
+				<prop key="fetch.message.max.bytes">5242880</prop>
+				<prop key="auto.commit.interval.ms">1000</prop>
+			</props>
+		</property>
+	</bean>
+
+	<int-kafka:consumer-context id="consumerContext"
+		consumer-timeout="4000" zookeeper-connect="zookeeperConnect" consumer-properties="consumerProperties">
+		<int-kafka:consumer-configurations>
+			<int-kafka:consumer-configuration
+				group-id="mygroup" max-messages="5000">
+				<int-kafka:topic id="test" streams="4" />
+			</int-kafka:consumer-configuration>
+			<!-- <int-kafka:consumer-configuration group-id="default3" value-decoder="kafkaSpecificDecoder" 
+				key-decoder="kafkaReflectionDecoder" max-messages="10"> <int-kafka:topic-filter 
+				pattern="regextopic.*" streams="4" exclude="false" /> </int-kafka:consumer-configuration> -->
+		</int-kafka:consumer-configurations>
+	</int-kafka:consumer-context>
+
+	<int-kafka:zookeeper-connect id="zookeeperConnect"
+		zk-connect="localhost:2181" zk-connection-timeout="6000"
+		zk-session-timeout="400" zk-sync-time="200" />
+</beans>

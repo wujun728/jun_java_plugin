@@ -1,0 +1,10 @@
+server:
+  port: 8081
+spring:
+  cloud:
+    consul:
+      discovery:
+        tags: dev
+        hostname: 127.0.0.1
+        # 服务发现过滤的tag
+        default-query-tag: dev

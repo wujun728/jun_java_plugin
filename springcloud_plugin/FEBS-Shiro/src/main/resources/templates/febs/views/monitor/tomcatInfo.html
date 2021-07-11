@@ -1,0 +1,152 @@
+<style>
+    #febs-tomcat-info table th, #febs-tomcat-info table td {
+        height: 28px;
+        line-height: 28px;
+        padding: 9px 15px;
+        position: relative;
+        box-sizing: border-box;
+    }
+</style>
+<div class="layui-fluid layui-anim febs-anim" id="febs-tomcat-info" lay-title="Tomcat信息">
+    <div class="layui-row febs-container">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body febs-table-full">
+                    <span class="febs-alert-base febs-alert-success">
+                        数据获取时间 <strong id="time"></strong>
+                        &nbsp;&nbsp;
+                        <a id="refresh">点击刷新</a>
+                    </span>
+                    <div class="layui-form layui-border-box layui-table-view" lay-id="tomcat-infoTable">
+                        <div class="layui-table-box">
+                            <table cellspacing="0" cellpadding="0" border="0" class="layui-table" lay-skin="line">
+                                <tr>
+                                    <th>参数</th>
+                                    <th>描述</th>
+                                    <th>当前值</th>
+                                </tr>
+<!--                                <tr>-->
+<!--                                    <td>-->
+<!--                                    <span class="layui-badge febs-tag-green">-->
+<!--                                        tomcat.sessions.created-->
+<!--                                    </span>-->
+<!--                                    </td>-->
+<!--                                    <td>tomcat 已创建 session 数</td>-->
+<!--                                    <td data-th-text="${#numbers.formatInteger(tomcat.tomcatSessionsCreated, 0)} + ' 个'"></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>-->
+<!--                                    <span class="layui-badge febs-tag-green">-->
+<!--                                        tomcat.sessions.expired-->
+<!--                                    </span>-->
+<!--                                    </td>-->
+<!--                                    <td>tomcat 已过期 session 数</td>-->
+<!--                                    <td data-th-text="${#numbers.formatInteger(tomcat.tomcatSessionsExpired, 0)} + ' 个'"></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>-->
+<!--                                    <span class="layui-badge febs-tag-green">-->
+<!--                                        tomcat.sessions.active.current-->
+<!--                                    </span>-->
+<!--                                    </td>-->
+<!--                                    <td>tomcat 当前活跃 session 数</td>-->
+<!--                                    <td data-th-text="${#numbers.formatInteger(tomcat.tomcatSessionsActiveCurrent, 0)} + ' 个'"></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>-->
+<!--                                    <span class="layui-badge febs-tag-green">-->
+<!--                                        tomcat.sessions.active.max-->
+<!--                                    </span>-->
+<!--                                    </td>-->
+<!--                                    <td>tomcat 活跃 session 数峰值</td>-->
+<!--                                    <td data-th-text="${#numbers.formatInteger(tomcat.tomcatSessionsActiveMax, 0)} + ' 个'"></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>-->
+<!--                                    <span class="layui-badge febs-tag-green">-->
+<!--                                        tomcat.sessions.rejected-->
+<!--                                    </span>-->
+<!--                                    </td>-->
+<!--                                    <td>超过session 最大配置后，拒绝的 session 个数</td>-->
+<!--                                    <td data-th-text="${#numbers.formatInteger(tomcat.tomcatSessionsRejected, 0)} + ' 个'"></td>-->
+<!--                                </tr>-->
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-purple">
+                                        tomcat.global.sent
+                                    </span>
+                                    </td>
+                                    <td>发送的字节数</td>
+                                    <td data-th-text="${tomcat.tomcatGlobalSent} + ' bytes'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-purple">
+                                        tomcat.global.request.max
+                                    </span>
+                                    </td>
+                                    <td>request 请求最长耗时</td>
+                                    <td data-th-text="${tomcat.tomcatGlobalRequestMax} + ' 秒'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-purple">
+                                        tomcat.global.error
+                                    </span>
+                                    </td>
+                                    <td>tomcat 全局异常数量</td>
+                                    <td data-th-text="${#numbers.formatInteger(tomcat.tomcatGlobalError, 0)} + ' 个'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-cyan">
+                                        tomcat.threads.current
+                                    </span>
+                                    </td>
+                                    <td>tomcat 当前线程数（包括守护线程）</td>
+                                    <td data-th-text="${#numbers.formatInteger(tomcat.tomcatThreadsCurrent, 0)} + ' 个'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-cyan">
+                                        tomcat.threads.config.max
+                                    </span>
+                                    </td>
+                                    <td>tomcat 配置的线程最大数</td>
+                                    <td data-th-text="${#numbers.formatInteger(tomcat.tomcatThreadsConfigMax, 0)} + ' 个'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-cyan">
+                                        tomcat.threads.busy
+                                    </span>
+                                    </td>
+                                    <td>tomcat 当前繁忙线程数</td>
+                                    <td data-th-text="${#numbers.formatInteger(tomcat.tomcatThreadsBusy, 0)} + ' 个'"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-inline="none" type="text/javascript">
+    layui.use(['jquery', 'febs'], function () {
+        let $ = layui.jquery,
+            febs = layui.febs,
+            util = layui.util,
+            $view = $('#febs-tomcat-info');
+        $view.find('#time').text(util.toDateString(new Date().getTime(), 'yyyy年MM月dd日 HH时mm分ss秒'));
+
+        $view.find('a#refresh').on('click', function () {
+            let isTab = currentUser.isTab;
+            if (isTab === '1') {
+                febs.view.tab.refresh();
+            } else {
+                window.location.reload();
+            }
+        });
+    });
+</script>

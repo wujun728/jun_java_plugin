@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.application.package-time",
+      "type": "java.lang.String",
+      "description": "应用编译打包时间戳."
+  }
+] }

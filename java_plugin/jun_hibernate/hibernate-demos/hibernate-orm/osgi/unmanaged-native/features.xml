@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+  <feature name="hibernate-osgi-unmanaged-native">
+
+    <bundle>mvn:com.h2database/h2/1.3.170</bundle>
+
+    <!-- Optional.  Needed to test infinispan 2lc. -->
+    <!-- IMPORTANT: Infinispan requires the JRE sun.misc package.  You
+    MUST enable this in your OSGi container.  For Karaf, add
+    "org.osgi.framework.system.packages.extra=sun.misc" to etc/config.properties -->
+    <!-- <bundle>wrap:mvn:org.jboss.marshalling/jboss-marshalling/1.3.17.GA</bundle>
+    <bundle>wrap:mvn:org.jboss.marshalling/jboss-marshalling-river/1.3.17.GA</bundle>
+    <bundle>wrap:mvn:org.jboss/staxmapper/1.1.0.Final</bundle>
+    <bundle>mvn:org.jgroups/jgroups/3.2.8.Final</bundle>
+    <bundle>mvn:org.infinispan/infinispan-core/5.2.0.Beta3</bundle> -->
+
+    <!-- JACC is optional. -->
+    <!--<bundle>mvn:javax.servlet/javax.servlet-api/3.0.1</bundle>
+    <bundle>mvn:org.jboss.spec.javax.security.jacc/jboss-jacc-api_1.4_spec/1.0.2.Final</bundle>-->
+
+    <!-- hibernate-validator is optional. -->
+    <!--<bundle>wrap:mvn:javax.validation/validation-api/1.0.0.GA</bundle>
+    <bundle>mvn:org.hibernate/hibernate-validator/4.2.0.Final</bundle>-->
+
+    <!-- Assumes that ORM's features.xml, found in the binary distro or in JBoss Nexus
+    (org.hibernate:hibernate-osgi:[VERSION]:karaf.xml), has been installed in Karaf! -->
+    <feature version="5.0.0.Final">hibernate-orm</feature>
+    <feature version="5.0.0.Final">hibernate-envers</feature>
+    <!--<feature version="5.0.1-SNAPSHOT">hibernate-infinispan</feature>-->
+    <!--<feature version="5.0.1-SNAPSHOT">hibernate-ehcache</feature>-->
+
+    <bundle>mvn:org.hibernate.osgi/unmanaged-native/1.0.0</bundle>
+  </feature>
+</features>

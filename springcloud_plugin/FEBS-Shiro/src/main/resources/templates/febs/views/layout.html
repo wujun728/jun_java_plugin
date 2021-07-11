@@ -1,0 +1,180 @@
+<div class="layui-layout layui-layout-admin" id="febs-layout">
+    <div class="layui-header layui-anim febs-anim-down" id="app-header">
+        <script type="text/html"
+                template
+                lay-done="layui.element.render('nav','febs-header')">
+            <ul class="layui-nav layui-layout-left" lay-filter="febs-header">
+                <li class="layui-nav-item" lay-unselect>
+                    <a febs-event="flexible" title="侧边伸缩">
+                        <i class="layui-icon layui-icon-shrink-right"></i>
+                    </a>
+                </li>
+                 <span class="febs-breadcrumb"></span>
+            </ul>
+            <ul class="layui-nav layui-layout-right" lay-filter="febs-header">
+                <li class="layui-nav-item layui-hide-xs" id="fullscreen" lay-unselect>
+                    <a title="切换全屏">
+                        <i class="layui-icon layui-icon-screen-full"></i>
+                    </a>
+                </li>
+                <li class="layui-nav-item layui-user" lay-unselect>
+                    <a>
+                        <img style="width: 1.9rem;margin-right:.5rem;border-radius: 50%"
+                             src="{{= ctx + 'febs/images/avatar/' + currentUser.avatar }}" title="头像">
+                        {{ currentUser.username }}
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a class="layui-nav-child-href" id="user-profile">个人中心</a></dd>
+                        <dd><a class="layui-nav-child-href" id="password-update">密码修改</a></dd>
+                        <dd><a class="layui-nav-child-href" target="_blank" href="https://github.com/wuyouzhuguli/FEBS-Shiro">项目地址</a></dd>
+                        <hr/>
+                        <dd><a class="layui-nav-child-href" data-th-href="@{logout}">退出登录</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </script>
+    </div>
+
+    <div class="febs-tabs-hidden">
+        <script type="text/html" id="TPL-app-tabsmenu" template>
+            {{# if(layui.conf.viewTabs){ }}
+            <div class="febs-tabs-wrap">
+          <span class="febs-tabs-btn febs-tabs-action febs-tabs-prev" data-type="prev">
+              <i class="layui-icon layui-icon-left"></i>
+          </span>
+                <span class="febs-tabs-btn febs-tabs-action febs-tabs-next" data-type="next">
+              <i class="layui-icon layui-icon-right"></i>
+          </span>
+                <span class="febs-tabs-btn febs-tabs-action febs-tabs-down" data-type="down">
+              <i class="layui-icon layui-icon-close"></i>
+          </span>
+                <ul class="febs-tabs-menu">
+                    {{# layui.each(layui.view.tab.data,function(i, item){ }}
+                    <li data-type="page" class="febs-tabs-btn" lay-url="{{item.fileurl}}">
+                        <i class="febs-tabs-ball"></i>{{ item.title }}<b class="layui-icon layui-icon-close febs-tabs-close"></b>
+                    </li>
+                    {{# }) }}
+                </ul>
+            </div>
+            {{# } }}
+        </script>
+    </div>
+
+    <!-- 侧边菜单 -->
+    <div class="layui-side" id="app-sidebar">
+        <div class="layui-side-scroll">
+            <div class="layui-logo" style="cursor: pointer">
+                <img data-th-src="@{febs/images/logo.png}">
+                <span>FEBS 权限系统</span>
+            </div>
+            <script
+                    type="text/html"
+                    template
+                    lay-api="getMenus"
+                    lay-done="layui.element.render('nav','febs-sidebar');layui.febs.sidebarFocus()">
+                <ul class="layui-nav layui-nav-tree" lay-filter="febs-sidebar" lay-shrink="all">
+                    {{#
+                    function __createSlidebar(data,index){
+                    if(!data || data.length == 0) return '';
+                    let html = '
+                    <dl class="layui-nav-child">';
+                        layui.each(data, function(i, child) {
+                        let left = index == 0 ? 50 : 50 + index * 20;
+                        let title = child.title;
+                        if (child.icon) {
+                            title = '<i class="layui-icon '+child.icon+'"></i>' + child.title
+                        }
+                        html += '
+                        <dd><a style="padding-left:' + left + 'px" target="'+(child.target||'')+'"
+                               lay-href="'+ (child.href||'') +'">' + title + '</a>';
+                            if(child.childs) html += __createSlidebar(child.childs,index+1);
+                            html += '</dd>';
+                        });
+                        html = html +'</dl>';
+                    return html;
+                    }
+                    layui.each(d.childs, function(i,child){
+                    }}
+                    <li class="layui-nav-item">
+                        <a lay-href="{{child.href||''}}" target="{{child.target||''}}" title="{{child.title}}"><i
+                                class="layui-icon {{child.icon}}"></i>{{child.title}} {{# if(child.notice){ }}<span
+                                class="layui-badge">{{ child.notice }}</span>{{# } }}</a>
+                        {{ __createSlidebar(child.childs,0) }}
+                    </li>
+                    {{# }) }}
+                </ul>
+            </script>
+        </div>
+    </div>
+    <!-- 主体内容 -->
+    <div class="layui-body" id="febs-body"></div>
+</div>
+<script data-th-inline="javascript" type="text/javascript">
+    layui.use(['jquery', 'febs', 'element'], function () {
+        let $ = layui.jquery,
+            $view = $('#febs-layout'),
+            febs = layui.febs;
+
+        let element = layui.element;
+
+        initTheme();
+
+        $view.find('#user-avatar').attr('src', ctx + "febs/images/avatar/" + currentUser.avatar);
+
+        $view.on('click', '.layui-logo', function () {
+            febs.navigate("/index");
+        });
+
+        $view.on('click', '#fullscreen', function () {
+            let $this = $(this);
+            let normalCls = 'layui-icon-screen-full';
+            let activeCls = 'layui-icon-screen-restore';
+            let ico = $this.find('.layui-icon');
+
+            if (ico.hasClass(normalCls)) {
+                let a = document.body;
+                a.webkitRequestFullScreen
+                    ? a.webkitRequestFullScreen()
+                    : a.mozRequestFullScreen
+                    ? a.mozRequestFullScreen()
+                    : a.requestFullScreen && a.requestFullscreen();
+                ico.removeClass(normalCls).addClass(activeCls)
+            } else {
+                let b = document;
+                b.webkitCancelFullScreen
+                    ? b.webkitCancelFullScreen()
+                    : b.mozCancelFullScreen
+                    ? b.mozCancelFullScreen()
+                    : b.cancelFullScreen
+                        ? b.cancelFullScreen()
+                        : b.exitFullscreen && b.exitFullscreen();
+                ico.removeClass(activeCls).addClass(normalCls)
+            }
+        });
+
+        $view.on('click', '#password-update', function () {
+            febs.modal.view('密码修改', 'password/update', {
+                area: $(window).width() <= 750 ? '90%' : '500px',
+                btn: ['确定'],
+                yes: function () {
+                    $('#user-password-update').find('#submit').trigger('click');
+                }
+            });
+        });
+
+        $view.on('click', '#user-profile', function () {
+            febs.navigate("/user/profile");
+        });
+
+        function initTheme() {
+            let theme = currentUser.theme;
+            let $sidebar = $('#app-sidebar');
+            if (theme === 'black') {
+                $sidebar.removeClass('febs-theme-white');
+            }
+            if (theme === 'white') {
+                $sidebar.addClass('febs-theme-white');
+            }
+        }
+    });
+</script>

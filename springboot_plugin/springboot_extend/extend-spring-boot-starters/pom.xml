@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.battcn.boot</groupId>
+        <artifactId>extend-spring-boot-dependencies</artifactId>
+        <version>2.1.2-RELEASE</version>
+        <relativePath>../extend-spring-boot-dependencies/pom.xml</relativePath>
+    </parent>
+    <groupId>com.battcn.boot</groupId>
+    <artifactId>extend-spring-boot-starters</artifactId>
+    <version>2.1.2-RELEASE</version>
+    <name>extend-spring-boot-starters</name>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>extend-spring-boot-starter</module>
+        <!--    跨域支持    -->
+        <module>extend-cors-spring-boot-starter</module>
+        <!--    OSS云存储    -->
+        <module>extend-oss-spring-boot-starter</module>
+        <!--    Mybatis 扩展支持    -->
+        <module>extend-mybatis-spring-boot-starter</module>
+        <!--    国际化 -->
+        <module>extend-i18n-spring-boot-starter</module>
+        <!--    关键字脱敏   -->
+        <module>extend-sensitive-spring-boot-starter</module>
+        <!--    xss 过滤器     -->
+        <module>extend-xss-spring-boot-starter</module>
+        <!--    加解密     -->
+        <module>extend-crypto-spring-boot-starter</module>
+        <!--    日期格式化   -->
+        <module>extend-time-spring-boot-starter</module>
+        <!--    重复获取 Body Stream -->
+        <module>extend-wrapper-spring-boot-starter</module>
+        <!--    redis分布式锁/限流     -->
+        <module>extend-redis-spring-boot-starter</module>
+        <!--    XXL-JOB 的自动装配     -->
+        <module>extend-xxl-job-spring-boot-starter</module>
+    </modules>
+
+
+    <build>
+        <plugins>
+            <!-- 资源文件拷贝插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- java编译插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <forkCount>1</forkCount>
+                    <reuseForks>false</reuseForks>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

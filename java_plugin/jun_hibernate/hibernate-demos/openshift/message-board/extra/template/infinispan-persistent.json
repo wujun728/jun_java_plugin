@@ -1,0 +1,454 @@
+{
+  "apiVersion": "v1",
+  "kind": "Template",
+  "labels": {
+    "template": "infinispan-persistent"
+  },
+  "metadata": {
+    "annotations": {
+      "description": "Infinispan 9 (Persistent)",
+      "iconClass": "icon-infinispan",
+      "tags": "java,database,datagrid,jboss",
+      "openshift.io/display-name": "Infinispan 9 (Persistent)",
+      "openshift.io/documentation-url": "http://infinispan.org/documentation/",
+      "openshift.io/long-description": "This template provides a standalone Infinispan server (a high performance, scalable, key/value data grid solution) with persistence enabled. In order to provide custom configuration, please update the $ApplicationName-configuration ConfigMap and restart a Pod.",
+      "openshift.io/provider-display-name": "Red Hat, Inc.",
+      "openshift.io/support-url": "http://infinispan.org"
+    },
+    "name": "infinispan-persistent"
+  },
+  "objects": [
+    {
+      "kind": "ServiceAccount",
+      "apiVersion": "v1",
+      "metadata": {
+      "name": "${APPLICATION_NAME}"
+      }
+    },
+    {
+      "kind": "RoleBinding",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APPLICATION_NAME}-view"
+      },
+      "userNames": [
+        "system:serviceaccount:${NAMESPACE}:${APPLICATION_NAME}"
+      ],
+      "groupNames": null,
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "${APPLICATION_NAME}"
+        }
+      ],
+      "roleRef": {
+        "name": "view"
+      }
+    },
+    {
+      "kind": "Secret",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APPLICATION_NAME}",
+        "annotations": {
+          "template.openshift.io/expose-infinispan.client.hotrod.auth_username": "{.data['application-user']}",
+          "template.openshift.io/expose-infinispan.client.hotrod.auth_password": "{.data['application-password']}"
+        }
+      },
+      "stringData" : {
+        "application-user": "${APPLICATION_USER}",
+        "application-password": "${APPLICATION_PASSWORD}",
+        "management-user": "${MANAGEMENT_USER}",
+        "management-password": "${MANAGEMENT_PASSWORD}"
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "description": "Headless service for StatefulSets"
+        },
+        "labels": {
+          "application": "${APPLICATION_NAME}"
+        },
+        "name": "${APPLICATION_NAME}-headless"
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "http",
+            "port": 8080,
+            "targetPort": 8080
+          },
+          {
+            "name": "hotrod",
+            "port": 11222,
+            "targetPort": 11222
+          }
+        ],
+        "selector": {
+          "application": "${APPLICATION_NAME}"
+        },
+        "clusterIP": "None"
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "description": "The web server's HTTP port."
+        },
+        "labels": {
+          "application": "${APPLICATION_NAME}"
+        },
+        "name": "${APPLICATION_NAME}-http"
+      },
+      "spec": {
+        "ports": [
+          {
+            "port": 8080,
+            "targetPort": 8080
+          }
+        ],
+        "selector": {
+          "deploymentConfig": "${APPLICATION_NAME}"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "description": "The management console."
+        },
+        "labels": {
+          "application": "${APPLICATION_NAME}"
+        },
+        "name": "${APPLICATION_NAME}-management"
+      },
+      "spec": {
+        "ports": [
+          {
+            "port": 9990,
+            "targetPort": 9990
+          }
+        ],
+        "selector": {
+          "deploymentConfig": "${APPLICATION_NAME}"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "description": "Hot Rod's port.",
+          "template.openshift.io/expose-infinispan.client.hotrod.server_list": "{.spec.clusterIP}:{.spec.ports[0].port}"
+        },
+        "labels": {
+          "application": "${APPLICATION_NAME}"
+        },
+        "name": "${APPLICATION_NAME}-hotrod"
+      },
+      "spec": {
+        "ports": [
+          {
+            "port": 11222,
+            "targetPort": 11222
+          }
+        ],
+        "selector": {
+          "deploymentConfig": "${APPLICATION_NAME}"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "id": "${APPLICATION_NAME}-management",
+      "kind": "Route",
+      "metadata": {
+        "annotations": {
+          "description": "Route for the management console."
+        },
+        "labels": {
+          "application": "${APPLICATION_NAME}"
+        },
+        "name": "${APPLICATION_NAME}-management"
+      },
+      "spec": {
+        "to": {
+          "kind": "Service",
+          "name": "${APPLICATION_NAME}-management"
+        }
+      }
+    },
+    {
+      "apiVersion": "apps/v1beta1",
+      "kind": "StatefulSet",
+      "metadata": {
+        "labels": {
+          "application": "${APPLICATION_NAME}"
+        },
+        "name": "${APPLICATION_NAME}"
+      },
+      "spec": {
+        "serviceName": "${APPLICATION_NAME}-headless",
+        "replicas": "${{NUMBER_OF_INSTANCES}}",
+        "strategy": {
+          "type": "Rolling",
+          "rollingParams": {
+            "updatePeriodSeconds": 20,
+            "intervalSeconds": 20,
+            "timeoutSeconds": 1200,
+            "maxUnavailable": 1,
+            "maxSurge": 1
+          }
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "application": "${APPLICATION_NAME}",
+              "deploymentConfig": "${APPLICATION_NAME}"
+            },
+            "name": "${APPLICATION_NAME}"
+          },
+          "spec": {
+            "containers": [
+              {
+                "args": [
+                  "custom/cloud-persistent.xml",
+                  "-Djboss.default.jgroups.stack=kubernetes",
+                  "-Djboss.node.name=$(NODE_NAME)"
+                ],
+                "env": [
+                  {
+                    "name": "OPENSHIFT_KUBE_PING_LABELS",
+                    "value": "application=${APPLICATION_NAME}"
+                  },
+                  {
+                    "name": "OPENSHIFT_KUBE_PING_NAMESPACE",
+                    "valueFrom": {
+                      "fieldRef": {
+                        "fieldPath": "metadata.namespace"
+                      }
+                    }
+                  },
+                  {
+                    "name": "KUBERNETES_LABELS",
+                    "value": "application=${APPLICATION_NAME}"
+                  },
+                  {
+                    "name": "KUBERNETES_NAMESPACE",
+                    "valueFrom": {
+                      "fieldRef": {
+                        "fieldPath": "metadata.namespace"
+                      }
+                    }
+                  },
+                  {
+                    "name": "NODE_NAME",
+                    "valueFrom": {
+                      "fieldRef": {
+                        "fieldPath": "metadata.name"
+                      }
+                    }
+                  },
+                  {
+                    "name": "MGMT_USER",
+                    "valueFrom": {
+                      "secretKeyRef": {
+                        "key": "management-user",
+                        "name": "${APPLICATION_NAME}"
+                      }
+                    }
+                  },
+                  {
+                    "name": "MGMT_PASS",
+                    "valueFrom": {
+                      "secretKeyRef": {
+                        "key": "management-password",
+                        "name": "${APPLICATION_NAME}"
+                      }
+                    }
+                  },
+                  {
+                    "name": "APP_USER",
+                    "valueFrom": {
+                      "secretKeyRef": {
+                        "key": "application-user",
+                        "name": "${APPLICATION_NAME}"
+                      }
+                    }
+                  },
+                  {
+                    "name": "APP_PASS",
+                    "valueFrom": {
+                      "secretKeyRef": {
+                        "key": "application-password",
+                        "name": "${APPLICATION_NAME}"
+                      }
+                    }
+                  }
+                ],
+                "image": "${IMAGE}",
+                "livenessProbe": {
+                  "exec": {
+                    "command": [
+                      "/usr/local/bin/is_running.sh"
+                    ]
+                  },
+                  "initialDelaySeconds": 10,
+                  "timeoutSeconds": 80,
+                  "periodSeconds": 60,
+                  "successThreshold": 1,
+                  "failureThreshold": 5
+                },
+                "readinessProbe": {
+                  "exec": {
+                    "command": [
+                      "/usr/local/bin/is_healthy.sh"
+                    ]
+                  },
+                  "initialDelaySeconds": 10,
+                  "timeoutSeconds": 80,
+                  "periodSeconds": 60,
+                  "successThreshold": 2,
+                  "failureThreshold": 5
+                },
+                "name": "${APPLICATION_NAME}",
+                "ports": [
+                  {
+                    "containerPort": 8080,
+                    "name": "http",
+                    "protocol": "TCP"
+                  },
+                  {
+                    "containerPort": 9990,
+                    "name": "management",
+                    "protocol": "TCP"
+                  },
+                  {
+                    "containerPort": 8888,
+                    "name": "ping",
+                    "protocol": "TCP"
+                  },
+                  {
+                    "containerPort": 11222,
+                    "name": "hotrod",
+                    "protocol": "TCP"
+                  }
+                ],
+                "volumeMounts": [
+                  {
+                    "name": "${APPLICATION_NAME}-configuration",
+                    "mountPath": "/opt/jboss/infinispan-server/standalone/configuration/custom"
+                  },
+                  {
+                    "name": "${APPLICATION_NAME}-data",
+                    "mountPath": "/opt/jboss/infinispan-server/standalone/data"
+                  }
+                ],
+                "resources": {
+                  "requests": {
+                    "cpu": "0.5",
+                    "memory": "512Mi"
+                  }
+                }
+              }
+            ],
+            "terminationGracePeriodSeconds": 120,
+            "serviceAccountName": "${APPLICATION_NAME}",
+            "volumes": [
+              {
+                "name": "${APPLICATION_NAME}-configuration",
+                "configMap": {
+                  "name": "${APPLICATION_NAME}-configuration"
+                }
+              }
+            ]
+          }
+        },
+        "triggers": [
+          {
+            "type": "ConfigChange"
+          }
+        ],
+        "volumeClaimTemplates": [
+          {
+            "metadata": {
+              "name": "${APPLICATION_NAME}-data"
+            },
+            "spec": {
+              "accessModes": [
+                "ReadWriteOnce"
+              ],
+              "resources": {
+                "requests": {
+                  "storage": "1Gi"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "description": "Namespace for the application. Note: The namespace is required for creating proper RoleBindings. Specifying wrong namespace will prevent cluster from forming.",
+      "name": "NAMESPACE",
+      "required": true,
+      "value": "myproject"
+    },
+    {
+      "description": "The name for the application.",
+      "name": "APPLICATION_NAME",
+      "required": true,
+      "value": "infinispan-persistent-app"
+    },
+    {
+      "description": "Username for accessing REST (and possible Hot Rod) endpoint.",
+      "name": "APPLICATION_USER",
+      "required": true,
+      "generate": "expression",
+      "from": "[a-zA-Z0-9]{8}"
+    },
+    {
+      "description": "Password for accessing REST (and possible Hot Rod) endpoint.",
+      "name": "APPLICATION_PASSWORD",
+      "required": true,
+      "generate": "expression",
+      "from": "[a-zA-Z0-9]{8}"
+    },
+    {
+      "description": "Username for accessing management console.",
+      "name": "MANAGEMENT_USER",
+      "required": true,
+      "generate": "expression",
+      "from": "[a-zA-Z0-9]{8}"
+    },
+    {
+      "description": "Password for accessing management console.",
+      "name": "MANAGEMENT_PASSWORD",
+      "required": true,
+      "generate": "expression",
+      "from": "[a-zA-Z0-9]{8}"
+    },
+    {
+      "description": "Infinispan image.",
+      "name": "IMAGE",
+      "required": true,
+      "value": "jboss/infinispan-server:9.2.0.Final"
+    },
+    {
+      "description": "Number of instances in the cluster.",
+      "name": "NUMBER_OF_INSTANCES",
+      "required": true,
+      "value": "1"
+    }
+  ]
+}

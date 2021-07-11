@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.kiiwii.framework</groupId>
+    <artifactId>kiiwii-sample</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>4.1.3.RELEASE</spring.version>
+        <hibernate.version>4.3.5.Final</hibernate.version>
+        <app.version>1.0.0</app.version>
+        <jackson.version>2.3.2</jackson.version>
+        <jersey.version>2.9</jersey.version>
+        <org.slf4j.version>1.7.13</org.slf4j.version>
+        <mysql.version>5.1.38</mysql.version>
+    </properties>
+    <modules>
+        <module>spring-mvc-session-with-redis</module>
+        <module>spring-mvc-with-redis</module>
+        <module>web-native-jar</module>
+        <module>spring-with-ehcache</module>
+        <module>java-exec-remote-shell</module>
+        <module>example</module>
+        <module>test-jar</module>
+        <module>spring-mvc-with-redis-rank</module>
+        <module>spring-act</module>
+        <module>spring-mvc-with-schedule</module>
+        <module>spring-mvc-with-security</module>
+        <module>spring-mvc-with-websocket</module>
+    </modules>
+
+</project>

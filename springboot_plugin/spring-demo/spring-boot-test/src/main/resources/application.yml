@@ -1,0 +1,13 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test_c
+    username: username
+    password: password
+    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: spring-boot-test
+  jpa:
+    hibernate:
+      ddl-auto: create

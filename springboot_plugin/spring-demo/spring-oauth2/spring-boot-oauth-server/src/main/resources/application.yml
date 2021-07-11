@@ -1,0 +1,14 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test_oauth?characterEncoding=UTF-8
+    username: services_dev
+    password: services_dev
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+logging:
+  level:
+    org.springframework.security: DEBUG

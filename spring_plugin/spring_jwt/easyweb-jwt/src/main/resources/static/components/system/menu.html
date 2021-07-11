@@ -1,0 +1,206 @@
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <div class="layui-form toolbar">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label w-auto">搜索：</label>
+                        <div class="layui-input-inline mr0">
+                            <input id="menuEdtSearch" class="layui-input" type="text" placeholder="输入关键字"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <button id="menuBtnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索
+                        </button>
+                        <button id="menuBtnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
+                    </div>
+                </div>
+            </div>
+
+            <table class="layui-table" id="menuTable" lay-filter="menuTable"></table>
+        </div>
+    </div>
+</div>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="menuTableBar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<!-- 表单弹窗 -->
+<script type="text/html" id="menuForm">
+    <form lay-filter="menuForm" class="layui-form model-form">
+        <input name="menuId" type="hidden"/>
+        <div class="layui-form-item">
+            <label class="layui-form-label">上级菜单</label>
+            <div class="layui-input-block">
+                <select name="parentId" lay-search></select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单名称</label>
+            <div class="layui-input-block">
+                <input name="menuName" placeholder="请输入菜单名称" type="text" class="layui-input"
+                       maxlength="20" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单URL</label>
+            <div class="layui-input-block">
+                <input name="menuUrl" placeholder="请输入菜单URL" type="text" class="layui-input"
+                       maxlength="200"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单图标</label>
+            <div class="layui-input-block">
+                <input name="menuIcon" placeholder="请输入菜单图标" type="text" class="layui-input"
+                       maxlength="80"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">对应权限</label>
+            <div class="layui-input-block">
+                <input name="authority" placeholder="请输入对应权限" type="text" class="layui-input"
+                       maxlength="100"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序号</label>
+            <div class="layui-input-block">
+                <input name="sortNumber" placeholder="请输入排序号" type="number" class="layui-input"
+                       max="100" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item text-right">
+            <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+            <button class="layui-btn" lay-filter="menuFormSubmit" lay-submit>保存</button>
+        </div>
+    </form>
+</script>
+
+<!-- js部分 -->
+<script>
+    layui.use(['layer', 'form', 'table', 'util', 'admin', 'config'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var table = layui.table;
+        var util = layui.util;
+        var admin = layui.admin;
+        var config = layui.config;
+        var mMenus = [];  // 全部菜单
+
+        //渲染表格
+        var menuIns = table.render({
+            elem: '#menuTable',
+            url: config.base_server + 'menu',
+            where: {
+                access_token: config.getToken()
+            },
+            page: false,
+            cellMinWidth: 100,
+            cols: [[
+                {type: 'numbers'},
+                {field: 'parentName', title: '上级菜单'},
+                {field: 'menuName', title: '菜单名称'},
+                {field: 'menuUrl', title: '菜单URL'},
+                {field: 'menuIcon', title: '菜单图标'},
+                {field: 'authority', title: '对应权限'},
+                {
+                    templet: function (d) {
+                        return util.toDateString(d.createTime);
+                    }, title: '创建时间'
+                },
+                {align: 'center', toolbar: '#menuTableBar', title: '操作', minWidth: 120}
+            ]]
+        });
+
+        // 添加按钮点击事件
+        $('#menuBtnAdd').click(function () {
+            showEditModel();
+        });
+
+        // 搜索按钮点击事件
+        $('#menuBtnSearch').click(function () {
+            var keyword = $('#menuEdtSearch').val();
+            table.reload('menuTable', {where: {keyword: keyword}});
+        });
+
+        // 工具条点击事件
+        table.on('tool(menuTable)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'edit') { //修改
+                showEditModel(data);
+            } else if (obj.event === 'del') { // 删除
+                doDelete(obj);
+            }
+        });
+
+        // 删除
+        function doDelete(obj) {
+            layer.confirm('确定要删除吗？', {
+                offset: '65px',
+                skin: 'layui-layer-admin'
+            }, function (i) {
+                layer.close(i);
+                layer.load(2);
+                admin.req('menu/' + obj.data.menuId, {}, function (res) {
+                    layer.closeAll('loading');
+                    if (res.code == 200) {
+                        layer.msg(res.msg, {icon: 1});
+                        obj.del();
+                    } else {
+                        layer.msg(res.msg, {icon: 2});
+                    }
+                }, 'DELETE');
+            });
+        }
+
+        // 显示编辑弹窗
+        function showEditModel(menu) {
+            admin.open({
+                type: 1,
+                area: '360px',
+                offset: '65px',
+                title: (menu ? '修改' : '添加') + '菜单',
+                content: $('#menuForm').html(),
+                success: function (layero, index) {
+                    $(layero).children('.layui-layer-content').css('overflow', 'visible');  // 禁止出现滚动条
+                    $('select[name="parentId"]').html('<option value="">请选择</option>');
+                    for (var i = 0; i < mMenus.length; i++) {
+                        $('select[name="parentId"]').append('<option value="' + mMenus[i].menuId + '">' + mMenus[i].menuName + '</option>');
+                    }
+                    form.val('menuForm', menu);
+                    // 表单提交事件
+                    form.on('submit(menuFormSubmit)', function (data) {
+                        layer.load(2);
+                        admin.req('menu', data.field, function (res) {
+                            layer.closeAll('loading');
+                            if (res.code == 200) {
+                                layer.msg(res.msg, {icon: 1});
+                                menuIns.reload();
+                                layer.closeAll('page');
+                            } else {
+                                layer.msg(res.msg, {icon: 2});
+                            }
+                        }, menu ? 'PUT' : 'POST');
+                        return false;
+                    });
+                }
+            });
+        }
+
+        // 获取全部菜单
+        layer.load(2);
+        admin.req('menu', {}, function (res) {
+            layer.closeAll('loading');
+            if (res.code == 0) {
+                mMenus = res.data;
+            } else {
+                layer.msg(res.msg, {icon: 2});
+            }
+        }, 'get');
+
+    });
+</script>

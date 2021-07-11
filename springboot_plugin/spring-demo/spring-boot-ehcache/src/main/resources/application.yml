@@ -1,0 +1,12 @@
+server:
+  port: 8081
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mysql://dev.jyx365.top:3306/test?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    username: services_dev
+    password: services_dev
+    driver-class-name: com.mysql.jdbc.Driver

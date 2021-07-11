@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+         updateCheck="false">
+    <diskStore path="cache/shiro-ehcache"/>
+    <defaultCache
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="0"
+            maxEntriesLocalHeap="1024"
+            memoryStoreEvictionPolicy="LRU"
+            overflowToDisk="true"/>
+</ehcache>

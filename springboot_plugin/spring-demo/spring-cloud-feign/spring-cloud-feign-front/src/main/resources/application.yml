@@ -1,0 +1,19 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    consul:
+      discovery:
+        tags: dev
+        hostname: 127.0.0.1
+        # 服务发现过滤的tag
+        default-query-tag: dev
+  application:
+    name: spring-cloud-feign-front
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000

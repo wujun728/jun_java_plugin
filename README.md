@@ -175,112 +175,35 @@ jun_plugin 整合Java企业级各种开发组件、开箱即用、不写重复�
 
 #### `笔者其他项目`  
  [俊哥个人技术栈代码库(持续更新)](https://github.com/wujun728)
+TODO PLAN：
+Step1基础篇：
+	jun_java_plugin Java基础框架-Java开发组件、Spring开发组件、SpringBoot开发组件、SpringCloud开发组件、Maven项目模板
+	jun_ssh_parent SSH基础框架-SpringBoot+EasyUI+JSP
+	jun_ssm_springboot SSM基础框架-SpringBoot+MybatisPlus+Boostrap+Shiro+JWT
+	jun_code_generator 代码生成器-SpringBoot+Freemarker+API接口+EasyExcel
+	jun_frontend_ui    前端框架，Bootstrap、AdminLTE、Jquery、EasyUI、LayUI、LayAdmin、Vue、vue-element-admin
+	jun_linux    服务器部署、gitlab部署、Nginx部署、Redis部署、Docker部署、MySQL部署、等等
+ 	---审视项目本身，给出待办调整清单，给出下步计划
+Step2微服务&大数据：
+	jun_api_service API接口服务框架，SpringBoot+Rest API
+	jun_springboot_vue 前后端分离框架，SpringBoot+Vue+JWT
+	jun_springcloud 微服务框架，SpringCloud Netflix、SpringCloud Alibaba、Dubbo框架、Quarkus极速框架
+	jun_bigdata 大数据框架，支持数据清理、数据推荐、大数据分析、大数据企业看板、大数据报表等
+ 
+Step3产品篇：
+	jun_product_center 产品中心，包含企业官网、企业办公自动化OA系统、企业资源管理ERP系统、项目管理系统、等等
+	jun_website   CMS网站系统，基于WordPress的网站系统、支持博客、企业官网、及各种网站模板
+	wujun728.github.io 个人博客
+ 
+Step4产品篇：
+	jun_app    移动APP开发平台、支持Uniapp开发独立APP、小程序、企业办公等
+	jun_weixin   微信开发平台、微信公众号、微信小程序、微信管理后台、微信API接口后台
+	jun_android Android移动开发框架，APP开发模板、后台管理系统、后台API接口平台
+
+##### GitHub 镜像访问
+	https://github.com
+	https://hub.fastgit.org/
+	https://github.com.cnpmjs.org
 
 
-
-springboot_actuator
-springboot_admin
-springboot_async
-springboot_batch
-springboot_bootshiro
-springboot_cache
-springboot_codegen
-springboot_data_jpa
-springboot_data_mybatis
-springboot_demo
-springboot_distributed_seckill
-springboot_docker
-springboot_drools
-springboot_dubbo
-springboot_dynamic_datasource
-springboot_elastic_job
-springboot_email
-springboot_exception_handler
-springboot_fastdfs
-springboot_flyway
-springboot_freemarker
-springboot_graylog
-springboot_helloworld
-springboot_hibernate_validator
-springboot_https
-springboot_jackson
-springboot_jbpm6
-springboot_jms
-springboot_jpa_jsp
-springboot_jsp
-springboot_junit
-springboot_jwt
-springboot_kafka
-springboot_kaptcha
-springboot_kisso
-springboot_ldap
-springboot_lhbauth
-springboot_lock
-springboot_lock4j
-springboot_log
-springboot_log_aop
-springboot_logback
-springboot_mongodb
-springboot_mq_kafka
-springboot_mq_rabbitmq
-springboot_mq_rocketmq
-springboot_multi_datasource_jpa
-springboot_multi_datasource_mybatis
-springboot_mybatis
-springboot_mybatis_jsp
-springboot_neo4j
-springboot_oauth
-springboot_oauth_server
-springboot_oauth2_server
-springboot_order_mybaits_activemq
-springboot_orm_beetlsql
-springboot_orm_jdbctemplate
-springboot_orm_jpa
-springboot_orm_mybatis
-springboot_orm_mybatis_mapper_page
-springboot_orm_mybatis_plus
-springboot_pay
-springboot_properties
-springboot_ratelimit_guava
-springboot_ratelimit_redis
-springboot_rbac_security
-springboot_rbac_shiro
-springboot_redis
-springboot_redis_sentinel
-springboot_redislock
-springboot_redisson
-springboot_redisson_starter
-springboot_restful
-springboot_session
-springboot_sharding_jdbc
-springboot_sharding_jdbc_mybatis_plus
-springboot_shiro_jwt
-springboot_social
-springboot_springside4
-springboot_swagger
-springboot_swagger_beauty
-springboot_task
-springboot_task_quartz
-springboot_task_xxl_job
-springboot_template_beetl
-springboot_template_enjoy
-springboot_template_freemarker
-springboot_template_thymeleaf
-springboot_templatemaven
-springboot_templates_layui_admin
-springboot_tio
-springboot_tools
-springboot_transaction
-springboot_uflo
-springboot_uniapp
-springboot_upload
-springboot_ureport2
-springboot_urule
-springboot_war
-springboot_webflux_reactive_rest_api
-springboot_webhook
-springboot_websocket
-springboot_websocket_demo
-springboot_websocket_socketio
-springboot_wm_accesstoken
-springboot_zookeeper
+	

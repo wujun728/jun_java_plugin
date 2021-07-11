@@ -1,0 +1,238 @@
+<style>
+    #febs-tools .layui-card-header {
+        font-weight: 600;
+    }
+
+    #febs-tools p {
+        margin-bottom: 10px
+    }
+</style>
+<div class="layui-fluid layui-anim febs-anim" id="febs-tools" lay-title="FEBS工具">
+    <div class="layui-row layui-col-space8 febs-container">
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">弹出层</div>
+                <div class="layui-card-body">
+                    <p>febs.modal.info / warn / success / error()，使用 layer.alert()
+                        实现，参数与官网一致。</p>
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-normal" id="modal-info">信息</button>
+                        <button class="layui-btn layui-btn-warm" id="modal-warn">警告</button>
+                        <button class="layui-btn layui-btn-success" id="modal-success">成功</button>
+                        <button class="layui-btn layui-btn-danger" id="modal-error">错误</button>
+                        <button class="layui-btn layui-btn-normal" id="modal-confirm">confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">提示层</div>
+                <div class="layui-card-body">
+                    <p>febs.alert.info / warn / success / error()，使用 layer.alert()
+                        实现，参数与官网一致。</p>
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-normal" id="alert-info">信息</button>
+                        <button class="layui-btn layui-btn-warm" id="alert-warn">警告</button>
+                        <button class="layui-btn layui-btn-success" id="alert-success">成功</button>
+                        <button class="layui-btn layui-btn-danger" id="alert-error">错误</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">popup层</div>
+                <div class="layui-card-body">
+                    <p>使用 febs.modal.open() 打开任意网址，使用 layer.open() 实现，参数与官网一致。</p>
+                    <div class="layui-btn-container">
+                        <button class="layui-btn  layui-btn-primary" id="popup-out">外部网页</button>
+                        <button class="layui-btn  layui-btn-primary" id="popup-inner">内部网页</button>
+                        <button class="layui-btn  layui-btn-primary" id="popup-clean">简洁风格</button>
+                        <button class="layui-btn  layui-btn-primary" id="popup-with-button">添加按钮</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">Tab操作</div>
+                <div class="layui-card-body">
+                    <p>刷新当前Tab页面：<a id="refresh-tab">点击刷新</a></p>
+                    <pre class="layui-code" lay-title="JavaScript" lay-encode="true">
+// html
+<a>点击刷新</a>
+// js
+$('a').on('click', function () {
+    febs.view.tab.refresh();
+}
+                    </pre>
+                    <p>切换到指定Tab页面：<a id="change-tab">点击切换到首页</a></p>
+                    <pre class="layui-code" lay-title="JavaScript" lay-encode="true">
+// html
+<a>点击切换</a>
+// js
+$('a').on('click', function () {
+    febs.view.tab.change("/index");
+}
+                    </pre>
+                    <p>关闭指定Tab页面：<a id="del-tab">点击关闭当前Tab页，并跳转到首页</a></p>
+                    <pre class="layui-code" lay-title="JavaScript" lay-encode="true">
+// html
+<a>点击切换</a>
+// js
+$('a').on('click', function () {
+    let currentUrl = window.location.hash.replace('#', '');
+    febs.view.tab.del(currentUrl);
+    febs.view.tab.change("/index");
+}
+                    </pre>
+                    <span class="febs-alert-base febs-alert-success">更多Tab的操作可以阅读static/febs/lay/modules/view.js源码。</span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">路由Router操作</div>
+                <div class="layui-card-body">
+                    <p>路由跳转拦截：</p>
+                    <pre class="layui-code" lay-title="JavaScript">
+febs.routeLeave(function (route, nextPath, next) {
+    // route 当前页面路由信息
+    // nextPath 将要去到的路径
+    // next() 执行跳转页面
+})
+                    </pre>
+                    <p>获取当前路由地址：</p>
+                    <pre class="layui-code" lay-title="JavaScript">
+let url = febs.route.href;
+                    </pre>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">LoadBar</div>
+                <div class="layui-card-body">
+                    <p>点击查看效果：</p>
+                    <button class="layui-btn layui-btn-normal" id="load-start">开始 Start</button>
+                    <button class="layui-btn layui-btn-normal" id="load-finish">结束 Finish</button>
+                    <button class="layui-btn layui-btn-danger" id="load-error">错误 Error</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-inline="javascript" type="text/javascript">
+    layui.use(['febs', 'code'], function () {
+        let $ = layui.jquery,
+            febs = layui.febs,
+            $view = $("#febs-tools");
+
+        layui.code();
+        // ------------ 弹出层 ------------------------
+        $view.find('#modal-info').on('click', function () {
+            febs.modal.info('请输入标题', '请输入内容', function () {
+                febs.alert.info("确定按钮回调");
+            });
+        });
+        $view.find('#modal-warn').on('click', function () {
+            febs.modal.warn('请输入标题', '请输入内容', function () {
+                febs.alert.info("确定按钮回调");
+            });
+        });
+        $view.find('#modal-success').on('click', function () {
+            febs.modal.success('请输入标题', '请输入内容', function () {
+                febs.alert.info("确定按钮回调");
+            });
+        });
+        $view.find('#modal-error').on('click', function () {
+            febs.modal.error('请输入标题', '请输入内容', function () {
+                febs.alert.info("确定按钮回调");
+            });
+        });
+        $view.find('#modal-confirm').on('click', function () {
+            febs.modal.confirm('请输入标题', '请输入内容', function () {
+                febs.alert.info("确定按钮回调");
+            }, function () {
+                febs.alert.info("取消按钮回调");
+            });
+        });
+
+        // ------------------- 提示层 ---------------------
+        $view.find('#alert-info').on('click', function () {
+            febs.alert.info("提示信息");
+        });
+        $view.find('#alert-warn').on('click', function () {
+            febs.alert.warn("告警信息");
+        });
+        $view.find('#alert-success').on('click', function () {
+            febs.alert.success("成功信息");
+        });
+        $view.find('#alert-error').on('click', function () {
+            febs.alert.error("错误信息");
+        });
+
+        // -------------------- popup ----------------------
+        $view.find('#popup-out').on('click', function () {
+            febs.modal.open('百度一下，你就知道', 'https://www.baidu.com');
+        });
+        $view.find('#popup-inner').on('click', function () {
+            febs.modal.open('内部网页', 'others/apex/radar', {
+                //传递参数，弹出的页面可以使用 POPUP_DATA.username 获取值
+                data: {
+                    username: 'MrBird'
+                }
+            });
+        });
+        $view.find('#popup-clean').on('click', function () {
+            febs.modal.view('博客地址', 'https://mrbird.cc');
+        });
+
+        $view.find('#popup-with-button').on('click', function () {
+            febs.modal.view('博客地址', 'https://mrbird.cc', {
+                btn: ['确定', '取消'],
+                yes: function () {
+                    febs.alert.info('确定按钮回调');
+                },
+                btn2: function () {
+                    febs.alert.info('取消按钮回调');
+                    return false;
+                }
+            });
+        });
+
+        //  ------------------- tab操作 ---------------------------
+        $view.find('a#refresh-tab').on('click', function () {
+            let isTab = currentUser.isTab;
+            if (isTab === '1') {
+                febs.view.tab.refresh();
+            } else {
+                window.location.reload();
+            }
+            febs.alert.success('刷新完毕')
+        });
+        $view.find('a#change-tab').on('click', function () {
+            febs.view.tab.change("/index");
+        });
+        $view.find('a#del-tab').on('click', function () {
+            let currentUrl = window.location.hash.replace('#', '');
+            febs.view.tab.change("/index");
+            febs.view.tab.del(currentUrl);
+        });
+
+        // -------------- LoadBar --------------------------------
+        $view.find('#load-start').on('click', function () {
+            febs.view.loadBar.start();
+        });
+        $view.find('#load-finish').on('click', function () {
+            febs.view.loadBar.finish();
+        });
+        $view.find('#load-error').on('click', function () {
+            febs.view.loadBar.start();
+            setTimeout(function () {
+                febs.view.loadBar.error();
+            }, 1000);
+        });
+    });
+</script>

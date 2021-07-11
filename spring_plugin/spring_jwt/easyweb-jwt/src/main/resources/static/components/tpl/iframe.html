@@ -1,0 +1,21 @@
+<div class="admin-iframe" style="height: auto;-webkit-overflow-scrolling: touch;">
+    <iframe id="adminIframe" class="admin-iframe" frameborder="0"></iframe>
+</div>
+
+<!-- js部分 -->
+<script>
+    layui.use(['layer', 'index'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var index = layui.index;
+
+        var id = layui.router().search.id;
+        if ('druid' == id) {
+            index.setTabTitle('Druid监控');
+            $('#adminIframe').attr('src', '/druid');
+        } else if ('swagger' == id) {
+            index.setTabTitle('接口文档');
+            $('#adminIframe').attr('src', '/swagger-ui.html');
+        }
+    });
+</script>

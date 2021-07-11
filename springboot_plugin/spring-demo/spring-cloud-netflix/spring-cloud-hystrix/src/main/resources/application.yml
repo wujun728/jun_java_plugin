@@ -1,0 +1,40 @@
+server:
+  port: 8081
+hystrix:
+  command:
+    default:
+      circuitBreaker: #熔断器配置
+        enabled: true #是否启动断容，默认true
+        requestVolumeThreshold: 20 #断路器请求阈值 不到20不触发断容
+        sleepWindowInMilliseconds: 5000 #熔断器默认工作时间,默认:5秒.熔断器中断请求5秒后会进入半打开状态,放部分流量过去重试
+        errorThresholdPercentage: 50 #当出错率超过50%后熔断器启动. 默认:50%。
+        forceOpen: false #是否强制开启熔断器阻断所有请求,默认:false,不开启
+        forceClosed: false #是否允许熔断器忽略错误,默认false, 不开启
+      fallback: #降级配置
+        enabled: true #是否启动降级，默认true
+        isolation:
+          maxConcurrentRequests: 10 #使用信号量隔离时，命令fallback(降级)调用最大的并发数,默认:10
+      execution: #执行器配置
+        isolation:
+          strategy: THREAD #隔离方式,默认:采用线程隔离 -SEMAPHORE 信号量隔离，线程使用主线程信息
+          thread:
+            interruptOnTimeout: true #使用线程隔离时，是否对命令执行超时的线程调用中断（Thread.interrupt()）操作.默认:true
+            timeoutInMilliseconds: 1000 #使用线程隔离时，调用超时时间，默认:1秒
+          semaphore:
+            maxConcurrentRequests: 10 #用信号量隔离时，命令调用最大的并发数,默认:10
+      metrics: #指标统计配置
+        rollingPercentile:
+          enabled: true #是否开启监控统计功能,默认:true
+        rollingStats:
+          numBuckets: 10 #统计窗口的Buckets的数量,默认:10个,每秒一个Buckets统计
+          timeInMilliseconds: 5000 #统计滚动的时间窗口,默认:5000毫秒circuitBreakerSleepWindowInMilliseconds
+      requestLog: #日志配置
+        enabled: true #是否开启请求日志,默认:true
+      requestCache:
+        enabled: true #是否开启请求缓存,默认:true
+  collapser:
+    default:
+      maxRequestsInBatch: Integer.MAX_VALUE #请求合并是允许的最大请求数,默认: Integer.MAX_VALUE
+      timerDelayInMilliseconds: 10 #批处理过程中每个命令延迟的时间,默认:10毫秒
+      requestCache:
+        enabled: true #批处理过程中是否开启请求缓存,默认:开启

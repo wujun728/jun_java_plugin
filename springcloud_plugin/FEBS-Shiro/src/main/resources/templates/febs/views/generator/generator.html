@@ -1,0 +1,129 @@
+<div class="layui-fluid layui-anim febs-anim" id="febs-generator" lay-title="代码生成">
+    <div class="layui-row febs-container">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body febs-table-full">
+                    <form class="layui-form layui-table-form" lay-filter="generator-table-form">
+                        <div class="layui-row">
+                            <div class="layui-col-md10">
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">表名</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="tableName" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">数据库</label>
+                                        <div class="layui-input-inline">
+                                            <select name="datasource" id="datasource" lay-filter="datasource">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md2 layui-col-sm12 layui-col-xs12 table-action-area">
+                                <div class="layui-btn layui-btn-sm layui-btn-primary febs-button-blue-plain  table-action"
+                                     id="query">
+                                    <i class="layui-icon">&#xe848;</i>
+                                </div>
+                                <div class="layui-btn layui-btn-sm layui-btn-primary febs-button-green-plain  table-action"
+                                     id="reset">
+                                    <i class="layui-icon">&#xe79b;</i>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <table lay-filter="configureTable" lay-data="{id: 'configureTable'}"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="generator-option">
+    <span shiro:lacksPermission="generator:generate">
+        <span class="layui-badge-dot febs-bg-orange"></span> 无权限
+    </span>
+    <a lay-event="generate" shiro:hasPermission="generator:generate"><i class="layui-icon febs-edit-area febs-blue">&#xe82a;</i></a>
+</script>
+<script data-th-inline="none" type="text/javascript">
+    layui.use(['jquery', 'form', 'table', 'febs', 'laydate'], function () {
+        let $ = layui.jquery,
+            form = layui.form,
+            table = layui.table,
+            febs = layui.febs,
+            laydate = layui.laydate,
+            $view = $('#febs-generator'),
+            $query = $view.find('#query'),
+            $reset = $view.find('#reset'),
+            $searchForm = $view.find('form'),
+            $datasource = $view.find('#datasource'),
+            tableIns;
+
+        laydate.render({
+            elem: '#createTime',
+            range: true
+        });
+
+        form.render();
+        getDatasource();
+        initTable();
+
+        $query.on('click', function () {
+            tableIns.reload({where: getQueryParams(), page: {curr: 1}});
+        });
+
+        $reset.on('click', function () {
+            $searchForm[0].reset();
+            tableIns.reload({where: getQueryParams(), page: {curr: 1}});
+        });
+
+        function getDatasource() {
+            febs.get(ctx + 'generator/datasource', null, function (r) {
+                let options = '<option value="">请选择</option>';
+                for (let item of r.data) {
+                    options += '<option value="' + item + '">' + item + '</option>'
+                }
+                $datasource.append(options)
+                form.render();
+                form.on('select(datasource)', function(data){
+                    $query.click();
+                });
+            });
+        }
+
+        function initTable() {
+            tableIns = febs.table.init({
+                elem: $view.find('table'),
+                id: 'configureTable',
+                url: ctx + 'generator/tables/info',
+                cols: [[
+                    {type: 'checkbox'},
+                    {field: 'name', title: '表名'},
+                    {field: 'remark', title: '备注'},
+                    {field: 'dataRows', title: '数据量（行）'},
+                    {field: 'createTime', title: '创建时间', minWidth: 180},
+                    {field: 'updateTime', title: '修改时间', minWidth: 180},
+                    {title: '操作', toolbar: '#generator-option', minWidth: 140}
+                ]]
+            });
+        }
+
+        function getQueryParams() {
+            let params = $searchForm.serializeJson();
+            params.invalidate_ie_cache = new Date();
+            return params;
+        }
+
+        table.on('tool(configureTable)', function (obj) {
+            let data = obj.data,
+                layEvent = obj.event;
+            data.datasource = $searchForm.find("select[name='datasource']").val();
+            if (layEvent === 'generate') {
+                febs.modal.confirm('代码生成', '确定生成数据表<strong> ' + data.name + ' </strong>对应的前后端代码？', function () {
+                    febs.download(ctx + 'generator', data, data.name + '_code.zip');
+                });
+            }
+        });
+    })
+</script>

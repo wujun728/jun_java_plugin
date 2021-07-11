@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+
+	<persistence-unit name="hike-PU" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+
+		<class>org.hibernate.ogm.hiking.model.Hike</class>
+		<class>org.hibernate.ogm.hiking.model.Trip</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+		<properties>
+			<property name="hibernate.ogm.datastore.provider" value="mongodb" />
+			<property name="hibernate.ogm.datastore.database" value="HikeDB" />
+			<property name="hibernate.ogm.datastore.create_database" value="true" />
+			<property name="jboss.as.jpa.providerModule" value="org.hibernate:5.1"/>
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="hike-PU-JTA" transaction-type="JTA">
+		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+
+		<class>org.hibernate.ogm.hiking.model.Hike</class>
+		<class>org.hibernate.ogm.hiking.model.Trip</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+		<properties>
+			<property name="hibernate.ogm.datastore.provider" value="mongodb" />
+			<property name="hibernate.ogm.datastore.database" value="HikeDB" />
+			<property name="hibernate.ogm.datastore.create_database" value="true" />
+			<property name="jboss.as.jpa.providerModule" value="org.hibernate:5.1"/>
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="business" transaction-type="JTA">
+		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+		<class>org.hibernate.ogm.hiking.model.business.Order</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
+			<property name="jboss.as.jpa.providerModule" value="org.hibernate:5.1"/>
+		</properties>
+
+	</persistence-unit>
+</persistence>

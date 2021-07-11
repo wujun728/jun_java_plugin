@@ -1,0 +1,167 @@
+<style>
+    #user-add {
+        padding: 20px 25px 25px 0;
+    }
+</style>
+<div class="layui-fluid" id="user-add">
+    <form class="layui-form" action="" lay-filter="user-add-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label febs-form-item-require">用户名：</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" minlength="2" maxlength="10" lay-verify="range|username"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机：</label>
+            <div class="layui-input-block">
+                <input type="tel" name="mobile" lay-verify="phone" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱：</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" lay-verify="email" maxlength="50" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label febs-form-item-require">角色：</label>
+            <div class="layui-input-block" id="user-add-role"></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">部门：</label>
+            <div class="layui-input-block" id="user-add-dept"></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label febs-form-item-require">状态：</label>
+            <div class="layui-input-block">
+                <input type="radio" name="status" value="1" title="有效" checked="">
+                <input type="radio" name="status" value="0" title="禁用">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label febs-form-item-require">性别：</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="0" title="男性">
+                <input type="radio" name="sex" value="1" title="女性">
+                <input type="radio" name="sex" value="2" title="保密" checked="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">数据权限：</label>
+            <div class="layui-input-block" id="user-add-data-permission"></div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注：</label>
+            <div class="layui-input-block">
+                <textarea name="description" maxlength="100" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item febs-hide">
+            <button class="layui-btn" lay-submit="" lay-filter="user-add-form-submit" id="submit"></button>
+            <button type="reset" class="layui-btn" id="reset"></button>
+        </div>
+    </form>
+</div>
+
+<script>
+    layui.use(['febs', 'form', 'validate', 'xmSelect'], function () {
+        let $ = layui.$,
+            febs = layui.febs,
+            layer = layui.layer,
+            form = layui.form,
+            xmSelect = layui.xmSelect,
+            validate = layui.validate,
+            dataPermissionXmlSelect,
+            roleXmSelect,
+            deptXmlSelect;
+
+        form.verify(validate);
+        form.render();
+
+        deptXmlSelect = xmSelect.render({
+            el: '#user-add-dept',
+            model: {label: {type: 'text'}},
+            tree: {
+                show: true,
+                strict: false,
+                showLine: false,
+                clickCheck: true,
+                expandedKeys: [-1],
+            },
+            name: 'deptId',
+            theme: {
+                color: '#52c41a',
+            },
+            prop: {
+                value: 'id'
+            },
+            height: 'auto',
+            on: function (data) {
+                if (data.isAdd) {
+                    return data.change.slice(0, 1)
+                }
+            }
+        });
+
+        dataPermissionXmlSelect = xmSelect.render({
+            el: '#user-add-data-permission',
+            model: {label: {type: 'text'}},
+            tree: {
+                show: true,
+                strict: false,
+                showLine: false,
+                clickCheck: true,
+                expandedKeys: [-1],
+            },
+            name: 'deptIds',
+            theme: {
+                color: '#52c41a',
+            },
+            prop: {
+                value: 'id'
+            },
+            height: 'auto'
+        });
+
+        febs.get(ctx + 'dept/select/tree', null, function (data) {
+            deptXmlSelect.update(data)
+            dataPermissionXmlSelect.update(data)
+        });
+
+        roleXmSelect = xmSelect.render({
+            el: '#user-add-role',
+            toolbar: {show: true},
+            name: 'roleId',
+            theme: {
+                color: '#52c41a',
+            },
+            prop: {
+                name: 'roleName',
+                value: 'roleId'
+            },
+            data: []
+        });
+
+        febs.get(ctx + 'role', null, function (data) {
+            roleXmSelect.update({
+                data: data.data,
+                autoRow: true,
+            })
+        });
+
+        form.on('submit(user-add-form-submit)', function (data) {
+            if (!data.field.roleId) {
+                febs.alert.warn('请选择用户角色');
+                return false;
+            }
+            febs.post(ctx + 'user', data.field, function () {
+                layer.closeAll();
+                febs.alert.success('新增用户成功，初始密码为 1234qwer');
+                $('#febs-user').find('#query').click();
+            });
+            return false;
+        });
+    });
+</script>

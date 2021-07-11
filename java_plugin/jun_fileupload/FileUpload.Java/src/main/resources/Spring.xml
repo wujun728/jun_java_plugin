@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context
+                            http://www.springframework.org/schema/context/spring-context.xsd
+                            http://www.springframework.org/schema/tx
+                            http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <context:component-scan base-package="com.zhangzhihao.FileUpload.Java">
+        <!--spring配置不扫描以下包-->
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!-- 配置数据源 -->
+    <!-- 导入资源文件 -->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="user" value="${jdbc.userName}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="driverClass" value="${jdbc.driverClass}"/>
+        <property name="jdbcUrl" value="${jdbc.connectionURL}"/>
+        <property name="initialPoolSize" value="${jdbc.initPoolSize}"/>
+        <property name="maxPoolSize" value="${jdbc.maxPoolSize}"/>
+        <property name="autoCommitOnClose" value="true"/>
+    </bean>
+
+
+    <!-- jpa Entity Factory 配置 -->
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.zhangzhihao.FileUpload.Java.Model"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <!-- 配置 JPA 的基本属性. 例如 JPA 实现产品的属性 -->
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <!--生产环境关闭show sql，format sql-->
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.SingletonEhCacheRegionFactory
+                </prop>
+                <prop key="cache.use_query_cache">true</prop>
+                <prop key="connection.isolation">2</prop>
+                <prop key="use_identifier_rollback">true</prop>
+                <prop key="hibernate.c3p0.max_size">20</prop>
+                <prop key="hibernate.c3p0.min_size">1</prop>
+                <prop key="c3p0.acquire_increment">2</prop>
+                <!--多长时间检测一次池内的所有链接对象是否超时-->
+                <prop key="c3p0.idle_test_period">2000</prop>
+                <prop key="c3p0.timeout">2000</prop>
+                <!--缓存 Statement 对象的数量-->
+                <prop key="c3p0.max_statements">10</prop>
+                <!-- 设定 JDBC 的 Statement 读取数据的时候每次从数据库中取出的记录条数 MySql不支持-->
+                <prop key="hibernate.jdbc.fetch_size">100</prop>
+                <!-- 设定对数据库进行批量删除，批量更新和批量插入的时候的批次大小 MySql不支持-->
+                <prop key="jdbc.batch_size">30</prop>
+            </props>
+        </property>
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+        </property>
+    </bean>
+
+    <!-- 配置 JPA 使用的事务管理器 -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <!-- 配置支持基于注解式事务配置 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

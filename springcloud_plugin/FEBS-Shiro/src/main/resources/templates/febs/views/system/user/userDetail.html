@@ -1,0 +1,72 @@
+<style>
+    #febs-user-detail #user-img, #febs-user-detail .user-info {
+        display: inline-block;
+        float: left;
+        margin-left: 15px;
+    }
+
+    #febs-user-detail #user-img img {
+        width: 7rem;
+        margin: 10px 10px 0 20px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    #febs-user-detail #user-info-wrapper {
+        margin: 0 0 1rem 0;
+        display: inline-block;
+    }
+
+    #febs-user-detail .user-info div {
+        margin: 10px 15px;
+        max-width: 19rem;
+    }
+
+    #febs-user-detail #options-wrapper a {
+        padding: 4px 6px;
+        color: rgba(0, 0, 0, 0.65);
+        border: 1px solid #d9d9d9;
+        border-radius: 2px;
+    }
+
+    #febs-user-detail #options-wrapper a:hover {
+        color: #40a9ff;
+        border-color: #40a9ff;
+    }
+
+</style>
+<div class="layui-fluid" id="febs-user-detail" lay-title="个人信息">
+    <div id="user-info-wrapper">
+        <div id="user-img">
+            <img alt="头像" title="点我更换头像" data-th-src="@{febs/images/avatar/}+${user.avatar}">
+        </div>
+        <div class="user-info">
+            <div><span class="layui-icon layui-icon-user"></span> 账号：
+                [[${user.username}]]
+            </div>
+            <div><span class="layui-icon layui-icon-trophy"></span> 角色：
+                [[${#strings.defaultString(user.roleName,'暂无角色信息')}]]
+            </div>
+            <div><span class="layui-icon layui-icon-home"></span> 部门：
+                [[${#strings.defaultString(user.deptName,'无部门信息')}]]
+            </div>
+            <div><span class="layui-icon layui-icon-skin"></span> 性别：
+                [[${user.sex}]]
+            </div>
+        </div>
+        <div class="user-info">
+            <div><span class="layui-icon layui-icon-phone"></span> 电话：
+                [[${#strings.defaultString(user.mobile,'无电话信息')}]]
+            </div>
+            <div><span class="layui-icon layui-icon-mail"></span> 邮箱：
+                [[${#strings.defaultString(user.email,'无邮箱信息')}]]
+            </div>
+            <div><span class="layui-icon layui-icon-time-circle"></span> 最后登录时间：
+                [[${#strings.defaultString(lastLoginTime,'从未登录过系统')}]]
+            </div>
+            <div><span class="layui-icon layui-icon-read"></span> 个人简介：
+                [[${#strings.defaultString(user.description,'暂无个人介绍')}]]
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="layui-fluid layui-anim febs-anim" id="febs-map-demo" lay-title="高德地图">
+    <div class="layui-row febs-container">
+        <div class="layui-card">
+            <div style="padding: .1rem;">
+                <div id="container" class="map"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-inline="javascript" type="text/javascript">
+    layui.use(['jquery', 'febs'], function () {
+        let $ = layui.jquery,
+            febs = layui.febs,
+            $view = $('#febs-map-demo');
+
+        $view.find('#container').css({"height": document.documentElement.clientHeight - 97 + 'px'});
+
+        let map = new AMap.Map("container", {
+            resizeEnable: true,
+            zoom: 14 //初始地图级别
+        });
+
+        function currentLocationInfo() {
+            map.getCity(function (info) {
+                febs.alert.success('当前位置：' + info.province + '，' + info.city + '，' + info.district + '，区号：' + info.citycode);
+            });
+        }
+
+        currentLocationInfo();
+
+        //为地图注册click事件获取鼠标点击出的经纬度坐标
+        map.on('click', function (e) {
+            febs.alert.success('经度：' + e.lnglat.getLng() + '，纬度：' + e.lnglat.getLat());
+        });
+    });
+</script>

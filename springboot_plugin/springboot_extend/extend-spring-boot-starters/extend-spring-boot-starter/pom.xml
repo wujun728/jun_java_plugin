@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.battcn.boot</groupId>
+        <artifactId>extend-spring-boot-starters</artifactId>
+        <version>2.1.2-RELEASE</version>
+    </parent>
+    <groupId>com.battcn.boot</groupId>
+    <artifactId>extend-spring-boot-starter</artifactId>
+    <name>extend-spring-boot-starter</name>
+    <version>${extend-spring-boot.version}</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <extend-spring-boot.version>2.1.2-RELEASE</extend-spring-boot.version>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.battcn.boot</groupId>
+            <artifactId>extend-spring-boot-autoconfigure</artifactId>
+            <version>${extend-spring-boot.version}</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

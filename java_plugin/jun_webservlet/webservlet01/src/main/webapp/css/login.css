@@ -1,0 +1,65 @@
+body{
+	background: #ddd
+}
+.loginwarrp{
+	margin: 250px auto;
+    width: 400px;
+    padding: 30px 50px;
+    background: #FFFFFF;
+    overflow: hidden;
+    font-size: 14px;
+    font-family: 'Î¢ÈíÑÅºÚ','ÎÄÈªæäÕýºÚ','ºÚÌå';
+}
+.loginwarrp .logo{
+	width:100%;
+	height:44px;
+	line-height: 44px;
+	font-size: 20px;
+	text-align: center;
+	border-bottom:1px solid #ddd;
+}
+.loginwarrp .login_form{
+	margin-top: 15px;
+}
+.loginwarrp .login_form .login-item{
+	padding: 2px 8px;
+	border:1px solid #dedede;
+	border-radius: 8px;
+	margin-top: 10px;
+}
+.loginwarrp .login_form .login_input{
+	height: 35px;
+    border: none;
+    line-height: 35px;
+    width: 200px;
+    font-size: 14px;
+    outline: none;
+}
+.loginwarrp .login_form .verify{
+	float: left;
+}
+.loginwarrp .verify .verify_input{
+	width: 160px;
+}
+.loginwarrp .verifyimg{
+	height: 30px;
+    margin: 20px 0 0 20px;
+}
+.loginwarrp .login-sub{
+	text-align: center;
+}
+.loginwarrp .login-sub input{
+	margin-top:15px;
+    background: #45B549;
+    line-height: 35px;
+    width: 150px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-family: 'Î¢ÈíÑÅºÚ','ÎÄÈªæäÕýºÚ','ºÚÌå';
+    border: none;
+    border-radius: 5px;
+}
+.loginwarrp .login_form .login-item .error{
+	color: #F00;
+	font-family: 'Î¢ÈíÑÅºÚ','ÎÄÈªæäÕýºÚ','ºÚÌå';
+}

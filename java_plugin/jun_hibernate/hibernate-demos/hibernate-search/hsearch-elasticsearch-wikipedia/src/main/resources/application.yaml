@@ -1,0 +1,39 @@
+# Spring Boot configuration
+# See https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# for a list of available properties
+
+app:
+  data.path: /home/${user}/tmp/hsearch-elasticsearch-wikipedia
+
+spring.datasource:
+  type: com.zaxxer.hikari.HikariDataSource
+  url: jdbc:postgresql://localhost:5432/hsearch_es_wikipedia
+  username: hibernate_demo
+  password: hibernate_demo
+  hikari:
+    maximumPoolSize: 30
+
+spring.jpa.properties:
+  hibernate:
+    dialect: org.hibernate.dialect.PostgreSQL95Dialect
+  hibernate.search:
+    schema_management.strategy: create-or-validate
+    backend:
+      hosts: localhost:9200
+      protocol: http
+      discovery.enabled: true
+      analysis.configurer: analysisConfigurerSpringBean
+      indexing.max_bulk_size: 250
+
+spring.jackson:
+  serialization:
+    INDENT_OUTPUT: true
+  default-property-inclusion: NON_NULL
+
+logging.level:
+  # Uncomment for extensive SQL logging
+  #org.hibernate.SQL: DEBUG
+  org.hibernate.search.massindexing: INFO
+  org.hibernate.search.query: TRACE
+  #org.hibernate.search.elasticsearch.request: DEBUG
+  #org.hibernate.search.engine.backend.orchestration.spi: DEBUG

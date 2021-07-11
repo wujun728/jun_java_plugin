@@ -1,0 +1,10 @@
+server:
+  port: 8081
+spring:
+  rabbitmq:
+    host: localhost
+    username: test
+    password: uUnD1vpym3dvVxZP
+    virtual-host: dev
+amqp:
+  topic: topic-demo

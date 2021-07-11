@@ -1,0 +1,179 @@
+<style>
+    #febs-jvminfo table th, #febs-jvminfo table td {
+        height: 28px;
+        line-height: 28px;
+        padding: 9px 15px;
+        position: relative;
+        box-sizing: border-box;
+    }
+</style>
+<div class="layui-fluid layui-anim febs-anim" id="febs-jvminfo" lay-title="JVM信息">
+    <div class="layui-row febs-container">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body febs-table-full">
+                    <span class="febs-alert-base febs-alert-success">
+                        数据获取时间 <strong id="time"></strong>
+                        &nbsp;&nbsp;
+                        <a id="refresh">点击刷新</a>
+                    </span>
+                    <div class="layui-form layui-border-box layui-table-view" lay-id="jvminfoTable">
+                        <div class="layui-table-box">
+                            <table cellspacing="0" cellpadding="0" border="0" class="layui-table" lay-skin="line">
+                                <tr>
+                                    <th>参数</th>
+                                    <th>描述</th>
+                                    <th>当前值</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-purple">
+                                        jvm.memory.max
+                                    </span>
+                                    </td>
+                                    <td>JVM 最大内存</td>
+                                    <td data-th-text="${jvm.jvmMemoryMax} + ' MB'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-purple">
+                                        jvm.memory.committed
+                                    </span>
+                                    </td>
+                                    <td>JVM 可用内存</td>
+                                    <td data-th-text="${jvm.jvmMemoryCommitted} + ' MB'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-purple">
+                                        jvm.memory.used
+                                    </span>
+                                    </td>
+                                    <td>JVM 已用内存</td>
+                                    <td data-th-text="${jvm.jvmMemoryUsed} + ' MB'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-cyan">
+                                        jvm.buffer.memory.used
+                                    </span>
+                                    </td>
+                                    <td>JVM 缓冲区已用内存</td>
+                                    <td data-th-text="${jvm.jvmBufferMemoryUsed} + ' MB'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-cyan">
+                                        jvm.buffer.count
+                                    </span>
+                                    </td>
+                                    <td>当前缓冲区数量</td>
+                                    <td data-th-text="${#numbers.formatInteger(jvm.jvmBufferCount, 0)} + ' 个'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-green">
+                                        jvm.threads.daemon
+                                    </span>
+                                    </td>
+                                    <td>JVM 守护线程数量</td>
+                                    <td data-th-text="${#numbers.formatInteger(jvm.jvmThreadsdaemon, 0)} + ' 个'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-green">
+                                        jvm.threads.live
+                                    </span>
+                                    </td>
+                                    <td>JVM 当前活跃线程数量</td>
+                                    <td data-th-text="${#numbers.formatInteger(jvm.jvmThreadsLive, 0)} + ' 个'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-green">
+                                        jvm.threads.peak
+                                    </span>
+                                    </td>
+                                    <td>JVM 峰值线程数量</td>
+                                    <td data-th-text="${#numbers.formatInteger(jvm.jvmThreadsPeak, 0)} + ' 个'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-red">
+                                        jvm.gc.memory.allocated
+                                    </span>
+                                    </td>
+                                    <td>GC 时, 年轻代分配的内存空间</td>
+                                    <td data-th-text="${jvm.jvmGcMemoryAllocated} + ' MB'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-red">
+                                        jvm.gc.memory.promoted
+                                    </span>
+                                    </td>
+                                    <td>GC 时, 老年代分配的内存空间</td>
+                                    <td data-th-text="${jvm.jvmGcMemoryPromoted} + ' MB'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-red">
+                                        jvm.gc.max.data.size
+                                    </span>
+                                    </td>
+                                    <td>GC 时, 老年代的最大内存空间</td>
+                                    <td data-th-text="${jvm.jvmGcMaxDataSize} + ' MB'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-red">
+                                        jvm.gc.live.data.size
+                                    </span>
+                                    </td>
+                                    <td>FullGC 时, 老年代的内存空间</td>
+                                    <td data-th-text="${jvm.jvmGcLiveDataSize} + ' MB'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-blue">
+                                        jvm.classes.loaded
+                                    </span>
+                                    </td>
+                                    <td>JVM 已加载 Class 数量</td>
+                                    <td data-th-text="${#numbers.formatInteger(jvm.jvmClassesLoaded, 0)} + ' 个'"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge febs-tag-blue">
+                                        jvm.classes.unloaded
+                                    </span>
+                                    </td>
+                                    <td>JVM 未加载 Class 数量</td>
+                                    <td data-th-text="${#numbers.formatInteger(jvm.jvmClassesUnloaded, 0)} + ' 个'"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-inline="none" type="text/javascript">
+    layui.use(['jquery', 'febs'], function () {
+        let $ = layui.jquery,
+            febs = layui.febs,
+            util = layui.util,
+            $view = $('#febs-jvminfo');
+        $view.find('#time').text(util.toDateString(new Date().getTime(), 'yyyy年MM月dd日 HH时mm分ss秒'));
+
+        $view.find('a#refresh').on('click', function () {
+            let isTab = currentUser.isTab;
+            if (isTab === '1') {
+                febs.view.tab.refresh();
+            } else {
+                window.location.reload();
+            }
+        });
+    });
+</script>

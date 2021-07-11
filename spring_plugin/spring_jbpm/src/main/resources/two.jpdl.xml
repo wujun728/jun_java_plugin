@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="two" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="177,35,48,48" name="start1">
+      <transition g="-43,-20" name="to 密码验证" to="密码验证"/>
+   </start>
+   <end g="178,324,48,48" name="end1"/>
+   <task assignee="#{owner}" form="/leave/request" g="153,129,92,52" name="密码验证">
+   	  <notification/>
+   	  <reminder duedate="10 minutes" repeat="5 minute"/>
+      <transition g="-67,-20" name="to 手机号验证" to="手机号验证"/>
+   </task>
+   <task assignee="#{owner}" form="/leave/manager" g="155,220,92,52" name="手机号验证">
+      <transition name="to end1" to="end1" g="-50,-22"/>
+   </task>
+</process>

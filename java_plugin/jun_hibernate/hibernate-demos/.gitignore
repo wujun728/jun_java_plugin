@@ -1,0 +1,48 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+#OS
+.DS_Store
+
+#IDEs
+
+# IntelliJ specific files/directories
+.idea
+*.ipr
+*.iws
+*.iml
+build/
+out/
+atlassian-ide-plugin.xml
+
+#XMLEditor
+*.*xml~
+
+# Eclipse specific files/directories
+.classpath
+.project
+.factorypath
+.settings
+.externalToolBuilders
+bin/
+
+# NetBeans specific files/directories
+.nbattrs
+
+#build
+target/
+
+#test output
+test-output/
+transaction.log
+infinispan.log
+
+.gradle
+
+#Misc.
+ObjectStore

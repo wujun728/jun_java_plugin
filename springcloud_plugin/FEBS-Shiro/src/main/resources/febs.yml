@@ -1,0 +1,29 @@
+# cc.mrbird.febs.common.properties.FebsProperties
+febs:
+  enable-redis-cache: false
+  shiro:
+    session-timeout: PT86400s
+    cookie-timeout: PT604800s
+    anon-url: /test/**,/febs/**,/img/**,/layui/**,/json/**,/images/captcha,/register
+    login-url: /login
+    success-url: /index
+    logout-url: /logout
+    unauthorized-url: /unauthorized
+  max-batch-insertNum: 300
+  code:
+    time: PT60s
+    type: png
+    width: 115
+    height: 42
+    length: 4
+    char-type: 2
+  swagger:
+    base-package: cc.mrbird.febs
+    title: FEBS Shiro API
+    description: FEBS Shiro API Document.
+    version: 2.0
+    author: MrBird
+    url: https://mrbird.cc
+    email: 852252810@qq.com
+    license: Apache 2.0
+    license-url: https://www.apache.org/licenses/LICENSE-2.0.html

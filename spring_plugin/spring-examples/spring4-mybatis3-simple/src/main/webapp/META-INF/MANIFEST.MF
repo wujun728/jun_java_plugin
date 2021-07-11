@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Class-Path: spring-core-4.1.2.RELEASE.jar commons-logging-1.1.3.jar sp
+ ring-web-4.1.2.RELEASE.jar spring-aop-4.1.2.RELEASE.jar aopalliance-1
+ .0.jar spring-beans-4.1.2.RELEASE.jar spring-context-4.1.2.RELEASE.ja
+ r spring-expression-4.1.2.RELEASE.jar spring-webmvc-4.1.2.RELEASE.jar
+  spring-test-4.1.2.RELEASE.jar spring-orm-4.1.2.RELEASE.jar spring-jd
+ bc-4.1.2.RELEASE.jar spring-tx-4.1.2.RELEASE.jar cglib-2.2.jar asm-3.
+ 1.jar log4j-1.2.17.jar mysql-connector-java-5.1.6.jar mybatis-3.2.2.j
+ ar mybatis-spring-1.1.0.jar commons-lang-2.5.jar commons-dbcp-1.2.2.j
+ ar commons-pool-1.3.jar jackson-core-2.1.0.jar jackson-databind-2.1.0
+ .jar jackson-annotations-2.1.0.jar junit-4.12.jar hamcrest-core-1.3.j
+ ar
+

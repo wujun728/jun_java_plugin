@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://webservices.samples.blog.com" targetNamespace="http://webservices.samples.blog.com" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Account" type="Account"/>
+	<xs:complexType name="Account">
+		<xs:sequence>
+			<xs:element name="AccountNumber" type="xs:string"/>
+			<xs:element name="AccountName" type="xs:string"/>
+			<xs:element name="AccountBalance" type="xs:double"/>
+			<xs:element name="AccountStatus" type="EnumAccountStatus"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="EnumAccountStatus">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Active"/>
+			<xs:enumeration value="Inactive"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

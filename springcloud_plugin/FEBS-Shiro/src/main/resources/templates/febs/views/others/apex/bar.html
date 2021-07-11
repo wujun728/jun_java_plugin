@@ -1,0 +1,631 @@
+<style>
+    #febs-apex-bar .layui-card-header {
+        font-weight: 600;
+    }
+</style>
+<div class="layui-fluid layui-anim febs-anim" id="febs-apex-bar" lay-title="条形图表">
+    <div class="layui-row layui-col-space8 febs-container">
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">基础条形图表</div>
+                <div class="layui-card-body">
+                    <div id="basicBarChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">组合条形图表</div>
+                <div class="layui-card-body">
+                    <div id="groupBarChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">层叠条形图表</div>
+                <div class="layui-card-body">
+                    <div id="stackedBarChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">百分比层叠条形图表</div>
+                <div class="layui-card-body">
+                    <div id="stackedBar100Chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">带负值的条形图表</div>
+                <div class="layui-card-body">
+                    <div id="negativeBarChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">带负值的条形图表</div>
+                <div class="layui-card-body">
+                    <div id="timelineBarChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">带数据标签的条形图表</div>
+                <div class="layui-card-body">
+                    <div id="customDataLabelsBarChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">自定义图案图表</div>
+                <div class="layui-card-body">
+                    <div id="patternedBarChart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-inline="javascript" type="text/javascript">
+    layui.use(['apexcharts'], function () {
+        // ------------ basicBarChart ----------------
+        let basicBarChartOptions = {
+            chart: {
+                height: 320,
+                type: 'bar',
+                toolbar: {
+                    show: false
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            series: [{
+                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+            }],
+            xaxis: {
+                categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan', 'United States', 'China', 'Germany'],
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+
+        new ApexCharts(
+            document.querySelector("#basicBarChart"),
+            basicBarChartOptions
+        ).render();
+
+        // ------------- groupBarChart --------------
+        let groupBarChartOptions = {
+            chart: {
+                height: 320,
+                type: 'bar',
+                toolbar: {
+                    show: false
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                    dataLabels: {
+                        position: 'top'
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                offsetX: -6,
+                style: {
+                    fontSize: '12px',
+                    colors: ['#fff']
+                }
+            },
+            stroke: {
+                show: true,
+                width: 1,
+                colors: ['#fff']
+            },
+            series: [{
+                data: [55, 41, 64, 22, 43, 21]
+            }, {
+                data: [32, 33, 52, 13, 44, 32]
+            }],
+            xaxis: {
+                categories: [2003, 2004, 2005, 2006, 2007]
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+
+        new ApexCharts(
+            document.querySelector("#groupBarChart"),
+            groupBarChartOptions
+        ).render();
+
+        // --------------- stackedBarChart -----------------
+        let stackedBarChartOptions = {
+            chart: {
+                height: 320,
+                type: 'bar',
+                stacked: true,
+                toolbar: {
+                    show: false
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            stroke: {
+                width: 1,
+                colors: ['#fff']
+            },
+            series: [{
+                name: 'Marine Sprite',
+                data: [44, 55, 41, 37, 22, 43, 21]
+            }, {
+                name: 'Striking Calf',
+                data: [53, 32, 33, 52, 13, 43, 32]
+            }, {
+                name: 'Tank Picture',
+                data: [12, 17, 11, 9, 15, 11, 20]
+            }, {
+                name: 'Bucket Slope',
+                data: [9, 7, 5, 8, 6, 9, 4]
+            }, {
+                name: 'Reborn Kid',
+                data: [25, 12, 19, 32, 25, 24, 10]
+            }],
+            xaxis: {
+                categories: [2008, 2009, 2010, 2011, 2012, 2013, 2014],
+                labels: {
+                    formatter: function (val) {
+                        return val + "K"
+                    }
+                }
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val + "K"
+                    }
+                }
+            },
+            fill: {
+                opacity: 1
+            },
+            legend: {
+                position: 'top',
+                horizontalAlign: 'left',
+                offsetX: 40
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+
+        new ApexCharts(
+            document.querySelector("#stackedBarChart"),
+            stackedBarChartOptions
+        ).render();
+
+        // ---------------- stackedBar100Chart -----------------
+        let stackedBar100ChartOptions = {
+            chart: {
+                height: 320,
+                type: 'bar',
+                stacked: true,
+                stackType: '100%',
+                toolbar: {
+                    show: false
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            stroke: {
+                width: 1,
+                colors: ['#fff']
+            },
+            series: [{
+                name: 'Marine Sprite',
+                data: [44, 55, 41, 37, 22, 43, 21]
+            }, {
+                name: 'Striking Calf',
+                data: [53, 32, 33, 52, 13, 43, 32]
+            }, {
+                name: 'Tank Picture',
+                data: [12, 17, 11, 9, 15, 11, 20]
+            }, {
+                name: 'Bucket Slope',
+                data: [9, 7, 5, 8, 6, 9, 4]
+            }, {
+                name: 'Reborn Kid',
+                data: [25, 12, 19, 32, 25, 24, 10]
+            }],
+            xaxis: {
+                categories: [2008, 2009, 2010, 2011, 2012, 2013, 2014]
+            },
+
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val + "K"
+                    }
+                }
+            },
+            fill: {
+                opacity: 1
+            },
+            legend: {
+                position: 'top',
+                horizontalAlign: 'left',
+                offsetX: 40
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+
+        new ApexCharts(
+            document.querySelector("#stackedBar100Chart"),
+            stackedBar100ChartOptions
+        ).render();
+
+        // ------------- negativeBarChart ------------
+        let negativeBarChartOptions = {
+            chart: {
+                height: 320,
+                type: 'bar',
+                stacked: true,
+                toolbar: {
+                    show: false
+                }
+            },
+            colors: ['#008FFB', '#FF4560'],
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                    barHeight: '80%'
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                width: 1,
+                colors: ["#fff"]
+            },
+            series: [{
+                name: 'Males',
+                data: [0.4, 0.65, 0.76, 0.88, 1.5, 2.1, 2.9, 3.8, 3.9, 4.2, 4, 4.3]
+            },
+                {
+                    name: 'Females',
+                    data: [-0.8, -1.05, -1.06, -1.18, -1.4, -2.2, -2.85, -3.7, -3.96, -4.22, -4.3, -4.4]
+                }
+            ],
+            yaxis: {
+                min: -5,
+                max: 5
+            },
+            tooltip: {
+                shared: false,
+                x: {
+                    formatter: function (val) {
+                        return val
+                    }
+                },
+                y: {
+                    formatter: function (val) {
+                        return Math.abs(val) + "%"
+                    }
+                }
+            },
+            xaxis: {
+                categories: ['85+', '80-84', '75-79', '70-74', '65-69', '60-64', '55-59', '50-54', '45-49', '40-44', '35-39', '30-34', '25-29'],
+                title: {
+                    text: 'Percent'
+                },
+                labels: {
+                    formatter: function (val) {
+                        return Math.abs(Math.round(val)) + "%"
+                    }
+                }
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+
+        new ApexCharts(
+            document.querySelector("#negativeBarChart"),
+            negativeBarChartOptions
+        ).render();
+
+        // ------------ timelineBarChart ----------------
+        let timelineBarChartOptions = {
+            chart: {
+                height: 320,
+                type: 'rangeBar',
+                toolbar: {
+                    show: false
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                name: 'Bob',
+                data: [{
+                    x: 'Design',
+                    y: [new Date('2019-03-02').getTime(), new Date('2019-03-03').getTime()]
+                }, {
+                    x: 'Code',
+                    y: [new Date('2019-03-02').getTime(), new Date('2019-03-04').getTime()]
+
+                }, {
+                    x: 'Test',
+                    y: [new Date('2019-03-04').getTime(), new Date('2019-03-07').getTime()]
+                }, {
+                    x: 'Deployment',
+                    y: [new Date('2019-03-11').getTime(), new Date('2019-03-12').getTime()]
+                }]
+            }, {
+                name: 'Joe',
+                data: [{
+                    x: 'Design',
+                    y: [new Date('2019-03-01').getTime(), new Date('2019-03-02').getTime()]
+                }, {
+                    x: 'Code',
+                    y: [new Date('2019-03-03').getTime(), new Date('2019-03-07').getTime()]
+                }, {
+                    x: 'Test',
+                    y: [new Date('2019-03-06').getTime(), new Date('2019-03-09').getTime()]
+                }, {
+                    x: 'Deployment',
+                    y: [new Date('2019-03-10').getTime(), new Date('2019-03-11').getTime()]
+                }]
+            }],
+            yaxis: {
+                min: new Date('2019-03-01').getTime(),
+                max: new Date('2019-03-14').getTime()
+            },
+            xaxis: {
+                type: 'datetime'
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shade: 'light',
+                    type: "vertical",
+                    shadeIntensity: 0.25,
+                    gradientToColors: undefined,
+                    inverseColors: true,
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    stops: [50, 0, 100, 100]
+                }
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+
+        new ApexCharts(
+            document.querySelector("#timelineBarChart"),
+            timelineBarChartOptions
+        ).render();
+
+        // -------------- customDataLabelsBarChart -------------
+        let customDataLabelsBarChartOptions = {
+            chart: {
+                height: 320,
+                type: 'bar',
+                toolbar: {
+                    show: false
+                }
+            },
+            plotOptions: {
+                bar: {
+                    barHeight: '100%',
+                    distributed: true,
+                    horizontal: true,
+                    dataLabels: {
+                        position: 'bottom'
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                textAnchor: 'start',
+                style: {
+                    colors: ['#fff']
+                },
+                formatter: function (val, opt) {
+                    return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+                },
+                offsetX: 0,
+                dropShadow: {
+                    enabled: true
+                }
+            },
+            series: [{
+                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+            }],
+            stroke: {
+                width: 1,
+                colors: ['#fff']
+            },
+            xaxis: {
+                categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan', 'United States', 'China', 'India'],
+            },
+            yaxis: {
+                labels: {
+                    show: false
+                }
+            },
+            title: {
+                text: 'Custom DataLabels',
+                align: 'center',
+                floating: true
+            },
+            subtitle: {
+                text: 'Category Names as DataLabels inside bars',
+                align: 'center'
+            },
+            tooltip: {
+                theme: 'dark',
+                x: {
+                    show: false
+                },
+                y: {
+                    title: {
+                        formatter: function () {
+                            return ''
+                        }
+                    }
+                }
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+
+        new ApexCharts(
+            document.querySelector("#customDataLabelsBarChart"),
+            customDataLabelsBarChartOptions
+        ).render();
+
+        // ------------ patternedBarChart -------------------
+        let patternedBarChartOptions = {
+            chart: {
+                height: 320,
+                type: 'bar',
+                stacked: true,
+                shadow: {
+                    enabled: true,
+                    blur: 1,
+                    opacity: 0.5
+                },
+                toolbar: {
+                    show: false
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                    barHeight: '60%'
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                width: 2
+            },
+            series: [{
+                name: 'Marine Sprite',
+                data: [44, 55, 41, 37, 22, 43, 21]
+            }, {
+                name: 'Striking Calf',
+                data: [53, 32, 33, 52, 13, 43, 32]
+            }, {
+                name: 'Tank Picture',
+                data: [12, 17, 11, 9, 15, 11, 20]
+            }, {
+                name: 'Bucket Slope',
+                data: [9, 7, 5, 8, 6, 9, 4]
+            }],
+            xaxis: {
+                categories: [2008, 2009, 2010, 2011, 2012, 2013, 2014]
+            },
+            yaxis: {
+                title: {
+                    text: undefined
+                }
+            },
+            tooltip: {
+                shared: false,
+                y: {
+                    formatter: function (val) {
+                        return val + "K"
+                    }
+                }
+            },
+            fill: {
+                type: 'pattern',
+                opacity: 1,
+                pattern: {
+                    style: ['circles', 'slantedLines', 'verticalLines', 'horizontalLines']
+                }
+            },
+            states: {
+                hover: {
+                    filter: 'none'
+                }
+            },
+            legend: {
+                position: 'right',
+                offsetY: 40
+            },
+            grid: {
+                row: {
+                    colors: ['transparent', 'transparent'],
+                    opacity: 0.2
+                },
+                borderColor: '#f1f3fa'
+            }
+        };
+
+        new ApexCharts(
+            document.querySelector("#patternedBarChart"),
+            patternedBarChartOptions
+        ).render();
+    });
+</script>

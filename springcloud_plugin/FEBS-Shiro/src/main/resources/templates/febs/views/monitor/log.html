@@ -1,0 +1,205 @@
+<div class="layui-fluid layui-anim febs-anim" id="febs-log" lay-title="系统日志">
+    <div class="layui-row febs-container">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body febs-table-full">
+                    <form class="layui-form layui-table-form" lay-filter="log-table-form">
+                        <div class="layui-row">
+                            <div class="layui-col-md10">
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">操作人</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="username" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">操作时间</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="operationTime" id="log-createTime" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">操作描述</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="operation" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md2 table-action-area">
+                                <div class="layui-btn layui-btn-sm layui-btn-primary febs-button-blue-plain  table-action" id="query">
+                                    <i class="layui-icon">&#xe848;</i>
+                                </div>
+                                <div class="layui-btn layui-btn-sm layui-btn-primary febs-button-green-plain  table-action" id="reset">
+                                    <i class="layui-icon">&#xe79b;</i>
+                                </div>
+                                <div class="layui-btn layui-btn-sm layui-btn-primary table-action action-more"
+                                     shiro:hasAnyPermissions="log:delete,log:export">
+                                    <i class="layui-icon">&#xe875;</i>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <table lay-filter="logTable" lay-data="{id: 'logTable'}"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="log-time">
+    <div>
+        {{# if (d.time < 500) { }}
+        <span class="layui-badge febs-tag-green">{{d.time}} ms</span>
+        {{# } else if (d.time < 1000) { }}
+        <span class="layui-badge febs-tag-cyan">{{d.time}} ms</span>
+        {{# } else if (d.time < 1500) { }}
+        <span class="layui-badge febs-tag-orange">{{d.time}} ms</span>
+        {{# } else { }}
+        <span class="layui-badge febs-tag-red">{{d.time}} ms</span>
+        {{# } }}
+    </div>
+</script>
+<script type="text/html" id="log-option">
+    <span shiro:lacksPermission="log:delete">
+        <span class="layui-badge-dot febs-bg-orange"></span> 无权限
+    </span>
+    <a lay-event="del" shiro:hasPermission="log:delete"><i class="layui-icon febs-edit-area febs-red">&#xe7f9;</i></a>
+</script>
+<script data-th-inline="none" type="text/javascript">
+    layui.use(['jquery', 'laydate', 'form', 'table', 'febs', 'dropdown'], function () {
+        let $ = layui.jquery,
+            laydate = layui.laydate,
+            febs = layui.febs,
+            form = layui.form,
+            table = layui.table,
+            dropdown = layui.dropdown,
+            $view = $('#febs-log'),
+            $query = $view.find('#query'),
+            $reset = $view.find('#reset'),
+            $delete = $view.find('#delete'),
+            $searchForm = $view.find('form'),
+            sortObject = {field: 'time', type: null},
+            tableIns,
+            createTimeFrom,
+            createTimeTo;
+
+        laydate.render({
+            elem: '#log-createTime',
+            range: true,
+            trigger: 'click'
+        });
+
+        form.render();
+        initTable();
+
+        dropdown.render({
+            elem: $view.find('.action-more'),
+            click: function (name, elem, event) {
+                if (name === 'delete') {
+                    let checkStatus = table.checkStatus('logTable');
+                    if (!checkStatus.data.length) {
+                        febs.alert.warn('请勾选需要删除的日志');
+                    } else {
+                        febs.modal.confirm('删除日志', '确定删除所选日志？', function () {
+                            let logIds = [];
+                            layui.each(checkStatus.data, function (key, item) {
+                                logIds.push(item.id)
+                            });
+                            deleteLogs(logIds.join(','))
+                        });
+                    }
+                }
+                if (name === 'export') {
+                    let params = $.extend(getQueryParams(), {field: sortObject.field, order: sortObject.type});
+                    params.pageSize = $view.find(".layui-laypage-limits option:selected").val();
+                    params.pageNum = $view.find(".layui-laypage-em").next().html();
+                    febs.download(ctx + 'log/excel', params, '系统日志表.xlsx');
+                }
+            },
+            options: [{
+                name: 'delete',
+                title: '删除日志',
+                perms: 'log:delete'
+            }, {
+                name: 'export',
+                title: '导出Excel',
+                perms: 'log:export'
+            }]
+        });
+
+        table.on('tool(logTable)', function (obj) {
+            let data = obj.data,
+                layEvent = obj.event;
+            if (layEvent === 'del') {
+                febs.modal.confirm('删除日志', '确定删除该条系统日志？', function () {
+                    deleteLogs(data.id);
+                });
+            }
+        });
+
+        table.on('sort(logTable)', function (obj) {
+            sortObject = obj;
+            tableIns.reload({
+                initSort: obj,
+                where: $.extend(getQueryParams(), {
+                    field: obj.field,
+                    order: obj.type
+                })
+            });
+        });
+
+        $query.on('click', function () {
+            let params = $.extend(getQueryParams(), {field: sortObject.field, order: sortObject.type});
+            tableIns.reload({where: params, page: {curr: 1}});
+        });
+
+        $reset.on('click', function () {
+            $searchForm[0].reset();
+            sortObject.type = 'null';
+            createTimeTo = null;
+            createTimeFrom = null;
+            tableIns.reload({where: getQueryParams(), page: {curr: 1}, initSort: sortObject});
+        });
+
+        function initTable() {
+            tableIns = febs.table.init({
+                elem: $view.find('table'),
+                id: 'logTable',
+                url: ctx + 'log/list',
+                cols: [[
+                    {type: 'checkbox'},
+                    {field: 'username', title: '操作人'},
+                    {field: 'operation', title: '操作描述'},
+                    {field: 'time', title: '耗时', templet: "#log-time", sort: true},
+                    {field: 'method', title: '操作方法'},
+                    {field: 'params', title: '方法参数'},
+                    {field: 'ip', title: 'IP地址'},
+                    {field: 'location', title: '操作地点'},
+                    {field: 'createTime', title: '创建时间', minWidth: 180, sort: true},
+                    {title: '操作', toolbar: '#log-option'}
+                ]]
+            });
+        }
+
+        function deleteLogs(logIds) {
+            febs.get(ctx + 'log/delete/' + logIds, null, function () {
+                febs.alert.success('删除系统日志成功');
+                $query.click();
+            });
+        }
+
+        function getQueryParams() {
+            let params = $searchForm.serializeJson();
+            let createTime = params.operationTime;
+            if (createTime) {
+                createTimeFrom = createTime.split(' - ')[0];
+                createTimeTo = createTime.split(' - ')[1];
+            }
+            params.invalidate_ie_cache = new Date();
+            params.createTimeFrom = createTimeFrom;
+            params.createTimeTo = createTimeTo;
+            return params;
+        }
+    })
+</script>

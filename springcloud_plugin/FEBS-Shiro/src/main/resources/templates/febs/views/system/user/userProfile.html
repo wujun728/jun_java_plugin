@@ -1,0 +1,205 @@
+<style>
+    #febs-user-profile #user-profile, #febs-user-profile .user-profile-card {
+        display: inline-block;
+    }
+
+    #febs-user-profile #user-img, #febs-user-profile #user-info {
+        display: inline-block;
+        float: left;
+    }
+
+    #febs-user-profile #user-img img {
+        width: 7rem;
+        margin: 1rem;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    #febs-user-profile #user-info {
+        margin: .95rem 0 .95rem 1.2rem;
+    }
+
+    #febs-user-profile #user-info div {
+        margin: 3px 0;
+        max-width: 22rem;
+    }
+
+    #febs-user-profile #options-wrapper {
+        text-align: center;
+        margin-top: .5rem;
+    }
+
+    #febs-user-profile #update-user-info {
+        cursor: pointer;
+        margin-left: -1rem;
+    }
+
+    #febs-user-profile #options-wrapper a {
+        padding: 4px 6px;
+        color: rgba(0, 0, 0, 0.65);
+        border: 1px solid #d9d9d9;
+        border-radius: 2px;
+    }
+
+    #febs-user-profile #options-wrapper a:hover {
+        color: #40a9ff;
+        border-color: #40a9ff;
+    }
+
+    #febs-user-profile .layui-form-item {
+        margin-bottom: 0;
+    }
+</style>
+<div class="layui-fluid layui-anim febs-anim" id="febs-user-profile" lay-title="个人中心">
+    <div class="layui-row layui-col-space8 febs-container">
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">个人信息</div>
+                <div class="layui-card-body user-profile-card">
+                    <div id="user-profile">
+                        <div id="user-img">
+                            <img alt="头像" title="点我更换头像" data-th-src="@{febs/images/avatar/empty.jpg}">
+                            <div style="color: #aaa;font-size: 12px;text-align: center;margin: 0 0 10px 0">↑ 点击图片更换头像</div>
+                            <div id="options-wrapper">
+                                <div id="update-user-info">
+                                    <a>
+                                        <span class="layui-icon layui-icon-setting"></span>
+                                        编辑资料
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/html" template>
+                            <div id="user-info">
+                                <div><span class="layui-icon layui-icon-user"></span> 账号：
+                                    {{currentUser.username}}
+                                </div>
+                                <div><span class="layui-icon layui-icon-trophy"></span> 角色：
+                                    {{currentUser.roleName}}
+                                </div>
+                                <div><span class="layui-icon layui-icon-home"></span> 部门：
+                                    {{currentUser.deptName || '暂无所属部门'}}
+                                </div>
+                                <div><span class="layui-icon layui-icon-skin"></span> 性别：
+                                    {{# if(currentUser.sex === '0'){ }}
+                                    男
+                                    {{# } }}
+                                    {{# if(currentUser.sex === '1'){ }}
+                                    女
+                                    {{# } }}
+                                    {{# if(currentUser.sex === '2'){ }}
+                                    保密
+                                    {{# } }}
+                                </div>
+                                <div><span class="layui-icon layui-icon-phone"></span> 电话：
+                                    {{currentUser.mobile?currentUser.mobile:'暂无电话信息'}}
+                                </div>
+                                <div><span class="layui-icon layui-icon-mail"></span> 邮箱：
+                                    {{currentUser.email?currentUser.email:'暂无电话信息'}}
+                                </div>
+                                <div><span class="layui-icon layui-icon-read"></span> 简介：
+                                    {{currentUser.description?currentUser.description:'暂无简介'}}
+                                </div>
+                            </div>
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">系统配置</div>
+                <div class="layui-card-body">
+                    <form class="layui-form" action="" lay-filter="system-setting-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 85px">侧边栏风格：</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="theme" lay-filter="theme" value="black" checked="" title="深邃">
+                                <input type="radio" name="theme" lay-filter="theme" value="white" title="明亮">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 85px">选项卡开关：</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="isTab" lay-filter="tab" value="1" checked="" title="开启">
+                                <input type="radio" name="isTab" lay-filter="tab" value="0" title="关闭">
+                            </div>
+                        </div>
+                        <button class="febs-hide" lay-submit="" lay-filter="system-setting-form-submit"
+                                id="submit-form"></button>
+                    </form>
+                </div>
+                <div class="layui-card-footer">
+                    <button class="layui-btn" id="submit">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-inline="none" type="text/javascript">
+    layui.use(['jquery', 'form', 'febs'], function () {
+        let $ = layui.jquery,
+            febs = layui.febs,
+            form = layui.form,
+            _currentData = {
+                theme: currentUser.theme,
+                isTab: currentUser.isTab
+            },
+            $view = $('#febs-user-profile');
+
+        form.render();
+        initSettings();
+
+        $view.find('#user-img img').attr('src', ctx + "febs/images/avatar/" + currentUser.avatar);
+        $view.on('click', '#update-user-info', function () {
+            febs.modal.view('个人信息修改', 'user/profile/update', {
+                area: $(window).width() <= 750 ? '90%' : '50%',
+                btn: ['确定'],
+                yes: function () {
+                    $('#profile-update').find('#submit').trigger('click');
+                }
+            });
+        });
+
+        $view.on('click', '#user-profile img', function () {
+            febs.modal.view('点击更换', 'user/avatar', {
+                area: $(window).width() <= 750 ? '90%' : '650px',
+                offset: '100px'
+            });
+        });
+
+        $view.on('click', '#submit', function () {
+            $view.find('#submit-form').trigger('click');
+        });
+
+        function initSettings() {
+            form.val("system-setting-form", _currentData);
+        }
+
+        form.on("radio(theme)", function (data) {
+            let $sidebar = $('#app-sidebar');
+            if (data.value === 'black') {
+                $sidebar.removeClass('febs-theme-white');
+            }
+            if (data.value === 'white') {
+                $sidebar.addClass('febs-theme-white');
+            }
+        });
+
+        form.on('submit(system-setting-form-submit)', function (data) {
+            if (febs.nativeEqual(data.field, _currentData)) {
+                febs.alert.warn('数据未作任何修改');
+                return false;
+            }
+            febs.post(ctx + 'user/theme/update', data.field, function () {
+                _currentData = data.field;
+                febs.modal.confirm('修改成功','是否马上刷新页面生效？',function () {
+                    window.location.reload();
+                });
+            });
+            return false;
+        });
+
+
+    })
+</script>

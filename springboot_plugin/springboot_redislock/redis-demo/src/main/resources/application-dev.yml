@@ -1,0 +1,48 @@
+server:
+  port: 8090
+
+#=================================================================================
+# 是否生成ddl语句
+spring.jpa.generate-ddl: false
+# 是否打印sql语句
+spring.jpa.show-sql: true
+# 自动生成ddl，由于指定了具体的ddl，此处设置为none
+spring.jpa.hibernate.ddl-auto: none
+# 使用H2数据库
+spring.datasource.platform: h2
+# 指定生成数据库的schema文件位置
+spring.datasource.schema: classpath:schema.sql
+# 指定插入数据库语句的脚本位置
+spring.datasource.data: classpath:data.sql
+#spring:
+#  datasource:
+#    url: jdbc:mysql://127.0.0.1:3306/spring_boot_ci_demo?useSSL=false&autoReconnect=true&allowMultiQueries=true&rewriteBatchedStatements=true&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&character_set_client=utf8mb4&character_set_connection=utf8mb4&character_set_database=utf8mb4&character_set_results=utf8mb4&character_set_server=utf8mb4&character_set_system=utf8&character_set_filesystem=binary&collation_connection=utf8mb4_unicode_ci&collation_database=utf8mb4_unicode_ci&collation_server=utf8mb4_unicode_ci
+#    username: root
+#    password: 123456
+#=================================================================================
+
+
+
+
+
+#=================================================================================
+
+# REDIS (RedisProperties)
+# Redis数据库索引（默认为0）
+spring.redis.database: 0
+# Redis服务器地址
+spring.redis.host: 127.0.0.1
+# Redis服务器连接端口
+spring.redis.port: 6379
+# Redis服务器连接密码（默认为空）
+spring.redis.password:
+# 连接池最大连接数（使用负值表示没有限制）
+spring.redis.pool.max-active: 8
+# 连接池最大阻塞等待时间（使用负值表示没有限制）
+spring.redis.pool.max-wait: -1
+# 连接池中的最大空闲连接
+spring.redis.pool.max-idle: 8
+# 连接池中的最小空闲连接
+spring.redis.pool.min-idle: 0
+# 连接超时时间（毫秒）
+spring.redis.timeout: 0

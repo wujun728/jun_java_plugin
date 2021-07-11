@@ -1,0 +1,17 @@
+
+
+#=================================================================================
+
+spring:
+  datasource: 
+    url: jdbc:mysql://112.74.171.218:3316/spring_boot_ci_demo?useSSL=false&autoReconnect=true&allowMultiQueries=true&rewriteBatchedStatements=true&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&character_set_client=utf8mb4&character_set_connection=utf8mb4&character_set_database=utf8mb4&character_set_results=utf8mb4&character_set_server=utf8mb4&character_set_system=utf8&character_set_filesystem=binary&collation_connection=utf8mb4_unicode_ci&collation_database=utf8mb4_unicode_ci&collation_server=utf8mb4_unicode_ci
+    username: root
+    password: adg123456
+#=================================================================================
+
+server:
+  port: 18701
+
+
+
+#=================================================================================

@@ -1,0 +1,25 @@
+#=================================================================================
+
+
+spring:
+  application:
+    name: spring-boot-ci-demo
+  profiles:
+    active: dev
+  jackson:
+    # 指定时间格式
+    date-format: 'yyyy-MM-dd HH:mm:ss'
+    # 排除结果中属性值是 null 的属性
+    default-property-inclusion: non_null
+  thymeleaf:
+    mode: HTML5
+    encoding: utf-8
+    content-type: 'text/html'
+    prefix: 'classpath:/templates/'
+    suffix: '.html'
+    #开发时关闭缓存,不然没法看到实时页面（必须 false 才能热部署）
+    cache: false
+
+
+
+#=================================================================================
