@@ -206,4 +206,10 @@ Step4产品篇：
 	https://github.com.cnpmjs.org
 
 
+#### 开发环境
+- **JDK 1.8 
+- **Maven 3.5 
+- **IDEA 2018.2 + or  STS 4.5 +** (*注意：务必使用 IDEA 开发，同时	
+
+
 	
