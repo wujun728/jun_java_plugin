@@ -26,27 +26,8 @@ Step4产品篇：
 	jun_android Android移动开发框架，APP开发模板、后台管理系统、后台API接口平台
 	jun_temp     临时仓库
 
-
-
- 
-2、jun_cache   ---干掉
-新增springcache
-https://github.com/iamsixer/spring-cache-demo
-https://github.com/zheng-zy/spring-boot-redis-guava-caffeine-cache
- 
-3、camel 干掉，没啥用
- 
-4、jun_crawler 调整，跑起来，净化
- 
-5、jun_datasource_cluster rename 到 DataSource
-新增 https://github.com/ran-jit/tomcat-cluster-redis-session-manager
- 
-6、分解jun_dbutils
-https://github.com/objcoding/jdbc-utils
- 
-7、jun_demo rename到 jun_test
- 
-8、设计模式，合并到一起，分三种合并，中文转英文
+ 
+  
  
 9、jun_note 新增
 https://github.com/GourdErwa/review-notes
@@ -56,11 +37,7 @@ https://www.cnblogs.com/huzi007/p/5802022.html
 https://www.cnblogs.com/huzi007/p/5796372.html
  
 11、drools https://github.com/maxxbwsDemo
- 
-12、email 调整，清理
-https://github.com/biezhi/oh-my-email/blob/master/pom.xml
-https://github.com/isliqian/NiceEmail
- 
+  
 13、excel 集成 easyexcel
 https://github.com/HowieYuan/easyexcel-encapsulation
 新增jun_poi demo
@@ -139,13 +116,16 @@ https://github.com/callicoder/spring-webflux-reactive-rest-api-demo
 30、rpc
 Grpc
 https://github.com/ChinaSilence/spring-boot-starter-grpc
- 
+
+
 31、新增Jun_id_generator
 https://github.com/didi/tinyid
  
 32、序列化
 https://github.com/lgjlife/serialization
  
+----------------------------------------------------------------
+
 00、SpringAll
 https://github.com/wuyouzhuguli/SpringAll
 https://github.com/febsteam/FEBS-Shiro
@@ -266,9 +246,6 @@ https://github.com/arthaschan/SpringBootBucket
 合并到plugin
 https://github.com/YunaiV/SpringBoot-Labs
 springboot_apijson
-https://github.com/ityouknow/spring-boot-examples
-https://github.com/yidao620c/SpringBootBucket
-https://github.com/rstyro/Springboot
 https://github.com/ityouknow/spring-boot-examples
 https://github.com/yidao620c/SpringBootBucket
 https://github.com/rstyro/Springboot

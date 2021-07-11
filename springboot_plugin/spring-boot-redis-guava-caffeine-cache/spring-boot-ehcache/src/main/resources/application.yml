@@ -1,0 +1,5 @@
+spring:
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:ehcache.xml

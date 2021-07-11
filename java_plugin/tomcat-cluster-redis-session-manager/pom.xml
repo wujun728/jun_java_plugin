@@ -1,0 +1,96 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>tomcat-session-manager</groupId>
+    <artifactId>redis</artifactId>
+    <version>4.0</version>
+    <packaging>jar</packaging>
+
+    <name>tomcat-cluster-redis-session-manager</name>
+    <url>https://ranmanic.in</url>
+
+    <developers>
+        <developer>
+            <id>ranmanic</id>
+            <name>Ranjith Manickam</name>
+            <email>ranjith@ranmanic.in</email>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.7</java.version>
+
+        <jedis.version>3.0.1</jedis.version>
+        <commons-pool2.version>2.6.2</commons-pool2.version>
+        <slf4j-api.version>1.7.26</slf4j-api.version>
+
+        <maven-compiler.version>3.6.1</maven-compiler.version>
+        <source-java.version>1.7</source-java.version>
+        <target-java.version>${source-java.version}</target-java.version>
+
+        <!-- For local development properties begins.. -->
+        <tomcat.version>8.5.32</tomcat.version>
+        <!-- For local development properties end.. -->
+    </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>repsy</id>
+            <name>tomcat-cluster-redis-session-manager-repo</name>
+            <url>https://repo.repsy.io/mvn/ranmanic/tomcat-session-manager</url>
+        </repository>
+    </distributionManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons-pool2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
+        </dependency>
+
+        <!-- For local development dependency begins.. -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-servlet-api</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-api</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        <!-- For local development dependency end.. -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler.version}</version>
+                <configuration>
+                    <source>${source-java.version}</source>
+                    <target>${target-java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

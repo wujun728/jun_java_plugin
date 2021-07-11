@@ -1,0 +1,138 @@
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+    <display-name>spring-cache-demo</display-name>
+    
+    <!-- 区分项目名称，防止默认重名 -->
+    <context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value>Spring-cache-demo</param-value>
+    </context-param>
+
+	<!--1. 启动一个WEB项目的时候,容器(如:Tomcat)会去读它的配置文件web.xml.读两个节点: <listener></listener> 和 <context-param></context-param>
+		2.紧接着,容器创建一个ServletContext(上下文),这个WEB项目所有部分都将共享这个上下文.
+		3.容器将<context-param></context-param>转化为键值对,并交给ServletContext.
+		4.容器创建<listener></listener>中的类实例,即创建监听.
+		5.在监听中会有contextInitialized(ServletContextEvent args)初始化方法,在这个方法中获得ServletContext = ServletContextEvent.getServletContext();
+		context-param的值 = ServletContext.getInitParameter("context-param的键");
+		6.得到这个context-param的值之后,你就可以做一些操作了.注意,这个时候你的WEB项目还没有完全启动完成.这个动作会比所有的Servlet都要早.
+		换句话说,这个时候,你对<context-param>中的键值做的操作,将在你的WEB项目完全启动之前被执行.
+		7.举例.你可能想在项目启动之前就打开数据库.
+		那么这里就可以在<context-param>中设置数据库的连接方式,在监听类中初始化数据库的连接.
+		8.这个监听是自己写的一个类,除了初始化方法,它还有销毁方法.用于关闭应用前释放资源.比如说数据库连接的关闭.
+		如:加载spring的配置文件，设置Spring容器加载配置文件路径 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:applicationContext*.xml</param-value>
+    </context-param>
+    
+    
+
+	<!-- Spring会创建一个WebApplicationContext上下文，称为父上下文（父容器） ，保存在 ServletContext中，key是WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE的值。
+                         可以使用Spring提供的工具类取出上下文对象：WebApplicationContextUtils.getWebApplicationContext(ServletContext);
+      
+          DispatcherServlet是一个Servlet,可以同时配置多个，每个 DispatcherServlet有一个自己的上下文对象（WebApplicationContext），称为子上下文（子容器），子上下文可以访问父上下文中的内容，
+		    但父上下文不能访问子上下文中的内容。 它也保存在 ServletContext中，key是"org.springframework.web.servlet.FrameworkServlet.CONTEXT"+Servlet名称。当一个Request对象产生时，
+		    会把这个子上下文对象（WebApplicationContext）保存在Request对象中，key是DispatcherServlet.class.getName() + ".CONTEXT"。
+		    可以使用工具类取出上下文对象：RequestContextUtils.getWebApplicationContext(request);-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
+    <!-- Spring mvc分发器 -->
+    <servlet>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- servlet范围内的参数，只能在servlet的init()方法中取得，
+                                   可以自定义servlet.xml配置文件的位置和名称，默认为WEB-INF目录下，名称为[<servlet-name>]-servlet.xml，如spring-servlet.xml
+	    <init-param>
+	        <param-name>contextConfigLocation</param-name>
+	        <param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>&nbsp; 默认
+	    </init-param>
+	    -->
+        <init-param>  
+	      <param-name>contextConfigLocation</param-name>  
+	      <param-value>classpath*:applicationContext*.xml</param-value>  
+	    </init-param> 
+        <load-on-startup>1</load-on-startup>
+        <async-supported>true</async-supported>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <url-pattern>*.htm</url-pattern>
+        <!--拦截/*，这是一个错误的方式，请求可以走到Action中，但转到jsp时再次被拦截，不能访问到jsp。 
+                                拦截/，restful风格 弊端：会导致静态文件（jpg,js,css）被拦截后不能正常显示。解决办法看dispatcher-->
+    </servlet-mapping>
+
+	<!-- 字符集 过滤器过滤POST请求  -->
+    <filter>
+        <filter-name>characterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <async-supported>true</async-supported>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>HiddenHttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+        <async-supported>true</async-supported>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>HiddenHttpMethodFilter</filter-name>
+        <servlet-name>mvc-dispatcher</servlet-name>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>HttpPutFormContentFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
+        <async-supported>true</async-supported>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>HttpPutFormContentFilter</filter-name>
+        <servlet-name>mvc-dispatcher</servlet-name>
+    </filter-mapping>
+	
+	
+	
+	<welcome-file-list>
+        <welcome-file>/index.jsp</welcome-file>
+    </welcome-file-list>
+	
+	
+    <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/pages/commons/403.jsp</location>
+    </error-page>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/pages/commons/404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/WEB-INF/pages/commons/500.jsp</location>
+    </error-page>
+	
+	<!-- 表示的是session的过期时间 ，单位是分钟 -->
+	<session-config>
+		<session-timeout>180</session-timeout>
+	</session-config>
+	
+</web-app>
