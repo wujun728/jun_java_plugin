@@ -22,7 +22,6 @@
 		<module>jun_crawler</module>
 		<module>jun_datasource</module>
 		<module>jun_dbutil</module>
-		<module>jun_demo</module>
 		<module>jun_designpattern</module>
 		<module>jun_drools</module>
 		<module>jun_dubbo</module>

@@ -1,5 +1,0 @@
-<root>
-    <item name='java.util.Properties'>
-        <annotation name='java.lang.Deprecated'/>
-    </item>
-</root>
