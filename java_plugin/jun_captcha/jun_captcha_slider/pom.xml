@@ -9,10 +9,10 @@
   </parent>
   
   <artifactId>jun_captcha_slider</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>war</packaging>
   
-  <name>jun_captcha Maven Webapp</name>
+  <name>jun_captcha_slider</name>
   <url>http://maven.apache.org</url>
     
   <properties>

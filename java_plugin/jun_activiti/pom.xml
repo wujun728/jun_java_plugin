@@ -7,7 +7,7 @@
 	<artifactId>jun_activiti</artifactId>
 	<packaging>war</packaging>
 
-	<name>test_mis Maven Webapp</name>
+	<name>jun_activiti</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
@@ -541,7 +541,7 @@
   
   
   <build>
-  	<finalName>jun_mis</finalName>
+  	<finalName>jun_activiti</finalName>
 	<plugins>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>

@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.xiaoju.uemc.tinyid</groupId>
-    <artifactId>tinyid</artifactId>
+    <artifactId>jun_id_generator_tinyid</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
