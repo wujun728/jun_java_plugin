@@ -12,7 +12,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
-  <name>jun_dbutil Maven Webapp</name>
+  <name>jun_dbutil</name>
   <url>http://maven.apache.org</url>
     
   <properties>

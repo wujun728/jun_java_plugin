@@ -1,5 +1,5 @@
 	
-		package com.cn.dq.utils;
+		package com.jun.plugin.dbutils;
 		
 		import java.sql.Connection;
 		import java.sql.SQLException;		
