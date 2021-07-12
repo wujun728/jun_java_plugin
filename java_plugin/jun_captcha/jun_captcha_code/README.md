@@ -1,7 +1,4 @@
-# EasyCaptcha
-
-![MavenCentral](https://img.shields.io/maven-central/v/com.github.whvcse/easy-captcha?style=flat-square)
-![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?style=flat-square)
+# Captcha
 
 
 ## 1.简介
@@ -63,9 +60,9 @@ dependencies {
 ```xml
 <dependencies>
    <dependency>
-      <groupId>com.github.whvcse</groupId>
-      <artifactId>easy-captcha</artifactId>
-      <version>1.6.2</version>
+	    <groupId>com.jun.plugin</groupId>
+	    <artifactId>jun_captcha_code</artifactId>
+    	<version>1.0</version>
    </dependency>
 </dependencies>
 ```
