@@ -51,21 +51,6 @@ public class IoTest {
     }
 
     @Test
-    public void closingAndFlushing() {
-        InputStream inputStream = System.in;
-        try {
-            inputStream.close();// The old way
-        } catch (IOException e) {
-            Throwables.propagate(e);
-        }
-        Closeables.closeQuietly(inputStream); // The new way
-
-        // Or flush:
-        PrintStream outputStream = System.out;
-        Flushables.flushQuietly(outputStream);
-    }
-
-    @Test
     public void classPathResources() {
         // This:
         Resources.getResource("com/tfnico/examples/guava/BaseTest.class");
