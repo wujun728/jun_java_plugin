@@ -1,4 +1,4 @@
-package com.jun.base.httpclient;
+package com.jun.plugin.httpclient.base;
 
 import java.io.File;
 import java.io.FileOutputStream;

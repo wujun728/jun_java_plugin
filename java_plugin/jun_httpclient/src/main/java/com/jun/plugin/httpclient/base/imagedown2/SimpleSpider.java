@@ -1,4 +1,4 @@
-package com.jun.base.httpclient.imagedown2;
+package com.jun.plugin.httpclient.base.imagedown2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
