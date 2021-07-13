@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Class-Path: curvesapi-1.04.jar poi-3.17.jar commons-codec-1.10.jar sta
- x-api-1.0.1.jar poi-ooxml-3.17.jar xmlbeans-2.6.0.jar poi-ooxml-schem
- as-3.17.jar javax.servlet-api-3.1.0.jar commons-collections4-4.1.jar
-Main-Class: com.github.andyczy.java.excel.ExcelUtils
-
