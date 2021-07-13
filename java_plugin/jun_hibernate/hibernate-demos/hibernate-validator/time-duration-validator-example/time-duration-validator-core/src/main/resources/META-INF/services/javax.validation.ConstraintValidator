@@ -1,2 +1,0 @@
-#providing a list of validators for new @DurationMin annotation
-com.acme.validation.internal.validators.DurationMinValidator

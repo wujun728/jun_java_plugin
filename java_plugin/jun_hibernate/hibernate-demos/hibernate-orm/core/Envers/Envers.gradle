@@ -1,3 +1,0 @@
-dependencies {
-	compile( 'org.hibernate:hibernate-envers:' + rootProject.hibernateVersion)
-}
