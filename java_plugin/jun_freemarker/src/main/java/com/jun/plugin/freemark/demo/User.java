@@ -1,4 +1,4 @@
-package com.freemark.demo;
+package com.jun.plugin.freemark.demo;
 
 public class User {
 

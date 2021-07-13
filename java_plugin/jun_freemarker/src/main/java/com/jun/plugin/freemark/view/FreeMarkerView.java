@@ -1,4 +1,4 @@
-package com.freemark.view;
+package com.jun.plugin.freemark.view;
 
 
 import java.io.IOException;
