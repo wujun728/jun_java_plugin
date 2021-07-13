@@ -13,7 +13,6 @@ import javax.mail.internet.MimeMessage.RecipientType;
 import org.junit.Test;
 
 /**
- * 1. ����һ����ͨ�ʼ�
  * @author Wujun
  *
  */

@@ -7,11 +7,11 @@
 	<artifactId>jun_plugin</artifactId>
 	<version>1.0</version>
   </parent>
-  <artifactId>jun_rpc</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>jun_dubbo</artifactId>
+  <version>1.0</version>
   <packaging>war</packaging>
   
-  <name>jun_rpc Maven Webapp</name>
+  <name>jun_dubbo</name>
   <url>http://maven.apache.org</url>
     
   <properties>
