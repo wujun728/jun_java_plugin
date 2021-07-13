@@ -1,4 +1,4 @@
-package com.gtt.collections;
+package com.jun.plugin.guava.collections;
 
 import com.google.common.collect.*;
 import org.junit.Test;

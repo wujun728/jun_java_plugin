@@ -1,4 +1,4 @@
-package com.gtt.basicutilities;
+package com.jun.plugin.guava.basicutilities;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;

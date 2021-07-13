@@ -1,4 +1,4 @@
-package com.gtt.basicutilities;
+package com.jun.plugin.guava.basicutilities;
 
 import static com.google.common.base.Preconditions.*;
 import static org.junit.Assert.assertTrue;

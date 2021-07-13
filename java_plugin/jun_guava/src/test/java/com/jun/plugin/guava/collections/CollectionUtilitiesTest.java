@@ -1,4 +1,4 @@
-package com.gtt.collections;
+package com.jun.plugin.guava.collections;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
