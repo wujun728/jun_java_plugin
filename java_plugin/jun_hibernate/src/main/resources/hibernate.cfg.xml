@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:oracle:thin:@localhost:1521:orcl</property>
+    <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
+    <property name="connection.username">scott</property>
+    <property name="connection.password">orcl</property>
+<!--    <property name="connection.url">jdbc:mysql://localhost:3306/demo?useUnicode=true&amp;characterEncoding=utf-8</property>-->
+<!--    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>-->
+<!--    <property name="connection.username">root</property>-->
+<!--    <property name="connection.password">1234</property>-->
+<!--    <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>-->
+<!--    <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>-->
+<!--    <property name="show_sql">true</property>-->
+<!--    <property name="format_sql">true</property>-->
+<!--    <property name="hibernate.hbm2ddl.auto">update</property>-->
+    <mapping resource="hbm/DeptEntity.hbm.xml"/>
+    <mapping resource="hbm/EmpEntity.hbm.xml"/>
+
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>
