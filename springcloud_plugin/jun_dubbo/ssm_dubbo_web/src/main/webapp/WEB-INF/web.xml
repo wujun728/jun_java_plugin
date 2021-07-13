@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+	http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <display-name>ssm-dubbo-web</display-name>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/spring-context-mvc.xml</param-value>
+    </context-param>
+
+    <!-- spring请求配置，指向springmvc的核心配置文件 -->
+    <servlet>
+        <servlet-name>springMVC</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/spring-context-mvc.xml</param-value>
+        </init-param>
+        <!--加载顺序为1 -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>springMVC</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!--错误页面配置,这里只是简单的配置了一下 -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/main.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>405</error-code>
+        <location>/main.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>415</error-code>
+        <location>/main.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/main.jsp</location>
+    </error-page>
+    <!--错误页面配置 -->
+</web-app>
