@@ -1,12 +1,12 @@
-package com.utils.serialization;
-
-import com.utils.pojo.Location;
-import com.utils.pojo.User;
+package com.jun.plugin.utils.serialization;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.jun.plugin.utils.pojo.Location;
+import com.jun.plugin.utils.pojo.User;
 
 public class SerializeTest {
 

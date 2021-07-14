@@ -1,8 +1,9 @@
-package com.utils.test;
+package com.jun.plugin.utils.test;
 
-import com.utils.pojo.TestPojo;
-import com.utils.serialization.*;
 import org.springframework.util.StopWatch;
+
+import com.jun.plugin.utils.pojo.TestPojo;
+import com.jun.plugin.utils.serialization.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

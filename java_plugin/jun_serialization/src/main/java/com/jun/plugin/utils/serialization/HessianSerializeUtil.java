@@ -1,9 +1,9 @@
-package com.utils.serialization;
+package com.jun.plugin.utils.serialization;
 
 import com.caucho.hessian.io.HessianInput;
 import com.caucho.hessian.io.HessianOutput;
-import com.utils.pojo.Location;
-import com.utils.pojo.User;
+import com.jun.plugin.utils.pojo.Location;
+import com.jun.plugin.utils.pojo.User;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

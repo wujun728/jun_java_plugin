@@ -1,4 +1,4 @@
-package com.utils.serialization;
+package com.jun.plugin.utils.serialization;
 
 import com.alibaba.fastjson.JSON;
 

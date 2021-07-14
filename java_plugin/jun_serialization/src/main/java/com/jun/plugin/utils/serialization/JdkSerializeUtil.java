@@ -1,12 +1,12 @@
-package com.utils.serialization;
-
-import com.utils.pojo.Location;
-import com.utils.pojo.User;
+package com.jun.plugin.utils.serialization;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import com.jun.plugin.utils.pojo.Location;
+import com.jun.plugin.utils.pojo.User;
 
 public class JdkSerializeUtil extends  AbstractSerialize {
 
