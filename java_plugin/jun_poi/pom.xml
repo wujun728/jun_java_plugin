@@ -8,7 +8,7 @@
   </parent>
   <groupId>com.jun.plugin</groupId> 
 	<artifactId>jun_poi</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>war</packaging>
   
   
@@ -28,6 +28,24 @@
 	</properties>
 
 	<dependencies>
+		<!-- test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.jun.plugin</groupId> 
+			<artifactId>jun_datasource</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>com.jun.plugin</groupId> 
+			<artifactId>jun_utils</artifactId>
+			<version>1.0</version>
+		</dependency> -->
+		
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
@@ -106,23 +124,6 @@
 		</dependency>
 		<!-- 常用工具包 end -->
 
-		<!-- test -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.jun.plugin</groupId> 
-			<artifactId>jun_datasource</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<!-- <dependency>
-			<groupId>com.jun.plugin</groupId> 
-			<artifactId>jun_utils</artifactId>
-			<version>1.0</version>
-		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
 		    <groupId>com.google.guava</groupId>

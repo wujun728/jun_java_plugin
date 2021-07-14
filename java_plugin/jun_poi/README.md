@@ -7,9 +7,9 @@ excel导出与导入神器，poi-el。
 使用poi + spEl，支持各种普通模板和复杂模板的导出功能
 ### Quick Start:
 参考：  
-com.kvn.poi.export_test.ForeachTest.java  
-com.kvn.poi.export_test.MixTemplateTest.java  
-com.kvn.poi.export_test.MultiPoiForeachTest.java  
+com.jun.plugin.poitest.export_test.ForeachTest.java  
+com.jun.plugin.poitest.export_test.MixTemplateTest.java  
+com.jun.plugin.poitest.export_test.MultiPoiForeachTest.java  
   
 **API:**  
 >
@@ -29,8 +29,8 @@ com.kvn.poi.export_test.MultiPoiForeachTest.java
 支持简洁易用的excel导入API  
 ### Quick Start:
 参考:  
-com.kvn.poi.import_test.ImportRawTest.java  
-com.kvn.poi.import_test.ImportGenericTest.java  
+com.jun.plugin.poitest.import_test.ImportRawTest.java  
+com.jun.plugin.poitest.import_test.ImportGenericTest.java  
   
 **API**
 >

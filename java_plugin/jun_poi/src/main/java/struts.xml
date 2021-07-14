@@ -6,7 +6,7 @@
 <struts>
 	
 	<package name="userInfo" namespace="/" extends="struts-default">
-		<action name="user" class="com.java1234.action.UserAction">
+		<action name="user" class="com.jun.plugin.poiExp.action.UserAction">
 		</action>
 
 	</package>
