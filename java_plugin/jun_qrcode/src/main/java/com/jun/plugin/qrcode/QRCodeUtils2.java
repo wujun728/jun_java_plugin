@@ -1,3 +1,4 @@
+package com.jun.plugin.qrcode;
 /*
  * package com.jun.plugin.qrcode;
  * 

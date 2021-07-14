@@ -37,6 +37,34 @@
 		    <artifactId>javase</artifactId>
 		    <version>2.2</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.22</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.22</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.7</version>
+        </dependency>
+                <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.9.10</version>
+            <scope>test</scope>
+        </dependency>
 	
 		<!-- https://mvnrepository.com/artifact/QRCode/QRCode_swetake -->
 		<!-- <dependency> -->
@@ -44,8 +72,6 @@
 		<!-- <artifactId>QRCode_swetake</artifactId> -->
 		<!-- <version>3.0.0</version> -->
 		<!-- </dependency> -->
-
-
 
 		<!-- 目标数据库，这里采用mysql -->
 		<dependency>
