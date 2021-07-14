@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<servlet>
+		<servlet-name>ImageCodeMakerServlet</servlet-name>
+		<servlet-class>book.servlet.ImageCodeMakerServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>QueryDB</servlet-name>
+		<servlet-class>book.servlet.QueryDBServlet</servlet-class>
+		<init-param>
+			<param-name>dbURL</param-name>
+			<param-value>jdbc:mysql://localhost:3306/studentdb</param-value>
+		</init-param>
+		<init-param>
+			<param-name>driver</param-name>
+			<param-value>com.mysql.jdbc.Driver</param-value>
+		</init-param>
+		<init-param>
+			<param-name>username</param-name>
+			<param-value>test</param-value>
+		</init-param>
+		<init-param>
+			<param-name>password</param-name>
+			<param-value>test</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ImageCodeMakerServlet</servlet-name>
+		<url-pattern>/getImageCode</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>QueryDB</servlet-name>
+		<url-pattern>/queryDB</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>chatroom/login.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>

@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>文件上传</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body>
+<p>&nbsp;</p>
+<p align="center">上传文件选择</p>
+<!--
+在上传文件时需要传输大量二进制数据或者非ASCII字符的文本，因此需设置enctype="multipart/form-data"，此时method必须为post。
+它的传输消息包含了一系列的数据块，每一块都代表Form中的一个变量，并且数据块的顺序和页面上的顺序一致，块与块之间使用特殊字符（boundary）分隔。
+ -->
+<FORM METHOD="POST" ACTION="do_upload.jsp" ENCTYPE="multipart/form-data">
+  <table width="75%" border="1" align="center">
+    <tr> 
+      <td><div align="center">1、 
+          <input type="File" name="file1" size="30">
+        </div></td>
+    </tr>
+    <tr> 
+      <td><div align="center">2、 
+          <input type="File" name="file2" size="30">
+        </div></td>
+    </tr>
+    <tr> 
+      <td><div align="center">3、 
+          <input type="File" name="file3" size="30">
+        </div></td>
+    </tr>
+    <tr> 
+      <td><div align="center">4、 
+          <input type="File" name="file4" size="30">
+        </div></td>
+    </tr>
+    <tr> 
+      <td><div align="center">
+       		上传帐户：<input name="uploadername" type="text">
+          <input type="submit" name="Submit" value="上  传">
+        </div></td>
+    </tr>
+  </table>
+</FORM>
+</body>
+</html>
