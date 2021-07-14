@@ -1,17 +1,12 @@
-package com.gtjy.integration.data.service;
+package com.jun.plugin.quartz;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.quartz.CronExpression;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import org.springframework.scheduling.quartz.CronTriggerBean;
 import org.springframework.scheduling.quartz.QuartzJobBean;
-
-import com.gtjy.common.ServiceLocator;
 
 public class DataSyncJob extends QuartzJobBean {
 	
