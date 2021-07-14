@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>任务首页 - 科帮网</title>
+    <meta name="author" content="小柒2012" />
+    <meta name="site" content="https://blog.52itstyle.com" />
+    <link rel="stylesheet" th:href="@{/iview/iview.css}">
+    <script th:src="@{/libs/jquery-3.2.1.min.js}" type="text/javascript"></script>
+	<script th:src="@{/libs/vue.min.js}" type="text/javascript"></script>
+	<script th:src="@{/layer/layer.js}" type="text/javascript"></script>
+	<script th:src="@{/iview/iview.min.js}" type="text/javascript"></script>
+    <style type="text/css">
+	[v-cloak] {
+			  display: none;
+			}
+	</style>
+</head>
+<body>
+<div id="app" v-cloak style="margin: 30px">
+<template>
+	    <i-form v-ref:form-quartz :model="formQuartz" :rules="ruleValidate" :label-width="80">
+	        <Form-item label="任务名称" prop="jobName">
+	            <i-input  v-model="formQuartz.jobName"  :value.sync="formQuartz.jobName" placeholder="请输入任务名称"></i-input>
+	        </Form-item>
+	        <Form-item label="任务分组" prop="jobGroup" >
+	            <i-input  v-model="formQuartz.jobGroup" :value.sync="formQuartz.jobGroup" placeholder="请输入任务分组"></i-input>
+	        </Form-item>
+	        <Form-item label="任务描述" prop="description">
+	            <i-input  v-model="formQuartz.description" :value.sync="formQuartz.description" placeholder="请输入任务描述"></i-input>
+	        </Form-item>
+	        <Form-item label="执行类" prop="jobClassName">
+	            <i-input v-model="formQuartz.jobClassName" :value.sync="formQuartz.jobClassName" placeholder="请输入执行类"></i-input>
+	        </Form-item>
+            <Form-item label="执行方法" prop="jobMethodName">
+                <i-input v-model="formQuartz.jobMethodName" :value.sync="formQuartz.jobMethodName" placeholder="请输入执行类"></i-input>
+            </Form-item>
+	        <Form-item label="执行时间" prop="cronExpression">
+	            <i-input v-model="formQuartz.cronExpression" :value.sync="formQuartz.cronExpression" placeholder="请输入任务执行时间"></i-input>
+	        </Form-item>
+	    </i-form>
+</template>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+	el : '#app',
+	data : {
+		formQuartz: {
+			jobName : '',
+			jobGroup : '',
+			description : '',
+			jobClassName : 'com.itstyle.quartz.job.ChickenJob',
+			cronExpression : '',
+			//旧任务名称  用于修改
+			oldJobName : '',
+			oldJobGroup : '',
+			jobMethodName:''
+        },
+        ruleValidate: {
+        	jobName: [
+                { required: true, message: '任务名称不能为空', trigger: 'blur' }
+            ],
+            jobMethodName: [
+                { required: true, message: '执行方法不能为空', trigger: 'blur' }
+            ],
+            jobGroup: [
+                { required: true, message: '任务分组不能为空', trigger: 'blur' }
+            ],
+            description: [
+                { required: true, message: '任务描述不能为空', trigger: 'blur' }
+            ],
+            jobClassName: [
+                { required: true, message: '执行类不能为空', trigger: 'blur' }
+            ],
+            cronExpression: [
+                { required: true, message: '执行时间不能为空', trigger: 'blur' }
+            ]
+        }
+	},
+	methods : {
+		//新建任务(略简单)
+		acceptClick : function(){
+		  //Validate不起作用MD
+		  var quartz =  vm.formQuartz;
+		  if(vm.formQuartz.jobName==""||vm.formQuartz.jobGroup==""||vm.formQuartz.description==""
+				  ||vm.formQuartz.jobClassName==""||vm.formQuartz.cronExpression==""){
+			  alert("请输入以上完整信息");
+			  return;
+		  }
+		  $.ajax({
+				url:"../job/add",
+				type:"post",
+				data:quartz,
+				success: function(result) {
+					if(result.code=="0"){
+						window.parent.location.reload();
+						//$(window.parent.document).contents().find('#app')[0].contentWindow.vm.load();
+					}else{
+						vm.$Notice.error({
+		                    desc:  '系统异常'
+		                });
+					}
+				}
+			});
+		}
+	},
+	created : function() {
+		
+	}
+})
+
+</script>
+</body>
+</html>
