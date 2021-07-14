@@ -1,4 +1,4 @@
-package demo;
+package com.jun.plugin.demo;
 
 import java.io.File;
 import java.io.FileInputStream;
