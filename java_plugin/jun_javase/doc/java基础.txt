@@ -1,0 +1,107 @@
+1、基本数据类型及其大小：byte（1B）、short（2B）、int（4B）、long（8B）、float（4B）、double（8B）、char（2B）、boolean；
+	byte取值范围：-128至127
+	int取值范围：2的-31次方、2的31次方
+	short、long在计算机内默认存储为int型，byte，short，char默认转换成int类型
+	定义float型赋值时后加f
+	boolean只有true和false两个值
+2、数据类型转换：强制类型转换和隐式类型转换；低精度自动向高精度类型转换，高精度向低精度转换会损失精度（高位截断），低精度与高精度运算时低精度自动转为高精度；
+	
+	byte b=127;b+=1;syso(-128);
+3、变量与标识符：类名首字母大写、以字母和下划线开头，变量使用驼峰命名，以字母下划线开头，见名知意；
+	变量定义：数据类型-变量名-赋值 int number=5;//初始化 赋值;
+	注意：局部变量必须初始化之后才能使用
+	变量作用域（闭合的大括号以内）
+4、算数运算符：+、-、*、/、%；
+	注意：1+1.0=2.0;
+	例子：-1%2=-1；
+	例子：4%2=0；
+5、位运算符：>>,<<,>>>,<<<；
+	对二进制进行操作，系统内部先将变量转换为二进制，再进行移位运算
+	>>>无符号运算，负数高位用1补，正数高位用0补位
+6、逻辑运算符：&&，||，!；
+	两边必须是布尔类型的判断式，结果只能为true和false；
+	&&和||存在短路而|和&不存在短路；
+	例子：int a=10;boolean b=a++||++a;syso(a);//a=11;
+	例子：int a=10;boolean b=a++|++a;syso(a);//a=12;
+7、比较运算符：>、<、==、===；
+	=属于赋值运算符，int a=3;//把3的值赋给a；
+8、自增自减运算符：i++、i--、++i，--i；
+	i++先引用再自加；++i先自加再引用
+	注意：i++;始终都会+1；
+	例子：int a=3;b=(++a)+(a++)+a;syso(a);syso(b);//a=5;b=13;
+9、三目运算符：例子：a>b?a:b;
+10、随机数：Math.random*m+n，随机产生[n,m+n)之间的数字；//键盘输入（Scanner scan=new Scaner(System.in)）;int number=scan.nextInt();
+11、条件运算符：if-else，switch；
+	if(条件判断—boolean类型){执行语句块}；
+	if(){}else{};
+	if(){}else if(){}else{};//
+	if-else中嵌套多个if-else，注意：if与最近的else匹配；
+	例子：if(a>0){if(a>10){}else{}}else{if(){}else{}};
+	switch(表达式){case 1：break；;case 2：break；；case 3：default；};//检测表达式是否符合某个条件，不符合则继续匹配之后的条件；
+	注意：switch遇到break或continue才会跳出，否则会一直匹配；switch表达式必须是int型、char型或者String型（JDK1.7之后支持字符串）；
+	if语句更适合于区间判断，switch更适合固定值的匹配；
+	所有的switch都可以用if-else使用来替换，反之不成立；
+12、循环语句：for，while，do-while；
+	for(初始值;条件判断;修整变量){执行语句块}；
+	for()语句中的初始值和修整变量语句都可以省略，for(;条件判断;){}；for(;;){执行语句}//三条语句都省略构成死循环
+	for(int i:arr){};//增强for循环，forEach常用于数组；
+	while(条件表达式){执行语句};//条件表达式结果只能为true或false；
+	do{执行语句}while(条件表达式);//先执行do中的语句块，再判断，条件满足则再执行do中的语句；
+	双重for循环，外层循环控制行，内层循环控制列；
+	for循环适用于已知循环次数且循环开始和结束都明确的语句；
+	while用于不确定循环次数的语句；
+13、流程控制：break（跳出当前循环），continue（跳过本次循环）；
+	    在双重for循环内循环中使用break时，跳出内层循环；
+	    return之后的所有语句不执行；
+14、方法封装：标识符 返回类型 方法名（参数）{}//static int fn(int m,int n){};
+	  方法没有返回值使用void关键字；
+	  方法的重载：方法名相同，参数类型或参数个数不同；根据调用方法参数的类型或者个数不同实现不同的功能；
+15、数组（类）：
+	（1）一维数组和二维数组，数组的定义，常用的int型数组和字符串数组；一个数组中只能存放一种类型的数据；//int[] arr={1,2,3};int[] arr=new int[]{1,2,3};int[] arr=[3];
+		二维数组//int[][] arr=[3][2];int[][] arr={{1,2},{3,4},{5,6}};
+	（2）数组的常用方法:
+		length();//arr.length 返回数组arr的长度;
+		fill();//Arrays.fill(arr,fromIndex,toIndex,value);以value值填充数组arr在[formIndex,endIndex)范围内的值；
+		     //fromIndex,toIndex可以省略，则表示用value值填充整个数组；
+		sort();//Arrays.sort(arr)按字典序排序数组;
+		copyOf();//Arrays.copyOf(arr,length);arr为要复制的数组，length为复制后的新数组的长度，若新数组的长度大于原数组arr则用0填充；
+		copyOfRange();//Arrays.copyOf(arr,fromIndex，toIndex);复制数组arr，在[fromIndex,toIndex)范围之内；
+		binarySearch();//Arrays.binarySearch(arr,start,end,key)，在数组arr的[start,end)范围内搜索key值，key值在数组中则返回其索引，否则返回-1或插入点(数组中无该值返回的插入点是负数)；
+			      //start和end参数可省略，则表示在整个数组范围内搜索key值；
+			     //使用二分法搜索给定数组，数组必须排序后才能使用binarySerach查询；
+		system.arraycopy(arr0,start1,arr1,start1,length);//赋值数组arr0到arr1，从arr0的start1位置开始复制，复制长度为length，填充arr1时从start1位置开始；
+	（3）取得数组的最大值与最小值；
+	（4）逆序输入数组
+		关键语句：直接逆序数组arr[i]=arr.length-i-1；
+			  使用中间值让数组的首尾交换arr[i]=arr[arr.length-i-1]；
+	（5）取得数组的逆序数；
+	（6）数组排序
+		关键语句：冒泡排序:arr[i]与arr[i+1]比较交换位置；
+			  直接选择排序:arr[i]和arr[j]比较交换位置；
+	（7）在排好序的数组中插入新值并保证数组的排序顺序不变；
+		关键语句：i<index:arrNew[i]=arr[i];
+			  i==index:arrNew[i+1]=insertNumber;
+			  i>index:arrNew[i]=arr[i-1];
+	（8）二维数组的旋转
+		关键语句：arrNew[i][j]=arrOld[j][arrOld[0].length-i-1];
+16、字符串（类）：
+	（1）字符串的定义;//String str="abc";
+	（2）连接字符串：使用+号连接两个字符串；
+		注意：在使用其他基本数据类型进行连接时，系统会将这些数据直接转换为字符串，使用运算符(+)号和连接符(+)时要注意；
+		注意：创建成功的字符串对象，其长度时固定的，内容是不能改变的(面试题中见过)，使用+连接符附加的字符串会产生新的String对象;
+	（2）字符串的常用方法：length();//str.length();返回字符串str的长度；
+		contains();//contains("abc")；返回值为true或false，返回字符串中是否包含abc字符串；
+		indexOf();//indexOf("ab");返回给定字符在字符串中首次出现的位置，若没有检测到则返回-1；
+		lastIndexOf();//返回指定字符串最后一次出现的索引位置，没有该值则返回-1；
+		charAt();//从0开始计数，返回指定索引处的字符，返回值用char类型接收；char str2=str.char(4);超出字符串范围的索引会报越界错误；
+		substring(beginIndex,endIndex);//str.substring(0,3);取得str字符串中[0,3)范围的字符串；若没有endIndex参数则从beginIndex一直截取到字符串结尾；
+		trim();//去掉字符串首尾的空格，不会去掉中间的空格；
+		replace();//replace(char oldChar,newChar);用newChar替换字符串中的所有oldChar(如果oldChar在字符串中有多个的话则全部替换)；
+		startsWith();//str.startsWith("abc");判断字符串是否以字符串abc开始；
+		endsWith();//str.endsWith("abc");判断字符串是否以字符串abc结尾；
+		equals();//str.equals(str2),比较两个字符串对象的值是否相同，字符串是对象，不能使用"=="判断；
+		str.equalsIgnreCase();//比较两个字符串对象的值是否相同，忽略大小写;
+		split()//str.split("\\.");以 . 作为分隔符分割字符串，分割后的字符串用字符串数组接收；
+			//例子：String[] strArray=str.split("\\.");
+	（3）根据身份证号判断出生年月以及性别//各类基本数据类型都有一个包装类，包装类中有很多方法可以实现数据类型之间的转换。P150-158
+	（4）正则表达式：使用正则表达式用于判断字符串是否满足某一格式(实现验证用户输入等功能);//P101;
