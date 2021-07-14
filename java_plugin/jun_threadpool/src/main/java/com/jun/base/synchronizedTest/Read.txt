@@ -1,0 +1,27 @@
+synchronized
+
+1, synchronized （）{}
+
+   synchronized关键字也可以加在方法上（一样代表锁住当前对象或者类）
+   * 括号里面可以传：this  类.class  代表的都是锁住当前对象或者类
+   1）this 锁住当前类对象.
+   2)类.class  实现了全局锁的效果
+
+2, synchronized public static 这里对应的是类锁
+
+
+3, 不管被锁住的类（或者对象），有多少同步方法，只要其中一个线程访问了其中的一个同步方法，
+   它就锁住了整个对象，别的线程就不能访问别的同步方法。但是可以访问这个对象别的没有同步的方法。
+
+4, 静态方法 static
+   synchronized(){} 只能传对象.class
+
+博客园：
+
+http://www.cnblogs.com/chen-msg/p/8301446.html
+
+锁一般分为对象锁，类锁，锁住代码块。
+
+1，对象锁是 一个非静态方法类，锁的本身就是this、锁住当前对象。synchronized锁住的是括号里的对象，而不是代码。对于非static的synchronized方法，锁的就是对象本身也就是this。
+2，如果传类.class 就是锁住代码块。synchronized(类.class)实现了全局锁的效果。
+3，static synchronized方法也相当于全局锁，相当于锁住了代码段。
