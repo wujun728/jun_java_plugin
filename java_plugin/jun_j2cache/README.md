@@ -1,4 +1,4 @@
-#dhz-j2cache
+#oschina-j2cache
 ## 说明
 目前一级缓存用的是ehcache，二级使用redis；集群同步工具使用jgroups或redis pub sub；
 ## 计划
@@ -10,7 +10,7 @@
  </ul>
 
 ## 使用说明
-在src/test/resources目录下有个spring-cache-test.xml文件，演示了在spring项目中如何使用dhz-j2cache；对于可以使用的配置项也有相应的文本注释
+在src/test/resources目录下有个spring-cache-test.xml文件，演示了在spring项目中如何使用oschina-j2cache；对于可以使用的配置项也有相应的文本注释
 <pre>
 * 属性说明：
 * useCluster                - 是否为集群，默认true
