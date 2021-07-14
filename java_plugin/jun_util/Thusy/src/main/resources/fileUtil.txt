@@ -1,2 +1,0 @@
-	testContent:org.hibernate.exception.SQLStateConverter.handledNonSpecificException(SQLStateConverter.java:126)
-
