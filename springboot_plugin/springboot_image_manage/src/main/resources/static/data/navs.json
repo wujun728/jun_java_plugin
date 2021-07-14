@@ -1,0 +1,16 @@
+[
+  {
+    "title": "文件图床",
+    "href": "pages/file-manage.html",
+    "fontFamily": "ok-icon",
+    "icon": "&#xe69b;",
+    "spread": false
+  },
+  {
+    "title": "系统设置",
+    "href": "pages/system/setting.html",
+    "fontFamily": "ok-icon",
+    "icon": "&#xe68a;",
+    "spread": false
+  }
+]

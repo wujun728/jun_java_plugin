@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>文件管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/css/oksub.css">
+    <style type="text/css">
+
+        .icon-path {
+            margin-left: 5px;
+            color: #1E9FFF;
+        }
+
+        .filename {
+            text-decoration: underline;
+            color: #01AAED;
+            cursor: pointer;
+        }
+
+        .action-btn {
+            display: inline-block;
+            margin-left: 20px;
+            border: 1px solid #EBEEF5;
+            padding: 4px;
+        }
+
+        .thumbnail {
+            margin: 2px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            width: auto;
+            height: auto;
+            max-width: 100% !important;
+            max-height: 100% !important;
+            align-self: center;
+            cursor: pointer;
+        }
+
+        .img-col-plus {
+            display: flex;
+            justify-content: center;
+            height: 100px !important;
+            overflow: hidden;
+            white-space: normal;
+        }
+
+        .input-hiidden {
+            opacity: 0;
+            width: 0px;
+            height: 0px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="ok-body" id="app">
+
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 ok-search">
+
+            <div class="layui-form-item">
+
+                <div class="layui-inline">
+                    <div class="layui-btn-group">
+                        <button type="button" @click="backStep" class="layui-btn layui-btn-primary">
+                            <i class="layui-icon layui-icon-left"></i>
+                        </button>
+                        <button type="button" @click="currentPath='/';refreshTable()"
+                                class="layui-btn  layui-btn-primary">
+                            <i class="layui-icon layui-icon-home"></i>
+                        </button>
+                        <button type="button" @click="refreshTable" class="layui-btn layui-btn-primary">
+                            <i class="layui-icon layui-icon-refresh"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <input value="/" class="layui-input" placeholder="路径" autocomplete="off" name="path">
+                    <button class="layui-btn layui-btn-primary" lay-submit="" lay-filter="stepPath">
+                        跳转&nbsp;<i class="icon ok-icon ok-icon-right"></i>
+                    </button>
+                </div>
+
+                <div class="layui-inline">
+                    <button type="button" class="layui-btn  layui-btn-normal" id="upload">
+                        上传文件&nbsp;<i class="icon ok-icon ok-icon-text"></i>
+                    </button>
+
+                    <button class="layui-btn" lay-submit="" lay-filter="createFolder">
+                        新建文件夹&nbsp;<i class="icon ok-icon ok-icon-file"></i>
+                    </button>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">显示缩略图</label>
+                    <div class="layui-input-block">
+                        <input lay-filter="mode-thumbnail" :checked="thumbnail" type="checkbox" name="switch"
+                               lay-skin="switch">
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <div align="center" v-if="showProgress">
+        <div style="width: 78%" lay-filter="up-progress" class="layui-progress layui-progress-big"
+             lay-showPercent="yes">
+            <div class="layui-progress-bar layui-bg-blue" lay-percent="0%"></div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div>
+        <div class="layui-btn-group">
+            <button @click="pathClick(item)" v-for="item in pathList" type="button"
+                    class="layui-btn layui-btn-primary layui-btn-sm">
+                <span>{{item.name}}</span><i class="layui-icon icon-path">&#xe602;</i>
+            </button>
+        </div>
+
+        &nbsp;&nbsp;<span>共计文件 {{fileSize}}个</span>
+
+        <div class="action-btn" v-if="showActionBtn || showCopyBtn">
+            <!--显示操作按钮-->
+            <button v-if="showActionBtn" @click="batchDelete" type="button"
+                    class="layui-btn layui-btn-danger layui-btn-sm">批量删除
+            </button>
+            <button v-if="showActionBtn" @click="cutFiles" type="button"
+                    class="layui-btn layui-btn-normal layui-btn-sm">批量剪切
+            </button>
+            <button v-if="showCopyBtn" @click="copyThis" type="button" class="layui-btn layui-btn-normal layui-btn-sm">
+                粘贴至此
+            </button>
+        </div>
+    </div>
+
+
+    <table id="file-table" lay-filter="file-table"></table>
+
+
+</div>
+
+<script type="text/javascript" src="/lib/layui/layui.js"></script>
+<script type="text/javascript" src="/lib/vue.min.js"></script>
+<script type="text/javascript" src="/lib/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/file-manage.js"></script>
+</body>
+</html>
