@@ -1,9 +1,0 @@
-内容：
-	本章讲解了Java文件编程的File类与RandomAccessFile两个类的使用
-
-产品：JDK 1.5
-
-技术：JAVA基础
-
-难度：
-	★★★☆☆

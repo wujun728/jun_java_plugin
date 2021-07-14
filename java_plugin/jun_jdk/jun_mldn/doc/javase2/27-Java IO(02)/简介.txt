@@ -1,9 +1,0 @@
-内容：
-	本章讲解了Java文件编程中与文件内容操作有关的四个核心类：InputStream、OutputStream、Reader、Writer，并讲解了线程间是如何使用IO进行通信的。
-
-产品：JDK 1.5
-
-技术：JAVA基础
-
-难度：
-	★★★☆☆
