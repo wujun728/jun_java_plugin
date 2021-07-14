@@ -1,4 +1,4 @@
-package com.gs.bean;
+package com.jun.plugin.redis.bean;
 
 import java.io.Serializable;
 
