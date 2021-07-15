@@ -10,7 +10,7 @@
   <groupId>com.jun.plugin</groupId>
   <artifactId>jun_templatespider</artifactId>
   <version>1.0</version>
-  <packaging>war</packaging>
+  <packaging>pom</packaging>
   
   <name>jun_templatespider Maven Webapp</name>
   <url>http://maven.apache.org</url>
