@@ -1,8 +1,8 @@
-﻿<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="org.quartz.*"%>
 <%@page import="org.quartz.impl.*"%>
 <%@page import="org.springframework.scheduling.quartz.*"%>
-<%@page import="com.gtjy.common.*"%>
+<%@page import="com.jun.plugin.mybatisplus.common.*"%>
 <%@page import="java.text.*"%>
 <%@page import="java.util.*"%>
 

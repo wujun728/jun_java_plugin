@@ -27,7 +27,7 @@
 		</table>
 		<br />
 		<%
-			String c = (String)session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+			String c = (String)session.getAttribute(com.jun.plugin.mybatisplus.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
 			String parm = (String) request.getParameter("kaptchafield");
 			out.println("Parameter: " + parm + " ? Session Key: " + c + " : ");
 			if (c != null && parm != null) {
