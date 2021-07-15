@@ -16,8 +16,8 @@ jun_plugin 整合Java企业级各种开发组件、开箱即用、不写重复�
 
 > Java基础系开发组件-通用篇（jun_plugin） 常用开发组件，基础公共lib包的组件不依赖Spring的组件，主要供原生开发的项目集成：
 
-【jun_activiti】[流程引擎，Activiti工作流，完成工作流常用操作](https://github.com/wujun728/jun_plugin/jun_activiti)
-【jun_ajax】[完成ajax操作，前端及后端的ajax](https://github.com/wujun728/jun_plugin)
+  【jun_activiti】[流程引擎，Activiti工作流，完成工作流常用操作](https://github.com/wujun728/jun_plugin/jun_activiti)
+  【jun_ajax】[完成ajax操作，前端及后端的ajax](https://github.com/wujun728/jun_plugin)
 【jun_aliyun_sms】[短信工具,集成阿里云短信、腾讯云短信发送及验证码等功能](https://github.com/wujun728/jun_java_plugin/tree/master/spring_plugin/jun_aliyun_sms)
 【jun_apache_commons】[ Common工具集,集成Apache通用工具集](https://github.com/wujun728/jun_java_plugin/tree/master/spring_plugin/jun_apache_commons)
 【jun_api】[ API中心,API注册测试校验管控鉴权中心](https://github.com/wujun728/jun_java_plugin/tree/master/spring_plugin/jun_api)
