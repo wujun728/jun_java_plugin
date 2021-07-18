@@ -1,2 +1,0 @@
-# Socket
-Java Socket Demo
