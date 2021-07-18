@@ -1,4 +1,4 @@
-package com.jun.base.log.log4j2.demo;
+package com.jun.plugin.websocket.log4j2.demo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
