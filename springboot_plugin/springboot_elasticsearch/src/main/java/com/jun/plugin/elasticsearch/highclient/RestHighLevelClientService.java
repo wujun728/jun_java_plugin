@@ -1,4 +1,4 @@
-package com.anqi.es.highclient;
+package com.jun.plugin.elasticsearch.highclient;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;

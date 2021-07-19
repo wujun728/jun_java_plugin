@@ -1,10 +1,11 @@
-package com.anqi.es.controller;
+package com.jun.plugin.elasticsearch.controller;
 
-import com.anqi.es.highclient.RestHighLevelClientService;
 import org.elasticsearch.action.index.IndexResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.jun.plugin.elasticsearch.highclient.RestHighLevelClientService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

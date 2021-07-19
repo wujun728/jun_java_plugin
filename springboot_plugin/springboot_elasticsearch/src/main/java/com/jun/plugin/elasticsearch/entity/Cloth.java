@@ -1,4 +1,4 @@
-package com.anqi.es.entity;
+package com.jun.plugin.elasticsearch.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 

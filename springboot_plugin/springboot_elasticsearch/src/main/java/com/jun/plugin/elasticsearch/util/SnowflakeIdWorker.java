@@ -1,4 +1,4 @@
-package com.anqi.es.util;
+package com.jun.plugin.elasticsearch.util;
 
 /**
  * * Twitter_Snowflake<br>

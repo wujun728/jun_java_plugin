@@ -1,6 +1,3 @@
-<a href="https://www.cnblogs.com/haixiang/p/11078875.html"><img src="https://img.shields.io/badge/博客-Haixiang-important" alt="博客"></a>
-<a href="#"><img src="https://img.shields.io/badge/版本-1.0-brightgreen.svg" alt="版本"></a>
-<a href="#"><img src="https://img.shields.io/badge/公众号-Java后端架构充电宝-blue.svg" alt="公众号"></a>
 
 ## 简介
 + 基于ElasticSearch7.3.2版本的通用搜索系统
@@ -25,32 +22,6 @@
 | SpringBoot               | 2.1.0.RELEASE |
 
 
-
-## 目录
-```
-├── src
-│   ├── main
-│      ├── java
-│      │   └── com
-│      │       └── anqi
-│      │           └── es
-│      │               ├── DemoEsApplication.java
-│      │               ├── Main.java
-│      │               ├── client
-│      │               │   └── ESClientConfig.java     老版本RestClient封装，这里不会使用
-│      │               ├── controller
-│      │               │   └── EsController.java       搜索测试接口
-│      │               ├── highclient
-│      │               │   ├── RestHighLevelClientConfig.java      Client配置
-│      │               │   └── RestHighLevelClientService.java     搜索API
-│      │               └── util
-│      │                   └── SnowflakeIdWorker.java      Twitter的雪花算法用来生成文档id
-│      └── resources
-│          ├── application.properties
-│          ├── static
-│          └── templates
-├── pom.xml
-```
 
 ## maven说明
 因为elasticsearch-rest-high-level-client7.3.2 依赖 elasticsearch 6.4.2 和 elasticsearch-rest-client 6.4.2 ，而目前这已经是中央仓库中最高版本的jar包了（8.0.0）还未迁入中央仓库，所以我们手动引入7.3.2的新版本elasticsearch和elasticsearch-rest-client

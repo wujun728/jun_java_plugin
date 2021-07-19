@@ -1,4 +1,4 @@
-package com.anqi.es.highclient;
+package com.jun.plugin.elasticsearch.highclient;
 
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
