@@ -18,7 +18,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -84,7 +84,7 @@
  * 启动类
  * </p>
  *
- * @package: com.xkcoding.cache.ehcache
+ * @package: com.jun.plugin.cache.ehcache
  * @description: 启动类
  * @author: yangkai.shen
  * @date: Created in 2018/11/16 17:02
@@ -112,7 +112,7 @@ spring:
       config: classpath:ehcache.xml
 logging:
   level:
-    com.xkcoding: debug
+    com.jun.plugin: debug
 ```
 
 ## ehcache.xml
@@ -165,7 +165,7 @@ logging:
  * UserService
  * </p>
  *
- * @package: com.xkcoding.cache.ehcache.service.impl
+ * @package: com.jun.plugin.cache.ehcache.service.impl
  * @description: UserService
  * @author: yangkai.shen
  * @date: Created in 2018/11/16 16:54
@@ -235,19 +235,6 @@ public class UserServiceImpl implements UserService {
 ## UserServiceTest.java
 
 ```java
-/**
- * <p>
- * ehcache缓存测试
- * </p>
- *
- * @package: com.xkcoding.cache.ehcache.service
- * @description: ehcache缓存测试
- * @author: yangkai.shen
- * @date: Created in 2018/11/16 16:58
- * @copyright: Copyright (c) 2018
- * @version: V1.0
- * @modified: yangkai.shen
- */
 @Slf4j
 public class UserServiceTest extends SpringBootDemoCacheEhcacheApplicationTests {
 

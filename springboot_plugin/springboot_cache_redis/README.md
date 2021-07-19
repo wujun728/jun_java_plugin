@@ -18,7 +18,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -113,7 +113,7 @@ spring:
     type: redis
 logging:
   level:
-    com.xkcoding: debug
+    com.jun.plugin: debug
 ```
 
 ## RedisConfig.java
@@ -124,7 +124,7 @@ logging:
  * redis配置
  * </p>
  *
- * @package: com.xkcoding.cache.redis.config
+ * @package: com.jun.plugin.cache.redis.config
  * @description: redis配置
  * @author: yangkai.shen
  * @date: Created in 2018/11/15 16:41
@@ -171,7 +171,7 @@ public class RedisConfig {
  * UserService
  * </p>
  *
- * @package: com.xkcoding.cache.redis.service.impl
+ * @package: com.jun.plugin.cache.redis.service.impl
  * @description: UserService
  * @author: yangkai.shen
  * @date: Created in 2018/11/15 16:45
@@ -255,7 +255,7 @@ public class UserServiceImpl implements UserService {
  * Redis测试
  * </p>
  *
- * @package: com.xkcoding.cache.redis
+ * @package: com.jun.plugin.cache.redis
  * @description: Redis测试
  * @author: yangkai.shen
  * @date: Created in 2018/11/15 17:17
@@ -301,19 +301,6 @@ public class RedisTest extends SpringBootDemoCacheRedisApplicationTests {
 > 主要测试使用Redis缓存是否起效
 
 ```java
-/**
- * <p>
- * Redis - 缓存测试
- * </p>
- *
- * @package: com.xkcoding.cache.redis.service
- * @description: Redis - 缓存测试
- * @author: yangkai.shen
- * @date: Created in 2018/11/15 16:53
- * @copyright: Copyright (c) 2018
- * @version: V1.0
- * @modified: yangkai.shen
- */
 @Slf4j
 public class UserServiceTest extends SpringBootDemoCacheRedisApplicationTests {
     @Autowired
