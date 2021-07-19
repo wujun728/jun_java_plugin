@@ -18,7 +18,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
-		<groupId>com.xkcoding</groupId>
+		<groupId>com.jun.plugin</groupId>
 		<artifactId>spring-boot-demo</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
@@ -76,7 +76,7 @@
  * 通用的 API 接口封装
  * </p>
  *
- * @package: com.xkcoding.exception.handler.model
+ * @package: com.jun.plugin.exception.handler.model
  * @description: 通用的 API 接口封装
  * @author: yangkai.shen
  * @date: Created in 2018/10/2 8:57 PM
@@ -202,19 +202,6 @@ public class ApiResponse {
 ## DemoExceptionHandler.java
 
 ```java
-/**
- * <p>
- * 统一异常处理
- * </p>
- *
- * @package: com.xkcoding.exception.handler.handler
- * @description: 统一异常处理
- * @author: yangkai.shen
- * @date: Created in 2018/10/2 9:26 PM
- * @copyright: Copyright (c) 2018
- * @version: V1.0
- * @modified: yangkai.shen
- */
 @ControllerAdvice
 @Slf4j
 public class DemoExceptionHandler {
