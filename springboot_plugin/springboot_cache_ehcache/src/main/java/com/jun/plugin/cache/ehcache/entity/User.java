@@ -1,4 +1,4 @@
-package com.xkcoding.cache.ehcache.entity;
+package com.jun.plugin.cache.ehcache.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

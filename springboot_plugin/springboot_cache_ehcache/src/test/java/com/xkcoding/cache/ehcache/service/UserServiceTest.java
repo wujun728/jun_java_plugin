@@ -1,7 +1,9 @@
 package com.xkcoding.cache.ehcache.service;
 
+import com.jun.plugin.cache.ehcache.entity.User;
+import com.jun.plugin.cache.ehcache.service.UserService;
 import com.xkcoding.cache.ehcache.SpringBootDemoCacheEhcacheApplicationTests;
-import com.xkcoding.cache.ehcache.entity.User;
+
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

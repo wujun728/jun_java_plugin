@@ -3,4 +3,12 @@
   <groupId>com.jun.plugin</groupId>
   <artifactId>springboot_activiti</artifactId>
   <version>1.0</version>
+  
+  <parent>
+	    <groupId>com.jun.plugin</groupId>
+		<artifactId>springboot_plugin</artifactId>
+		<version>1.0</version>
+  </parent>
+  
+  
 </project>

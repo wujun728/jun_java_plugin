@@ -1,6 +1,6 @@
-package com.xkcoding.cache.ehcache.service;
+package com.jun.plugin.cache.ehcache.service;
 
-import com.xkcoding.cache.ehcache.entity.User;
+import com.jun.plugin.cache.ehcache.entity.User;
 
 /**
  * <p>

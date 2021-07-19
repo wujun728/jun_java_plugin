@@ -1,398 +1,187 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.jun.plugin</groupId>
-    <artifactId>springboot_plugin</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0</version>
-    
-    <!-- 子模块定义 -->
-    <modules>
-        <module>springboot_activiti</module>
-		<module>springboot_actuator</module>
-		<module>springboot_admin</module>
-		<module>springboot_async</module>
-		<module>springboot_batch</module>
-		<module>springboot_bootshiro</module>
-		<module>springboot_cache</module>
-		<module>springboot_codegen</module>
-		<module>springboot_data_jpa</module>
-		<module>springboot_data_mybatis</module>
-		<module>springboot_distributed_seckill</module>
-		<module>springboot_docker</module>
-		<module>springboot_drools</module>
-		<module>springboot_dubbo</module>
-		<module>springboot_dubbox</module>
-		<module>springboot_dynamic_datasource</module>
-		<module>springboot_elastic_job</module>
-		<module>springboot_email</module>
-		<module>springboot_exception_handler</module>
-		<module>springboot_fastdfs</module>
-		<module>springboot_filemanager</module>
-		<module>springboot_flyway</module>
-		<module>springboot_freemarker</module>
-		<module>springboot_graylog</module>
-		<module>springboot_helloworld</module>
-		<module>springboot_hibernate_validator</module>
-		<module>springboot_https</module>
-		<module>springboot_jackson</module>
-		<module>springboot_jbpm6</module>
-		<module>springboot_jms</module>
-		<module>springboot_jpa_jsp</module>
-		<module>springboot_jsp</module>
-		<module>springboot_junit</module>
-		<module>springboot_jwt</module>
-		<module>springboot_kafka_demo</module>
-		<module>springboot_kaptcha_spring_boot_starter</module>
-		<module>springboot_kisso_spring_boot</module>
-		<module>springboot_klock_starter</module>
-		<module>springboot_klock_starter22</module>
-		<module>springboot_laydate_theme_bootstrap</module>
-		<module>springboot_ldap</module>
-		<module>springboot_learning</module>
-		<module>springboot_learning_example</module>
-		<module>springboot_learning23</module>
-		<module>springboot_leave</module>
-		<module>springboot_lhbauth</module>
-		<module>springboot_lock_spring_boot_starter</module>
-		<module>springboot_lock4j_spring_boot_starter</module>
-		<module>springboot_log</module>
-		<module>springboot_log 2</module>
-		<module>springboot_log_aop</module>
-		<module>springboot_logback</module>
-		<module>springboot_mall_boot</module>
-		<module>springboot_mongodb</module>
-		<module>springboot_mongodb 2</module>
-		<module>springboot_mongodb2</module>
-		<module>springboot_mongodb23</module>
-		<module>springboot_mq_kafka</module>
-		<module>springboot_mq_rabbitmq</module>
-		<module>springboot_mq_rocketmq</module>
-		<module>springboot_ms_office</module>
-		<module>springboot_multi_datasource_jpa</module>
-		<module>springboot_multi_datasource_mybatis</module>
-		<module>springboot_mybatis</module>
-		<module>springboot_mybatis_jsp</module>
-		<module>springboot_neo4j</module>
-		<module>springboot_oauth</module>
-		<module>springboot_oauth_server</module>
-		<module>springboot_oauth2</module>
-		<module>springboot_oauth2_server</module>
-		<module>springboot_order_mybaits_activemq</module>
-		<module>springboot_orm_beetlsql</module>
-		<module>springboot_orm_jdbctemplate</module>
-		<module>springboot_orm_jpa</module>
-		<module>springboot_orm_mybatis</module>
-		<module>springboot_orm_mybatis_mapper_page</module>
-		<module>springboot_orm_mybatis_plus</module>
-		<module>springboot_pay</module>
-		<module>springboot_pay 2</module>
-		<module>springboot_pay222</module>
-		<module>springboot_plus</module>
-		<module>springboot_project</module>
-		<module>springboot_properties</module>
-		<module>springboot_ratelimit_guava</module>
-		<module>springboot_ratelimit_redis</module>
-		<module>springboot_rbac_security</module>
-		<module>springboot_rbac_shiro</module>
-		<module>springboot_redis</module>
-		<module>springboot_redis_sentinel_example</module>
-		<module>springboot_redislock</module>
-		<module>springboot_redisson</module>
-		<module>springboot_redisson_spring_boot_starter</module>
-		<module>springboot_restful</module>
-		<module>springboot_restful 2</module>
-		<module>springboot_roncoo_spring_boot</module>
-		<module>springboot_samples</module>
-		<module>springboot_sell</module>
-		<module>springboot_session</module>
-		<module>springboot_session2</module>
-		<module>springboot_session3</module>
-		<module>springboot_sharding_jdbc</module>
-		<module>springboot_sharding_jdbc_demo</module>
-		<module>springboot_sharding_jdbc_mybatis_plus_spring_boot_starter</module>
-		<module>springboot_shiro</module>
-		<module>springboot_shiro_jwt</module>
-		<module>springboot_shiro_spring_boot_starter</module>
-		<module>springboot_smart_boot</module>
-		<module>springboot_social</module>
-		<module>springboot_sofa_boot</module>
-		<module>springboot_springside4</module>
-		<module>springboot_springtime</module>
-		<module>springboot_ssh2_boot1</module>
-		<module>springboot_ssm2</module>
-		<module>springboot_starter_drools</module>
-		<module>springboot_starter_dubbo</module>
-		<module>springboot_starter_dubbox</module>
-		<module>springboot_starter_swagger</module>
-		<module>springboot_starter_weixin</module>
-		<module>springboot_startkit</module>
-		<module>springboot_study</module>
-		<module>springboot_study 2</module>
-		<module>springboot_superboot</module>
-		<module>springboot_swagger</module>
-		<module>springboot_swagger_beauty</module>
-		<module>springboot_task</module>
-		<module>springboot_task_quartz</module>
-		<module>springboot_task_xxl_job</module>
-		<module>springboot_task2</module>
-		<module>springboot_template_beetl</module>
-		<module>springboot_template_enjoy</module>
-		<module>springboot_template_freemarker</module>
-		<module>springboot_template_thymeleaf</module>
-		<module>springboot_templatemaven</module>
-		<module>springboot_templates_layui_admin</module>
-		<module>springboot_test_examples</module>
-		<module>springboot_tio</module>
-		<module>springboot_tools</module>
-		<module>springboot_transaction</module>
-		<module>springboot_tyboot</module>
-		<module>springboot_tyboot2</module>
-		<module>springboot_tybootdemo</module>
-		<module>springboot_uflo</module>
-		<module>springboot_uniapp</module>
-		<module>springboot_unity</module>
-		<module>springboot_unity 2</module>
-		<module>springboot_unity23</module>
-		<module>springboot_unity23 2</module>
-		<module>springboot_upload</module>
-		<module>springboot_ureport2</module>
-		<module>springboot_urule</module>
-		<module>springboot_war</module>
-		<module>springboot_webflux_reactive_rest_api</module>
-		<module>springboot_webhook</module>
-		<module>springboot_webhook 2</module>
-		<module>springboot_websocket</module>
-		<module>springboot_websocket_demo</module>
-		<module>springboot_websocket_socketio</module>
-		<module>springboot_websocket2</module>
-		<module>springboot_wm_accesstoken</module>
-		<module>springboot_zookeeper</module>
-    </modules>
+	<artifactId>springboot_plugin</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	
+  <modules>
+    <module>springboot_helloworld</module>
+    <module>springboot_properties</module>
+    <module>springboot_actuator</module>
+    <module>springboot_admin</module>
+    <module>springboot_logback</module>
+    <module>springboot_log_aop</module>
+    <module>springboot_exception_handler</module>
+    <module>springboot_template_freemarker</module>
+    <module>springboot_template_thymeleaf</module>
+    <module>springboot_template_beetl</module>
+    <module>springboot_template_enjoy</module>
+    <module>springboot_orm_jdbctemplate</module>
+    <module>springboot_orm_jpa</module>
+    <module>springboot_orm_mybatis</module>
+    <module>springboot_orm_mybatis_mapper_page</module>
+    <module>springboot_orm_mybatis_plus</module>
+    <module>springboot_orm_beetlsql</module>
+    <module>springboot_upload</module>
+    <module>springboot_cache_redis</module>
+    <module>springboot_cache_ehcache</module>
+    <module>springboot_email</module>
+    <module>springboot_task</module>
+    <module>springboot_task_quartz</module>
+    <module>springboot_task_xxl_job</module>
+    <module>springboot_swagger</module>
+    <module>springboot_swagger_beauty</module>
+    <module>springboot_rbac_security</module>
+    <module>springboot_rbac_shiro</module>
+    <module>springboot_session</module>
+    <module>springboot_oauth</module>
+    <module>springboot_social</module>
+    <module>springboot_zookeeper</module>
+    <module>springboot_mq_rabbitmq</module>
+    <module>springboot_mq_rocketmq</module>
+    <module>springboot_mq_kafka</module>
+    <module>springboot_websocket</module>
+    <module>springboot_websocket_socketio</module>
+    <module>springboot_ureport2</module>
+    <module>springboot_uflo</module>
+    <module>springboot_urule</module>
+    <module>springboot_activiti</module>
+    <module>springboot_async</module>
+    <module>springboot_dubbo</module>
+    <module>springboot_war</module>
+    <module>springboot_elasticsearch</module>
+    <module>springboot_mongodb</module>
+    <module>springboot_neo4j</module>
+    <module>springboot_docker</module>
+    <module>springboot_multi_datasource_jpa</module>
+    <module>springboot_multi_datasource_mybatis</module>
+    <module>springboot_sharding_jdbc</module>
+    <module>springboot_tio</module>
+    <module>springboot_codegen</module>
+    <module>springboot_graylog</module>
+    <module>springboot_ldap</module>
+    <module>springboot_dynamic_datasource</module>
+    <module>springboot_ratelimit_guava</module>
+    <module>springboot_ratelimit_redis</module>
+    <module>springboot_elasticsearch_rest_high_level_client</module>
+    <module>springboot_https</module>
+    <module>springboot_flyway</module>
+  </modules> 
 
-    <name>maven_template</name>
-    <url>http://www.java.com</url>
+  <name>jun_springboot</name>
+  <url>http://www.oracle.com</url>
 
-    <properties>
-        <!-- 定义依赖的版本全局属性 -->
-        <druid.version>1.0.1</druid.version>
-        <mysql.version>8.0.15</mysql.version>
-        <spring.version>5.2.0.RELEASE</spring.version>
-        <mybatis.version>3.4.6</mybatis.version>
-        <mybatis-spring.version>1.3.2</mybatis-spring.version>
-        <pagehelper.version>5.1.10</pagehelper.version>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <spring.boot.version>2.3.1.RELEASE</spring.boot.version>
+    <mysql.version>8.0.12</mysql.version>
+    <hutool.version>5.0.0</hutool.version>
+    <guava.version>28.1-jre</guava.version>
+    <user.agent.version>1.20</user.agent.version>
+  </properties>
 
-        <dubbo.version>2.6.5</dubbo.version>
-        <zookeeper.version>3.5.5</zookeeper.version>
-        <zkclient.version>0.10</zkclient.version>
+  <repositories>
+    <repository>
+      <id>aliyun</id>
+      <name>aliyun</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
-        <commons-lang3.version>3.9</commons-lang3.version>
-        <commons-beanutils.version>1.9.3</commons-beanutils.version>
-        <commons-collections4.version>4.1</commons-collections4.version>
-        <junit.version>4.12</junit.version>
-
-        <mockito-core.version>3.0.0</mockito-core.version>
-        <httpclient.version>4.5.6</httpclient.version>
-        <fastjson.version>1.2.62</fastjson.version>
-        <jedis.version>3.1.0</jedis.version>
-
-        <log4j.version>1.2.17</log4j.version>
-        <javax.servlet.version>4.0.1</javax.servlet.version>
-        <rabbitmq-client.version>5.7.3</rabbitmq-client.version>
-
-        <!-- 定义编码和JDK版本 -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-
-    <!-- 定义依赖管理: 可以用来解决在同一个项目的依赖版本冲突问题 -->
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>${druid.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aop</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis</artifactId>
-                <version>${mybatis.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis-spring</artifactId>
-                <version>${mybatis-spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper</artifactId>
-                <version>${pagehelper.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>dubbo</artifactId>
-                <version>${dubbo.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.zookeeper</groupId>
-                <artifactId>zookeeper</artifactId>
-                <version>${zookeeper.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.101tec</groupId>
-                <artifactId>zkclient</artifactId>
-                <version>${zkclient.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>redis.clients</groupId>
-                <artifactId>jedis</artifactId>
-                <version>${jedis.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>${javax.servlet.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.rabbitmq</groupId>
-                <artifactId>amqp-client</artifactId>
-                <version>${rabbitmq-client.version}</version>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
-
-    <!-- 定义父模块的依赖，这里的依赖会被子模块继承 -->
+  <dependencyManagement>
     <dependencies>
-        <!-- 父模块中的依赖，会被子模块自动继承，所有子模块共性的依赖，可以在父模块中定义 -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>${commons-beanutils.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
-        </dependency>
-
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring.boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+      </dependency>
+      <!-- hutool工具类 -->
+      <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-all</artifactId>
+        <version>${hutool.version}</version>
+      </dependency>
+      <!-- guava工具类 -->
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${guava.version}</version>
+      </dependency>
+      <!-- 解析 UserAgent 信息 -->
+      <dependency>
+        <groupId>eu.bitwalker</groupId>
+        <artifactId>UserAgentUtils</artifactId>
+        <version>${user.agent.version}</version>
+      </dependency>
     </dependencies>
+  </dependencyManagement>
 
-
-    <build>
-        <!-- 插件管理，对于maven官方插件来说，groupId是可以省略的 -->
-        <pluginManagement>
-            <plugins>
-				<!-- clean 阶段对应的goal -->
-                <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.0.0</version>
-                </plugin>
-				<!-- process-resources 阶段对应的goal -->
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-				<!-- compile 阶段对应的goal -->
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.7.0</version>
-                </plugin>
-				<!-- test 阶段对应的goal -->
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.20.1</version>
-                </plugin>
-				<!-- package 阶段对应的goal -->
-                <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>3.2.0</version>
-                </plugin>
-				<!-- install 阶段对应的goal -->
-                <plugin>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>2.5.2</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-        <!-- 定义插件配置 -->
-        <plugins>
-            <!-- 测试周期插件 -->
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <!-- 跳过测试 -->
-                    <skip>true</skip>
-                    <!-- 测试失败后，不影响构建 -->
-                    <!--                    <testFailureIgnore>true</testFailureIgnore>-->
-                </configuration>
-                <version>2.20.1</version>
-            </plugin>
-        </plugins>
-
-        <!-- 定义资源配置 -->
-        <resources>
-            <resource>
-                <!-- 设定主资源目录  -->
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                    <include>**/*.java</include>
-                </includes>
-
-                <excludes>
-                    <exclude>**/*.yaml</exclude>
-                </excludes>
-
-                <!-- maven default生命周期，process-resources阶段执行maven-resources-plugin插件的resources目标处理主资源目下的资源文件时，是否对主资源目录开启资源过滤 -->
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-
-    </build>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.7.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.20.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring.boot.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>repackage</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 </project>
-
-
-
