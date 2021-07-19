@@ -1,8 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "j2cache.config-location",
-      "type": "java.lang.String"
-    }
-  ]
-}
