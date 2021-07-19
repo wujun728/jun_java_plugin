@@ -26,7 +26,7 @@
   <description>Demo project for Spring Boot</description>
 
   <parent>
-    <groupId>com.xkcoding</groupId>
+    <groupId>com.jun.plugin</groupId>
     <artifactId>spring-boot-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
@@ -128,7 +128,7 @@ public class DatasourceConfiguration {
  * @date Created in 2019/9/4 16:20
  */
 @Configuration
-@MapperScan(basePackages = "com.xkcoding.dynamicdatasource.mapper", sqlSessionFactoryRef = "sqlSessionFactory")
+@MapperScan(basePackages = "com.jun.plugin.dynamicdatasource.mapper", sqlSessionFactoryRef = "sqlSessionFactory")
 public class MybatisConfiguration {
     /**
      * 创建会话工厂。
@@ -606,7 +606,7 @@ public class SpringBootDemoDynamicDatasourceApplication implements CommandLineRu
 @Component
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class DatasourceSelectorAspect {
-    @Pointcut("execution(public * com.xkcoding.dynamic.datasource.controller.*.*(..))")
+    @Pointcut("execution(public * com.jun.plugin.dynamic.datasource.controller.*.*(..))")
     public void datasourcePointcut() {
     }
 
