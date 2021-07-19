@@ -17,7 +17,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
-		<groupId>com.xkcoding</groupId>
+		<groupId>com.jun.plugin</groupId>
 		<artifactId>spring-boot-demo</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
@@ -62,19 +62,6 @@
 ## SpringBootDemoHelloworldApplication.java
 
 ```java
-/**
- * <p>
- * SpringBoot启动类
- * </p>
- *
- * @package: com.xkcoding.helloworld
- * @description: SpringBoot启动类
- * @author: yangkai.shen
- * @date: Created in 2018/9/28 2:49 PM
- * @copyright: Copyright (c)
- * @version: V1.0
- * @modified: yangkai.shen
- */
 @SpringBootApplication
 @RestController
 public class SpringBootDemoHelloworldApplication {

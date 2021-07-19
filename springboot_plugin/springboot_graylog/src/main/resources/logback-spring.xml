@@ -107,6 +107,6 @@
   <logger name="com.netflix.discovery" level="INFO"/>
   <logger name="com.netflix.eureka" level="INFO"/>
   <!-- 业务日志 -->
-  <Logger name="com.xkcoding" level="DEBUG"/>
+  <Logger name="com.jun.plugin" level="DEBUG"/>
 
 </configuration>

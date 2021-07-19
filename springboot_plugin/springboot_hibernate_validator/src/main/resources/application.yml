@@ -2,4 +2,4 @@ server:
   port: 8080
 logging:
   level:
-    com.jujung: debug
+    com.jun.plugin.hibernate: debug
