@@ -17,6 +17,6 @@
     <dubbo:provider timeout="10000"  threads="10" threadpool="fixed"   loadbalance="roundrobin"/>
     
     <!-- 使用注解方式-->     
-    <dubbo:annotation package="com.itstyle.dubbo"/>
+    <dubbo:annotation package="com.jun.plugin.dubbo"/>
 
 </beans>

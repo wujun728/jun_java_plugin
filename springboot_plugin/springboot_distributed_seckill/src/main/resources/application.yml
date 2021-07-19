@@ -43,9 +43,9 @@ spring:
       min-idle: 0
   datasource:
     write:
-      url: jdbc:mysql://127.0.0.1:8096/bm_market?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
-      username: BlueMoon
-      password: bm.mall.123
+      url: jdbc:mysql://127.0.0.1:8096/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+      username: root
+      password: 
       driver-class-name: com.mysql.jdbc.Driver
       max-active: 20
       initial-size: 1

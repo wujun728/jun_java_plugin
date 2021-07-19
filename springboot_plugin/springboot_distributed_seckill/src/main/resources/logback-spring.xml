@@ -74,7 +74,7 @@
         </filter>
     </appender>
     <!-- additivity 避免执行2次 -->
-    <logger name="cn.com.bluemoon"  level="INFO"  additivity="false">
+    <logger name="com.jun.plugin.seckill"  level="INFO"  additivity="false">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="INFO_FILE"/>
         <appender-ref ref="ERROR_FILE"/>

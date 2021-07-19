@@ -11,7 +11,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>spring-boot-demo-dubbo</artifactId>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -91,7 +91,7 @@ spring:
  * 启动器
  * </p>
  *
- * @package: com.xkcoding.dubbo.provider
+ * @package: com.jun.plugin.dubbo.provider
  * @description: 启动器
  * @author: yangkai.shen
  * @date: Created in 2018-12-25 16:49
@@ -112,19 +112,6 @@ public class SpringBootDemoDubboProviderApplication {
 ## HelloServiceImpl.java
 
 ```java
-/**
- * <p>
- * Hello服务实现
- * </p>
- *
- * @package: com.xkcoding.dubbo.provider.service
- * @description: Hello服务实现
- * @author: yangkai.shen
- * @date: Created in 2018-12-25 16:58
- * @copyright: Copyright (c) 2018
- * @version: V1.0
- * @modified: yangkai.shen
- */
 @Service
 @Component
 @Slf4j

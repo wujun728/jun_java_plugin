@@ -72,7 +72,7 @@
 
         </plugin>
 
-        <plugin interceptor="cn.com.bluemoon.mybatis.datasource.DynamicPlugin">
+        <plugin interceptor="com.jun.plugin.seckill.mybatis.datasource.DynamicPlugin">
         </plugin>
     </plugins>
 
