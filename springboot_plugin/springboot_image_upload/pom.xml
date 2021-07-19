@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>kr.hwb</groupId>
-  <artifactId>Summernote_image_upload</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  
+  <groupId>com.jun.plugin</groupId>
+  <artifactId>springboot_image_upload</artifactId>
+  <version>1.0</version>
   <packaging>war</packaging>
-  <name>Summernote_image_upload</name>
-  <description>Summernote Image Upload Example</description>
+  
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>1.4.0.RELEASE</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
+  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

@@ -8,7 +8,7 @@
     <springProfile name="dev">
         <logger name="org.springframework.web" level="INFO"/>
         <logger name="org.springboot.sample" level="INFO"/>
-        <logger name="cn.yustart.picturemanage" level="DEBUG"/>
+        <logger name="com.jun.plugin.picturemanage" level="DEBUG"/>
     </springProfile>
 
     <!-- 生产环境 -->
@@ -41,7 +41,7 @@
 
         <logger name="org.springframework.web" level="ERROR"/>
         <logger name="org.springboot.sample" level="ERROR"/>
-        <logger name="cn.yustart.picturemanage">
+        <logger name="com.jun.plugin.picturemanage">
             <level value="ERROR"/>
             <appender-ref ref="error"/>
             <appender-ref ref="CONSOLE"/>

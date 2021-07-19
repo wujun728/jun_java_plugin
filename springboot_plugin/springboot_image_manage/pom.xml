@@ -8,10 +8,9 @@
         <version>2.2.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>cn.yustart</groupId>
-    <artifactId>picture-manage</artifactId>
-    <version>1.0.0</version>
-    <name>picture-manage</name>
+    <groupId>com.jun.plugin</groupId>
+    <artifactId>springboot_image_manage</artifactId>
+    <version>1.0</version>
     <description>图床管理工具</description>
 
     <properties>
