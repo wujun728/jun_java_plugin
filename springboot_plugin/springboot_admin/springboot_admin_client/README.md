@@ -18,7 +18,7 @@
   <description>Demo project for Spring Boot</description>
 
   <parent>
-    <groupId>com.xkcoding</groupId>
+    <groupId>com.jun.plugin.spirngboot</groupId>
     <artifactId>spring-boot-demo-admin</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
@@ -88,7 +88,7 @@ spring:
             user.password: ${spring.security.user.password}
   security:
     user:
-      name: xkcoding
+      name: admin
       password: 123456
 management:
   endpoint:

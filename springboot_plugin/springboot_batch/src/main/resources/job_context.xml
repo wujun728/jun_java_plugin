@@ -18,7 +18,7 @@
 		</batch:step>
 	</batch:job>
 	<!--执行器 -->
-	<bean id="runScheduler" class="com.sushou.demo.BatchJob" />
+	<bean id="runScheduler" class="com.jun.plugin.spirngbatch.BatchJob" />
 	<!--定时任务 每5秒执行一次 -->
 	<task:scheduled-tasks>
 		<task:scheduled ref="runScheduler" method="run"

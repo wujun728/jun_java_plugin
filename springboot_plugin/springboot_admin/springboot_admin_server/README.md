@@ -18,7 +18,7 @@
   <description>Demo project for Spring Boot</description>
 
   <parent>
-    <groupId>com.xkcoding</groupId>
+    <groupId>com.jun.plugin.spirngboot</groupId>
     <artifactId>spring-boot-demo-admin</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
@@ -68,7 +68,7 @@
  * 启动类
  * </p>
  *
- * @package: com.xkcoding.admin.server
+ * @package: com.jun.plugin.spirngboot.admin.server
  * @description: 启动类
  * @author: yangkai.shen
  * @date: Created in 2018/10/8 2:08 PM

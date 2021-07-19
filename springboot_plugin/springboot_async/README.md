@@ -18,7 +18,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin.spirngboot</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -90,7 +90,7 @@ spring:
  * 启动器
  * </p>
  *
- * @package: com.xkcoding.async
+ * @package: com.jun.plugin.spirngboot.async
  * @description: 启动器
  * @author: yangkai.shen
  * @date: Created in 2018-12-29 10:28
@@ -117,7 +117,7 @@ public class SpringBootDemoAsyncApplication {
  * 任务工厂
  * </p>
  *
- * @package: com.xkcoding.async.task
+ * @package: com.jun.plugin.spirngboot.async.task
  * @description: 任务工厂
  * @author: yangkai.shen
  * @date: Created in 2018-12-29 10:37
@@ -193,7 +193,7 @@ public class TaskFactory {
  * 测试任务
  * </p>
  *
- * @package: com.xkcoding.async.task
+ * @package: com.jun.plugin.spirngboot.async.task
  * @description: 测试任务
  * @author: yangkai.shen
  * @date: Created in 2018-12-29 10:49
@@ -246,25 +246,25 @@ public class TaskFactoryTest extends SpringBootDemoAsyncApplicationTests {
 ### 异步任务
 
 ```bash
-2018-12-29 10:57:28.511  INFO 3134 --- [   async-task-3] com.xkcoding.async.task.TaskFactory      : asyncTask3开始执行，当前线程名称【async-task-3】
-2018-12-29 10:57:28.511  INFO 3134 --- [   async-task-1] com.xkcoding.async.task.TaskFactory      : asyncTask1开始执行，当前线程名称【async-task-1】
-2018-12-29 10:57:28.511  INFO 3134 --- [   async-task-2] com.xkcoding.async.task.TaskFactory      : asyncTask2开始执行，当前线程名称【async-task-2】
-2018-12-29 10:57:30.514  INFO 3134 --- [   async-task-2] com.xkcoding.async.task.TaskFactory      : asyncTask2执行成功，当前线程名称【async-task-2】
-2018-12-29 10:57:31.516  INFO 3134 --- [   async-task-3] com.xkcoding.async.task.TaskFactory      : asyncTask3执行成功，当前线程名称【async-task-3】
-2018-12-29 10:57:33.517  INFO 3134 --- [   async-task-1] com.xkcoding.async.task.TaskFactory      : asyncTask1执行成功，当前线程名称【async-task-1】
-2018-12-29 10:57:33.517  INFO 3134 --- [           main] com.xkcoding.async.task.TaskFactoryTest  : 异步任务全部执行结束，总耗时：5015 毫秒
+2018-12-29 10:57:28.511  INFO 3134 --- [   async-task-3] com.jun.plugin.spirngboot.async.task.TaskFactory      : asyncTask3开始执行，当前线程名称【async-task-3】
+2018-12-29 10:57:28.511  INFO 3134 --- [   async-task-1] com.jun.plugin.spirngboot.async.task.TaskFactory      : asyncTask1开始执行，当前线程名称【async-task-1】
+2018-12-29 10:57:28.511  INFO 3134 --- [   async-task-2] com.jun.plugin.spirngboot.async.task.TaskFactory      : asyncTask2开始执行，当前线程名称【async-task-2】
+2018-12-29 10:57:30.514  INFO 3134 --- [   async-task-2] com.jun.plugin.spirngboot.async.task.TaskFactory      : asyncTask2执行成功，当前线程名称【async-task-2】
+2018-12-29 10:57:31.516  INFO 3134 --- [   async-task-3] com.jun.plugin.spirngboot.async.task.TaskFactory      : asyncTask3执行成功，当前线程名称【async-task-3】
+2018-12-29 10:57:33.517  INFO 3134 --- [   async-task-1] com.jun.plugin.spirngboot.async.task.TaskFactory      : asyncTask1执行成功，当前线程名称【async-task-1】
+2018-12-29 10:57:33.517  INFO 3134 --- [           main] com.jun.plugin.spirngboot.async.task.TaskFactoryTest  : 异步任务全部执行结束，总耗时：5015 毫秒
 ```
 
 ### 同步任务
 
 ```bash
-2018-12-29 10:55:49.830  INFO 3079 --- [           main] com.xkcoding.async.task.TaskFactory      : task1开始执行，当前线程名称【main】
-2018-12-29 10:55:54.834  INFO 3079 --- [           main] com.xkcoding.async.task.TaskFactory      : task1执行成功，当前线程名称【main】
-2018-12-29 10:55:54.835  INFO 3079 --- [           main] com.xkcoding.async.task.TaskFactory      : task2开始执行，当前线程名称【main】
-2018-12-29 10:55:56.839  INFO 3079 --- [           main] com.xkcoding.async.task.TaskFactory      : task2执行成功，当前线程名称【main】
-2018-12-29 10:55:56.839  INFO 3079 --- [           main] com.xkcoding.async.task.TaskFactory      : task3开始执行，当前线程名称【main】
-2018-12-29 10:55:59.843  INFO 3079 --- [           main] com.xkcoding.async.task.TaskFactory      : task3执行成功，当前线程名称【main】
-2018-12-29 10:55:59.843  INFO 3079 --- [           main] com.xkcoding.async.task.TaskFactoryTest  : 同步任务全部执行结束，总耗时：10023 毫秒
+2018-12-29 10:55:49.830  INFO 3079 --- [           main] com.jun.plugin.spirngboot.async.task.TaskFactory      : task1开始执行，当前线程名称【main】
+2018-12-29 10:55:54.834  INFO 3079 --- [           main] com.jun.plugin.spirngboot.async.task.TaskFactory      : task1执行成功，当前线程名称【main】
+2018-12-29 10:55:54.835  INFO 3079 --- [           main] com.jun.plugin.spirngboot.async.task.TaskFactory      : task2开始执行，当前线程名称【main】
+2018-12-29 10:55:56.839  INFO 3079 --- [           main] com.jun.plugin.spirngboot.async.task.TaskFactory      : task2执行成功，当前线程名称【main】
+2018-12-29 10:55:56.839  INFO 3079 --- [           main] com.jun.plugin.spirngboot.async.task.TaskFactory      : task3开始执行，当前线程名称【main】
+2018-12-29 10:55:59.843  INFO 3079 --- [           main] com.jun.plugin.spirngboot.async.task.TaskFactory      : task3执行成功，当前线程名称【main】
+2018-12-29 10:55:59.843  INFO 3079 --- [           main] com.jun.plugin.spirngboot.async.task.TaskFactoryTest  : 同步任务全部执行结束，总耗时：10023 毫秒
 ```
 
 ## 参考

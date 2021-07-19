@@ -18,7 +18,7 @@ spring:
             user.password: ${spring.security.user.password}
   security:
     user:
-      name: xkcoding
+      name: admin
       password: 123456
 management:
   endpoint:
