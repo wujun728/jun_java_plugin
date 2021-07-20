@@ -4,43 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.jun.plugin</groupId>
-	<artifactId>springboot_lock</artifactId>
+	<artifactId>springboot_redisson_lock</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
-
-	<name>lock-spring-boot-starter</name>
-	<url>https://tooleek.gitee.io/lock-spring-boot-starter/</url>
-	<description>distributed lock</description>
-
-	<licenses>
-		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-
-	<scm>
-		<url>https://gitee.com/tooleek/lock-spring-boot-starter</url>
-		<connection>scm:git:https://gitee.com/tooleek/lock-spring-boot-starter.git</connection>
-		<developerConnection>scm:git:https://gitee.com/tooleek/lock-spring-boot-starter.git</developerConnection>
-		<tag>HEAD</tag>
-	</scm>
-
-	<developers>
-		<developer>
-			<name>tanrongqiang</name>
-			<email>tanrongqiang@qq.com</email>
-		</developer>
-		<developer>
-			<name>zhangshouxiong</name>
-			<email>1031432525@qq.com</email>
-		</developer>
-		<developer>
-			<name>liuqiang</name>
-			<email>1025502782@qq.com</email>
-		</developer>
-	</developers>
 
 	<properties>
 		<!-- project -->
