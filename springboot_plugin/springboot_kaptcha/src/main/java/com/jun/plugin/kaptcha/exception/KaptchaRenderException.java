@@ -13,11 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.baomidou.kaptcha.exception;
+package com.jun.plugin.kaptcha.exception;
+
+import java.io.IOException;
 
 /**
  * @author Wujun
  */
-public class KaptchaNotFoundException extends KaptchaException {
+public class KaptchaRenderException extends KaptchaException {
+
+  public KaptchaRenderException(IOException e) {
+    super(e);
+  }
 
 }

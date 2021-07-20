@@ -13,19 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.baomidou.kaptcha.exception;
+package com.jun.plugin.kaptcha.exception;
 
 /**
  * @author Wujun
  */
-public class KaptchaException extends RuntimeException {
-
-  public KaptchaException() {
-    super();
-  }
-
-  public KaptchaException(Throwable e) {
-    super(e);
-  }
+public class KaptchaIncorrectException extends KaptchaException {
 
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.baomidou.kaptcha;
+package com.jun.plugin.kaptcha;
 
 /**
  * 验证码组件接口
@@ -34,7 +34,7 @@ public interface Kaptcha {
    *
    * @param code 需要验证的字符串
    * @return 是否验证成功
-   * @see com.baomidou.kaptcha.exception.KaptchaException
+   * @see com.jun.plugin.kaptcha.exception.KaptchaException
    */
   boolean validate(String code);
 
@@ -44,7 +44,7 @@ public interface Kaptcha {
    * @param code 需要验证的字符串
    * @param second 超时时间（秒）
    * @return 是否验证成功
-   * @see com.baomidou.kaptcha.exception.KaptchaException
+   * @see com.jun.plugin.kaptcha.exception.KaptchaException
    */
   boolean validate(String code, long second);
 

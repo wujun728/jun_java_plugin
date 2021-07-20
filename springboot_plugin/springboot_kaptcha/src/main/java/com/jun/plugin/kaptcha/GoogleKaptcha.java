@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.baomidou.kaptcha;
+package com.jun.plugin.kaptcha;
 
 import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_DATE;
 import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
 
-import com.baomidou.kaptcha.exception.KaptchaIncorrectException;
-import com.baomidou.kaptcha.exception.KaptchaNotFoundException;
-import com.baomidou.kaptcha.exception.KaptchaRenderException;
-import com.baomidou.kaptcha.exception.KaptchaTimeoutException;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.jun.plugin.kaptcha.exception.KaptchaIncorrectException;
+import com.jun.plugin.kaptcha.exception.KaptchaNotFoundException;
+import com.jun.plugin.kaptcha.exception.KaptchaRenderException;
+import com.jun.plugin.kaptcha.exception.KaptchaTimeoutException;
+
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.baomidou.kaptcha.spring.boot;
+package com.jun.plugin.kaptcha.spring.boot;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

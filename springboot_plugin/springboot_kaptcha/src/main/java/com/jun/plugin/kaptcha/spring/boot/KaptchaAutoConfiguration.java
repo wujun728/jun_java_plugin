@@ -13,18 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.baomidou.kaptcha.spring.boot;
+package com.jun.plugin.kaptcha.spring.boot;
 
 
-import com.baomidou.kaptcha.GoogleKaptcha;
-import com.baomidou.kaptcha.Kaptcha;
-import com.baomidou.kaptcha.spring.boot.KaptchaProperties.BackgroundColor;
-import com.baomidou.kaptcha.spring.boot.KaptchaProperties.Border;
-import com.baomidou.kaptcha.spring.boot.KaptchaProperties.Content;
-import com.baomidou.kaptcha.spring.boot.KaptchaProperties.Font;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
+import com.jun.plugin.kaptcha.GoogleKaptcha;
+import com.jun.plugin.kaptcha.Kaptcha;
+import com.jun.plugin.kaptcha.spring.boot.KaptchaProperties.BackgroundColor;
+import com.jun.plugin.kaptcha.spring.boot.KaptchaProperties.Border;
+import com.jun.plugin.kaptcha.spring.boot.KaptchaProperties.Content;
+import com.jun.plugin.kaptcha.spring.boot.KaptchaProperties.Font;
+
 import java.util.Properties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

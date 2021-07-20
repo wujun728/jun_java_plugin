@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.baomidou.kaptcha.spring.boot.KaptchaAutoConfiguration
+com.jun.plugin.kaptcha.spring.boot.KaptchaAutoConfiguration

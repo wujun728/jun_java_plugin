@@ -7,8 +7,8 @@
 </p>
 
 <p align="center">
-    <a href="http://mvnrepository.com/artifact/com.baomidou/kaptcha-spring-boot-starter" target="_blank">
-        <img src="https://maven-badges.herokuapp.com/maven-central/com.baomidou/kaptcha-spring-boot-starter/badge.svg" >
+    <a href="http://mvnrepository.com/artifact/com.jun.plugin/kaptcha-spring-boot-starter" target="_blank">
+        <img src="https://maven-badges.herokuapp.com/maven-central/com.jun.plugin/kaptcha-spring-boot-starter/badge.svg" >
     </a>
     <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">
         <img src="http://img.shields.io/:license-apache-brightgreen.svg" >
@@ -31,9 +31,9 @@
 
 ```xml
 <dependency>
-  <groupId>com.baomidou</groupId>
-  <artifactId>kaptcha-spring-boot-starter</artifactId>
-  <version>${version}</version>
+  <groupId>com.jun.plugin</groupId>
+  <artifactId>springboot_starter_kaptcha</artifactId>
+  <version>1.0</version>
 </dependency>
 ```
 
@@ -81,10 +81,10 @@ KaptchaRenderException //If something is wrong then Image.write when render.
 ```
 
 ```java
-import com.baomidou.kaptcha.exception.KaptchaException;
-import com.baomidou.kaptcha.exception.KaptchaIncorrectException;
-import com.baomidou.kaptcha.exception.KaptchaNotFoundException;
-import com.baomidou.kaptcha.exception.KaptchaTimeoutException;
+import com.jun.plugin.kaptcha.exception.KaptchaException;
+import com.jun.plugin.kaptcha.exception.KaptchaIncorrectException;
+import com.jun.plugin.kaptcha.exception.KaptchaNotFoundException;
+import com.jun.plugin.kaptcha.exception.KaptchaTimeoutException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
