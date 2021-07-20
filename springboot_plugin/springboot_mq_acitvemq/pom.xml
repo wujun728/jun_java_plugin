@@ -7,57 +7,118 @@
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>1.5.9.RELEASE</version>
   </parent>
+  
 	<groupId>com.jun.plugin</groupId>
 	<artifactId>springboot_mq_acitvemq</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
   <properties>
-    <java.version>1.8</java.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <downloadSources>true</downloadSources>
-    <downloadJavadocs>true</downloadJavadocs>
-    <mockito.version>1.9.5</mockito.version>
-    <testng.version>6.8.7</testng.version>
+	    <java.version>1.8</java.version>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <downloadSources>true</downloadSources>
+	    <downloadJavadocs>true</downloadJavadocs>
+	    <mockito.version>1.9.5</mockito.version>
+	    <testng.version>6.8.7</testng.version>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <start-class>com.jun.plugin.mq.activemq.Application</start-class>
+	    <java.version>1.8</java.version>
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-autoconfigure</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-artemis</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.activemq</groupId>
-      <artifactId>artemis-jms-server</artifactId>
-    </dependency>
+	    <dependency>
+	      <groupId>org.slf4j</groupId>
+	      <artifactId>slf4j-api</artifactId>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-autoconfigure</artifactId>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-artemis</artifactId>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.apache.activemq</groupId>
+	      <artifactId>artemis-jms-server</artifactId>
+	    </dependency>
+	
+	    <!-- Test things -->
+	    <dependency>
+	      <groupId>org.testng</groupId>
+	      <artifactId>testng</artifactId>
+	      <version>${testng.version}</version>
+	      <scope>test</scope>
+	    </dependency>
+	
+	    <dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-test</artifactId>
+	      <scope>test</scope>
+	    </dependency>
+	
+	    <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-test</artifactId>
+	      <scope>test</scope>
+	    </dependency>
+	    
+	    <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
 
-    <!-- Test things -->
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <version>${testng.version}</version>
-      <scope>test</scope>
-    </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-test</artifactId>
-      <scope>test</scope>
-    </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.1.1</version>
+        </dependency>
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <scope>test</scope>
-    </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>1.4.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-pool</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>17.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.16</version>
+        </dependency>
+        
 
   </dependencies>
 
@@ -86,6 +147,17 @@
   </pluginRepositories>
 
   <build>
+  	<resources>
+         <resource>
+             <targetPath>${project.build.directory}/classes</targetPath>
+             <directory>src/main/resources</directory>
+             <filtering>true</filtering>
+             <includes>
+                 <include>*.*</include>
+                 <include>mapper/*.xml</include>
+             </includes>
+         </resource>
+     </resources>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
