@@ -1,7 +1,5 @@
-package com.xkcoding.zookeeper;
+package com.jun.plugin.zookeeper;
 
-import com.xkcoding.zookeeper.annotation.ZooLock;
-import com.xkcoding.zookeeper.aspectj.ZooLockAspect;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
@@ -11,6 +9,9 @@ import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.jun.plugin.zookeeper.annotation.ZooLock;
+import com.jun.plugin.zookeeper.aspectj.ZooLockAspect;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

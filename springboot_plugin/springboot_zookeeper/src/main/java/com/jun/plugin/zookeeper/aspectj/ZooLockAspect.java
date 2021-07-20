@@ -1,10 +1,8 @@
-package com.xkcoding.zookeeper.aspectj;
+package com.jun.plugin.zookeeper.aspectj;
 
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.xkcoding.zookeeper.annotation.LockKeyParam;
-import com.xkcoding.zookeeper.annotation.ZooLock;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
@@ -15,6 +13,9 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.jun.plugin.zookeeper.annotation.LockKeyParam;
+import com.jun.plugin.zookeeper.annotation.ZooLock;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

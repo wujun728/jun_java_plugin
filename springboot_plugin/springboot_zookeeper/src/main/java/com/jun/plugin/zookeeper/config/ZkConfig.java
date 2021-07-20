@@ -1,6 +1,5 @@
-package com.xkcoding.zookeeper.config;
+package com.jun.plugin.zookeeper.config;
 
-import com.xkcoding.zookeeper.config.props.ZkProps;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -9,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.jun.plugin.zookeeper.config.props.ZkProps;
 
 /**
  * <p>

@@ -1,4 +1,4 @@
-package com.xkcoding.zookeeper.annotation;
+package com.jun.plugin.zookeeper.annotation;
 
 import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;

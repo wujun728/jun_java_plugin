@@ -1,4 +1,4 @@
-package com.xkcoding.zookeeper.config.props;
+package com.jun.plugin.zookeeper.config.props;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
