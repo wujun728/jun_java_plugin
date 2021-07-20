@@ -1,4 +1,4 @@
-package com.xkcoding.log.aop.aspectj;
+package com.jun.plugin.log.aop.aspectj;
 
 import cn.hutool.json.JSONUtil;
 import eu.bitwalker.useragentutils.UserAgent;

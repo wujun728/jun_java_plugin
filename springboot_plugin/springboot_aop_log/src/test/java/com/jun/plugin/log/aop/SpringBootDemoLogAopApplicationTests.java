@@ -1,4 +1,4 @@
-package com.xkcoding.log.aop;
+package com.jun.plugin.log.aop;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

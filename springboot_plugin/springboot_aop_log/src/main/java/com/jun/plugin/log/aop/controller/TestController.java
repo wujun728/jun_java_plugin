@@ -1,4 +1,4 @@
-package com.xkcoding.log.aop.controller;
+package com.jun.plugin.log.aop.controller;
 
 import cn.hutool.core.lang.Dict;
 import cn.hutool.core.util.StrUtil;
