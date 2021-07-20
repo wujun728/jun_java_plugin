@@ -7,7 +7,7 @@
 
     <!--aop-->
     <aop:config>
-        <aop:advisor advice-ref="applicationAdvisor" pointcut="execution(* com.monkeyk.sos.service.*.*(..))"/>
+        <aop:advisor advice-ref="applicationAdvisor" pointcut="execution(* com.jun.plugin.oauth.server.service.*.*(..))"/>
     </aop:config>
 
     <!--advisor-->

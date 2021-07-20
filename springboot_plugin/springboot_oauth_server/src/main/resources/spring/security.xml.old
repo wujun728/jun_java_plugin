@@ -83,7 +83,7 @@
 
     <!--</oauth2:client-details-service>-->
 
-    <beans:bean id="clientDetailsService" class="com.monkeyk.sos.domain.oauth.CustomJdbcClientDetailsService">
+    <beans:bean id="clientDetailsService" class="com.jun.plugin.oauth.server.domain.oauth.CustomJdbcClientDetailsService">
         <beans:constructor-arg index="0" ref="dataSource"/>
     </beans:bean>
 
@@ -113,7 +113,7 @@
     </beans:bean>
 
 
-    <beans:bean id="oauthUserApprovalHandler" class="com.monkeyk.sos.web.oauth.OauthUserApprovalHandler">
+    <beans:bean id="oauthUserApprovalHandler" class="com.jun.plugin.oauth.server.web.oauth.OauthUserApprovalHandler">
         <beans:property name="tokenStore" ref="tokenStore"/>
         <beans:property name="clientDetailsService" ref="clientDetailsService"/>
         <beans:property name="requestFactory" ref="oAuth2RequestFactory"/>
