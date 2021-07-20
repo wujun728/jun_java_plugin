@@ -1,10 +1,11 @@
-package com.lxx.springboot.service.impl;
+package com.jun.plugin.springboot.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.lxx.springboot.dao.AccountMapper;
-import com.lxx.springboot.meta.po.Account;
-import com.lxx.springboot.service.IAccountService;
+import com.jun.plugin.springboot.dao.AccountMapper;
+import com.jun.plugin.springboot.meta.po.Account;
+import com.jun.plugin.springboot.service.IAccountService;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

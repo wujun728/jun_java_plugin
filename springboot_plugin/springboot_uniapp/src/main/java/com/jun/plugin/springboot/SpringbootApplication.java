@@ -1,4 +1,4 @@
-package com.lxx.springboot;
+package com.jun.plugin.springboot;
 
 
 import org.springframework.boot.CommandLineRunner;

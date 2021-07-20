@@ -1,10 +1,11 @@
-package com.lxx.springboot.controller;
+package com.jun.plugin.springboot.controller;
 
-import com.lxx.springboot.dao.redis.RedisDao;
-import com.lxx.springboot.meta.po.Account;
-import com.lxx.springboot.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import com.jun.plugin.springboot.dao.redis.RedisDao;
+import com.jun.plugin.springboot.meta.po.Account;
+import com.jun.plugin.springboot.service.IAccountService;
 
 
 /**

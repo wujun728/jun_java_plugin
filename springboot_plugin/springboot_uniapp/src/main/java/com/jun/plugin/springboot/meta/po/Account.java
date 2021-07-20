@@ -1,4 +1,4 @@
-package com.lxx.springboot.meta.po;
+package com.jun.plugin.springboot.meta.po;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.lxx.springboot.config;
+package com.jun.plugin.springboot.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,7 +1,8 @@
-package com.lxx.springboot.dao;
+package com.jun.plugin.springboot.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lxx.springboot.meta.po.Account;
+import com.jun.plugin.springboot.meta.po.Account;
+
 import org.apache.ibatis.annotations.Mapper;
 
 /**

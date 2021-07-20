@@ -1,12 +1,13 @@
-package com.lxx.springboot;
+package com.jun.plugin.springboot;
 
-import com.lxx.springboot.dao.redis.RedisDao;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.jun.plugin.springboot.dao.redis.RedisDao;
 
 @Slf4j
 @RunWith(SpringRunner.class)

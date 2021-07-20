@@ -1,7 +1,8 @@
-package com.lxx.springboot.service;
+package com.jun.plugin.springboot.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lxx.springboot.meta.po.Account;
+import com.jun.plugin.springboot.meta.po.Account;
+
 import java.util.List;
 
 public interface IAccountService extends IService<Account> {
