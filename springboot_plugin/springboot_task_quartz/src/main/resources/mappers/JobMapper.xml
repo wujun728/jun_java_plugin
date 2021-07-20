@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xkcoding.task.quartz.mapper.JobMapper">
+<mapper namespace="com.jun.plugin.task.quartz.mapper.JobMapper">
 
-  <select id="list" resultType="com.xkcoding.task.quartz.entity.domain.JobAndTrigger">
+  <select id="list" resultType="com.jun.plugin.task.quartz.entity.domain.JobAndTrigger">
 	SELECT
 		job_details.`JOB_NAME`,
 		job_details.`JOB_GROUP`,

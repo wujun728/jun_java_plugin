@@ -34,14 +34,14 @@ spring:
       org.quartz.jobStore.acquireTriggersWithinLock: true
 logging:
   level:
-    com.xkcoding: debug
-    com.xkcoding.task.quartz.mapper: trace
+    com.jun.plugin: debug
+    com.jun.plugin.task.quartz.mapper: trace
 mybatis:
   configuration:
     # 下划线转驼峰
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mappers/*.xml
-  type-aliases-package: com.xkcoding.task.quartz.entity
+  type-aliases-package: com.jun.plugin.task.quartz.entity
 mapper:
   mappers:
     - tk.mybatis.mapper.common.Mapper
