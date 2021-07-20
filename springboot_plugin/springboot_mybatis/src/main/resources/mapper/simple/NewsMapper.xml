@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.springboot.mapper.simple.NewsMapper">
+<mapper namespace="com.jun.plugin.mybatis.mapper.simple.NewsMapper">
 
-	<resultMap id="newsMap" type="cn.springboot.model.simple.News">
+	<resultMap id="newsMap" type="com.jun.plugin.mybatis.model.simple.News">
 		<result column="ID" property="id" />
 		<result column="ADDRESS" property="address" />
 		<result column="CREATE_TIME" property="createTime" />
@@ -12,7 +12,7 @@
 		<result column="TITLE" property="title" />
 	</resultMap>
 
-	<insert id="insert" parameterType="cn.springboot.model.simple.News">
+	<insert id="insert" parameterType="com.jun.plugin.mybatis.model.simple.News">
 		INSERT INTO T_NEWS(ID , ADDRESS , CREATE_TIME , DESCRIPTION , NEWS_TIME , TITLE) VALUES(#{id} , #{address} , #{createTime} , #{description} , #{newsTime} , #{title})
 	</insert>
 
@@ -59,7 +59,7 @@
 		order by create_time desc
 	</select>
 
-	<update id="update" parameterType="cn.springboot.model.simple.News">
+	<update id="update" parameterType="com.jun.plugin.mybatis.model.simple.News">
 		UPDATE T_NEWS
 		<set>
 			<if test="address != null and address!='' ">

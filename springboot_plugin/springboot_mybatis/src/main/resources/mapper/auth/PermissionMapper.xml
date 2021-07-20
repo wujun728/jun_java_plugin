@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.springboot.mapper.auth.PermissionMapper">
+<mapper namespace="com.jun.plugin.mybatis.mapper.auth.PermissionMapper">
 
-	<resultMap id="permissionMap" type="cn.springboot.model.auth.Permission">
+	<resultMap id="permissionMap" type="com.jun.plugin.mybatis.model.auth.Permission">
 		<result property="id" column="ID" />
 		<result property="name" column="NAME" />
 		<result property="cssClass" column="CSS_CLASS" />
@@ -15,7 +15,7 @@
 		<result property="parentKey" column="PARENT_KEY" />
 	</resultMap>
 
-	<insert id="insert" parameterType="cn.springboot.model.auth.Permission">
+	<insert id="insert" parameterType="com.jun.plugin.mybatis.model.auth.Permission">
 		INSERT INTO T_SYS_PERMISSION(ID , NAME , CSS_CLASS, SKEY , HIDE , URL, LEV, SORT , PARENT_KEY) 
 		VALUES(#{id} , #{name} , #{cssClass} , #{key} , ${hide} , #{url} , ${lev} , ${sort} , #{parentKey})
 	</insert>
@@ -83,7 +83,7 @@
 		<include refid="where_xxx" />
 	</select>
 
-	<update id="update" parameterType="cn.springboot.model.auth.Permission">
+	<update id="update" parameterType="com.jun.plugin.mybatis.model.auth.Permission">
 		UPDATE T_SYS_PERMISSION
 		<set>
 			<if test="hide != null">

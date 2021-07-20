@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.springboot.mapper.key.KeyMapper">
+<mapper namespace="com.jun.plugin.mybatis.mapper.key.KeyMapper">
 
-	<select id="getTableValues" resultType="cn.springboot.config.table.Key">
+	<select id="getTableValues" resultType="com.jun.plugin.mybatis.config.table.Key">
 		<foreach collection="list" item="item" separator="union all">
 			SELECT max(${item.id}) id, '${item.tableName}' tableName FROM ${item.tableName}
 			<where>
@@ -11,7 +11,7 @@
 		</foreach>
 	</select>
 
-	<select id="getTables" resultType="cn.springboot.config.table.Key">
+	<select id="getTables" resultType="com.jun.plugin.mybatis.config.table.Key">
 		<!-- oracle -->
 		<!-- select cu.column_name id, cu.table_name tableName from user_cons_columns cu, user_constraints au, tabs t where cu.constraint_name = au.constraint_name and au.constraint_type = 'P' and au.table_name = t.table_name -->
 

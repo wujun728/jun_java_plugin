@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.springboot.mapper.auth.RoleMapper">
+<mapper namespace="com.jun.plugin.mybatis.mapper.auth.RoleMapper">
 
-	<resultMap id="roleMap" type="cn.springboot.model.auth.Role">
+	<resultMap id="roleMap" type="com.jun.plugin.mybatis.model.auth.Role">
 		<result property="id" column="ID" />
 		<result property="name" column="NAME" />
 		<result property="code" column="CODE" />
 		<result property="remark" column="REMARK" />
 	</resultMap>
 
-	<insert id="insert" parameterType="cn.springboot.model.auth.Role">
+	<insert id="insert" parameterType="com.jun.plugin.mybatis.model.auth.Role">
 		 <![CDATA[ INSERT INTO T_SYS_ROLE(ID , NAME, CODE , REMARK) VALUES(#{id} , #{name} , #{code} , #{remark} ) ]]>
 	</insert>
 
@@ -70,7 +70,7 @@
 		<include refid="where_xxx" />
 	</select>
 
-	<update id="update" parameterType="cn.springboot.model.auth.Role">
+	<update id="update" parameterType="com.jun.plugin.mybatis.model.auth.Role">
 		UPDATE T_SYS_ROLE
 		<set>
 			<if test="name != null">

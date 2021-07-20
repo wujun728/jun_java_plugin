@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.springboot.mapper.auth.UserRoleMapper">
+<mapper namespace="com.jun.plugin.mybatis.mapper.auth.UserRoleMapper">
 
-	<resultMap id="userRoleMap" type="cn.springboot.model.auth.UserRole">
+	<resultMap id="userRoleMap" type="com.jun.plugin.mybatis.model.auth.UserRole">
 		<result property="id" column="ID" />
 		<result property="userId" column="USER_ID" />
 		<result property="roleId" column="ROLE_ID" />
 	</resultMap>
 	
-	<insert id="insert" parameterType="cn.springboot.model.auth.UserRole">
+	<insert id="insert" parameterType="com.jun.plugin.mybatis.model.auth.UserRole">
 		INSERT INTO T_SYS_USER_ROLE(ID , USER_ID , ROLE_ID) VALUES(#{id} , #{userId} , #{roleId})
 	</insert>
 
@@ -52,7 +52,7 @@
 		<include refid="where_xxx" />
 	</select>
 
-	<update id="update" parameterType="cn.springboot.model.auth.UserRole">
+	<update id="update" parameterType="com.jun.plugin.mybatis.model.auth.UserRole">
 		UPDATE T_SYS_USER_ROLE
 		<set>
 			<if test="userId != null">
