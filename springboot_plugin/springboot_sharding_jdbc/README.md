@@ -32,7 +32,7 @@
   <description>Demo project for Spring Boot</description>
 
   <parent>
-    <groupId>com.xkcoding</groupId>
+    <groupId>com.jun.plugin</groupId>
     <artifactId>spring-boot-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
@@ -100,7 +100,7 @@
 ### 2.2. `CustomSnowflakeKeyGenerator.java`
 
 ```java
-package com.xkcoding.sharding.jdbc.config;
+package com.jun.plugin.sharding.jdbc.config;
 
 import cn.hutool.core.lang.Snowflake;
 import io.shardingsphere.core.keygen.KeyGenerator;
@@ -110,7 +110,7 @@ import io.shardingsphere.core.keygen.KeyGenerator;
  * 自定义雪花算法，替换 DefaultKeyGenerator，避免DefaultKeyGenerator生成的id大几率是偶数
  * </p>
  *
- * @package: com.xkcoding.sharding.jdbc.config
+ * @package: com.jun.plugin.sharding.jdbc.config
  * @description: 自定义雪花算法，替换 DefaultKeyGenerator，避免DefaultKeyGenerator生成的id大几率是偶数
  * @author: yangkai.shen
  * @date: Created in 2019-03-26 17:07
@@ -140,7 +140,7 @@ public class CustomSnowflakeKeyGenerator implements KeyGenerator {
  * sharding-jdbc 的数据源配置
  * </p>
  *
- * @package: com.xkcoding.sharding.jdbc.config
+ * @package: com.jun.plugin.sharding.jdbc.config
  * @description: sharding-jdbc 的数据源配置
  * @author: yangkai.shen
  * @date: Created in 2019-03-26 16:47
@@ -231,7 +231,7 @@ public class DataSourceShardingConfig {
  * 测试sharding-jdbc分库分表
  * </p>
  *
- * @package: com.xkcoding.sharding.jdbc
+ * @package: com.jun.plugin.sharding.jdbc
  * @description: 测试sharding-jdbc分库分表
  * @author: yangkai.shen
  * @date: Created in 2019-03-26 13:44

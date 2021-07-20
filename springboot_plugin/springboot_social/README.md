@@ -261,7 +261,7 @@ $ nginx -s reload
   <description>Demo project for Spring Boot</description>
 
   <parent>
-    <groupId>com.xkcoding</groupId>
+    <groupId>com.jun.plugin</groupId>
     <artifactId>spring-boot-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
@@ -408,7 +408,7 @@ justauth:
  * 第三方登录 Controller
  * </p>
  *
- * @package: com.xkcoding.oauth.controller
+ * @package: com.jun.plugin.oauth.controller
  * @description: 第三方登录 Controller
  * @author: yangkai.shen
  * @date: Created in 2019-05-17 10:07

@@ -20,7 +20,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -84,7 +84,7 @@
  * Swagger2 配置
  * </p>
  *
- * @package: com.xkcoding.swagger.config
+ * @package: com.jun.plugin.swagger.config
  * @description: Swagger2 配置
  * @author: yangkai.shen
  * @date: Created in 2018-11-29 11:14
@@ -100,7 +100,7 @@ public class Swagger2Config {
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.xkcoding.swagger.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.jun.plugin.swagger.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -126,7 +126,7 @@ public class Swagger2Config {
  * User Controller
  * </p>
  *
- * @package: com.xkcoding.swagger.controller
+ * @package: com.jun.plugin.swagger.controller
  * @description: User Controller
  * @author: yangkai.shen
  * @date: Created in 2018-11-29 11:30
@@ -217,7 +217,7 @@ public class UserController {
  * 通用API接口返回
  * </p>
  *
- * @package: com.xkcoding.swagger.common
+ * @package: com.jun.plugin.swagger.common
  * @description: 通用API接口返回
  * @author: yangkai.shen
  * @date: Created in 2018-11-29 11:30

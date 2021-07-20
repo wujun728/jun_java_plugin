@@ -24,7 +24,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -131,7 +131,7 @@ spring:
  * 通用API接口返回
  * </p>
  *
- * @package: com.xkcoding.swagger.beauty.common
+ * @package: com.jun.plugin.swagger.beauty.common
  * @description: 通用API接口返回
  * @author: yangkai.shen
  * @date: Created in 2018-11-28 14:18
@@ -172,7 +172,7 @@ public class ApiResponse<T> implements Serializable {
  * 用户实体
  * </p>
  *
- * @package: com.xkcoding.swagger.beauty.entity
+ * @package: com.jun.plugin.swagger.beauty.entity
  * @description: 用户实体
  * @author: yangkai.shen
  * @date: Created in 2018-11-28 14:13
@@ -212,7 +212,7 @@ public class User implements Serializable {
  * User Controller
  * </p>
  *
- * @package: com.xkcoding.swagger.beauty.controller
+ * @package: com.jun.plugin.swagger.beauty.controller
  * @description: User Controller
  * @author: yangkai.shen
  * @date: Created in 2018-11-28 14:25
