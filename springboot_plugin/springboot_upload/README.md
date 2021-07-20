@@ -18,7 +18,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -85,7 +85,7 @@
  * 上传配置
  * </p>
  *
- * @package: com.xkcoding.upload.config
+ * @package: com.jun.plugin.upload.config
  * @description: 上传配置
  * @author: yangkai.shen
  * @date: Created in 2018/10/23 14:09
@@ -173,7 +173,7 @@ public class UploadConfig {
  * 文件上传 Controller
  * </p>
  *
- * @package: com.xkcoding.upload.controller
+ * @package: com.jun.plugin.upload.controller
  * @description: 文件上传 Controller
  * @author: yangkai.shen
  * @date: Created in 2018/11/6 16:33
@@ -261,7 +261,7 @@ public class UploadController {
  * 七牛云上传Service
  * </p>
  *
- * @package: com.xkcoding.upload.service.impl
+ * @package: com.jun.plugin.upload.service.impl
  * @description: 七牛云上传Service
  * @author: yangkai.shen
  * @date: Created in 2018/11/6 17:22

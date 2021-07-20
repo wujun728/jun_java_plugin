@@ -19,7 +19,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin.springboot</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -71,7 +71,7 @@
  * 启动器
  * </p>
  *
- * @package: com.xkcoding.war
+ * @package: com.jun.plugin.springboot.war
  * @description: 启动器
  * @author: shenyangkai
  * @date: Created in 2018/10/30 19:37
