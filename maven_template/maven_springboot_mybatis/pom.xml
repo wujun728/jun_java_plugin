@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.jun.plugin</groupId>
-	<artifactId>springboot_mybatis</artifactId>
+	<artifactId>maven_springboot_jpa_jsp</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
