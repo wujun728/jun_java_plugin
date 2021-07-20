@@ -4,7 +4,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/springboot?useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: Zzerp123
+    password: 
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 5
@@ -43,7 +43,7 @@ server:
       max-swallow-size: -1
   servlet:
   #    context-path:
-    context-path: /zhaodui
+    context-path: /test
     compression:
       enabled: true
       min-response-size: 1024

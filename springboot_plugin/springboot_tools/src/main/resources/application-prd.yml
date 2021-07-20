@@ -40,7 +40,7 @@ server:
       max-swallow-size: -1
   servlet:
   #    context-path:
-    context-path: /zhaodui
+    context-path: /test
     compression:
       enabled: true
       min-response-size: 1024

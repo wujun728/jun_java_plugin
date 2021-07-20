@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zhaodui.springboot.system.mapper.SysUserMapper">
-  <resultMap id="BaseResultMap" type="com.zhaodui.springboot.system.model.SysUser">
+<mapper namespace="com.jun.plugin.springboot.tools.system.mapper.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.jun.plugin.springboot.tools.system.model.SysUser">
     <!--
       WARNING - @mbg.generated
     -->
@@ -30,12 +30,12 @@
 
 
   <!-- 根据用户名查询 -->
-  <select id="getUserByName" resultType="com.zhaodui.springboot.system.model.SysUser">
+  <select id="getUserByName" resultType="com.jun.plugin.springboot.tools.system.model.SysUser">
 		select * from  sys_user  where username = #{username} and del_flag = '0'
 	</select>
 
   <!-- 根据部门Id查询 -->
-  <select id="getUserByDepId" resultType="com.zhaodui.springboot.system.model.SysUser">
+  <select id="getUserByDepId" resultType="com.jun.plugin.springboot.tools.system.model.SysUser">
     select * from sys_user where del_flag = '0' and id in (select user_id from sys_user_depart where dep_id=#{departId})
     <if test="username!=null and username!=''">
       and username = #{username}
@@ -43,7 +43,7 @@
   </select>
 
   <!-- 根据角色Id查询 -->
-  <select id="getUserByRoleId" resultType="com.zhaodui.springboot.system.model.SysUser">
+  <select id="getUserByRoleId" resultType="com.jun.plugin.springboot.tools.system.model.SysUser">
     select * from sys_user where del_flag = '0' and id in (select user_id from sys_user_role where role_id=#{roleId})
     <if test="username!=null and username!=''">
       and username = #{username}
@@ -56,12 +56,12 @@
 	</update>
 
   <!-- 根据手机号查询 -->
-  <select id="getUserByPhone"  resultType="com.zhaodui.springboot.system.model.SysUser">
+  <select id="getUserByPhone"  resultType="com.jun.plugin.springboot.tools.system.model.SysUser">
 		select * from  sys_user  where phone = #{phone} and del_flag = '0'
 	</select>
 
   <!-- 根据邮箱查询用户信息 -->
-  <select id="getUserByEmail" resultType="com.zhaodui.springboot.system.model.SysUser">
+  <select id="getUserByEmail" resultType="com.jun.plugin.springboot.tools.system.model.SysUser">
 	select * from  sys_user  where email = #{email} and del_flag = '0'
 	</select>
 
@@ -87,7 +87,7 @@
   </sql>
 
   <!-- 根据 orgCode 查询用户，包括子部门下的用户 -->
-  <select id="getUserByOrgCode" resultType="com.zhaodui.springboot.system.model.SysUserSysDepartModel">
+  <select id="getUserByOrgCode" resultType="com.jun.plugin.springboot.tools.system.model.SysUserSysDepartModel">
     SELECT
     sys_user.id AS "sys_user.id",
     sys_user.realname AS "sys_user.realname",
