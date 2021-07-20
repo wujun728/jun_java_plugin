@@ -1,7 +1,0 @@
-.project
-.metadata/
-.settings/
-.classpath
-*.log 
-/target/
-src/main/resources/myself

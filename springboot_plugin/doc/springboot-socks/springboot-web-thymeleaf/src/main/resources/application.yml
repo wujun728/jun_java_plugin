@@ -1,4 +1,0 @@
-spring:
-  thymeleaf:
-    cache: false #关闭缓存
-    prefix: classpath:/views/ #添加路径前缀
