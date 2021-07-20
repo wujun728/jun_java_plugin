@@ -15,4 +15,4 @@ spring:
       mp-enabled: true
 logging:
   level:
-    com.xkcoding.multi.datasource.mybatis: debug
+    com.jun.plugin.multi.datasource.mybatis: debug
