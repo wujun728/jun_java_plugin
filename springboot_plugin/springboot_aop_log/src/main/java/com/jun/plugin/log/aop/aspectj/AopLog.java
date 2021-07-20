@@ -14,19 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.Objects;
 
-/**
- * <p>
- * 使用 aop 切面记录请求日志信息
- * </p>
- *
- * @package: com.xkcoding.log.aop.aspectj
- * @description: 使用 aop 切面记录请求日志信息
- * @author: yangkai.shen
- * @date: Created in 2018/10/1 10:05 PM
- * @copyright: Copyright (c) 2018
- * @version: V1.0
- * @modified: yangkai.shen
- */
 @Aspect
 @Component
 @Slf4j
@@ -36,7 +23,7 @@ public class AopLog {
 	/**
 	 * 切入点
 	 */
-	@Pointcut("execution(public * com.xkcoding.log.aop.controller.*Controller.*(..))")
+	@Pointcut("execution(public * com.jun.plugin.log.aop.controller.*Controller.*(..))")
 	public void log() {
 
 	}

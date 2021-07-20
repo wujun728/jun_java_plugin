@@ -24,4 +24,5 @@ spring:
       log-container-config: false
       concurrency: 5
       # 手动提交
-      ack-mode: manual_immediate
+      ack-mode: manual-immediate
+#      ack-mode: manual_immediate
