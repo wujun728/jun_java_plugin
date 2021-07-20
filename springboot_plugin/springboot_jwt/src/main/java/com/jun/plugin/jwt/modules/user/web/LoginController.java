@@ -1,4 +1,4 @@
-package com.itstyle.jwt.modules.user.web;
+package com.jun.plugin.jwt.modules.user.web;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.itstyle.jwt.common.constant.SystemConstant;
-import com.itstyle.jwt.common.entity.R;
-import com.itstyle.jwt.common.util.JwtUtils;
-import com.itstyle.jwt.modules.user.model.User;
-import com.itstyle.jwt.modules.user.repository.UserRepository;
+import com.jun.plugin.jwt.common.constant.SystemConstant;
+import com.jun.plugin.jwt.common.entity.R;
+import com.jun.plugin.jwt.common.util.JwtUtils;
+import com.jun.plugin.jwt.modules.user.model.User;
+import com.jun.plugin.jwt.modules.user.repository.UserRepository;
 
 @Api(tags ="用户管理")
 @RestController

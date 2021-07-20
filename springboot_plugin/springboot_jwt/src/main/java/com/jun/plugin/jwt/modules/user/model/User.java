@@ -1,4 +1,4 @@
-package com.itstyle.jwt.modules.user.model;
+package com.jun.plugin.jwt.modules.user.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

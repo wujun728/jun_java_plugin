@@ -1,4 +1,4 @@
-package com.itstyle.jwt.common.entity;
+package com.jun.plugin.jwt.common.entity;
 
 import io.jsonwebtoken.Claims;
 /**

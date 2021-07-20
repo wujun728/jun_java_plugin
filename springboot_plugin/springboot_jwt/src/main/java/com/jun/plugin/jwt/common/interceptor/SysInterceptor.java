@@ -1,4 +1,4 @@
-package com.itstyle.jwt.common.interceptor;
+package com.jun.plugin.jwt.common.interceptor;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -14,10 +14,10 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itstyle.jwt.common.constant.SystemConstant;
-import com.itstyle.jwt.common.entity.CheckResult;
-import com.itstyle.jwt.common.entity.R;
-import com.itstyle.jwt.common.util.JwtUtils;
+import com.jun.plugin.jwt.common.constant.SystemConstant;
+import com.jun.plugin.jwt.common.entity.CheckResult;
+import com.jun.plugin.jwt.common.entity.R;
+import com.jun.plugin.jwt.common.util.JwtUtils;
 /**
  * 拦截器 用户权限校验
  * 创建者   科帮网 

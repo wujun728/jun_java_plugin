@@ -1,6 +1,7 @@
-package com.itstyle.jwt.modules.user.repository;
+package com.jun.plugin.jwt.modules.user.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.itstyle.jwt.modules.user.model.User;
+
+import com.jun.plugin.jwt.modules.user.model.User;
 /**
  * 用户管理
  * 创建者 小柒2012

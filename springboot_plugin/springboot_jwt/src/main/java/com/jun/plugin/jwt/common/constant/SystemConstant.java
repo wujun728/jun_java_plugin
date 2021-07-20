@@ -1,4 +1,4 @@
-package com.itstyle.jwt.common.constant;
+package com.jun.plugin.jwt.common.constant;
 /**
  * 系统级静态变量
  * 创建者 科帮网 

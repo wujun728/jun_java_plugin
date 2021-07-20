@@ -1,4 +1,4 @@
-package com.itstyle.jwt.common.api;
+package com.jun.plugin.jwt.common.api;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.itstyle.jwt.common.util;
+package com.jun.plugin.jwt.common.util;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtBuilder;
@@ -13,8 +13,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.bouncycastle.util.encoders.Base64;
 
-import com.itstyle.jwt.common.constant.SystemConstant;
-import com.itstyle.jwt.common.entity.CheckResult;
+import com.jun.plugin.jwt.common.constant.SystemConstant;
+import com.jun.plugin.jwt.common.entity.CheckResult;
 /**
  * jwt加密和解密的工具类 
  * 创建者 科帮网 
