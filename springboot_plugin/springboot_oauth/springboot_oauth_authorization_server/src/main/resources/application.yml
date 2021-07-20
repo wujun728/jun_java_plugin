@@ -5,13 +5,13 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/oauth?allowPublicKeyRetrieval=true
     username: root
-    password: 123456
+    password: 
     hikari:
       data-source-properties:
-        useSSL: false
-        serverTimezone: GMT+8
-        useUnicode: true
-        characterEncoding: utf8
+#        useSSL: false
+#        serverTimezone: GMT+8
+#        useUnicode: true
+#        characterEncoding: utf8
   jpa:
     hibernate:
       ddl-auto: update
