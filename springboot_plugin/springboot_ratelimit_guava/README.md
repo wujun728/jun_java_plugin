@@ -20,7 +20,7 @@
   <description>Demo project for Spring Boot</description>
 
   <parent>
-    <groupId>com.xkcoding</groupId>
+    <groupId>com.jun.plugin</groupId>
     <artifactId>spring-boot-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
@@ -137,7 +137,7 @@ public @interface RateLimiter {
 public class RateLimiterAspect {
     private static final ConcurrentMap<String, com.google.common.util.concurrent.RateLimiter> RATE_LIMITER_CACHE = new ConcurrentHashMap<>();
 
-    @Pointcut("@annotation(com.xkcoding.ratelimit.guava.annotation.RateLimiter)")
+    @Pointcut("@annotation(com.jun.plugin.ratelimit.guava.annotation.RateLimiter)")
     public void rateLimit() {
 
     }

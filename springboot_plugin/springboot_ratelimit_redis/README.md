@@ -20,7 +20,7 @@
   <description>Demo project for Spring Boot</description>
 
   <parent>
-    <groupId>com.xkcoding</groupId>
+    <groupId>com.jun.plugin</groupId>
     <artifactId>spring-boot-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
@@ -150,7 +150,7 @@ public class RateLimiterAspect {
     private final StringRedisTemplate stringRedisTemplate;
     private final RedisScript<Long> limitRedisScript;
 
-    @Pointcut("@annotation(com.xkcoding.ratelimit.redis.annotation.RateLimiter)")
+    @Pointcut("@annotation(com.jun.plugin.ratelimit.redis.annotation.RateLimiter)")
     public void rateLimit() {
 
     }

@@ -49,7 +49,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -146,7 +146,7 @@
  * JWT 工具类
  * </p>
  *
- * @package: com.xkcoding.rbac.security.util
+ * @package: com.jun.plugin.rbac.security.util
  * @description: JWT 工具类
  * @author: yangkai.shen
  * @date: Created in 2018-12-07 13:42
@@ -306,7 +306,7 @@ public class JwtUtil {
  * Security 配置
  * </p>
  *
- * @package: com.xkcoding.rbac.security.config
+ * @package: com.jun.plugin.rbac.security.config
  * @description: Security 配置
  * @author: yangkai.shen
  * @date: Created in 2018-12-07 16:46
@@ -471,7 +471,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
  * 动态路由认证
  * </p>
  *
- * @package: com.xkcoding.rbac.security.config
+ * @package: com.jun.plugin.rbac.security.config
  * @description: 动态路由认证
  * @author: yangkai.shen
  * @date: Created in 2018-12-10 17:17
@@ -601,7 +601,7 @@ public class RbacAuthorityService {
  * Jwt 认证过滤器
  * </p>
  *
- * @package: com.xkcoding.rbac.security.config
+ * @package: com.jun.plugin.rbac.security.config
  * @description: Jwt 认证过滤器
  * @author: yangkai.shen
  * @date: Created in 2018-12-10 15:15
@@ -732,7 +732,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
  * 自定义UserDetails查询
  * </p>
  *
- * @package: com.xkcoding.rbac.security.service
+ * @package: com.jun.plugin.rbac.security.service
  * @description: 自定义UserDetails查询
  * @author: yangkai.shen
  * @date: Created in 2018-12-10 10:29
@@ -775,7 +775,7 @@ public class CustomUserDetailsService implements UserDetailsService {
  * Redis工具类
  * </p>
  *
- * @package: com.xkcoding.rbac.security.util
+ * @package: com.jun.plugin.rbac.security.util
  * @description: Redis工具类
  * @author: yangkai.shen
  * @date: Created in 2018-12-11 20:24
@@ -835,16 +835,16 @@ public class RedisUtil {
 > 监控服务，主要功能：查询当前在线人数分页列表，手动踢出某个用户
 
 ```java
-package com.xkcoding.rbac.security.service;
+package com.jun.plugin.rbac.security.service;
 
 import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.Lists;
-import com.xkcoding.rbac.security.common.Consts;
-import com.xkcoding.rbac.security.common.PageResult;
-import com.xkcoding.rbac.security.model.User;
-import com.xkcoding.rbac.security.repository.UserDao;
-import com.xkcoding.rbac.security.util.RedisUtil;
-import com.xkcoding.rbac.security.vo.OnlineUser;
+import com.jun.plugin.rbac.security.common.Consts;
+import com.jun.plugin.rbac.security.common.PageResult;
+import com.jun.plugin.rbac.security.model.User;
+import com.jun.plugin.rbac.security.repository.UserDao;
+import com.jun.plugin.rbac.security.util.RedisUtil;
+import com.jun.plugin.rbac.security.vo.OnlineUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -856,7 +856,7 @@ import java.util.stream.Collectors;
  * 监控 Service
  * </p>
  *
- * @package: com.xkcoding.rbac.security.service
+ * @package: com.jun.plugin.rbac.security.service
  * @description: 监控 Service
  * @author: yangkai.shen
  * @date: Created in 2018-12-12 00:55
