@@ -18,7 +18,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
-		<groupId>com.xkcoding</groupId>
+		<groupId>com.jun.plugin</groupId>
 		<artifactId>spring-boot-demo</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
@@ -81,7 +81,7 @@
  * Enjoy 模板配置类
  * </p>
  *
- * @package: com.xkcoding.template.enjoy.config
+ * @package: com.jun.plugin.template.enjoy.config
  * @description: Enjoy 模板配置类
  * @author: yangkai.shen
  * @date: Created in 2018/10/11 2:06 PM
@@ -119,7 +119,7 @@ public class EnjoyConfig {
  * 主页
  * </p>
  *
- * @package: com.xkcoding.template.enjoy.controller
+ * @package: com.jun.plugin.template.enjoy.controller
  * @description: 主页
  * @author: yangkai.shen
  * @date: Created in 2018/10/11 2:22 PM
@@ -156,7 +156,7 @@ public class IndexController {
  * 用户页面
  * </p>
  *
- * @package: com.xkcoding.template.enjoy.controller
+ * @package: com.jun.plugin.template.enjoy.controller
  * @description: 用户页面
  * @author: yangkai.shen
  * @date: Created in 2018/10/11 2:24 PM

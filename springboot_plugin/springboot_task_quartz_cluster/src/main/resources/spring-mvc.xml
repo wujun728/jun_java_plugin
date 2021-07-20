@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <context:component-scan base-package="net.aimeizi.quartz.*"/>
+    <context:component-scan base-package="com.jun.plugin.quartz.*"/>
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="order" value="1"/>
         <property name="ignoreAcceptHeader" value="true"/>

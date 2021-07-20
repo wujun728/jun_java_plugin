@@ -18,7 +18,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
-		<groupId>com.xkcoding</groupId>
+		<groupId>com.jun.plugin</groupId>
 		<artifactId>spring-boot-demo</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
@@ -81,7 +81,7 @@
  * 主页
  * </p>
  *
- * @package: com.xkcoding.template.beetl.controller
+ * @package: com.jun.plugin.template.beetl.controller
  * @description: 主页
  * @author: yangkai.shen
  * @date: Created in 2018/10/10 11:17 AM
@@ -118,7 +118,7 @@ public class IndexController {
  * 用户页面
  * </p>
  *
- * @package: com.xkcoding.template.beetl.controller
+ * @package: com.jun.plugin.template.beetl.controller
  * @description: 用户页面
  * @author: yangkai.shen
  * @date: Created in 2018/10/10 11:17 AM
