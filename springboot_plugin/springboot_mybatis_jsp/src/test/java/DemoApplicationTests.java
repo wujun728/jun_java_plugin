@@ -1,10 +1,12 @@
-import cn.kiwipeach.mapper.business.EmployMapper;
-import cn.kiwipeach.model.business.Employ;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.jun.plugin.mybatis.RunApplication;
+import com.jun.plugin.mybatis.mapper.business.EmployMapper;
+import com.jun.plugin.mybatis.model.business.Employ;
 
 import javax.sql.DataSource;
 import java.math.BigDecimal;

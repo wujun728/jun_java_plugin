@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.kiwipeach.model.business.DepartmentMapper">
-  <resultMap id="BaseResultMap" type="cn.kiwipeach.model.business.Department">
+<mapper namespace="com.jun.plugin.mybatis.model.business.DepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.jun.plugin.mybatis.model.business.Department">
     <id column="DEPTNO" jdbcType="DECIMAL" property="deptno" />
     <result column="DNAME" jdbcType="VARCHAR" property="dname" />
     <result column="LOC" jdbcType="VARCHAR" property="loc" />
@@ -19,13 +19,13 @@
     delete from DEPT
     where DEPTNO = #{deptno,jdbcType=DECIMAL}
   </delete>
-  <insert id="insert" parameterType="cn.kiwipeach.model.business.Department">
+  <insert id="insert" parameterType="com.jun.plugin.mybatis.model.business.Department">
     insert into DEPT (DEPTNO, DNAME, LOC
       )
     values (#{deptno,jdbcType=DECIMAL}, #{dname,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.kiwipeach.model.business.Department">
+  <insert id="insertSelective" parameterType="com.jun.plugin.mybatis.model.business.Department">
     insert into DEPT
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="deptno != null">
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.kiwipeach.model.business.Department">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jun.plugin.mybatis.model.business.Department">
     update DEPT
     <set>
       <if test="dname != null">
@@ -62,7 +62,7 @@
     </set>
     where DEPTNO = #{deptno,jdbcType=DECIMAL}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.kiwipeach.model.business.Department">
+  <update id="updateByPrimaryKey" parameterType="com.jun.plugin.mybatis.model.business.Department">
     update DEPT
     set DNAME = #{dname,jdbcType=VARCHAR},
       LOC = #{loc,jdbcType=VARCHAR}

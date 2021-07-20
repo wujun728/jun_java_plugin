@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.kiwipeach.mapper.business.EmployMapper">
-  <resultMap id="BaseResultMap" type="cn.kiwipeach.model.business.Employ">
+<mapper namespace="com.jun.plugin.mybatis.mapper.business.EmployMapper">
+  <resultMap id="BaseResultMap" type="com.jun.plugin.mybatis.model.business.Employ">
     <id column="EMPNO" jdbcType="DECIMAL" property="empno" />
     <result column="ENAME" jdbcType="VARCHAR" property="ename" />
     <result column="JOB" jdbcType="VARCHAR" property="job" />
@@ -24,7 +24,7 @@
     delete from EMP
     where EMPNO = #{empno,jdbcType=DECIMAL}
   </delete>
-  <insert id="insert" parameterType="cn.kiwipeach.model.business.Employ">
+  <insert id="insert" parameterType="com.jun.plugin.mybatis.model.business.Employ">
     insert into EMP (EMPNO, ENAME, JOB, 
       MGR, HIREDATE, SAL, 
       COMM, DEPTNO)
@@ -32,7 +32,7 @@
       #{mgr,jdbcType=DECIMAL}, #{hiredate,jdbcType=TIMESTAMP}, #{sal,jdbcType=DECIMAL}, 
       #{comm,jdbcType=DECIMAL}, #{deptno,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="cn.kiwipeach.model.business.Employ">
+  <insert id="insertSelective" parameterType="com.jun.plugin.mybatis.model.business.Employ">
     insert into EMP
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="empno != null">
@@ -87,7 +87,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.kiwipeach.model.business.Employ">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jun.plugin.mybatis.model.business.Employ">
     update EMP
     <set>
       <if test="ename != null">
@@ -114,7 +114,7 @@
     </set>
     where EMPNO = #{empno,jdbcType=DECIMAL}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.kiwipeach.model.business.Employ">
+  <update id="updateByPrimaryKey" parameterType="com.jun.plugin.mybatis.model.business.Employ">
     update EMP
     set ENAME = #{ename,jdbcType=VARCHAR},
       JOB = #{job,jdbcType=VARCHAR},
