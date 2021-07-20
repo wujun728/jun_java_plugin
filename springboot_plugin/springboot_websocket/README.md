@@ -19,7 +19,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -92,7 +92,7 @@
  * WebSocket配置
  * </p>
  *
- * @package: com.xkcoding.websocket.config
+ * @package: com.jun.plugin.websocket.config
  * @description: WebSocket配置
  * @author: yangkai.shen
  * @date: Created in 2018-12-14 15:58
@@ -125,7 +125,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 ### 1.3. 服务器相关实体
 
-> 此部分实体 参见包路径 [com.xkcoding.websocket.model](./src/main/java/com/xkcoding/websocket/model)
+> 此部分实体 参见包路径 [com.jun.plugin.websocket.model](./src/main/java/com/xkcoding/websocket/model)
 
 ### 1.4. ServerTask.java
 
@@ -135,7 +135,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
  * 服务器定时推送任务
  * </p>
  *
- * @package: com.xkcoding.websocket.task
+ * @package: com.jun.plugin.websocket.task
  * @description: 服务器定时推送任务
  * @author: yangkai.shen
  * @date: Created in 2018-12-14 16:04

@@ -1,8 +1,0 @@
-rate: 5000           #每隔多少秒检测一次 accesstoken 是否过期 ，单位毫秒
-flushTime: 200000   #Accesstoken 过期前多长时间刷新，单位毫秒，200000标示过期前200秒进行刷新
-
-
-#tomcat 配置
-server:
-  port: 8999   
-  sessionTimeout: 1

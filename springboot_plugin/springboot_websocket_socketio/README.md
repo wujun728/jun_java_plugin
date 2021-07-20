@@ -20,7 +20,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -91,7 +91,7 @@
  * websocket服务器配置
  * </p>
  *
- * @package: com.xkcoding.websocket.socketio.config
+ * @package: com.jun.plugin.websocket.socketio.config
  * @description: websocket服务器配置
  * @author: yangkai.shen
  * @date: Created in 2018-12-18 16:42
@@ -142,7 +142,7 @@ public class ServerConfig {
  * 消息事件处理
  * </p>
  *
- * @package: com.xkcoding.websocket.socketio.handler
+ * @package: com.jun.plugin.websocket.socketio.handler
  * @description: 消息事件处理
  * @author: yangkai.shen
  * @date: Created in 2018-12-18 18:57
@@ -286,7 +286,7 @@ public class MessageEventHandler {
  * websocket服务器启动
  * </p>
  *
- * @package: com.xkcoding.websocket.socketio.init
+ * @package: com.jun.plugin.websocket.socketio.init
  * @description: websocket服务器启动
  * @author: yangkai.shen
  * @date: Created in 2018-12-18 17:07
