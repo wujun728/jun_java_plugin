@@ -17,7 +17,7 @@
    <description>Demo project for Spring Boot</description>
 
    <parent>
-      <groupId>com.xkcoding</groupId>
+      <groupId>com.jun.plugin</groupId>
       <artifactId>spring-boot-demo</artifactId>
       <version>1.0.0-SNAPSHOT</version>
    </parent>
@@ -83,7 +83,7 @@
  * Dao基类
  * </p>
  *
- * @package: com.xkcoding.orm.jdbctemplate.dao.base
+ * @package: com.jun.plugin.orm.jdbctemplate.dao.base
  * @description: Dao基类
  * @author: yangkai.shen
  * @date: Created in 2018/10/15 11:28 AM
@@ -324,7 +324,7 @@ spring:
       connection-timeout: 30000
 logging:
   level:
-    com.xkcoding: debug
+    com.jun.plugin: debug
 ```
 
 ## 备注

@@ -18,7 +18,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -118,15 +118,15 @@ spring:
 #      connection-timeout: 30000
 logging:
   level:
-    com.xkcoding: debug
-    com.xkcoding.orm.beetlsql: trace
+    com.jun.plugin: debug
+    com.jun.plugin.orm.beetlsql: trace
 beetl:
   enabled: false
 beetlsql:
   enabled: true
   sqlPath: /sql
   daoSuffix: Dao
-  basePackage: com.xkcoding.orm.beetlsql.dao
+  basePackage: com.jun.plugin.orm.beetlsql.dao
   dbStyle: org.beetl.sql.core.db.MySqlStyle
   nameConversion: org.beetl.sql.core.UnderlinedNameConversion
 beet-beetlsql:
@@ -141,7 +141,7 @@ beet-beetlsql:
  * Beetl数据源配置
  * </p>
  *
- * @package: com.xkcoding.orm.beetlsql.config
+ * @package: com.jun.plugin.orm.beetlsql.config
  * @description: Beetl数据源配置
  * @author: yangkai.shen
  * @date: Created in 2018/11/14 17:15
@@ -175,7 +175,7 @@ public class BeetlConfig {
  * UserDao
  * </p>
  *
- * @package: com.xkcoding.orm.beetlsql.dao
+ * @package: com.jun.plugin.orm.beetlsql.dao
  * @description: UserDao
  * @author: yangkai.shen
  * @date: Created in 2018/11/14 16:18
@@ -197,7 +197,7 @@ public interface UserDao extends BaseMapper<User> {
  * User Service
  * </p>
  *
- * @package: com.xkcoding.orm.beetlsql.service.impl
+ * @package: com.jun.plugin.orm.beetlsql.service.impl
  * @description: User Service
  * @author: yangkai.shen
  * @date: Created in 2018/11/14 16:28
@@ -305,7 +305,7 @@ public class UserServiceImpl implements UserService {
  * User Service测试
  * </p>
  *
- * @package: com.xkcoding.orm.beetlsql.service
+ * @package: com.jun.plugin.orm.beetlsql.service
  * @description: User Service测试
  * @author: yangkai.shen
  * @date: Created in 2018/11/14 16:30

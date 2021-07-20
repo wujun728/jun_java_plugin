@@ -18,7 +18,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -86,7 +86,7 @@
  * 启动类
  * </p>
  *
- * @package: com.xkcoding.orm.mybatis
+ * @package: com.jun.plugin.orm.mybatis
  * @description: 启动类
  * @author: yangkai.shen
  * @date: Created in 2018/11/8 10:52
@@ -94,7 +94,7 @@
  * @version: V1.0
  * @modified: yangkai.shen
  */
-@MapperScan(basePackages = {"com.xkcoding.orm.mybatis.mapper"})
+@MapperScan(basePackages = {"com.jun.plugin.orm.mybatis.mapper"})
 @SpringBootApplication
 public class SpringBootDemoOrmMybatisApplication {
 
@@ -131,14 +131,14 @@ spring:
       connection-timeout: 30000
 logging:
   level:
-    com.xkcoding: debug
-    com.xkcoding.orm.mybatis.mapper: trace
+    com.jun.plugin: debug
+    com.jun.plugin.orm.mybatis.mapper: trace
 mybatis:
   configuration:
     # 下划线转驼峰
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mappers/*.xml
-  type-aliases-package: com.xkcoding.orm.mybatis.entity
+  type-aliases-package: com.jun.plugin.orm.mybatis.entity
 ```
 
 ## UserMapper.java
@@ -149,7 +149,7 @@ mybatis:
  * User Mapper
  * </p>
  *
- * @package: com.xkcoding.orm.mybatis.mapper
+ * @package: com.jun.plugin.orm.mybatis.mapper
  * @description: User Mapper
  * @author: yangkai.shen
  * @date: Created in 2018/11/8 10:54
@@ -202,7 +202,7 @@ public interface UserMapper {
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xkcoding.orm.mybatis.mapper.UserMapper">
+<mapper namespace="com.jun.plugin.orm.mybatis.mapper.UserMapper">
 
     <insert id="saveUser">
         INSERT INTO `orm_user` (`name`,
@@ -241,7 +241,7 @@ public interface UserMapper {
  * UserMapper 测试类
  * </p>
  *
- * @package: com.xkcoding.orm.mybatis.mapper
+ * @package: com.jun.plugin.orm.mybatis.mapper
  * @description: UserMapper 测试类
  * @author: yangkai.shen
  * @date: Created in 2018/11/8 11:25

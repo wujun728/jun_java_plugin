@@ -26,4 +26,4 @@ spring:
       connection-timeout: 30000
 logging:
   level:
-    com.xkcoding: debug
+    com.jun.plugin: debug

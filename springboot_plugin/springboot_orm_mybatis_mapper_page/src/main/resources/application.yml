@@ -22,14 +22,14 @@ spring:
       connection-timeout: 30000
 logging:
   level:
-    com.xkcoding: debug
-    com.xkcoding.orm.mybatis.MapperAndPage.mapper: trace
+    com.jun.plugin: debug
+    com.jun.plugin.orm.mybatis.MapperAndPage.mapper: trace
 mybatis:
   configuration:
     # 下划线转驼峰
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mappers/*.xml
-  type-aliases-package: com.xkcoding.orm.mybatis.MapperAndPage.entity
+  type-aliases-package: com.jun.plugin.orm.mybatis.MapperAndPage.entity
 mapper:
   mappers:
   - tk.mybatis.mapper.common.Mapper

@@ -20,7 +20,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -93,7 +93,7 @@
  * mybatis-plus 配置
  * </p>
  *
- * @package: com.xkcoding.orm.mybatis.plus.config
+ * @package: com.jun.plugin.orm.mybatis.plus.config
  * @description: mybatis-plus 配置
  * @author: yangkai.shen
  * @date: Created in 2018/11/8 17:29
@@ -102,7 +102,7 @@
  * @modified: yangkai.shen
  */
 @Configuration
-@MapperScan(basePackages = {"com.xkcoding.orm.mybatis.plus.mapper"})
+@MapperScan(basePackages = {"com.jun.plugin.orm.mybatis.plus.mapper"})
 @EnableTransactionManagement
 public class MybatisPlusConfig {
     /**
@@ -126,7 +126,7 @@ public class MybatisPlusConfig {
 ## CommonFieldHandler.java
 
 ```java
-package com.xkcoding.orm.mybatis.plus.config;
+package com.jun.plugin.orm.mybatis.plus.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -140,7 +140,7 @@ import java.util.Date;
  * 通用字段填充
  * </p>
  *
- * @package: com.xkcoding.orm.mybatis.plus.config
+ * @package: com.jun.plugin.orm.mybatis.plus.config
  * @description: 通用字段填充
  * @author: yangkai.shen
  * @date: Created in 2018/11/8 17:40
@@ -194,12 +194,12 @@ spring:
       connection-timeout: 30000
 logging:
   level:
-    com.xkcoding: debug
-    com.xkcoding.orm.mybatis.plus.mapper: trace
+    com.jun.plugin: debug
+    com.jun.plugin.orm.mybatis.plus.mapper: trace
 mybatis-plus:
   mapper-locations: classpath:mappers/*.xml
   #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.xkcoding.orm.mybatis.plus.entity
+  typeAliasesPackage: com.jun.plugin.orm.mybatis.plus.entity
   global-config:
     # 数据库相关配置
     db-config:
@@ -231,7 +231,7 @@ mybatis-plus:
  * UserMapper
  * </p>
  *
- * @package: com.xkcoding.orm.mybatis.plus.mapper
+ * @package: com.jun.plugin.orm.mybatis.plus.mapper
  * @description: UserMapper
  * @author: yangkai.shen
  * @date: Created in 2018/11/8 16:57
@@ -252,7 +252,7 @@ public interface UserMapper extends BaseMapper<User> {
  * User Service
  * </p>
  *
- * @package: com.xkcoding.orm.mybatis.plus.service
+ * @package: com.jun.plugin.orm.mybatis.plus.service
  * @description: User Service
  * @author: yangkai.shen
  * @date: Created in 2018/11/8 18:10
@@ -272,7 +272,7 @@ public interface UserService extends IService<User> {
  * User Service
  * </p>
  *
- * @package: com.xkcoding.orm.mybatis.plus.service.impl
+ * @package: com.jun.plugin.orm.mybatis.plus.service.impl
  * @description: User Service
  * @author: yangkai.shen
  * @date: Created in 2018/11/8 18:10
@@ -293,7 +293,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
  * User Service 测试
  * </p>
  *
- * @package: com.xkcoding.orm.mybatis.plus.service
+ * @package: com.jun.plugin.orm.mybatis.plus.service
  * @description: User Service 测试
  * @author: yangkai.shen
  * @date: Created in 2018/11/8 18:13

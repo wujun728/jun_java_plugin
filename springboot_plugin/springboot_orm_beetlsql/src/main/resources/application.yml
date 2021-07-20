@@ -23,15 +23,15 @@ spring:
 #      connection-timeout: 30000
 logging:
   level:
-    com.xkcoding: debug
-    com.xkcoding.orm.beetlsql: trace
+    com.jun.plugin: debug
+    com.jun.plugin.orm.beetlsql: trace
 beetl:
   enabled: false
 beetlsql:
   enabled: true
   sqlPath: /sql
   daoSuffix: Dao
-  basePackage: com.xkcoding.orm.beetlsql.dao
+  basePackage: com.jun.plugin.orm.beetlsql.dao
   dbStyle: org.beetl.sql.core.db.MySqlStyle
   nameConversion: org.beetl.sql.core.UnderlinedNameConversion
 beet-beetlsql:

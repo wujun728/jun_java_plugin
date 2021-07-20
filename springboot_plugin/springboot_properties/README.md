@@ -18,7 +18,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
-		<groupId>com.xkcoding</groupId>
+		<groupId>com.jun.plugin</groupId>
 		<artifactId>spring-boot-demo</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
@@ -84,7 +84,7 @@
  * 项目配置
  * </p>
  *
- * @package: com.xkcoding.properties.property
+ * @package: com.jun.plugin.properties.property
  * @description: 项目配置
  * @author: yangkai.shen
  * @date: Created in 2018/9/29 10:50 AM
@@ -110,7 +110,7 @@ public class ApplicationProperty {
  * 开发人员配置信息
  * </p>
  *
- * @package: com.xkcoding.properties.property
+ * @package: com.jun.plugin.properties.property
  * @description: 开发人员配置信息
  * @author: yangkai.shen
  * @date: Created in 2018/9/29 10:51 AM
@@ -137,7 +137,7 @@ public class DeveloperProperty {
  * 测试Controller
  * </p>
  *
- * @package: com.xkcoding.properties.controller
+ * @package: com.jun.plugin.properties.controller
  * @description: 测试Controller
  * @author: yangkai.shen
  * @date: Created in 2018/9/29 10:49 AM

@@ -19,7 +19,7 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.xkcoding</groupId>
+        <groupId>com.jun.plugin</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -88,7 +88,7 @@
  * JPA配置类
  * </p>
  *
- * @package: com.xkcoding.orm.jpa.config
+ * @package: com.jun.plugin.orm.jpa.config
  * @description: JPA配置类
  * @author: yangkai.shen
  * @date: Created in 2018/11/7 11:05
@@ -99,7 +99,7 @@
 @Configuration
 @EnableTransactionManagement
 @EnableJpaAuditing
-@EnableJpaRepositories(basePackages = "com.xkcoding.orm.jpa.repository", transactionManagerRef = "jpaTransactionManager")
+@EnableJpaRepositories(basePackages = "com.jun.plugin.orm.jpa.repository", transactionManagerRef = "jpaTransactionManager")
 public class JpaConfig {
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
@@ -114,7 +114,7 @@ public class JpaConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSource());
         entityManagerFactory.setJpaVendorAdapter(japVendor);
-        entityManagerFactory.setPackagesToScan("com.xkcoding.orm.jpa.entity");
+        entityManagerFactory.setPackagesToScan("com.jun.plugin.orm.jpa.entity");
         return entityManagerFactory;
     }
 
@@ -133,7 +133,7 @@ public class JpaConfig {
  * 用户实体类
  * </p>
  *
- * @package: com.xkcoding.orm.jpa.entity
+ * @package: com.jun.plugin.orm.jpa.entity
  * @description: 用户实体类
  * @author: yangkai.shen
  * @date: Created in 2018/11/7 14:06
@@ -211,7 +211,7 @@ public class User extends AbstractAuditModel {
  * 部门实体类
  * </p>
  *
- * @package: com.xkcoding.orm.jpa.entity
+ * @package: com.jun.plugin.orm.jpa.entity
  * @description: 部门实体类
  * @author: 76peter
  * @date: Created in 2019/10/1 18:07
@@ -272,7 +272,7 @@ public class Department extends AbstractAuditModel {
  * 实体通用父类
  * </p>
  *
- * @package: com.xkcoding.orm.jpa.entity.base
+ * @package: com.jun.plugin.orm.jpa.entity.base
  * @description: 实体通用父类
  * @author: yangkai.shen
  * @date: Created in 2018/11/7 14:01
@@ -315,7 +315,7 @@ public abstract class AbstractAuditModel implements Serializable {
  * User Dao
  * </p>
  *
- * @package: com.xkcoding.orm.jpa.repository
+ * @package: com.jun.plugin.orm.jpa.repository
  * @description: User Dao
  * @author: yangkai.shen
  * @date: Created in 2018/11/7 14:07
@@ -335,7 +335,7 @@ public interface UserDao extends JpaRepository<User, Long> {
  * User Dao
  * </p>
  *
- * @package: com.xkcoding.orm.jpa.repository
+ * @package: com.jun.plugin.orm.jpa.repository
  * @description: Department Dao
  * @author: 76peter
  * @date: Created in 2019/10/1 18:07
@@ -392,7 +392,7 @@ spring:
     open-in-view: true
 logging:
   level:
-    com.xkcoding: debug
+    com.jun.plugin: debug
     org.hibernate.SQL: debug
     org.hibernate.type: trace
 ```
@@ -403,7 +403,7 @@ logging:
  * jpa 测试类
  * </p>
  *
- * @package: com.xkcoding.orm.jpa.repository
+ * @package: com.jun.plugin.orm.jpa.repository
  * @description: jpa 测试类
  * @author: yangkai.shen
  * @date: Created in 2018/11/7 14:09
@@ -516,7 +516,7 @@ public class UserDaoTest extends SpringBootDemoOrmJpaApplicationTests {
  * jpa 测试类
  * </p>
  *
- * @package: com.xkcoding.orm.jpa.repository
+ * @package: com.jun.plugin.orm.jpa.repository
  * @description: jpa 测试类
  * @author: 76peter
  * @date: Created in 2018/11/7 14:09
