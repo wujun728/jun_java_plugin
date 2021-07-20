@@ -1,4 +1,4 @@
-package com.xkcoding.logback;
+package com.jun.plugin.logback;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

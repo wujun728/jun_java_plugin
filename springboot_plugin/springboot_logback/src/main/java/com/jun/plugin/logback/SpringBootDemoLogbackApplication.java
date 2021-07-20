@@ -1,4 +1,4 @@
-package com.xkcoding.logback;
+package com.jun.plugin.logback;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
