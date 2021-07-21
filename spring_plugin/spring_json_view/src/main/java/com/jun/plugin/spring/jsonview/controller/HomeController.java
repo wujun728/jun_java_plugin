@@ -1,9 +1,10 @@
-package com.zhm.spring.jsonview.controller;
+package com.jun.plugin.spring.jsonview.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.zhm.spring.jsonview.model.Message;
-import com.zhm.spring.jsonview.model.UserInfo;
-import com.zhm.spring.jsonview.model.View;
+import com.jun.plugin.spring.jsonview.model.Message;
+import com.jun.plugin.spring.jsonview.model.UserInfo;
+import com.jun.plugin.spring.jsonview.model.View;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

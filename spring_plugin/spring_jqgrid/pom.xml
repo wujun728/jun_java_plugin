@@ -5,28 +5,10 @@
 	
 	<groupId>com.jun.plugin</groupId>
 	<artifactId>spring_jqgrid</artifactId>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<version>1.0</version>
 	
 	<name>Spring MVC + jqGrid</name>
 	<packaging>war</packaging>
-    
-    <licenses>
-        <license>
-            <name>GNU LGPL</name>
-            <url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
-            <comments>A business-friendly OSS license</comments>
-            <distribution>manual</distribution>
-        </license>
-    </licenses>
-    
-    <developers>
-        <developer>
-            <id>Aliaksei</id>
-            <name>Aliaksei Yaustratsyeu</name>
-            <email>aliaksei.yaustratsyeu@gmail.com</email>
-            <timezone>+2</timezone>
-        </developer>
-    </developers>
     
 	<properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

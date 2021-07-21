@@ -1,4 +1,4 @@
-package com.zhm.spring.jsonview.model;
+package com.jun.plugin.spring.jsonview.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

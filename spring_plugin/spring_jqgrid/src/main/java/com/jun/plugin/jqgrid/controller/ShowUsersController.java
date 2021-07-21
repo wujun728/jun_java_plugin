@@ -1,4 +1,4 @@
-package com.stepbysteptopro.template.controller;
+package com.jun.plugin.jqgrid.controller;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.stepbysteptopro.template.model.TableModel;
-import com.stepbysteptopro.template.model.User;
-import com.stepbysteptopro.template.service.UserService;
+import com.jun.plugin.jqgrid.model.TableModel;
+import com.jun.plugin.jqgrid.model.User;
+import com.jun.plugin.jqgrid.service.UserService;
 
 /**
  * Controller are getting users for users list page.

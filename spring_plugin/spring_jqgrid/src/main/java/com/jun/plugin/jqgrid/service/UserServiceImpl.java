@@ -1,12 +1,12 @@
-package com.stepbysteptopro.template.service;
+package com.jun.plugin.jqgrid.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.stepbysteptopro.template.model.TableModel;
-import com.stepbysteptopro.template.model.User;
+import com.jun.plugin.jqgrid.model.TableModel;
+import com.jun.plugin.jqgrid.model.User;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {

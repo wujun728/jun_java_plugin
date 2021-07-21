@@ -1,4 +1,4 @@
-package com.stepbysteptopro.template.model;
+package com.jun.plugin.jqgrid.model;
 
 public class User {
     private int userId;

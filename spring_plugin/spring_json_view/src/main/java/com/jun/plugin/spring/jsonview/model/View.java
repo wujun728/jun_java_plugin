@@ -1,4 +1,4 @@
-package com.zhm.spring.jsonview.model;
+package com.jun.plugin.spring.jsonview.model;
 
 /**
  * Created by zhm on 2015/7/13.

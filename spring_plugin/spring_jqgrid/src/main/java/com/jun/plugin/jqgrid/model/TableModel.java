@@ -1,4 +1,4 @@
-package com.stepbysteptopro.template.model;
+package com.jun.plugin.jqgrid.model;
 
 import java.util.List;
 

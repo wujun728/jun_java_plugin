@@ -1,4 +1,4 @@
-package com.zhm.spring.jsonview.model;
+package com.jun.plugin.spring.jsonview.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
