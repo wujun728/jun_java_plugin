@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.ketayao.learn</groupId>
 		<artifactId>learn-framework</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0</version>
 	</parent>
 	<artifactId>learn-test</artifactId>
 

@@ -9,7 +9,7 @@
   </parent>
   <groupId>com.jun.plugin</groupId>
   <artifactId>jun_xml</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>war</packaging>
   <name>jun_xml Maven Webapp</name>
   <url>http://maven.apache.org</url>

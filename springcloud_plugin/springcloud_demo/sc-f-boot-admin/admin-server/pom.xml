@@ -5,7 +5,7 @@
 
     <groupId>com.forezp</groupId>
     <artifactId>admin-server</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>admin-server</name>
     <description>Demo project for Spring Boot</description>
     <packaging>jar</packaging>
@@ -13,7 +13,7 @@
     <parent>
         <groupId>com.forezp</groupId>
         <artifactId>sc-f-boot-admin</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <dependencies>

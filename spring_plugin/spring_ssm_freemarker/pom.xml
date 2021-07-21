@@ -4,7 +4,7 @@
 	<groupId>com.jun.plugin</groupId>
 	<artifactId>spring_ssm_freemarker</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>myssm Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>

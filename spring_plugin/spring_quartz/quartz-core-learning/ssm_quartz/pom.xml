@@ -4,7 +4,7 @@
   <groupId>org.dufy</groupId>
   <artifactId>ssm_quartz</artifactId>
   <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>learn ssm_quart demo projet</name>
   <url>http://maven.apache.org</url>
   <properties>

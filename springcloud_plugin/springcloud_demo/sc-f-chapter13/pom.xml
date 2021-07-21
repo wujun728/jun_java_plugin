@@ -5,7 +5,7 @@
 
     <groupId>com.forezp</groupId>
     <artifactId>sc-f-chapter13</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
 
     <name>sc-f-chapter13</name>

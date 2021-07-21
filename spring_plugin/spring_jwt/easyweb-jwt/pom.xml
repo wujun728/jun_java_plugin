@@ -5,7 +5,7 @@
 
     <groupId>com.wf</groupId>
     <artifactId>easyweb-jwt</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>easyweb-jwt</name>

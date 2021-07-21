@@ -11,7 +11,7 @@
     
     <groupId>com.jun.plugin</groupId>
     <artifactId>jun_compress_client</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>jun_compress_client</name>
     <description>Demo project for Spring Boot</description>
 

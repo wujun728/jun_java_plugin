@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jun.plugin</groupId>
 	<artifactId>spring_drools</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<properties>
 		<drools-version>6.5.0.Final</drools-version>
 	</properties>

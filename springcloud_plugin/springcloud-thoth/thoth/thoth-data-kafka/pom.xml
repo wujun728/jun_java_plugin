@@ -6,13 +6,13 @@
     <parent>
         <groupId>com.prometheus</groupId>
         <artifactId>thoth-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0</version>
         <relativePath>../thoth-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>thoth-data-kafka</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>thoth-data-kafka</name>
 
     <modules>
@@ -35,7 +35,7 @@
         <dependency>
             <groupId>com.prometheus</groupId>
             <artifactId>thoth-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 </project>

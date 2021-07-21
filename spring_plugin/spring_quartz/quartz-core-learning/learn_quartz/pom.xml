@@ -4,7 +4,7 @@
   <groupId>com.dufy</groupId>
   <artifactId>learn_quartz</artifactId>
   <packaging>jar</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>learn_quartz Maven Webapp</name>
   <url>http://maven.apache.org</url>
   

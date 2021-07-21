@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.redis</groupId>
 	<artifactId>redis-demo-publisher</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>redis-demo-publisher</name>
 	<description>redis-demo-publisher</description>
 

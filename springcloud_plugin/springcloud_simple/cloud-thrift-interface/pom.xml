@@ -4,7 +4,7 @@
 
 	<groupId>cloud.simple</groupId>
 	<artifactId>cloud-thrift-interface</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>cloud-thrift-interface</name>

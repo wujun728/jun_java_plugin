@@ -7,11 +7,11 @@
     <parent>
         <artifactId>thoth-parent</artifactId>
         <groupId>com.prometheus</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>thoth-ai-ms</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
 
     <name>thoth-ai-ms</name>
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>com.prometheus</groupId>
             <artifactId>thoth-dependencies</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0</version>
             <optional>true</optional>
             <exclusions>
                 <exclusion>

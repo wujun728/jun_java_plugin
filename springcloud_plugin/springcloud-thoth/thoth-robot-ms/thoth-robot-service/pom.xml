@@ -6,11 +6,11 @@
     <parent>
         <artifactId>thoth-robot-ms</artifactId>
         <groupId>com.prometheus</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>thoth-robot-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>thoth-robot-service</name>
@@ -19,7 +19,7 @@
         <dependency>
             <groupId>com.prometheus</groupId>
             <artifactId>thoth-robot-entity</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
 
         <dependency>
@@ -29,7 +29,7 @@
         <dependency>
             <groupId>com.prometheus</groupId>
             <artifactId>thoth-robot-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
 
 

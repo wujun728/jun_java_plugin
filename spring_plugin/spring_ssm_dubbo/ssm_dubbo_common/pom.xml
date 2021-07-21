@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.ssm.dubbo</groupId>
 		<artifactId>ssm-dubbo-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0</version>
 		<relativePath>../ssm_dubbo_parent</relativePath>
 	</parent>
 

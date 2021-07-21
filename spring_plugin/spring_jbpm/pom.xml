@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.kenfo.jbpm.study</groupId>
   <artifactId>jbpm-study</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>war</packaging>
   <name>jbpm study</name>
   <description>jbpm学习例子</description>

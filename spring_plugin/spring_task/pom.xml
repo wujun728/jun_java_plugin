@@ -4,7 +4,7 @@
     <groupId>com.jun.plugin</groupId>
     <artifactId>spring_task</artifactId>
     <packaging>war</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>spring_task Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <!-- 依赖库版本 公共变量 -->

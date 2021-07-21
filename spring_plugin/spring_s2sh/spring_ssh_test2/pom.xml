@@ -4,7 +4,7 @@
   <groupId>com.xiaoji.ssh</groupId>
   <artifactId>spring-ssh</artifactId>
   <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>spring-ssh Maven Webapp</name>
   <url>http://maven.apache.org</url>
   

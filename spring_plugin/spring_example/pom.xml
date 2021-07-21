@@ -4,7 +4,7 @@
    <groupId>com.jun.plugin</groupId>
   <artifactId>spring_example</artifactId>
   <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>Maven Webapp Archetype</name>
   <url>http://maven.apache.org</url>
   

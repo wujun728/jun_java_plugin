@@ -5,7 +5,7 @@
   <parent>
   	<groupId>com.jun.user</groupId>
     <artifactId>maven_spring4_parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
   </parent>	
   
   <artifactId>maven_spring4_service</artifactId>
@@ -21,7 +21,7 @@
     <dependency>
     	<groupId>com.jun.user</groupId>
     	<artifactId>maven_spring4_dao</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
+    	<version>1.0</version>
     </dependency>
     
   

@@ -5,7 +5,7 @@
 
 	<groupId>com.forezp</groupId>
 	<artifactId>nacos-discovery</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>nacos-discovery</name>
 	<description>Demo project for Spring Boot</description>
 	<packaging>pom</packaging>

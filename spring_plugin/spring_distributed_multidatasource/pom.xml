@@ -6,7 +6,7 @@
 	<groupId>com.jun.plugin</groupId>
 	<artifactId>spring_distributed_multidatasource</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>spring_distributed_multidatasource Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>

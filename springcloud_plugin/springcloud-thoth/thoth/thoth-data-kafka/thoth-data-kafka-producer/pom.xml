@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.prometheus</groupId>
         <artifactId>thoth-data-kafka</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>thoth-data-kafka-producer</artifactId>

@@ -5,7 +5,7 @@
 
 	<groupId>com.didispace</groupId>
 	<artifactId>trace-2</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>trace-2</name>

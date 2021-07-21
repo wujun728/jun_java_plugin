@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cc.mrbird</groupId>
     <artifactId>Server-Provider2</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <name>demo</name>
     <description>Demo project for Spring Boot</description>

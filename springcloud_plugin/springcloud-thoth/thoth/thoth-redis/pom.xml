@@ -7,7 +7,7 @@
         <groupId>com.prometheus</groupId>
         <artifactId>thoth-parent</artifactId>
         <relativePath>../thoth-parent/pom.xml</relativePath>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>thoth-redis</artifactId>
@@ -28,7 +28,7 @@
         <dependency>
             <groupId>com.prometheus</groupId>
             <artifactId>thoth-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0</version>
             <optional>true</optional>
         </dependency>
         <dependency>

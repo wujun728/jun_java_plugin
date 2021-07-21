@@ -9,7 +9,7 @@
   </parent>
   <groupId>com.jun.plugin</groupId>
   <artifactId>jun_jdbc</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>war</packaging>
   <name>jun_test Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -24,7 +24,7 @@
 	<dependency>
 		<groupId>com.jun.base</groupId>
 		<artifactId>jun_datasource</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0</version>
 	</dependency>
 	
 	<dependency>

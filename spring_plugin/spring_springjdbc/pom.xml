@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.jun.plugin</groupId>
   <artifactId>spring_springjdbc</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>spring_springjdbc</name>
   <description>spring jdbc 演示代码</description>
   

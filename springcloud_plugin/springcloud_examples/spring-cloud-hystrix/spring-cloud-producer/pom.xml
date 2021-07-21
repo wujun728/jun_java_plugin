@@ -5,7 +5,7 @@
 
 	<groupId>com.neo</groupId>
 	<artifactId>spring-cloud-producer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>spring-cloud-producer</name>

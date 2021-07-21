@@ -6,11 +6,11 @@
     <parent>
         <artifactId>thoth-ai-ms</artifactId>
         <groupId>com.prometheus</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>thoth-ai-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>thoth-ai-service</name>
@@ -19,7 +19,7 @@
         <dependency>
             <groupId>com.prometheus</groupId>
             <artifactId>thoth-ai-entity</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
 
         <dependency>

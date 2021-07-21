@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.jun.plugin</groupId>
   <artifactId>spring_ioc_aop</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>

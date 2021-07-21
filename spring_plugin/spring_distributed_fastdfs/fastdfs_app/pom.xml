@@ -6,11 +6,11 @@
     <parent>
         <groupId>com.jun.plugin</groupId>
 	    <artifactId>jun_distributed_fastdfs</artifactId>
-	    <version>0.0.1-SNAPSHOT</version>
+	    <version>1.0</version>
     </parent>
 
     <artifactId>fastdfs_app</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <name>fastdfs_app</name>
     <description>fastdfs_app project for Spring Boot</description>
