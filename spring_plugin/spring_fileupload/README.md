@@ -1,4 +1,4 @@
-# FileUpload.Java [![Build Status](https://travis-ci.org/izhangzhihao/FileUpload.Java.svg?branch=master)](https://travis-ci.org/izhangzhihao/FileUpload.Java)
+# Spring FileUpload.Java
 # 文件上传，图片上传(后缀名验证，文件类型验证)，大文件分片上传，“秒传”，断点续传，传输失败自动重试，手动重试
 
 1.主要功能经测试支持IE9以上，Chrome，FireFox；其他浏览器未测试；
