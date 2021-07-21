@@ -14,7 +14,7 @@
          http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!-- 自动扫描所配置的包下所有类及其子包和其子包下的类 -->
-	<context:component-scan base-package="org.tangjl.multidatasource.dao" />
+	<context:component-scan base-package="com.jun.plugin.multidatasource.dao" />
 
 	<!-- 读取properties文件,使在当前XML配置文件中可以通过${key}的形式获得properties文件中的对应key的value -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -47,7 +47,7 @@
 	</bean>
 
 	<!-- 动态切换数据源自定义实现类 -->
-	<bean id="dynamicDataSource" class="org.tangjl.multidatasource.util.DynamicDataSource">
+	<bean id="dynamicDataSource" class="com.jun.plugin.multidatasource.util.DynamicDataSource">
 		<!-- 通过key-value的形式来关联数据源 -->
 		<property name="targetDataSources">
 			<map>
@@ -80,7 +80,7 @@
 		<property name="hibernateProperties" ref="hibernateProperties" />
 		<property name="packagesToScan">
 			<list>
-				<value>org.tangjl.multidatasource.model</value><!-- 自动扫描当前包下的所有实体类 -->
+				<value>com.jun.plugin.multidatasource.model</value><!-- 自动扫描当前包下的所有实体类 -->
 			</list>
 		</property>
 	</bean>
@@ -96,7 +96,7 @@
 	<!-- XML方式配置事务管理 -->
 	<aop:config>
 		<aop:pointcut id="businessService"
-			expression="execution(public * org.tangjl.multidatasource.dao..*.*(..))" />
+			expression="execution(public * com.jun.plugin.multidatasource.dao..*.*(..))" />
 		<aop:advisor pointcut-ref="businessService" advice-ref="tx-advice" />
 	</aop:config>
 

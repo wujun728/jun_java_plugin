@@ -1,8 +1,5 @@
-distributed-session
-======================
--------------
+# spirng-distributed-session
 
-#简介#
 
 ##分布式session框架##
 
@@ -38,7 +35,7 @@ redis.timeBetweenEvictionRunsMillis=300000
 	
 	<filter>
 		<filter-name>DistributedSessionFilter</filter-name>
-		<filter-class>com.puff.session.DistributedSessionFilter</filter-class>
+		<filter-class>com.jun.plugin.session.DistributedSessionFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>DistributedSessionFilter</filter-name>

@@ -14,7 +14,7 @@
 
     <!--annotation configuration -->
     <context:annotation-config/>
-    <context:component-scan base-package="com.andaily"/>
+    <context:component-scan base-package="com.jun.plugin"/>
 
 
     <!-- property configuration -->
@@ -59,12 +59,12 @@
     <bean id="testFixedJobDetailBean"
           class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <!--指定具体的JOB完整类名-->
-        <property name="jobClass" value="com.andaily.service.scheduler.TestFixedJobDetailBean"/>
+        <property name="jobClass" value="com.jun.plugin.service.scheduler.TestFixedJobDetailBean"/>
         <property name="durability" value="true"/>
     </bean>
 
 
-    <bean class="com.andaily.service.scheduler.dynamic.DynamicSchedulerFactory">
+    <bean class="com.jun.plugin.service.scheduler.dynamic.DynamicSchedulerFactory">
         <property name="scheduler" ref="schedulerFactory"/>
     </bean>
 

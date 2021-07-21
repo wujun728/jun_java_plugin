@@ -11,13 +11,13 @@
  		http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
  		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-	<drools:kbase id="kbase_demo">
+	<drools:kbase id="com.jun.plugin.drools">
 		<drools:resources>
 			<drools:resource type="DRL" source="classpath:drink.drl" />
 			<drools:resource type="DRL" source="classpath:message.drl" />
 			<drools:resource type="DRL" source="classpath:golf.drl" />
 		</drools:resources>
 	</drools:kbase>
-	<drools:ksession id="ksession" type="stateful" kbase="kbase_demo" />
+	<drools:ksession id="ksession" type="stateful" kbase="com.jun.plugin.drools" />
 
 </beans>

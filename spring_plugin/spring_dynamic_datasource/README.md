@@ -1,4 +1,4 @@
-#dbutil 
+#spring-dynamic-datasource-dbutil 
 
 ## 说明
 基于Spring的 *AbstractRoutingDataSource* 进行简单的封装,方便进行数据源的切换，目前主要用于主从数据库的读写切换上。
@@ -8,7 +8,7 @@
 
 ### 添加依赖
 	<dependency>
-		<groupId>com.tanghd.spring</groupId>
+		<groupId>com.jun.plugin.spring</groupId>
 		<artifactId>dbutil</artifactId>
 		<version>0.2</version>
 	</dependency>
@@ -19,7 +19,7 @@
 	<bean id="slaveDataSource1" ...></bean>
 	<bean id="slaveDataSource2" ...></bean>
 		
-	<bean id="dynamicDataSource" class="com.tanghd.spring.dbutil.datasource.DynamicDataSource">
+	<bean id="dynamicDataSource" class="com.jun.plugin.spring.dbutil.datasource.DynamicDataSource">
 		<property name="master" ref="dataSource"/>
 		<property name="slaves">
 			<list>
@@ -60,7 +60,7 @@
 		    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
-		    <bean id="DsChangeAspect" class="com.tanghd.spring.dbutil.aop.DataSourceAspect"/>
+		    <bean id="DsChangeAspect" class="com.jun.plugin.spring.dbutil.aop.DataSourceAspect"/>
 		    <!--proxy-target-class = true 使用cglib代理，否则使用Java动态代理-->
 		    <aop:aspectj-autoproxy proxy-target-class="true" />
 		</beans>
@@ -76,8 +76,8 @@
 不使用aspect，这种方式提供了支持@See DataSourceAdvisor.java，目前还没用到，示例略，只是配置上和Aspect不同，使用方式同样是通过注解来进行改变当前使用的数据源
 以下是参考例子:
 
-		<bean id="advisor" class="com.tanghd.spring.dbutil.aop.DataSourceAdvisor" />
+		<bean id="advisor" class="com.jun.plugin.spring.dbutil.aop.DataSourceAdvisor" />
 		<aop:config proxy-target-class="true">
 			<aop:advisor advice-ref="advisor"
-				pointcut="@annotation(com.tanghd.spring.dbutil.aop.DataSourceChange)" />
+				pointcut="@annotation(com.jun.plugin.spring.dbutil.aop.DataSourceChange)" />
 		</aop:config>		
