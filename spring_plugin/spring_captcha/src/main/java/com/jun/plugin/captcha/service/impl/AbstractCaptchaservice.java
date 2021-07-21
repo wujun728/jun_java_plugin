@@ -4,14 +4,16 @@
  *http://www.anji-plus.com
  *All rights reserved.
  */
-package com.anji.captcha.service.impl;
+package com.jun.plugin.captcha.service.impl;
 
-import com.anji.captcha.config.Container;
-import com.anji.captcha.service.CaptchaCacheService;
-import com.anji.captcha.service.CaptchaService;
-import com.anji.captcha.util.AESUtil;
-import com.anji.captcha.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jun.plugin.captcha.config.Container;
+import com.jun.plugin.captcha.service.CaptchaCacheService;
+import com.jun.plugin.captcha.service.CaptchaService;
+import com.jun.plugin.captcha.util.AESUtil;
+import com.jun.plugin.captcha.util.StringUtils;
+
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 

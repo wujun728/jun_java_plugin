@@ -4,16 +4,17 @@
  *http://www.anji-plus.com
  *All rights reserved.
  */
-package com.anji.captcha.controller;
+package com.jun.plugin.captcha.controller;
 
-import com.anji.captcha.model.common.ResponseModel;
-import com.anji.captcha.model.vo.CaptchaVO;
-import com.anji.captcha.service.CaptchaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.jun.plugin.captcha.model.common.ResponseModel;
+import com.jun.plugin.captcha.model.vo.CaptchaVO;
+import com.jun.plugin.captcha.service.CaptchaService;
 
 /**
  * Created by raodeming on 2019/12/25.

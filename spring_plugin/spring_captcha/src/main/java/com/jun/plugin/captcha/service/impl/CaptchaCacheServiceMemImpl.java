@@ -1,8 +1,9 @@
-package com.anji.captcha.service.impl;
+package com.jun.plugin.captcha.service.impl;
 
-import com.anji.captcha.service.CaptchaCacheService;
-import com.anji.captcha.util.CacheUtil;
 import org.springframework.stereotype.Service;
+
+import com.jun.plugin.captcha.service.CaptchaCacheService;
+import com.jun.plugin.captcha.util.CacheUtil;
 
 /**
  * 对于分布式部署的应用，我们建议应用自己实现CaptchaCacheService，比如用Redis，参考service/spring-boot代码示例。

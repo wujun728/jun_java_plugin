@@ -4,14 +4,16 @@
  *http://www.anji-plus.com
  *All rights reserved.
  */
-package com.anji.captcha.util;
+package com.jun.plugin.captcha.util;
 
-import com.anji.captcha.model.common.CaptchaBaseMapEnum;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.util.Base64Utils;
 import org.springframework.util.FileCopyUtils;
+
+import com.jun.plugin.captcha.model.common.CaptchaBaseMapEnum;
+
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 

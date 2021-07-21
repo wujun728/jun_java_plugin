@@ -4,14 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.anji-plus</groupId>
+    <groupId>com.jun.pluign</groupId>
     <artifactId>spring_captcha</artifactId>
     <version>1.1.9</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <description>spring_captcha</description>
-    <url>https://github.com/anji-plus/captcha</url>
-    <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

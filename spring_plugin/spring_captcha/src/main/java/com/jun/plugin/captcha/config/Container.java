@@ -4,7 +4,7 @@
  *http://www.anji-plus.com
  *All rights reserved.
  */
-package com.anji.captcha.config;
+package com.jun.plugin.captcha.config;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

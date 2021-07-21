@@ -4,10 +4,10 @@
  *http://www.anji-plus.com
  *All rights reserved.
  */
-package com.anji.captcha.service;
+package com.jun.plugin.captcha.service;
 
-import com.anji.captcha.model.common.ResponseModel;
-import com.anji.captcha.model.vo.CaptchaVO;
+import com.jun.plugin.captcha.model.common.ResponseModel;
+import com.jun.plugin.captcha.model.vo.CaptchaVO;
 
 /**
  * @Title: 验证码缓存接口

@@ -4,19 +4,9 @@
  *http://www.anji-plus.com
  *All rights reserved.
  */
-package com.anji.captcha.service.impl;
+package com.jun.plugin.captcha.service.impl;
 
 
-import com.anji.captcha.config.Container;
-import com.anji.captcha.model.common.CaptchaTypeEnum;
-import com.anji.captcha.model.common.RepCodeEnum;
-import com.anji.captcha.model.common.ResponseModel;
-import com.anji.captcha.model.vo.CaptchaVO;
-import com.anji.captcha.service.CaptchaCacheService;
-import com.anji.captcha.service.CaptchaService;
-import com.anji.captcha.util.AESUtil;
-import com.anji.captcha.util.ImageUtils;
-import com.anji.captcha.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +14,17 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import com.jun.plugin.captcha.config.Container;
+import com.jun.plugin.captcha.model.common.CaptchaTypeEnum;
+import com.jun.plugin.captcha.model.common.RepCodeEnum;
+import com.jun.plugin.captcha.model.common.ResponseModel;
+import com.jun.plugin.captcha.model.vo.CaptchaVO;
+import com.jun.plugin.captcha.service.CaptchaCacheService;
+import com.jun.plugin.captcha.service.CaptchaService;
+import com.jun.plugin.captcha.util.AESUtil;
+import com.jun.plugin.captcha.util.ImageUtils;
+import com.jun.plugin.captcha.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
