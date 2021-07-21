@@ -6,8 +6,8 @@
     <artifactId>spring_distributed_netty</artifactId>
     <version>1.0</version>
     <modules>
-        <module>fastnetty_server</module>
-        <module>fastnetty_common</module>
+        <module>spring_netty_server</module>
+        <module>spring_netty_common</module>
     </modules>
     <packaging>pom</packaging>
 

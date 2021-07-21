@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>fastnetty_server</artifactId>
+    <artifactId>spring_netty_server</artifactId>
     <packaging>jar</packaging>
 
     <!-- 声明的常量 标识各个jar版本 -->
@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>com.jun.plugin</groupId>
-            <artifactId>fastnetty_common</artifactId>
+            <artifactId>spring_netty_common</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
