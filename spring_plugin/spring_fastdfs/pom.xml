@@ -7,8 +7,6 @@
   <artifactId>spring_fastdfs</artifactId>
   <packaging>war</packaging>
   <version>1.0</version>
-  <name>spring_fastdfs</name>
-  <url>http://maven.apache.org</url>
   
  
     

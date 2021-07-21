@@ -1,4 +1,4 @@
-package com.neo.controller;
+package com.jun.plugin.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.neo.fastdfs.FastDFSFile;
-import com.neo.fastdfs.FileManager;
+import com.jun.plugin.fastdfs.FastDFSFile;
+import com.jun.plugin.fastdfs.FileManager;
 
 @Controller
 public class UploadSignController {

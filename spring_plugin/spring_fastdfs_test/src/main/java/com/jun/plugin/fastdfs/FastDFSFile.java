@@ -1,4 +1,4 @@
-package com.neo.fastdfs;
+package com.jun.plugin.fastdfs;
 
 public class FastDFSFile implements FileManagerConfig {
 
