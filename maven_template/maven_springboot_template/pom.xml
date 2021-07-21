@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.jun.plugin</groupId>
-	<artifactId>springboot_templatemaven</artifactId>
+	<artifactId>maven_springboot_template</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 	

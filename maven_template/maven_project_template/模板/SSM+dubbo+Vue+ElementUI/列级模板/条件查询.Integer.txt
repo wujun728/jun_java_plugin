@@ -1,0 +1,4 @@
+            // [columnComment]
+            if(searchMap.get("[column2]")!=null ){
+                criteria.andEqualTo("[column2]",searchMap.get("[column2]"));
+            }

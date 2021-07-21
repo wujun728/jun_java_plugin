@@ -1,0 +1,7 @@
+	public [type] get[Column2]() {
+		return [column2];
+	}
+	public void set[Column2]([type] [column2]) {
+		this.[column2] = [column2];
+	}
+

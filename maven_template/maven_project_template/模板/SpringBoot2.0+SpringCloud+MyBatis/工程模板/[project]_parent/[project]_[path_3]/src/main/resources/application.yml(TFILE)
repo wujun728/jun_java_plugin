@@ -1,0 +1,19 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: [path_3]
+  datasource:
+    driver-class-name: [driverName]
+    url: [url]
+    username: [dbuser]
+    password: [dbpassword]
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka
+  instance:
+    prefer-ip-address: true
+feign:
+  hystrix:
+    enabled: true

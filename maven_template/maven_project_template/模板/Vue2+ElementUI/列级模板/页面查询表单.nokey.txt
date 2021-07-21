@@ -1,0 +1,2 @@
+          <el-form-item label="[columnComment]">
+<el-input v-model="searchMap.[column]" placeholder="[columnComment]"></el-input></el-form-item>
