@@ -29,7 +29,7 @@
         </RollingFile>
         <!--写入数据库配置，在Logger中设置日志级别为error-->
         <JDBC name="databaseAppender" tableName="error_log">
-            <ConnectionFactory class="com.xia.utils.ConnectionFactory" method="getDatabaseConnection" />
+            <ConnectionFactory class="com.jun.plugin.utils.ConnectionFactory" method="getDatabaseConnection" />
             <Column name="class" pattern="%c" />
             <Column name="method" pattern="%M" />
             <Column name="log_level" pattern="%p" />
@@ -39,7 +39,7 @@
     </Appenders>
 
     <Loggers>
-        <logger name="com.xia.Test" level="trace" additivity="false">
+        <logger name="com.jun.plugin.Test" level="trace" additivity="false">
             <appender-ref ref="XdyjError" level="error"/>
             <appender-ref ref="saveFile" level="info"/>
             <appender-ref ref="Console" level="debug"/>

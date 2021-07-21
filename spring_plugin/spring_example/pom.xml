@@ -5,8 +5,6 @@
   <artifactId>spring_example</artifactId>
   <packaging>war</packaging>
   <version>1.0</version>
-  <name>Maven Webapp Archetype</name>
-  <url>http://maven.apache.org</url>
   
   <properties>
 		<qunar.common.version>8.0.0</qunar.common.version>
@@ -14,7 +12,7 @@
 		<maven_install_plugin_version>2.3.1</maven_install_plugin_version>
 		<enforcer-custom-rules_version>1.0.0</enforcer-custom-rules_version>
 		<profiles.dir>src/main/profiles</profiles.dir>
-		<java_source_version>1.6</java_source_version>
+		<java_source_version>1.8</java_source_version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven_war_plugin_version>2.1.1</maven_war_plugin_version>
 		<maven_compiler_plugin_version>2.3.2</maven_compiler_plugin_version>
