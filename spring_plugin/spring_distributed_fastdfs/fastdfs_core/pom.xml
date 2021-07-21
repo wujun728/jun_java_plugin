@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-		<groupId>com.jun.plugin</groupId>
-	    <artifactId>jun_distributed_fastdfs</artifactId>
+	    <groupId>com.jun.plugin</groupId>
+	    <artifactId>spring_distributed_fastdfs</artifactId>
 	    <version>1.0</version>
     </parent>
 

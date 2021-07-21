@@ -13,9 +13,7 @@
 		<springVersion>4.2.5.RELEASE</springVersion>
 	</properties>
 
-
-	<dependencies>
-	
+<dependencies>
 	<dependency>
 		<groupId>javax.servlet</groupId>
 		<artifactId>javax.servlet-api</artifactId>

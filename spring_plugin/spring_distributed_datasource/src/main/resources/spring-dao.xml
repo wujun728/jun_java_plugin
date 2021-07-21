@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 定义包的扫描规则 -->
-	<context:component-scan base-package="com.lyx">
+	<context:component-scan base-package="com.jun.plugin">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Service" />
 		<context:include-filter type="annotation"
@@ -60,9 +60,9 @@
 	</bean>
 
 	<!--使用枚举类型作为key -->
-	<bean id="dataSource" class="com.lyx.DynamicDataSource">
+	<bean id="dataSource" class="com.jun.plugin.DynamicDataSource">
 		<property name="targetDataSources">
-			<map key-type="com.lyx.DataSourceLookupKey">
+			<map key-type="com.jun.plugin.DataSourceLookupKey">
 				<entry key="REMOTE_DATASOURCE" value-ref="remoteDataSource" />
 				<entry key="THREAD_DATASOURCE" value-ref="threadDataSource" />
 				<entry key="LOCAL_DATASOURCE" value-ref="localDataSource" />
@@ -78,12 +78,12 @@
 	</bean>
 
 	<!-- 动态选择数据源的切面 -->
-	<bean id = "determineDataSourceAspect" class="com.lyx.DetermineDataSourceAspect"/>
+	<bean id = "determineDataSourceAspect" class="com.jun.plugin.DetermineDataSourceAspect"/>
 	<!-- 切面的配置 -->
 	<aop:config>
 		<aop:aspect id="determineDataSourceAspect" ref="determineDataSourceAspect">
 			<aop:pointcut id="dataSourcePoint"
-				expression="@annotation(com.lyx.RequireDataSource)" />
+				expression="@annotation(com.jun.plugin.RequireDataSource)" />
 			<aop:before method="determineDataSource" pointcut-ref="dataSourcePoint" />
 		</aop:aspect>
 	</aop:config>

@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 包的扫描 -->
-    <context:component-scan base-package="com.lyx">
+    <context:component-scan base-package="com.jun.plugin">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Service"/>
         <context:include-filter type="annotation"
