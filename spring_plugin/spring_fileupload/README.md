@@ -1,45 +1,17 @@
-### Java Spring File Upload
-Upload images using Java Spring MVC
+# FileUpload.Java [![Build Status](https://travis-ci.org/izhangzhihao/FileUpload.Java.svg?branch=master)](https://travis-ci.org/izhangzhihao/FileUpload.Java)
+# 文件上传，图片上传(后缀名验证，文件类型验证)，大文件分片上传，“秒传”，断点续传，传输失败自动重试，手动重试
 
-### Overview
-In this simple application I am using Spring MVC and JPA (Hibernate) to persist User's information to the database including their profile photo/image. 
+1.主要功能经测试支持IE9以上，Chrome，FireFox；其他浏览器未测试；
 
-### Requirements
- - MySQL database needs to be installed (https://dev.mysql.com/downloads/)
- - Internet connection to download the dependencies
- - Knowledge of Java and Spring framework
+2.文件上传部分：主要实现了文件的上传，进度条，多文件一起上传，上传前删除，上传失败后手动删除，上传失败自动重试，上传失败手动重试（retry按钮），自动上传；
 
-### Setup
- - Clone the project to your local machine
- - Import the project into Spring Tool Suite/Eclipse/IntellijIDEA
- - Locate the Database folder and change the database name, username and password
- - Open the ```modisefileupload.java.controller.UserController``` and 
- modify the image path (for development purposes you will need to point the path to you local computer, 
- I have commented out the actual `rootDirect` to be used in the Server).
- - Right click on the project and run on server
- - Enjoy!
+3.大文件上传部分：重磅功能：大文件“秒传”；在文件上传部分已有功能的基础上实现了按10MB分为多个块，异步上传，服务端合并，MD5验证，文件秒传，断点续传，网络问题自动重试，手动重试；
+
+4.图片上传部分：在文件上传部分已有功能的基础上实现了上传前缩略图预览，前台js文件后缀验证，后台代码文件后缀验证和文件类型验证（就算修改后缀名也无法成功上传），支持图片上传前压缩；
+
+5.多选择器多文件上传：通过不同的文件选择器选择不同的文件，最后同时上传，Controller只是简单示意，并没有详细写实现，具体怎么做可参照上面的其它上穿方法。
+
+# 文件上传这里好多方法可以抽象出来，当然这个项目只是一个示例，所以我偷了点懒，应用到生产环境时还要根据环境选择保存到不同的文件路径等等，大家根据自己的情况自己封装方法吧。
 
 
-### License
-```
-The MIT License (MIT)
 
-Copyright (c) 2016 Mr Modise
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.```
