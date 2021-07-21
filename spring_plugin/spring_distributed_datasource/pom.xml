@@ -4,7 +4,7 @@
 
 	<groupId>com.jun.plugin</groupId>
 	<artifactId>spring_distributed_datasource</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>spring_distributed_datasource</name>
