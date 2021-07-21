@@ -1,10 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>modisefileupload</groupId>
-	<artifactId>modise-file-upload</artifactId>
+	
+	<groupId>com.jun.plugin</groupId>
+	<artifactId>spring_fileupload</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
+	
 	<properties>
 		<java.version>1.8</java.version>
 		<springframework.version>4.2.4.RELEASE</springframework.version>
@@ -21,6 +23,7 @@
 		<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
 		<javax.validation.version>1.0.0.GA</javax.validation.version>
 	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
