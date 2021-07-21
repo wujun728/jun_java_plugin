@@ -4,13 +4,13 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd ">
 
 	<!-- 使用annotation 自动注册bean,并检查@Required,@Autowired的属性已被注入 -->
-	<context:component-scan base-package="cn.springmvc.jpa">
+	<context:component-scan base-package="com.jun.plugin.jpa">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 		<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
 	</context:component-scan>
 
 	<beans profile="development">
-		<bean id="propertyConfigurer" class="cn.springmvc.jpa.common.utils.PropertyConfigurer">
+		<bean id="propertyConfigurer" class="com.jun.plugin.jpa.common.utils.PropertyConfigurer">
 			<property name="ignoreResourceNotFound" value="true" />
 			<property name="locations">
 				<list>
@@ -21,7 +21,7 @@
 	</beans>
 
 	<beans profile="production">
-		<bean id="propertyConfigurer" class="cn.springmvc.jpa.common.utils.PropertyConfigurer">
+		<bean id="propertyConfigurer" class="com.jun.plugin.jpa.common.utils.PropertyConfigurer">
 			<property name="ignoreResourceNotFound" value="true" />
 			<property name="locations">
 				<list>

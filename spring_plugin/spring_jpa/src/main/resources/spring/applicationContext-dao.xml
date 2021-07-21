@@ -27,7 +27,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="persistenceProvider" ref="persistenceProvider" />
 		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
-		<property name="packagesToScan" value="cn.springmvc.jpa.entity" />
+		<property name="packagesToScan" value="com.jun.plugin.jpa.entity" />
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
@@ -50,7 +50,7 @@
 
 
 	<!-- Spring Data Jpa配置 -->
-	<jpa:repositories base-package="cn.springmvc.jpa.repository" transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory" />
+	<jpa:repositories base-package="com.jun.plugin.jpa.repository" transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory" />
 
 
 	<!-- Jpa 事务配置 -->

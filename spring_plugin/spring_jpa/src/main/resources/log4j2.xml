@@ -36,7 +36,7 @@
 
 	<loggers>
 		<!-- 3rdparty Loggers -->
-		<logger name="cn.springmvc" level="debug" />
+		<logger name="com.jun.plugin" level="debug" />
 		<logger name="org.activiti" level="debug" />
 		<logger name="net.spy.memcached" level="debug" />
 		<logger name="org.springframework" level="info" />
@@ -54,8 +54,8 @@
 
 		<!-- Business logger -->
 		<!-- 日志单独输出，单独输出到Businesslog文件当中，也在其它日志文件当中体现 -->
-		<!-- 在类里面采用这种声明方式：private static final Logger log = LoggerFactory.getLogger("cn.springmvc.mybatis.service"); -->
-		<logger name="cn.springmvc.mybatis.service" level="info" additivity="false">
+		<!-- 在类里面采用这种声明方式：private static final Logger log = LoggerFactory.getLogger("com.jun.plugin.mybatis.service"); -->
+		<logger name="com.jun.plugin.mybatis.service" level="info" additivity="false">
 			<appender-ref ref="BusinessLog" />
 			<appender-ref ref="RollingLog" />
 			<appender-ref ref="Console" />

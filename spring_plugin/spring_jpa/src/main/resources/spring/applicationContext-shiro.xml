@@ -11,7 +11,7 @@
 	</bean>
 
 	<!-- 項目自定义的Realm -->
-	<bean id="authorizingRealmImpl" class="cn.springmvc.jpa.security.AuthorizingRealmImpl" />
+	<bean id="authorizingRealmImpl" class="com.jun.plugin.jpa.security.AuthorizingRealmImpl" />
 
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
