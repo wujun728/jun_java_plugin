@@ -2,7 +2,7 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="false">
 
-	<diskStore path="java.io.tmpdir/hibernate/study_hibernate" />
+	<diskStore path="java.io.tmpdir/hibernate/spring_hibernate" />
 
 	<!-- DefaultCache setting. -->
 	<defaultCache maxEntriesLocalHeap="10000" eternal="false"

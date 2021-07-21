@@ -20,8 +20,8 @@ import org.hibernate.Transaction;
 import org.hibernate.stat.Statistics;
 import org.junit.Test;
 
-import com.ketayao.learn.hibernate.entity.Monkey;
-import com.ketayao.learn.hibernate.test.HibernateUtil;
+import com.jun.plugin.learn.hibernate.entity.Monkey;
+import com.jun.plugin.learn.hibernate.test.HibernateUtil;
 
 /**
  * 

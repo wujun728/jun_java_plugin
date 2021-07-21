@@ -21,10 +21,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ketayao.common.hibernate4.Updater;
-import com.ketayao.common.hibernate4.Updater.UpdateMode;
-import com.ketayao.common.hibernate4.test.ModuleTree;
-import com.ketayao.common.hibernate4.test.ModuleTreeDao;
+import com.jun.plugin.common.hibernate4.Updater;
+import com.jun.plugin.common.hibernate4.Updater.UpdateMode;
+import com.jun.plugin.common.hibernate4.test.ModuleTree;
+import com.jun.plugin.common.hibernate4.test.ModuleTreeDao;
 
 /** 
  * 	

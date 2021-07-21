@@ -21,9 +21,9 @@ import java.util.List;
 import org.hibernate.Session;
 import org.junit.Test;
 
-import com.ketayao.learn.hibernate.entity.Car;
-import com.ketayao.learn.hibernate.entity.User;
-import com.ketayao.learn.hibernate.test.HibernateUtil;
+import com.jun.plugin.learn.hibernate.entity.Car;
+import com.jun.plugin.learn.hibernate.entity.User;
+import com.jun.plugin.learn.hibernate.test.HibernateUtil;
 
 /**
  * 

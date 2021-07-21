@@ -14,7 +14,7 @@
 
 import org.junit.Test;
 
-import com.ketayao.common.hibernate4.test.ModuleTree;
+import com.jun.plugin.common.hibernate4.test.ModuleTree;
 
 /** 
  * 	

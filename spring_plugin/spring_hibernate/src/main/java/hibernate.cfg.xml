@@ -39,18 +39,18 @@
 		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
 		<property name="net.sf.ehcache.configurationResourceName">ehcache/ehcache-hibernate-local.xml</property>
  		
-        <mapping class="com.ketayao.learn.hibernate.entity.Monkey" />  
- 		<mapping class="com.ketayao.learn.hibernate.entity.Module" />
- 		<mapping class="com.ketayao.learn.hibernate.entity.User" />
- 		<mapping class="com.ketayao.learn.hibernate.entity.Car" />
- 		<mapping class="com.ketayao.learn.hibernate.entity.AssignKey" />
- 		<mapping class="com.ketayao.learn.hibernate.entity.IDCard" />
+        <mapping class="com.jun.plugin.learn.hibernate.entity.Monkey" />  
+ 		<mapping class="com.jun.plugin.learn.hibernate.entity.Module" />
+ 		<mapping class="com.jun.plugin.learn.hibernate.entity.User" />
+ 		<mapping class="com.jun.plugin.learn.hibernate.entity.Car" />
+ 		<mapping class="com.jun.plugin.learn.hibernate.entity.AssignKey" />
+ 		<mapping class="com.jun.plugin.learn.hibernate.entity.IDCard" />
  		
  		 
- 		<mapping class="com.ketayao.learn.hibernate.entity.Company" />
- 		<mapping class="com.ketayao.learn.hibernate.entity.Person" />
+ 		<mapping class="com.jun.plugin.learn.hibernate.entity.Company" />
+ 		<mapping class="com.jun.plugin.learn.hibernate.entity.Person" />
  		
- 		<mapping class="com.ketayao.learn.hibernate.entity.Language" />
- 		<mapping class="com.ketayao.learn.hibernate.entity.Message" />
+ 		<mapping class="com.jun.plugin.learn.hibernate.entity.Language" />
+ 		<mapping class="com.jun.plugin.learn.hibernate.entity.Message" />
 	</session-factory>
 </hibernate-configuration>

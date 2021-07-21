@@ -14,9 +14,9 @@
 
 import org.junit.Test;
 
-import com.ketayao.common.page.Paginable;
-import com.ketayao.common.page.SimplePage;
-import com.ketayao.common.page.SimplePaginStyle;
+import com.jun.plugin.common.page.Paginable;
+import com.jun.plugin.common.page.SimplePage;
+import com.jun.plugin.common.page.SimplePaginStyle;
 
 /** 
  * 	

@@ -4,8 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Test;
 
-import com.ketayao.learn.hibernate.entity.Message;
-import com.ketayao.learn.hibernate.test.HibernateUtil;
+import com.jun.plugin.learn.hibernate.entity.Message;
+import com.jun.plugin.learn.hibernate.test.HibernateUtil;
 
 /** 
  * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>

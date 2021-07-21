@@ -11,7 +11,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd"
 	default-lazy-init="true">
 	
-	<context:component-scan base-package="com.ketayao.common" />
+	<context:component-scan base-package="com.jun.plugin.common" />
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<!-- hibernate sessionFactory 创建 -->
@@ -19,7 +19,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
 			<list>
-				<value>com.ketayao.common</value>
+				<value>com.jun.plugin.common</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -89,6 +89,6 @@
     	<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>	
 	
-	<bean id="treeInterceptor" class="com.ketayao.common.hibernate4.TreeInterceptor"/>
+	<bean id="treeInterceptor" class="com.jun.plugin.common.hibernate4.TreeInterceptor"/>
 	
 </beans>

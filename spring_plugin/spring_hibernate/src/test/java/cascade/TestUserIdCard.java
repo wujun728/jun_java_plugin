@@ -16,9 +16,9 @@ package cascade;
 import org.hibernate.Session;
 import org.junit.Test;
 
-import com.ketayao.learn.hibernate.entity.IDCard;
-import com.ketayao.learn.hibernate.entity.User;
-import com.ketayao.learn.hibernate.test.HibernateUtil;
+import com.jun.plugin.learn.hibernate.entity.IDCard;
+import com.jun.plugin.learn.hibernate.entity.User;
+import com.jun.plugin.learn.hibernate.test.HibernateUtil;
 
 /** 
  * 	

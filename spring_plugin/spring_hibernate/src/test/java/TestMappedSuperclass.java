@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ketayao.learn.hibernate.test.annotation.TuDog;
+import com.jun.plugin.learn.hibernate.test.annotation.TuDog;
 
 /** 
  * @author Wujun

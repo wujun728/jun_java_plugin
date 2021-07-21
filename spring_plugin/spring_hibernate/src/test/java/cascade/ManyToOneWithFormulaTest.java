@@ -32,11 +32,11 @@ import java.util.List;
 import org.hibernate.Session;
 import org.junit.Test;
 
-import com.ketayao.learn.hibernate.entity.Company;
-import com.ketayao.learn.hibernate.entity.Language;
-import com.ketayao.learn.hibernate.entity.Message;
-import com.ketayao.learn.hibernate.entity.Person;
-import com.ketayao.learn.hibernate.test.HibernateUtil;
+import com.jun.plugin.learn.hibernate.entity.Company;
+import com.jun.plugin.learn.hibernate.entity.Language;
+import com.jun.plugin.learn.hibernate.entity.Message;
+import com.jun.plugin.learn.hibernate.entity.Person;
+import com.jun.plugin.learn.hibernate.test.HibernateUtil;
 
 /**
  * @author Sharath Reddy

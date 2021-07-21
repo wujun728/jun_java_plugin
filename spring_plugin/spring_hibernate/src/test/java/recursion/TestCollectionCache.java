@@ -17,8 +17,8 @@ import org.hibernate.Session;
 import org.hibernate.stat.Statistics;
 import org.junit.Test;
 
-import com.ketayao.learn.hibernate.entity.Module;
-import com.ketayao.learn.hibernate.test.HibernateUtil;
+import com.jun.plugin.learn.hibernate.entity.Module;
+import com.jun.plugin.learn.hibernate.test.HibernateUtil;
 
 /**
  * 
