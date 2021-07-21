@@ -1,4 +1,4 @@
-package com.drore.jsonp.advice;
+package com.jun.plugin.jsonp.advice;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpResponseBodyAdvice;

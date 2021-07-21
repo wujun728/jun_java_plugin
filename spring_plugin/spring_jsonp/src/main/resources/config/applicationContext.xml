@@ -13,7 +13,7 @@
         ">
 
 	<!-- 设置注解扫描目录 -->
-	<context:component-scan base-package="com.drore.jsonp">
+	<context:component-scan base-package="com.jun.plugin.jsonp">
 	</context:component-scan>
 	<mvc:annotation-driven enable-matrix-variables="true" />
 	<bean

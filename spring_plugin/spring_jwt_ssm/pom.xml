@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.jun.plugin</groupId>
-  <artifactId>jun_ssm_jwt</artifactId>
+  <artifactId>spring_jwt_ssm</artifactId>
   <version>1.0</version>
   <packaging>war</packaging>
 
-  <name>jun_ssm_jwt Maven Webapp</name>
+  <name>spring_jwt_ssm Maven Webapp</name>
   <url>http://www.example.com</url>
 
   <properties>

@@ -3,7 +3,7 @@
 * 新建`JsonpAdvice`控制器增强继承`org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpResponseBodyAdvice`类
 
 
-		package com.drore.jsonp.advice;
+		package com.jun.plugin.jsonp.advice;
 	
 		import org.springframework.web.bind.annotation.ControllerAdvice;
 		import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpResponseBodyAdvice;
@@ -19,7 +19,7 @@
 * 所有controller类使用`@RestController`注解
 
 
-		package com.drore.jsonp.controller;
+		package com.jun.plugin.jsonp.controller;
 		
 		import java.util.ArrayList;
 		import java.util.HashMap;
