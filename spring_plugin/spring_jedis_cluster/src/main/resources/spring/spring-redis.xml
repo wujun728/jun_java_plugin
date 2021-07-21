@@ -18,7 +18,7 @@
 		<property name="minIdle" value="0" />
 		<property name="maxIdle" value="8" />
 	</bean>
-	<bean id="jedisCluster" class="com.neo.redis.JedisClusterFactory">
+	<bean id="jedisCluster" class="com.jun.plugin.redis.JedisClusterFactory">
 		<property name="connectionTimeout" value="3000" />
 		<property name="soTimeout" value="3000" />
 		<property name="maxRedirections" value="5" />

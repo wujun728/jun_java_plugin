@@ -4,12 +4,12 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.neo</groupId>
-	<artifactId>spring-jediscluster</artifactId>
+	<groupId>com.jun.plugin</groupId>
+	<artifactId>spring_jedis_cluster</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
-	<name>spring-jediscluster</name>
+	<name>spring-jedis-cluster</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
