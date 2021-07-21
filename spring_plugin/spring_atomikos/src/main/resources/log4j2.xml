@@ -30,7 +30,7 @@
 
 	<loggers>
 		<!-- 3rdparty Loggers -->
-		<logger name="com.wangxin" level="debug" />
+		<logger name="com.jun.plugin" level="debug" />
 		<logger name="javax.transaction" level="info" />
 		<logger name="org.objectweb" level="info" />
 		<logger name="com.atomikos" level="error" />

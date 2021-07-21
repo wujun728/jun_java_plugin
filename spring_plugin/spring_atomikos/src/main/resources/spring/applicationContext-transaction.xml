@@ -52,7 +52,7 @@
 	</tx:advice>
 
 	<aop:config proxy-target-class="true">
-		<aop:advisor pointcut="(execution(* com.wangxin.service..*.*(..)))" advice-ref="txAdvice" />
+		<aop:advisor pointcut="(execution(* com.jun.plugin.service..*.*(..)))" advice-ref="txAdvice" />
 	</aop:config>
 
 </beans>

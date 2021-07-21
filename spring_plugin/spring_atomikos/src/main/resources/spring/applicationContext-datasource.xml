@@ -55,7 +55,7 @@
 		</property>
 	</bean>
 
-	<bean id="dynamicDatasource" class="com.wangxin.framework.datasource.DynamicDataSource">
+	<bean id="dynamicDatasource" class="com.jun.plugin.framework.datasource.DynamicDataSource">
 		<property name="targetDataSources">
 			<map key-type="java.lang.String">
 				<entry key="slave" value-ref="slaveDataSource" />
@@ -65,11 +65,11 @@
 		<property name="defaultTargetDataSource" ref="slaveDataSource" />
 	</bean>
 
-	<bean id="dataSourceAspect" class="com.wangxin.framework.datasource.DataSourceAspect" />
+	<bean id="dataSourceAspect" class="com.jun.plugin.framework.datasource.DataSourceAspect" />
 
 	<aop:config>
 		<aop:aspect order="1" ref="dataSourceAspect">
-			<aop:pointcut id="dsPointCut" expression="execution(* com.wangxin.service..*Service.*(..))" />
+			<aop:pointcut id="dsPointCut" expression="execution(* com.jun.plugin.service..*Service.*(..))" />
 			<aop:before pointcut-ref="dsPointCut" method="before" />
 		</aop:aspect>
 	</aop:config>

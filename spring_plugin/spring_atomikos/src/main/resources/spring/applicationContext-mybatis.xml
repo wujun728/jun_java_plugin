@@ -47,7 +47,7 @@
 		<property name="mapperLocations" value="classpath*:mybatis/slave/**/*.xml" />
 	</bean>
 
-	<bean id="sqlSessionTemplate" class="com.wangxin.framework.sqlsession.CustomSqlSessionTemplate" scope="prototype">
+	<bean id="sqlSessionTemplate" class="com.jun.plugin.framework.sqlsession.CustomSqlSessionTemplate" scope="prototype">
 		<constructor-arg ref="slaveSqlSessionFactory" />
 		<property name="targetSqlSessionFactorys">
 			<map>
@@ -58,9 +58,9 @@
 	</bean>
 
 	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.wangxin.mapper" />
+		<property name="basePackage" value="com.jun.plugin.mapper" />
 		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate" />
-		<property name="markerInterface" value="com.wangxin.mapper.SqlMapper" />
+		<property name="markerInterface" value="com.jun.plugin.mapper.SqlMapper" />
 	</bean>
 
 </beans>

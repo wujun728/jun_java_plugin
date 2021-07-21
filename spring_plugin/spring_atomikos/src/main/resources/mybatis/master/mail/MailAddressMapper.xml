@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.wangxin.mapper.mail.MailAddressMapper">
+<mapper namespace="com.jun.plugin.mapper.mail.MailAddressMapper">
 
-	<resultMap id="entityMap" type="com.wangxin.entity.mail.MailAddress">
+	<resultMap id="entityMap" type="com.jun.plugin.entity.mail.MailAddress">
 		<result column="ID" property="id" />
 		<result column="MAIL_TYPE" property="mailType" />
 		<result column="TO_ADDRESS" property="toAddress" />
@@ -15,13 +15,13 @@
 		<result column="UPDATE_TIME" property="updateTime" />
 	</resultMap>
 
-	<insert id="insert" parameterType="com.wangxin.entity.mail.MailAddress">
+	<insert id="insert" parameterType="com.jun.plugin.entity.mail.MailAddress">
 		INSERT INTO RPT_MAIL_ADDRESS_T (ID , MAIL_TYPE, TO_ADDRESS , TO_CC, TO_BCC , IS_DEL, VERSION_NUM, CREATE_TIME , UPDATE_TIME)
 		VALUES (#{id} , #{mailType} , #{toAddress} , #{toCc} , #{toBcc} , ${isDel} ,
 		${versionNum}, #{createTime} , #{updateTime})
 	</insert>
 
-	<!-- <insert id="insert" parameterType="com.wangxin.entity.mail.MailAddress"> -->
+	<!-- <insert id="insert" parameterType="com.jun.plugin.entity.mail.MailAddress"> -->
 	<!-- INSERT INTO RPT_MAIL_ADDRESS_T -->
 	<!-- (ID , MAIL_TYPE, TO_ADDRESS , TO_CC, TO_BCC , IS_DEL, VERSION_NUM, CREATE_TIME , UPDATE_TIME) -->
 	<!-- VALUES -->
@@ -72,7 +72,7 @@
 		order by create_time desc
 	</select>
 
-	<update id="update" parameterType="com.wangxin.entity.mail.MailAddress">
+	<update id="update" parameterType="com.jun.plugin.entity.mail.MailAddress">
 		UPDATE RPT_MAIL_ADDRESS_T
 		<set>
 			<if test="mailType != null and mailType!='' ">
@@ -104,7 +104,7 @@
 		WHERE ID = #{id}
 	</update>
 	
-	<update id="updateFail" parameterType="com.wangxin.entity.mail.MailAddress">
+	<update id="updateFail" parameterType="com.jun.plugin.entity.mail.MailAddress">
 		UPDATE RPT_MAIL_ADDRESS_T
 		UPDATE_TIME = 1now()
 		WHERE ID = #{id}
