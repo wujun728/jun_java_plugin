@@ -1,4 +1,4 @@
-package com.vacomall.lucene.util;
+package com.jun.plugin.lucene.util;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

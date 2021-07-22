@@ -1,6 +1,6 @@
-package com.vacomall.lucene.bean;
+package com.jun.plugin.lucene.bean;
 
-import com.vacomall.lucene.enums.SortType;
+import com.jun.plugin.lucene.enums.SortType;
 
 /**
  * Lucen 查询条件

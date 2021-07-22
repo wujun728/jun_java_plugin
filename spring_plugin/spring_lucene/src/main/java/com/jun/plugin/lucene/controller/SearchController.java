@@ -1,4 +1,4 @@
-package com.vacomall.lucene.controller;
+package com.jun.plugin.lucene.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jfinal.kit.JsonKit;
-import com.vacomall.lucene.bean.JGoods;
-import com.vacomall.lucene.bean.Jpage;
-import com.vacomall.lucene.bean.QueryConfig;
-import com.vacomall.lucene.enums.SortType;
-import com.vacomall.lucene.service.ILuceneService;
+import com.alibaba.fastjson.JSON;
+//import com.jfinal.kit.JsonKit;
+import com.jun.plugin.lucene.bean.JGoods;
+import com.jun.plugin.lucene.bean.Jpage;
+import com.jun.plugin.lucene.bean.QueryConfig;
+import com.jun.plugin.lucene.enums.SortType;
+import com.jun.plugin.lucene.service.ILuceneService;
 
 /**
  * 搜索控制器
@@ -45,7 +46,7 @@ public class SearchController {
 		
 		Jpage<JGoods> jpage = luceneService.search(q, pageNumber, pageSize);
 		
-		return JsonKit.toJson(jpage);
+		return JSON.toJSONString(jpage);
 		
 	}
 	
@@ -79,6 +80,6 @@ public class SearchController {
 		//config.setQueryFilter(new QueryFilter("id","501bde049ac3476ba614541314db9fac"));
 		Jpage<JGoods> jpage = luceneService.search(config);
 		
-		return JsonKit.toJson(jpage);
+		return JSON.toJSONString(jpage);
 	}
 }

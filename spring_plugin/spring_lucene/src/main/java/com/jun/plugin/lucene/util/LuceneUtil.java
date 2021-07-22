@@ -1,4 +1,4 @@
-package com.vacomall.lucene.util;
+package com.jun.plugin.lucene.util;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -13,10 +13,11 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.SortField.Type;
-import org.apache.lucene.search.TopDocs;
 
-import com.vacomall.lucene.bean.QueryConfig;
-import com.vacomall.lucene.enums.SortType;
+import com.jun.plugin.lucene.bean.QueryConfig;
+import com.jun.plugin.lucene.enums.SortType;
+
+import org.apache.lucene.search.TopDocs;
 
 
 public class LuceneUtil {

@@ -1,4 +1,4 @@
-package com.vacomall.lucene.bean;
+package com.jun.plugin.lucene.bean;
 /**
  * 精确过滤模型
  * @author Administrator

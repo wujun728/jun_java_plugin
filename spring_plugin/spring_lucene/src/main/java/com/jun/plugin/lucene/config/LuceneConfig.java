@@ -1,4 +1,4 @@
-package com.vacomall.lucene.config;
+package com.jun.plugin.lucene.config;
 
 /**
  * Lucene配置

@@ -1,8 +1,8 @@
-package com.vacomall.lucene.service;
+package com.jun.plugin.lucene.service;
 
-import com.vacomall.lucene.bean.JGoods;
-import com.vacomall.lucene.bean.Jpage;
-import com.vacomall.lucene.bean.QueryConfig;
+import com.jun.plugin.lucene.bean.JGoods;
+import com.jun.plugin.lucene.bean.Jpage;
+import com.jun.plugin.lucene.bean.QueryConfig;
 
 /**
  * Lucene 服务

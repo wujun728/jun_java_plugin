@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jun.plugin</groupId>
-    <artifactId>spring_kafka_demo</artifactId>
+    <artifactId>spring_kafka</artifactId>
     <version>1.0</version>
 	<packaging>jar</packaging>
 
@@ -22,7 +22,7 @@
 		<slf4j.version>[1.7.7,)</slf4j.version>
 	</properties>
 
-	<repositories>
+	<!-- <repositories>
 		<repository>
 			<id>springframework-releases</id>
 			<url>http://maven.springframework.org/release/</url>
@@ -41,7 +41,7 @@
 		 	<url>http://download.java.net/maven/2/</url> 
 		 	<layout>default</layout> 
 		</repository>
-	</repositories>
+	</repositories> -->
 
 
 	<dependencies>

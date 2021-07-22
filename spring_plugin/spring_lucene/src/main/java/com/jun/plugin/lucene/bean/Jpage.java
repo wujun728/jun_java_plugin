@@ -1,4 +1,4 @@
-package com.vacomall.lucene.bean;
+package com.jun.plugin.lucene.bean;
 
 
 import java.io.Serializable;

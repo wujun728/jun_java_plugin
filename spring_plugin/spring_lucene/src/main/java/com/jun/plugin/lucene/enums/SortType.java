@@ -1,4 +1,4 @@
-package com.vacomall.lucene.enums;
+package com.jun.plugin.lucene.enums;
 
 import java.util.HashMap;
 import java.util.Map;

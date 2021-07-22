@@ -1,4 +1,4 @@
-package com.vacomall.lucene.service.impl;
+package com.jun.plugin.lucene.service.impl;
 
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -35,16 +35,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.jfinal.kit.JsonKit;
-import com.vacomall.lucene.bean.JGoods;
-import com.vacomall.lucene.bean.Jpage;
-import com.vacomall.lucene.bean.QueryConfig;
-import com.vacomall.lucene.bean.QueryFilter;
-import com.vacomall.lucene.bean.Sku;
-import com.vacomall.lucene.config.LuceneConfig;
-import com.vacomall.lucene.service.ILuceneService;
-import com.vacomall.lucene.util.LuceneUtil;
+//import com.jfinal.kit.JsonKit;
+import com.jun.plugin.lucene.bean.JGoods;
+import com.jun.plugin.lucene.bean.Jpage;
+import com.jun.plugin.lucene.bean.QueryConfig;
+import com.jun.plugin.lucene.bean.QueryFilter;
+import com.jun.plugin.lucene.bean.Sku;
+import com.jun.plugin.lucene.config.LuceneConfig;
+import com.jun.plugin.lucene.service.ILuceneService;
+import com.jun.plugin.lucene.util.LuceneUtil;
 
 /**
  * lucene服务接口
@@ -76,12 +77,12 @@ public class LuceneServiceImpl implements ILuceneService{
 		doc.add(new LongField("sales",goods.getSales(), Field.Store.YES));
 		doc.add(new LongField("date",goods.getDate().getTime(), Field.Store.YES));
 		doc.add(new TextField("img",goods.getImg(), Field.Store.YES));
-		doc.add(new TextField("skus",JsonKit.toJson(goods.getSkus()), Field.Store.YES));
+		doc.add(new TextField("skus",JSON.toJSONString(goods.getSkus()), Field.Store.YES));
 		
 		indexWriter.addDocument(doc);
 		indexWriter.commit();
 		
-		logger.debug("创建索引成功 : " + JsonKit.toJson(goods));
+		logger.debug("创建索引成功 : " + JSON.toJSONString(goods));
 	}
 
 	/**
@@ -99,12 +100,12 @@ public class LuceneServiceImpl implements ILuceneService{
 		doc.add(new LongField("sales",goods.getSales(), Field.Store.YES));
 		doc.add(new LongField("date",goods.getDate().getTime(), Field.Store.YES));
 		doc.add(new TextField("img",goods.getImg(), Field.Store.YES));
-		doc.add(new TextField("skus",JsonKit.toJson(goods.getSkus()), Field.Store.YES));
+		doc.add(new TextField("skus",JSON.toJSONString(goods.getSkus()), Field.Store.YES));
 		
 		indexWriter.updateDocument(new Term("id",goods.getId()), doc);
 		indexWriter.commit();   
 		
-		logger.debug("更新索引成功,"+JsonKit.toJson(goods));
+		logger.debug("更新索引成功,"+JSON.toJSONString(goods));
 	}
 	/**
 	 * 删除索引
@@ -123,7 +124,7 @@ public class LuceneServiceImpl implements ILuceneService{
 		indexWriter.deleteDocuments(new Term("id", goods.getId()));
 		indexWriter.commit();
 		
-		logger.debug("商品"+JsonKit.toJson(goods)+"已从索引中删除");
+		logger.debug("商品"+JSON.toJSONString(goods)+"已从索引中删除");
 		
 	}
 	/**
@@ -175,7 +176,7 @@ public class LuceneServiceImpl implements ILuceneService{
 		/**
 		 * 设置模糊查询字段
 		 */
-		QueryParser qp = new QueryParser(Version.LUCENE_48, "title",  analyzer);  
+		QueryParser qp = new QueryParser(Version.LUCENE_CURRENT, "title",  analyzer);  
 		Query query = qp.parse(StringUtils.join(kw));  
 		//Query query = qp.parse(StringUtils.join(kw,"*"));  
 		booleanQuery.add(query, Occur.MUST);  
