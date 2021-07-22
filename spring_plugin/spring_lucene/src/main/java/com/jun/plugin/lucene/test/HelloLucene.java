@@ -11,7 +11,7 @@
  * </pre>
  **/
  
-package com.ketayao.learn.lucene;
+package com.jun.plugin.lucene.test;
 
 import java.io.File;
 import java.io.FileReader;

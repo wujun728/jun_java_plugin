@@ -1,4 +1,4 @@
-package com.colobu.spring_kafka_demo;
+package com.jun.plugin.spring_kafka_demo;
 
 import java.util.Collection;
 import java.util.HashMap;

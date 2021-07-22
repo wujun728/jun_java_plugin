@@ -1,4 +1,4 @@
-package com.colobu.spring_kafka_demo;
+package com.jun.plugin.spring_kafka_demo;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
