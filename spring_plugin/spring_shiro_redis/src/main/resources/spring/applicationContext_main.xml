@@ -27,7 +27,7 @@
   		http://www.springframework.org/schema/cache
   		http://www.springframework.org/schema/cache/spring-cache.xsd">
         <context:annotation-config/>
-        <context:component-scan base-package="com.zhm.ssr"/>
+        <context:component-scan base-package="com.jun.plugin.ssr"/>
         <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
             <property name="ignoreUnresolvablePlaceholders" value="true" />
@@ -60,7 +60,7 @@
 		</bean>
 
         <!--  ========shiro 配置开始 ======== -->
-		<bean id="myRealm" class="com.zhm.ssr.shiro.CustomRealm">
+		<bean id="myRealm" class="com.jun.plugin.ssr.shiro.CustomRealm">
 			<!-- 配置AuthorizationInfo信息不用放redis缓存，直接放session即可 -->
 			<property name="cachingEnabled" value="false"/>
 			<property name="authenticationCachingEnabled" value="false" />
@@ -101,10 +101,10 @@
 			<!-- 客户端勾选记住 -->
 			<property name="rememberMeManager" ref="rememberMeManager"/>
 		</bean>
-		<bean id="redisCacheManager" class="com.zhm.ssr.shiro.RedisCacheManager" >
+		<bean id="redisCacheManager" class="com.jun.plugin.ssr.shiro.RedisCacheManager" >
 			<property name="redisManager" ref="redisManager" />
 		</bean>
-		<bean id="redisManager" class="com.zhm.ssr.shiro.RedisManager">
+		<bean id="redisManager" class="com.jun.plugin.ssr.shiro.RedisManager">
 			<property name="expire" value="${redis.expireTime}" />
 			<property name="host" value="${redis.host}" />
 			<property name="password" value="${redis.pass}" />
@@ -118,7 +118,7 @@
             <property name="filters">
                 <map>
                     <entry key="mainFilter">
-                        <bean class="com.zhm.ssr.filters.CustomAuthorizationFilter" />
+                        <bean class="com.jun.plugin.ssr.filters.CustomAuthorizationFilter" />
                     </entry>
                 </map>
             </property>
@@ -140,7 +140,7 @@
 			</property>
 		</bean>
         <!-- 自定义shiro的sessionDao，把session写入redis -->
-		<bean id="sessionDAO" class="com.zhm.ssr.shiro.RedisSessionDao">
+		<bean id="sessionDAO" class="com.jun.plugin.ssr.shiro.RedisSessionDao">
 			<constructor-arg ref="redisTemplate" />
 			<constructor-arg value="${redis.expireTime}" />
 		</bean>

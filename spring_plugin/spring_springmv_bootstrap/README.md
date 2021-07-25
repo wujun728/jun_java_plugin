@@ -1,4 +1,4 @@
-# springmvc 介绍 #
+# spring-springmvc 
 
 <pre>它是一个典型的MVC三层框架示例工程，快速简单的上手。</pre>
 

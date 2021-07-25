@@ -94,7 +94,7 @@
         </property>
     </bean>
 
-    <bean id="student" class="com.zb.entity.batch.Student" scope="prototype" />
+    <bean id="student" class="com.jun.plugin.springbatch.entity.batch.Student" scope="prototype" />
 
     <bean id="lineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
         <property name="delimiter" value=","></property>

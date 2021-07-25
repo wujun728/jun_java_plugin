@@ -1,4 +1,4 @@
-#SpringMvc-SpringJdbc-Demo
+#SpringMvc-SpringJdbc
 
 使用SpringJdbc作为数据库访问持久层的SpringMvc框架
 

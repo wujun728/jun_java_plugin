@@ -76,7 +76,7 @@
     <bean id="lineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
         <property name="lineTokenizer" ref="delimitedLineTokenizer"></property>
         <property name="fieldSetMapper">
-            <bean class="com.zb.batch.mapper.UserMapper" />
+            <bean class="com.jun.plugin.springbatch.batch.mapper.UserMapper" />
         </property>
     </bean>
 

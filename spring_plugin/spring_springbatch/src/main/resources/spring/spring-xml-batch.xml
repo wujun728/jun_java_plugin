@@ -73,7 +73,7 @@
     <bean id="tradeMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
         <property name="aliases">
             <util:map id="aliases">
-                <entry key="goods" value="com.zb.entity.batch.Goods" />
+                <entry key="goods" value="com.jun.plugin.springbatch.entity.batch.Goods" />
                 <entry key="buyDay" value="java.util.Date" />
             </util:map>
         </property>
