@@ -4,10 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>spring_simplessh14</name>
     <groupId>com.jun.plugin</groupId>
-    <artifactId>spring_simplessh14</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>spring_ssh2</artifactId>
+    <version>1.0</version>
     <packaging>war</packaging>
 
 

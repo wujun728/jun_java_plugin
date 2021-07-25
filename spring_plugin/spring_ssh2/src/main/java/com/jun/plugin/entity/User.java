@@ -1,4 +1,4 @@
-package com.circle.entity;
+package com.jun.plugin.entity;
 
 public class User {
 

@@ -1,11 +1,13 @@
-package com.circle.service;
+package com.jun.plugin.service;
 
-import com.circle.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.jun.plugin.entity.User;
+import com.jun.plugin.service.IUserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/applicationContext.xml"})

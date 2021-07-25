@@ -15,7 +15,7 @@
 	<context:annotation-config/>
 
 	<!-- 使用annotation 自动注册bean,并检查@Required,@Autowired的属性已被注入 -->
-	<context:component-scan base-package="com.circle">
+	<context:component-scan base-package="com.jun.plugin">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 
@@ -34,7 +34,7 @@
 		<property name="packagesToScan">
 			<list>
 				<!-- 可以加多个包 -->
-				<value>com.circle.entity</value>
+				<value>com.jun.plugin.entity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -60,7 +60,7 @@
 		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
 
-	<bean id="userDao" class="com.circle.dao.impl.UserDaoImpl" parent="hibernateDaoSupport">
+	<bean id="userDao" class="com.jun.plugin.dao.impl.UserDaoImpl" parent="hibernateDaoSupport">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
@@ -78,7 +78,7 @@
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 
 
-	<!--<bean name="userAction" class="com.circle.action.UserAction" scope="prototype">
+	<!--<bean name="userAction" class="com.jun.plugin.action.UserAction" scope="prototype">
 		<property name="userService" ref="userServiceImpl"/>
 	</bean>-->
 </beans>

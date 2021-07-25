@@ -1,8 +1,8 @@
-package com.circle.action;
+package com.jun.plugin.action;
 
 
-import com.circle.entity.User;
-import com.circle.service.IUserService;
+import com.jun.plugin.entity.User;
+import com.jun.plugin.service.IUserService;
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;

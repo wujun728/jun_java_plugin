@@ -1,8 +1,8 @@
-package com.circle.service;
-
-import com.circle.entity.User;
+package com.jun.plugin.service;
 
 import java.util.List;
+
+import com.jun.plugin.entity.User;
 
 public interface IUserService {			//Service接口,将会在Service层添加事务
     public List<User> listUsers();		//列出所有的User

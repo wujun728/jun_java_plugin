@@ -1,11 +1,12 @@
-package com.circle.service;
+package com.jun.plugin.service;
 
 
-import com.circle.dao.IUserDao;
-import com.circle.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.jun.plugin.dao.IUserDao;
+import com.jun.plugin.entity.User;
 
 import java.util.List;
 

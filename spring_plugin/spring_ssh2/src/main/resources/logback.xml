@@ -34,7 +34,7 @@
 	</appender>
 
 	<!-- project default level -->
-	<logger name="com.circle" level="INFO" />
+	<logger name="com.jun.plugin" level="INFO" />
 	
 	<!-- business log 使用独立的appender，不继承Root的appender -->
 	<logger name="business" level="INFO" additivity="false">

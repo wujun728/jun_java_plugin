@@ -1,12 +1,13 @@
-package com.circle.dao.impl;
+package com.jun.plugin.dao.impl;
 
 import java.util.List;
 
-import com.circle.dao.IUserDao;
-import com.circle.entity.User;
 import org.hibernate.Query;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
+
+import com.jun.plugin.dao.IUserDao;
+import com.jun.plugin.entity.User;
 
 //@Repository
 public class UserDaoImpl extends HibernateDaoSupport implements IUserDao {
