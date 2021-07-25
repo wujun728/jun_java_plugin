@@ -7,7 +7,7 @@
     <groupId>com.jun.plugin</groupId>
     <artifactId>spring_oauth_server2</artifactId>
     <version>1.01</version>
-    <name>spring-oauth-server</name>
+    <name>spring_oauth_server2</name>
     <packaging>war</packaging>
     <description>Spring OAuth2 Server</description>
 
@@ -41,7 +41,7 @@
 
 
     <build>
-        <finalName>spring-oauth-server</finalName>
+        <finalName>spring_oauth_server2</finalName>
 
         <plugins>
             <plugin>
@@ -59,8 +59,8 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
-                    <warSourceExcludes>*/classes/spring-oauth-server.properties</warSourceExcludes>
-                    <packagingExcludes>*/classes/spring-oauth-server.properties</packagingExcludes>
+                    <warSourceExcludes>*/classes/spring_oauth_server2.properties</warSourceExcludes>
+                    <packagingExcludes>*/classes/spring_oauth_server2.properties</packagingExcludes>
                     <archive>
                         <addMavenDescriptor>false</addMavenDescriptor>
                         <manifestEntries>
@@ -147,7 +147,7 @@
                 </includes>
                 <excludes>
                     <!--exclude file list-->
-                    <!--<exclude>spring-oauth-server.properties</exclude>-->
+                    <!--<exclude>spring_oauth_server2.properties</exclude>-->
                 </excludes>
             </resource>
         </resources>

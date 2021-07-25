@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.monkeyk</groupId>
-    <artifactId>spring-oauth-server</artifactId>
+    <groupId>com.jun.plugin</groupId>
+    <artifactId>spring_oauth_server</artifactId>
     <version>1.0</version>
-    <name>spring-oauth-server</name>
+    <name>spring_oauth_server</name>
     <packaging>war</packaging>
     <description>Spring OAuth2 Server</description>
 
@@ -41,7 +41,7 @@
 
 
     <build>
-        <finalName>spring-oauth-server</finalName>
+        <finalName>spring_oauth_server</finalName>
 
         <plugins>
             <plugin>
@@ -59,8 +59,8 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
-                    <warSourceExcludes>*/classes/spring-oauth-server.properties</warSourceExcludes>
-                    <packagingExcludes>*/classes/spring-oauth-server.properties</packagingExcludes>
+                    <warSourceExcludes>*/classes/spring_oauth_server.properties</warSourceExcludes>
+                    <packagingExcludes>*/classes/spring_oauth_server.properties</packagingExcludes>
                     <archive>
                         <addMavenDescriptor>false</addMavenDescriptor>
                         <manifestEntries>
@@ -146,7 +146,7 @@
                 </includes>
                 <excludes>
                     <!--exclude file list-->
-                    <!--<exclude>spring-oauth-server.properties</exclude>-->
+                    <!--<exclude>spring_oauth_server.properties</exclude>-->
                 </excludes>
             </resource>
         </resources>
