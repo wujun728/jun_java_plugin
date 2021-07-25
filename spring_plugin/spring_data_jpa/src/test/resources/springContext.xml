@@ -12,12 +12,12 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd"
 	default-lazy-init="true">
 	
-	<context:component-scan base-package="com.ketayao.learn" />
+	<context:component-scan base-package="com.jun.plugin.jpa" />
 	
 	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
 
 	<!-- Spring Data Jpa配置 -->
- 	<jpa:repositories base-package="com.ketayao.learn"  transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory"/>
+ 	<jpa:repositories base-package="com.jun.plugin.jpa"  transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory"/>
    
 	<!-- Jpa 事务配置 -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -31,7 +31,7 @@
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
-		<property name="packagesToScan" value="com.ketayao.learn"/>
+		<property name="packagesToScan" value="com.jun.plugin.jpa"/>
 
 		<property name="jpaProperties">
 			<props>

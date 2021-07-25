@@ -1,11 +1,11 @@
-package com.ketayao.learn.service;
+package com.jun.plugin.jpa.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ketayao.learn.dao.DogDao;
-import com.ketayao.learn.entity.Dog;
+import com.jun.plugin.jpa.dao.DogDao;
+import com.jun.plugin.jpa.entity.Dog;
 
 /** 
  * @author Wujun

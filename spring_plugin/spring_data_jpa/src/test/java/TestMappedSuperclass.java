@@ -8,9 +8,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ketayao.learn.entity.Dog;
-import com.ketayao.learn.entity.TuDog;
-import com.ketayao.learn.service.DogService;
+import com.jun.plugin.jpa.entity.Dog;
+import com.jun.plugin.jpa.entity.TuDog;
+import com.jun.plugin.jpa.service.DogService;
 
 /** 
  * @author Wujun

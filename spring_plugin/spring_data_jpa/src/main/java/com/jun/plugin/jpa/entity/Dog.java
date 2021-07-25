@@ -1,4 +1,4 @@
-package com.ketayao.learn.entity;
+package com.jun.plugin.jpa.entity;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

@@ -1,8 +1,8 @@
-package com.ketayao.learn.dao;
+package com.jun.plugin.jpa.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.ketayao.learn.entity.Dog;
+import com.jun.plugin.jpa.entity.Dog;
 
 /** 
  * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
