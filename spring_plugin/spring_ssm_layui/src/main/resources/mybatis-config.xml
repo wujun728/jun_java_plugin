@@ -14,7 +14,7 @@
 
     <!--配置数据源，交给Spring去做-->
     <typeAliases>
-        <package name="cn.classg.entity"/>
+        <package name="com.jun.plugin.entity"/>
     </typeAliases>
 
 
@@ -26,8 +26,8 @@
     </plugins>
 
     <mappers>
-        <!--<mapper class="cn.classg.mapper.BooksMapper"/>
-        <mapper class="cn.classg.mapper.UserMapper"/>-->
-        <package name="cn.classg.mapper" />
+        <!--<mapper class="com.jun.plugin.mapper.BooksMapper"/>
+        <mapper class="com.jun.plugin.mapper.UserMapper"/>-->
+        <package name="com.jun.plugin.mapper" />
     </mappers>
 </configuration>

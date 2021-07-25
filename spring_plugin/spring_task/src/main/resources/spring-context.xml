@@ -11,7 +11,7 @@
           http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
     <!-- 扫描注解Bean 不扫描控制器 -->
-    <context:component-scan base-package="org.springagg.web">
+    <context:component-scan base-package="com.jun.plugin.web">
         <context:exclude-filter type="annotation"
             expression="org.springframework.stereotype.Controller" />
     </context:component-scan>

@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 扫描控制器 禁用use-default-filters 不重复扫描@Service,@Repository等..否则将导致事务失效 -->
-    <context:component-scan base-package="org.springagg.web"
+    <context:component-scan base-package="com.jun.plugin.web"
         use-default-filters="false">
         <context:include-filter type="annotation"
             expression="org.springframework.stereotype.Controller" />
@@ -20,7 +20,7 @@
     </context:component-scan>
     
     <!-- web socket package -->
-    <context:component-scan base-package="org.springagg.websocket" />
+    <context:component-scan base-package="com.jun.plugin.websocket" />
 
     <!-- 启用注解 -->
     <mvc:annotation-driven>

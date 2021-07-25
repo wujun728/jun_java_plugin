@@ -8,7 +8,7 @@
        https://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 扫描service相关的bean -->
-    <context:component-scan base-package="cn.classg.service" />
+    <context:component-scan base-package="com.jun.plugin.service" />
 
     <!--BookServiceImpl注入到IOC容器中
         将所有的业务类，注入到spring

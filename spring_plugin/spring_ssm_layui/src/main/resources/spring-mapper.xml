@@ -70,6 +70,6 @@
         <!-- 注入sqlSessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- 给出需要扫描mapper接口包 -->
-        <property name="basePackage" value="cn.classg.mapper" />
+        <property name="basePackage" value="com.jun.plugin.mapper" />
     </bean>
 </beans>

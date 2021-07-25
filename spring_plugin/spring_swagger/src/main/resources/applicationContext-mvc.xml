@@ -12,7 +12,7 @@
     </bean>
 
     <!--扫描Controller注解-->
-    <context:component-scan base-package="org.itcast.demo.controller" />
+    <context:component-scan base-package="com.jun.plugin.demo.controller" />
 
     <!--配置一个JSON数据类型转化器-->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
@@ -27,7 +27,7 @@
                         </list>
                     </property>
                     <property name="objectMapper">
-                        <bean class="org.itcast.demo.config.JavaTimeJsonMapper" />
+                        <bean class="com.jun.plugin.demo.config.JavaTimeJsonMapper" />
                     </property>
                 </bean>
             </list>
@@ -46,12 +46,12 @@
         <mvc:interceptor>
             <mvc:mapping path="/user/**"/>
             <mvc:exclude-mapping path="/user/login" />
-            <bean class="org.itcast.demo.interceptor.LoginInterceptor" />
+            <bean class="com.jun.plugin.demo.interceptor.LoginInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 
     <!-- 将swaggerconfig配置类注入 -->
-    <bean class="org.itcast.demo.config.Swagger2Config"/>
+    <bean class="com.jun.plugin.demo.config.Swagger2Config"/>
     <!--<mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>-->
     <!--<mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>-->
 </beans>
