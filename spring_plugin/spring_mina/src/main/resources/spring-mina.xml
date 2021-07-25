@@ -9,7 +9,7 @@ http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 	<context:property-placeholder ignore-unresolvable="true" location="classpath:mina.properties" />	
 	
 	<!--  -->
-	<bean id="tcpAcceptor" class="com.myschool.mima.server.ServerAcceptor" init-method="bind" destroy-method="unbind">
+	<bean id="tcpAcceptor" class="com.jun.plugin.mima.server.ServerAcceptor" init-method="bind" destroy-method="unbind">
         <property name="heartbeat" value="${tcp.heartbeat}" />				<!-- 心跳时间 -->
 		<property name="idleTime" value="${tcp.idleTime}" />				<!-- 超时时间 -->
 		<property name="readBufferSize" value="${tcp.readBufferSize}" />	<!-- 设置读取数据的缓冲区大小  -->
