@@ -20,7 +20,7 @@
 
 	
 	<!-- 2.扫描的包路径，这里不扫描被@Controller注解的类 --><!--使用<context:component-scan/> 可以不在配置<context:annotation-config/> -->
-	<context:component-scan base-package="org.ssm.dufy">
+	<context:component-scan base-package="com.jun.plugin.quratz">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	

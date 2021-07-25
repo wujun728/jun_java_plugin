@@ -22,7 +22,7 @@
 		<!-- 指定job的分组 -->
 		<property name="group" value="hw_group"/>
 		<!-- 指定具体的job类 -->
-		<property name="jobClass" value="com.dufy.spring.quartz.chapter01.job.HelloWorldJob"/>
+		<property name="jobClass" value="com.jun.plugin.quartz.chapter01.job.HelloWorldJob"/>
 		<!-- 必须设置为true，如果为false，当没有活动的触发器与之关联时会在调度器中会删除该任务  -->
 		<property name="durability" value="true"/>
 		<!-- 指定spring容器的key，如果不设定在job中的jobmap中是获取不到spring容器的 -->

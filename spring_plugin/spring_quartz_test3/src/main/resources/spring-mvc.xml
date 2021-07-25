@@ -17,7 +17,7 @@
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <context:annotation-config></context:annotation-config>
     <!-- 扫描controller（controller层注入） -->
-   <context:component-scan base-package="org.ssm.dufy.web" use-default-filters="false">
+   <context:component-scan base-package="com.jun.plugin.quratz.web" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
    
