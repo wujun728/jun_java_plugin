@@ -1,4 +1,4 @@
-package com.dexcoder.demo.event;
+package com.jun.plugin.demo.event;
 
 import javax.annotation.PostConstruct;
 
@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.dexcoder.demo.service.ScheduleJobService;
+import com.jun.plugin.demo.service.ScheduleJobService;
 
 /**
  * 定时任务初始化

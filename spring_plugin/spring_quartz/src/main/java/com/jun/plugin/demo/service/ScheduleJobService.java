@@ -1,9 +1,9 @@
-package com.dexcoder.demo.service;
+package com.jun.plugin.demo.service;
 
 import java.util.List;
 
-import com.dexcoder.demo.model.ScheduleJob;
-import com.dexcoder.demo.vo.ScheduleJobVo;
+import com.jun.plugin.demo.model.ScheduleJob;
+import com.jun.plugin.demo.vo.ScheduleJobVo;
 
 /**
  * 定时任务service

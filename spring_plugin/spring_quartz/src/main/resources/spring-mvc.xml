@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <context:component-scan
-            base-package="com.dexcoder.demo.*"/>
+            base-package="com.jun.plugin.demo.*"/>
 
     <!-- 视图解析器，根据视图的名称new ModelAndView(name)，在配置文件查找对应的bean配置 -->
 

@@ -1,4 +1,4 @@
-package com.dexcoder.demo.exceptions;
+package com.jun.plugin.demo.exceptions;
 
 import com.dexcoder.commons.exceptions.DexcoderException;
 

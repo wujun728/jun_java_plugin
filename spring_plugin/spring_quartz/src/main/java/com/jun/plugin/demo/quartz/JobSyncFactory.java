@@ -1,11 +1,11 @@
-package com.dexcoder.demo.quartz;
+package com.jun.plugin.demo.quartz;
 
 import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.dexcoder.demo.model.ScheduleJob;
-import com.dexcoder.demo.vo.ScheduleJobVo;
+import com.jun.plugin.demo.model.ScheduleJob;
+import com.jun.plugin.demo.vo.ScheduleJobVo;
 
 /**
  * 同步的任务工厂类

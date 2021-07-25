@@ -1,14 +1,14 @@
-package com.dexcoder.demo.utils;
+package com.jun.plugin.demo.utils;
 
 import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.dexcoder.demo.exceptions.ScheduleException;
-import com.dexcoder.demo.model.ScheduleJob;
-import com.dexcoder.demo.quartz.JobFactory;
-import com.dexcoder.demo.quartz.JobSyncFactory;
-import com.dexcoder.demo.vo.ScheduleJobVo;
+import com.jun.plugin.demo.exceptions.ScheduleException;
+import com.jun.plugin.demo.model.ScheduleJob;
+import com.jun.plugin.demo.quartz.JobFactory;
+import com.jun.plugin.demo.quartz.JobSyncFactory;
+import com.jun.plugin.demo.vo.ScheduleJobVo;
 
 /**
  * 定时任务辅助类

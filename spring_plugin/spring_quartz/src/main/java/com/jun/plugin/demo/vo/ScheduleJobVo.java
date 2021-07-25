@@ -1,4 +1,4 @@
-package com.dexcoder.demo.vo;
+package com.jun.plugin.demo.vo;
 
 import com.dexcoder.commons.pager.Pageable;
 

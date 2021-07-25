@@ -1,4 +1,4 @@
-package com.dexcoder.demo.quartz;
+package com.jun.plugin.demo.quartz;
 
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
@@ -7,8 +7,8 @@ import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.dexcoder.demo.model.ScheduleJob;
-import com.dexcoder.demo.vo.ScheduleJobVo;
+import com.jun.plugin.demo.model.ScheduleJob;
+import com.jun.plugin.demo.vo.ScheduleJobVo;
 
 /**
  * 任务工厂类,非同步

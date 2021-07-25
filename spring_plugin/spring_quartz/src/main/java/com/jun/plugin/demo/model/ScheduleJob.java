@@ -1,4 +1,4 @@
-package com.dexcoder.demo.model;
+package com.jun.plugin.demo.model;
 
 import java.util.Date;
 

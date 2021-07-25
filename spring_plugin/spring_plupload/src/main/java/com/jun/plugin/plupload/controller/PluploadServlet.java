@@ -1,4 +1,4 @@
-package com.plupload.controller;
+package com.jun.plugin.plupload.controller;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

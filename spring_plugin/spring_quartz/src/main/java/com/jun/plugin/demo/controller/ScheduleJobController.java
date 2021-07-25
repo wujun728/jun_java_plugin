@@ -1,4 +1,4 @@
-package com.dexcoder.demo.controller;
+package com.jun.plugin.demo.controller;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.dexcoder.demo.service.ScheduleJobService;
-import com.dexcoder.demo.vo.ScheduleJobVo;
+import com.jun.plugin.demo.service.ScheduleJobService;
+import com.jun.plugin.demo.vo.ScheduleJobVo;
 
 /**
  * Created by liyd on 2015/4/3.
