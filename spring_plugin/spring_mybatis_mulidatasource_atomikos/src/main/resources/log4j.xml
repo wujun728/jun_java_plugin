@@ -15,7 +15,7 @@
 			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
 		</layout>
 	</appender>
-	<logger name="com.neo">  
+	<logger name="com.jun.plugin">  
         <level value="info" />  
     </logger> 
 	<logger name="com.ibatis">  

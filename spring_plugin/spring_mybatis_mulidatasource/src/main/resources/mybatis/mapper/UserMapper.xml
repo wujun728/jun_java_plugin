@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
 	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="UserEntity">
-	<resultMap id="userMap" type="com.neo.entity.UserEntity">
+	<resultMap id="userMap" type="com.jun.plugin.entity.UserEntity">
 		<id column="ID" property="id" javaType="java.lang.Long" />
 		<result column="userName" property="userName" />
 		<result column="passWord" property="passWord" />
 	</resultMap>
 	
-	<update id="update"  parameterType="com.neo.entity.UserEntity">
+	<update id="update"  parameterType="com.jun.plugin.entity.UserEntity">
 		update 
 			users 
 		<set>

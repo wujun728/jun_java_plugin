@@ -4,13 +4,11 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.neo</groupId>
-	<artifactId>spring-mybatis-mulidatasource-atomikos</artifactId>
+	<groupId>com.jun.plugin</groupId>
+	<artifactId>spring_mybatis_mulidatasource_atomikos</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
-	<name>spring-mybatis-mulidatasource-atomikos</name>
-	<url>http://maven.apache.org</url>
 
 	<dependencies>
 	   <dependency>

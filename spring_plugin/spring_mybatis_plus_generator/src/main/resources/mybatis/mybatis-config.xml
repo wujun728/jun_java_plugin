@@ -13,7 +13,7 @@
 
     <!--别名配置-->
     <typeAliases>
-        <package name="com.zt.entity" />
+        <package name="com.jun.plugin.entity" />
     </typeAliases>
 
 </configuration>

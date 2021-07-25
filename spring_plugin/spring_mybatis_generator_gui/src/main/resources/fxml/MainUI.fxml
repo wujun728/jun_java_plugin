@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.*?>
-<?import com.zzg.mybatis.generator.model.*?>
+<?import com.jun.plugin.mybatis.generator.model.*?>
 
-<BorderPane prefHeight="613.0" prefWidth="918.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zzg.mybatis.generator.controller.MainUIController">
+<BorderPane prefHeight="613.0" prefWidth="918.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jun.plugin.mybatis.generator.controller.MainUIController">
     <top>
         <VBox>
             <children>

@@ -2,8 +2,9 @@ package junit;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.zt.entity.Dept;
-import com.zt.service.IDeptService;
+import com.jun.plugin.entity.Dept;
+import com.jun.plugin.service.IDeptService;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
