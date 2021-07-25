@@ -19,7 +19,7 @@
 	<!-- 插件配置 -->
 	<plugins>
 		<!-- 分页插件配置 -->
-		<plugin interceptor="com.wx.common.base.pagination.PageInterceptor">
+		<plugin interceptor="com.jun.plugin.common.base.pagination.PageInterceptor">
 			<!-- 数据库方言 -->
 			<property name="dialect" value="mysql" />
 			<!-- 分页对应的SQL语句id(拦截以page结尾的SQL) -->

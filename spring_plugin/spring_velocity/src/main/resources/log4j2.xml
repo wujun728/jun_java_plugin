@@ -27,7 +27,7 @@
 
 	<loggers>
 		<!-- 3rdparty Loggers -->
-		<logger name="com.wx" level="debug" />
+		<logger name="com.jun.plugin" level="debug" />
 		<logger name="org.springframework" level="error" />
 		<logger name="org.apache" level="error" />
 		<logger name="org.mybatis" level="info" />

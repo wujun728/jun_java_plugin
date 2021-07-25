@@ -32,7 +32,7 @@
 	</bean>
 
 	<!-- 总数据源 -->
-	<bean id="dataSource" class="com.wx.common.datasource.DynamicDataSource">
+	<bean id="dataSource" class="com.jun.plugin.common.datasource.DynamicDataSource">
 		<property name="targetDataSources">
 			<map key-type="java.lang.String">
 				<entry key="master" value-ref="masterDataSource" />
@@ -42,7 +42,7 @@
 	</bean>
 
 	<!-- 数据源Aspect -->
-	<bean id="dataSourceAspect" class="com.wx.common.datasource.DataSourceAspect" />
+	<bean id="dataSourceAspect" class="com.jun.plugin.common.datasource.DataSourceAspect" />
 
 	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -57,7 +57,7 @@
 
 	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.wx.mapper" />
+		<property name="basePackage" value="com.jun.plugin.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sessionFactory" />
 	</bean>
 
@@ -82,7 +82,7 @@
 
 	<!-- 配置那些类的方法进行事务管理，当前com.ddtech.webapp.service.impl包中的类中所有方法需要，还需要参考tx:advice的设置 -->
 	<aop:config proxy-target-class="true">
-		<aop:pointcut id="allManagerMethod" expression="execution(* com.wx.service.impl.*.*(..))" />
+		<aop:pointcut id="allManagerMethod" expression="execution(* com.jun.plugin.service.impl.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod" order="0" />
 	</aop:config>
 
