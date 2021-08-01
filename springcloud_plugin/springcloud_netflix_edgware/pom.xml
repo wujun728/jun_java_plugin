@@ -66,5 +66,15 @@
   	<module>microservice-eureka-server-2001</module>
   	<module>microservice-eureka-server-2002</module>
   	<module>microservice-eureka-server-2003</module>
+  	<module>microservice-student-provider-1002</module>
+  	<module>microservice-student-provider-1003</module>
+  	<module>microservice-student-consumer-feign-80</module>
+  	<module>microservice-student-provider-hystrix-1004</module>
+  	<module>
+  		microservice-student-consumer-hystrix-dashboard-90
+  	</module>
+  	<module>microservice-student-provider-hystrix-1005</module>
+  	<module>microservice-student-consumer-hystrix-turbine-91</module>
+  	<module>microservice-zuul-3001</module>
   </modules>
 </project>

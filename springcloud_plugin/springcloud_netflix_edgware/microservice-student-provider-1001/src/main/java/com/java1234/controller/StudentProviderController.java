@@ -47,6 +47,7 @@ public class StudentProviderController {
      */
     @GetMapping(value="/list")
     public List<Student> list(){
+    	System.out.println("list--------1001");
         return studentService.list();
     }
      

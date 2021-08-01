@@ -17,6 +17,18 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+    <dependency>
+    <groupId>org.springframework.cloud</groupId>
+	    <artifactId>spring-cloud-starter-eureka</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.cloud</groupId>
+	    <artifactId>spring-cloud-starter-ribbon</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.cloud</groupId>
+	    <artifactId>spring-cloud-starter-config</artifactId>
+	</dependency>
       <!-- 修改后立即生效，热部署 -->
     <dependency>
         <groupId>org.springframework</groupId>
