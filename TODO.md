@@ -85,12 +85,7 @@ jun_product_center 产品中心，常用项目模板及常用项目工程，调
 先根据邮件去掉非必须的项目
 综合配置login及index的页面的归档
 
-jun_frontend_ui     前端开发组件
-1、Bootstrap Adminlte
-2、Bootstrap hplus
-3、JQueryEasyUI
-4、LayUI
-5、Vue element Admin
+
 wujun728.github.io
 jun_springcloud
 jun_linux    Linux开发组件
