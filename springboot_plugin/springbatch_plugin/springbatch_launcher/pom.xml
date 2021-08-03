@@ -5,8 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.5.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.2.4.RELEASE</version>
     </parent>
     <groupId>cc.mrbird</groupId>
     <artifactId>spring-batch-launcher</artifactId>
@@ -37,6 +36,21 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+        	<groupId>org.springframework.batch</groupId>
+        	<artifactId>spring-batch-infrastructure</artifactId>
+        </dependency>
+        <!-- <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-webmvc</artifactId>
+        	<version>5.2.12.RELEASE</version>
+        </dependency> -->
+        <!-- <dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-starter-parent</artifactId>
+        	<version>2.2.4.RELEASE</version>
+        	<type>pom</type>
+        </dependency> -->
     </dependencies>
 
     <build>
