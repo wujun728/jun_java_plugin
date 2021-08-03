@@ -1,4 +1,4 @@
-package com.example.demo.bootstrap;
+package com.jun.plugin.demo.bootstrap;
 
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

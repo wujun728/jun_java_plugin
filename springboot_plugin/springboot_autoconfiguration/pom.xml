@@ -8,10 +8,9 @@
         <version>2.1.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>autoconfig</artifactId>
+    <groupId>com.jun.plugin</groupId>
+    <artifactId>springboot_autoconfiguration</artifactId>
     <version>1.0</version>
-    <name>demo</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

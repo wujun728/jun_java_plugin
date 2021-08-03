@@ -1,10 +1,11 @@
-package com.example.demo.bootstrap;
+package com.jun.plugin.demo.bootstrap;
 
-import com.example.demo.service.TestService;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+
+import com.jun.plugin.demo.service.TestService;
 
 /**
  * @author MrBird

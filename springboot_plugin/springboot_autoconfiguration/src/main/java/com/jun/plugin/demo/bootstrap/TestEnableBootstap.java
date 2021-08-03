@@ -1,9 +1,10 @@
-package com.example.demo.bootstrap;
+package com.jun.plugin.demo.bootstrap;
 
-import com.example.demo.annotation.EnableHelloWorld;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import com.jun.plugin.demo.annotation.EnableHelloWorld;
 
 /**
  * @author MrBird

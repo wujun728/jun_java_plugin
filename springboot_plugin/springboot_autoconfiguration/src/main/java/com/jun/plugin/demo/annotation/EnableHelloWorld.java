@@ -1,7 +1,8 @@
-package com.example.demo.annotation;
+package com.jun.plugin.demo.annotation;
 
-import com.example.demo.configuration.HelloWorldConfiguration;
 import org.springframework.context.annotation.Import;
+
+import com.jun.plugin.demo.configuration.HelloWorldConfiguration;
 
 import java.lang.annotation.*;
 

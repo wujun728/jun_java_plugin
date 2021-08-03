@@ -1,8 +1,9 @@
-package com.example.demo.selector;
+package com.jun.plugin.demo.selector;
 
-import com.example.demo.configuration.HelloWorldConfiguration;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
+
+import com.jun.plugin.demo.configuration.HelloWorldConfiguration;
 
 /**
  * @author MrBird
