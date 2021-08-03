@@ -246,6 +246,11 @@
     </dependency>
 
 
+    <dependency>
+    	<groupId>com.qiniu</groupId>
+    	<artifactId>qiniu-java-sdk</artifactId>
+    	<version>7.2.29</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>spring_distributed_oss_qiniu</finalName>

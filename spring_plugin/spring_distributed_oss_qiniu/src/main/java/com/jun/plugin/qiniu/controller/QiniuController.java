@@ -17,9 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 
-/**
- * Created by kzyuan on 2017/6/20.
- */
 @Controller
 @RequestMapping(value = "")
 public class QiniuController {
