@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.5.RELEASE</version>
+        <version>2.2.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>cc.mrbird</groupId>
-    <artifactId>spring-batch-itemprocessor</artifactId>
+    <artifactId>spring-batch-listener</artifactId>
     <version>1.0</version>
-    <name>spring-batch-itemprocessor</name>
+    <name>spring-batch-listener</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -30,14 +30,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>javax.validation</groupId>
-        	<artifactId>validation-api</artifactId>
         </dependency>
     </dependencies>
 

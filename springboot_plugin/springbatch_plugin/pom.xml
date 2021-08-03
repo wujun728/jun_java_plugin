@@ -9,18 +9,18 @@
 		<version>1.0</version>
 	</parent>
     <groupId>com.jun.plugin</groupId>
-	<artifactId>springbatch_plugin</artifactId>
+	<artifactId>spring-batch-plugin</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
 	
   <modules>
-    <module>springbatch_start</module>
-    <module>springbatch_listener</module>
-    <module>springbatch_launcher</module>
-    <module>springbatch_itemwriter</module>
-    <module>springbatch_itemreader</module>
-    <module>springbatch_itemprocessor</module>
-    <module>springbatch_exception</module>
+    <module>spring-batch-start</module>
+    <module>spring-batch-listener</module>
+    <module>spring-batch-launcher</module>
+    <module>spring-batch-itemwriter</module>
+    <module>spring-batch-itemreader</module>
+    <module>spring-batch-itemprocessor</module>
+    <module>spring-batch-exception</module>
   </modules> 
 
   <name>jun_springboot</name>

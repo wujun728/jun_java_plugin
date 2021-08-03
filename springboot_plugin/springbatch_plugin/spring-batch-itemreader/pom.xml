@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.5.RELEASE</version>
+        <version>2.2.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>cc.mrbird</groupId>
-    <artifactId>spring-batch-exception</artifactId>
+    <artifactId>spring-batch-itemreader</artifactId>
     <version>1.0</version>
-    <name>spring-batch-exception</name>
+    <name>spring-batch-itemreader</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -31,6 +31,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.11.1</version>
         </dependency>
     </dependencies>
 
