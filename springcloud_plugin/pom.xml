@@ -12,8 +12,6 @@
         <module>mvn_template</module> 
     </modules>
 
-    <name>maven_template</name>
-    <url>http://www.java.com</url>
 
     <properties>
         <!-- 定义依赖的版本全局属性 -->
