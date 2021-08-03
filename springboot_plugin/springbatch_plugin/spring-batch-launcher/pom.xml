@@ -7,7 +7,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.4.RELEASE</version>
     </parent>
-    <groupId>cc.mrbird</groupId>
+    <groupId>com.jun.plugin</groupId>
     <artifactId>spring-batch-launcher</artifactId>
     <version>1.0</version>
     <name>spring-batch-launcher</name>

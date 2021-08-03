@@ -14,7 +14,7 @@
         <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>cc.mrbird</groupId>
+    <groupId>com.jun.plugin</groupId>
     <artifactId>sso</artifactId>
     <version>1.0</version>
     <name>sso</name>

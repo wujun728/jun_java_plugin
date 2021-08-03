@@ -8,7 +8,7 @@
         <version>2.2.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>cc.mrbird</groupId>
+    <groupId>com.jun.plugin</groupId>
     <artifactId>spring-batch-itemwriter</artifactId>
     <version>1.0</version>
     <name>spring-batch-itemwriter</name>

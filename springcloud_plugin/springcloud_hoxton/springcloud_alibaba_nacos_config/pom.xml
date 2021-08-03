@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>cc.mrbird</groupId>
+    <groupId>com.jun.plugin</groupId>
     <artifactId>spring-cloud-alibaba-nacos-config</artifactId>
     <version>1.0</version>
     <name>spring-cloud-alibaba-nacos-config</name>
