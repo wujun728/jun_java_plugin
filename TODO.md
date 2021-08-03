@@ -289,3 +289,352 @@ jun_code_mybatisplus\  
 <a href="https://www.jianguofaka.com/details/B1143645" target="_blank">全套大礼包2020年版</a>
 
 
+
+
+
+1、jun_api_service
+初始化API_Service
+https://github.com/lihengming/spring-boot-api-project-seed
+干掉jun_api-plugin
+ 
+2、jun_cache   ---干掉
+新增springcache
+https://github.com/iamsixer/spring-cache-demo
+https://github.com/zheng-zy/spring-boot-redis-guava-caffeine-cache
+ 
+3、camel 干掉，没啥用
+ 
+4、jun_crawler 调整，跑起来，净化
+ 
+5、jun_datasource_cluster rename 到 DataSource
+新增 https://github.com/ran-jit/tomcat-cluster-redis-session-manager
+ 
+6、分解jun_dbutils
+https://github.com/objcoding/jdbc-utils
+ 
+7、jun_demo rename到 jun_test
+ 
+8、设计模式，合并到一起，分三种合并，中文转英文
+ 
+9、jun_note 新增
+https://github.com/GourdErwa/review-notes
+ 
+10、新增jun_webservlet_guice_dbutil
+https://www.cnblogs.com/huzi007/p/5802022.html
+https://www.cnblogs.com/huzi007/p/5796372.html
+ 
+11、drools https://github.com/maxxbwsDemo
+ 
+12、email 调整，清理
+https://github.com/biezhi/oh-my-email/blob/master/pom.xml
+https://github.com/isliqian/NiceEmail
+ 
+13、excel 集成 easyexcel
+https://github.com/HowieYuan/easyexcel-encapsulation
+新增jun_poi demo
+ 
+14、jun_fileupload
+https://github.com/wemakebug/FileUpload.Java
+Spring fileupload
+https://github.com/jdmr/fileUpload
+ 
+15、freemarker boot https://github.com/JavaCodeMood/freemarker
+ 
+16、guava
+https://github.com/tiantiangao/guava-study
+https://github.com/tfnico/guava-examples
+ 
+17、guice
+https://github.com/timlien/servlet-guice
+https://github.com/greengerong/guice-demo
+https://github.com/lg625740749/GuiceDemo
+ 
+18、hibernate
+https://github.com/hibernate/hibernate-demos
+ 
+19、httpclient
+https://github.com/Arronlong/httpclientutil
+https://github.com/JourWon/httpclientutil
+ 
+20、image
+https://github.com/xuehuayous/ImageUpload
+https://github.com/jmitchener/spring-images
+https://github.com/woobong/spring-boot-jpa-summernote-image-upload-example
+https://github.com/mrmodise/java-spring-file-upload
+ 
+21、jbpm4
+https://github.com/xxg3053/jbpm-study
+https://github.com/American/workflow/tree/master/workflow
+ 
+22.jdk 清理，调整
+ 
+23、lucenne
+https://github.com/abel533/SearchEngine
+https://github.com/doushini/lucene
+https://github.com/pumadong/cl-search
+Springboot+ElasticSearch
+https://github.com/Motianshi/all-search
+ 
+24、pay
+https://github.com/kongzhidea/pay
+https://github.com/iyangyuan/pay-spring-boot
+ 
+Spring-cloud
+ 
+ 
+
+
+41、 webmagic
+https://github.com/scsfwgy/WebMagic_CSDN_Demo
+https://github.com/EzioL/neteasemusic
+ 
+42、api_service
+合并都api里面，其他的2个干掉
+ 
+Spring
+43、 jwt rename一下
+新增springboot jwt
+https://github.com/dolyw/VueStudy/tree/master/VueStudy08-JWT
+https://github.com/dolyw/ShiroJwt.git
+ 
+44、spring activemq
+清理代码，优化test及readme
+https://github.com/888xin/activeMQ
+ 
+45、camel 调整为zip里面的spring
+46、cas 干掉
+新增oauth
+ 
+47、cors 调整为filter过滤器
+ 
+48、config 迁移到cloud里面
+ 
+49、fastdfs
+ 
+50、dubbo
+https://github.com/GenshenWang/DubboDemo
+ 
+51、quartz
+https://github.com/ameizi/spring-quartz-cluster-sample
+ 
+52、新增xxl-job
+https://github.com/xuxueli/xxl-job
+ 
+53、email
+https://github.com/fangjieDevp/spring-email-master
+ 
+54、Excel 干掉
+ 
+55、hibernate
+https://github.com/zhonglinlin1305/Spring
+https://github.com/zhonglinlin1305/spring-projects/
+ 
+0、Boot&cloud
+https://github.com/zhonglinlin1305/spring-boot-sample/
+https://github.com/zhonglinlin1305/spring-cloud-microservice
+https://github.com/SpringForAll/springcloud-thoth
+ 
+56、kafka
+https://github.com/smallnest/spring-kafka-demo
+ 
+57、lucenne
+https://github.com/FuZhucheng/SSM
+ 
+ 
+ 
+00、boot starter
+https://github.com/battcn/extend-spring-boot
+ 
+00、util
+https://github.com/864381832/xJavaFxTool-spring
+ 
+00、ppt
+https://github.com/aalansehaiyang/technology-talk
+ 
+
+
+
+1、plugin 代码全部梳理一遍，package/pom/test/readme
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+2、ssh 代码合并到一个，调整功能
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+3、ssm 代码合并到一个，调整功能
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+4、代码生成器、代码一套，功能一套，合并ry_gen
+https://www.jianshu.com/p/31e532392a74
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+5、ui 整理ui
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+6、apiservice 代码一套，功能一套，同步ssm
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+https://github.com/callicoder/spring-webflux-reactive-rest-api-demo
+https://blog.csdn.net/qq_35067322/article/details/106935320
+https://github.com/dolyw/ShiroJwt
+7、linux 部署文档，部署包、docker部署
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+部署环境
+ 
+ 
+Step2
+main
+https://github.com/Heeexy/SpringBoot-Shiro-Vue
+jun_springboot_jwt_layui\   合并到ssm框架
+jun_springboot_jwt_shiro_api\   空的
+jun_springboot_vue\   干掉
+jun_springboot_vue_pro\ 合并到上面里面
+ 
+ 
+Step4
+1、uniapp
+https://github.com/zsptsf/uniapp.git
+https://github.com/c1013529993/springboot-uniapp-21cake
+ 
+
+
+Step1
+Jdbc_template
+https://gitee.com/jervain_y/repository
+ 
+https://github.com/horsecms/layuiCMS
+ 
+Step2
+1、vue-element-admin
+https://github.com/panjiachen/vue-element-admin-site
+https://panjiachen.github.io/vue-element-admin-site/zh/guide/
+2、cloud
+https://www.8kee.com/article/17347.html
+https://github.com/JourWon/springcloud-learning
+https://github.com/wenren0819/Spring-Cloud-2020
+https://blog.csdn.net/ThinkWon/article/details/103726655
+ 
+2、api_service
+https://github.com/koocyton/reactor-guice
+https://github.com/jwpttcg66/NettyGameServer
+3、bigdata
+爬虫
+https://github.com/brianway/webporter
+ETL
+https://github.com/zhaxiaodong9860/kettle-scheduler
+数仓
+https://github.com/fenglei110/DataWarehouse
+https://github.com/jd-bigdata/rtf-lake
+https://github.com/xzt1995/Data-Warehouse
+新增用户画像、用户行为
+https://github.com/monsonlee/BigData
+https://github.com/whirlys/BigData-In-Practice
+https://github.com/597365581/bigdata_tools
+https://blog.csdn.net/u013967628/article/details/83656560
+ 
+
+
+
+1、plugin 代码全部梳理一遍，package/pom/test/readme
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+2、ssh 代码合并到一个，调整功能
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+3、ssm 代码合并到一个，调整功能
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+4、代码生成器、代码一套，功能一套，合并ry_gen
+https://www.jianshu.com/p/31e532392a74
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+5、ui 整理ui
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+6、apiservice 代码一套，功能一套，同步ssm
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+https://github.com/callicoder/spring-webflux-reactive-rest-api-demo
+https://blog.csdn.net/qq_35067322/article/details/106935320
+https://github.com/dolyw/ShiroJwt
+7、linux 部署文档，部署包、docker部署
+1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
+部署环境
+ 
+ 
+Step2
+main
+https://github.com/Heeexy/SpringBoot-Shiro-Vue
+jun_springboot_jwt_layui\   合并到ssm框架
+jun_springboot_jwt_shiro_api\   空的
+jun_springboot_vue\   干掉
+jun_springboot_vue_pro\ 合并到上面里面
+ 
+ 
+Step4
+1、uniapp
+https://github.com/zsptsf/uniapp.git
+https://github.com/c1013529993/springboot-uniapp-21cake
+ 
+ 
+Step1
+Jdbc_template
+https://gitee.com/jervain_y/repository
+ 
+https://github.com/horsecms/layuiCMS
+ 
+Step2
+1、vue-element-admin
+https://github.com/panjiachen/vue-element-admin-site
+https://panjiachen.github.io/vue-element-admin-site/zh/guide/
+2、cloud
+https://www.8kee.com/article/17347.html
+https://github.com/JourWon/springcloud-learning
+https://github.com/wenren0819/Spring-Cloud-2020
+https://blog.csdn.net/ThinkWon/article/details/103726655
+ 
+2、api_service
+https://github.com/koocyton/reactor-guice
+https://github.com/jwpttcg66/NettyGameServer
+3、bigdata
+爬虫
+https://github.com/brianway/webporter
+ETL
+https://github.com/zhaxiaodong9860/kettle-scheduler
+数仓
+https://github.com/fenglei110/DataWarehouse
+https://github.com/jd-bigdata/rtf-lake
+https://github.com/xzt1995/Data-Warehouse
+新增用户画像、用户行为
+https://github.com/monsonlee/BigData
+https://github.com/whirlys/BigData-In-Practice
+https://github.com/597365581/bigdata_tools
+https://blog.csdn.net/u013967628/article/details/83656560
+ 
+Eureka
+https://www.cnblogs.com/rickiyang/p/11802413.html
+Rebbon
+https://blog.csdn.net/forezp/article/details/74820899
+Ribbon的负载均衡，主要通过LoadBalancerClient来实现的，而LoadBalancerClient具体交给了ILoadBalancer来处理，ILoadBalancer通过配置IRule、IPing等信息，并向EurekaClient获取注册列表的信息，并默认10秒一次向EurekaClient发送“ping”,进而检查是否更新服务列表，最后，得到注册列表后，ILoadBalancer根据IRule的策略进行负载均衡。在RestTemplate 被@LoadBalance注解后，能过用负载均衡，主要是维护了一个被@LoadBalance注解的RestTemplate列表，并给列表中的RestTemplate添加拦截器，进而交给负载均衡器去处理。
+ 
+架构
+https://blog.csdn.net/shenhuxi10000/article/details/105058723
+ 
+https://github.com/wujun728/learningSummary
+ 
+Springboot security
+https://blog.csdn.net/yuanlaijike/article/details/80249235
+ 
+
+
+mxtheme02
+
+
+
+https://github.com/hemin1003
+jun_temp     临时仓库
+https://github.com/c1013529993/springboot-uniapp-21cake
+ 
+ 
+JWT+VUE
+https://github.com/cailichao/easyweb-jwt
+https://github.com/whvcse/JwtPermission
+ 
+Elasticsearch
+ 
+来自 <https://www.cnblogs.com/sunsky303/p/9438737.html>
+ 
+ 
+ 
+https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html
+ 
+
+
+
