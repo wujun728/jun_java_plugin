@@ -1,18 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-<parent>
-    <groupId>com.jun.plugin</groupId>
-	<artifactId>jun_plugin</artifactId>
-	<version>1.0</version>
-  </parent>
-  <groupId>com.jun.plugin</groupId> 
+	<parent>
+		<groupId>com.jun.plugin</groupId>
+		<artifactId>java_plugin</artifactId>
+		<version>1.0</version>
+	</parent>
+	<groupId>com.jun.plugin</groupId>
 	<artifactId>jun_poi</artifactId>
-  <version>1.0</version>
-  <packaging>war</packaging>
-  
-  
-   <properties>
+	<version>1.0</version>
+	<packaging>war</packaging>
+
+
+	<properties>
 		<poi.version>3.7</poi.version>
 		<spel.version>4.1.6.RELEASE</spel.version>
 		<slf4j.version>1.7.12</slf4j.version>
@@ -36,16 +37,13 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.jun.plugin</groupId> 
+			<groupId>com.jun.plugin</groupId>
 			<artifactId>jun_datasource</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>com.jun.plugin</groupId> 
-			<artifactId>jun_utils</artifactId>
-			<version>1.0</version>
-		</dependency> -->
-		
+		<!-- <dependency> <groupId>com.jun.plugin</groupId> <artifactId>jun_utils</artifactId> 
+			<version>1.0</version> </dependency> -->
+
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
@@ -126,9 +124,9 @@
 
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
-		    <groupId>com.google.guava</groupId>
-		    <artifactId>guava</artifactId>
-		    <version>29.0-jre</version>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>29.0-jre</version>
 		</dependency>
 		<!-- POI -->
 		<dependency>
@@ -146,7 +144,7 @@
 			<artifactId>poi-scratchpad</artifactId>
 			<version>3.14</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -157,29 +155,29 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
-		
+
 		<!-- servlet -->
 		<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>servlet-api</artifactId>
-		<version>3.0-alpha-1</version>
-		<scope>provided</scope>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>3.0-alpha-1</version>
+			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>jstl</artifactId>
-		<version>1.2</version>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
 		<dependency>
-		    <groupId>net.sf.json-lib</groupId>
-		    <artifactId>json-lib</artifactId>
-		    <version>2.4</version>
-		    <classifier>jdk15</classifier><!-- //此处要加上jdk版本号 -->
-		</dependency> 
-				
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier><!-- //此处要加上jdk版本号 -->
+		</dependency>
+
 	</dependencies>
 
 </project>
