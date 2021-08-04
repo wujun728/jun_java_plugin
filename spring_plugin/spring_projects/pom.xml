@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cn.kiiwii.framework</groupId>
-    <artifactId>kiiwii-sample</artifactId>
+    <groupId>com.jun.plugin</groupId>
+    <artifactId>spring_projects</artifactId>
+    <version>1.0</version>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.1.3.RELEASE</spring.version>
