@@ -6,8 +6,8 @@
 
     <groupId>com.jun.plugin</groupId>
     <artifactId>springboot_dubbo_zookeeper</artifactId>
-    <packaging>pom</packaging>
     <version>1.0</version>
+    <packaging>pom</packaging>
 
     <modules>
         <module>common-api</module>

@@ -19,7 +19,7 @@
     <module>spring-batch-launcher</module>
     <module>spring-batch-itemwriter</module>
     <module>spring-batch-itemreader</module>
-    <module>spring-batch-itemprocessor</module>
+<!--     <module>spring-batch-itemprocessor</module> -->
     <module>spring-batch-exception</module>
   </modules> 
 

@@ -37,7 +37,7 @@
 		<module>springboot_docker</module>
 		<module>springboot_drools</module>
 		<module>springboot_dubbo</module>
-		<module>springboot_dubbo_zookeeper</module>
+<!-- 		<module>springboot_dubbo_zookeeper</module> -->
 		<module>springboot_dynamic_datasource</module>
 		<module>springboot_ehcache_cache</module>
 		<module>springboot_elastic_job</module>

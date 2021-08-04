@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jun.plugin</groupId>
-    <artifactId>springboot_beanlifecycle</artifactId>
+    <artifactId>springboot_beanregist</artifactId>
     <version>1.0</version>
 
     <properties>
