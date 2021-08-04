@@ -20,7 +20,7 @@ public class QiniuDownTest {
 
     public void download() {
         //调用privateDownloadUrl方法生成下载链接,第二个参数可以设置Token的过期时间
-        String downloadRUL = auth.privateDownloadUrl(URL, 3600);
+        String downloadRUL = auth.privateDownloadUrl(URL, 3600*24*7);
         System.out.println(downloadRUL);
     }
     
