@@ -1,9 +1,5 @@
 package spring_distributed_oss_qiniu;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
-import com.qiniu.common.QiniuException;
 import com.qiniu.util.Auth;
  
 public class QiniuDownTest {
