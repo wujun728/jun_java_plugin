@@ -3,13 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.springboot</groupId>
-	<artifactId>Spring-Boot-Shiro-Thymeleaf-Tag</artifactId>
+	<groupId>com.jun.plugin</groupId>
+	<artifactId>springboot_shiro_thymeleaf_tag</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
-
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -77,8 +74,8 @@
 		<!-- oracle驱动 -->
 		<dependency>
 			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>6.0</version>
+			<artifactId>ojdbc14</artifactId>
+			<version>11.2.0</version>
 		</dependency>
 		
 		<!-- druid数据源驱动 -->

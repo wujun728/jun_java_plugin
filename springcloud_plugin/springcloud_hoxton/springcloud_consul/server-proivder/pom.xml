@@ -8,7 +8,7 @@
         <version>2.0.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>com.jun.plugin</groupId>
     <artifactId>server-provider</artifactId>
     <version>1.0</version>
     <name>server-provider</name>

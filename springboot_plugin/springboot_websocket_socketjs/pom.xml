@@ -9,10 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jun.plugin</groupId>
-    <artifactId>spring-boot-websocket-socketjs</artifactId>
+    <artifactId>springboot_websocket_socketjs</artifactId>
     <version>1.0</version>
-    <name>spring-boot-websocket-socketjs</name>
-    <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>

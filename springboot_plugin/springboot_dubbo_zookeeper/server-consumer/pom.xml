@@ -3,13 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>dubbo-boot</artifactId>
+        <artifactId>springboot_dubbo_zookeeper</artifactId>
         <groupId>com.jun.plugin</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>server-consumer</artifactId>
 
     <dependencies>
         <dependency>

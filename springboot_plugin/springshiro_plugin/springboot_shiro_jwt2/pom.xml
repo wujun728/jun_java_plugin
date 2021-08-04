@@ -8,10 +8,10 @@
         <version>2.1.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>demo</artifactId>
+    <groupId>com.jun.plugin</groupId>
+    <artifactId>springboot_shiro_jwt2</artifactId>
     <version>1.0</version>
-    <name>springboot-shiro-jwt-demo</name>
+    
     <description>springboot整合shiro，jwt简单样例</description>
 
     <properties>

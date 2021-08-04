@@ -8,7 +8,7 @@
         <version>2.1.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>com.jun.plugin</groupId>
     <artifactId>webflux</artifactId>
     <version>1.0</version>
     <name>webflux</name>

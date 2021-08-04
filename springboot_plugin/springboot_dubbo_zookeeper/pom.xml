@@ -5,12 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jun.plugin</groupId>
-    <artifactId>dubbo-boot</artifactId>
+    <artifactId>springboot_dubbo_zookeeper</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
-
-    <name>dubbo-boot</name>
-    <description>Spring Boot-Dubbo-ZooKeeper</description>
 
     <modules>
         <module>common-api</module>
