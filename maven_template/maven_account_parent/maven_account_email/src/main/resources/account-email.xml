@@ -23,7 +23,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	</bean>
 
 	<bean id="accountEmailService"
-		class="com.juvenxu.mvnbook.account.email.AccountEmailServiceImpl">
+		class="com.jun.plugin.teamplate.account.email.AccountEmailServiceImpl">
 		<property name="javaMailSender" ref="javaMailSender" />
 		<property name="systemEmail" value="${email.systemEmail}" />
 	</bean>

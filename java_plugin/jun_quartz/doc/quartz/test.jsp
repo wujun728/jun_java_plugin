@@ -2,7 +2,7 @@
 <%@page import="org.quartz.*"%>
 <%@page import="org.quartz.impl.*"%>
 <%@page import="org.springframework.scheduling.quartz.*"%>
-<%@page import="com.jun.plugin.mybatisplus.common.*"%>
+<%@page import="com.jun.plugin.teamplate.common.*"%>
 <%@page import="java.text.*"%>
 <%@page import="java.util.*"%>
 

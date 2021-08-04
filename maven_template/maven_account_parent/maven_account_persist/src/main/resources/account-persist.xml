@@ -10,7 +10,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	</bean>
 
 	<bean id="accountPersistService"
-		class="com.juvenxu.mvnbook.account.persist.AccountPersistServiceImpl">
+		class="com.jun.plugin.teamplate.account.persist.AccountPersistServiceImpl">
 		<property name="file" value="${persist.file}" />
 	</bean>
 

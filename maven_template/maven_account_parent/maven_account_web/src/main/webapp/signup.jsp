@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=gb2312" language="java" %>
-<%@ page import="com.juvenxu.mvnbook.account.service.*,
+<%@ page import="com.jun.plugin.teamplate.account.service.*,
   org.springframework.context.ApplicationContext,
   org.springframework.web.context.support.WebApplicationContextUtils"%>
 <html>

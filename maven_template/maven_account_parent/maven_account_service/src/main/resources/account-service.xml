@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="accountService" class="com.juvenxu.mvnbook.account.service.AccountServiceImpl">
+	<bean id="accountService" class="com.jun.plugin.teamplate.account.service.AccountServiceImpl">
 		<property name="accountPersistService" ref="accountPersistService" />
 		<property name="accountEmailService" ref="accountEmailService" />
 		<property name="accountCaptchaService" ref="accountCaptchaService" />

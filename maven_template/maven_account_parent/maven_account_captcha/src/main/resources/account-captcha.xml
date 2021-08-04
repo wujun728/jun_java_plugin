@@ -5,7 +5,7 @@
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 	<bean id="accountCaptchaService"
-		class="com.juvenxu.mvnbook.account.captcha.AccountCaptchaServiceImpl">
+		class="com.jun.plugin.teamplate.account.captcha.AccountCaptchaServiceImpl">
 	</bean>
 
 </beans>
