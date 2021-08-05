@@ -15,7 +15,6 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.junit.Test;
 
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
 
 
 public class LogDAO {
@@ -23,11 +22,11 @@ public class LogDAO {
  
     @Test
     public void add() throws SQLException {
-        //将数据源传递给QueryRunner，QueryRunner内部通过数据源获取数据库连接
+        //灏嗘暟鎹簮浼犻�掔粰QueryRunner锛孮ueryRunner鍐呴儴閫氳繃鏁版嵁婧愯幏鍙栨暟鎹簱杩炴帴
         QueryRunner qr = new QueryRunner(DBUtils.getDataSource());
         String sql = "insert into users(name,password,email,birthday) values(?,?,?,?)";
         Object params[] = {"1111","11122", "gacl@sina.com", new Date()};
-        //Object params[] = {"白虎神皇","123", "gacl@sina.com", "1988-05-07"};
+        //Object params[] = {"鐧借檸绁炵殗","123", "gacl@sina.com", "1988-05-07"};
         qr.update(sql, params);
     }
     
@@ -53,7 +52,7 @@ public class LogDAO {
         QueryRunner qr = new QueryRunner(DBUtils.getDataSource());
         String sql = "select * from users where id=?";
         Object params[] = {2};
-        User user = (User) qr.query(sql, params, new BeanHandler(User.class));
+//        User user = (User) qr.query(sql, params, new BeanHandler(User.class));
 //        System.out.println(user.getBirthday());
     }
 
@@ -61,8 +60,8 @@ public class LogDAO {
     public void getAll() throws SQLException {
         QueryRunner qr = new QueryRunner(DBUtils.getDataSource());
         String sql = "select * from users";
-        List list = (List) qr.query(sql, new BeanListHandler(User.class));
-        System.out.println(list.size());
+//        List list = (List) qr.query(sql, new BeanListHandler(User.class));
+//        System.out.println(list.size());
     }
 
    
@@ -78,7 +77,7 @@ public class LogDAO {
         qr.batch(sql, params);
     }
     
-    //用dbutils完成大数据（不建议用）
+    //鐢╠butils瀹屾垚澶ф暟鎹紙涓嶅缓璁敤锛�
     /***************************************************************************
      create table testclob
      (
@@ -90,9 +89,9 @@ public class LogDAO {
     public void testclob() throws SQLException, IOException{
         QueryRunner runner = new QueryRunner(DBUtils.getDataSource());
         String sql = "insert into testclob(resume) values(?)";  //clob
-        //这种方式获取的路径，其中的空格会被使用“%20”代替
+        //杩欑鏂瑰紡鑾峰彇鐨勮矾寰勶紝鍏朵腑鐨勭┖鏍间細琚娇鐢ㄢ��%20鈥濅唬鏇�
         String path  = LogDAO.class.getClassLoader().getResource("data.xml").getPath();
-        //将“%20”替换回空格
+        //灏嗏��%20鈥濇浛鎹㈠洖绌烘牸
         path = path.replaceAll("%20", " ");
         FileReader in = new FileReader(path);
         char[] buffer = new char[(int) new File(path).length()];
