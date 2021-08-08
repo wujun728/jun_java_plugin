@@ -162,8 +162,8 @@ jun_plugin 整合Java企业级各种开发组件、开箱即用、不写重复�
 
 <table>
     <tr>
-		<td><img src="https://raw.githubusercontent.com/lerry903/abcde/master/img/oper_log1.jpg"/>
-		<td><img src="https://raw.githubusercontent.com/lerry903/abcde/master/img/login_log1.jpg"/>
+		<td><img src=""/>
+		<td><img src=""/>
     </tr>
 </table>
 
