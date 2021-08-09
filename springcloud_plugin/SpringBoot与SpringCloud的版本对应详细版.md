@@ -182,13 +182,32 @@ spring-cloud-starter-netflix-xx 替换了原有的 spring-cloud-starter-xx(此�
   </project>
 ```
 
-到此这篇关于详解SpringBoot与SpringCloud的版本对应详细版的文章就介绍到这了,更多相关SpringBoot与SpringCloud版本对应内容请搜索脚本之家以前的文章或继续浏览下面的相关文章希望大家以后多多支持脚本之家！
 
-**您可能感兴趣的文章:**
 
-- [SpringCloud Zuul基本使用方法汇总](https://www.jb51.net/article/195294.htm)
-- [SpringCloud Config配置加密解密用法解析](https://www.jb51.net/article/195263.htm)
-- [SpringCloud Config使用本地仓库及map注入](https://www.jb51.net/article/195258.htm)
-- [SpringCloud Bus如何实现配置刷新](https://www.jb51.net/article/195255.htm)
-- [SpringCloud Feign如何在远程调用中传输文件](https://www.jb51.net/article/195233.htm)
-- [解决spring cloud服务启动之后回到命令行会自动挂掉问题](https://www.jb51.net/article/195818.htm)
+![img](https://img2018.cnblogs.com/blog/1097754/201909/1097754-20190907205906233-2071872814.png)
+
+ 
+
+ 手动记录一些经本人实际验证可行的版本对应：
+
+| 序号 | 版本对应                                                     |
+| ---- | ------------------------------------------------------------ |
+| 1    | <spring-boot.version>2.4.2</spring-boot.version> <spring-cloud.version>2020.0.0</spring-cloud.version> |
+| 2    | <spring-boot.version>2.4.1</spring-boot.version> <spring-cloud.version>2020.0.0-M6</spring-cloud.version> |
+| 3    | <spring-boot.version>2.4.0</spring-boot.version> <spring-cloud.version>2020.0.0-M6</spring-cloud.version> |
+| 4    | <spring-boot.version>2.3.2.RELEASE</spring-boot.version> <spring-cloud.version>Greenwich.SR2</spring-cloud.version> |
+
+**spring-cloud-dependencies** 版本列表可查看： 
+
+https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies
+
+**spring-boot-starter-parent** 版本列表可查看：
+
+https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent
+
+ 
+
+ 到spring官方下载最新的springboot 与 springcloud版本对应代码example:  https://start.spring.io/
+
+ end!
+
