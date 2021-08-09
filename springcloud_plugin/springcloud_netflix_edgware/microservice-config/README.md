@@ -1,21 +1,7 @@
 # Spring Cloud教程
 
 本项目内容为Spring Cloud教程的程序样例。如您觉得该项目对您有用，欢迎点击右上方的**Star**按钮，给予支持！！
-
-- 我的博客：http://blog.didispace.com
-- **我的小密圈（深度交流与问答）：https://t.xiaomiquan.com/zfEiY3v**
-- GitHub：https://github.com/dyc87112/SpringCloud-Learning
-- Gitee：https://gitee.com/didispace/SpringCloud-Learning
-- Spring For All社区：http://www.spring4all.com/
-- Spring Boot基础教程：http://blog.didispace.com/Spring-Boot%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/
-- Spring Cloud基础教程：http://blog.didispace.com/Spring-Cloud%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/
-- **公益调试Eureka：http://eureka.didispace.com**
-
-**优惠云服务推荐**
-
-- [阿里云：ECS云服务器2折起](https://www.aliyun.com/sale-season/2020/procurement-new-members?userCode=wxfqkr0o)
-- [腾讯云：3年时长最低265元/年](https://url.cn/5iF8JP2)
-
+ 
 ## 教程列表
 
 ### 《Spring Cloud构建微服务架构》系列博文
