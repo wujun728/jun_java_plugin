@@ -1,4 +1,43 @@
 # Spring Cloud Examples
+ 
+ 
+前提：设置本地环境的hosts
+
+    127.0.0.1 discovery discovery2 ribbon feign gateway
+    
+# 1、microservice-discovery-eureka 服务发现
+
+详情查看项目 [microservice-discovery-eureka](microservice-discovery-eureka/)
+
+# 2、microservice-provider-user 服务提供者
+
+详情查看项目 [microservice-provider-user](microservice-provider-user/)
+
+# 3、microservice-consumer-ribbon ribbon服务消费者
+
+详情查看项目 [microservice-consumer-ribbon](microservice-consumer-ribbon/)
+
+# 4、microservice-consumer-feign feign服务消费者
+
+详情查看项目 [microservice-consumer-feign](microservice-consumer-feign/)
+
+# 5、microservice-hystrix-dashboard hystrix熔断器的监控
+
+详情查看项目 [microservice-hystrix-dashboard](microservice-hystrix-dashboard/)
+
+# 6、microservice-hystrix-turbine 把多个hystrix.stream聚合到一个监控页面
+
+详情查看项目 [microservice-hystrix-turbine](microservice-hystrix-turbine/)
+
+# 7、microservice-config 配置中心
+
+详情查看项目 [microservice-config](microservice-config/)
+
+# 8、microservice-api-gateway API Gateway
+
+详情查看项目 [microservice-api-gateway](microservice-api-gateway/)
+
+
 
 Spring Cloud 使用的各种示例，以最简单、最实用为标准
 
@@ -54,11 +93,6 @@ Spring Cloud 使用的各种示例，以最简单、最实用为标准
 - **[从架构演进的角度聊聊Spring Cloud都做了些什么？](http://www.ityouknow.com/springcloud/2017/11/02/framework-and-springcloud.html)**   
 - **[阿里Dubbo疯狂更新，关Spring Cloud什么事？](http://www.ityouknow.com/springcloud/2017/11/20/dubbo-update-again.html)**   
 
-> 如果大家想了解关于springcloud的其它方面应用，也可以以[issues](https://github.com/ityouknow/spring-cloud-examples/issues)的形式反馈给我，我后续来完善。
-
-
- 关注公众号：纯洁的微笑，回复"springboot"进群交流
-
-![](http://www.ityouknow.com/assets/images/keeppuresmile_430.jpg)
+> 
 
 

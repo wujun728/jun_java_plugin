@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.kiiwii.framework.springcloud.microservice</groupId>
-    <artifactId>spring-cloud-microservice</artifactId>
+    <artifactId>springcloud_netflix_edgware</artifactId>
     <version>1.0</version>
     <modules>
         <module>microservice-discovery-eureka</module>
