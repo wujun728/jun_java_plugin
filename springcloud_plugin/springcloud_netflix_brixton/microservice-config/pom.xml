@@ -10,8 +10,6 @@
     <artifactId>microservice-config</artifactId>
     <packaging>pom</packaging>
 
-    <name>microservice-config</name>
-    <url>http://maven.apache.org</url>
     <modules>
         <module>microservice-config-server-native</module>
         <module>microservice-config-server-git</module>
