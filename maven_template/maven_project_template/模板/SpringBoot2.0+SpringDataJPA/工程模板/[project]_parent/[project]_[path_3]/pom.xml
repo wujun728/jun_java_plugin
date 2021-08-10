@@ -3,7 +3,7 @@
   <parent>
     <groupId>[path_1].[path_2]</groupId>
     <artifactId>[project]_parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
   </parent>
   <artifactId>[project]_[path_3]</artifactId>
   <dependencies>
@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>[path_1].[path_2]</groupId>
 			<artifactId>[project]_common</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0</version>
 		</dependency>
   </dependencies>  
 </project>

@@ -5,7 +5,7 @@
     <groupId>org.spring.email</groupId>
     <artifactId>spring-email</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <name>spring-study Maven Webapp</name>
     <description>Spring study</description>

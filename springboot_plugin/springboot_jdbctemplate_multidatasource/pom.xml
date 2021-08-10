@@ -5,7 +5,7 @@
 
 	<groupId>com.jun.plugin</groupId>
 	<artifactId>springboot_jdbctemplate_multidatasource</artifactId>
-	<version>1.0-snapshot</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<parent>

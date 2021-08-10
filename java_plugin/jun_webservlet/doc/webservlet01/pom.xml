@@ -6,7 +6,7 @@
 
   <groupId>com.lf.web</groupId>
   <artifactId>web-servlet01</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>war</packaging>
 
   <name>web-servlet01 Maven Webapp</name>

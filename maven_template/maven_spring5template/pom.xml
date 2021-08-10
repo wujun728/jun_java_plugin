@@ -4,7 +4,7 @@
     <groupId>com.jun</groupId>
     <artifactId>maven_spring5template</artifactId>
     <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <name>maven_spring5template</name>
     <url>http://www.java.com</url>

@@ -4,7 +4,7 @@
     <groupId>com.jun.plugin</groupId>
     <artifactId>spring_session</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <modules>
         <module>spring-session-demo-javaconfig</module>
         <module>spring-session-demo-xml</module>

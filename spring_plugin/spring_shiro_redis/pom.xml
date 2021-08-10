@@ -4,7 +4,7 @@
   <groupId>com.jun.plugin</groupId>
   <artifactId>spring_shiro_redis</artifactId>
   <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <name>spring_shiro_redis Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>

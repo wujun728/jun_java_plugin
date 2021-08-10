@@ -5,7 +5,7 @@
 
 	<groupId>[path_1].[path_2]</groupId>
 	<artifactId>[project]_parent</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
     <modules>
         <module>[project]_common</module>
         <module>[project]_[path_3]</module>
