@@ -1,1 +1,0 @@
-﻿# thoth-data-kafka
