@@ -6,6 +6,17 @@
 	<artifactId>ssm-dubbo-parent</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
+	
+	<modules>
+		<module>ssm_dubbo_common</module>
+		<module>ssm_dubbo_web</module>
+		<module>ssm_api_user</module>
+		<module>ssm_api_article</module>
+		<module>ssm_api_picture</module>
+		<module>ssm_service_user</module>
+		<module>ssm_service_article</module>
+		<module>ssm_service_picture</module>
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -52,16 +63,6 @@
 
 	</properties>
 
-	<modules>
-		<module>../ssm_dubbo_common</module>
-		<module>../ssm_dubbo_web</module>
-		<module>../ssm_api_user</module>
-		<module>../ssm_api_article</module>
-		<module>../ssm_api_picture</module>
-		<module>../ssm_service_user</module>
-		<module>../ssm_service_article</module>
-		<module>../ssm_service_picture</module>
-	</modules>
 
 	<dependencies>
 		<!-- Begin: 日志依赖包 -->

@@ -6,7 +6,7 @@
         <groupId>com.ssm.dubbo</groupId>
         <artifactId>ssm-dubbo-parent</artifactId>
         <version>1.0</version>
-        <relativePath>../ssm_dubbo_parent</relativePath>
+        
     </parent>
 
     <artifactId>ssm_api_user</artifactId>

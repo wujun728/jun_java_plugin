@@ -5,7 +5,7 @@
 		<groupId>com.ssm.dubbo</groupId>
 		<artifactId>ssm-dubbo-parent</artifactId>
 		<version>1.0</version>
-		<relativePath>../ssm_dubbo_parent</relativePath>
+		
 	</parent>
 
 	<artifactId>ssm_service_user</artifactId>
@@ -58,7 +58,7 @@
 					</archive>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
@@ -77,7 +77,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 </project>
