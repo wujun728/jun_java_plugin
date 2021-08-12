@@ -23,27 +23,15 @@ Step4产品篇：
 	jun_app    移动APP开发平台、支持Uniapp开发独立APP、小程序、企业办公等  
 	jun_weixin   微信开发平台、微信公众号、微信小程序、微信管理后台、微信API接口后台  
 	jun_android Android移动开发框架，APP开发模板、后台管理系统、后台API接口平台  
-
+	
+-————————————————————————————————————————————————————————————————————————————————————————————————————————
+-————————————————————————————————————————————————————————————————————————————————————————————————————————
+-————————————————————————————————————————————————————————————————————————————————————————————————————————
+-————————————————————————————————————————————————————————————————————————————————————————————————————————
 ​      
-
-##### GitHub 镜像访问
-	https://github.com
-	https://hub.fastgit.org/
-	https://github.com.cnpmjs.org
-
-https://www.cnblogs.com/huzi007/p/5802022.html
-https://www.cnblogs.com/huzi007/p/5796372.html
-
-	<groupId>com.jun.plugin</groupId>
-	<artifactId>springboot_abc</artifactId>
-	<version>1.0</version>
-	<packaging>jar</packaging>
-
-
-
+  
 TODO PLAN：
 
-jun_java_plugin   常用Java开发组件，Spring系常用plugin，SpringBoot系组件SpringCloud系组件
 1、清空readme，新增readme图片，新增胶片方案模板供截图
 2、调整package，调整author，调整每个工程大小，调整每个项目jar包
 3、调整每个项目运行
