@@ -635,6 +635,198 @@ Elasticsearch
  
 https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html
  
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+
+
+Springboot_fileupload
+https://github.com/gaoyuyue/MyUploader-Backend
+ 
+springcloud_plugin
+Superboot    --- 迁移到jun_cloud_center
+Jun_dubbo ---迁移到jun_microservice
+Spring
+ 
+https://github.com/liuge1988/kitty-generator
+https://github.com/zhoutaoo/SpringCloud
+ 
 
 
 
+Api_service
+1、API_BOOT代码生成器合并到code_generator里面
+2、api里面的layui抽出来，合并到
+https://github.com/Radom7/springboot-layui
+jun_layuiadmin
+3、新增apijson
+https://github.com/APIJSON/APIJSON-Demo
+https://vincentcheng.github.io/apijson-doc/
+ 
+Api_service
+1、API_BOOT代码生成器合并到code_generator里面
+2、api里面的layui抽出来，合并到
+https://github.com/Radom7/springboot-layui
+jun_layuiadmin
+3、新增apijson
+https://github.com/APIJSON/APIJSON-Demo
+https://vincentcheng.github.io/apijson-doc/
+ 
+
+ 
+https://github.com/scaladte
+ 
+https://github.com/malizhigithub/CRM
+ 
+ 
+https://blog.csdn.net/qq_22211217/article/details/83759513
+https://www.cnblogs.com/softidea/p/10271266.html
+Mysql 递归查询
+ 
+代码生成-springbootcodegenerator模板为主，逻辑为辅+新增数据查询转元数据+文件生成的方式
+https://blog.csdn.net/houxinlin_csdn/article/details/108683593
+https://blog.csdn.net/znwnymys/article/details/80739722
+https://github.com/houbb/low-code
+https://www.cnblogs.com/lbangel/p/3487796.html
+https://blog.csdn.net/linhao_obj/article/details/88921170
+Jdbc metabase
+ 
+plugin
+https://github.com/qinxuewu/boot-cloud
+WordPress 多站点
+企业官网
+中软门户网站
+导航
+ https://github.com/WebStackPage/WebStackPage.github.io
+https://github.com/WebStackPage/webstack-Admin
+https://github.com/GroupOfStar/xenon
+前端模板-laymini
+ 
+PC
+https://github.com/geekcompany/ResumeSample
+https://github.com/RAOE/show-videos
+https://github.com/justjavac/awesome-wechat-weapp
+ 
+博客
+https://github.com/mzlogin/mzlogin.github.io
+https://github.com/codepiano/codepiano.github.com
+ 
+https://github.com/qinxuewu/docs
+ 
+微信
+https://github.com/nosqlcoco/springboot-weapp-demo
+https://github.com/qinxuewu/blog-sharon
+https://github.com/bjchen2/WxProgram
+https://github.com/zsptsf/uniapp
+https://github.com/zhouwei1994/uni-app-demo
+https://github.com/aben1188/awesome-uni-app
+https://github.com/dcloudio/uni-template-one
+ 
+Shiro jwt springboot
+https://segmentfault.com/a/1190000039843857
+https://github.com/dolyw/ShiroJwt
+https://github.com/wang926454/VueStudy/tree/master/VueStudy08-JWT
+ 
+
+TODO PLAN：
+Step1基础篇：
+jun_java_plugin ->Java基础框架-Java开发组件、Spring开发组件、SpringBoot开发组件、SpringCloud开发组件、Maven项目模板
+jun_code_generator ->代码生成器-SpringBoot+Freemarker+API接口+EasyExcel
+jun_frontend_ui    -> 前端框架，Bootstrap、AdminLTE、Jquery、EasyUI、LayUI、LayAdmin、Vue、vue-element-admin
+jun_linux   ->服务器部署、gitlab部署、Nginx部署、Redis部署、Docker部署、MySQL部署、等等
+ 
+Step2微服务&大数据&企业级框架：
+jun_api_service   -> SSM后端Boot快速接口开发框架SpringBoot+Mybatis+整合JWT+Redis跟代码生成器返回JSON
+jun_ssh_parent -> SSH基础框架-SpringBoot+EasyUI+JSP
+jun_ssm_springboot   ->SSM基础框架-SpringBoot+MybatisPlus+Boostrap+Shiro+JWT
+jun_springboot_vue   ->前后端分离框架，SpringBoot+Vue+JWT
+jun_springcloud   ->微服务框架，SpringCloud Netflix、SpringCloud Alibaba、Dubbo框架、Quarkus极速框架
+jun_bigdata   ->大数据框架，支持数据清理、数据推荐、大数据分析、大数据企业看板、大数据报表等
+ 
+ 
+Step3产品篇：
+jun_product_center   ->产品中心，企业信息化产品孵化中心、功能模块化、等等
+product_center_image_manage
+product_center_pay
+product_center_orderfood
+product_center_park
+product_center_portal
+product_center_app
+product_center_edu
+product_center_garbagesort
+product_center_music
+product_center_quartz
+product_center_resume_java
+product_center_resume_pm
+product_center_spring
+product_center_task
+product_center_wms
+product_center_exam
+ 
+product_center_website   -> 企业网站系统，基于WordPress的网站系统、支持博客、企业官网及各种网站模板
+product_center_wordpress  -> WordPress网站系统，基于WordPress的网站系统、支持博客、企业官网及各种网站模板
+product_center_official_website   -> 官网网站系统
+product_center_navigation   -> 导航网站
+product_center_blog  ->博客管理系统
+ 
+product_center_oa   ->企业办公自动化OA系统
+product_center_hr  ->企业人力资源管理系统
+product_center_erp  ->企业资源管理系统
+product_center_crm   ->企业客户关系管理系统
+product_center_finance   ->企业财务管理系统
+product_center_flybbs   ->企业BBS论坛
+product_center_mall   ->企业网上商城
+product_center_mis   ->企业管理資訊系統
+wujun728.github.io  ->个人博客
+ 
+Step4移动产品篇：
+jun_app     ->移动APP开发平台、支持Uniapp开发独立APP、小程序、企业办公等
+jun_weixin    ->微信开发平台、微信公众号、微信小程序、微信管理后台、微信API接口后台
+jun_android  ->Android移动开发框架，APP开发模板、后台管理系统、后台API接口平台
+jun_ppt   ->方案文档、胶片、IT实施方案、IT详细方案、IT高阶方案、架构方案
+ 
+ 
+ 
+爬虫
+https://blog.csdn.net/zfz5720/article/details/89926654
+wp-autoblog
+Webmagic demo
+https://github.com/hemin1003/java-spider
+导航
+https://github.com/WebStackPage/WebStackPage.github.io
+https://github.com/openspug/index
+https://github.com/TopVitamin/static-nav
+https://github.com/Jackie1123/aNavigation
+ 
+合并jwt到API里面
+ 
+Springboot+vue
+https://github.com/YunaiV/ruoyi-vue-pro
+ 
+SpringBoot+layui
+https://github.com/fuce1314/Springboot_v2
+https://github.com/febsteam/FEBS-Shiro
+https://github.com/TheVanguardOfLonely/pear-admin-fast
+ 
+https://github.com/febsteam/FEBS-Cloud
+https://github.com/febsteam/FEBS-Cloud-Web
+https://github.com/febsteam/FEBS-Actuator
+https://github.com/febsteam/FEBS-Cloud-K8S
+https://github.com/febsteam/FEBS-Vue
+https://github.com/febsteam/FEBS-Security
+https://github.com/febsteam/FEBS-Shiro
+https://github.com/wx7614140/FEBS-Vue-Fix
+ 
+https://gitee.com/shuogesha
+https://github.com/aben1188/awesome-uni-app
+ 
+https://gitee.com/chunanyong/front-springrain
+ 
+ https://github.com/lenve/generate_code
+ 
+https://github.com/Djx980831/Car-management-system
+代码生成
+ 
+https://github.com/ToyoDAdoubi/doubi
