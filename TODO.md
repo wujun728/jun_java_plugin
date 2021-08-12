@@ -37,13 +37,7 @@ TODO PLAN：
 3、调整每个项目运行
 4、mvn_template 开发模板，调整，新增项目模板；新增
 
-jun_ssm_springboot
-1、合并ry_gen进来到code_generator
-2、新增hibernate-validator支持
-3、Ssm_调整老的ssm的前端easyui到layui，前端已调整layui
-4、整ssm_jwt的代码生成器
-5、整ssm_jwt的common工具包
-6、整ssm_jwt的api跟rbac跟表结构
+
 jun_code_generator
 0、默认生成模板调整，默认下载zip包调整
 1、代码生成器jun_code_generator 默认提供Spring、Hibernate、MyBatis、Spring JDBC模板
@@ -155,15 +149,8 @@ Vue+uniapp+Nodejs+WordPress+PHP+Android+Bigdata
 https://blog.csdn.net/xiaojinlai123/article/details/90694372
 https://blog.csdn.net/sxdtzhaoxinguo/article/details/77965226
 
-git checkout --orphan latest_branch2
-git add -A
-git commit -am "commit message"
-git branch -D master
-git branch -m master
-git push -f origin master 
-    
-    
 
+  
 
 https://hub.fastgit.org/moshowgame/SpringBootCodeGenerator
 https://hub.fastgit.org/SpringCloud/spring-cloud-codegen
@@ -282,90 +269,90 @@ jun_code_mybatisplus\  
 
 1、jun_api_service
 初始化API_Service
-https://github.com/lihengming/spring-boot-api-project-seed
+https://hub.fastgit.org/lihengming/spring-boot-api-project-seed
 干掉jun_api-plugin
  
 2、jun_cache   ---干掉
 新增springcache
-https://github.com/iamsixer/spring-cache-demo
-https://github.com/zheng-zy/spring-boot-redis-guava-caffeine-cache
+https://hub.fastgit.org/iamsixer/spring-cache-demo
+https://hub.fastgit.org/zheng-zy/spring-boot-redis-guava-caffeine-cache
  
 3、camel 干掉，没啥用
  
 4、jun_crawler 调整，跑起来，净化
  
 5、jun_datasource_cluster rename 到 DataSource
-新增 https://github.com/ran-jit/tomcat-cluster-redis-session-manager
+新增 https://hub.fastgit.org/ran-jit/tomcat-cluster-redis-session-manager
  
 6、分解jun_dbutils
-https://github.com/objcoding/jdbc-utils
+https://hub.fastgit.org/objcoding/jdbc-utils
  
 7、jun_demo rename到 jun_test
  
 8、设计模式，合并到一起，分三种合并，中文转英文
  
 9、jun_note 新增
-https://github.com/GourdErwa/review-notes
+https://hub.fastgit.org/GourdErwa/review-notes
  
 10、新增jun_webservlet_guice_dbutil
 https://www.cnblogs.com/huzi007/p/5802022.html
 https://www.cnblogs.com/huzi007/p/5796372.html
  
-11、drools https://github.com/maxxbwsDemo
+11、drools https://hub.fastgit.org/maxxbwsDemo
  
 12、email 调整，清理
-https://github.com/biezhi/oh-my-email/blob/master/pom.xml
-https://github.com/isliqian/NiceEmail
+https://hub.fastgit.org/biezhi/oh-my-email/blob/master/pom.xml
+https://hub.fastgit.org/isliqian/NiceEmail
  
 13、excel 集成 easyexcel
-https://github.com/HowieYuan/easyexcel-encapsulation
+https://hub.fastgit.org/HowieYuan/easyexcel-encapsulation
 新增jun_poi demo
  
 14、jun_fileupload
-https://github.com/wemakebug/FileUpload.Java
+https://hub.fastgit.org/wemakebug/FileUpload.Java
 Spring fileupload
-https://github.com/jdmr/fileUpload
+https://hub.fastgit.org/jdmr/fileUpload
  
-15、freemarker boot https://github.com/JavaCodeMood/freemarker
+15、freemarker boot https://hub.fastgit.org/JavaCodeMood/freemarker
  
 16、guava
-https://github.com/tiantiangao/guava-study
-https://github.com/tfnico/guava-examples
+https://hub.fastgit.org/tiantiangao/guava-study
+https://hub.fastgit.org/tfnico/guava-examples
  
 17、guice
-https://github.com/timlien/servlet-guice
-https://github.com/greengerong/guice-demo
-https://github.com/lg625740749/GuiceDemo
+https://hub.fastgit.org/timlien/servlet-guice
+https://hub.fastgit.org/greengerong/guice-demo
+https://hub.fastgit.org/lg625740749/GuiceDemo
  
 18、hibernate
-https://github.com/hibernate/hibernate-demos
+https://hub.fastgit.org/hibernate/hibernate-demos
  
 19、httpclient
-https://github.com/Arronlong/httpclientutil
-https://github.com/JourWon/httpclientutil
+https://hub.fastgit.org/Arronlong/httpclientutil
+https://hub.fastgit.org/JourWon/httpclientutil
  
 20、image
-https://github.com/xuehuayous/ImageUpload
-https://github.com/jmitchener/spring-images
-https://github.com/woobong/spring-boot-jpa-summernote-image-upload-example
-https://github.com/mrmodise/java-spring-file-upload
+https://hub.fastgit.org/xuehuayous/ImageUpload
+https://hub.fastgit.org/jmitchener/spring-images
+https://hub.fastgit.org/woobong/spring-boot-jpa-summernote-image-upload-example
+https://hub.fastgit.org/mrmodise/java-spring-file-upload
  
 21、jbpm4
-https://github.com/xxg3053/jbpm-study
-https://github.com/American/workflow/tree/master/workflow
+https://hub.fastgit.org/xxg3053/jbpm-study
+https://hub.fastgit.org/American/workflow/tree/master/workflow
  
 22.jdk 清理，调整
  
 23、lucenne
-https://github.com/abel533/SearchEngine
-https://github.com/doushini/lucene
-https://github.com/pumadong/cl-search
+https://hub.fastgit.org/abel533/SearchEngine
+https://hub.fastgit.org/doushini/lucene
+https://hub.fastgit.org/pumadong/cl-search
 Springboot+ElasticSearch
-https://github.com/Motianshi/all-search
+https://hub.fastgit.org/Motianshi/all-search
  
 24、pay
-https://github.com/kongzhidea/pay
-https://github.com/iyangyuan/pay-spring-boot
+https://hub.fastgit.org/kongzhidea/pay
+https://hub.fastgit.org/iyangyuan/pay-spring-boot
  
 Spring-cloud
  
@@ -373,8 +360,8 @@ Spring-cloud
 
 
 41、 webmagic
-https://github.com/scsfwgy/WebMagic_CSDN_Demo
-https://github.com/EzioL/neteasemusic
+https://hub.fastgit.org/scsfwgy/WebMagic_CSDN_Demo
+https://hub.fastgit.org/EzioL/neteasemusic
  
 42、api_service
 合并都api里面，其他的2个干掉
@@ -382,12 +369,12 @@ https://github.com/EzioL/neteasemusic
 Spring
 43、 jwt rename一下
 新增springboot jwt
-https://github.com/dolyw/VueStudy/tree/master/VueStudy08-JWT
-https://github.com/dolyw/ShiroJwt.git
+https://hub.fastgit.org/dolyw/VueStudy/tree/master/VueStudy08-JWT
+https://hub.fastgit.org/dolyw/ShiroJwt.git
  
 44、spring activemq
 清理代码，优化test及readme
-https://github.com/888xin/activeMQ
+https://hub.fastgit.org/888xin/activeMQ
  
 45、camel 调整为zip里面的spring
 46、cas 干掉
@@ -400,44 +387,44 @@ https://github.com/888xin/activeMQ
 49、fastdfs
  
 50、dubbo
-https://github.com/GenshenWang/DubboDemo
+https://hub.fastgit.org/GenshenWang/DubboDemo
  
 51、quartz
-https://github.com/ameizi/spring-quartz-cluster-sample
+https://hub.fastgit.org/ameizi/spring-quartz-cluster-sample
  
 52、新增xxl-job
-https://github.com/xuxueli/xxl-job
+https://hub.fastgit.org/xuxueli/xxl-job
  
 53、email
-https://github.com/fangjieDevp/spring-email-master
+https://hub.fastgit.org/fangjieDevp/spring-email-master
  
 54、Excel 干掉
  
 55、hibernate
-https://github.com/zhonglinlin1305/Spring
-https://github.com/zhonglinlin1305/spring-projects/
+https://hub.fastgit.org/zhonglinlin1305/Spring
+https://hub.fastgit.org/zhonglinlin1305/spring-projects/
  
 0、Boot&cloud
-https://github.com/zhonglinlin1305/spring-boot-sample/
-https://github.com/zhonglinlin1305/spring-cloud-microservice
-https://github.com/SpringForAll/springcloud-thoth
+https://hub.fastgit.org/zhonglinlin1305/spring-boot-sample/
+https://hub.fastgit.org/zhonglinlin1305/spring-cloud-microservice
+https://hub.fastgit.org/SpringForAll/springcloud-thoth
  
 56、kafka
-https://github.com/smallnest/spring-kafka-demo
+https://hub.fastgit.org/smallnest/spring-kafka-demo
  
 57、lucenne
-https://github.com/FuZhucheng/SSM
+https://hub.fastgit.org/FuZhucheng/SSM
  
  
  
 00、boot starter
-https://github.com/battcn/extend-spring-boot
+https://hub.fastgit.org/battcn/extend-spring-boot
  
 00、util
-https://github.com/864381832/xJavaFxTool-spring
+https://hub.fastgit.org/864381832/xJavaFxTool-spring
  
 00、ppt
-https://github.com/aalansehaiyang/technology-talk
+https://hub.fastgit.org/aalansehaiyang/technology-talk
  
 
 
@@ -455,9 +442,9 @@ https://www.jianshu.com/p/31e532392a74
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
 6、apiservice 代码一套，功能一套，同步ssm
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
-https://github.com/callicoder/spring-webflux-reactive-rest-api-demo
+https://hub.fastgit.org/callicoder/spring-webflux-reactive-rest-api-demo
 https://blog.csdn.net/qq_35067322/article/details/106935320
-https://github.com/dolyw/ShiroJwt
+https://hub.fastgit.org/dolyw/ShiroJwt
 7、linux 部署文档，部署包、docker部署
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
 部署环境
@@ -465,7 +452,7 @@ https://github.com/dolyw/ShiroJwt
  
 Step2
 main
-https://github.com/Heeexy/SpringBoot-Shiro-Vue
+https://hub.fastgit.org/Heeexy/SpringBoot-Shiro-Vue
 jun_springboot_jwt_layui\   合并到ssm框架
 jun_springboot_jwt_shiro_api\   空的
 jun_springboot_vue\   干掉
@@ -474,8 +461,8 @@ jun_springboot_vue_pro\ 合并到上面里面
  
 Step4
 1、uniapp
-https://github.com/zsptsf/uniapp.git
-https://github.com/c1013529993/springboot-uniapp-21cake
+https://hub.fastgit.org/zsptsf/uniapp.git
+https://hub.fastgit.org/c1013529993/springboot-uniapp-21cake
  
 
 
@@ -483,34 +470,34 @@ Step1
 Jdbc_template
 https://gitee.com/jervain_y/repository
  
-https://github.com/horsecms/layuiCMS
+https://hub.fastgit.org/horsecms/layuiCMS
  
 Step2
 1、vue-element-admin
-https://github.com/panjiachen/vue-element-admin-site
+https://hub.fastgit.org/panjiachen/vue-element-admin-site
 https://panjiachen.github.io/vue-element-admin-site/zh/guide/
 2、cloud
 https://www.8kee.com/article/17347.html
-https://github.com/JourWon/springcloud-learning
-https://github.com/wenren0819/Spring-Cloud-2020
+https://hub.fastgit.org/JourWon/springcloud-learning
+https://hub.fastgit.org/wenren0819/Spring-Cloud-2020
 https://blog.csdn.net/ThinkWon/article/details/103726655
  
 2、api_service
-https://github.com/koocyton/reactor-guice
-https://github.com/jwpttcg66/NettyGameServer
+https://hub.fastgit.org/koocyton/reactor-guice
+https://hub.fastgit.org/jwpttcg66/NettyGameServer
 3、bigdata
 爬虫
-https://github.com/brianway/webporter
+https://hub.fastgit.org/brianway/webporter
 ETL
-https://github.com/zhaxiaodong9860/kettle-scheduler
+https://hub.fastgit.org/zhaxiaodong9860/kettle-scheduler
 数仓
-https://github.com/fenglei110/DataWarehouse
-https://github.com/jd-bigdata/rtf-lake
-https://github.com/xzt1995/Data-Warehouse
+https://hub.fastgit.org/fenglei110/DataWarehouse
+https://hub.fastgit.org/jd-bigdata/rtf-lake
+https://hub.fastgit.org/xzt1995/Data-Warehouse
 新增用户画像、用户行为
-https://github.com/monsonlee/BigData
-https://github.com/whirlys/BigData-In-Practice
-https://github.com/597365581/bigdata_tools
+https://hub.fastgit.org/monsonlee/BigData
+https://hub.fastgit.org/whirlys/BigData-In-Practice
+https://hub.fastgit.org/597365581/bigdata_tools
 https://blog.csdn.net/u013967628/article/details/83656560
  
 
@@ -529,9 +516,9 @@ https://www.jianshu.com/p/31e532392a74
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
 6、apiservice 代码一套，功能一套，同步ssm
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
-https://github.com/callicoder/spring-webflux-reactive-rest-api-demo
+https://hub.fastgit.org/callicoder/spring-webflux-reactive-rest-api-demo
 https://blog.csdn.net/qq_35067322/article/details/106935320
-https://github.com/dolyw/ShiroJwt
+https://hub.fastgit.org/dolyw/ShiroJwt
 7、linux 部署文档，部署包、docker部署
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
 部署环境
@@ -539,7 +526,7 @@ https://github.com/dolyw/ShiroJwt
  
 Step2
 main
-https://github.com/Heeexy/SpringBoot-Shiro-Vue
+https://hub.fastgit.org/Heeexy/SpringBoot-Shiro-Vue
 jun_springboot_jwt_layui\   合并到ssm框架
 jun_springboot_jwt_shiro_api\   空的
 jun_springboot_vue\   干掉
@@ -548,42 +535,42 @@ jun_springboot_vue_pro\ 合并到上面里面
  
 Step4
 1、uniapp
-https://github.com/zsptsf/uniapp.git
-https://github.com/c1013529993/springboot-uniapp-21cake
+https://hub.fastgit.org/zsptsf/uniapp.git
+https://hub.fastgit.org/c1013529993/springboot-uniapp-21cake
  
  
 Step1
 Jdbc_template
 https://gitee.com/jervain_y/repository
  
-https://github.com/horsecms/layuiCMS
+https://hub.fastgit.org/horsecms/layuiCMS
  
 Step2
 1、vue-element-admin
-https://github.com/panjiachen/vue-element-admin-site
+https://hub.fastgit.org/panjiachen/vue-element-admin-site
 https://panjiachen.github.io/vue-element-admin-site/zh/guide/
 2、cloud
 https://www.8kee.com/article/17347.html
-https://github.com/JourWon/springcloud-learning
-https://github.com/wenren0819/Spring-Cloud-2020
+https://hub.fastgit.org/JourWon/springcloud-learning
+https://hub.fastgit.org/wenren0819/Spring-Cloud-2020
 https://blog.csdn.net/ThinkWon/article/details/103726655
  
 2、api_service
-https://github.com/koocyton/reactor-guice
-https://github.com/jwpttcg66/NettyGameServer
+https://hub.fastgit.org/koocyton/reactor-guice
+https://hub.fastgit.org/jwpttcg66/NettyGameServer
 3、bigdata
 爬虫
-https://github.com/brianway/webporter
+https://hub.fastgit.org/brianway/webporter
 ETL
-https://github.com/zhaxiaodong9860/kettle-scheduler
+https://hub.fastgit.org/zhaxiaodong9860/kettle-scheduler
 数仓
-https://github.com/fenglei110/DataWarehouse
-https://github.com/jd-bigdata/rtf-lake
-https://github.com/xzt1995/Data-Warehouse
+https://hub.fastgit.org/fenglei110/DataWarehouse
+https://hub.fastgit.org/jd-bigdata/rtf-lake
+https://hub.fastgit.org/xzt1995/Data-Warehouse
 新增用户画像、用户行为
-https://github.com/monsonlee/BigData
-https://github.com/whirlys/BigData-In-Practice
-https://github.com/597365581/bigdata_tools
+https://hub.fastgit.org/monsonlee/BigData
+https://hub.fastgit.org/whirlys/BigData-In-Practice
+https://hub.fastgit.org/597365581/bigdata_tools
 https://blog.csdn.net/u013967628/article/details/83656560
  
 Eureka
@@ -595,7 +582,7 @@ Ribbon的负载均衡，主要通过LoadBalancerClient来实现的，而LoadBala
 架构
 https://blog.csdn.net/shenhuxi10000/article/details/105058723
  
-https://github.com/wujun728/learningSummary
+https://hub.fastgit.org/wujun728/learningSummary
  
 Springboot security
 https://blog.csdn.net/yuanlaijike/article/details/80249235
@@ -606,14 +593,14 @@ mxtheme02
 
 
 
-https://github.com/hemin1003
+https://hub.fastgit.org/hemin1003
 jun_temp     临时仓库
-https://github.com/c1013529993/springboot-uniapp-21cake
+https://hub.fastgit.org/c1013529993/springboot-uniapp-21cake
  
  
 JWT+VUE
-https://github.com/cailichao/easyweb-jwt
-https://github.com/whvcse/JwtPermission
+https://hub.fastgit.org/cailichao/easyweb-jwt
+https://hub.fastgit.org/whvcse/JwtPermission
  
 Elasticsearch
  
@@ -631,15 +618,15 @@ https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.htm
 
 
 Springboot_fileupload
-https://github.com/gaoyuyue/MyUploader-Backend
+https://hub.fastgit.org/gaoyuyue/MyUploader-Backend
  
 springcloud_plugin
 Superboot    --- 迁移到jun_cloud_center
 Jun_dubbo ---迁移到jun_microservice
 Spring
  
-https://github.com/liuge1988/kitty-generator
-https://github.com/zhoutaoo/SpringCloud
+https://hub.fastgit.org/liuge1988/kitty-generator
+https://hub.fastgit.org/zhoutaoo/SpringCloud
  
 
 
@@ -647,26 +634,26 @@ https://github.com/zhoutaoo/SpringCloud
 Api_service
 1、API_BOOT代码生成器合并到code_generator里面
 2、api里面的layui抽出来，合并到
-https://github.com/Radom7/springboot-layui
+https://hub.fastgit.org/Radom7/springboot-layui
 jun_layuiadmin
 3、新增apijson
-https://github.com/APIJSON/APIJSON-Demo
+https://hub.fastgit.org/APIJSON/APIJSON-Demo
 https://vincentcheng.github.io/apijson-doc/
  
 Api_service
 1、API_BOOT代码生成器合并到code_generator里面
 2、api里面的layui抽出来，合并到
-https://github.com/Radom7/springboot-layui
+https://hub.fastgit.org/Radom7/springboot-layui
 jun_layuiadmin
 3、新增apijson
-https://github.com/APIJSON/APIJSON-Demo
+https://hub.fastgit.org/APIJSON/APIJSON-Demo
 https://vincentcheng.github.io/apijson-doc/
  
 
  
-https://github.com/scaladte
+https://hub.fastgit.org/scaladte
  
-https://github.com/malizhigithub/CRM
+https://hub.fastgit.org/malizhigithub/CRM
  
  
 https://blog.csdn.net/qq_22211217/article/details/83759513
@@ -676,145 +663,24 @@ Mysql 递归查询
 代码生成-springbootcodegenerator模板为主，逻辑为辅+新增数据查询转元数据+文件生成的方式
 https://blog.csdn.net/houxinlin_csdn/article/details/108683593
 https://blog.csdn.net/znwnymys/article/details/80739722
-https://github.com/houbb/low-code
+https://hub.fastgit.org/houbb/low-code
 https://www.cnblogs.com/lbangel/p/3487796.html
 https://blog.csdn.net/linhao_obj/article/details/88921170
 Jdbc metabase
  
-plugin
-https://github.com/qinxuewu/boot-cloud
+
 WordPress 多站点
 企业官网
 中软门户网站
-导航
- https://github.com/WebStackPage/WebStackPage.github.io
-https://github.com/WebStackPage/webstack-Admin
-https://github.com/GroupOfStar/xenon
-前端模板-laymini
- 
-PC
-https://github.com/geekcompany/ResumeSample
-https://github.com/RAOE/show-videos
-https://github.com/justjavac/awesome-wechat-weapp
- 
-博客
-https://github.com/mzlogin/mzlogin.github.io
-https://github.com/codepiano/codepiano.github.com
- 
-https://github.com/qinxuewu/docs
- 
-微信
-https://github.com/nosqlcoco/springboot-weapp-demo
-https://github.com/qinxuewu/blog-sharon
-https://github.com/bjchen2/WxProgram
-https://github.com/zsptsf/uniapp
-https://github.com/zhouwei1994/uni-app-demo
-https://github.com/aben1188/awesome-uni-app
-https://github.com/dcloudio/uni-template-one
- 
-Shiro jwt springboot
-https://segmentfault.com/a/1190000039843857
-https://github.com/dolyw/ShiroJwt
-https://github.com/wang926454/VueStudy/tree/master/VueStudy08-JWT
+ 
+
  
 
-TODO PLAN：
-Step1基础篇：
-jun_java_plugin ->Java基础框架-Java开发组件、Spring开发组件、SpringBoot开发组件、SpringCloud开发组件、Maven项目模板
-jun_code_generator ->代码生成器-SpringBoot+Freemarker+API接口+EasyExcel
-jun_frontend_ui    -> 前端框架，Bootstrap、AdminLTE、Jquery、EasyUI、LayUI、LayAdmin、Vue、vue-element-admin
-jun_linux   ->服务器部署、gitlab部署、Nginx部署、Redis部署、Docker部署、MySQL部署、等等
- 
-Step2微服务&大数据&企业级框架：
-jun_api_service   -> SSM后端Boot快速接口开发框架SpringBoot+Mybatis+整合JWT+Redis跟代码生成器返回JSON
-jun_ssh_parent -> SSH基础框架-SpringBoot+EasyUI+JSP
-jun_ssm_springboot   ->SSM基础框架-SpringBoot+MybatisPlus+Boostrap+Shiro+JWT
-jun_springboot_vue   ->前后端分离框架，SpringBoot+Vue+JWT
-jun_springcloud   ->微服务框架，SpringCloud Netflix、SpringCloud Alibaba、Dubbo框架、Quarkus极速框架
-jun_bigdata   ->大数据框架，支持数据清理、数据推荐、大数据分析、大数据企业看板、大数据报表等
+
  
  
-Step3产品篇：
-jun_product_center   ->产品中心，企业信息化产品孵化中心、功能模块化、等等
-product_center_image_manage
-product_center_pay
-product_center_orderfood
-product_center_park
-product_center_portal
-product_center_app
-product_center_edu
-product_center_garbagesort
-product_center_music
-product_center_quartz
-product_center_resume_java
-product_center_resume_pm
-product_center_spring
-product_center_task
-product_center_wms
-product_center_exam
+
  
-product_center_website   -> 企业网站系统，基于WordPress的网站系统、支持博客、企业官网及各种网站模板
-product_center_wordpress  -> WordPress网站系统，基于WordPress的网站系统、支持博客、企业官网及各种网站模板
-product_center_official_website   -> 官网网站系统
-product_center_navigation   -> 导航网站
-product_center_blog  ->博客管理系统
+
  
-product_center_oa   ->企业办公自动化OA系统
-product_center_hr  ->企业人力资源管理系统
-product_center_erp  ->企业资源管理系统
-product_center_crm   ->企业客户关系管理系统
-product_center_finance   ->企业财务管理系统
-product_center_flybbs   ->企业BBS论坛
-product_center_mall   ->企业网上商城
-product_center_mis   ->企业管理資訊系統
-wujun728.github.io  ->个人博客
- 
-Step4移动产品篇：
-jun_app     ->移动APP开发平台、支持Uniapp开发独立APP、小程序、企业办公等
-jun_weixin    ->微信开发平台、微信公众号、微信小程序、微信管理后台、微信API接口后台
-jun_android  ->Android移动开发框架，APP开发模板、后台管理系统、后台API接口平台
-jun_ppt   ->方案文档、胶片、IT实施方案、IT详细方案、IT高阶方案、架构方案
- 
- 
- 
-爬虫
-https://blog.csdn.net/zfz5720/article/details/89926654
-wp-autoblog
-Webmagic demo
-https://github.com/hemin1003/java-spider
-导航
-https://github.com/WebStackPage/WebStackPage.github.io
-https://github.com/openspug/index
-https://github.com/TopVitamin/static-nav
-https://github.com/Jackie1123/aNavigation
- 
-合并jwt到API里面
- 
-Springboot+vue
-https://github.com/YunaiV/ruoyi-vue-pro
- 
-SpringBoot+layui
-https://github.com/fuce1314/Springboot_v2
-https://github.com/febsteam/FEBS-Shiro
-https://github.com/TheVanguardOfLonely/pear-admin-fast
- 
-https://github.com/febsteam/FEBS-Cloud
-https://github.com/febsteam/FEBS-Cloud-Web
-https://github.com/febsteam/FEBS-Actuator
-https://github.com/febsteam/FEBS-Cloud-K8S
-https://github.com/febsteam/FEBS-Vue
-https://github.com/febsteam/FEBS-Security
-https://github.com/febsteam/FEBS-Shiro
-https://github.com/wx7614140/FEBS-Vue-Fix
- 
-https://gitee.com/shuogesha
-https://github.com/aben1188/awesome-uni-app
- 
-https://gitee.com/chunanyong/front-springrain
- 
- https://github.com/lenve/generate_code
- 
-https://github.com/Djx980831/Car-management-system
-代码生成
- 
-https://github.com/ToyoDAdoubi/doubi
+   
