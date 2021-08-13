@@ -1,4 +1,4 @@
-package com.jun.plugin;
+package com.jun.plugin.component;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;

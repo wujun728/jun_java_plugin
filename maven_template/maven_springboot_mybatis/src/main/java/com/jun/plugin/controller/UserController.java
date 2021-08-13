@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 @RequestMapping("api")
 public class UserController {
-
     private final UserService userService;
 
     @Autowired
@@ -20,6 +19,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    
     @RequestMapping("user")
     public List<User> findAll() {
         return userService.findAll();
