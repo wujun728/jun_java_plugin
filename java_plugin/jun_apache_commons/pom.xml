@@ -52,7 +52,7 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.0.9</version>
+			<version>1.2.0</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- C3P0连接池，使用时，需自行添加依赖 -->
