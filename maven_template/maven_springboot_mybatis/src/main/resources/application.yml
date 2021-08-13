@@ -1,12 +1,0 @@
-server:  port: 8001
-
-spring:
-  profiles:
-    active: dev
-
-logging:
-  level:
-    com.jun.plugin: debug
-mybatis:
-  mapper-locations: classpath:mapper/**/*.xml
-  type-aliases-package: com.jun.plugin.model
