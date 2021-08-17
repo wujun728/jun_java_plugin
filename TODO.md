@@ -8,18 +8,16 @@ Step1基础篇：
 	jun_frontend_ui    前端框架，Bootstrap、AdminLTE、Jquery、EasyUI、LayUI、LayAdmin、Vue、vue-element-admin  
 	jun_linux    服务器部署、gitlab部署、Nginx部署、Redis部署、Docker部署、MySQL部署、等等  
  	---审视项目本身，给出待办调整清单，给出下步计划  
-Step2微服务&大数据：  
+Step2微服务&产品中心篇：  
 	jun_api_service API接口服务框架，SpringBoot+Rest API  
 	jun_springboot_vue 前后端分离框架，SpringBoot+Vue+JWT  
 	jun_springcloud 微服务框架，SpringCloud Netflix、SpringCloud Alibaba、Dubbo框架、Quarkus极速框架 
-	jun_bigdata 大数据框架，支持数据清理、数据推荐、大数据分析、大数据企业看板、大数据报表等  
-
-Step3产品篇：  
 	jun_product_center 产品中心，包含企业官网、企业办公自动化OA系统、企业资源管理ERP系统、项目管理系统、等等  
 	jun_website   CMS网站系统，基于WordPress的网站系统、支持博客、企业官网、及各种网站模板  
 	wujun728.github.io 个人博客  
 
-Step4产品篇：  
+Step3 移动产品篇&大数据：  
+	jun_bigdata 大数据框架，支持数据清理、数据推荐、大数据分析、大数据企业看板、大数据报表等  
 	jun_app    移动APP开发平台、支持Uniapp开发独立APP、小程序、企业办公等  
 	jun_weixin   微信开发平台、微信公众号、微信小程序、微信管理后台、微信API接口后台  
 	jun_android Android移动开发框架，APP开发模板、后台管理系统、后台API接口平台  
