@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
-<beans>
-	<!-- BasicInfo Action -->
-    <bean id ="userAction" class ="cn.itcast.mis.req.action.UserAction" singleton="false"> 
-           <property name="userBO" ref="userBO" ></property>
-    </bean>
-</beans>

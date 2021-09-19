@@ -1,2 +1,0 @@
-# mybatisplus-springmvc
-使用MyBatisPlus的逆向工程自动生成Mapper接口,xml文件,service接口,service实现以及controller并整合Spring框架完成单表CUID和分页操作

@@ -1,1 +1,0 @@
-## spring-thymeleaf MVC三层框架示例项目工程，前端视图层采用Thymeleaf模板引擎，快速简单的上手。 
