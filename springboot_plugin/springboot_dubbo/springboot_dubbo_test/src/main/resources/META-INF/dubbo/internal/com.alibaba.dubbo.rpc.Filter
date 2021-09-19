@@ -1,1 +1,0 @@
-zipkinFilter=com.alibaba.boot.dubbo.zipkin.ZipkinFilter

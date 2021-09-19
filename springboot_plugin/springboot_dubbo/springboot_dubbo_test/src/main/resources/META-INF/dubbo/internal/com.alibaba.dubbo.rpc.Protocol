@@ -1,4 +1,0 @@
-feign=com.alibaba.dubbo.rpc.protocol.feign.FeignProtocol
-feigns=com.alibaba.dubbo.rpc.protocol.feign.FeignProtocol
-ribbon=com.alibaba.dubbo.rpc.protocol.feign.RibbonProtocol
-ribbons=com.alibaba.dubbo.rpc.protocol.feign.RibbonProtocol

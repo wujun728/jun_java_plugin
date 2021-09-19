@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.jun.plugin.sharding.jdbc.mybatisplus.ShardingAutoConfiguration,\
-com.jun.plugin.sharding.jdbc.mybatisplus.MyBatisPlusAutoConfiguration

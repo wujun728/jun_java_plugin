@@ -1,8 +1,0 @@
-#JDBC configuration information
-jdbc.driverClassName=com.mysql.jdbc.Driver
-############
-# localhost
-############
-jdbc.url=jdbc:mysql://localhost:3306/oauth2?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=utf8
-jdbc.username=andaily
-jdbc.password=andaily
