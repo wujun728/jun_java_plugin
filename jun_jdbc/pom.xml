@@ -65,7 +65,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.40</version>
+			<version>8.0.16</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc 1.maven的中心资源库中没有ojdbc驱动包，所以需要安装到本地仓库 
 			1.下载位置： doc 2.下载后放在d盘下，然后执行以下命令 mvn install:install-file -DgroupId=com.oracle 
