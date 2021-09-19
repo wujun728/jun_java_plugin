@@ -1,3 +1,0 @@
-server:
-  port: 90
-  context-path: /
