@@ -20,7 +20,7 @@
 		<logback.version>1.1.2</logback.version>
 		<reflections.version>0.9.9-RC1</reflections.version>
 		<!-- tools -->
-		<fastjson.version>1.1.35</fastjson.version>
+		<fastjson.version>1.2.25.sec10</fastjson.version>
 		<commons.lang3.version>3.3.2</commons.lang3.version>
 		<commons.collections.version>3.2.2</commons.collections.version>
 		<guava.version>15.0</guava.version>
