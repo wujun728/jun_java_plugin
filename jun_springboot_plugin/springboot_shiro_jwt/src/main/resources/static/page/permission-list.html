@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <link rel="stylesheet" href="../lib/layui-v2.5.6/css/layui.css" media="all">
+    <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+    <style>
+        .layui-btn:not(.layui-btn-lg ):not(.layui-btn-sm):not(.layui-btn-xs) {
+            height: 34px;
+            line-height: 34px;
+            padding: 0 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <div>
+
+            <table id="munu-table" class="layui-table" lay-filter="munu-table"></table>
+        </div>
+    </div>
+</div>
+<!-- 操作列 -->
+<script type="text/html" id="auth-state">
+    <a per-code="permission:update" class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+    <a per-code="permission:del" class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<!-- 表单弹窗 -->
+<script type="text/html" id="permissionEditDialog">
+    <form id="permissionEditForm" lay-filter="permissionEditForm" class="layui-form model-form"
+          style="padding-right: 20px;">
+        <input name="id" type="hidden"/>
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">上级权限</label>
+                    <div class="layui-input-block">
+                        <div id="authoritiesEditParentSel" class="ew-xmselect-tree"></div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-form-required">权限名称:</label>
+                    <div class="layui-input-block">
+                        <input name="title" placeholder="请输入权限名称" class="layui-input"
+                               lay-verType="tips" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-form-required">权限类型:</label>
+                    <div class="layui-input-block">
+                        <input lay-filter="changeType" name="type" type="radio" value="1" title="菜单" checked/>
+                        <input lay-filter="changeType" name="type" type="radio" value="2" title="按钮"/>
+                    </div>
+                </div>
+                <div class="layui-form-item type-div type-div-1">
+                    <label class="layui-form-label">菜单url:</label>
+                    <div class="layui-input-block">
+                        <input name="href" placeholder="请输入菜单url" class="layui-input"/>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">权限标识:</label>
+                    <div class="layui-input-block">
+                        <input name="code" placeholder="请输入权限标识" class="layui-input"/>
+                    </div>
+                </div>
+                <div class="layui-form-item type-div type-div-1">
+                    <label class="layui-form-label">菜单图标:</label>
+                    <div class="layui-input-block">
+                        <input name="icon" placeholder="请输入菜单图标" class="layui-input"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-form-required">排序号:</label>
+                    <div class="layui-input-block">
+                        <input name="weight" placeholder="请输入排序号" type="number" class="layui-input"
+                               lay-verType="tips" lay-verify="required|number" required/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+
+        </div>
+        <div class="layui-form-item layui-input-block">
+            <button class="layui-btn" lay-filter="permissionEditSubmit" lay-submit>保存</button>
+            <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog" id="Cancel">取消</button>
+        </div>
+    </form>
+</script>
+<script src="../lib/layui-v2.5.6/layui.js" charset="utf-8"></script>
+<script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script charset="utf-8" src="../js/admin.js"></script>
+
+<script>
+    layui.use(['form', 'table', 'treeTable', 'xmSelect'], function () {
+        var $ = layui.jquery;
+        var table = layui.table;
+        var treeTable = layui.treeTable;
+        var form = layui.form
+        var xmSelect = layui.xmSelect;
+
+        // 渲染表格
+        layer.load(2);
+        var insTb = treeTable.render({
+            elem: '#munu-table',
+            url: '/api/permission/list',
+            page: false,
+            tree: {
+                iconIndex: 2,           // 折叠图标显示在第几列
+                isPidData: true,        // 是否是id、pid形式数据
+                idName: 'id',  // id字段名称
+                pidName: 'pid'     // pid字段名称
+            },
+            toolbar: ['<p>',
+                '<button per-code="permission:add" lay-event="add" class="layui-btn layui-btn-sm icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>&nbsp;',
+                '<button per-code="permission:del" lay-event="del" class="layui-btn layui-btn-sm layui-btn-danger icon-btn"><i class="layui-icon">&#xe640;</i>删除</button>',
+                '</p>'].join(''),
+            cols: [[
+                {type: 'checkbox'},
+                {type: 'numbers'},
+                {field: 'title', title: '权限名称', minWidth: 150},
+                {title: '菜单图标', templet: function(d){return '<span><i class="'+d.icon+'"></i></span>';}, align: 'center', width: 100},
+                {field: 'href', title: '菜单url'},
+                {field: 'code', title: '权限标识'},
+                {field: 'weight', title: '排序号', align: 'center', width: 80},
+                {
+                    title: '类型', templet: function (d) {
+                        if (d.type === 1) {
+                            return '<span class="layui-badge-rim">菜单</span>';
+                        }
+                        if (d.type === 2) {
+                            return '<span class="layui-badge layui-bg-gray">按钮</span>';
+                        }
+                        return '';
+                    }, align: 'center', width: 80
+                },
+                {title: '创建时间', templet: '<p>{{layui.util.toDateString(d.createTime)}}</p>', align: 'center'},
+                {title: '操作', toolbar: '#auth-state', align: 'center', width: 120}
+            ]],
+            done: function () {
+                $('[per-code]').each(function(){
+                    if ($.inArray($(this).attr('per-code'), parent.app.perCodes) === -1) {
+                        $(this).hide();
+                    }
+                });
+                layer.closeAll('loading');
+            }
+        });
+
+
+        /* 表格头工具栏点击事件 */
+        treeTable.on('toolbar(munu-table)', function (obj) {
+            if (obj.event === 'add') { // 添加
+                showEditModel();
+            } else if (obj.event === 'del') { // 删除
+                var checkRows = insTb.checkStatus();
+                if (checkRows.length === 0) {
+                    layer.msg('请选择要删除的数据', {icon: 2});
+                    return;
+                }
+                var ids = checkRows.map(function (d) {
+                    return d.id;
+                });
+                doDel({ids: ids});
+            }
+        });
+
+        //监听工具条
+        treeTable.on('tool(munu-table)', function (obj) {
+            var layEvent = obj.event;
+            if (layEvent === 'del') {
+                doDel(obj);
+            } else if (layEvent === 'edit') {
+                showEditModel(obj.data);
+            }
+        });
+
+        /* 删除 */
+        function doDel(obj) {
+            layer.confirm('确定要删除选中数据吗？', {
+                skin: 'layui-layer-admin',
+                shade: .1
+            }, function (i) {
+                layer.close(i);
+                var loadIndex = layer.load(2);
+
+                $.ajax({
+                    contentType: "application/json",
+                    url: '/api/permission/delete',
+                    type: 'DELETE',
+                    data: JSON.stringify(obj.data ? [obj.data.id] : obj.ids),
+                    dataType: "json",
+                    success: function (res) {
+                        layer.close(loadIndex);
+                        if (res.code === 0) {
+                            layer.msg(res.msg, {icon: 1});
+                            insTb.refresh();
+                        } else {
+                            layer.msg(res.msg, {icon: 2});
+                        }
+                    }, error: function (data) {
+                        layer.close(loadIndex);
+                        layer.msg(data.responseJSON.msg, {icon: 2});
+                    }
+                });
+
+            });
+        }
+
+        /* 显示表单弹窗 */
+        function showEditModel(mData) {
+            var idx = layer.open({
+                type: 1,
+                area: '800px',
+                title: (mData ? '修改' : '添加') + '权限',
+                content: $('#permissionEditDialog').html(),
+
+                success: function (layero, dIndex) {
+                    //此处即为 radio 的监听事件
+                    form.on('radio(changeType)', function (obj) {
+                        $('.type-div').hide();
+                        $('.type-div input').val('');
+                        $('.type-div-' + obj.value).show();
+                    });
+
+                    $('input[name=type]:checked').next('.layui-form-radio').click();
+                    // 回显表单数据
+                    form.val('permissionEditForm', mData);
+                    // 表单提交事件
+                    form.on('submit(permissionEditSubmit)', function (data) {
+                        data.field.pid = insXmSel.getValue('valueStr');
+                        var loadIndex = layer.load(2);
+                        $.ajax({
+                            url: mData ? '/api/permission/modify' : '/api/permission/create',
+                            type: 'post',
+                            contentType: "application/json",
+                            data: JSON.stringify(data.field),
+                            dataType: "json",
+                            success: function (res) {
+                                layer.close(loadIndex);
+                                if (res.code === 0) {
+                                    layer.close(dIndex);
+                                    layer.msg(res.msg, {icon: 1});
+                                    insTb.refresh();
+                                } else {
+                                    layer.msg(res.msg, {icon: 2});
+                                }
+                            }, error: function (data) {
+                                layer.close(loadIndex);
+                                layer.msg(data.responseJSON.msg, {icon: 2});
+                            }
+                        });
+
+                        return false;
+                    });
+                    // 渲染下拉树
+                    var insXmSel = xmSelect.render({
+                        el: '#authoritiesEditParentSel',
+                        height: '250px',
+                        data: insTb.options.data,
+                        initValue: mData && mData.pid ? [mData.pid] : [],
+                        model: {label: {type: 'text'}},
+                        prop: {
+                            name: 'title',
+                            value: 'id'
+                        },
+                        radio: true,
+                        clickClose: true,
+                        tree: {
+                            show: true,
+                            indent: 15,
+                            strict: false,
+                            // expandedKeys: true
+                        }
+                    });
+
+                    // 弹窗不出现滚动条
+                    $(layero).children('.layui-layer-content').css('overflow', 'visible');
+
+                    $('#Cancel').click(function () {
+                        layer.close(idx);
+                    });
+
+
+                }
+            });
+        }
+
+    });
+</script>
+</body>
+</html>

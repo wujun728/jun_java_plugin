@@ -1,0 +1,8 @@
+application:
+  name: prod环境 @artifactId@
+  version: prod环境 @version@
+developer:
+  name: prod环境 
+  website: prod环境 http://nb666.net
+  qq: prod环境 111
+  phone-number: prod环境 1111

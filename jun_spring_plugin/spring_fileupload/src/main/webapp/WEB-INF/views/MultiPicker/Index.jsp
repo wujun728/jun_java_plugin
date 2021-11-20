@@ -1,0 +1,233 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>多选择器多文件上传</title>
+    <!--支持IE9+ chrome fireFox-->
+    <script src="/assets/jquery-2.1.4.min.js"></script>
+    <link href="/assets/webuploader.css" rel="stylesheet"/>
+    <script src="/assets/webuploader.nolog.min.js"></script>
+    <link href="/assets/bootstrap.min.css" rel="stylesheet"/>
+    <script src="/assets/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var $list = $('#fileList');
+            //WebUploader实例
+            var uploader = WebUploader.create({
+                //设置选完文件后是否自动上传
+                auto: false,
+
+                //swf文件路径
+                //swf: BASE_URL + '~/FileUpload/Uploader.swf',
+                swf: './Uploader.swf',
+
+                // 文件接收服务端。
+                server: '/MultiPickerUpload/',
+
+                // 选择文件的按钮。可选。
+                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                pick: '.picker',
+
+                // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+                resize: false,
+                //选择图片文件
+                accept: {
+                    title: '文件',
+                    extensions: 'doc,docx,pdf,zip,rar,7z'
+                    //mimeTypes: 'image/*'
+                }
+            });
+            uploader.option('fileNumLimit', (4));
+            uploader.option('threads', (1));
+
+            // 当有文件被添加进队列的时候
+            uploader.on('fileQueued', function (file) {
+                //获取选择file的picker
+                console.log(file.source._refer);
+                console.log(file);
+
+                //file.name 变成了文件类型，在服务器端以此识别
+                file.type = file.source._refer[0].id;
+                $list.append('<div id="' + file.id + '" class="item">' +
+                    '<h4 class="info">' + file.name + '<button type="button" fileId="' + file.id + '" class="btn btn-danger btn-delete"><span class="glyphicon glyphicon-trash"></span></button></h4>' +
+                    '<p class="state">等待上传...</p>' +
+                    '</div>');
+
+                //删除要上传的文件
+                //每次添加文件都给btn-delete绑定删除方法
+                $(".btn-delete").click(function () {
+                    //console.log($(this).attr("fileId"));//拿到文件id
+                    uploader.removeFile(uploader.getFile($(this).attr("fileId"), true));
+                    $(this).parent().parent().fadeOut();//视觉上消失了
+                    $(this).parent().parent().remove();//DOM上删除了
+                });
+            });
+            // 文件上传过程中创建进度条实时显示。
+            uploader.on('uploadProgress', function (file, percentage) {
+                var $li = $('#' + file.id),
+                    $percent = $li.find('.progress .progress-bar');
+                // 避免重复创建
+                if (!$percent.length) {
+                    $percent = $('<div class="progress progress-striped active">' +
+                        '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+                        '</div>' +
+                        '</div>').appendTo($li).find('.progress-bar');
+                }
+                $li.find('p.state').text('上传中');
+                $percent.css('width', percentage * 100 + '%');
+            });
+            uploader.on('uploadSuccess', function (file) {
+                $('#' + file.id).find('p.state').text('已上传');
+                $('#' + file.id).find(".progress").find(".progress-bar").attr("class", "progress-bar progress-bar-success");
+                $('#' + file.id).find(".info").find('.btn').fadeOut('slow');//上传完后删除"删除"按钮
+            });
+            uploader.on('uploadError', function (file) {
+                $('#' + file.id).find('p.state').text('上传出错');
+                //上传出错后进度条爆红
+                $('#' + file.id).find(".progress").find(".progress-bar").attr("class", "progress-bar progress-bar-danger");
+                //添加重试按钮
+                //为了防止重复添加重试按钮，做一个判断
+                if ($('#' + file.id).find(".btn-retry").length < 1) {
+                    var btn = $('<button type="button" fileid="' + file.id + '" class="btn btn-success btn-retry"><span class="glyphicon glyphicon-refresh"></span></button>');
+                    $('#' + file.id).find(".info").append(btn);//.find(".btn-danger")
+                }
+
+                $(".btn-retry").click(function () {
+                    //console.log($(this).attr("fileId"));//拿到文件id
+                    uploader.retry(uploader.getFile($(this).attr("fileId")));
+
+                });
+            });
+            uploader.on('uploadComplete', function (file) {//上传完成后回调
+                //$('#' + file.id).find('.progress').fadeOut();//上传完删除进度条
+                //$('#' + file.id + 'btn').fadeOut('slow')//上传完后删除"删除"按钮
+            });
+            uploader.on('uploadFinished', function () {
+                //上传完后的回调方法
+                //alert("所有文件上传完毕");
+                //提交表单
+            });
+
+            $("#UploadBtn").click(function () {
+                uploader.upload();//上传
+            });
+
+            uploader.on('uploadAccept', function (file, response) {
+                if (response._raw == '{"error":true}') {
+                    return false;
+                }
+            });
+        });
+    </script>
+
+</head>
+<body>
+<div class="container" style="margin-top: 50px">
+
+    <div class="alert alert-info alert-dismissible fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        <h4>提示</h4>
+        <p>只能上传四个文件，只支持以下后缀名的文件doc,docx,pdf,zip,rar,7z。如果需要上传其他文件(如图片)请压缩后上传。请依次点击按钮上传指定文件,如果添加了错误的文件可以删除。</p>
+    </div>
+
+    <div class="container">
+        <div id="fileList" class="uploader-list"></div> <!--存放文件的容器-->
+    </div>
+
+    <div class="col-lg-12">
+        <div class="panel-body">
+            <div class="row">
+                <div class="container">
+                    <div class="picker webuploader-container" id="researchReport"
+                         style="float: left; margin-right: 10px">
+                        <div>
+                            选择研究报告
+                            <input type="file" class="webuploader-element-invisible"
+                                   multiple="multiple">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="picker webuploader-container" id="researchReportStuff"
+                         style="float: left; margin-right: 10px">
+                        <div>
+                            选择研究报告支撑材料(限PDF)
+                            <input type="file" class="webuploader-element-invisible"
+                                   multiple="multiple">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="picker webuploader-container" id="applyReport"
+                         style="float: left; margin-right: 10px">
+                        <div>
+                            选择应用报告
+                            <input type="file" class="webuploader-element-invisible"
+                                   multiple="multiple">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="picker webuploader-container" id="applyReportStuff"
+                         style="float: left; margin-right: 10px">
+                        <div>
+                            选择应用报告支撑材料(限PDF)
+                            <input type="file" class="webuploader-element-invisible"
+                                   multiple="multiple">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div id="UploadBtn" class="webuploader-pick btn-success" style="float: left">开始上传所选文件</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

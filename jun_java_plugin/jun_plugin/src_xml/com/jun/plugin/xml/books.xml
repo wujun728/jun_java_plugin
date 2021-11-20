@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+	<book id="b001">
+		<title>Java 核心技术</title>
+	 	<price>98000</price>
+	</book>
+	<book id="b002">
+		<title>Thinking in Java</title>
+	 	<price>22000</price>
+	</book>
+</books>

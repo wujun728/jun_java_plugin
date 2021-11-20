@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mystruts>
+	<package>
+		<!-- 配置请求路径，与处理action类的关系 -->
+		<!-- 
+			1. 请求路径与处理Action的关系
+			     /login = LoginAction                          login
+			            success = /index.jsp                     登陆成功(重定向)
+			            loginFaild  = /login.jsp                 登陆失败
+			
+		 -->
+		<action name="login" class="com.jun.web.framework.framework.action.LoginAction" method="login">
+			<result name="loginSuccess" type="redirect">/index.jsp</result>
+			<result name="loginFaild">/login.jsp</result>
+		</action>
+		
+		<action name="register" class="com.jun.web.framework.framework.action.RegisterAction" method="register">
+			<result name="registerSuccess">/login</result>
+		</action>
+		
+	</package>
+
+</mystruts>

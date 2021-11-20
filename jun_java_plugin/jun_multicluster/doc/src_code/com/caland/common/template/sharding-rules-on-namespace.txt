@@ -1,0 +1,23 @@
+<rules>
+<#list entitys as entity>
+	<rule>
+		<namespace>${entity?cap_first}</namespace>
+		<!-- 
+			   表达式如果不使用自定义路由规则函数,而是直接使用   taobaoId%2==0这种的话就不用在文件
+			   中配置<property name="functionsMap">中了
+		-->
+		<shardingExpression>hash.apply${entity?cap_first}(userId) == 1</shardingExpression>
+		<shards>partition1</shards>
+	</rule>
+	<rule>
+		<namespace>${entity?cap_first}</namespace>
+		<shardingExpression>hash.apply${entity?cap_first}(userId) == 2</shardingExpression>
+		<shards>partition2</shards>
+	</rule>
+	<rule>
+		<namespace>${entity?cap_first}</namespace>
+		<shardingExpression>hash.apply${entity?cap_first}(userId) == 3</shardingExpression>
+		<shards>partition3</shards>
+	</rule>
+</#list>
+</rules>

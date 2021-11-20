@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.jun.plugin.hibernate.modal.DeptEntity" table="DEPT" schema="SCOTT">
+        <id name="deptno" type="java.lang.Byte" column="DEPTNO"/>
+        <property name="deptName" type="java.lang.String" column="DNAME"/>
+        <property name="loc" type="java.lang.String" column="LOC"/>
+    </class>
+</hibernate-mapping>

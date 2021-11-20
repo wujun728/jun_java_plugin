@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>分步表单</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+    <link rel="stylesheet" href="../js/lay-module/step-lay/step.css" media="all">
+
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <div class="layui-fluid">
+            <div class="layui-card">
+                <div class="layui-card-body" style="padding-top: 40px;">
+                    <div class="layui-carousel" id="stepForm" lay-filter="stepForm" style="margin: 0 auto;">
+                        <div carousel-item>
+                            <div>
+                                <form class="layui-form" style="margin: 0 auto;max-width: 700px;padding-top: 40px;">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">产品名称:</label>
+                                        <div class="layui-input-block">
+                                            <input class="layui-input" lay-verType="tips" lay-verify="required"
+                                                   name="name" placeholder="请填写产品名称" required required type="text"/>
+
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">选择分类:</label>
+                                        <div class="layui-input-block">
+                                            <input class="layui-hide" id="categoryCascader" lay-verType="tips"
+                                                   lay-verify="required" name="allCategoryIds" placeholder="请选择"
+                                                   required/>
+
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">图片:</label>
+                                        <div class="layui-input-block">
+                                            <input lay-reqtext="请上传产品图片" lay-verType="msg" lay-verify="required"
+                                                   name="picFilenames" required type="hidden"/>
+                                            <button type="button" class="layui-btn" id="uploadPic">
+                                                <i class="layui-icon">&#xe67c;</i>上传图片
+                                            </button>
+                                            <div class="layui-upload-list" id="pics"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="formStep">
+                                                &emsp;下一步&emsp;
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div>
+                                <form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
+
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label layui-form-required">销售价:</label>
+                                        <div class="layui-input-block">
+                                            <input class="layui-input" lay-verType="tips" lay-verify="required|number"
+                                                   name="price" placeholder="￥" required/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label layui-form-required">原价:</label>
+                                        <div class="layui-input-block">
+                                            <input class="layui-input" lay-verType="tips" lay-verify="required|number"
+                                                   name="originalPrice" placeholder="￥" required/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label layui-form-required">成本价:</label>
+                                        <div class="layui-input-block">
+                                            <input class="layui-input" lay-verType="tips" lay-verify="required|number"
+                                                   name="costPrice" placeholder="￥" required/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label layui-form-required">库存:</label>
+                                        <div class="layui-input-block">
+                                            <input class="layui-input" name="stock" placeholder="请输入库存" type="number"
+                                                   lay-verType="tips" lay-verify="required" required/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label layui-form-required">虚拟销量:</label>
+                                        <div class="layui-input-block">
+                                            <input class="layui-input" lay-verType="tips" lay-verify="required|number"
+                                                   name="virtualSalesNum"
+                                                   placeholder="请输入虚拟销量" required type="number"/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" class="layui-btn layui-btn-primary pre">上一步</button>
+                                            <button class="layui-btn" lay-submit lay-filter="formStep2">
+                                                &emsp;下一步&emsp;
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div>
+                                <form class="layui-form" style="margin: 0 auto;max-width: 750px;padding-top: 40px;">
+                                    <div class="layui-form-item">
+                                        <div id="editor" style="width: 720px; height: 600px;">
+                                        </div>
+                                        <textarea id="Detail" lay-reqtext="请填写详情" lay-verType="msg"
+                                                  lay-verify="required" name="detail" required
+                                                  style="display: none"></textarea>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div style="text-align: center;margin-top: 50px;">
+                                            <button class="layui-btn layui-btn-primary pre" type="button">上一步</button>
+                                            <button class="layui-btn layui-btn-normal" lay-filter="create" lay-submit
+                                                    type="button">创 建
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+
+    var picNum = 5;
+
+    layui.use(['form', 'step', 'cascader', 'upload', 'wangEditor', 'miniTab'], function () {
+        var $ = layui.$,
+            form = layui.form,
+            step = layui.step,
+            cascader = layui.cascader,
+            upload = layui.upload,
+            miniTab = layui.miniTab,
+            wangEditor = layui.wangEditor;
+
+
+        var textarea = $('#Detail');
+        var editor = new wangEditor('#editor');
+        editor.config.height = 550
+        editor.config.uploadImgServer = "/api/file/upload";
+        editor.config.uploadFileName = "file";
+        editor.config.uploadImgHooks = {
+            // 上传超时
+            timeout: function (xhr, editor) {
+                layer.msg('上传超时！')
+            },
+            // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
+            customInsert: function (insertImg, result, editor) {
+                if (result.code === 0) {
+                    insertImg(result.data.url);
+                } else {
+                    layer.msg(result.msg);
+                }
+            }
+        };
+        editor.config.customAlert = function (info) {
+            layer.msg(info);
+        };
+        editor.config.onchange = function (html) {
+            // 第二步，监控变化，同步更新到 textarea
+            textarea.val(html)
+        }
+        editor.create();
+
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#uploadPic' //绑定元素
+            , url: '/api/file/upload/' //上传接口
+            , accept: 'images'
+            , number: picNum
+            , multiple: true
+            , done: function (res, index, upload) {
+                if ($('#pics>img').size() >= picNum) {
+                    layer.msg("最多只能上传" + picNum + "张图片", {icon: 2});
+                    return;
+                }
+                //上传完毕回调
+                $('#pics').append('<img data-path="' + res.data.path + '" src="' + res.data.url + '"  class="layui-upload-img"  alt=""/><a class=" del-icon layui-icon layui-icon-close-fill Del" href="javascript:;"  />');
+                var input = $('input[name=picFilenames]');
+                input.val(input.val() ? (input.val() + "," + res.data.path) : res.data.path);
+            },
+            allDone: function (obj) { //当文件全部被提交后，才触发
+                if ($('#pics>img').size() >= picNum) {
+                    $('#uploadPic').addClass("layui-btn-disabled").attr("disabled", true);
+                } else {
+                    uploadInst.reload({number: picNum - obj.successful});
+                }
+            }
+            , error: function () {
+                //请求异常回调
+            }
+        });
+
+        $(document).on('click', '.Del', function () {
+            $(this).prev().remove();
+            $(this).remove();
+            $('#uploadPic').removeClass("layui-btn-disabled").attr("disabled", false);
+            uploadInst.reload({number: picNum - $('#pics>img').size()});
+        });
+
+        step.render({
+            elem: '#stepForm',
+            filter: 'stepForm',
+            width: '100%', //设置容器宽度
+            stepWidth: '750px',
+            height: '800px',
+            stepItems: [{
+                title: '填写商品信息'
+            }, {
+                title: '填写销售信息'
+            }, {
+                title: '填写详情'
+            }]
+        });
+
+        // 动态加载
+        cascader.render({
+            elem: '#categoryCascader',
+            reqData: function (values, callback, data) {
+                $.get('/api/category/sub-category', {pid: data ? data.value : ''}, function (res) {
+                    var result = [];
+                    $.each(res.data, function (i, n) {
+                        result.push({value: n.id, label: n.name, haveChildren: !n.leaf});
+                    })
+                    callback(result);
+                })
+            },
+
+            onChange: function (values, data) {
+                console.log(values);
+                console.log(data);
+                console.log('-----------------');
+            }
+        });
+
+        var param = {};
+        form.on('submit(formStep)', function (data) {
+            step.next('#stepForm');
+            $.extend(param, data.field);
+            return false;
+        });
+
+        form.on('submit(formStep2)', function (data) {
+            step.next('#stepForm');
+            $.extend(param, data.field);
+            return false;
+        });
+
+        form.on('submit(create)', function (data) {
+            $.extend(param, data.field);
+            var loadIndex = layer.load(2);
+            $.ajax({
+                url: '/api/product/create',
+                type: 'post',
+                contentType: "application/json",
+                data: JSON.stringify(param),
+                dataType: "json",
+                success: function (res) {
+                    layer.close(loadIndex);
+                    if (res.code === 0) {
+                        layer.msg(res.msg, {icon: 1}, function () {
+                            miniTab.openNewTabByIframe({
+                                title: '商品管理',
+                                href: '/page/product-list.html'
+
+                            });
+                            miniTab.delete('/page/add-product.html', true);
+                        });
+
+                    } else {
+                        layer.msg(res.msg, {icon: 2});
+                    }
+                }, error: function (data) {
+                    layer.close(loadIndex);
+                    layer.msg(data.responseJSON.msg, {icon: 2});
+                }
+            });
+
+            return false;
+        });
+
+
+        $('.pre').click(function () {
+            step.pre('#stepForm');
+        });
+
+        $('.next').click(function () {
+            step.next('#stepForm');
+        });
+    })
+</script>
+</body>
+</html>

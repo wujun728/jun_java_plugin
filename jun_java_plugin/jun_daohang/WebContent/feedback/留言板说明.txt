@@ -1,0 +1,10 @@
+
+1.本留言本上传到空间即可使用.
+2.可以任意修改.
+3.留言本默认页面index.asp，管理后台登陆 admin_index.asp  
+后台用户名：admin 后台管理密码：admin
+4.include/#gbmdb.asp数据库必须要有写入权限。
+
+
+
+来自：http://www.ycff.com/

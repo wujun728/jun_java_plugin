@@ -1,0 +1,50 @@
+@import "colors";
+
+#image-container {
+  @thumbnail-border-size: 5px;
+  @thumbnail-spacing: 5px;
+  @thumbnail-width: 100px;
+  @thumbnail-cols: 4; // number of columns for recent uploads
+  
+  @width: (@thumbnail-width + @thumbnail-border-size + @thumbnail-spacing) * @thumbnail-cols;
+  @padding: 5px;
+  @border: 10px;
+  @margin: 4px;
+  
+  .split-box {
+    float: left;
+    width: @width;
+    margin: @margin;
+    border: 1px solid @dark-color;
+    border-radius: @border;
+    padding: @padding;
+    background-color: @light-color + #111;
+  }
+
+  width: (@width + @padding + @border + @margin*2) * 2;
+  margin: 0 auto;
+  
+  #image-uploadForm {
+    .split-box;
+  }
+  
+  #image-recentUploads {
+    .split-box;
+    
+    div.image-thumbnail {
+      display: inline-block;
+      margin-left: @thumbnail-spacing;
+      
+      a {
+        img {
+          opacity: 0.5;
+          box-shadow: @thumbnail-border-size @thumbnail-border-size 5px #333;
+        }
+    
+        &:hover img {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

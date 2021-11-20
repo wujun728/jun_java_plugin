@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.bluesky.mapper.BaseRuleInfoMapper">
+    <select id="findBaseRuleInfoList" parameterType="com.sky.bluesky.model.BaseRuleInfo"
+            resultType="com.sky.bluesky.model.BaseRuleInfo">
+        SELECT DISTINCT
+        T.RULE_ID,
+        T.SCENE_ID,
+        T.RULE_NAME,
+        T.RULE_DESC,
+        T.RULE_ENABLED,
+        T.IS_EFFECT,
+        T.CRE_USER_ID,
+        T.CRE_TIME,
+        T.REMARK
+        FROM
+        RULE_INFO T
+        WHERE
+        1 = 1
+        <if test="sceneId != null">
+            AND T.SCENE_ID = #{sceneId}
+        </if>
+        <if test="ruleEnabled != null">
+            AND T.RULE_ENABLED = #{ruleEnabled}
+        </if>
+
+    </select>
+
+
+    <select id="findBaseRulePropertyInfoList" parameterType="com.sky.bluesky.model.BaseRulePropertyInfo"
+            resultType="com.sky.bluesky.model.BaseRulePropertyInfo">
+        SELECT DISTINCT
+        T.RULE_PROPERTY_ID,
+        T.RULE_PROPERTY_IDENTIFY,
+        T.RULE_PROPERTY_NAME,
+        T.RULE_PROPERTY_DESC,
+        T.DEFAULT_VALUE,
+        T.IS_EFFECT,
+        T.REMARK
+        FROM
+        RULE_PROPERTY_INFO T
+        WHERE
+        1 = 1
+        <if test="rulePropertyIdentify != null">
+            AND T.RULE_PROPERTY_IDENTIFY = #{rulePropertyIdentify}
+        </if>
+        <if test="rulePropertyName != null">
+            AND T.RULE_PROPERTY_NAME LIKE CONCAT('%',#{rulePropertyName},'%')
+        </if>
+    </select>
+
+    <select id="findRulePropertyListByRuleId" resultType="com.sky.bluesky.model.BaseRulePropertyRelInfo">
+        SELECT DISTINCT
+        RPR.RULE_PRO_REL_ID,
+        RPR.RULE_ID,
+        RPR.RULE_PROPERTY_ID,
+        RPR.RULE_PROPERTY_VALUE,
+        T.RULE_PROPERTY_IDENTIFY,
+        T.RULE_PROPERTY_NAME,
+        T.RULE_PROPERTY_DESC,
+        T.DEFAULT_VALUE,
+        T.IS_EFFECT,
+        T.REMARK
+        FROM
+        RULE_PROPERTY_INFO T
+        INNER JOIN RULE_PROPERTY_REL RPR ON RPR.RULE_PROPERTY_ID = T.RULE_PROPERTY_ID
+        WHERE
+        1 = 1
+        AND T.IS_EFFECT = 1
+        <if test="ruleId != null">
+            AND RPR.RULE_ID = #{ruleId}
+        </if>
+
+    </select>
+    <select id="findBaseRuleListByScene" parameterType="com.sky.bluesky.model.BaseRuleSceneInfo"
+            resultType="com.sky.bluesky.model.BaseRuleInfo">
+        SELECT DISTINCT
+        R.RULE_ID,
+        R.SCENE_ID,
+        R.RULE_NAME,
+        R.RULE_DESC,
+        R.RULE_ENABLED,
+        R.IS_EFFECT,
+        R.CRE_USER_ID,
+        R.CRE_TIME,
+        R.REMARK
+        FROM
+        RULE_INFO R
+        INNER JOIN RULE_SCENE_INFO S ON S.SCENE_ID = R.SCENE_ID
+        WHERE
+        1 = 1
+        AND S.IS_EFFECT = 1
+        AND R.IS_EFFECT = 1
+        AND R.RULE_ENABLED = 1
+        <if test="sceneIdentify != null">
+            AND S.SCENE_IDENTIFY = #{sceneIdentify}
+        </if>
+        <if test="sceneId != null">
+            AND S.SCENE_ID = #{sceneId}
+        </if>
+
+    </select>
+</mapper>

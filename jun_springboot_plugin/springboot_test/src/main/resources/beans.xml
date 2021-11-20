@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="lookupMethodBean" class="com.mycompany.myproject.spring.xml.LookupMethodBean" >
+        <constructor-arg value="Spring Bean: lookupMethodBean"></constructor-arg>
+    </bean>
+
+    <bean id="myMethodReplacer" class="com.mycompany.myproject.spring.xml.MyMethodReplacer"></bean>
+
+    <bean id="testBean" class="com.mycompany.myproject.spring.xml.TestBean"
+          init-method="initMethod" depends-on="myDependOnBean">
+
+        <lookup-method name="getLookupMethodBean" bean="lookupMethodBean"></lookup-method>
+        <replaced-method name="overrideMethod" replacer="myMethodReplacer"></replaced-method>
+    </bean>
+
+
+    <!-- Object Factory-->
+    <bean id="myObjectFactory" class="com.mycompany.myproject.spring.xml.MyObjectFactory"></bean>
+
+    <bean id="myObject" factory-bean="myObjectFactory" factory-method="getObject"></bean>
+
+    <bean id="myCustomObject" factory-bean="myObjectFactory" factory-method="customObject"></bean>
+
+
+    <!-- depend on -->
+    <bean id="myDependOnBean"  class="com.mycompany.myproject.spring.xml.MyDependOnBean">
+        <constructor-arg value="1024"></constructor-arg>
+    </bean>
+
+    <!-- autowire https://blog.csdn.net/wxhcr912/article/details/78763850-->
+    <bean id="car" class="com.mycompany.myproject.spring.xml.Car">
+        <property name="brand" value="BMW"></property>
+        <property name="price" value="280000"></property>
+    </bean>
+
+    <bean id="adress" class="com.mycompany.myproject.spring.xml.Address">
+        <property name="city" value="JINAN"></property>
+        <property name="street" value="SHUNFENGLU"></property>
+    </bean>
+
+    <bean id="person1" class="com.mycompany.myproject.spring.xml.Person">
+        <property name="name" value="Barry"></property>
+        <property name="car" ref="car"></property>
+        <property name="address" ref="adress"></property>
+    </bean>
+
+    <bean id="person2" class="com.mycompany.myproject.spring.xml.Person" autowire="byName">
+        <property name="name" value="Barry"></property>
+    </bean>
+
+    <bean id="person3" class="com.mycompany.myproject.spring.xml.Person" autowire="byName" >
+        <property name="name" value="Barry"></property>
+    </bean>
+
+    <!-- autowire-candidate https://blog.csdn.net/shangboerds/article/details/72758095 -->
+    <bean name="myService1Impl" class="com.mycompany.myproject.spring.xml.MyService1Impl" autowire-candidate="false"></bean>
+    <bean name="myService2Impl" class="com.mycompany.myproject.spring.xml.MyService2Impl"></bean>
+
+    <!-- primary -->
+    <bean name="myService3Impl" class="com.mycompany.myproject.spring.xml.MyService3Impl" primary="true"></bean>
+
+    <!-- parent -->
+    <bean name="parentAddress" abstract="true" class="com.mycompany.myproject.spring.xml.Address">
+        <property name="city" value="JINAN"></property>
+        <property name="street" value="default street"></property>
+    </bean>
+    <bean name="laiquanAddress" parent="parentAddress">
+        <property name="street" value="AOTIXILU"></property>
+    </bean>
+    <bean name="hongquanAddress" parent="parentAddress">
+        <property name="street" value="SHUNFENGLU"></property>
+    </bean>
+
+</beans>

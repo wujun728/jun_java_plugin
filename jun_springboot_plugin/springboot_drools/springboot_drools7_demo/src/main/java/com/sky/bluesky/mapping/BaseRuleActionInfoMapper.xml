@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.bluesky.mapper.BaseRuleActionInfoMapper">
+    <select id="findBaseRuleActionInfoList" parameterType="com.sky.bluesky.model.BaseRuleActionInfo"
+            resultType="com.sky.bluesky.model.BaseRuleActionInfo">
+        SELECT DISTINCT
+                T.ACTION_ID,
+                T.ACTION_TYPE,
+                T.ACTION_NAME,
+                T.ACTION_DESC,
+                T.ACTION_CLASS,
+                T.IS_EFFECT,
+                T.CRE_USER_ID,
+                T.CRE_TIME,
+                T.REMARK
+            FROM
+                RULE_ACTION_INFO T
+            WHERE
+                1 = 1
+    </select>
+    <select id="findRuleActionListByScene" parameterType="com.sky.bluesky.model.BaseRuleSceneInfo"
+            resultType="com.sky.bluesky.model.BaseRuleActionInfo">
+        SELECT DISTINCT
+        A.ACTION_ID,
+        A.ACTION_TYPE,
+        A.ACTION_NAME,
+        A.ACTION_DESC,
+        A.ACTION_CLASS,
+        A.IS_EFFECT,
+        A.CRE_USER_ID,
+        A.CRE_TIME,
+        A.REMARK
+        FROM
+        RULE_ACTION_INFO A
+        INNER JOIN RULE_ACTION_RULE_REL AR ON AR.ACTION_ID = A.ACTION_ID
+        INNER JOIN RULE_INFO R ON R.RULE_ID = AR.RULE_ID
+        INNER JOIN RULE_SCENE_INFO S ON S.SCENE_ID = R.SCENE_ID
+        WHERE
+        1 = 1
+        AND A.IS_EFFECT = 1
+        AND AR.IS_EFFECT = 1
+        AND R.IS_EFFECT = 1
+        AND R.RULE_ENABLED = 1
+        AND S.IS_EFFECT = 1
+        <if test="sceneIdentify != null">
+            AND S.SCENE_IDENTIFY = #{sceneIdentify}
+        </if>
+        <if test="sceneId != null">
+            AND S.SCENE_ID = #{sceneId}
+        </if>
+
+    </select>
+    <select id="findRuleActionListByRule" resultType="com.sky.bluesky.model.BaseRuleActionInfo">
+        SELECT DISTINCT
+                A.ACTION_ID,
+                A.ACTION_TYPE,
+                A.ACTION_NAME,
+                A.ACTION_DESC,
+                A.ACTION_CLASS,
+                A.IS_EFFECT,
+                A.CRE_USER_ID,
+                A.CRE_TIME,
+                A.REMARK
+            FROM
+                RULE_ACTION_INFO A
+            INNER JOIN RULE_ACTION_RULE_REL AR ON AR.ACTION_ID = A.ACTION_ID
+            WHERE
+                1 = 1
+            AND A.IS_EFFECT = 1
+            AND AR.IS_EFFECT = 1
+            AND AR.RULE_ID = #{ruleId}
+    </select>
+    <select id="findRuleActionCountByRuleIdAndActionType" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+            FROM
+                RULE_ACTION_INFO A
+            INNER JOIN RULE_ACTION_RULE_REL AR ON AR.ACTION_ID = A.ACTION_ID
+            WHERE
+                1 = 1
+            AND A.IS_EFFECT = 1
+            AND AR.IS_EFFECT = 1
+            AND A.ACTION_TYPE = 1
+            AND AR.RULE_ID = #{ruleId}
+    </select>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.neo.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.neo.entity.UserEntity">
+		<id column="id" property="id" javaType="java.lang.Long" />
+		<result column="userName" property="userName" />
+		<result column="passWord" property="passWord" />
+	</resultMap>
+	
+	<sql id="Base_Column_List" >
+        id, userName, passWord
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM users
+    </select>
+
+    <select id="getOne" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+	   FROM users
+	   WHERE id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <insert id="insert" parameterType="com.neo.entity.UserEntity" >
+       INSERT INTO 
+       		users
+       		(userName,passWord) 
+       	VALUES
+       		(#{userName}, #{passWord})
+    </insert>
+    
+	<update id="update"  parameterType="com.neo.entity.UserEntity">
+		update 
+			users 
+		<set>
+		   	<if test="userName != null">userName = #{userName,jdbcType=VARCHAR},</if>
+		   	<if test="passWord != null">passWord = #{passWord,jdbcType=VARCHAR}</if>
+		</set>
+		where 
+			id = #{id}
+	</update>
+    
+    <delete id="delete" parameterType="java.lang.Long" >
+       DELETE FROM
+       		 users 
+       WHERE 
+       		 id =#{id}
+    </delete>
+	
+</mapper>

@@ -1,0 +1,11 @@
+server:
+  port: 80
+  context-path: /
+
+  
+eureka:
+  client:
+    register-with-eureka: false #false 由于注册中心的职责就是维护服务实例，它并不需要去检索服务，所以也设置为false
+    service-url: 
+      defaultZone: http://eureka2001.java1234.com:2001/eureka/,http://eureka2002.java1234.com:2002/eureka/,http://eureka2003.java1234.com:2003/eureka/
+  

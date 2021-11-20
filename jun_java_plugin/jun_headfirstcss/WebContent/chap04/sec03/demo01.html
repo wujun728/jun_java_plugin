@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS的层叠特性</title>
+<style type="text/css">
+	p{
+		color: blue;
+	}
+	
+	.red{
+		color: red;
+	}
+	
+	#p3{
+		color: green;
+	}
+	
+</style>
+</head>
+<body>
+<p>第一行文本</p>
+<p class="red">第二行文本</p>
+<p class="red" id="p3">第三行文本</p>
+<p style="color: orange;" class="red" id="p3">第四行文本</p>
+</body>
+</html>

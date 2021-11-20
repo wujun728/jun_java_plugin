@@ -1,0 +1,46 @@
+server:
+  port: 8808
+
+dfs:
+  thread:
+    num:
+      upload: 2
+      download: 2
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: ${spring.servlet.multipart.max-file-size}
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.139:3306/fastdfs?characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+    dbcp2:
+      initial-size: 20
+      min-idle: 20
+      max-wait-millis: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+
+mybatis:
+  type-aliases-package: com.jun.plugin.dfs.core.entity
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+
+logging:
+  level:
+    root: INFO
+    com.jun.plugin.dfs: DEBUG
+
+fastdfs:
+  tracker_servers: 192.168.1.222:22122
+  connect_timeout_in_seconds: 10
+  network_timeout_in_seconds: 30
+  charset: utf-8

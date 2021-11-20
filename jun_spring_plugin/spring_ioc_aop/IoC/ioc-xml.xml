@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+ <!-- 
+ <context:component-scan base-package="ioc.xml"/>
+  --> 
+  
+<!--  构造 Book对象实例book_ _属性注入Book   -->
+<bean id="book" name="book" class="ioc.xml.Book">
+      <property name="id" value="20305"/>
+      <property name="name" value="wind"/>
+      <property name="price" value="200.22"/>
+</bean>  
+<bean id="desk" class="ioc.xml.Desk"></bean>  
+
+<!-- 构造Student对象student1_ _构造函数注入Student -->
+<bean id="student1" class="ioc.xml.Student">
+     <constructor-arg index="0" type="java.lang.String" value="stuent1"/>
+     <constructor-arg index="1" type="ioc.xml.Book" ref="book"/>
+     <constructor-arg index="2" type="ioc.xml.Desk" ref="desk"/>
+</bean>
+<!-- 构造Student对象student2_ _属性注入Student  -->
+<bean id="student2" name="student2" class="ioc.xml.Student">
+     <property name="name" value="student2"/>
+     <property name="book" ref="book"/>
+     <property name="desk"  ref="desk"/>
+</bean>         
+</beans>           

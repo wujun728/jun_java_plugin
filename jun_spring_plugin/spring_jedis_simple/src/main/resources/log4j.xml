@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<configuration>
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
+		</layout>
+	</appender>
+		<appender name="NEO" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="/usr/local/spring-jedis.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="Encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="com.ibatis">  
+        <level value="info" />  
+    </logger>  
+      
+    <logger name="com.ibatis.common.jdbc.SimpleDataSource">  
+        <level value="info" />  
+    </logger>  
+      
+    <logger name="com.ibatis.common.jdbc.ScriptRunner">  
+        <level value="info" />  
+    </logger>  
+      
+    <logger name="com.ibatis.common.jdbc.SqlMapClientDelegate">  
+        <level value="info" />  
+    </logger>  
+      
+    <logger name="java.sql.Connection">  
+        <level value="info" />  
+    </logger>  
+      
+    <logger name="java.sql.Statement">  
+        <level value="info" />  
+    </logger>  
+      
+    <logger name="java.sql.PreparedStatement">  
+        <level value="info" />  
+    </logger>  
+      
+    <logger name="java.sql.ResultSet">  
+        <level value="info" />  
+    </logger> 
+	
+	<logger name="com.mchange.v2.c3p0">
+    	<level value="info"/>
+	</logger>
+	
+	<root>
+		<priority value="info" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="NEO" />
+	</root>
+	
+	
+</configuration>   

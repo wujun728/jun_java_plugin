@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+	<default-config>
+		<property name="maxConnectionAge">1800</property>
+		<!--检查所有连接池中的空闲连接间隔。Default: 0 -->
+		<property name="idleConnectionTestPeriod">60</property>
+		<!--定义所有连接测试都执行的测试语句。在使用连接测试的情况下这个一显著提高测试速度。Default: null -->
+		<property name="preferredTestQuery">select 1</property>
+		<!--如果设为true那么在取得连接的同时将校验连接的有效性。Default: false -->
+		<property name="testConnectionOnCheckin">true</property>
+
+		<!--初始化时获取连接个数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+		<property name="initialPoolSize">1</property>
+		<!-- 连接池中最小连接数 -->
+		<property name="minPoolSize">1</property>
+		<!-- 连接池中最大连接数 -->
+		<property name="maxPoolSize">100</property>
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+		<property name="acquireIncrement">1</property>
+	</default-config>
+</c3p0-config>

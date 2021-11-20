@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.5.6/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <fieldset class="table-search-fieldset">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">公司名称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="name" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">快递公司代码</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="code" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">公司网址</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="companyUrl" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">排序</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="weight" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <button type="submit" class="layui-btn layui-btn-primary" lay-submit
+                                    lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <button per-code="logistic:add" class="layui-btn layui-btn-normal layui-btn-sm data-add-btn"
+                        lay-event="add"> 添加
+                </button>
+                <button per-code="logistic:del" class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn"
+                        lay-event="delete"> 删除
+                </button>
+            </div>
+        </script>
+
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+        <script type="text/html" id="currentTableBar">
+            <a per-code="logistic:update" class="layui-btn layui-btn-normal layui-btn-xs data-count-edit"
+               lay-event="edit">编辑</a>
+            <a per-code="logistic:del" class="layui-btn layui-btn-xs layui-btn-danger data-count-delete"
+               lay-event="delete">删除</a>
+        </script>
+
+    </div>
+</div>
+<!-- 表单弹窗 -->
+<script type="text/html" id="logisticEditDialog">
+    <form id="logisticEditForm" lay-filter="logisticEditForm" class="layui-form model-form"
+          style="padding-right: 20px;">
+        <input name="id" type="hidden"/>
+        <div class="layui-row">
+            <div class="layui-col-md6">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-form-required">公司名称:</label>
+                    <div class="layui-input-block">
+                        <input name="name" placeholder="请输入公司名称" class="layui-input"
+                               lay-verType="tips" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-form-required">快递公司代码:</label>
+                    <div class="layui-input-block">
+                        <input name="code" placeholder="请输入快递公司代码" class="layui-input"
+                               lay-verType="tips" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-form-required">公司网址:</label>
+                    <div class="layui-input-block">
+                        <input name="companyUrl" placeholder="请输入公司网址" class="layui-input"
+                               lay-verType="tips" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-form-required">排序:</label>
+                    <div class="layui-input-block">
+                        <input name="weight" placeholder="请输入排序" class="layui-input"
+                               lay-verType="tips" lay-verify="required" required/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item layui-input-block">
+            <button class="layui-btn" lay-filter="logisticEditSubmit" lay-submit>保存</button>
+            <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog" id="Cancel">取消</button>
+        </div>
+    </form>
+</script>
+<script src="../lib/layui-v2.5.6/layui.js" charset="utf-8"></script>
+<script charset="utf-8" src="../js/lay-config.js"></script>
+<script charset="utf-8" src="../js/admin.js"></script>
+
+<script>
+    layui.use(['form', 'table', 'laydate'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table,
+            laydate = layui.laydate;
+
+        table.render({
+            elem: '#currentTableId',
+            url: '/api/logistic/list',
+            toolbar: '#toolbarDemo',
+
+            defaultToolbar: ['filter', 'exports', 'print', {
+                title: '提示',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }],
+            cols: [[
+                {type: "checkbox", width: 50},
+                {field: 'name', title: '公司名称', sort: true},
+                {field: 'code', title: '快递公司代码', sort: true},
+                {field: 'companyUrl', title: '公司网址', sort: true},
+                {field: 'weight', title: '排序', sort: true},
+
+                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+            ]],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 15,
+            page: true,
+            skin: 'line',
+            parseData: function (data) {
+                data.count = data.data.total;
+                data.data = data.data.list;
+                return data;
+            }, done: function () {
+                $('[per-code]').each(function () {
+                    if ($.inArray($(this).attr('per-code'), parent.app.perCodes) === -1) {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+
+        /* 渲染时间选择 */
+        laydate.render({
+            elem: 'input.rangeDate',
+            type: 'date',
+            range: true,
+            trigger: 'click'
+        });
+
+        // 监听搜索操作
+        form.on('submit(data-search-btn)', function (data) {
+            var param = data.field;
+            //执行搜索重载
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: param
+            }, 'data');
+
+            return false;
+        });
+
+        /**
+         * toolbar监听事件
+         */
+        table.on('toolbar(currentTableFilter)', function (obj) {
+            if (obj.event === 'add') {  // 监听添加操作
+                showEditModel();
+            } else if (obj.event === 'delete') {  // 监听删除操作
+                var checkStatus = table.checkStatus('currentTableId');
+                // 删除
+                var checkRows = checkStatus.data;
+                if (checkRows.length === 0) {
+                    layer.msg('请选择要删除的数据', {icon: 2});
+                    return;
+                }
+                var ids = checkRows.map(function (d) {
+                    return d.id;
+                });
+                doDel({ids: ids});
+            }
+        });
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function (obj) {
+            console.log(obj)
+        });
+
+        table.on('tool(currentTableFilter)', function (obj) {
+            if (obj.event === 'edit') {
+                showEditModel(obj.data);
+            } else if (obj.event === 'delete') {
+                doDel(obj);
+            }
+        });
+
+        /* 删除 */
+        function doDel(obj) {
+            layer.confirm('确定要删除选中数据吗？', {
+                skin: 'layui-layer-admin',
+                shade: .1
+            }, function (i) {
+                layer.close(i);
+                var loadIndex = layer.load(2);
+
+                $.ajax({
+                    contentType: "application/json",
+                    url: '/api/logistic/delete',
+                    type: 'DELETE',
+                    data: JSON.stringify(obj.data ? [obj.data.id] : obj.ids),
+                    dataType: "json",
+                    success: function (res) {
+                        layer.close(loadIndex);
+                        if (res.code === 0) {
+                            layer.msg(res.msg, {icon: 1});
+                            table.reload('currentTableId')
+                        } else {
+                            layer.msg(res.msg, {icon: 2});
+                        }
+                    }, error: function (data) {
+                        layer.close(loadIndex);
+                        layer.msg(data.responseJSON.msg, {icon: 2});
+                    }
+                });
+
+            });
+        }
+
+        /* 显示表单弹窗 */
+        function showEditModel(mData) {
+            var idx = layer.open({
+                type: 1,
+                area: '600px',
+                title: (mData ? '修改' : '添加'),
+                content: $('#logisticEditDialog').html(),
+
+                success: function (layero, dIndex) {
+                    // 回显表单数据
+                    form.val('logisticEditForm', mData);
+                    // 表单提交事件
+                    form.on('submit(logisticEditSubmit)', function (data) {
+                        var loadIndex = layer.load(2);
+                        $.ajax({
+                            url: mData ? '/api/logistic/modify' : '/api/logistic/create',
+                            type: 'post',
+                            contentType: "application/json",
+                            data: JSON.stringify(data.field),
+                            dataType: "json",
+                            success: function (res) {
+                                layer.close(loadIndex);
+                                if (res.code === 0) {
+                                    layer.close(dIndex);
+                                    layer.msg(res.msg, {icon: 1});
+                                    table.reload('currentTableId');
+                                } else {
+                                    layer.msg(res.msg, {icon: 2});
+                                }
+                            }, error: function (data) {
+                                layer.close(loadIndex);
+                                layer.msg(data.responseJSON.msg, {icon: 2});
+                            }
+                        });
+
+                        return false;
+                    });
+
+                    // 弹窗不出现滚动条
+                    $(layero).children('.layui-layer-content').css('overflow', 'visible');
+
+                    $('#Cancel').click(function () {
+                        layer.close(idx);
+                    });
+
+
+                }
+            });
+        }
+
+    });
+</script>
+
+</body>
+</html>

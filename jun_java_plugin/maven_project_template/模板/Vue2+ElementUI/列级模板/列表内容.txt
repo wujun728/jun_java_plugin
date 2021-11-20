@@ -1,0 +1,1 @@
+          <el-table-column prop="[column]" label="[columnComment]" width="80"></el-table-column>

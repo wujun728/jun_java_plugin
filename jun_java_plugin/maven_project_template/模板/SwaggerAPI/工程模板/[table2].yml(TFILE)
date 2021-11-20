@@ -1,0 +1,178 @@
+swagger: "2.0"
+info:
+  description: [Table2]
+  version: "1.0.0"
+  title: API-[Table2]
+host: [path_3].[path_2].[path_1]
+basePath: /[db]
+paths:
+  /[table2]:
+    post:
+      summary: 增加[Table2]
+      parameters:
+      - in: body
+        name: body
+        description: [Table2]实体
+        required: true
+        schema:
+          $ref: "#/definitions/[Table2]"
+      responses:
+        200:
+          description: 成功
+          schema:
+            $ref: '#/definitions/ApiResponse'
+    get:
+      summary: [Table2]全部列表
+      responses:
+        200:
+          description: 成功
+          schema: 
+            $ref: '#/definitions/Api[Table2]ListResponse'
+  /[table2]/{[table2]Id}:
+    get:
+      summary: 根据ID查询[table2]
+      parameters:
+        - name: [table2]Id
+          in: path
+          description: [Table2]ID
+          required: true
+          type: string
+      responses:
+        200:
+          description: 成功
+          schema:
+            $ref: '#/definitions/Api[Table2]Response'
+    put:
+      summary: 修改[Table2]
+      parameters:
+        - name: [table2]Id
+          in: path
+          description: [Table2]ID
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: [Table2]实体
+          required: true
+          schema:
+            $ref: "#/definitions/[Table2]"
+      responses:
+        200:
+          description: 成功
+          schema:
+            $ref: '#/definitions/ApiResponse'
+    delete:
+      summary: 根据ID删除[Table2]
+      parameters:
+        - name: [table2]Id
+          in: path
+          description: [Table2]ID
+          required: true
+          type: string
+      responses:
+        200:
+          description: 成功
+          schema:
+            $ref: '#/definitions/ApiResponse'
+  /[table2]/search:
+    post:
+      summary: 根据条件查询[Table2]列表 
+      parameters:
+        - name: body
+          in: body
+          description: [Table2]实体类
+          required: true
+          schema:
+            $ref: '#/definitions/[Table2]'
+      responses:
+        200:
+          description: 成功
+          schema:
+            $ref: '#/definitions/Api[Table2]ListResponse'
+  /[table2]/search/{page}/{size}:
+    post:
+      summary: [Table2]分页
+      parameters:
+        - name: page
+          in: path
+          description: 页码
+          required: true
+          type: integer
+          format: int32
+        - name: size
+          in: path
+          description: 页大小
+          required: true
+          type: integer
+          format: int32
+        - name: body
+          in: body
+          description: 查询条件
+          required: true
+          schema:
+            $ref: "#/definitions/[Table2]"
+      responses:
+        200:
+          description: 查询成功
+          schema:
+            $ref: '#/definitions/Api[Table2]PageResponse'
+definitions:
+  [Table2]:
+    type: "object"
+    properties:
+<属性.txt>
+  [Table2]List:
+    type: "array"
+    items: 
+      $ref: '#/definitions/[Table2]'
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      flag:
+        type: "boolean"
+      message:
+        type: "string"
+  Api[Table2]Response:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      flag:
+        type: "boolean"
+      message:
+        type: "string"
+      data:
+        $ref: '#/definitions/[Table2]'
+  Api[Table2]ListResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      flag:
+        type: "boolean"
+      message:
+        type: "string"
+      data:
+        $ref: '#/definitions/[Table2]List'
+  Api[Table2]PageResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      flag:
+        type: "boolean"
+      message:
+        type: "string"
+      data:
+        properties:
+          total:
+            type: "integer"
+            format: "int32"
+          rows:
+            $ref: '#/definitions/[Table2]List'

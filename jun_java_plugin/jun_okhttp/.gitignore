@@ -1,0 +1,12 @@
+#针对idea开发工具
+.idea/
+target/
+*.iml
+
+#针对eclipse开发工具
+.settings/
+bin/
+.project
+.classpath
+
+

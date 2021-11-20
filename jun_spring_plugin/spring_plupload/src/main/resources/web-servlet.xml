@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+    
+	<!-- <context:component-scan base-package="com.zemo.springmvc"/> -->
+	 <!-- 默认的注解映射的支持 -->  
+ 	<!-- <mvc:annotation-driven/>  -->
+ 	<!-- 对静态资源的访问 -->
+  	<!-- <mvc:default-servlet-handler/>   -->
+	<!-- <mvc:interceptors>
+    	<mvc:interceptor>
+    		<mvc:mapping path="/user/*"/>
+    		<bean class="com.zemo.springmvc.control.UserAction"/>
+    	</mvc:interceptor>
+	</mvc:interceptors> -->
+	
+	<!-- 定义JSP文件的位置 --> 
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!-- 文件上传 -->    
+    <bean id="multipartResolver" 
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+        <!-- set the max upload size100MB --> 
+        <property name="maxUploadSize"> 
+            <value>104857600</value> 
+        </property> 
+        <property name="maxInMemorySize"> 
+            <value>1024000</value> 
+        </property> 
+    </bean> 
+</beans>

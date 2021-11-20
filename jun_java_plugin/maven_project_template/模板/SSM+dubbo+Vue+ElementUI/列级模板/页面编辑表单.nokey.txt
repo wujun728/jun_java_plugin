@@ -1,0 +1,1 @@
+        <el-form-item label="[columnComment]"><el-input v-model="pojo.[column2]"></el-input></el-form-item>

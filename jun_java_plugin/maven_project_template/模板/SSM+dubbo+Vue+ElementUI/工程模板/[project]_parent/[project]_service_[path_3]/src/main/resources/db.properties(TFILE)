@@ -1,0 +1,4 @@
+jdbc.driver=[driverName]
+jdbc.url=[url]
+jdbc.username=[dbuser]
+jdbc.password=[dbpassword]

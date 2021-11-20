@@ -1,0 +1,1 @@
+      { path: '[table2]', name: '[table2]', component: () => import('@/views/table/[table2]'), meta: { title: '[table2]', icon: 'table' }},

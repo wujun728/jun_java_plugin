@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>创建简单导航菜单</title>
+<style type="text/css">
+#navigation {
+	font-family:Arial;
+	font-size:14px;
+	text-align:center;
+}	
+
+#navigation ul {
+	list-style-type:none;				/* 不显示项目符号 */
+	margin:0px;
+	padding:0px;
+}
+#navigation li {
+	border-bottom:1px solid #9F9FED;	/* 添加下划线 */
+	float: left;
+}
+#navigation li a{
+	width:120px;
+	display:block;
+	height:1em;
+	padding:5px 5px 5px 0.5em;
+	text-decoration:none;
+}
+#navigation li a:link, #navigation li a:visited{
+	background-color:#1136c1;
+	color:#FFFFFF;
+}
+#navigation li a:hover{					/* 鼠标经过时 */
+	background-color:#002099;			/* 改变背景色 */
+	color:#ffff00;						/* 改变文字颜色 */
+}
+</style>
+</head>
+<body>
+<div id="navigation">
+	<ul>
+		<li><a href="#">主页</a></li>
+		<li><a href="#">我的博客</a></li>
+		<li><a href="#">我的相册</a></li>
+		<li><a href="#">留言</a></li>
+		<li><a href="#">关于我</a></li>
+	</ul>
+</div>
+</body>
+</html>

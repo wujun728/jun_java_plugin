@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>确认授权页面</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="//i.gtimg.cn/vipstyle/frozenui/2.0.0/css/frozen.css"/>
+
+    <style>
+        .block{
+            position: relative;
+        }
+        .ui-notice{
+            position: relative;
+            padding:20px 15px;
+            box-sizing: border-box;
+        }
+        .ui-notice p{
+            color:#333;
+            font-weight: 600;
+        }
+        .ui-btn-primary{
+            background-color: #02cd93;
+            border-color:#02cd93;;
+        }
+        .ui-notice-btn{
+            padding:50px 0px 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="block">
+    <section class="ui-notice">
+        <i class="icon icon-notice"></i>
+        <p>是否授权：<span th:text="${session.authorizationRequest.clientId}">clientId</span></p>
+        <div class="ui-notice-btn">
+            <form id='confirmationForm' name='confirmationForm' action="/oauth/authorize" method='post'>
+                <input name='user_oauth_approval' value='true' type='hidden'/>
+                <!--写好授权访问领域-->
+                <input th:name="${s}" value="true" type="hidden" th:each="s : ${scopeList}"/>
+                <input class="ui-btn-primary ui-btn-lg ui-btn-primary" name='authorize' value='授权' type='submit'/>
+            </form>
+        </div>
+    </section>
+</div>
+</body>
+</html>

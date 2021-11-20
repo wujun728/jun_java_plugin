@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.bluesky.mapper.BaseRuleSceneEntityRelInfoMapper">
+    <select id="findBaseRuleSceneEntityRelInfoList" parameterType="com.sky.bluesky.model.BaseRuleSceneEntityRelInfo"
+            resultType="com.sky.bluesky.model.BaseRuleSceneEntityRelInfo">
+
+        SELECT DISTINCT
+        T.SCENE_ENTITY_REL_ID,
+        T.SCENE_ID,
+        T.ENTITY_ID
+        FROM
+        RULE_SCENE_ENTITY_REL T
+        WHERE
+        1 = 1
+        <if test="sceneId != null">
+            AND T.SCENE_ID = #{sceneId}
+        </if>
+
+    </select>
+
+    <select id="findBaseRuleEntityListByScene" parameterType="com.sky.bluesky.model.BaseRuleSceneInfo"
+            resultType="com.sky.bluesky.model.BaseRuleEntityInfo">
+        SELECT DISTINCT
+        E.ENTITY_ID,
+        E.ENTITY_NAME,
+        E.ENTITY_DESC,
+        E.ENTITY_IDENTIFY,
+        E.PKG_NAME,
+        E.CRE_USER_ID,
+        E.CRE_TIME,
+        E.IS_EFFECT,
+        E.REMARK
+        FROM
+        RULE_ENTITY_INFO E
+        INNER JOIN RULE_SCENE_ENTITY_REL SER ON E.ENTITY_ID = SER.ENTITY_ID
+        INNER JOIN RULE_SCENE_INFO S ON S.SCENE_ID = SER.SCENE_ID
+        WHERE
+        1 = 1
+        AND E.IS_EFFECT = 1
+        AND S.IS_EFFECT = 1
+        <if test="sceneIdentify != null">
+            AND S.SCENE_IDENTIFY = #{sceneIdentify}
+        </if>
+        <if test="sceneId != null">
+            AND S.SCENE_ID = #{sceneId}
+        </if>
+
+    </select>
+</mapper>

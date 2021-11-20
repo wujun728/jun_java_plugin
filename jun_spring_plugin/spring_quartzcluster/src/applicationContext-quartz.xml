@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd"
+	default-lazy-init="false" default-autowire="byName">
+
+	<!-- ClusterJob -->
+	<bean id="clusterJob" class="king.quartz.job.ClusterJob" />
+
+	<!-- ClusterJobDetail -->
+	<bean id="clusterJobDetail"
+		class="king.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- concurrent(并发) : false表示等上一个任务执行完后再开启新的任务 -->
+		<property name="concurrent" value="false" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="clusterJob" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	
+	<!-- ClusterCronTriggerBean -->
+	<bean id="clusterCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="clusterJobDetail" />
+		<property name="cronExpression" value="0/7 * * * * ? *" /> <!-- 每10秒触发一次 -->
+	</bean>
+
+	<!-- ClusterSchedulerFactoryBean -->
+	<bean id="clusterSchedulerFactoryBean"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<!-- 指定quartz配置文件 -->
+		<property name="configLocation" value="classpath:quartz.properties" />
+         <!--必QuartzScheduler 延时启动，应用启动完后 QuartzScheduler 再启动,单位秒 -->    
+        <property name="startupDelay" value="1" />    
+        <!-- 设置自动启动 -->    
+        <property name="autoStartup" value="true" />  
+        <property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
+		<property name="triggers">
+			<list>
+				<ref bean="clusterCronTriggerBean" /> 
+			</list>
+		</property>
+	</bean>
+
+</beans>

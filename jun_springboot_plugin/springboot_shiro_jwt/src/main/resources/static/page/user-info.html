@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基本资料</title>
+    <meta content="webkit" name="renderer">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <link href="../lib/layui-v2.5.6/css/layui.css" media="all" rel="stylesheet">
+    <link href="../css/public.css" media="all" rel="stylesheet">
+    <style>
+        .layui-form-item .layui-input-company {
+            width: auto;
+            padding-right: 10px;
+            line-height: 38px;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <form class="layui-form model-form" id="userForm" lay-filter="userForm"
+              style="padding-right: 20px;">
+            <div class="layui-form layuimini-form">
+                <input name="id" type="hidden"/>
+                <div class="layui-form-item">
+                    <label class="layui-form-label required">管理账号</label>
+                    <div class="layui-input-block">
+                        <input class="layui-input layui-disabled" disabled lay-reqtext="管理账号不能为空" lay-verify="required"
+                               name="username" placeholder="请输入管理账号" readonly type="text">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label required">姓名</label>
+                    <div class="layui-input-block">
+                        <input class="layui-input" lay-reqtext="姓名不能为空" lay-verify="required" name="realName"
+                               placeholder="请输入姓名" type="text" value="">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label required">手机</label>
+                    <div class="layui-input-block">
+                        <input class="layui-input" lay-reqtext="手机不能为空" lay-verify="required|phone" name="phone"
+                               placeholder="请输入手机" type="number" value="">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label required">邮箱</label>
+                    <div class="layui-input-block">
+                        <input class="layui-input" name="email" placeholder="请输入邮箱" type="email" value="">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn layui-btn-normal" lay-filter="saveBtn" lay-submit>确认保存</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script charset="utf-8" src="../lib/layui-v2.5.6/layui.js"></script>
+<script charset="utf-8" src="../js/lay-config.js?v=1.0.4"></script>
+<script charset="utf-8" src="../js/admin.js"></script>
+
+<script>
+    layui.use(['form', 'miniTab'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            miniTab = layui.miniTab,
+            $ = layui.jquery;
+
+
+        $.get('/api/admin/info', function (res) {
+            form.val('userForm', res.data);
+        });
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+            var loadIndex = layer.load(2);
+
+            $.ajax({
+                url: '/api/admin/modify-mine',
+                type: 'post',
+                contentType: "application/json",
+                data: JSON.stringify(data.field),
+                dataType: "json",
+                success: function (res) {
+                    layer.close(loadIndex);
+                    if (res.code === 0) {
+                        layer.msg(res.msg, {icon: 1}, function () {
+                            miniTab.deleteCurrentByIframe();
+                        });
+
+                    } else {
+                        layer.msg(res.msg, {icon: 2});
+                    }
+                }, error: function (data) {
+                    layer.close(loadIndex);
+                    layer.msg(data.responseJSON.msg, {icon: 2});
+                }
+            });
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

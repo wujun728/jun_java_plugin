@@ -13,76 +13,11 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
-
 	<modules>
-	 
-		<module>jun_activiti</module>
-		<module>jun_algorithm</module>
-		<module>jun_aliyun_sms</module>
-		<module>jun_apache_commons</module>
-		<module>jun_captcha</module>
-		<module>jun_crawler</module>
-		<module>jun_datasource</module>
-		<module>jun_dbutil</module>
-		<module>jun_designpattern</module>
-		<module>jun_drools</module>
-		<module>jun_ehcache</module>
-		<module>jun_dubbo</module>
-		<module>jun_email</module>
-		<module>jun_excel</module>
-		<module>jun_fileupload</module>
-		<module>jun_freemarker</module>
-		<module>jun_guava</module>
-		<module>jun_guice</module>
-		<module>jun_gzip</module>
-		<module>jun_hibernate</module>
-		<module>jun_httpclient</module>
-		<module>jun_image</module>
-		<module>jun_j2cache</module>
-		<module>jun_jar2maven</module>
-		<module>jun_javase</module>
-		<module>jun_jbpm</module>
-		<module>jun_jdbc</module>
-		<module>jun_jdk</module>
-		<module>jun_jsoup</module>
-		<module>jun_leetcode</module>
-		<module>jun_multicluster</module>
-		<module>jun_mybatisplus</module>
-		<module>jun_pay</module>
-		<module>jun_pdf</module>
-		<module>jun_poi</module>
-		<module>jun_qrcode</module>
-		<module>jun_quartz</module>
-		<module>jun_redis</module>
-		<module>jun_serializable_json_protobuf_kyro_hessian</module>
-		<module>jun_serialization</module>
-		<module>jun_servlet</module>
-		<module>jun_shiro</module>
-		<module>jun_solr</module>
-		<module>jun_sso</module>
-		<module>jun_templatespider</module>
-		<module>jun_threadpool</module>
-		<module>jun_util</module>
-		<module>jun_webmagic</module>
-		<module>jun_webservice</module>
-		<module>jun_webservlet</module>
-		<module>jun_webservlet_guice_dbutil</module>
-		<module>jun_websocket</module>
-		<module>jun_xml</module>
-<!-- 		<module>tomcat-cluster-redis-session-manager</module> -->
-<!-- 		<module>tinyid</module> -->
-		
-		<module>maven_account_parent</module>
-		<module>maven_javaproject</module>
-		<module>maven_project_template</module>
-		<module>maven_spring4_multi_modules</module>
-		<module>maven_spring5_multi_modules</module>
-		<module>maven_spring5template</module>
-		<module>maven_springboot_jpa_jsp</module>
-		<module>maven_springboot_mybatis</module>
-		<module>maven_springboot_permission_example</module> 
-		<module>maven_springboot_template</module> 
-		
+		<module>jun_java_plugin</module>
+		<module>jun_spring_plugin</module>
+		<module>jun_springboot_plugin</module>
+		<module>jun_springcloud_plugin</module>
 	</modules>
 
 	<dependencies>

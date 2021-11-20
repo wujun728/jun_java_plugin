@@ -1,0 +1,4 @@
+*{ padding:0px; margin:0px; font-size:15px;}
+a{ color:#333; text-decoration:none}
+a:hover{ color:#000; text-decoration:underline}
+.main{ width:500px; margin:auto; }

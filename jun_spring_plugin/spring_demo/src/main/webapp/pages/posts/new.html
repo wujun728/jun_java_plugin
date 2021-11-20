@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>发表文章</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../assets/css/semantic.min.css"/>
+    <style>
+        *{
+            font-family: "microsoft yahei";
+        }
+    </style>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/semantic.min.js"></script>
+    <script>
+        $(function(){
+            $('.ui.form').form({
+                name: {
+                    identifier : 'title',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : '请输入标题'
+                        },
+                        {
+                            type   : 'maxLength[45]',
+                            prompt : '标题不超过45字'
+                        }
+                    ]
+                },
+                password: {
+                    identifier : 'password',
+                    rules: [{
+                            type   : 'length[2000]',
+                            prompt : '内容不超过2000字'
+                        }
+                    ]
+                }
+            });
+        });
+    </script>
+</head>
+<body class="ui grid page">
+    <main class="column" style="width: 100%">
+        <p>
+            <label>当前用户: </label>
+            <span id="current_user" style="color: blueviolet" th:text="${current_user.name}"></span>
+            <a href="/sessions/loginout">登出</a>
+        </p>
+        <form class="ui form" method="POST" action="/posts">
+            <fieldset>
+                <p style="color: red" th:text="${error}"></p>
+                <div class="field">
+                    <label>标题</label>
+                    <input type="text" placeholder="请输入标题" name="title" />
+                </div>
+                <div class="field">
+                    <label>内容</label>
+                    <textarea name="content" placeholder="请输入内容"></textarea>
+                </div>
+                <div class="ui blue submit button">提交</div>
+                <div class="ui error message"></div>
+            </fieldset>
+        </form>
+    </main>
+</body>
+</html>

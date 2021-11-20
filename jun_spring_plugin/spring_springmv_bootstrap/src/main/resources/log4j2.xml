@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status=debug 可以查看log4j的装配过程 -->
+<configuration status="off" monitorInterval="1800">
+
+	<!-- Log4j 2 包含了基于LMAX 分离库的下一代的异步日志系统，在多线程环境下，异步日志系统比 Log4j 1.x 和Logback 提高了10倍性能提升（吞吐量和延迟率 ） -->
+
+	<properties>
+		<!-- 日志备份目录 -->
+		<!-- <property name="BACKUP_HOME">{HOME:-./logs}</property> -->
+		<property name="BACKUP_HOME">./logs</property>
+		<property name="PROJECT_NAME">mvc</property>
+	</properties>
+
+	<appenders>
+		<!-- 定义控制台输出 -->
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="%sn [${PROJECT_NAME}] %d{yy/MM/dd HH:mm:ss,SSS} %r [%-6p] [%t] %c{1.}.%M(%F:%L) - %m%n" />
+		</Console>
+
+		<!-- 应用日志 -->
+		<RollingRandomAccessFile name="RollingLog" fileName="${BACKUP_HOME}/Rolling.log" filePattern="${BACKUP_HOME}/Rolling.%d{yyyy-MM-dd-HH}.log">
+			<PatternLayout pattern="%sn [${PROJECT_NAME}] %d{yy/MM/dd HH:mm:ss,SSS} %r [%-6p] [%t] %c{1.}.%M(%F:%L) - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+		</RollingRandomAccessFile>
+
+		<!-- 单独业务日志 -->
+		<RollingRandomAccessFile name="BusinessLog" fileName="${BACKUP_HOME}/Business.log" filePattern="${BACKUP_HOME}/Business.%d{yyyy-MM-dd-HH}.log">
+			<PatternLayout pattern="%sn [${PROJECT_NAME}] %d{yy/MM/dd HH:mm:ss,SSS} %r [%-6p] [%t] %c{1.}.%M(%F:%L) - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+		</RollingRandomAccessFile>
+
+		<!-- 日志输出到mongodb -->
+		<!-- <NoSql name="databaseAppender"> -->
+		<!-- <MongoDb databaseName="mvc" collectionName="business" server="127.0.0.1" port="27017" userName="root" password="password" /> -->
+		<!-- <MongoDb databaseName="mvc" collectionName="business" server="127.0.0.1" port="27017" /> -->
+		<!-- </NoSql> -->
+	</appenders>
+
+	<loggers>
+		<!-- 3rdparty Loggers -->
+		<logger name="cn.springmvc" level="debug" />
+		<logger name="org.activiti" level="debug" />
+		<logger name="net.spy.memcached" level="error" />
+		<logger name="org.springframework" level="error" />
+		<logger name="org.apache" level="error" />
+		<logger name="org.activiti" level="error" />
+		<logger name="org.quartz" level="error" />
+		<logger name="org.mybatis" level="info" />
+		<logger name="com.google.code.yanf4j" level="info" />
+		<logger name="net.rubyeye.xmemcached" level="info" />
+
+		<!-- 因为开始日志输出到mongo ， 所以它走error级别 -->
+		<logger name="org.mongodb" level="error" />
+
+		<!-- mybatis sql log -->
+		<logger name="org.apache.ibatis.jdbc.ScriptRunner" level="debug" />
+		<logger name="java.sql.Connection" level="debug" />
+		<logger name="java.sql.Statement" level="debug" />
+		<logger name="java.sql.PreparedStatement" level="debug" />
+
+		<!-- Business logger -->
+		<!-- 日志单独输出，单独输出到Businesslog文件当中，也在其它日志文件当中体现 -->
+		<!-- 在类里面采用这种声明方式：private static final Logger log = LoggerFactory.getLogger("cn.springmvc.mybatis.service"); -->
+		<logger name="cn.springmvc.mybatis.service" level="info" additivity="false">
+			<appender-ref ref="BusinessLog" />
+			<appender-ref ref="RollingLog" />
+			<appender-ref ref="Console" />
+		</logger>
+
+		<!-- Root Logger -->
+		<root level="debug">
+			<appender-ref ref="Console" />
+			<appender-ref ref="RollingLog" />
+			<!-- <appender-ref ref="databaseAppender" /> -->
+		</root>
+
+	</loggers>
+
+</configuration>

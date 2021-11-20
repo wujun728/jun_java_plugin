@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    ">
+
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig"
+          p:maxIdle="${redis.maxIdle}"
+          p:minIdle="${redis.minIdle}"
+          p:maxWaitMillis="${redis.maxWaitMillis}" p:testOnBorrow="${redis.testOnBorrow}">
+    </bean>
+
+    <bean id="jdkSerializationRedisSerializer"
+          class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+
+    <bean id="jedisConnFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          p:hostName="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}" p:poolConfig-ref="poolConfig"
+          p:usePool="${redis.usePool}"
+          p:database="${redis.database}"
+          p:timeout="${redis.timeout}"/>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+          p:defaultSerializer-ref="jdkSerializationRedisSerializer"
+          p:keySerializer-ref="jdkSerializationRedisSerializer"
+          p:valueSerializer-ref="jdkSerializationRedisSerializer"
+          p:connectionFactory-ref="jedisConnFactory"
+          p:enableTransactionSupport="${redis.enableTransactionSupport}"
+    />
+
+</beans>

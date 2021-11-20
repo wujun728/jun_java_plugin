@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="Order">
+	<!-- Alias Map Defined -->
+	<typeAlias alias="OrderQuery" type="com.caland.core.query.OrderQuery" />
+	<typeAlias alias="Order" type="com.caland.core.bean.Order" />
+	<resultMap id="order" class="Order">
+		<result property="id" column="id" />
+		<result property="no" column="no" />
+		<result property="name" column="name" />
+		<result property="price" column="price" />
+		<result property="userId" column="user_id" />
+	</resultMap>
+	<!-- Select SQL -->
+	<sql id="order.selector">
+		SELECT
+		<dynamic>
+			<isNotEmpty property="fields">
+				$fields$
+			</isNotEmpty>
+			<isEmpty property="fields">
+			id,no,name,price,user_id
+			</isEmpty>
+		</dynamic>
+		FROM order
+	</sql>
+	<sql id="orderList.where">
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="id" prepend=" AND ">
+				id=#id#
+			</isNotNull>
+			<isNotNull property="no" prepend=" AND ">
+			<isEqual property="noLike" compareValue="false">
+				no=#no#
+			</isEqual>
+			<isEqual property="noLike" compareValue="true">
+				 <![CDATA[  no like '%$no$%' ]]>
+			</isEqual>
+			</isNotNull>
+			<isNotNull property="name" prepend=" AND ">
+			<isEqual property="nameLike" compareValue="false">
+				name=#name#
+			</isEqual>
+			<isEqual property="nameLike" compareValue="true">
+				 <![CDATA[  name like '%$name$%' ]]>
+			</isEqual>
+			</isNotNull>
+			<isNotNull property="price" prepend=" AND ">
+				price=#price#
+			</isNotNull>
+			<isNotNull property="userId" prepend=" AND ">
+				user_id=#userId#
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<!-- 用#号会导致druid连接池报错 -->
+	<sql id="orderList.order">
+		<dynamic prepend=" ORDER BY ">
+			<isNotEmpty property="orderFields">
+				<iterate property="orderFields" conjunction="," open=""
+					close="">
+					$orderFields[].fieldName$ $orderFields[].order$
+				</iterate>
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+
+	<sql id="orderList.limit">
+		<dynamic prepend=" LIMIT  ">
+			<isNotEmpty property="startRow">
+				#startRow#,#pageSize#
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+
+	<!-- 根据主键查询 -->
+	<select id="Order.getOrderByKey" resultMap="order" parameterClass="hashMap">
+		SELECT id,no,name,price,user_id FROM order
+		WHERE
+		id=#id#
+	</select>
+	<select id="Order.getOrdersByKeys" resultMap="order"
+		parameterClass="hashMap">
+		SELECT id,no,name,price,user_id FROM order
+		WHERE
+		id in
+		<iterate conjunction="," open="(" close=")" property="keys">
+			#keys[]#
+		</iterate>
+	</select>
+
+	<!-- 根据主键删除 -->
+	<delete id="Order.deleteByKey" parameterClass="hashMap">
+		DELETE FROM order
+		WHERE
+		id=#id#
+	</delete>
+
+	<delete id="Order.deleteByKeys">
+		DELETE FROM order
+		WHERE
+		id in
+		<iterate conjunction="," open="(" close=")" property="keys">
+			#keys[]#
+		</iterate>
+	</delete>
+
+	<!-- 根据主键更新 -->
+	<update id="Order.updateOrderByKey" parameterClass="Order">
+		UPDATE order
+		<dynamic prepend="SET">
+			<isNotNull prepend="," property="id">
+				id = #id#
+			</isNotNull>
+			<isNotNull prepend="," property="no">
+				no = #no#
+			</isNotNull>
+			<isNotNull prepend="," property="name">
+				name = #name#
+			</isNotNull>
+			<isNotNull prepend="," property="price">
+				price = #price#
+			</isNotNull>
+			<isNotNull prepend="," property="userId">
+				user_id = #userId#
+			</isNotNull>
+		</dynamic>
+		WHERE
+		id=#id#
+	</update>
+	<!-- 分页 -->
+	<select id="Order.getOrderListWithPage" parameterClass="OrderQuery"
+		resultMap="order">
+		<include refid="order.selector" />
+		<include refid="orderList.where" />
+		<include refid="orderList.order" />
+		<include refid="orderList.limit" />
+	</select>
+	<select id="Order.getOrderListCount" parameterClass="OrderQuery"
+		resultClass="int">
+		SELECT count(1) FROM order
+		<include refid="orderList.where" />
+	</select>
+	<select id="Order.getOrderList" parameterClass="OrderQuery"
+		resultMap="order">
+		<include refid="order.selector" />
+		<include refid="orderList.where" />
+		<include refid="orderList.order" />
+	</select>
+
+	<!-- 如果使用自定义字段查询,则要使用resultClass否则会出现异常 -->
+	<select id="Order.getOrderListWithPageFields" parameterClass="OrderQuery"
+		resultClass="Order">
+		<include refid="order.selector" />
+		<include refid="orderList.where" />
+		<include refid="orderList.order" />
+		<include refid="orderList.limit" />
+	</select>
+	<select id="Order.getOrderListFields" parameterClass="OrderQuery"
+		resultClass="Order">
+		<include refid="order.selector" />
+		<include refid="orderList.where" />
+		<include refid="orderList.order" />
+	</select>
+	<insert id="Order.insertOrder" parameterClass="Order">
+		INSERT INTO order
+		<dynamic prepend="(" close=")">
+			<isNotEmpty prepend="," property="id">
+				id
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="no">
+				no
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="name">
+				name
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="price">
+				price
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="userId">
+				user_id
+			</isNotEmpty>
+		</dynamic>
+		VALUES
+		<dynamic prepend="(" close=")">
+			<isNotEmpty prepend="," property="id">
+				#id#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="no">
+				#no#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="name">
+				#name#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="price">
+				#price#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="userId">
+				#userId#
+			</isNotEmpty>
+		</dynamic>
+		<selectKey resultClass="Integer" keyProperty="id">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+	</insert>
+</sqlMap>

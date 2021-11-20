@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>任务列表</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<a href="input-schedule-job.shtml">添加任务</a>
+<table border="1">
+    <tr>
+        <td>任务名称</td>
+        <td>任务别名</td>
+        <td>任务分组</td>
+        <td>触发器</td>
+        <td>任务状态</td>
+        <td>时间表达式</td>
+        <td>是否异步</td>
+        <td>任务描述</td>
+        <td>操作</td>
+    </tr>
+    #foreach($item in $scheduleJobVoList)
+        <tr>
+            <td>$!{item.jobName}</td>
+            <td>$!{item.aliasName}</td>
+            <td>$!{item.jobGroup}</td>
+            <td>$!{item.jobTrigger}</td>
+            <td>$!{item.status}</td>
+            <td>$!{item.cronExpression}</td>
+            <td>$!{item.isSync}</td>
+            <td>$!{item.desc}</td>
+            <td>
+                <a href="input-schedule-job.shtml?scheduleJobId=$!{item.scheduleJobId}">直接修改方式</a>
+                <a href="input-schedule-job.shtml?scheduleJobId=$!{item.scheduleJobId}&keywords=delUpdate">删除创建方式</a>
+                <a href="delete-schedule-job.shtml?scheduleJobId=$!{item.scheduleJobId}">删除</a>
+                <a href="pause-schedule-job.shtml?scheduleJobId=$!{item.scheduleJobId}">暂停</a>
+                <a href="resume-schedule-job.shtml?scheduleJobId=$!{item.scheduleJobId}">恢复</a>
+                <a href="run-once-schedule-job.shtml?scheduleJobId=$!{item.scheduleJobId}">立即运行一次</a>
+            </td>
+        </tr>
+    #end
+</table>
+<br>
+运行中的任务
+<table border="1">
+    <tr>
+        <td>任务名称</td>
+        <td>任务别名</td>
+        <td>任务分组</td>
+        <td>触发器</td>
+        <td>任务状态</td>
+        <td>时间表达式</td>
+        <td>是否异步</td>
+        <td>任务描述</td>
+    </tr>
+    #foreach($item in $executingJobList)
+        <tr>
+            <td>$!{item.jobName}</td>
+            <td>$!{item.aliasName}</td>
+            <td>$!{item.jobGroup}</td>
+            <td>$!{item.jobTrigger}</td>
+            <td>$!{item.status}</td>
+            <td>$!{item.cronExpression}</td>
+            <td>$!{item.isSync}</td>
+            <td>$!{item.desc}</td>
+        </tr>
+    #end
+</table>
+</body>
+</html>

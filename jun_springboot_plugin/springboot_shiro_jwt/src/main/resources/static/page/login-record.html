@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.5.6/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+
+
+
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+
+    </div>
+</div>
+<script src="../lib/layui-v2.5.6/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'table','laydate'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table,
+            laydate = layui.laydate;
+
+        table.render({
+            elem: '#currentTableId',
+            url: '/api/admin/list-login-record',
+            toolbar: '#toolbarDemo',
+
+            defaultToolbar: ['filter', 'exports', 'print', {
+                title: '提示',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }],
+            cols: [[
+                    {field: 'adminUserName',   title: '用户名', sort: true},
+                    {field: 'ip',   title: 'ip', sort: true},
+                    {field: 'createTime',   title: '登录时间', sort: true},
+                    {field: 'os',   title: '操作系统', sort: true},
+                    {field: 'device',   title: '设备', sort: true},
+                    {field: 'browser',   title: '浏览器', sort: true}
+            ]],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 15,
+            page: true,
+            skin: 'line',
+            parseData: function (data) {
+                data.count = data.data.total;
+                data.data = data.data.list;
+            return data;
+        },done:function () {
+                $('[per-code]').each(function(){
+                    if($.inArray($(this).attr('per-code'), parent.perCodes)  === -1 ){
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+
+
+
+
+    });
+</script>
+
+</body>
+</html>

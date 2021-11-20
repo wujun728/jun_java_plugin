@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>优先级比较</title>
+<link href="red.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+	p{
+		color: blue;
+		font-size: 20px;	
+	}
+	@import url(yellow.css);
+</style>
+</head>
+<body>
+<p >行内样式 &gt;链接式&gt;内嵌式&gt;导入式(链接式在后面)<br/>
+行内样式 &gt;内嵌式&gt;导入式&gt;链接式(链接式在前面)<br/>
+总的规律：后面的样式会覆盖前面的样式
+</p>
+</body>
+</html>

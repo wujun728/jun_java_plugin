@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.5.6/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <fieldset class="table-search-fieldset">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">广告名称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="name" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">广告编号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="no" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">类型</label>
+                            <div class="layui-input-inline">
+                                <select lay-filter="type" name="type">
+                                    <option value=""></option>
+                                    <option value="1">商品</option>
+                                    <option value="2">图片</option>
+                                    <option value="3">图文</option>
+                                    <option value="4">链接</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button type="submit" class="layui-btn layui-btn-primary" lay-submit
+                                    lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <button per-code="ad-space:add" class="layui-btn layui-btn-normal layui-btn-sm data-add-btn"
+                        lay-event="add"> 添加
+                </button>
+                <button per-code="ad-space:del" class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn"
+                        lay-event="delete"> 删除
+                </button>
+            </div>
+        </script>
+
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+        <script type="text/html" id="currentTableBar">
+            <a per-code="ad-space:update" class="layui-btn layui-btn-normal layui-btn-xs data-count-edit"
+               lay-event="edit">编辑</a>
+            <a per-code="ad-space:del" class="layui-btn layui-btn-xs layui-btn-danger data-count-delete"
+               lay-event="delete">删除</a>
+            <a per-code="ad:mgt" class="layui-btn layui-btn-xs "
+               lay-event="adMgt">广告管理</a>
+        </script>
+
+    </div>
+</div>
+<!-- 表单弹窗 -->
+<script type="text/html" id="adSpaceEditDialog">
+    <form id="adSpaceEditForm" lay-filter="adSpaceEditForm" class="layui-form model-form"
+          style="padding-right: 20px;">
+        <input name="id" type="hidden"/>
+        <div class="layui-row">
+            <div class="layui-col-md6">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-form-required">广告名称:</label>
+                    <div class="layui-input-block">
+                        <input name="name" placeholder="请输入广告名称" class="layui-input"
+                               lay-verType="tips" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-form-required">类型:</label>
+                    <div class="layui-input-block">
+                        <select name="type" lay-filter="type" lay-verType="tips" lay-verify="required" required>
+                            <option value=""></option>
+                            <option value="1">商品</option>
+                            <option value="2">图片</option>
+                            <option value="3">图文</option>
+                            <option value="4">链接</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-form-required">广告编号:</label>
+                    <div class="layui-input-block">
+                        <input name="no" placeholder="请输入广告编号" class="layui-input"
+                               lay-verType="tips" lay-verify="required" required/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label layui-form-required">容量:</label>
+                    <div class="layui-input-block">
+                        <input type="number" name="number" placeholder="请输入容量" class="layui-input"
+                               lay-verType="tips" lay-verify="required|number" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">尺寸</label>
+                        <div class="layui-input-inline" style="width: 65px;">
+                            <input type="text" name="width" placeholder="宽" class="layui-input" lay-verType="tips"
+                                   lay-verify="required" required>
+                        </div>
+                        <div class="layui-form-mid">x</div>
+                        <div class="layui-input-inline" style="width: 65px;">
+                            <input type="text" name="height" placeholder="高" class="layui-input" lay-verType="tips"
+                                   lay-verify="required" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">模板内容</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入模板内容" class="layui-textarea" name="template" lay-verType="tips"
+                          lay-verify="required" required></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-input-block">
+            <button class="layui-btn" lay-filter="adSpaceEditSubmit" lay-submit>保存</button>
+            <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog" id="Cancel">取消</button>
+        </div>
+    </form>
+</script>
+<script src="../lib/layui-v2.5.6/layui.js" charset="utf-8"></script>
+<script charset="utf-8" src="../js/lay-config.js"></script>
+<script charset="utf-8" src="../js/admin.js"></script>
+
+<script>
+    layui.use(['form', 'table', 'laydate'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table,
+            laydate = layui.laydate;
+
+        table.render({
+            elem: '#currentTableId',
+            url: '/api/ad-space/list',
+            toolbar: '#toolbarDemo',
+
+            defaultToolbar: ['filter', 'exports', 'print', {
+                title: '提示',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }],
+            cols: [[
+                {type: "checkbox", width: 50},
+                {field: 'name', title: '广告名称', sort: true},
+                {field: 'no', title: '广告编号', sort: true},
+                {field: 'number', title: '容量', sort: true},
+                {
+                    title: '类型', sort: true, templet: function (d) {
+                        switch (d.type) {
+                            case 1: {
+                                return '商品';
+                            }
+                            case 2: {
+                                return '图片';
+                            }
+                            case 3: {
+                                return '图文';
+                            }
+                            case 4: {
+                                return '链接';
+                            }
+                            default: {
+                                return '';
+                            }
+
+
+                        }
+                    }
+                },
+                {
+                    title: '尺寸', templet: function (d) {
+                        return d.width + "x" + d.height;
+                    }
+                },
+
+                {title: '操作', minWidth: 200, toolbar: '#currentTableBar', align: "center"}
+            ]],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 15,
+            page: true,
+            skin: 'line',
+            parseData: function (data) {
+                data.count = data.data.total;
+                data.data = data.data.list;
+                return data;
+            }, done: function () {
+                $('[per-code]').each(function () {
+                    if ($.inArray($(this).attr('per-code'), parent.app.perCodes) === -1) {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+
+        /* 渲染时间选择 */
+        laydate.render({
+            elem: 'input.rangeDate',
+            type: 'date',
+            range: true,
+            trigger: 'click'
+        });
+
+        // 监听搜索操作
+        form.on('submit(data-search-btn)', function (data) {
+            var param = data.field;
+            //执行搜索重载
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: param
+            }, 'data');
+
+            return false;
+        });
+
+        /**
+         * toolbar监听事件
+         */
+        table.on('toolbar(currentTableFilter)', function (obj) {
+            if (obj.event === 'add') {  // 监听添加操作
+                showEditModel();
+            } else if (obj.event === 'delete') {  // 监听删除操作
+                var checkStatus = table.checkStatus('currentTableId');
+                // 删除
+                var checkRows = checkStatus.data;
+                if (checkRows.length === 0) {
+                    layer.msg('请选择要删除的数据', {icon: 2});
+                    return;
+                }
+                var ids = checkRows.map(function (d) {
+                    return d.id;
+                });
+                doDel({ids: ids});
+            }
+        });
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function (obj) {
+            console.log(obj)
+        });
+
+        table.on('tool(currentTableFilter)', function (obj) {
+            if (obj.event === 'edit') {
+                showEditModel(obj.data);
+            } else if (obj.event === 'delete') {
+                doDel(obj);
+            } else if (obj.event === 'adMgt') {
+                var index = layer.open({
+                    title: '广告管理',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: '/page/ad-mgt.html?id=' + obj.data.id
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+            }
+        });
+
+        /* 删除 */
+        function doDel(obj) {
+            layer.confirm('确定要删除选中数据吗？', {
+                skin: 'layui-layer-admin',
+                shade: .1
+            }, function (i) {
+                layer.close(i);
+                var loadIndex = layer.load(2);
+
+                $.ajax({
+                    contentType: "application/json",
+                    url: '/api/ad-space/delete',
+                    type: 'DELETE',
+                    data: JSON.stringify(obj.data ? [obj.data.id] : obj.ids),
+                    dataType: "json",
+                    success: function (res) {
+                        layer.close(loadIndex);
+                        if (res.code === 0) {
+                            layer.msg(res.msg, {icon: 1});
+                            table.reload('currentTableId')
+                        } else {
+                            layer.msg(res.msg, {icon: 2});
+                        }
+                    }, error: function (data) {
+                        layer.close(loadIndex);
+                        layer.msg(data.responseJSON.msg, {icon: 2});
+                    }
+                });
+
+            });
+        }
+
+        /* 显示表单弹窗 */
+        function showEditModel(mData) {
+            var idx = layer.open({
+                type: 1,
+                area: '600px',
+                title: (mData ? '修改' : '添加'),
+                content: $('#adSpaceEditDialog').html(),
+
+                success: function (layero, dIndex) {
+                    // 回显表单数据
+                    form.val('adSpaceEditForm', mData);
+                    // 表单提交事件
+                    form.on('submit(adSpaceEditSubmit)', function (data) {
+                        var loadIndex = layer.load(2);
+                        $.ajax({
+                            url: mData ? '/api/ad-space/modify' : '/api/ad-space/create',
+                            type: 'post',
+                            contentType: "application/json",
+                            data: JSON.stringify(data.field),
+                            dataType: "json",
+                            success: function (res) {
+                                layer.close(loadIndex);
+                                if (res.code === 0) {
+                                    layer.close(dIndex);
+                                    layer.msg(res.msg, {icon: 1});
+                                    table.reload('currentTableId');
+                                } else {
+                                    layer.msg(res.msg, {icon: 2});
+                                }
+                            }, error: function (data) {
+                                layer.close(loadIndex);
+                                layer.msg(data.responseJSON.msg, {icon: 2});
+                            }
+                        });
+
+                        return false;
+                    });
+
+                    // 弹窗不出现滚动条
+                    $(layero).children('.layui-layer-content').css('overflow', 'visible');
+
+                    $('#Cancel').click(function () {
+                        layer.close(idx);
+                    });
+
+
+                }
+            });
+        }
+
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+<m:foo xmlns:m="http://www.mycompany.com/MyNamespace"
+       xmlns:y="http://www.yourcompany.com/YourNamespace" name="The Parent">
+    <m:bar id="123" title="The First Child"/>
+    <y:bar id="456" title="The Second Child"/>
+    <m:bar id="789" title="The Second Child"/>
+</m:foo>

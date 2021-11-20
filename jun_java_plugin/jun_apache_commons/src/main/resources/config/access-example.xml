@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 访问控制配置XML -->
+<access>
+	<!-- 用户认证的访问控制 -->
+	<auth>
+		<!-- 用户组，可多个 -->
+		<group name="" />
+		<!-- 用户信息，可多个 -->
+		<user name="" pass="" group=""/>
+	</auth>
+	<!-- 接口访问黑白名单控制，type为[white, black] -->
+	<list type="black">
+		<!-- 
+			两种方式
+			IP区间，例如 192.168.1.1-192.168.1.255 
+			IP，例如 192.168.1.1
+		-->
+		<section></section>
+	</list>
+</access>

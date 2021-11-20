@@ -1,0 +1,76 @@
+ext {
+    configuration = [
+            javaVersion = JavaVersion.VERSION_1_8
+    ]
+
+    // 仓库配置
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url 'https://repo.spring.io/libs-milestone' }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        jcenter()
+    }
+}
+
+// 编译脚本
+buildscript {
+    ext {
+        springBootVersion = "2.0.3.RELEASE"
+        mybatisPlusVersion = "3.0.5-SNAPSHOT"
+    }
+
+    // 仓库配置
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url 'https://repo.spring.io/libs-milestone' }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: "java"
+apply plugin: "maven"
+apply plugin: "idea"
+apply plugin: 'org.springframework.boot'
+apply plugin: "io.spring.dependency-management"
+
+group = "com.patzn.cloud"
+version = "1.0"
+description "MP SpringBoot 案例"
+
+sourceCompatibility = "${javaVersion}"
+targetCompatibility = "${javaVersion}"
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+configurations {
+//    compile.exclude group: "ch.qos.logback"
+    compile.exclude group: "com.amazonaws"
+    compile.exclude group: "org.apache.tomcat"
+    compile.exclude module: "spring-boot-starter-tomcat"
+}
+
+// 依赖管理
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+    }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}")
+    compile("com.h2database:h2:1.4.197")
+    compile("com.zaxxer:HikariCP:3.2.0")
+    compile("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}")
+
+    compileOnly("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
+}

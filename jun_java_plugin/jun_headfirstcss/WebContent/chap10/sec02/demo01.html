@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>设置表格的宽度</title>
+<style type="text/css">
+	.t{
+		border: 1px gray solid;
+		border-spacing: 0px;
+		border-collapse: collapse;
+		width: 500px;
+		table-layout: fixed;
+	}
+	
+	.t td{
+		border: 1px gray solid;
+		padding: 5px;
+	}
+	
+	.t th{
+		border: 1px gray solid;
+		padding: 5px;
+	}
+</style>
+</head>
+<body>
+	<table class="t">
+		<caption>学生信息</caption>
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>学号</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>出生日期</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>1</th>
+				<td>001</td>
+				<td>魏安复</td>
+				<td>男</td>
+				<td>2012-12-12</td>
+			</tr>
+			<tr>
+				<th>2</th>
+				<td>002</td>
+				<td>杜子腾222222222222222222222222222222222222222222222222222222222222222222222222222</td>
+				<td>女</td>
+				<td>2011-11-11</td>
+			</tr>
+			<tr>
+				<th>3</th>
+				<td>003</td>
+				<td>史珍湘</td>
+				<td>女</td>
+				<td>2010-10-10</td>
+			</tr>
+			<tr>
+				<th>4</th>
+				<td>004</td>
+				<td>梅读</td>
+				<td>女</td>
+				<td>2009-10-10</td>
+			</tr>
+			<tr>
+				<th>5</th>
+				<td>005</td>
+				<td>赖月金</td>
+				<td>男</td>
+				<td>2008-01-01</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th>总计</th>
+				<th colspan="4">5条数据</th>
+			</tr>
+		</tfoot>
+	</table>
+</body>
+</html>

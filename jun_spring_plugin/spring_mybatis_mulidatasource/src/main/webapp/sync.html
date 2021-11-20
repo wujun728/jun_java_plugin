@@ -1,0 +1,64 @@
+<html>
+
+<head>
+<title>jQuery Ajax 实例演示</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script language="javascript">
+
+$(document).ready(function ()
+{
+   $('#send_ajax').click(function (){
+   
+     var data = {orderNo: $('#orderNo').val(),userNo:$('#userNo').val(),rechargeType:$('#rechargeType').val(),
+     channelCode:$('#channelCode').val(),bankCode: $('#bankCode').val(),amount:$('#amount').val(),
+     selfFlag:$('#selfFlag').val(),merNO:$('#merNO').val()   
+     };
+     var str = JSON.stringify(data); //"{"demo":"test"}"
+     $.ajax({
+       url:'syncRecharge.do', //后台处理程序
+       type:'post',         //数据发送方式
+	   contentType: "application/json; charset=utf-8",
+       dataType:'json',     //接受数据格式
+       data: str,         //要传递的数据
+       success:update_page  //回传函数(这里是函数名)
+     });
+   });
+
+
+});
+function update_page (json)  //回传函数实体，参数为XMLhttpRequest.responseText
+{
+  //alert(json.response);
+}
+
+</script>
+
+<body>
+ 
+  <form name ="payForm" action="syncRecharge.do" method="post" >
+    
+ <br/>
+ orderNo:<input type="text" id ="orderNo" value="104110082201233"/>
+  <br/>
+ userNo: <input type="text" id ="userNo" value="14032400004"/> 
+   <br/>
+ rechargeType: <input type="text" id ="rechargeType" value="EBANK"/>
+   <br/>
+ channelCode:  <input type="text" id ="channelCode" value="BOCOM"/>
+   <br/>
+  bankCode: <input type="text" id ="bankCode" value="CCB"/>
+    <br/>
+  amount: <input type="text" id ="amount" value="2000"/>
+    <br/>
+   selfFlag:   <input type="text" id ="selfFlag" value="1"/>
+     <br/>
+merNO:   <input type="text" id ="merNO" value="1342342342423"/>
+ 
+ </form>
+ <button id="send_ajax">submit</button>
+  
+
+</body>
+</html>

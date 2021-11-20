@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dblist>
+	<db name="MYSQL">
+		<property name="databaseTYPE">MYSQL</property>
+		<property name="driverName">com.mysql.jdbc.Driver</property>
+		<property name="url">jdbc:mysql://[ip]:3306/[db]?characterEncoding=UTF8</property>
+		<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+		<property name="generator">
+			<![CDATA[<generator class="native"></generator>]]>
+		</property>
+	</db>
+	<db name="ORACLE">
+		<property name="databaseTYPE">ORACLE</property>
+		<property name="driverName">oracle.jdbc.driver.OracleDriver</property>
+		<property name="url">jdbc:oracle:thin:@[ip]:1521:ORCL</property>	
+		<property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		<property name="generator">
+			<![CDATA[<generator class="org.hibernate.id.SequenceGenerator">
+					<param name="sequence">[table]_seq</param>
+				</generator>]]>
+		</property>
+		
+	</db>
+	<!--支持扩展 -->
+</dblist>

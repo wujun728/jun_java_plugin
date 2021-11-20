@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.5.6/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <fieldset class="table-search-fieldset">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">商品名称</label>
+                            <div class="layui-input-inline">
+                                <input autocomplete="off" class="layui-input" name="likeName" type="text">
+                            </div>
+                        </div>
+
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">创建时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="createTime" autocomplete="off" class="layui-input rangeDate">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">创建人</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="createAdmin" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-inline">
+                                <select lay-filter="type" name="status">
+                                    <option value=""></option>
+                                    <option value="1">出售中</option>
+                                    <option value="2">已下架</option>
+                                    <option value="3">售罄</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--<div class="layui-inline">
+                            <label class="layui-form-label">分类</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="categoryid" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>-->
+
+                        <div class="layui-inline">
+                            <button type="submit" class="layui-btn layui-btn-primary" lay-submit
+                                    lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <button per-code="product:add" class="layui-btn layui-btn-normal layui-btn-sm data-add-btn"
+                        lay-event="add"> 添加
+                </button>
+                <button per-code="product:del" class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn"
+                        lay-event="delete"> 删除
+                </button>
+                <button per-code="product:publish" class="layui-btn layui-btn-sm " lay-event="publish">上架</button>
+                <button per-code="product:suspend" class="layui-btn layui-btn-sm layui-btn-warm " lay-event="suspend">
+                    下架
+                </button>
+            </div>
+        </script>
+
+        <table class="layui-hide" id="productTableId" lay-filter="currentTableFilter"></table>
+
+        <script type="text/html" id="currentTableBar">
+
+            {{#  if(d.status === 1 || d.status === 3){ }}
+            <a per-code="product:suspend" class="layui-btn layui-btn-xs layui-btn-warm " lay-event="suspend">下架</a>
+            {{#  } }}
+            {{#  if(d.status === 2){ }}
+            <a per-code="product:update" class="layui-btn layui-btn-normal layui-btn-xs data-count-edit"
+               lay-event="edit">编辑</a>
+            <a per-code="product:publish" class="layui-btn layui-btn-xs " lay-event="publish">上架</a>
+            <a per-code="product:del" class="layui-btn layui-btn-xs layui-btn-danger data-count-delete"
+               lay-event="delete">删除</a>
+            {{#  } }}
+
+
+        </script>
+
+    </div>
+</div>
+
+<script src="../lib/layui-v2.5.6/layui.js" charset="utf-8"></script>
+<script charset="utf-8" src="../js/lay-config.js"></script>
+<script charset="utf-8" src="../js/admin.js"></script>
+<script>
+    layui.use(['form', 'table', 'laydate'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table,
+            laydate = layui.laydate;
+
+
+
+        table.render({
+            elem: '#productTableId',
+            url: '/api/product/list',
+            toolbar: '#toolbarDemo',
+
+            defaultToolbar: ['filter', 'exports', 'print', {
+                title: '提示',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }],
+            cols: [[
+                {type: "checkbox", width: 50},
+                {
+                    title: '主图', width:110, templet: function (d) {
+                        return '<img  width="80" style="cursor: zoom-in" data-index="' + (d.LAY_INDEX - 1) + '"    tb-img src="' + parent.app.frontDomain + d.mainPic + '"/>'
+                    }
+                },
+                {
+                    title: '商品名称', height: 100, minWidth: 150, sort: true, templet: function (d) {
+                        return '<a target="_blank" href="' + parent.app.frontDomain + '/product/' + d.id + '" class="layui-table-link">' + d.name + '</a>'
+                    }
+                },
+                {
+                    field: 'price', title: '销售价', width: 100, sort: true, templet: function (d) {
+                        return priceFormat(d.price)
+                    }
+                },
+                {
+                    field: 'originalPrice', title: '原价', width: 100, sort: true, templet: function (d) {
+                        return priceFormat(d.originalPrice)
+                    }
+                },
+                {
+                    field: 'costPrice', title: '成本价', width: 100, sort: true, templet: function (d) {
+                        return priceFormat(d.costPrice)
+                    }
+                },
+                {field: 'createAdmin', title: '创建人', width: 100, sort: true},
+                {title: '销量(虚)', width: 100 , templet:function (d) {
+                        return d.salesNum+'('+d.virtualSalesNum+')'
+                    }
+                },
+                {field: 'stock', title: '库存', width: 80, sort: true},
+                {field: 'createTime', title: '创建时间', width: 160, sort: true},
+                {title: '操作', minWidth: 160, toolbar: '#currentTableBar', align: "center"}
+            ]],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 10,
+            page: true,
+            skin: 'line',
+            parseData: function (data) {
+                data.count = data.data.total;
+                data.data = data.data.list;
+                return data;
+            }, done: function () {
+                $('[per-code]').each(function () {
+                    if ($.inArray($(this).attr('per-code'), parent.app.perCodes) === -1) {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+
+        /* 渲染时间选择 */
+        laydate.render({
+            elem: 'input.rangeDate',
+            type: 'date',
+            range: true,
+            trigger: 'click'
+        });
+
+        // 监听搜索操作
+        form.on('submit(data-search-btn)', function (data) {
+            var param = data.field;
+            if(data.field.createTime) {
+                var createTime = data.field.createTime.split(' - ');
+                param.minCreateTime = createTime[0];
+                param.maxCreateTime = createTime[1];
+            }else{
+                param.minCreateTime = '';
+                param.maxCreateTime = '';
+            }
+            //执行搜索重载
+            table.reload('productTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: param
+            }, 'data');
+
+            return false;
+        });
+
+        /**
+         * toolbar监听事件
+         */
+        table.on('toolbar(currentTableFilter)', function (obj) {
+            if (obj.event === 'add') {  // 监听添加操作
+
+                var index = layer.open({
+                    title: '添加产品',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: '/page/edit-product.html'
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+
+            } else if (obj.event === 'delete') {  // 监听删除操作
+                var checkStatus = table.checkStatus('productTableId');
+                // 删除
+                var checkRows = checkStatus.data;
+                if (checkRows.length === 0) {
+                    layer.msg('请选择要删除的数据', {icon: 2});
+                    return;
+                }
+                var ids = checkRows.map(function (d) {
+                    return d.id;
+                });
+                doDel({ids: ids});
+            } else if (obj.event === 'suspend') {
+                var checkStatus = table.checkStatus('productTableId');
+                // 删除
+                var checkRows = checkStatus.data;
+                if (checkRows.length === 0) {
+                    layer.msg('请选择要下架的数据', {icon: 2});
+                    return;
+                }
+                var ids = checkRows.map(function (d) {
+                    return d.id;
+                });
+                doSuspend({ids: ids});
+            } else if (obj.event === 'publish') {
+                var checkStatus = table.checkStatus('productTableId');
+                // 删除
+                var checkRows = checkStatus.data;
+                if (checkRows.length === 0) {
+                    layer.msg('请选择要上架的数据', {icon: 2});
+                    return;
+                }
+                var ids = checkRows.map(function (d) {
+                    return d.id;
+                });
+                doPublish({ids: ids});
+            }
+
+        });
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function (obj) {
+            console.log(obj)
+        });
+
+        table.on('tool(currentTableFilter)', function (obj) {
+            if (obj.event === 'edit') {
+
+                var index = layer.open({
+                    title: '修改产品',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: '/page/edit-product.html?id=' + obj.data.id
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+
+
+            } else if (obj.event === 'delete') {
+                doDel(obj);
+            } else if (obj.event === 'suspend') {
+                doSuspend(obj);
+            } else if (obj.event === 'publish') {
+                doPublish(obj);
+            }
+        });
+
+        function doPublish(obj) {
+            layer.confirm('确定要上架选中产品吗？', {
+                skin: 'layui-layer-admin',
+                shade: .1,
+                icon: 3,
+                title: '上架'
+            }, function (i) {
+                layer.close(i);
+                var loadIndex = layer.load(2);
+
+                $.ajax({
+                    contentType: "application/json",
+                    url: '/api/product/publish',
+                    type: 'POST',
+                    data: JSON.stringify(obj.data ? [obj.data.id] : obj.ids),
+                    success: function (res) {
+                        layer.close(loadIndex);
+                        if (res.code === 0) {
+                            layer.msg(res.msg, {icon: 1});
+                            table.reload('productTableId')
+                        } else {
+                            layer.msg(res.msg, {icon: 2});
+                        }
+                    }, error: function (data) {
+                        layer.close(loadIndex);
+                        layer.msg(data.responseJSON.msg, {icon: 2});
+                    }
+                });
+
+            });
+
+        }
+
+        function doSuspend(obj) {
+            layer.confirm('确定要下架选中产品吗？', {
+                skin: 'layui-layer-admin',
+                shade: .1,
+                icon: 7,
+                title: '下架'
+            }, function (i) {
+                layer.close(i);
+                var loadIndex = layer.load(2);
+
+                $.ajax({
+                    contentType: "application/json",
+                    url: '/api/product/suspend',
+                    type: 'POST',
+                    data: JSON.stringify(obj.data ? [obj.data.id] : obj.ids),
+                    success: function (res) {
+                        layer.close(loadIndex);
+                        if (res.code === 0) {
+                            layer.msg(res.msg, {icon: 1});
+                            table.reload('productTableId')
+                        } else {
+                            layer.msg(res.msg, {icon: 2});
+                        }
+                    }, error: function (data) {
+                        layer.close(loadIndex);
+                        layer.msg(data.responseJSON.msg, {icon: 2});
+                    }
+                });
+
+            });
+
+
+        }
+
+        /* 删除 */
+        function doDel(obj) {
+            layer.confirm('确定要删除选中数据吗？', {
+                skin: 'layui-layer-admin',
+                shade: .1
+            }, function (i) {
+                layer.close(i);
+                var loadIndex = layer.load(2);
+
+                $.ajax({
+                    contentType: "application/json",
+                    url: '/api/product/delete',
+                    type: 'DELETE',
+                    data: JSON.stringify(obj.data ? [obj.data.id] : obj.ids),
+                    dataType: "json",
+                    success: function (res) {
+                        layer.close(loadIndex);
+                        if (res.code === 0) {
+                            layer.msg(res.msg, {icon: 1});
+                            table.reload('productTableId')
+                        } else {
+                            layer.msg(res.msg, {icon: 2});
+                        }
+                    }, error: function (data) {
+                        layer.close(loadIndex);
+                        layer.msg(data.responseJSON.msg, {icon: 2});
+                    }
+                });
+
+            });
+        }
+
+
+        /* 点击图片放大 */
+        $(document).off('click.tbImg').on('click.tbImg', '[tb-img]', function () {
+            var imgList = table.cache['productTableId'].map(function (d) {
+                return {
+                    alt: d.name,
+                    src: parent.app.frontDomain + d.mainPic
+                }
+            });
+            layer.photos({photos: {data: imgList, start: $(this).data('index')}, shade: .1, closeBtn: true});
+        });
+
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<mx:DataGridColumn headerText="文章标题" id="titleColumn"
+					width="150"
+					textAlign="center"
+					dataField="title">
+					<mx:itemRenderer>
+						<fx:Component>
+							<s:MXDataGridItemRenderer dataChange="mxdatagriditemrenderer2_dataChangeHandler(event)">
+								<fx:Script>
+									<![CDATA[
+										import mx.events.FlexEvent;
+										
+										[Bindable]
+										private var title:String="";
+										
+										protected function mxdatagriditemrenderer2_dataChangeHandler(event:FlexEvent):void
+										{
+											var str:String="";
+											if (data != null && data.id > 0)
+											{
+												str=data.title;
+												if (measureText(str).width > outerDocument.titleColumn.width)
+												{
+													var i:int = 1;
+													while(measureText(str.substr(0,i) + "...").width < outerDocument.titleColumn.width){
+														i ++;
+													}
+													title=str.substr(0, i - 2) + "...";
+													(event.currentTarget as MXDataGridItemRenderer).toolTip=data.title;
+												}
+												else
+												{
+													title=str;
+													(event.currentTarget as MXDataGridItemRenderer).toolTip=null;
+												}
+											}
+										}
+									]]>
+								</fx:Script>
+								<s:Label text="{title}"/>
+							</s:MXDataGridItemRenderer>
+						</fx:Component>
+					</mx:itemRenderer>
+				</mx:DataGridColumn>
+
+
+=================================================
+记住不用加toolTip
+
+<mx:DataGridColumn headerText="文章标题"
+								   resizable="true"
+								   width="50"
+								   textAlign="center"
+								   dataField="title">
+					<mx:itemRenderer>
+						<fx:Component>
+							<mx:Label width="100%"
+									 text="{data.title}"/>
+						</fx:Component>
+					</mx:itemRenderer>
+				</mx:DataGridColumn>
+
+
+如果标题过长
+--------------------------------
+<mx:DataGridColumn  dataField="channelName">
+				<mx:headerRenderer>
+					<mx:Component>
+						<mx:Label text="{resourceManager.getString('strings','BROADCASTCHANNEL')}"/>
+					</mx:Component>
+			</mx:headerRenderer>
+			</mx:DataGridColumn>
+--------------------

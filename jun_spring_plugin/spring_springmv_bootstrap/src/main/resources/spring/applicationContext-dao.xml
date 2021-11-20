@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd   
+            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd  
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<util:properties id="p_datasource" location="classpath:/config/datasource.properties" />
+
+	<!-- 主数据源，使用alibaba druid连接池 -->
+	<bean id="masterDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="name" value="#{p_datasource['master.name']}" />
+		<property name="url" value="#{p_datasource['master.url']}" />
+		<property name="username" value="#{p_datasource['master.username']}" />
+		<property name="password" value="#{p_datasource['master.password']}" />
+		<property name="driverClassName" value="#{p_datasource['master.driverClassName']}" />
+		<property name="initialSize" value="#{p_datasource['master.initialSize']}" />
+		<property name="maxActive" value="#{p_datasource['master.maxActive']}" />
+		<property name="minIdle" value="#{p_datasource['master.minIdle']}" />
+		<property name="maxWait" value="#{p_datasource['master.maxWait']}" />
+		<property name="useUnfairLock" value="#{p_datasource['master.useUnfairLock']}" />
+		<property name="validationQuery" value="#{p_datasource['master.validationQuery']}" />
+		<property name="testOnBorrow" value="#{p_datasource['master.testOnBorrow']}" />
+		<property name="testOnReturn" value="#{p_datasource['master.testOnReturn']}" />
+		<property name="testWhileIdle" value="#{p_datasource['master.testWhileIdle']}" />
+		<property name="timeBetweenEvictionRunsMillis" value="#{p_datasource['master.timeBetweenEvictionRunsMillis']}" />
+		<property name="minEvictableIdleTimeMillis" value="#{p_datasource['master.minEvictableIdleTimeMillis']}" />
+		<property name="filters" value="#{p_datasource['master.filters']}" />
+	</bean>
+
+	<!-- 总数据源 -->
+	<bean id="dataSource" class="cn.springmvc.mybatis.common.datasource.DynamicDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="master" value-ref="masterDataSource" />
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="masterDataSource" />
+	</bean>
+
+	<!-- 数据源Aspect -->
+	<bean id="dataSourceAspect" class="cn.springmvc.mybatis.common.datasource.DataSourceAspect" />
+
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath*:mybatis/mapper/**/*.xml" />
+	</bean>
+
+	<!-- SqlSessionTemplate -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sessionFactory" />
+	</bean>
+
+	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="cn.springmvc.mybatis.mapper" />
+		<property name="sqlSessionFactoryBeanName" value="sessionFactory" />
+	</bean>
+
+	<!-- 事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+
+	<!-- 配置事务特性 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" no-rollback-for="java.lang.RuntimeException" />
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.RuntimeException" />
+			<tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="find*" propagation="SUPPORTS" />
+			<tx:method name="get*" propagation="SUPPORTS" />
+			<tx:method name="select*" propagation="SUPPORTS" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置那些类的方法进行事务管理，当前com.ddtech.webapp.service.impl包中的类中所有方法需要，还需要参考tx:advice的设置 -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="allManagerMethod" expression="execution(* cn.springmvc.mybatis.service.impl.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod" order="0" />
+	</aop:config>
+
+</beans>            
+         

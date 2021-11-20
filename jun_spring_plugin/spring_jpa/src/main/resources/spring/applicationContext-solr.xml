@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean id="solrcloud_server" class="org.apache.solr.client.solrj.impl.CloudSolrServer">
+		<constructor-arg index="0" value="${solr.connection}" />
+		<property name="defaultCollection" value="${solr.collection}" />
+		<property name="zkClientTimeout" value="${solr.zk.client.timeout}" />
+		<property name="zkConnectTimeout" value="${solr.zk.connect.timeout}" />
+	</bean>
+
+	<beans profile="development">
+		<context:property-placeholder location="classpath:/constants/test-constants.properties" />
+	</beans>
+
+	<beans profile="production">
+		<context:property-placeholder location="classpath:/constants/constants.properties" />
+	</beans>
+
+</beans>

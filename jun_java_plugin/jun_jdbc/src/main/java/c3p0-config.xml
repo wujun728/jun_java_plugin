@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+	<!-- 默认配置，当使用ComboPooledDataSource无参构造器时，使用的就是这个配置 -->
+	<default-config>
+		<!-- 基本配置 -->
+		<property name="jdbcUrl">jdbc:mysql://localhost:3306/test1</property>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="user">root</property>
+		<property name="password">1234</property>
+		<!-- 每次增量，当需要创建Connection对象时，一次创建几个 -->
+		<property name="acquireIncrement">3</property>
+		<!-- 当创建池对象后，池中应该有几个Connection对象 -->
+		<property name="initialPoolSize">10</property>
+		<!-- 池中最少Connection个数，如果少于这个值，就会创建Connection -->
+		<property name="minPoolSize">2</property>
+		<!-- 池中最大连接个数 -->
+		<property name="maxPoolSize">10</property>
+	</default-config>
+	<!-- 命名配置，new ComboPooledDataSource("oralce-config")时，使用的就是这个配置 -->
+	<named-config name="oracle-config">
+		<property name="jdbcUrl">jdbc:mysql://localhost:3306/test2</property>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="user">root</property>
+		<property name="password">1234</property>
+		<property name="acquireIncrement">3</property>
+		<property name="initialPoolSize">10</property>
+		<property name="minPoolSize">2</property>
+		<property name="maxPoolSize">10</property>
+	</named-config>
+</c3p0-config>
+

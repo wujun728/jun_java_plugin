@@ -1,0 +1,18 @@
+<html><head>
+<script language="JavaScript" type="text/javascript">
+function GetData(){
+        url="/book/chatroom/method.jsp?action=showMsg";//调用页面
+        try {
+            DataLoad.src = url;
+        } catch(e) {
+        return false;
+        }
+        {var timeoutid = setTimeout("GetData()",2000)}
+}
+</script>
+<script id="DataLoad" language="JavaScript" type="text/javascript" defer></script>
+</head>
+<body onLoad="javascript:GetData();">
+<span id=loadContent>数据载入中...</span>
+</body>
+</html>

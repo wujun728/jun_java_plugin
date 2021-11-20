@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <configuration>
+  	<properties resource="jdbc.properties">
+  		
+  	</properties>
+  	<settings>
+  		<!-- 
+			允许 JDBC 支持自动生成主键，需要驱动兼容。
+			 如果设置为 true 则这个设置强制使用自动生成主键，
+			 尽管一些驱动不能兼容但仍可正常工作（比如 Derby）
+			 
+		 <setting name="userGeneratedKeys" value=""/>
+		 -->
+		 <!-- 
+			是否开启自动驼峰命名规则（camel case）映射，
+			即从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 的类似映射
+		 -->
+		 <setting name="mapUnderscoreToCamelCase" value="true"/>
+  	</settings>
+  	
+  	<typeAliases>
+  		<!-- <typeAlias alias="User" type="model.User"/>
+		<typeAlias alias="Student" type="model.Student"/> -->
+  		<package name="model"/>
+  	</typeAliases>
+  	
+  	<environments default="development">
+  		<environment id="development">
+  			<transactionManager type="JDBC"/>
+  				<dataSource type="POOLED">
+  					<property name="driver" value="${mysql.driver}"/>
+			        <property name="url" value="${mysql.jdbc.url}"/>
+			        <property name="username" value="root"/>
+			        <property name="password" value=""/>
+  				</dataSource>
+  		</environment>
+  	</environments>
+  	<mappers>
+  		<!-- 
+	   		<mapper class="cn.edu.nuc.mybatis1.mapper.AccountMapper"/>
+	  		<mapper resource="mapper/MessageMapper.xml"/>
+	  		<mapper resource="mapper/StudentMapper.xml"/> 
+	  	 -->
+	  	 <package name="mapper"/>
+  	</mappers>
+  </configuration>

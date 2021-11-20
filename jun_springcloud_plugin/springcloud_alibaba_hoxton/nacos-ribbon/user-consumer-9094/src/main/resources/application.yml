@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: user-consumer-9091
+  cloud:
+    nacos:
+      discovery:
+        # 配置 nacos 的服务地址
+        server-addr: localhost:8847
+        # 表示只订阅服务，而不注册服务
+        register-enabled: false
+
+# nacos 集成 ribbon
+ribbon:
+  nacos:
+    enabled: true
+  eager-load:
+    enabled: true # 启用ribbon的饥饿加载，否则第一次调用的时候会特别慢
+    clients: product-provider-9095,product-provider-9095 # 多个以逗号分隔
+server:
+  port: 9094
+
+# 配置 ribbon 调用 product-provider 微服务使用 nacos 权重的方式访问
+product-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.huan.study.cloud.alibaba.ribbon.NacosWeightRule

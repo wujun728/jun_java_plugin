@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="gb2312">
+<head>
+<title>管理登陆</title>
+<script language=javascript>
+function checkform() {
+if(form_add.admin_name.value==""){
+ alert("\用户名不能为空！");
+ return false;
+ }
+ if(form_add.admin_password.value==""){
+ alert("\密码不能为空！");
+ return false;
+ }
+ return true;
+}
+</script>
+</head>
+<body>
+<form name="form_add" action="admin_check.asp" method="post" onsubmit="return checkform();">
+ 用户名:<input type="text" name="admin_name" class="input">
+ 密  码:<input type="password" name="admin_password" class="input">
+<input type="submit" name="submit" value="提交">
+</form>
+</body>
+</html>

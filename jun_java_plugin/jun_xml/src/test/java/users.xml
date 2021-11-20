@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><users>
+	<user id="001">
+		<name>jack</name>
+		<age>26</age>
+		<address>gz</address>
+	</user>
+	<user>
+		<name>焦宁波</name>
+		<age>28</age>
+		<address>天河区</address>
+	</user>
+</users>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 配置Spring -->
+	<constant name="struts.objectFactory" value="spring" />
+	<!--<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory"/>-->
+	<!-- 允许action的名字中出现"/" -->
+	<!--<constant name="struts.enable.SlashesInActionNames" value="true"/>-->
+	<!--<constant name="struts.devMode" value="true" />-->
+	<package name="struts2" extends="struts-default">
+	<!-- 注册 -->
+		<action name="registerAction" class="userAction" method="register">
+			<result name="success">/register_success.jsp</result>
+			<result name="error">/register.jsp</result>
+		</action>
+	<!-- 登录 -->
+		<action name="loginAction" class="userAction" method="login">
+			<result name="success">/select.jsp</result>
+			<result name="error">/login.jsp</result>
+		</action>
+	<!-- 删除 -->
+		<action name="deleteAction" class="userAction" method="delete">
+			<result name="success">/select.jsp</result>
+			<result name="error">/login.jsp</result>
+		</action>
+	<!-- 修改 -->
+		<action name="updateAction" class="userAction" method="update">
+			<result name="success">/select.jsp</result>
+			<result name="error">/login.jsp</result>
+		</action>
+	<!-- 添加 -->
+		<action name="addAction" class="userAction" method="add">
+			<result name="success">/select.jsp</result>
+			<result name="error">/login.jsp</result>
+		</action>
+	</package>
+</struts>

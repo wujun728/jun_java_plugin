@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>添加/修改任务</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<form action="save-schedule-job.shtml" method="post">
+    <input type="hidden" name="scheduleJobId" value="$!{scheduleJobVo.scheduleJobId}">
+    <input type="hidden" name="keywords" value="$!{scheduleJobVo.keywords}">
+<table>
+    <tr>
+        <td>任务名称</td>
+        <td><input  type="text" name="jobName" value="$!{scheduleJobVo.jobName}"></td>
+    </tr>
+    <tr>
+        <td>任务分组</td>
+        <td><input  type="text" name="jobGroup" value="$!{scheduleJobVo.jobGroup}"></td>
+    </tr>
+    <tr>
+        <td>任务别名</td>
+        <td><input type="text" name="aliasName" value="$!{scheduleJobVo.aliasName}"></td>
+    </tr>
+    <tr>
+        <td>时间表达式</td>
+        <td><input type="text" name="cronExpression" value="$!{scheduleJobVo.cronExpression}"></td>
+    </tr>
+    <tr>
+        <td>是否异步</td>
+        <td><input type="text" name="isSync" value="$!{scheduleJobVo.isSync}"></td>
+    </tr>
+    <tr>
+        <td>任务描述</td>
+        <td><input type="text" name="desc" value="$!{scheduleJobVo.desc}"></td>
+    </tr>
+</table>
+    <button type="submit">确认</button>
+</form>
+</body>
+</html>

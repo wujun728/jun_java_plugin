@@ -1,0 +1,29 @@
+server:
+  port: 3001
+  context-path: /
+
+spring:
+  application:
+    name: microservice-zuul
+
+eureka:
+  instance:
+    instance-id: microservice-zuul:3001 #客户端实例名称
+    prefer-ip-address: true #显示IP
+  client: 
+    service-url: 
+      defaultZone: http://eureka2001.java1234.com:2001/eureka/,http://eureka2002.java1234.com:2002/eureka/,http://eureka2003.java1234.com:2003/eureka/ # 集群
+
+info: 
+   groupId: $project.groupId$
+   artifactId: $project.artifactId$
+   version: $project.version$
+   负责人: 王五
+   联系电话: 110
+   
+zuul:
+  prefix: /java1234
+  ignored-services: "*"
+  routes:
+    studentServer.serviceId: microservice-student
+    studentServer.path: /studentServer/**
