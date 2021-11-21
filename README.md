@@ -214,16 +214,7 @@ jun_plugin 整合Java企业级各种开发组件、开箱即用、不写重复�
 【maven_springboot_permission_example】[Java单体项目模板,Java单体项目模板]
 【maven_springboot_template】[Java单体项目模板,Java单体项目模板]
 
-
-
-#### 工程截图(组件较多，随意择选了几个)
-
-<table>
-    <tr>
-		<td><img src=""/>
-		<td><img src=""/>
-    </tr>
-</table>
+ 
 
 
 
