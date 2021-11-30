@@ -29,10 +29,7 @@ jun_plugin 整合Java企业级各种开发组件、开箱即用、不写重复�
 【jun_datasource_cluster】[原生集成各种JDBC DataSource数据源,分布式数据源,Druid、DBCP等数据源](https://github.com/wujun728/jun_java_plugin/tree/master/spring_plugin/jun_datasource_cluster)  
 【jun_dbutil】[原生集成Apache 的Dbutils完成单表及多表的增删改查，原生JDBC操作，简单封装](https://github.com/wujun728/jun_java_plugin/tree/master/spring_plugin/jun_dbutil)  
 
-and so on 
-
  
-
 > Spring系企业级开发框架组件 Spring常用开发组件，万能粘合剂，企业级J2EE实际标准平台
 
 【spring_activemq】[ Activemq消息队列,Spring集成activemq消息队列工具集demo](https://github.com/wujun728/jun_java_plugin/tree/master/spring_plugin/spring_activemq)  
