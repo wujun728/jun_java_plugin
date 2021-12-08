@@ -103,10 +103,7 @@ jun_plugin 整合Java企业级各种开发组件、开箱即用、不写重复�
 【maven_spring5_multi_modules】[Spring5多模块项目模板,Spring5多模块项目模板](https://github.com/wujun728/jun_java_plugin/tree/master/spring_plugin/maven_spring5_multi_modules\)  
 【maven_spring5template】[Spring5微服务项目模板,Spring5微服务项目模板](https://github.com/wujun728/jun_java_plugin/tree/master/spring_plugin/maven_spring5template\)  
 【maven_springboot】[SpringBoot微服务项目模板,SpringBoot微服务项目模板](https://github.com/wujun728/jun_java_plugin/tree/master/spring_plugin/maven_springboot_permission_example\)  
-
-【maven_account_parent】[Java单体项目模板,Java单体项目模板]
 【maven_project_template】[Java单体项目模板,Java单体项目模板]
-
 【maven_springboot_jpa_jsp】[Java单体项目模板,Java单体项目模板]
 【maven_springboot_mybatis】[Java单体项目模板,Java单体项目模板]
 【maven_springboot_permission_example】[Java单体项目模板,Java单体项目模板]
