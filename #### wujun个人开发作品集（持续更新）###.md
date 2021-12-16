@@ -123,10 +123,6 @@ Java基础系开发组件，代码生成器&开发模板，基于freemarker及Me
 【Bootstrap框架】[前端响应式CSS/HTML框架](https://github.com/wujun728/jun_frontend)
 【Vue框架】[前端、构建用户界面的渐进式JavaScript框架](https://github.com/wujun728/jun_frontend)
 
-
-
-
-
 2011/08~2013/6
 中航油税务管理系统、众环海华OA、众环海华ERP系统，担任项目开发
 开发工程师
@@ -259,7 +255,6 @@ TODO PLAN：
 3、调整每个项目运行
 4、mvn_template 开发模板，调整，新增项目模板；新增
 
-
 jun_code_generator
 0、默认生成模板调整，默认下载zip包调整
 1、代码生成器jun_code_generator 默认提供Spring、Hibernate、MyBatis、Spring JDBC模板
@@ -289,7 +284,6 @@ jun_product_center 产品中心，常用项目模板及常用项目工程，调
 先根据邮件去掉非必须的项目
 综合配置login及index的页面的归档
 
-
 wujun728.github.io
 jun_springcloud
 jun_linux    Linux开发组件
@@ -301,8 +295,6 @@ jun_app    APP开发，Vue+uniapp+Nodejs++Android
 jun_temp    临时仓库，干掉
 jun_website    网站开发,以WordPress+网站模板为主
 jun_bigdata   大数据开发
-
-
 
 https://blog.csdn.net/yf275908654/article/details/50171607
 
@@ -322,7 +314,6 @@ ShiroJwt\ 迁移到vue里面
 4、功能地图及产品中心规划
 5、整理胶片的模板发挥架构的优势
 
-
 ###TODO待办清单
 NOTE20210311
 jun_2021\
@@ -332,7 +323,6 @@ jun_test\
 jun_test11\
 About
 代码生成器jun_code_generator 默认提供Spring、Hibernate、MyBatis、Spring JDBC模板，也可以根据FreeMarker语法编写自定义模板生成代码。
-
 
 https://www.bejson.com/
 Nginx优化
@@ -362,17 +352,10 @@ jun_temp1\
 jun_temp2\
 TODO PLAN：
 
-
-
-
 Vue+uniapp+Nodejs+WordPress+PHP+Android+Bigdata
-
 
 https://blog.csdn.net/xiaojinlai123/article/details/90694372
 https://blog.csdn.net/sxdtzhaoxinguo/article/details/77965226
-
-
-
 
 https://hub.fastgit.org/moshowgame/SpringBootCodeGenerator
 https://hub.fastgit.org/SpringCloud/spring-cloud-codegen
@@ -382,7 +365,6 @@ Readme.md template
 
 plugin
 https://hub.fastgit.org/RudeCrab/rude-java/tree/master/project-practice
-
 
 干掉，放到plugin里面
 https://hub.fastgit.org/wujun728/jun_frontend_ui
@@ -412,7 +394,6 @@ spring-boot-starter-motan
 Jun_code-generator
 临时分支
 
-
 Jun_code_generator
 doc\ 
 	simple-fast-generator\   合并到code_mplus
@@ -422,9 +403,6 @@ jun_code_generator\
 	集成easyexcel读取文件的功能noModelRead
 jun_code_mybatis\
 jun_code_mybatisplus\  
-
-
-
 
 ### 附录：个人作品索引目录（持续更新）
 
@@ -484,10 +462,6 @@ jun_code_mybatisplus\  
 <a href="http://t.cn/Ai8YycFz" target="_blank">我的网店</a>
 
 <a href="https://www.jianguofaka.com/details/B1143645" target="_blank">全套大礼包2020年版</a>
-
-
-
-
 
 1、jun_api_service
 初始化API_Service
@@ -580,7 +554,6 @@ Spring-cloud
 
  
 
-
 41、 webmagic
 https://hub.fastgit.org/scsfwgy/WebMagic_CSDN_Demo
 https://hub.fastgit.org/EzioL/neteasemusic
@@ -648,9 +621,6 @@ https://hub.fastgit.org/864381832/xJavaFxTool-spring
 00、ppt
 https://hub.fastgit.org/aalansehaiyang/technology-talk
 
-
-
-
 1、plugin 代码全部梳理一遍，package/pom/test/readme
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
 2、ssh 代码合并到一个，调整功能
@@ -671,7 +641,6 @@ https://hub.fastgit.org/dolyw/ShiroJwt
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
 部署环境
 
-
 Step2
 main
 https://hub.fastgit.org/Heeexy/SpringBoot-Shiro-Vue
@@ -680,13 +649,10 @@ jun_springboot_jwt_shiro_api\   空的
 jun_springboot_vue\   干掉
 jun_springboot_vue_pro\ 合并到上面里面
 
-
 Step4
 1、uniapp
 https://hub.fastgit.org/zsptsf/uniapp.git
 https://hub.fastgit.org/c1013529993/springboot-uniapp-21cake
-
-
 
 Step1
 Jdbc_template
@@ -722,7 +688,6 @@ https://hub.fastgit.org/whirlys/BigData-In-Practice
 https://hub.fastgit.org/597365581/bigdata_tools
 https://blog.csdn.net/u013967628/article/details/83656560
 
-
 1、plugin 代码全部梳理一遍，package/pom/test/readme
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
 2、ssh 代码合并到一个，调整功能
@@ -742,7 +707,6 @@ https://hub.fastgit.org/dolyw/ShiroJwt
 7、linux 部署文档，部署包、docker部署
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
 部署环境
-
 
 Step2
 main
@@ -805,14 +769,11 @@ https://hub.fastgit.org/wujun728/learningSummary
 Springboot security
 https://blog.csdn.net/yuanlaijike/article/details/80249235
 
-
-
 mxtheme02
 
 https://hub.fastgit.org/hemin1003
 jun_temp     临时仓库
 https://hub.fastgit.org/c1013529993/springboot-uniapp-21cake
-
 
 JWT+VUE
 https://hub.fastgit.org/cailichao/easyweb-jwt
@@ -828,7 +789,6 @@ https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.htm
 
 ***************************************************************************************************
 
-
 Springboot_fileupload
 https://hub.fastgit.org/gaoyuyue/MyUploader-Backend
 
@@ -840,9 +800,6 @@ Spring
 https://hub.fastgit.org/liuge1988/kitty-generator
 https://hub.fastgit.org/zhoutaoo/SpringCloud
 
-
-
-
 Api_service
 1、API_BOOT代码生成器合并到code_generator里面
 2、api里面的layui抽出来，合并到
@@ -860,13 +817,10 @@ jun_layuiadmin
 3、新增apijson
 https://hub.fastgit.org/APIJSON/APIJSON-Demo
 https://vincentcheng.github.io/apijson-doc/
-
-
 
 https://hub.fastgit.org/scaladte
 
 https://hub.fastgit.org/malizhigithub/CRM
-
 
 https://blog.csdn.net/qq_22211217/article/details/83759513
 https://www.cnblogs.com/softidea/p/10271266.html
@@ -880,24 +834,11 @@ https://www.cnblogs.com/lbangel/p/3487796.html
 https://blog.csdn.net/linhao_obj/article/details/88921170
 Jdbc metabase
 
-
 WordPress 多站点
 企业官网
 中软门户网站
 
-
-
-
-
  
 
-
-
-
-
-
  
-
-
-
 
