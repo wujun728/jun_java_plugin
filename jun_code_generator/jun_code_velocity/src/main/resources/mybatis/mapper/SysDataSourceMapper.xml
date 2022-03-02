@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jun.plugin.project.mapper.SysDataSourceMapper">
+
+	<resultMap type="SysDataSource" id="SysDataSourceResult">
+		<id     property="id"     column="id"     />
+		<result property="name"   column="name"   />
+		<result property="dbType"   column="db_type"   />
+		<result property="oracleConnMode"   column="oracle_conn_mode"   />
+		<result property="serviceNameOrSid"   column="service_name_or_sid"   />
+		<result property="host"     column="host"      />
+		<result property="port"   column="port"   />
+		<result property="username"   column="username"   />
+		<result property="password"   column="password"   />
+		<result property="schemaName"   column="schema_name"   />
+		<result property="status"   column="status"   />
+        <result property="createBy"   column="create_by"   />
+        <result property="createTime" column="create_time" />
+        <result property="updateBy"   column="update_by"   />
+        <result property="updateTime" column="update_time" />
+	</resultMap>
+	
+	<sql id="selectSysDataSourceVo">
+        select id, name, db_type, oracle_conn_mode, service_name_or_sid, host, port, username, password, schema_name, status, create_by, create_time, remark
+		from sys_data_source
+    </sql>
+
+    <select id="selectSysDataSourceList" parameterType="SysDataSource" resultMap="SysDataSourceResult">
+        <include refid="selectSysDataSourceVo"/>
+        <where>
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+            <if test="dbType != null and dbType != ''">
+                AND db_type = #{dbType}
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+            <if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+                and strftime('%y%m%d',create_time) &gt;= strftime('%y%m%d',#{params.beginTime})
+            </if>
+            <if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+                and strftime('%y%m%d',create_time) &lt;= strftime('%y%m%d',#{params.endTime})
+            </if>
+        </where>
+    </select>
+    
+	<select id="selectSysDataSource" parameterType="Long" resultMap="SysDataSourceResult">
+	    <include refid="selectSysDataSourceVo"/>
+        where id = #{id}
+	</select>
+	
+    <insert id="insertSysDataSource" parameterType="SysDataSource" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_data_source(
+            <if test="name != null and name != ''">name,</if>
+            <if test="dbType != null and dbType != ''">db_type ,</if>
+            <if test="oracleConnMode != null and oracleConnMode != ''">oracle_conn_mode,</if>
+            <if test="serviceNameOrSid != null and serviceNameOrSid != ''">service_name_or_sid,</if>
+            <if test="host != null and host != ''">host,</if>
+            <if test="port != null and port != ''">port,</if>
+            <if test="username != null and username != ''">username,</if>
+            <if test="password != null">password,</if>
+            <if test="schemaName != null">schema_name,</if>
+            create_time
+        )values(
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="dbType != null and dbType != ''">#{dbType},</if>
+            <if test="oracleConnMode != null and oracleConnMode != ''">#{oracleConnMode},</if>
+            <if test="serviceNameOrSid != null and serviceNameOrSid != ''">#{serviceNameOrSid},</if>
+            <if test="host != null and host != ''">#{host},</if>
+            <if test="port != null and port != ''">#{port},</if>
+            <if test="username != null and username != ''">#{username},</if>
+            <if test="password != null">#{password},</if>
+            <if test="schemaName != null">#{schemaName},</if>
+            strftime('%Y-%m-%d %H:%M:%S', 'now', 'localtime')
+        )
+    </insert>
+    
+	<update id="updateSysDataSource" parameterType="SysDataSource">
+        update sys_data_source
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="dbType != null and dbType != ''">db_type = #{dbType},</if>
+            <if test="oracleConnMode != null and oracleConnMode != ''">oracle_conn_mode = #{oracleConnMode},</if>
+            <if test="serviceNameOrSid != null and serviceNameOrSid != ''">service_name_or_sid = #{serviceNameOrSid},</if>
+            <if test="host != null and host != ''">host = #{host},</if>
+            <if test="port != null and port != ''">port = #{port},</if>
+            <if test="username != null and username != ''">username = #{username},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+            <if test="schemaName != null and schemaName != ''">schema_name = #{schemaName},</if>
+            update_time = strftime('%Y-%m-%d %H:%M:%S', 'now', 'localtime')
+        </set>
+        where id = #{id}
+    </update>
+    
+    <delete id="deleteSysDataSourceByIds" parameterType="Long">
+        delete from sys_data_source where id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach> 
+    </delete>
+</mapper> 

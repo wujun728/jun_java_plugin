@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+<th:block th:include="include :: header('导入表结构错误')" />
+</head>
+<body class="gray-bg">
+	<div class="text-center animated fadeInDown">
+		<div class="row">
+			<div class="col-sm-12">
+				<div style="background-color: #FFEBCD; height: 50px; padding-left: 14px; color: #CD853F; border: 0.8px solid #FFDEAD; padding-top: 2%;">请先设置数据源再进行导入表结构
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block th:include="include :: footer" />
+	<script type="text/javascript">
+		function submitHandler() {
+			$.modal.close();
+		}
+	</script>
+</body>
+</html>

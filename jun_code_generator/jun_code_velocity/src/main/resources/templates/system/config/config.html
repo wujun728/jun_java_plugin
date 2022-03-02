@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<th:block th:include="include :: header('修改参数')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-config-edit" th:object="${config}">
+            <input id="configId" name="configId" th:field="*{configId}"  type="hidden">
+            <div class="form-group">	
+                <label class="col-sm-3 control-label">作者：</label>
+                <div class="col-sm-8">
+                    <input id="author" name="author" th:field="*{author}" class="form-control" type="text" required>
+                </div>
+            </div>
+            <div class="form-group">	
+                <label class="col-sm-3 control-label">包名：</label>
+                <div class="col-sm-8">
+                    <input id="packageName" name="packageName" th:field="*{packageName}" class="form-control" type="text" required>
+                </div>
+            </div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">去除表前缀：</label>
+				<div class="col-sm-8">
+				    <div class="radio-box">
+						<input type="radio" id="rd1" name="autoRemovePre" value="1" th:field="*{autoRemovePre}"><label for="rd1">是</label>
+					</div>
+					<div class="radio-box">
+						<input type="radio" id="rd2" name="autoRemovePre" value="0" th:field="*{autoRemovePre}"><label for="rd2">否</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">	
+                <label class="col-sm-3 control-label">表前缀：</label>
+                <div class="col-sm-8">
+                    <input id="tablePrefix" name="tablePrefix" th:field="*{tablePrefix}" class="form-control" type="text" required>
+                </div>
+            </div>
+    	</form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script type="text/javascript">
+	    var prefix = ctx + "system/config";
+	    
+	    $("#form-config-edit").validate({
+	    	onkeyup: false,
+	        focusCleanup: true
+	    });
+	    
+	    function submitHandler() {
+	        if ($.validate.form()) {
+	        	$.operate.save(prefix + "/save", $('#form-config-edit').serialize());
+	        }
+	    }
+    </script>
+</body>
+</html>
