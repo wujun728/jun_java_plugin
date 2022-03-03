@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baomidou.springwind.mapper.PermissionMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 id, pid, title, type, state, sort, url, permCode, icon, description
+	</sql>
+
+	<select id="selectMenuByUserId" resultType="MenuVO">
+		SELECT id, title, url, permCode, icon FROM permission p RIGHT JOIN
+		(SELECT DISTINCT r.pid FROM role_permission r WHERE EXISTS (
+		SELECT 1 FROM user_role u WHERE u.uid=#{userId} AND r.rid=u.rid )) a ON p.id=a.pid
+		WHERE p.pid = #{pid} AND type=0 ORDER BY sort
+	</select>
+
+	<select id="selectAllByUserId" resultType="Permission">
+		SELECT id, title, url, permCode, icon FROM permission p RIGHT JOIN
+		(SELECT DISTINCT r.pid FROM role_permission r WHERE EXISTS (
+		SELECT 1 FROM user_role u WHERE u.uid=#{userId} AND r.rid=u.rid )) a ON p.id=a.pid
+	</select>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE struts PUBLIC 
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+        "http://struts.apache.org/dtds/struts-2.0.dtd"> 
+<struts>
+	<package name="role" extends="default"> 
+	    <action name="roleAction" class="roleAction"> 
+	    	<result name="toUpdate" type="redirect-action">
+	    	    <param name="actionName">roleAction</param>
+	    		<param name="method">toAddOrUpdateRole</param>
+	    		<param name="roleVO.roleId">${roleVO.roleId}</param>
+	    		<param name="roleVO.flage">update</param>
+	    		<param name="roleVO.forwardWay">redirect</param>
+	    	</result> 
+	    	<result name="toAdd" type="redirect-action">
+	    	    <param name="actionName">roleAction</param>
+	    		<param name="method">toAddOrUpdateRole</param>
+	    		<param name="roleVO.flage">add</param>
+	    		<param name="roleVO.forwardWay">redirect</param>
+	    	</result> 
+	    	<result name="toSearch" type="redirect-action">
+	    	    <param name="actionName">roleAction</param>
+	    		<param name="method">findAllRoles</param>
+	    		<param name="roleVO.forwardWay">dispatcher</param>
+	    	</result> 
+	    	<result name="toGrant" type="redirect-action">
+	    	    <param name="actionName">roleAction</param>
+	    		<param name="method">toGrantResource</param>
+	    		<param name="roleVO.roleId">${roleVO.roleId}</param>
+	    	</result> 
+	    	<result name="update">role/addOrUpdateRole.jsp</result> 
+	    	<result name="add">role/addOrUpdateRole.jsp</result>
+	    	<result name="list">role/roleList.jsp</result>
+	    	<result name="detail">role/roleDetail.jsp</result>
+	    	<result name="grant">role/grantResource.jsp</result>
+	    	<interceptor-ref name="defaultStack"></interceptor-ref>
+	    </action>  
+	</package>
+</struts>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.chenlin.dp</groupId>
+        <artifactId>dp-gen</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <artifactId>dp-web</artifactId>
+    <packaging>war</packaging>
+    <name>dp-web Maven Webapp</name>
+    <url>http://chenlintech.com</url>
+    <description>代码生成器WEB</description>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>net.chenlin.dp</groupId>
+            <artifactId>dp-orm</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.chenlin.dp</groupId>
+            <artifactId>dp-generator</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>dp-gen</finalName>
+    </build>
+
+</project>

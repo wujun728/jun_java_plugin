@@ -1,0 +1,51 @@
+package ${package}.${module}.manager;
+
+import java.util.List;
+
+import net.chenlin.dp.common.entity.Page;
+import net.chenlin.dp.common.entity.Query;
+import ${package}.${module}.entity.${className}Entity;
+
+/**
+ * ${comments}
+ * @author ${author}<${email}>
+ */
+public interface ${className}Manager {
+
+    /**
+	 * 分页查询
+	 * @param page
+	 * @param search
+	 * @return
+	 */
+	List<${className}Entity> list${className}(Page<${className}Entity> page, Query search);
+
+    /**
+     * 新增
+     * @param ${objName}
+     * @return
+     */
+	int save${className}(${className}Entity ${objName});
+
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
+	${className}Entity get${className}ById(Long id);
+
+    /**
+     * 修改
+     * @param ${objName}
+     * @return
+     */
+	int update${className}(${className}Entity ${objName});
+
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+	int batchRemove(Long[] id);
+	
+}

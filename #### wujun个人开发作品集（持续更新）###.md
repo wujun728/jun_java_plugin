@@ -123,22 +123,13 @@ Java基础系开发组件，代码生成器&开发模板，基于freemarker及Me
 【Bootstrap框架】[前端响应式CSS/HTML框架](https://github.com/wujun728/jun_frontend)
 【Vue框架】[前端、构建用户界面的渐进式JavaScript框架](https://github.com/wujun728/jun_frontend)
 
-2011/08~2013/6
-中航油税务管理系统、众环海华OA、众环海华ERP系统，担任项目开发
-开发工程师
-2013/07~2016/11
-武汉农商ECIF，武汉农商CRM，长沙银行新报表平台，浦发银行PIMS系统，上海银行数据标准管理系统，前后担任开发、PL，PM等角色，负责需求分析、开发及业务实现，项目管理等工作
-开发PL
-2016/12~2018/02
-担任华为HTM项目PM、SE，负责项目需求跟踪、分析、项目进度管理、人员管理、风险质量管理、输出IT方案及具体代码实现等工作
-PM、SE
-2018/03~至今
-担任华为DTP项目SE、PM，负责项目整体需求分析、业务交付、整体人员能力提升、聚焦团队建设工作及版本交付等
-PM、SE
 
- 
 
 产品清单：上传服务器发布
+1、清理jun_android仓库，并重置仓库
+2、jun_api_service，重置仓库
+3、
+
 
 > > jun_code_generator 代码生成器
 > > 为ssh项目写个代码生成器

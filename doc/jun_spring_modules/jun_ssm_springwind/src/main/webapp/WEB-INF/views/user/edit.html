@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSPINIA | Basic Form</title>
+	<link href="#springUrl('/static/css/bootstrap.min.css')" rel="stylesheet">
+	<link href="#springUrl('/static/css/style.css')" rel="stylesheet">
+</head>
+<body class="white-bg">
+<div class="ibox-content" style="width: 430px;">
+   <form id="myForm" class="form-horizontal" autocomplete="off" data-validator-option="{theme:'default'}">
+   	   <input type="hidden" name="id" value="$!{user.id}">
+       <div class="form-group"><label class="col-sm-2 control-label">用户名</label>
+           <div class="col-sm-10">
+           		<input type="text" class="form-control" value="$!{user.loginName}" name="loginName" data-rule="用户名:required;loginName">
+           </div>
+       </div>
+       <div class="hr-line-dashed"></div>
+       <div class="form-group"><label class="col-sm-2 control-label">登录密码</label>
+           <div class="col-sm-10">
+           		<input type="text" class="form-control" name="password" data-rule="登录密码:required;password">
+           </div>
+       </div>
+       <div class="hr-line-dashed"></div>
+        <div class="form-group"><label class="col-sm-2 control-label">用户角色</label>
+            <div class="col-sm-10">
+            <select class="form-control m-b" name="rid">
+            	#foreach($role in $roleList)
+                <option id="$!{role.id}">$!{role.name}</option>
+                #end
+            </select>
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <div class="text-center">
+                <button class="btn btn-primary" type="submit">#if($!{user})修 改#else提 交#end</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="#springUrl('/static/js/jquery-2.1.1.js')"></script>
+<script src="#springUrl('/static/plugins/nice-validator-0.8.1/jquery.validator.js?local=zh-CN')"></script>
+<script type="text/javascript">
+$("#myForm").validator({
+    valid: function(form){
+        var me = this;
+        // 提交表单之前，hold住表单，防止重复提交
+        me.holdSubmit();
+        $.ajax({
+        	url: "#springUrl('/perm/user/editUser')",
+            data: $(form).serialize(),
+            type: "POST",
+            success: function(data){
+            	var d = JSON.parse(data);
+                if(d.success && d.data){
+                	window.parent.location.reload();
+                	//当你在iframe页面关闭自身时
+                	//var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                	//parent.layer.close(index); //再执行关闭   
+                } else {
+                	//失败，提交表单成功后，释放hold，如果不释放hold，就变成了只能提交一次的表单
+                    me.holdSubmit(false);
+                }
+            }
+        });
+    }
+});
+</script>
+</body>
+</html>

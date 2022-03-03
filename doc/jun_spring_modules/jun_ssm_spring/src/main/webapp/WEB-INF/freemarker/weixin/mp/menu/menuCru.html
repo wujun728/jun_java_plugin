@@ -1,0 +1,130 @@
+<#ftl output_format="HTML" auto_esc=true>  <@h.commonHead title="后台管理系统" keywords="开源,永久免费"
+description="springrain开源系统管理后台"/>
+
+
+<script>
+	var _state;
+	jQuery(function(){ 
+		_state="${(returnDatas.queryBean.active)!''}";
+		jQuery("#active").val(_state);
+		/*
+		全选、反选
+		*/
+		jQuery("#checkAll").bind('click',function(){
+			var _is_check=jQuery(this).get(0).checked;
+			jQuery("input[name='check_li']").each(function(_i,_o){
+				jQuery(_o).get(0).checked=_is_check;
+			});
+		});
+	});
+	function del(_id){
+		springrain.mydelete(_id,"${ctx}/system/cms/wxconfig/delete");
+	}
+</script>
+
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+		<!-- 主体内容开始 -->
+		<div class="layui-tab layui-tab-brief">
+			<ul class="layui-tab-title site-demo-title">
+				<li class="layui-this"><i class="layui-icon">&#xe630;</i> <!--网站地图导航-->
+					<span class="layui-breadcrumb" style="visibility: visible;">
+					<a><cite>菜单修改</cite></a>
+					</span>
+				</li>
+			</ul>
+
+			<div class="layui-body layui-tab-content site-demo-body">
+				<div class="layui-tab-item layui-show">
+					<div class="layui-main">
+						<div id="LAY_preview">
+							<table border="1" width="100%" style="border:1px solid #dddddd;">
+								<thead style="height:40px;">
+									<th width="120" style="text-align:center; font-family:'微软雅黑';height:40px;"></th>
+									<th width="200" style="text-align:center; font-family:'微软雅黑';height:40px;font-size:16px;color:#2b7dbc;">菜单名称</th>
+									<th width="200" style="text-align:center; font-family:'微软雅黑';height:40px;font-size:16px;color:#2b7dbc;">触发方式</th>
+									<th style="text-align:center; font-family:'微软雅黑';height:40px;font-size:16px;color:#2b7dbc;">消息关键字</th>
+								</thead>
+								<tbody>
+									<#if returnDatas.data??&&(returnDatas.data?size>0)>
+									<#list returnDatas.data as _data>
+									<tr>
+										<td class="tl pl5" style="padding-left:10px; font-family:'微软雅黑';">主菜单${_data_index+1}</td>				
+										<td style="text-align:center;">
+											<input style="margin:5px;" type="text" name="pname" value="${_data.name!''}" 
+											 pindex="${_data_index+1}" cindex="0" id="${_data.id!''}"/>
+										</td>				
+										<td style="text-align:center;">
+											<select class="ht26 w100" name="ptype" onchange="changeType(this)" 
+											pindex="${_data_index+1}" cindex="0" id="ptype_${_data_index+1}_0">
+												<option value="">==请选择==</option>
+												<#if _data.type??&&_data.type=="click">
+													<option value="click" selected="selected">发送消息</option>
+													<option value="view">自定义链接</option>
+												<#elseif _data.type??&&_data.type=="view">
+													<option value="click">发送消息</option>
+													<option value="view" selected="selected">自定义链接</option>
+												<#else>
+													<option value="click">发送消息</option>
+													<option value="view">自定义链接</option>
+												</#if>
+											</select>
+										</td>				
+										<td>
+											<textarea class="hidedd" id="pclick_${_data_index+1!''}" placeholder="请填写需要发送的消息内容">${_data.keyword!''}</textarea>
+											<textarea class="hidedd" id="pview_${_data_index+1!''}" placeholder="请填写完整的自定义的url">${_data.url!''}</textarea>
+										</td>				
+									</tr>
+										<#if _data.childMenuList??&&(_data.childMenuList?size>0)>
+										<#list _data.childMenuList as _da>
+											<tr>
+												<td class="tr pr5" style="text-align: right;padding-right:10px; font-family:'微软雅黑';">子菜单${_data_index+1}_${_da_index+1}</td>				
+												<td style="text-align:center;">
+													<input style="margin:5px;" type="text" name="cname" value="${_da.name!''}" pid="${_da.pid!''}" 
+													pindex="${_data_index+1}" cindex="${_da_index+1}" id="${_da.id!''}"/>
+												</td>				
+												<td style="text-align:center;">
+													<select style="margin:5px;" class="ht26 w100" name="ctype" onchange="changeType(this)"
+													 pindex="${_data_index+1}" cindex="${_da_index+1}" id="ctype_${_data_index+1}_${_da_index+1}">
+														<option value="">==请选择==</option>
+														<#if _da.type??&&_da.type=="click">
+															<option value="click" selected="selected">发送消息</option>
+															<option value="view">自定义链接</option>
+														<#elseif _da.type??&&_da.type=="view">
+															<option value="click">发送消息</option>
+															<option value="view" selected="selected">自定义链接</option>
+														<#else>
+															<option value="click">发送消息</option>
+															<option value="view">自定义链接</option>
+														</#if>
+													</select>
+												</td>				
+												<td style="text-align:center;">
+													<textarea style="margin:5px;resize: none;" class="hidedd" id="cclick_${_data_index+1}_${_da_index+1}" placeholder="请填写需要发送的消息">${_da.keyword!''}</textarea>
+													<textarea style="margin:5px;resize: none;" class="hidedd" id="cview_${_data_index+1}_${_da_index+1}" placeholder="请填写完整的自定义的url">${_da.url!''}</textarea>
+												</td>				
+											</tr>
+										</#list>
+										</#if>
+									</#list>
+									</#if>
+									<tr>
+										<td colspan="4" style="height:60px;text-align:center;">
+											<input type="button" onclick="submit()" value="提交" style="width:120px; height: 40px;background:#2b7dbc;border:none;color:white;font-size:16px;-moz-border-radius:6px;;border-radius:6px;-webkit-border-radius:6px;" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+</body>
+</html>
+

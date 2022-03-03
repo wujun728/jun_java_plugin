@@ -1,0 +1,53 @@
+#override("title")
+SpringWind 修改头像
+#end
+#override("breadcrumb")
+<li><a>功能管理</a></li><li class="active"><strong>修改头像</strong></li>
+#end
+#override("content")
+<div class="row">
+	<div class="form-group" id="uploadResult">
+		<div style="width:800px;margin: 0 auto;">
+            <div>
+                <p id="swfContainer">本组件需要安装Flash Player后才可使用，请从
+                    <a href="http://www.adobe.com/go/getflashplayer">这里</a>下载安装。
+                </p>
+            </div>
+        </div>
+	</div>
+</div>
+#end
+#override("js")
+<script type="text/javascript" src="#springUrl('/static/plugins/fullAvatarEditor-2.3/scripts/swfobject.js')"></script>
+<script type="text/javascript" src="#springUrl('/static/plugins/fullAvatarEditor-2.3/scripts/fullAvatarEditor.js')"></script>
+<script type="text/javascript">
+swfobject.addDomLoadEvent(function () {
+   var swf = new fullAvatarEditor("#springUrl('/static/plugins/fullAvatarEditor-2.3/fullAvatarEditor.swf')", 
+   		"#springUrl('/static/plugins/fullAvatarEditor-2.3/expressInstall.swf')", "swfContainer", {
+           id : "swf",
+           upload_url : "#springUrl('/sys/upload/file.html')",
+           method : "post",
+           avatar_field_names:'avatar_100.jpg',
+           avatar_sizes : "100*100",
+           src_upload : 0
+       }, function (msg) {
+			//console.log("===msg====" + JSON.stringify(msg));
+           	switch(msg.code) {
+               case 3 :
+                   if(msg.type == 0) {  alert("摄像头已准备就绪且用户已允许使用。"); }
+                   else if(msg.type == 1) { alert("摄像头已准备就绪但用户未允许使用！"); }
+                   else { alert("摄像头被占用！"); }
+               break;
+               case 5 : 
+                   if(msg.type == 0) {
+                       $("#uploadResult").html("上传成功，返回结果:" + JSON.stringify(msg.content));
+                   }
+               break;
+           }
+       }
+   );
+});
+</script>
+#end
+#extends("/common/framework.html")
+

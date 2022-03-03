@@ -1,0 +1,221 @@
+<#ftl output_format="HTML" auto_esc=true> <@h.commonHead title="后台管理系统" keywords="开源,永久免费"
+description="springrain开源系统管理后台"/>
+
+
+<script src="${ctx}/js/validform/validform.min.js"></script>
+<script src="${ctx}/js/ueditor/ueditor.config.js"></script>
+<script src="${ctx}/js/ueditor/ueditor.all.js"></script>
+<script src="${ctx}/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css"
+	media="all">
+<script>
+	 jQuery(function(){
+		 var ue = UE.getEditor('container',{
+			autoHeight: false
+		});
+		 
+		 /*
+		 init_valid(_before,_after)
+		 @_before:提交表单前，调用 的函数   可以为空，一般有validform处理不了，独自进行处理时使用
+		 @_after:保存成功后，调用的函数  可以为空，一般为对应的列表页面
+		 */
+		 springrain.initValid(null,function(){window.location.href="${ctx}/system/cms/content/list?springraintoken="+springraintoken});
+		 
+		 loadChannelList();
+		 
+		 $("#siteId").change(function(){
+			 loadChannelList();
+		 });
+	 });
+	 
+	 function loadChannelList(){
+		 var siteId = $("#siteId").val();
+		 $.ajax({
+			url: '${ctx}/system/cms/content/channelList',
+			type: 'POST',
+			dataType: 'json',
+			data: {siteId: siteId,springraintoken:springraintoken},
+			success:function(ret){
+				if(ret.status=="success"){
+					var htmlStr = '';
+					for(var index in ret.data){
+						var channel = ret.data[index];
+						htmlStr += '<option value="'+channel.id+'">'+channel.name+'</option>';
+					}
+					$("#channelId").html(htmlStr);
+					form.render('select');
+				}else{
+					$("#channelId").html('<option value=""></option>');
+					$("#channelId").val('${channelId!}');
+				}
+			}
+		});
+	 }
+</script>
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+		<!-- 主体内容开始 -->
+		<div class="layui-tab layui-tab-brief">
+			<ul class="layui-tab-title site-demo-title">
+				<li style="float: right;">
+					<button type="button" onclick="history.go(-1)"
+						class="layui-btn layui-btn-small" style="margin-top: 8px;">
+						<i class="layui-icon layui-icon-specil">&#xe603;</i>返回
+					</button>
+				</li>
+			</ul>
+
+			<div class="layui-body layui-tab-content site-demo-body">
+				<div class="layui-tab-item layui-show">
+					<div class="layui-main">
+						<div id="LAY_preview" class="layui-my-form">
+							<header class="larry-personal-tit">
+								<span>添加内容表</span>
+							</header>
+							<div class="larry-personal-body clearfix changepwd">
+								<form id="validForm" class="layui-form" method="post" action="${ctx}/system/cms/content/update">
+									<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}" />
+									<input type="hidden" id="siteId" name="siteId" value="${siteId}" />
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">所属栏目*</label>
+										<div class="layui-inline col-lg-5">
+											 <select name="channelId" id="channelId" lay-verify="required">
+											 	<option value=""></option>
+										      </select>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">标题*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="title" id="title" datatype="*"
+												nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+												class="layui-input" value="${(returnDatas.data.title)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">副标题*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="mintitle" id="mintitle" datatype="*"
+												nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+												class="layui-input"
+												value="${(returnDatas.data.mintitle)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">关键字*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="keywords" id="keywords" datatype="*"
+												nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+												class="layui-input"
+												value="${(returnDatas.data.keywords)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">描述*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="description" id="description"
+												datatype="*" nullmsg="不能为空" errormsg="不能为空！"
+												autocomplete="off" class="layui-input"
+												value="${(returnDatas.data.description)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">内容*</label>
+										<div class="layui-inline col-lg-5">
+											<#noautoesc>
+												<script id="container" name="content" type="text/plain">${(returnDatas.data.content)!'填写内容'}</script>
+											</#noautoesc>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">来源*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="source" id="source" datatype="*"
+												nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+												class="layui-input" value="${(returnDatas.data.source)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">来源地址*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="sourceurl" id="sourceurl"
+												datatype="*" nullmsg="不能为空" errormsg="不能为空！"
+												autocomplete="off" class="layui-input"
+												value="${(returnDatas.data.sourceurl)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">排序*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="sortno" id="sortno"
+												datatype="*" nullmsg="不能为空" errormsg="不能为空！"
+												autocomplete="off" class="layui-input"
+												value="${(returnDatas.data.sourceurl)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">是否可用</label>
+										<div class="layui-inline col-lg-5">
+											 <select name="active" id="active" lay-verify="required">
+											 	<option value="1">可用</option>
+											 	<option value="0">不可用</option>
+										      </select>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">评论开关*</label>
+										<div class="layui-inline col-lg-5">
+										 	<input type="radio" name="commentPerm" value="0" title="不允许评论">
+											<input type="radio" name="commentPerm" value="1" title="允许评论" checked>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">登陆访问*</label>
+										<div class="layui-inline col-lg-5">
+										 	<input type="radio" name="loginuser" value="0" title="不允许匿名访问">
+											<input type="radio" name="loginuser" value="1" title="允许匿名访问"  checked>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<div class="layui-form-item change-submit">
+										<div class="layui-inline">
+											<button type="button" class="layui-btn" id="smtbtn">保存</button>
+											<button type="button" class="layui-btn layui-btn-primary"
+												id="rstbtn">重置</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+</body>
+</html>
+

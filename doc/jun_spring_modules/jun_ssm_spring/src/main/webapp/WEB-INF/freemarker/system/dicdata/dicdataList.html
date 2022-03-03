@@ -1,0 +1,162 @@
+<#ftl output_format="HTML" auto_esc=true> 
+<@h.commonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+<script>
+	var _active="${(returnDatas.queryBean.active)!''}";
+	jQuery(function(){
+		jQuery("#active").val(_active);
+		/*
+		全选、反选
+		*/
+		jQuery("#checkAll").bind('click',function(){
+			var _is_check=jQuery(this).get(0).checked;
+			jQuery("input[name='check_li']").each(function(_i,_o){
+				jQuery(_o).get(0).checked=_is_check;
+			});
+		});
+	});
+	function del(_id){
+		springrain.mydelete(_id,"${ctx}/system/dicdata/${returnDatas.map.typekey}/delete",null);
+	}
+</script>
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /> <@h.leftMenu />
+		<!-- 主体内容开始 -->
+			<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title site-demo-title">
+		             <li style="float:right;">
+		             	<@shiro.hasPermission name="/system/dicdata/${returnDatas.map.typekey}/update" >
+		             		<button type="button" class="layui-btn layui-btn-small" data-action="${ctx}/system/dicdata/${returnDatas.map.typekey}/update/pre"><i class="layui-icon layui-icon-specil">&#xe61f;</i>添加级别</button>
+		             	</@shiro.hasPermission>
+		             	<@shiro.hasPermission name="/system/dicdata/${returnDatas.map.typekey}/list/export" >
+				        	<button type="button" class="layui-btn layui-btn-small"><i class="layui-icon layui-icon-specil">&#xe609;</i>导出</button>
+				        </@shiro.hasPermission>
+		                <button type="button" class="layui-btn layui-btn-warm layui-btn-small"><i class="layui-icon layui-icon-specil">&#xe601;</i>导入</button>
+		                <@shiro.hasPermission name="/system/dicdata/${returnDatas.map.typekey}/delete" >
+		               		 <button type="button" class="layui-btn layui-btn-danger layui-btn-small"><i class="layui-icon">&#xe640;</i>批量删除</button>
+		                </@shiro.hasPermission>
+		             </li>
+	       		</ul>
+	       		<div class="layui-body layui-tab-content site-demo-body">
+					<div class="layui-tab-item layui-show">
+							<div class="layui-main">
+						          <div id="LAY_preview">
+						          <!-- 查询  开始 -->
+							          <form class="layui-form layui-form-pane" id="searchForm" action="${ctx}/system/dicdata/${returnDatas.map.typekey}/list" method="post">
+							          <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}" /> 
+							          <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}" />
+							          <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}" />
+							         <table class="layui-table search-wrap">
+									  	<colgroup>
+										    <col width="">
+										    <col width="150">
+										</colgroup>
+							          	<tbody>
+							          		<tr>
+							          			<th colspan="2">字典搜索</th>
+							          		</tr>
+							          		<tr>
+							          			<td>
+							          				<div class="layui-inline">
+									                    <label class="layui-form-label">名称</label>
+									                    <div class="layui-input-inline">
+									                           <input type="text" name="name" value="${(returnDatas.queryBean.name)!''}" placeholder="请输入名称 " class="layui-input">
+									                    </div>
+							                		</div>
+									                <div class="layui-inline">
+									                    <label class="layui-form-label">编码</label>
+									                    <div class="layui-input-inline">
+									                        <input type="text" name="code" value="${(returnDatas.queryBean.code)!''}" placeholder="请输入编码" class="layui-input">
+									                    </div>
+									                </div>
+									               
+							          			</td>
+							          			<td>
+							          			 	<div class="layui-inline">
+									                    <button class="layui-btn" type="button" onclick="springrain.commonSubmit('searchForm');"><i class="layui-icon" style="top:4px;right:5px;">&#xe615;</i>搜索</button>
+									                </div>
+							          			</td>
+							          		</tr>
+							          	</tbody>
+							          </table>
+		            				  </form>
+								  <!-- 查询  结束 -->
+								  <!--start_export-->
+									<table class="layui-table" lay-even>
+										  <colgroup>
+										    <col width="40">
+										    <col width="120">
+										    <col>
+										  </colgroup>
+										  <!--end_no_export-->
+										  <!--first_start_export-->
+										  <thead>
+										  	<tr>
+										  		<th colspan="9">字典列表<font id='recordsView' class='recorsView'>共<span></span>页 ,共<span></span>条记录</font></th>
+										  	</tr>
+										    <tr>
+										   	  <!--first_start_no_export-->
+										   	  <th class="center">
+										   	  		<label class="position-relative">
+														<input id="checkAll" class="ace" type="checkbox">
+											  		</label>
+											  </th>
+										      <th>操作</th>
+										      <!--first_end_no_export-->
+										      <th id="th_name">名称</th>
+										      <th id="th_code">编码</th>
+										      <th id="th_pid">父级</th>
+										      <th id="th_sortno">排序</th>
+										      <th id="th_remark">备注</th>
+										      <th id="th_active">是否可用</th>
+										      <th id="th_typekey">类别</th>
+										    </tr> 
+										  </thead>
+										  <!--first_end_export-->
+										  <!--start_export-->
+										  <tbody>
+										    <#if (returnDatas.data??)&&(returnDatas.data?size>0)> 
+										    	<#list	returnDatas.data as _data>
+										    		<!--start_no_export-->
+													<tr class="">
+														<td class="center">
+															<label class="position-relative">
+																<input name="check_li" value="${_data.id}" class="ace" type="checkbox"> <span class="lbl"></span>
+															</label>
+														</td>
+														<td>
+															<@shiro.hasPermission name="/system/dicdata/${returnDatas.map.typekey}/update" >
+								                           		 <a data-action="${ctx}/system/dicdata/${returnDatas.map.typekey}/update/pre?id=${(_data.id)!''}" class="layui-btn layui-btn-normal layui-btn-mini">修改</a>
+								                            </@shiro.hasPermission>
+								                            <@shiro.hasPermission name="/system/dicdata/${returnDatas.map.typekey}/delete" >
+								                            	<a href="javascript:del('${(_data.id)!''}')" class="layui-btn layui-btn-danger layui-btn-mini ajax-delete">删除</a>
+								                            </@shiro.hasPermission>
+														</td>
+														<!--end_no_export-->
+														<td>${(_data.name)!''}</td>
+														<td>${(_data.code)!''}</td>
+														<td>${(_data.pid)!''}</td>
+														<td>${(_data.sortno)!''}</td>
+														<td>${(_data.remark)!''}</td>
+														<td>${(_data.active)!''}</td>
+														<td>${(_data.typekey)!''}</td>
+												</#list> 
+											</#if>
+										  </tbody>
+									</table>
+									<#if returnDatas.page??> 
+										<div id='laypageDiv'></div>
+										<@h.layPage page=returnDatas.page /> 
+									</#if>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,427 @@
+<#ftl output_format="HTML" auto_esc=true> <@h.commonHead title="后台管理系统" keywords="开源,永久免费"
+description="springrain开源系统管理后台"/>
+<script type="text/javascript" src="${ctx}/js/ztree/js/jquery.ztree.all-3.5.js"></script>
+<script type="text/javascript" src="${ctx}/js/ztree/js/ztreeUtils.js"></script>
+<script type="text/javascript" src="${ctx}/js/select2/js/select2.full.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/select2/js/i18n/zh-CN.js"></script>
+<script type="text/javascript" src="${ctx}/js/custom/common/select2remote.js"></script>
+<script type="text/javascript" src="${ctx}/js/validform/validform.min.js"></script>
+<link rel="stylesheet" href="${ctx}/js/select2/css/select2.min.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/js/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/css/custom/common/myztree.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css" media="all">
+<style>
+.layui-table tr:hover, .layui-table[lay-even] tr:nth-child(even) {
+    background: none!important;/*#f8f8f8*/
+}
+.layui-table tr td:hover{
+	background: #f8f8f8;
+}
+</style>
+</head>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /> <@h.leftMenu />
+		<!-- 主体内容开始 -->
+			<SCRIPT type="text/javascript">
+				var selectMenuZtree;
+				var menujsondata4select;
+				$(document).ready(function() {
+					$("[name='iconName']").click(function() {
+						$("#menuIcon").val("&#"+$(this).attr("textContent").replace(/(^\s+)|(\s+$)/g,""));
+						jQuery("#imgIcon").html($("#menuIcon").val());
+						layer.closeAll();
+					});
+					/*
+					加载菜单的JSON
+					*/
+					jQuery.post("${ctx}/system/menu/list/all/json",function(_json) {
+						if (_json.status == "success") {
+							menujsondata4select = _json;
+							springrain.tree({
+								'hasMenu':true,
+								'id':'menuListTree',
+								'data':_json.data,
+								'treeNodeClick':function(event, treeId, treeNode){
+									saveType=1;
+									showdata(treeNode);
+								},
+								'btns':[
+								        {'text':'添加子菜单','callback':function(tree,node){
+								    		saveType=0;
+								    		jQuery("#updateForm")[0].reset();
+								    		jQuery("#pname").val(node.name);
+								    		jQuery("#pid").val(node.id);
+								    		jQuery("#imgIcon").html('');
+								    		jQuery("#menuIcon").val('');
+								        }},
+								        {'text':'删除','callback':function(tree,node){
+								    		springrain.confirm('删除这个菜单，是否继续?', function(index) {
+								    			var id = node.id;
+								    			if (!id || id == "") {
+								    				springrain.alert('请选择你要删除的记录!');
+								    				return false;
+								    			} else {
+								    				var _url = "${ctx}/system/menu/delete";
+								    				var listurl = "${ctx}/system/menu/list";
+								    				var data = {
+								    					"id" : id
+								    				};
+								    				springrain.ajaxpostonlayer(_url, listurl, data, '删除菜单成功！');
+								    			}
+								    			layer.close(index);
+								    		});
+								        }}
+								       ]
+							});
+						} else {
+							myalert(_json.message);
+						}
+					});
+				});
+				/*
+				点击时的数据展示
+				*/
+				function showdata(result) {
+					$("#updateForm select ").each(
+							function() {
+								$(this).find('option:first').attr('selected',
+										'selected');
+							});
+					//console.log(result);
+					for ( var s in result) {
+						set_val(s, result[s]);
+					}				
+					var _pid = result["pid"];
+					if ((!_pid) || _pid == null || _pid == "null" || _pid == "") {
+						jQuery("#pid").val("");
+					} else {
+						jQuery("#pid").val(_pid);
+					}
+					var _imgIcon=result["menuIcon"];
+					if ((!_imgIcon) || _imgIcon == null || _imgIcon == "null" || _imgIcon == "") {
+					}else{
+						jQuery("#imgIcon").html(_imgIcon);
+					}
+					var _pNode = result.getParentNode();
+					if (_pNode) {
+						jQuery("#pname").val(_pNode["name"]);
+					} else {
+						jQuery("#pname").val("");
+					}
+
+				}
+				/*
+				保存  0添加   1更新
+				*/
+				var saveType=0;
+				function dosubmit() {
+					var msg = "菜单添加成功！";
+					if (saveType == 1) {
+						msg = "菜单更新成功！";
+					}
+					var listurl = '${ctx}/system/menu/list';
+					if (saveType == 0) {
+						springrain.commonSaveForm("updateForm",listurl, '菜单添加成功！');
+					} else {
+						springrain.commonUpdateForm("updateForm",listurl, '菜单更新成功！');
+					}
+				}
+				/*
+				点击父级
+				*/
+				function showMenuZTree() {
+					if (!selectMenuZtree) {
+						selectMenuZtree=springrain.tree({
+							'hasMenu':false,
+							'id':'menuZtree',
+							'data':menujsondata4select.data,
+							'treeNodeClick':function(event, treeId, treeNode){
+								debugger;
+								jQuery("#pname").val(treeNode.name);
+								jQuery("#pid").val(treeNode.id);
+							}
+						});
+						//selectMenuZtree=$.fn.zTree.init($("#menuZtree"), menuSelectSetting,menujsondata4select.data);
+						//selectMenuZtree = $.fn.zTree.getZTreeObj("menuZtree");
+						selectMenuZtree.expandAll(true);
+						selectZtreeOneNode(jQuery("#pid").val(), "menuZtree");
+					}
+					//页面层-自定义
+					layer.open({
+						shadeClose : true,
+						closeBtn : 1,
+						btn : [ '确定' ], //按钮
+						type : 1,
+						title : "选择父菜单",
+						area : [ '600px', '400px' ], //宽高
+						//shadeClose: true,
+						content : $("#div_menuZtree")
+					});
+				}
+				/*
+				改变图标 
+				*/
+				function changeIcon() {
+					//页面层-自定义
+					layer.open({
+						shadeClose : true,
+						closeBtn : 1,
+						btn : [ '确定' ], //按钮
+						type : 1,
+						title : "选择图标",
+						skin : 'layui-layer-rim', //加上边框
+						area : [ '780px', '400px' ], //宽高
+						//shadeClose: true,
+						content : $("#icon_wrap")
+					});
+
+				}
+				/*
+				清空父级
+				*/
+				function delParent(){
+					if(jQuery("#pid").val()==null||jQuery("#pid").val()==""){
+						springrain.msg("没有要清空的数据",5);
+						return;
+					}
+					jQuery("#pname").val('');
+					jQuery("#pid").val('');
+					springrain.msg("清除成功，保存生效",null);
+				}
+			</SCRIPT>
+<body>
+			<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title site-demo-title">
+	       		</ul>
+				<div class="layui-body layui-tab-content site-demo-body">
+					<div class="layui-tab-item layui-show">
+						<div class="layui-main">
+							<div class="container-fluid" style="overflow:hidden;">
+								<div class="row">
+									<div class="fl per30" style="min-width:360px">
+										<ul id="menuListTree" class="ztree"></ul>
+									</div>
+									<div class="fl per60 rlt">
+										<div class="fl line-vertical"></div>
+										<form id="updateForm" name="updateForm" action="${ctx}/system/menu/update" method="post" class="layui-form">
+											<input type="hidden" name="id" id="id">
+											<div class="layui-form-item  col-lg-9">
+											    <label class="layui-form-label col-lg-3">名称*</label>
+											    <div class="layui-inline">
+											      <input type="text" id="name" name="name" datatype="*" nullmsg="名称不能为空" required  lay-verify="required" placeholder="请输入菜单名称" autocomplete="off" class="layui-input">
+											    </div>
+											    <div class="layui-inline valid-info"></div>
+										  	</div>
+										  	
+											<div class="layui-form-item  col-lg-9">
+											    <label class="layui-form-label col-lg-3">地址</label>
+											    <div class="layui-input-inline col-lg-6">
+											      <input type="text" id="pageurl" name="pageurl" placeholder="请输入菜单链接地址" autocomplete="off" class="layui-input">
+											    </div>
+										  	</div>
+										  	
+											<div class="layui-form-item  col-lg-9">
+											    <label class="layui-form-label col-lg-3">父级</label>
+											    <div class="layui-inline  col-lg-3">
+											      <input type="text" name="pname" id="pname" readonly="readonly" class="layui-input" onclick="showMenuZTree();">
+											      <input name="pid" id="pid" type="hidden" msg="请选择父节点" check="require" /> 
+											    </div>
+											    <div class="layui-inline  col-lg-2">
+											    	 <button type="button" onclick="delParent()" class="layui-btn layui-btn-normal">清空父级</button>
+											    </div>
+										  	</div>
+											
+											<div class="layui-form-item  col-lg-9">
+												<label class="layui-form-label col-lg-3"></label>
+												<div class="layui-inline  col-lg-6">
+													说明：清空父级后做为顶级存在
+												</div>
+											</div>
+											<div class="layui-form-item  col-lg-9">
+											    <label class="layui-form-label col-lg-3">类型</label>
+											    <div class="layui-input-inline">
+											      <select name="menuType" id="menuType" lay-verify="required">
+											        <option value="0">按钮资源</option>
+													<option value="1">导航菜单</option>
+											      </select>
+											    </div>
+										  	</div>
+				
+											
+											<div class="layui-form-item  col-lg-9">
+											    <label class="layui-form-label col-lg-3">图标</label>
+											    <div class="layui-input-inline">
+											      	<input type="hidden" name="menuIcon" id="menuIcon" readonly="readonly" class="layui-input"  readonly="readonly">
+											      	<button type="button" onclick="changeIcon()" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe64c;</i>选择图标</button>
+											    	<i class="layui-icon" id="imgIcon"></i>
+											    </div>
+										  	</div>
+										  	
+											<div class="layui-form-item  col-lg-9">
+											    <label class="layui-form-label col-lg-3">排序</label>
+											    <div class="layui-input-inline">
+											      <input type="text" id="sortno" name="sortno" class="layui-input">
+											    </div>
+										  	</div>
+											
+											
+											<div class="layui-form-item  col-lg-9">
+											    <label class="layui-form-label col-lg-3">是否可用</label>
+											    <div class="layui-input-inline">
+											      <select name="active" id="active">
+											        	<option value="1">是</option>
+														<option value="0">否</option>
+											      </select>
+											    </div>
+										  	</div>
+											
+											<div class="layui-form-item layui-form-text   col-lg-9">
+											    <label class="layui-form-label col-lg-3">备注</label>
+											    <div class="layui-input-inline col-lg-6">
+											      <textarea name="description" id="description" placeholder="请输入内容" class="layui-textarea"></textarea>
+											    </div>
+											</div>
+											<div class="layui-form-item change-submit  col-lg-9">
+															<label class="layui-form-label  col-lg-3"></label>
+															<div class="layui-inline  col-lg-6">
+																<button type="button" class="layui-btn"   onclick="dosubmit();" id="smtbtn">保存</button>
+															</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 功能操作区域结束 -->
+			<!-- 列表显示区域  -->
+		<!-- 主体内容结束 -->
+		<@h.footer />
+</div>
+<div id="div_menuZtree" style='display:none;'>
+				<ul id="menuZtree" class="ztree"></ul>
+</div>
+<table class="layui-table display-n ml15 w-auto " lay-skin="nob" id="icon_wrap">
+	  <colgroup>
+	    <col width="55">
+	    <col width="55">
+	    <col width="55">
+	    <col width="55">
+	    <col width="55">
+	    <col width="55">
+	    <col width="55">
+	    <col width="55">
+	    <col width="55">
+	    <col width="55">
+	    <col width="55">
+	    <col width="55">
+	  </colgroup>
+	  <tbody>
+	      <tr>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe611;">&#xe611;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe614;">&#xe614;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="x1002;">&#x1002;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe60f;">&#xe60f;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe615;">&#xe615;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe641;">&#xe641;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe620;">&#xe620;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe628;">&#xe628;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="x1006;">&#x1006;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="x1007;">&#x1007;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe629;">&#xe629;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe600;">&#xe600;</i>  </td>
+			</tr>
+			<tr>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe617;">&#xe617;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe606;">&#xe606;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe609;">&#xe609;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe60a;">&#xe60a;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe62c;">&#xe62c;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="x1005;">&#x1005;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe61b;">&#xe61b;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe610;">&#xe610;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe62d;">&#xe62d;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe63d;">&#xe63d;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe602;">&#xe602;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe603;">&#xe603;</i>  </td>
+			</tr>
+			<tr>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe62e;">&#xe62e; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe62f;">&#xe62f; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe61f;">&#xe61f; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe601;">&#xe601;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe630;">&#xe630; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe631;">&#xe631; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe642;">&#xe642; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe61a;">&#xe61a; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe621;">&#xe621; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe632;">&#xe632; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe618;">&#xe618;</i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe608;">&#xe608; </i>  </td>
+			</tr>
+			<tr>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe633;">&#xe633; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe61c;">&#xe61c; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe634;">&#xe634; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe607;">&#xe607; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe635;">&#xe635; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe636;">&#xe636; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe60b;">&#xe60b; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe619;">&#xe619; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe637;">&#xe637; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe61d;">&#xe61d; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe640;">&#xe640; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe604;">&#xe604; </i>  </td>
+			</tr>
+			<tr>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe612;">&#xe612; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe605;">&#xe605; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe638;">&#xe638; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe60c;">&#xe60c; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe616;">&#xe616; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe613;">&#xe613; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe61e;">&#xe61e; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe60d;">&#xe60d; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe64c;">&#xe64c; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe60e;">&#xe60e; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe622;">&#xe622; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe64f;">&#xe64f; </i>  </td>
+			</tr>
+			<tr>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe64d;">&#xe64d; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe639;">&#xe639; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe63e;">&#xe63e; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe623;">&#xe623; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe63f;">&#xe63f; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe643;">&#xe643; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe647;">&#xe647; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe648;">&#xe648; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe649;">&#xe649; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe626;">&#xe626; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe627;">&#xe627; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe62b;">&#xe62b; </i>  </td>
+			</tr>
+			<tr>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe63a;">&#xe63a; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe624;">&#xe624; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe63b;">&#xe63b; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe650;">&#xe650; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe64b;">&#xe64b; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe63c;">&#xe63c; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe62a;">&#xe62a; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe64e;">&#xe64e; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe646;">&#xe646; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe625;">&#xe625; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe64a;">&#xe64a; </i>  </td>
+			  <td><i name="iconName" class="layui-icon" style="font-size: 30px;cursor:pointer; color: #1E9FFF;" textContent="xe644;">&#xe644; </i>  </td>
+			</tr>
+		
+	  </tbody>
+	</table>
+	
+</body>
+</html>
+

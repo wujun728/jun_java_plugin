@@ -1,0 +1,45 @@
+.ztree * {font-size: 10pt;font-family:"Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial}
+.ztree li ul{ margin:0; padding:0}
+.ztree li {line-height:30px;position:relative;}
+.ztree li a {width:300px;height:30px;padding-top: 0px;}
+.ztree li a:hover {text-decoration:none; background-color: #eff0f1;}
+.ztree li a span:not(.button){width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align: middle;}
+ 
+.ztree li a.curSelectedNode {background-color:#C4DDF9;border:0;height:30px;}
+.ztree li span {line-height:30px;}
+.ztree li span.button {margin-top: -7px;}
+.ztree li span.button.switch {width: 16px;height: 16px;background:none;position:relative;font-family: layui-icon!important;font-size: 16px;font-style: normal;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+.ztree li span.button.switch:before{position:absolute;top:14px;right:-14px;}
+.ztree li span.button.switch:after{position:absolute;top:14px;}
+.ztree li a.level0 span {font-size: 16px;}
+.ztree li span.button {position:relative;font-family: layui-icon!important;font-size: 16px;font-style: normal;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+.ztree li span.button:not(.ztree li span.chk){background:none;}
+.ztree li span.button:after{position:absolute;top:12px;}
+
+.ztree li span.button:before{position:absolute;top:12px;right:-14px;}
+.ztree li span.button.level1:before{top:13px!important;right:-14px;}
+.ztree li span.button.level1:after{top:14px!important;}
+.ztree li span.button.switch.level0 {width: 20px; height:20px}
+.ztree li span{margin-left:14px;}
+.ztree li .level1 span{margin-left:10px;}
+.ztree li .level2 span{margin-left:10px;}
+.ztree li span.button.switch.level1 {width: 20px; height:20px;}
+
+
+.ztree li span.button.noline_open:after {content:"\e625";}
+.ztree li span.button.noline_close:after {content:"\e623";}
+
+.ztree li span.button.noline_open:before {content:"\e624";}
+.ztree li span.button.noline_close:before {content:"\e622";}
+
+.ztree li span.button.noline_docu:after{content:"\e621";top:10px;right:-14px;}
+
+/*多选 */
+/*树形结构的东西*/
+.ztree li a{position:relative;z-index:0}
+.add_div{background:#D4D4D4;margin-top:10px;position:absolute;width:140px;right:0px;top:20px;z-index: 99999;padding:6px 0px;
+background:#fff;border:1px solid #d3d3d3;box-shadow:2px 2px 5px #d3d3d3;border-radius: 2px;}
+.add_div a{display:block!important;text-align:left;width:110px!important;z-index: 99999;padding:4px 15px;}
+.add_div a:hover{background:#d3d3d3;}
+.myctrwrap{background:url("../../../img/narrow.png");z-index:99999;width:14px!important;height:14px!important;top:8px!important;position:absolute!important;right:4px;position:relative;}
+.ztree li a.curSelectedNode{opacity:1!important;}

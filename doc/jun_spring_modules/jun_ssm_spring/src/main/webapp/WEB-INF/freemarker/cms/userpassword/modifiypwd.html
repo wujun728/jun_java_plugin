@@ -1,0 +1,133 @@
+<#ftl output_format="HTML" auto_esc=true> 
+<@h.siteCommonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+<script src="${ctx}/js/validform/validform.min.js"></script>
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css" media="all">
+<SCRIPT type="text/javascript">
+var _flag=false;
+var siteId;
+jQuery(document).ready(function(){
+	siteId=$.cookie('defaultSiteId');
+	jQuery("#validForm").attr("action",jQuery("#validForm").attr("action").replace("{siteId}",siteId));
+	var _userId=jQuery("#id").val();
+	if(_userId==null||_userId==""){
+		springrain.alert('数据有问题，正在返回主页');
+		setTimeout(function(){
+			exit("${siteId!}");//退出
+		},2000);
+	}
+	jQuery("#oldpassword").bind('blur',function(){
+		var _val=jQuery.trim(jQuery(this).val());
+		if(_val==null||_val==""){
+			springrain.alert('原始密码不能为空');
+			return;
+		}
+		
+		jQuery.ajax({
+			url:"${ctx}/s/password/"+siteId+"/modifiypwd/ispwd",
+			type:"post",
+			dataType:"json",
+			data:{'pwd':_val},
+			success:function(data){
+				if(data.msg=="0"){
+					jQuery("#info").removeClass("Validform_right").addClass("Validform_wrong").removeClass("Validform_checktip");
+					jQuery('#info').html('原始密码错误');
+				}else if(data.msg=="-1"){
+					springrain.alert(data.msgbox);
+					setTimeout(function(){
+						exit("${siteId!}");//退出
+					},2000);
+				}else{
+					_flag=true;
+					jQuery("#info").removeClass("Validform_wrong").addClass("Validform_right").addClass("Validform_checktip");
+					jQuery('#info').html('原始密码正确');
+				}
+			}
+			
+		});
+	});
+	jQuery("#smtbtn").bind('click',function(){
+		if(!_flag){
+			springrain.alert("原始密码不正确。");
+			return false;
+		}
+		springrain.commonUpdateForm("validForm", null, null, function(data){
+			if("success"==data.status){
+				springrain.alert(data.message);
+				setTimeout(function(){
+					exit("${siteId!}",true);//退出
+				},2000);
+			}else{
+				springrain.alert(data.message);
+			}
+		});
+	});
+	
+});
+</SCRIPT>
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /> <@h.leftMenu />
+		<!-- 主体内容开始 -->
+			<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title site-demo-title">
+		            <li class="layui-this">
+		             		<span class="layui-breadcrumb" style="visibility: visible;">
+							</span>
+		            </li>
+		             <li style="float:right;">
+				        <button type="button" onclick="history.go(-1)" class="layui-btn layui-btn-small" style="margin-top:8px;"><i class="layui-icon layui-icon-specil">&#xe603;</i>返回</button>
+		             </li>
+	       		</ul>
+	       		<div class="layui-body layui-tab-content site-demo-body">
+					<div class="layui-tab-item layui-show">
+							<div class="layui-main">
+						          <div id="LAY_preview" class="layui-my-form">
+						          				<header class="larry-personal-tit">
+													<span>修改密码</span>
+												</header>
+												<!-- /header -->
+												<div class="larry-personal-body clearfix changepwd">
+													<form id="validForm" class="layui-form"  method="post" action="${ctx}/s/password/{siteId}/modifiypwd/save">
+														<input type="hidden" id="id" name="id" value="${returnDatas.data.id}"> 
+													 	<div class="layui-form-item col-lg-6">
+															<label class="layui-form-label">原始密码*</label>
+															<div class="layui-inline col-lg-5">  
+															  	<input type="text" id="oldpassword" name="oldpassword" datatype="*" nullmsg="不能为空" errormsg="不能为空！" autocomplete="off" class="layui-input">
+															</div>
+															<div class="layui-inline valid-info" id='info'></div>
+														</div>
+														<div class="layui-form-item col-lg-6">
+															<label class="layui-form-label">新密码*</label>
+															<div class="layui-inline">  
+															  	<input type="password" id='password' name="newpwd" datatype="*" nullmsg="不能为空" errormsg="不能为空！" autocomplete="off" class="layui-input">
+															</div>
+															<div class="layui-inline valid-info"></div>
+														</div>
+														 <div class="layui-form-item col-lg-6">
+															<label class="layui-form-label">重复新密码*</label>
+															<div class="layui-inline">  
+															  	<input type="password" id="repassword" name="renewpwd" datatype="*" nullmsg="不能为空" errormsg="不能为空！" autocomplete="off" class="layui-input">
+															</div>
+															<div class="layui-inline valid-info"></div>
+														</div>
+														<div class="layui-form-item change-submit  col-lg-6">
+															<label class="layui-form-label"></label>
+															<div class="layui-inline">
+																<button type="button" class="layui-btn" id="smtbtn">保存</button>
+															</div>
+														</div>
+													</form>
+												</div>
+								  </div>
+							</div>
+					</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>DP-GEN代码生成器</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="statics/css/bootstrap.min.css">
+<link rel="stylesheet" href="statics/css/font-awesome.min.css">
+<link rel="stylesheet" href="statics/css/style.min.css">
+<link rel="stylesheet" href="statics/css/common.min.css">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper" id="dpLTE" v-cloak>
+		<header class="main-header">
+			<a href="javascript:void(0);" class="logo"> <span
+				class="logo-mini"><b>DP</b></span> <span class="logo-lg"><b>DP-GEN</b></span>
+			</a>
+			<nav class="navbar navbar-static-top" role="navigation">
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<li><a href="index.html">
+							<i class="fa fa-home"></i> &nbsp;首页</a></li>
+						<li><a href="javascript:;" @click="code"><i
+								class="fa fa-archive"></i> &nbsp;生成代码</a></li>
+						<li><a href="http://dp-dev.mydoc.io/" target="_blank"><i
+								class="fa fa-paper-plane"></i> &nbsp;项目文档</a></li>
+						<li><a href="http://www.chenlintech.com/" target="_blank"><i
+								class="fa fa-info-circle"></i> &nbsp;关于作者</a></li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<!-- 路径导航 -->
+		<div class="content-wrapper" style="margin-left:0px;">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<ol class="breadcrumb" id="nav_title"
+					style="position: static; float: none;">
+					<li class="active"><i class="fa fa-home"
+						style="font-size: 20px; position: relative; top: 2px; left: -3px;"></i>
+						&nbsp; 首页</li>
+					<li class="active">{{navTitle}}</li>
+				</ol>
+			</section>
+
+			<!-- 主界面 -->
+			<section class="content" style="background: #fff;">
+				<iframe scrolling="yes" frameborder="0"
+					style="width: 100%; min-height: 200px; overflow: visible; background: #fff;"
+					:src="main" id="main" name="main"></iframe>
+			</section>
+		</div>
+
+		<footer class="main-footer" style="margin-left:0px;">
+			<div class="pull-right hidden-xs">Version 1.0.0</div>
+			Copyright &copy; 2017 <a href="http://www.chenlintech.com"
+				target="_blank">www.chenlintech.com</a> All Rights Reserved
+		</footer>
+
+		<div class="control-sidebar-bg"></div>
+		
+	</div>
+
+	<script src="statics/libs/jquery.min.js"></script>
+	<script src="statics/libs/vue.min.js"></script>
+	<script src="statics/libs/bootstrap.min.js"></script>
+	<script src="statics/plugins/layer/layer.js"></script>
+	<script src="statics/js/common.js"></script>
+	<script src="statics/js/index.js"></script>
+</body>
+</html>

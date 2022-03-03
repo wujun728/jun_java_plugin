@@ -1,0 +1,268 @@
+<#ftl output_format="HTML" auto_esc=true> <@h.commonHead title="后台管理系统" keywords="开源,永久免费"
+description="springrain开源系统管理后台"/>
+<script type="text/javascript" src="${ctx}/js/ztree/js/jquery.ztree.all-3.5.js"></script>
+<script type="text/javascript" src="${ctx}/js/ztree/js/ztreeUtils.js"></script>
+<script type="text/javascript" src="${ctx}/js/select2/js/select2.full.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/select2/js/i18n/zh-CN.js"></script>
+<script type="text/javascript" src="${ctx}/js/validform/validform.min.js"></script>
+<link rel="stylesheet" href="${ctx}/js/select2/css/select2.min.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/js/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/css/custom/common/myztree.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css" media="all">
+
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /> <@h.leftMenu />
+		<!-- 主体内容开始 -->
+			<SCRIPT type="text/javascript">
+				var _valid_form;
+				var selectOrgZtree;
+				var orgjsondata4select;
+				$(document).ready(function() {
+					jQuery.post("${ctx}/system/org/list/json",function(_json) {
+						if (_json.status == "success") {
+							orgjsondata4select = _json;
+							var zTree=springrain.tree({
+								id:"orgListTree",
+								hasMenu:true,
+								data:_json.data,
+								treeNodeClick:function(event, treeId, treeNode){
+									saveType=1;
+									springrain.resetForm(_valid_form);
+									showdata(treeNode);
+								},
+								btns:[
+								        {'text':'添加子部门','callback':function(tree,node){
+								    		saveType=0;
+								    		jQuery("#validForm")[0].reset();
+								    		jQuery("#pname").val(node.name);
+								    		jQuery("#pid").val(node.id);
+								        }},
+								        {'text':'删除','callback':function(tree,node){
+								    		var id = node.id;
+											if (!id || id == "") {
+												springrain.alert("请选择你要删除的记录");
+												return;
+											} else {
+												var _url = "${ctx}/system/org/delete?id=" + id;
+												var listurl = "${ctx}/system/org/list";
+												springrain.mydelete(id, _url, "部门下的子部门也会被删除,确定要删除部门?", listurl);
+											}
+								        }}
+								       ]
+							})
+							zTree.expandAll(true);
+							 
+						} else {
+							myalert(_json.message);
+						}
+					});
+				});
+				function showdata(result) {
+					$("#btn_add").hide();
+					$("#btn_update").show();
+					$("#btn_delete").show();
+					$("#btn_reload").show();
+					for ( var s in result) {
+						set_val(s, result[s]);
+					}
+					var _pid = result["pid"];
+					if ((!_pid) || _pid == null || _pid == "null" || _pid == "") {
+						jQuery("#pid").val("");
+					} else {
+						jQuery("#pid").val(_pid);
+					}
+					var _pNode = result.getParentNode();
+					if (_pNode) {
+						jQuery("#pname").val(_pNode["name"]);
+					} else {
+						jQuery("#pname").val("");
+					}
+					//  设置 主管的下拉框
+					if (result["managerRoleId"]) {
+						jQuery("#managerRoleId").empty();
+						jQuery("#managerRoleId").append(
+								"<option value='"+result["managerRoleId"]+"'  selected>"
+										+ result["managerName"] + "</option>");
+						jQuery("#managerRoleId").select2().trigger("change");
+					}else{
+						springrain.select2Remote("managerRoleId", "${ctx}/system/role/ajax/select2", 250, "id", "name",false);
+						jQuery("#managerRoleId").select2("val","");
+					}
+				}
+				function showOrgTree() {
+					debugger;
+					if (!selectOrgZtree) {
+						selectOrgZtree=springrain.tree({
+							'hasMenu':false,
+							'id':'selectOrgTree',
+							'data':orgjsondata4select.data,
+							'treeNodeClick':function(event, treeId, treeNode){
+								//父级不让选择自己
+								debugger;
+								var _now_id=jQuery("#id").val();
+								if(_now_id!=null&&_now_id!=''&&_now_id==treeNode.id){
+									jQuery("#pname").val('');
+									jQuery("#pid").val('');
+									springrain.msg("父级不能选择自己",1);
+									return false;
+								}
+								jQuery("#pname").val(treeNode.name);
+								jQuery("#pid").val(treeNode.id);
+							}
+						});
+						selectOrgZtree.expandAll(true);
+						selectZtreeOneNode(jQuery("#pid").val(),
+								"selectOrgTree");
+					}
+					//页面层-自定义
+					layer.open({
+						shadeClose : true,
+						closeBtn : 1,
+						btn : [ '确定' ], //按钮
+						type : 1,
+						title : "选择父部门",
+						area : [ '600px', '400px' ], //宽高
+						//shadeClose: true,
+						content : $("#div_select_org_tree")
+					});
+
+				}
+				/*
+				保存  0添加   1更新
+				*/
+				var saveType=0;
+				function dosubmit() {
+					var listurl = '${ctx}/system/menu/list';
+					if (saveType == 0) {
+						_valid_form=springrain.commonSaveForm("validForm",'${ctx}/system/org/list', '部门添加成功！');
+					} else {
+						_valid_form=springrain.commonUpdateForm("validForm",'${ctx}/system/org/list', '部门更新成功！');
+					
+					}
+				}
+				/*
+				清空父级
+				*/
+				function delParent(){
+					if(jQuery("#pid").val()==null||jQuery("#pid").val()==""){
+						springrain.msg("没有要清空的数据",5);
+						return;
+					}
+					jQuery("#pname").val('平台');
+					jQuery("#pid").val('o_10001');
+					springrain.msg("清除成功，保存生效",null);
+				}
+			</SCRIPT>
+			<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title site-demo-title">
+	       		</ul>
+	       		<div class="layui-body layui-tab-content site-demo-body">
+					<div class="layui-tab-item layui-show">
+						<div class="layui-main">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="fl per30" style="min-width:360px">
+									<ul id="orgListTree" class="ztree"></ul>
+								</div>
+								<div class="fl per60 rlt">
+									<div class="fl line-vertical"></div>
+									<form id="validForm" name="validForm" method="post" action="${ctx}/system/org/update" class="layui-form">
+			                        	<input type="hidden" name="id" id="id"> 
+			                        	<input type="hidden" name="opmode" id="opmode" value="">
+			                            
+			                            <div class="layui-form-item col-lg-9">
+								    		<label class="layui-form-label col-lg-3">名称*</label>
+										    <div class="layui-inline">
+										      <input datatype="*1-200" errormsg="部门名称长度1--200位之间!" nullmsg="名称不能为空" type="text" id="name" name="name" required   placeholder="请输入标题" autocomplete="off" class="layui-input">
+										    </div>
+										    <div class="layui-inline valid-info"></div>
+									  	</div>
+										
+										<div class="layui-form-item  col-lg-9">
+								    		<label class="layui-form-label col-lg-3">上级部门</label>
+										    <div class="layui-inline">
+										      	<input onclick="showOrgTree();" name="pname" id="pname" readonly="readonly"  type="text"  placeholder="点击选择上级部门" autocomplete="off" class="layui-input">
+										    	<input name="pid" id="pid" type="hidden" />
+										    </div>
+										     <div class="layui-inline  col-lg-2">
+											    	 <button type="button" onclick="delParent()" class="layui-btn layui-btn-normal">清空父级</button>
+											    </div>
+									  	</div>
+									  	<div class="layui-form-item  col-lg-9">
+												<label class="layui-form-label col-lg-3"></label>
+												<div class="layui-inline  col-lg-6">
+													说明：清空父级后做为平台下顶级
+												</div>
+											</div>
+										<div class="layui-form-item  col-lg-9">
+								    		<label class="layui-form-label col-lg-3">排序*</label>
+										    <div class="layui-inline">
+										    <input datatype="n1-16" errormsg="请输入正确数值" nullmsg="排序不能为空!" type="text" id="sortno" name="sortno"   placeholder="请输入排序" autocomplete="off" class="layui-input">
+										    </div>
+										     <div class="layui-inline valid-info"></div>
+									  	</div>
+										<div class="layui-form-item  col-lg-9">
+								    		<label class="layui-form-label col-lg-3">部门类型</label>
+										    <div class="layui-inline rlt">
+										      	<select id="orgType" name="orgType" >
+										      		<option value>请选择部门类型</option>
+										      		<optgroup label="<<组织类设置>>">
+													<option value="1">部门</option>
+													<option value="2">虚拟权限组</option>
+													<optgroup label="<<网站类设置>>">
+													<option value="10">站长部门</option>
+													<option value="11">微信</option>
+													<option value="12">企业号</option>
+													<option value="13">pc</option>
+													<option value="14">wap</option>
+													<option value="15">投票</option>
+			                                    </select>
+										    </div>
+									  	</div>
+										<div class="layui-form-item  col-lg-9">
+								    		<label class="layui-form-label col-lg-3">是否可用</label>
+										    <div class="layui-inline rlt">
+										      	<select id="active" name="active"  datatype="*" errormsg="请输入正确数值" nullmsg="排序不能为空!">
+										      		<option value>请选择是否可用</option>
+													<option value="1">是</option>
+													<option value="0">否</option>
+			                                    </select>
+										    </div>
+										    <div class="layui-inline valid-info"></div>
+									  	</div>
+									  	
+									  	<div class="layui-form-item col-lg-9">
+								    		<label class="layui-form-label col-lg-3">描述</label>
+										    <div class="layui-inline col-lg-6">
+										    	<textarea name="description" id="description" class="layui-textarea"></textarea>
+										    </div>
+									  	</div>
+									  	<div class="layui-form-item change-submit  col-lg-9">
+															<label class="layui-form-label  col-lg-3"></label>
+															<div class="layui-inline  col-lg-6">
+																<button type="button" class="layui-btn"   onclick="dosubmit();" id="smtbtn">保存</button>
+															</div>
+											</div>
+			                         </form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+		
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+	<div id="div_select_org_tree" style="display:none;">
+       	<ul id="selectOrgTree" class="ztree"></ul>
+     </div>
+    <script>
+			
+	</script>
+</body>
+</html>
+

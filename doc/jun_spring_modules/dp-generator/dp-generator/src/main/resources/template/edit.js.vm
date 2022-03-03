@@ -1,0 +1,34 @@
+/**
+ * 编辑-${comments}js
+ */
+var vm = new Vue({
+	el:'#dpLTE',
+	data: {
+		${objName}: {
+			${pk.fieldName}: 0
+		}
+	},
+	methods : {
+		setForm: function() {
+			$.SetForm({
+				url: '../../${requestMapping}/info?_' + $.now(),
+		    	param: vm.${objName}.${pk.fieldName},
+		    	success: function(data) {
+		    		vm.${objName} = data;
+		    	}
+			});
+		},
+		acceptClick: function() {
+			if (!$('#form').Validform()) {
+		        return false;
+		    }
+		    $.ConfirmForm({
+		    	url: '../../${requestMapping}/update?_' + $.now(),
+		    	param: vm.${objName},
+		    	success: function(data) {
+		    		$.currentIframe().vm.load();
+		    	}
+		    });
+		}
+	}
+})

@@ -1,0 +1,190 @@
+<#ftl output_format="HTML" auto_esc=true>
+<@h.head title="登陆" keywords="开源,永久免费" description="springrain开源系统管理后台登陆页面"/>
+		<style>
+			body,html{margin: 0;padding: 0;width: 100%;height: 100%;font-family: "微软雅黑";}
+			body,.login_div,.login_div *{
+				box-sizing: border-box; -moz-box-sizing: border-box; /*Firefox3.5+*/ 
+				-webkit-box-sizing: border-box; /*Safari3.2+*/ -o-box-sizing: border-box; 
+				/*Opera9.6*/ -ms-box-sizing: border-box; /*IE8*/ 
+			}
+			input {outline:none;}.phcolor{color: #999999;}
+			button, .btn { border: none; display: inline-block; font-size: 12px; text-align: center; vertical-align: middle; cursor: pointer; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; overflow: hidden;}
+			button:active, .btn:active { -webkit-box-shadow: inset 0 8px 10px rgba(0, 0, 0, 0.1); box-shadow: inset 0 8px 10px rgba(0, 0, 0, 0.1); }
+			button[disabled], html input[disabled] { cursor: not-allowed; opacity: 0.6; filter: alpha(opacity=60); }
+			button[disabled]:active, button[disabled]:hover, html input[disabled]:active, html input[disabled]:hover { background-image: none; -webkit-box-shadow: none; box-shadow: none; }
+			.login_div{
+				width: 430px;
+				height: 320px;
+				position: absolute;z-index:100;
+				left: 0;top: 0;bottom: 0;right: 0;margin: auto;
+				border-radius: 10px;-webkit-border-radius: 10px;-moz-border-radius: 10px;
+				overflow: hidden;background: #fafbf6;
+				-moz-box-shadow:0px 2px 3px #333333; -webkit-box-shadow:0px 2px 3px #333333; box-shadow:0px 2px 3px #333333;
+				}
+			.login_name{text-align: center;margin-top: 30px;}
+			.login_name input{
+				width: 80%;border:0;border-bottom: 2px solid #dddddd;
+				height: 40px;padding-left: 10px;font-size: 16px;
+				font-family: "微软雅黑";
+				}
+			.login_name .input_div{
+				height: 40px;float: left;width: 60%;
+			}
+			.login_name .yzm_img{
+				height: 40px;float: left;width: 40%;overflow: hidden;
+			}
+			.login_name .input_div input{width: 98%;height: 40px;border: 0;border-bottom: 2px solid #DDDDDD;}
+			.btnDiv{text-align: center;margin-top: 25px;}
+			.btnDiv button{
+				width: 80%;height: 40px;line-height: 40px;background: #66bd78;
+				font-size: 16px;font-family: "微软雅黑";color: white;text-align: center;
+				border-radius: 8px;-webkit-border-radius: 8px;-moz-border-radius: 8px;
+				display: inline-block;cursor: pointer;
+				}
+			
+			.msg{text-align: center;color: red;font-size: 13px;height: 20px;line-height: 20px;margin-top: 10px;}
+			
+			@media (min-width: 320px) and (max-width: 768px){
+				.login_div{
+					width: 80%;
+					height: 245px;
+					position: absolute;
+					left: 0;top: 0;bottom: 0;right: 0;margin: auto;
+					border-radius: 10px;-webkit-border-radius: 10px;-moz-border-radius: 10px;
+					overflow: hidden;background: #fafbf6;
+					-moz-box-shadow:0px 2px 3px #333333; -webkit-box-shadow:0px 2px 3px #333333; box-shadow:0px 2px 3px #333333;
+				}
+				.login_name{text-align: center;margin-top: 10px;}
+				.login_name input{
+					width: 80%;border:0;border-bottom: 2px solid #dddddd;
+					height: 40px;padding-left: 10px;font-size: 14px;
+					font-family: "微软雅黑";
+					}
+				.btnDiv{text-align: center;margin-top: 20px;}
+				.btnDiv div{
+					width: 80%;height: 40px;line-height: 40px;background: #66bd78;
+					font-size: 14px;font-family: "微软雅黑";color: white;text-align: center;
+					border-radius: 8px;-webkit-border-radius: 8px;-moz-border-radius: 8px;
+					display: inline-block;
+				}
+				.msg{text-align: center;color: red;font-size: 12px;height: 20px;line-height: 20px;margin-top: 6px;}
+			}
+		</style>
+		<script src="${ctx}/js/jquery/jquery-1.12.4.js"></script>
+		<script src="${ctx}/js/cache/locache.min.js"></script>
+		<script type="text/javascript" src="${ctx}/js/md5/md5.min.js"></script>
+		<script src="${ctx}/js/custom/common/springrain.js"></script>
+		<script type="text/javascript">
+            var ctx="${ctx}";
+   		 </script>
+	</head>
+	<body>
+		<img alt="" src="${ctx}/img/login_bg.jpg" style="positon:absolute;width:100%;height:100%;left:0;top:0">
+		<form action="${ctx}/system/login" method="post" id="loginForm">
+		 <input type="hidden" name="gotourl" value="${gotourl!''}" />
+		 <input type="hidden" name="systemSiteId" value="${systemSiteId!''}" />
+			<div class="login_div">
+				<div class="login_name">
+					<input type="text" name="account" placeholder="请输入用户名" />
+				</div>
+				<div class="login_name">
+					<input type="password" name="password"  placeholder="请输入密码" />
+				</div>
+				<div class="login_name">
+					<div style="overflow: hidden;width: 80%;display: inline-block;">
+						<div class="input_div">
+							<input type="text" name="captcha" placeholder="请输入验证码" />
+						</div>
+						<div class="yzm_img">
+							<img style="width: 100%;height: 100%;" id="captchaImg" onclick="reloadValidateCode();" src="${ctx}/getCaptcha"  align="absmiddle" />
+							<input type="hidden" id="ValidateCodeNum" value="" />
+						</div>
+					</div>
+				</div>
+				<div class="btnDiv">
+					<button class="btn" id="sbtButton" type="submit">
+						登  录
+					</button>
+				</div>
+				<div class="msg">
+					<#if message?? && message!=''>
+						${message}
+					</#if>
+				</div>
+			</div>
+		</form>
+		<script>
+			jQuery(function($) {
+				
+				try{
+					//清除缓存
+					locache.flush();
+					placeholder();
+				}catch(e){
+					
+				}
+				
+	            $("#sbtButton").click(function(){
+	            	
+	            	var pw=jQuery(":input[name='password']").val();
+	            	if(!pw||pw==""){
+	            		return false;
+	            	}
+	            	
+	            	pw=md5(pw);
+	            	jQuery(":input[name='password']").val(pw);
+	            	
+	                $("#loginForm").submit(function(){
+	                    return true;
+	                });
+	            });
+	        });
+	        //刷新验证码
+	        function reloadValidateCode() {
+	            document.getElementById("captchaImg").src="${ctx}/getCaptcha?date =" + new Date().getTime();
+	        }
+	        
+	        function placeholder(){
+	        	supportPlaceholder='placeholder'in document.createElement('input'),
+		  		  placeholder=function(input){
+		  		    var text = input.attr('placeholder'),
+		  		    defaultValue = input.defaultValue;
+		  		 
+		  		    if(!defaultValue){
+		  		    	input.val(text).addClass("phcolor");
+		  		    }
+		  		 
+		  		    input.focus(function(){
+		  		    	if(input.val() == text){
+		  		       		$(this).val("");
+		  		    	}
+		  		    });
+		  		  
+		  		    input.blur(function(){
+		  		    	if(input.val() == ""){
+		  		        	$(this).val(text).addClass("phcolor");
+		  		    	}
+		  		    });
+		  		 
+		  		    //输入的字符不为灰色
+		  		    input.keydown(function(){
+		  		    	$(this).removeClass("phcolor");
+		  		    });
+		  		  };
+		  		 
+		  		  //当浏览器不支持placeholder属性时，调用placeholder函数
+		  		  if(!supportPlaceholder){
+		  		    $('input').each(function(){
+		  		    	text = $(this).attr("placeholder");
+		  		    	 if($(this).prop("type") == "text"){
+		  			       placeholder($(this));
+		  			     }
+		  		    	  if($(this).prop("type") == "password"){
+		  			       placeholder($(this));
+		  			     }
+		  		    });
+		  		  }
+	        }
+		</script>
+	</body>
+</html>

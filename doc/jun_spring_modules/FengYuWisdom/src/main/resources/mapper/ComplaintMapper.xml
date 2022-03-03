@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 所需实现的接口全限定名-->
+<mapper namespace="com.feri.fyw.dao.ComplaintDao">
+
+    <resultMap id="BaseResultMap" type="com.feri.fyw.entity.Complaint" >
+        <id property="id" column="id"></id>
+        <result column="sid" property="sid" />
+        <result column="info" property="info" />
+        <result column="flag" property="flag" />
+        <result column="aid" property="aid" />
+        <result column="handle" property="handle" />
+        <result column="ctime" property="ctime" />
+    </resultMap>
+    <!--    新增 多个参数封装了类-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into t_complaint(sid,info,flag,ctime) values(#{sid},#{info},1,now());
+    </insert>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select id,sid,info,flag,ifnull(handle,'')handle,ifnull(aid,0)aid,ctime from t_complaint
+        <where>
+            <if test="msg!=null and msg!=''">
+                info like concat('%',#{msg},'%')
+            </if>
+        </where>
+
+    </select>
+    <update id="update">
+        update t_complaint set aid=#{aid},handle=#{handle} where id=#{id}
+    </update>
+
+</mapper>

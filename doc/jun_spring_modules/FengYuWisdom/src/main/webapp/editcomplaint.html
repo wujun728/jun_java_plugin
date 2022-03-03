@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>锋豫智慧平台</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+	 <div class="layui-col-lg-offset3 layui-col-lg6">
+	<div class="layui-form-item">
+	                <label class="layui-form-label">序号：</label>
+	                <div class="layui-input-block">
+	                    <input type="text" id="id" name="id" lay-verify="name" autocomplete="off" disabled="disabled" class="layui-input">
+	                </div>
+	</div>
+			<div class="layui-form-item">
+                    <label class="layui-form-label">内容：</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="info" name="info" lay-verify="name" autocomplete="off" placeholder="请输入学科的名称" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">处理意见：</label>
+                    <div class="layui-input-block">
+                        <input type="number" id="handle" name="handle" autocomplete="off" placeholder="请处理的结果信息" class="layui-input">
+                    </div>
+                </div>
+
+    
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="demo1">处理投诉</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+				</div>
+</div>
+</div>
+<script src="lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$;
+            var str=localStorage.getItem("subject");
+			var s=JSON.parse(str);
+			$("#id").val(s.id);
+			$("#name").val(s.name);
+			$("#weeks").val(s.weeks);
+			$("#syllabus").val(s.syllabus);
+			//监听提交
+        form.on('submit(demo1)', function (data) {
+			//请求添加接口
+			$.post("/api/complaint/update.do",data.field,function(res){
+				if(res.code==10000){
+					//修改成功
+					location.href="listcomplaint.html";
+				}else{
+					//添加失败
+					layer.alert("修改失败", {
+                    title: '亲，修改失败，请检查网络'
+                    })
+				}
+			})
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

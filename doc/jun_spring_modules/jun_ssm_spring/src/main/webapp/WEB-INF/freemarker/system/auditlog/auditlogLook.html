@@ -1,0 +1,105 @@
+<#ftl output_format="HTML" auto_esc=true>
+<@h.commonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+<script src="${ctx}/js/validform/validform.min.js"></script>
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css" media="all">
+<script>
+	 jQuery(function(){
+		 /*
+		 init_valid(_before,_after)
+		 @_before:提交表单前，调用 的函数   可以为空，一般有validform处理不了，独自进行处理时使用
+		 @_after:保存成功后，调用的函数  可以为空，一般为对应的列表页面
+		 */
+		// springrain.initValid(null,function(){window.location.href="${ctx}/auditloghistory2017/list?springraintoken="+springraintoken});
+	 });
+</script>
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+		<!-- 主体内容开始 -->
+			<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title site-demo-title">
+		             <li style="float:right;">
+				        <button type="button" onclick="history.go(-1)" class="layui-btn layui-btn-small" style="margin-top:8px;"><i class="layui-icon layui-icon-specil">&#xe603;</i>返回</button>
+		             </li>
+	       		</ul>
+				
+				<div class="layui-body layui-tab-content site-demo-body">
+					<div class="layui-tab-item layui-show">
+							<div class="layui-main">
+						          <div id="LAY_preview" class="layui-my-form">
+						          				<header class="larry-personal-tit">
+													<span>添加操作记录</span>
+												</header>
+												<div class="larry-personal-body clearfix changepwd">
+													<form id="validForm" class="layui-form <!--  -->"  method="post" action="${ctx}/auditloghistory2017/update">
+																<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}"/>	
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">操作类型*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<input type="text" readonly="readonly" name="operationType" id="operationType"  class="layui-input" value="${(returnDatas.data.operationType)!''}">
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">操作人姓名*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<input type="text" readonly="readonly"  name="operatorName" id="operatorName"  class="layui-input" value="${(returnDatas.data.operatorName)!''}">
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">旧值*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<textarea readonly="readonly"  type="text" name="preValue" id="preValue"  class="layui-textarea">${(returnDatas.data.preValue)!''}</textarea>
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">新值*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<textarea readonly="readonly"  type="text" name="preValue" id="preValue"  class="layui-textarea">${(returnDatas.data.curValue)!''}</textarea>
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<!--日期型-->
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">操作时间*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<input readonly="readonly"  type="datetime" name="operationTime" id="operationTime"  class="layui-input" value="${((returnDatas.data.operationTime)?string('yyyy-MM-dd HH:mm:ss'))!''}">
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">操作类*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<input readonly="readonly"  type="text" name="operationClass" id="operationClass"  class="layui-input" value="${(returnDatas.data.operationClass)!''}">
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">记录ID*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<input readonly="readonly"  type="text" name="operationClassID" id="operationClassID"  class="layui-input" value="${(returnDatas.data.operationClassId)!''}">
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+													<div class="layui-form-item change-submit">
+													<label class="layui-form-label"></label>
+															<div class="layui-inline">
+																<button type="button" class="layui-btn"  onclick="history.go(-1)" >返回</button>
+															</div>
+														</div>
+													</form>
+												</div>
+								  </div>
+							</div>
+					</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+</body>
+</html>

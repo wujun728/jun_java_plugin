@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd"
+	default-lazy-init="false">
+	
+	<!-- mp -->
+	<bean id="wxMpService" class="org.springrain.weixin.sdk.mp.api.impl.WxMpServiceImpl">
+		<constructor-arg ref="wxMpConfigService" />
+	</bean>
+	
+	<bean id="wxMpCardService" class="org.springrain.weixin.sdk.mp.api.impl.WxMpCardServiceImpl">
+		<constructor-arg ref="wxMpService" />
+		<constructor-arg ref="wxMpConfigService" />
+	</bean>
+	
+	<bean id="wxMpDataCubeService" class="org.springrain.weixin.sdk.mp.api.impl.WxMpDataCubeServiceImpl">
+		<constructor-arg ref="wxMpService" />
+	</bean>	
+	
+	<bean id="wxMpKefuService" class="org.springrain.weixin.sdk.mp.api.impl.WxMpKefuServiceImpl">
+		<constructor-arg ref="wxMpService" />
+	</bean>	
+		
+	<bean id="wxMpMaterialService" class="org.springrain.weixin.sdk.mp.api.impl.WxMpMaterialServiceImpl">
+		<constructor-arg ref="wxMpService" />
+	</bean>	
+	
+	<bean id="wxMpMenuService" class="org.springrain.weixin.sdk.mp.api.impl.WxMpMenuServiceImpl">
+		<constructor-arg ref="wxMpService" />
+	</bean>	
+	
+	<bean id="wxMpPayService" class="org.springrain.weixin.sdk.mp.api.impl.WxMpPayServiceImpl">
+		<constructor-arg ref="wxMpService" />
+	</bean>	
+		
+	<bean id="wxMpQrcodeService" class="org.springrain.weixin.sdk.mp.api.impl.WxMpQrcodeServiceImpl">
+		<constructor-arg ref="wxMpService" />
+	</bean>	
+	
+	<bean id="wxMpUserService" class="org.springrain.weixin.sdk.mp.api.impl.WxMpUserServiceImpl">
+        <constructor-arg ref="wxMpService" />
+    </bean> 
+    
+    
+    <bean id="wxMpTemplateMsgService" class="org.springrain.weixin.sdk.mp.api.impl.WxMpTemplateMsgServiceImpl">
+        <constructor-arg ref="wxMpService" />
+    </bean> 
+    
+    
+	
+	<!-- cp -->
+	<bean id="wxCpService" class="org.springrain.weixin.sdk.cp.api.WxCpServiceImpl">
+		<constructor-arg ref="wxCpConfigService" />
+	</bean>	
+	
+	
+	<!-- xcx -->
+	<bean id="wxXcxService" class="org.springrain.weixin.sdk.xcx.api.impl.WxXcxServiceImpl">
+		<constructor-arg ref="wxXcxConfigService" />
+	</bean>
+	
+    <bean id="wxXcxPayService" class="org.springrain.weixin.sdk.xcx.api.impl.WxXcxPayServiceImpl">
+		<constructor-arg ref="wxXcxService" />
+	</bean>	
+	
+	<bean id="wxXcxTemplateMsgService" class="org.springrain.weixin.sdk.xcx.api.impl.WxXcxTemplateMsgServiceImpl">
+        <constructor-arg ref="wxXcxService" />
+    </bean> 
+    
+    <bean id="wxXcxMaterialService" class="org.springrain.weixin.sdk.xcx.api.impl.WxXcxMaterialServiceImpl">
+        <constructor-arg ref="wxXcxService" />
+    </bean>
+	
+	
+
+</beans>

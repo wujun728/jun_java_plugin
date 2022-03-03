@@ -1,0 +1,115 @@
+@CHARSET "UTF-8";
+/*升级1.09后菜单 没了*/
+.layui-tab-title{white-space: inherit!important;}
+/*nav a升级后的问题*/
+.layui-tab-title li a{display:inline-block;}
+/*火狐获取高度问题*/
+html,body{height:100%;width: 100%;}
+/*图标会有不对齐的，微调*/
+.layui-icon-specil{margin-right:5px;}
+.layui-icon-my-small{font-size:16px!important;}
+.layui-btn .layui-icon{vertical-align: middle;}
+.sort-icon{font-size:14px;cursor: pointer;color:#d3d3d3;}
+.sort-icon-on{color:#333333;}
+.sort-icon-up{position:relative;top:-4px;left:4px;}
+.sort-icon-down{position:relative;top:8px;right:10px;}
+/*元素宽度*/
+.col-lg-1{width:10%!important;}
+.col-lg-2{width:20%!important;}
+.col-lg-3{width:30%!important;}
+.col-lg-4{width:40%!important;}
+.col-lg-5{width:50%!important;}
+.col-lg-6{width:60%!important;}
+.col-lg-7{width:70%!important;}
+.col-lg-8{width:80%!important;}
+.col-lg-9{width:90%!important;}
+.col-lg-10{width:100%;}
+/*右边主背景*/
+.site-demo-body{background:#ecf0f5;}
+/*web nav高度与背景*/
+.layui-tab-title{background:#ecf0f5;top:70px!important;height:44px!important;}
+.layui-tab-title li{line-height: 44px;}
+.layui-tab-title .layui-this:after{height:45px!important;}
+.layui-layout-admin .site-demo-body{top:115px!important;}
+.layui-layout-admin .site-demo-body{bottom:41px;}
+.layui-laypage-total{background: none!important;}
+.layui-breadcrumb{line-height: 55px!important;}
+/*表单背景修改*/
+.layui-my-form{background:#fff;border-radius:4px;}
+.layui-my-form .layui-form{padding:10px 40px;}
+/*表单header*/
+header.larry-personal-tit {
+    width: 100%;
+    height: 50px;
+    line-height:50px;
+    border-bottom: 1px solid #EEEFF1;
+    padding: 0 20px;
+    padding-left: 30px;
+}
+header.larry-personal-tit span {
+    line-height: 50px;
+    font-size: 14px;
+    color: #858585;
+    font-weight: 300;
+}
+/**/
+.layui-nav .layui-nav-more{margin-top:4px;}
+/*select2  适合layui的JS和样式*/
+.nolayer{display: block;
+    width: 100%;
+    padding-left: 10px!important;
+    border: 1px solid #e6e6e6;
+    background-color: #fff;
+    border-radius: 2px!important;}
+.select2-container .select2-selection--single{
+    border: 1px solid #e6e6e6!important;
+    background-color: #fff;
+   	height: 38px!important;
+    line-height: 38px!important;
+    border-radius: 2px!important;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+	top:4px!important;
+}
+.select2-dropdown{
+	 border: 1px solid #e6e6e6!important;
+}
+.select2-results__message{color:#333333!important;}
+.layui-table tbody tr.active{
+	background-color: #bcbcbc;
+	color:#fff;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+	line-height:36px!important;
+}
+/*隐藏*/
+.off{display:none;}
+.on{display:block;}
+/**/
+.search{display:block;height:20px;line-height: 20px;cursor: pointer;}
+.search font{display:inline-block;vertical-align: top;}
+.search i{display:inline-block;padding-top:3px;vertical-align: top;margin-left:2px;}
+.center{text-align: center;}
+/*ztree页面的动画效果*/
+.myanimate{background:#fff;right:-100%;}
+/**/
+.recorsView{font-weight:normal;float:right;}
+/*修改顶部颜色*/
+.layui-layout-admin .header-demo{background-color:#393D49!important;}
+.header-demo .layui-nav .layui-this{background-color:#009688!important;}
+.header-demo .layui-nav .layui-nav-item a:hover, .header-demo .layui-nav .layui-this a{color:#fff!important;}
+.header-demo .layui-nav .layui-this:after, .header-demo .layui-nav-bar{background-color: #009688!important;}
+.header-demo .layui-nav .layui-nav-item a{color:#A9B7B7}
+.header .layui-nav .layui-nav-item{margin:0px auto!important;}
+.header .layui-nav .layui-nav-item:after{height:50px;width:2px;background:#000;}
+.header-demo .layui-nav .layui-this a{padding:0px 20px!important;}
+.header-demo .layui-nav .layui-nav-item{line-height: 66px!important;}
+.header-demo .layui-nav .layui-nav-item a:hover{background:#009688!important;}
+.layui-nav-tree .layui-nav-item  a:hover{background:#535660!important;}
+.layui-nav-itemedlayui-this a{background:#009688!important;}
+.layui-nav-item .layui-icon{top:3px;}
+/*搜索框修改*/
+ .search-wrap  .layui-inline{margin-top:5px!important;margin-bottom:5px!important;}
+ .search-wrap td{border:none!important;}
+ .search-wrap tr{border-left: 1px solid #e2e2e2!important;border-right: 1px solid #e2e2e2!important;border-bottom: 1px solid #e2e2e2!important;}
+.layui-form-select .layui-input{padding-right:0px!important;}

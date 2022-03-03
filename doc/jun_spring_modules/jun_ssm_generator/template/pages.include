@@ -1,0 +1,26 @@
+			${r'<#if'} search?? && search>
+				${r'<#assign'} searchStr = condition />
+			${r'</#if>'}
+			<#assign index=1 />
+			${r'<#if'} (page.pageIndex >= page.pageCount) && (page.pageCount != 0)>
+				${r'<#assign'} index = page.pageCount />
+			${r'<#else>'}
+				${r'<#assign'} index = page.pageIndex />
+			${r'</#if>'}
+			<ul class="box_2">
+				<li class="home">
+					${r'<#if'} page.firstPage>首页${r'<#else>'}<a href="${r"${"}ctx}/${classNameLowerCase}/list?pageIndex=0${r"${"}searchStr!}">首页</a>${r'</#if>'}
+				</li>
+				<li class="pageUP">
+					${r'<#if'} !(page.hasPrev)>上一页${r'<#else>'}<a href="${r"${"}ctx}/${classNameLowerCase}/list?pageIndex=${r"${"}index-1}${r"${"}searchStr!}">上一页</a>${r'</#if>'}
+				</li>
+				<li>共计${r"${"}page.totalCount}条数据</li>
+				<li>第${r'<#if'} (page.pageCount == 1)>${r"${"}index}${r'<#else>'}${r"${"}index}${r'</#if>'}页/共${r"${"}page.pageCount}页</li>
+				<li class="pageDown">
+					${r'<#if'} !(page.hasNext)>下一页${r'<#else>'}<a href="${r"${"}ctx}/${classNameLowerCase}/list?pageIndex=${r"${"}index+1}${r"${"}searchStr!}">下一页</a>${r'</#if>'}
+				</li>
+				<li class="end">
+					${r'<#if'} page.lastPage>尾页${r'<#else>'}<a href="${r"${"}ctx}/${classNameLowerCase}/list?pageIndex=${r"${"}page.pageCount}${r"${"}searchStr!}">尾页</a>${r'</#if>'}
+				</li>
+			</ul>
+		

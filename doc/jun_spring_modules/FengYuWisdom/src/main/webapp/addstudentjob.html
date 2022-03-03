@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>锋豫智慧平台</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <div class="layui-col-lg-offset3 layui-col-lg6">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                <legend>添加学员就业信息</legend>
+            </fieldset>
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">学号：</label>
+                    <div class="layui-input-block">
+                        <input type="number" name="sid" autocomplete="off" placeholder="请输入学号" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">薪水：</label>
+                    <div class="layui-input-block">
+                        <input type="number" name="salary" autocomplete="off" placeholder="请输入薪水" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">公司：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="company" autocomplete="off" placeholder="请输入入职公司" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">城市：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="city" autocomplete="off" placeholder="请输入城市" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">学历：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="edu" autocomplete="off" placeholder="请输入学历" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">入职日期：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="jobdate" id="date1" autocomplete="off" placeholder="请选择入职日期" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">学校：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="school" autocomplete="off" placeholder="请输入学校" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">专业：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="major" autocomplete="off" placeholder="请输入专业" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="demo1">添加就业信息</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script src="lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use(['form', 'layedit','laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            ,laydate = layui.laydate;
+        //日期
+        laydate.render({
+            elem: '#date1'
+        });
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+
+			//请求添加接口
+			$.post("/api/studentjob/save.do",data.field,function(res){
+				if(res.code==10000){
+					//添加成功
+					location.href="liststudentjob.html";
+				}else{
+					//添加失败
+					layer.alert("新增失败", {
+                    title: '亲，新增失败，请检查数据'
+                    })
+				}
+
+			})
+            return false;
+        });
+    });
+</script>
+
+</body>
+</html>

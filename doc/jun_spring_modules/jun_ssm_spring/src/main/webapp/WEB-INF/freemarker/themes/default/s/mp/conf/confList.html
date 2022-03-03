@@ -1,0 +1,149 @@
+<#ftl output_format="HTML" auto_esc=true> 
+<@h.siteCommonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+
+<script>
+	var _state;
+	jQuery(function(){ 
+		_state="${(returnDatas.queryBean.active)!''}";
+		jQuery("#active").val(_state);
+		/*
+		全选、反选
+		*/
+		jQuery("#checkAll").bind('click',function(){
+			var _is_check=jQuery(this).get(0).checked;
+			jQuery("input[name='check_li']").each(function(_i,_o){
+				jQuery(_o).get(0).checked=_is_check;
+			});
+		});
+	});
+</script>
+
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+			<!-- 主体内容开始 -->
+			<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title site-demo-title">
+	       		</ul>
+				
+				<div class="layui-body layui-tab-content site-demo-body">
+					<div class="layui-tab-item layui-show">
+							<div class="layui-main">
+						          <div id="LAY_preview">
+						          <!-- 查询  开始 -->
+							          <form class="layui-form layui-form-pane" id="searchForm" action="${ctx}/s/${siteId!}/${businessId!}/mp/list" method="post">
+							          <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}" /> 
+							          <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}" />
+							          <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}" />
+									  <table class="layui-table">
+							          	<tbody>
+							          		<tr>
+							          			<th>微信号需要的配置信息搜索</th>
+							          		</tr>
+							          		<tr>
+							          			<td>
+							          				<div class="layui-inline">
+									                    <label class="layui-form-label">名称</label>
+									                    <div class="layui-input-inline">
+									                           <input type="text" name="name" value="${(returnDatas.queryBean.name)!''}" placeholder="请输入名称 " class="layui-input">
+									                    </div>
+							                		</div>
+									                <div class="layui-inline">
+									                    <button class="layui-btn" type="button" onclick="springrain.commonSubmit('searchForm');"><i class="layui-icon" style="top:4px;right:5px;">&#xe615;</i>搜索</button>
+									                </div>
+							          			</td>
+							          		</tr>
+							          	</tbody>
+							          </table>
+									  <!-- 查询  结束 -->
+									</form>
+									<!--start_export-->
+									<table class="layui-table" lay-even>
+										  <colgroup>
+										    <col width="140">
+										    <col width="140">
+										    <col>
+										  </colgroup>
+										  <!--end_no_export-->
+										  <!--first_start_export-->
+											<thead>
+												<tr>
+													<th colspan="9">微信号需要的配置信息列表</th>
+												</tr>
+												<tr>
+												  <th>操作</th>
+												  <!--first_end_no_export-->
+														<th id="th_siteId" >站点名称</th>
+														<th id="th_appId" >appID</th>
+														<th id="th_appSecret" >appSecret</th>
+														<th id="th_token" >token</th>
+														<th id="th_encodingAESKey" >EncodingAESKey</th>
+														<th id="th_wxId" >公众号ID</th>
+														<th id="th_active" >状态</th>
+												</tr> 
+											</thead>
+										  <!--first_end_export-->
+										  <!--start_export-->
+										   <tbody>
+										   <@cms_site_wxconfig_list>
+										   		<#list	configList as _data>
+										    		<!--start_no_export-->
+													<tr class="">
+														<td>
+															<@shiro.hasPermission name="/s/${siteId!}/${businessId!}/mp/update" >
+						                           		 		<a href="#" data-action="${ctx}/s/${siteId!}/${businessId!}/mp/update/pre?id=${_data.id!}" class="layui-btn layui-btn-normal layui-btn-mini">修改</a>
+					                            			</@shiro.hasPermission>
+					                            			<@shiro.hasPermission name="/s/${siteId!}/${businessId!}/mp/menu/update" >
+						                           		 		<a href="#" data-action="${ctx}/s/${siteId!}/${businessId!}/mp/menu/update/pre?id=${_data.id!}" class="layui-btn layui-btn-normal layui-btn-mini">修改菜单</a>
+					                            			</@shiro.hasPermission>
+														</td>
+														<!--end_no_export-->
+														<td >
+															<@cms_site id=_data.siteId>
+																${(site.name)!}						
+															</@cms_site>
+															
+														</td>
+														<td >
+															${(_data.appId)!''}
+														</td>
+														<td >
+															${(_data.appSecret)!''}
+														</td>
+														<td >
+															${(_data.token)!''}
+														</td>
+														<td >
+															${(_data.encodingAESKey)!''}
+														</td>
+														<td >
+															${(_data.wxId)!''}
+														</td>
+														<td>
+															<#if (_data.active)?? && (_data.active=1)>
+																可用
+															<#else>
+																不可用
+															</#if>
+														</td>
+													</tr>
+												</#list>
+										   </@cms_site_wxconfig_list>
+											</tbody>
+										</table>
+									<#if returnDatas.page??> 
+										<div id='laypageDiv'></div>
+										<@h.layPage page=returnDatas.page /> 
+									</#if>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+</body>
+</html>

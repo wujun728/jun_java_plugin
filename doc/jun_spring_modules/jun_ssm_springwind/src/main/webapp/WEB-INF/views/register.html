@@ -1,0 +1,50 @@
+#override("title")
+SpringWind 管理系统 - 注册
+#end
+#override("css")
+<link href="#springUrl('/static/css/plugins/iCheck/custom.css')" rel="stylesheet">
+#end
+#override("body")
+<body class="gray-bg">
+    <div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+            <div>
+                <h1 class="logo-name">SW</h1>
+            </div>
+            <h3>欢迎注册 SpringWind</h3>
+            <p>创建一个SW新账户</p>
+            <form class="m-t" role="form" method="post" action="#springUrl('/account/register.html')">
+                <div class="form-group">
+                    <input type="text" name="loginName" class="form-control" placeholder="请输入用户名" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="请输入密码" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="repassword" class="form-control" placeholder="请再次输入密码" required="">
+                </div>
+                <div class="form-group">
+                    <div class="checkbox i-checks"><label>
+                    <input type="checkbox" required=""><i></i>我同意注册协议</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">注 册</button>
+                <a class="btn btn-sm btn-white btn-block" href="#springUrl('/account/login.html')">点此登录</a>
+            </form>
+			<p class="m-t"><small><a target="_blank" href="http://www.baomidou.com/">&copy;baomidou</a></small> </p>
+        </div>
+    </div>
+</body>
+#end
+#override("js")
+<script src="#springUrl('/static/js/plugins/iCheck/icheck.min.js')"></script>
+<script>
+   $(document).ready(function(){
+       $('.i-checks').iCheck({
+           checkboxClass: 'icheckbox_square-green',
+           radioClass: 'iradio_square-green',
+       });
+   });
+</script>
+#end
+#extends("/common/base.html")

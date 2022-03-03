@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	#parse("/common/header.html")
+	<link href="#springUrl('/static/js/plugins/gritter/jquery.gritter.css')" rel="stylesheet">
+	#block("css")#end
+</head>
+<body>
+<div id="wrapper">
+   #parse("/common/nav_left.html")
+   <!--右侧部分开始-->
+   <div id="page-wrapper" class="gray-bg dashbard-1">
+	   <div class="row border-bottom">
+	   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+		   <div class="navbar-header">
+		       <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+		       <form role="search" class="navbar-form-custom" action="search_results.html">
+		           <div class="form-group">
+		               <input type="text" placeholder="请输入您需要查找的内容..." class="form-control" name="top-search" id="top-search">
+		           </div>
+		       </form>
+		   </div>
+	       <ul class="nav navbar-top-links navbar-right">
+			   #include('/common/dropdown.html')
+	           <li>
+	               <a href="#springUrl('/account/lockscreen.html')">
+	                   <i class="fa fa-sign-out"></i>退出
+	               </a>
+	           </li>
+	       </ul>
+	   </nav>
+	   </div>
+
+	<div class="row border-bottom white-bg dashboard-header">
+		<div class="col-lg-10">
+			<h3>官方QQ群：235079513 <font color="red">版权归作者所有，永久开源免费！<a href="/donate.html">【点击捐赠】</a></font></h3>
+			<ol class="breadcrumb">
+				<li><a href="index.html">首页</a></li>
+				#block("breadcrumb")#end
+			</ol>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="wrapper wrapper-content">
+				#block("content")#end
+			</div>
+			<div class="footer">
+				<div class="pull-right">
+					<a target="_blank" href="http://www.baomidou.com/">&copy;baomidou</a>
+				</div>
+			</div>
+		</div>
+	</div>
+   </div>
+   <!--右侧部分结束-->
+</div>
+<script src="#springUrl('/static/js/jquery-2.1.1.js')"></script>
+<script src="#springUrl('/static/js/bootstrap.min.js')"></script>
+<script src="#springUrl('/static/js/plugins/metisMenu/jquery.metisMenu.js')"></script>
+<script src="#springUrl('/static/js/plugins/slimscroll/jquery.slimscroll.min.js')"></script>
+<script src="#springUrl('/static/js/plugins/gritter/jquery.gritter.min.js')"></script>
+<script src="#springUrl('/static/js/inspinia.js')"></script>
+<script src="#springUrl('/static/js/plugins/pace/pace.min.js')"></script>
+<script src="#springUrl('/static/js/plugins/gritter/jquery.gritter.min.js')"></script>
+#include("/common/theme-config.html")
+#block("js")#end
+</body>
+</html>

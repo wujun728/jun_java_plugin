@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.CityMapper">
+    
+    <resultMap type="City" id="CityResult">
+        <result property="cityId"    column="CITY_ID"    />
+        <result property="provinceId"    column="PROVINCE_ID"    />
+        <result property="NAME"    column="NAME"    />
+        <result property="CREATED"    column="CREATED"    />
+        <result property="LASTMOD"    column="LASTMOD"    />
+        <result property="STATUS"    column="STATUS"    />
+        <result property="CREATER"    column="CREATER"    />
+        <result property="MODIFYER"    column="MODIFYER"    />
+    </resultMap>
+
+    <sql id="selectCityVo">
+        select CITY_ID, PROVINCE_ID, NAME, CREATED, LASTMOD, STATUS, CREATER, MODIFYER from city
+    </sql>
+
+    <select id="selectCityList" parameterType="City" resultMap="CityResult">
+        <include refid="selectCityVo"/>
+        <where>  
+            <if test="cityId != null "> and CITY_ID = #{cityId}</if>
+            <if test="provinceId != null "> and PROVINCE_ID = #{provinceId}</if>
+            <if test="NAME != null  and NAME != ''"> and NAME like concat('%', #{NAME}, '%')</if>
+            <if test="CREATED != null "> and CREATED = #{CREATED}</if>
+            <if test="LASTMOD != null "> and LASTMOD = #{LASTMOD}</if>
+            <if test="STATUS != null  and STATUS != ''"> and STATUS = #{STATUS}</if>
+            <if test="CREATER != null "> and CREATER = #{CREATER}</if>
+            <if test="MODIFYER != null "> and MODIFYER = #{MODIFYER}</if>
+        </where>
+    </select>
+    
+    <select id="selectCityById" parameterType="Long" resultMap="CityResult">
+        <include refid="selectCityVo"/>
+        where CITY_ID = #{cityId}
+    </select>
+        
+    <insert id="insertCity" parameterType="City" useGeneratedKeys="true" keyProperty="cityId">
+        insert into city
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="provinceId != null">PROVINCE_ID,</if>
+            <if test="NAME != null and NAME != ''">NAME,</if>
+            <if test="CREATED != null">CREATED,</if>
+            <if test="LASTMOD != null">LASTMOD,</if>
+            <if test="STATUS != null and STATUS != ''">STATUS,</if>
+            <if test="CREATER != null">CREATER,</if>
+            <if test="MODIFYER != null">MODIFYER,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="provinceId != null">#{provinceId},</if>
+            <if test="NAME != null and NAME != ''">#{NAME},</if>
+            <if test="CREATED != null">#{CREATED},</if>
+            <if test="LASTMOD != null">#{LASTMOD},</if>
+            <if test="STATUS != null and STATUS != ''">#{STATUS},</if>
+            <if test="CREATER != null">#{CREATER},</if>
+            <if test="MODIFYER != null">#{MODIFYER},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCity" parameterType="City">
+        update city
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="provinceId != null">PROVINCE_ID = #{provinceId},</if>
+            <if test="NAME != null and NAME != ''">NAME = #{NAME},</if>
+            <if test="CREATED != null">CREATED = #{CREATED},</if>
+            <if test="LASTMOD != null">LASTMOD = #{LASTMOD},</if>
+            <if test="STATUS != null and STATUS != ''">STATUS = #{STATUS},</if>
+            <if test="CREATER != null">CREATER = #{CREATER},</if>
+            <if test="MODIFYER != null">MODIFYER = #{MODIFYER},</if>
+        </trim>
+        where CITY_ID = #{cityId}
+    </update>
+
+    <delete id="deleteCityById" parameterType="Long">
+        delete from city where CITY_ID = #{cityId}
+    </delete>
+
+    <delete id="deleteCityByIds" parameterType="String">
+        delete from city where CITY_ID in 
+        <foreach item="cityId" collection="array" open="(" separator="," close=")">
+            #{cityId}
+        </foreach>
+    </delete>
+
+</mapper>

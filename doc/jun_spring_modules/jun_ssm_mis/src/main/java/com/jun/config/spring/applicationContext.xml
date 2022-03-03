@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN/EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+            	<!--  
+                <value>WEB-INF/classes/jdbc.properties</value>       
+                -->
+                <value>
+                	classpath:com/lxw/oa/config/db/jdbc.properties
+                </value>     
+            </list>
+        </property>		
+	</bean>	
+    
+	<!-- DataSource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName">
+			<value>${jdbc.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+	</bean>
+	
+	<!-- 注册Spring的模版对象 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- 注册sessionfactory -->
+	<bean id="sessionFactory" 
+    class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"> 
+    <property name="dataSource"> 
+    	<ref bean="dataSource" /> 
+    </property> 
+    <property name="lobHandler">
+        <ref bean="lobHandler" />	
+    </property>
+    <property name="mappingDirectoryLocations"> 
+     <list> 
+        <value>classpath:/com/lxw/oa/config/hibernate/</value> 
+     </list> 
+    </property> 
+    <property name="hibernateProperties"> 
+     <props> 
+        <prop key="hibernate.dialect"> 
+         org.hibernate.dialect.MySQLInnoDBDialect 
+        </prop> 
+        <prop key="hibernate.show_sql">true</prop>      
+        <prop key="hibernate.hbm2ddl.auto">update</prop> 
+        <prop key="hibernate.jdbc.batch_size">20</prop> 
+     </props> 
+    </property>
+	</bean> 
+	
+	<!-- 注册Hibernate模版对象 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- Clob与Blob统一接口 -->
+	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true">
+	</bean>
+	<!-- 使用spring+hibernate处理oracle BLOB, CLOB类型字段定义-->
+	<bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.SimpleNativeJdbcExtractor" />
+	<bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler" lazy-init="true">
+		<property name="nativeJdbcExtractor">
+			<ref bean="nativeJdbcExtractor" />
+		</property>
+	</bean>
+</beans>

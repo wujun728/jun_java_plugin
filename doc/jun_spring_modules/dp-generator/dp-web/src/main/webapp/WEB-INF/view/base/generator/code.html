@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>生成代码-代码生成器</title>
+#parse("include/header.html")
+</head>
+<body>
+	<div id="dpLTE" class="container-fluid" v-cloak>
+		<div class="alert alert-success" role="alert" style="margin-top: 10px;">
+			1.模块包名：java文件package使用，比如权限模块应为shiro<br>
+			2.功能编码：用户管理应配置为user，js和html文件夹名称<br>
+			3.请求地址：用户管理应配置为sys/user，requestMapping的值<br>
+			4.页面模块：用户管理应配置为base/user，js和html资源路径<br>
+			5.特别提示：请求地址和页面模块地址不能一样，否则会导致请求地址冲突
+		</div>
+		<table class="form" id="form">
+			<tr>
+	            <td class="formTitle">数据表<font face="宋体">*</font></td>
+	            <td class="formValue">
+					<input type="text" class="form-control" placeholder="数据表，如：权限模块 -> shiro" v-model="generator.tables" readonly="readonly">
+	            </td>
+        	</tr>
+			<tr>
+	            <td class="formTitle">模块包名<font face="宋体">*</font></td>
+	            <td class="formValue">
+					<input type="text" class="form-control" placeholder="模块包名，如：权限模块 -> shiro" v-model="generator.module" isvalid="yes" checkexpession="NotNull">
+	            </td>
+        	</tr>
+        	<tr>
+	            <td class="formTitle">功能编码<font face="宋体">*</font></td>
+	            <td class="formValue">
+					<input type="text" class="form-control" placeholder="功能编码，如：用户管理 -> user" v-model="generator.functionCode" isvalid="yes" checkexpession="NotNull">
+	            </td>
+        	</tr>
+        	<tr>
+	            <td class="formTitle">请求地址<font face="宋体">*</font></td>
+	            <td class="formValue">
+					<input type="text" class="form-control" placeholder="请求地址，如：用户管理 -> sys/user" v-model="generator.requestMapping" isvalid="yes" checkexpession="NotNull">
+	            </td>
+        	</tr>
+        	<tr>
+	            <td class="formTitle">页面模块<font face="宋体">*</font></td>
+	            <td class="formValue">
+					<input type="text" class="form-control" placeholder="页面模块，如：用户管理 -> base/user" v-model="generator.viewPath" isvalid="yes" checkexpession="NotNull">
+	            </td>
+        	</tr>
+        	<tr>
+				<td class="formTitle">类型</td>
+				<td class="formValue">
+					<label class="radio-inline">
+						<input type="radio" name="type" value="1" v-model="generator.type"/> 生成包结构
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="type" value="2" v-model="generator.type"/> 只生成源代码
+					</label>
+				</td>
+			</tr>
+		</table>
+	</div>
+	#parse("include/footer.html")
+	<script
+		src="${rc.contextPath}/statics/js/base/generator/code.js?_${date.systemTime}"></script>
+</body>
+</html>

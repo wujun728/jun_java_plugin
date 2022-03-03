@@ -1,0 +1,193 @@
+<#ftl output_format="HTML" auto_esc=true> 
+<@h.commonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /> <@h.leftMenu />
+		<!-- 主体内容开始 -->
+		<div class="layui-body site-demo">
+			<SCRIPT type="text/javascript">
+				var dicDataTreesetting = {
+					callback : {
+						onClick : dicDatazTreeOnClick
+					},
+					data : {
+						simpleData : {
+							enable : true,
+							idKey : "id",
+							pIdKey : "pid",
+							rootPId : "null"
+						}
+					}
+				};
+
+				$(document)
+						.ready(
+								function() {
+
+									jQuery
+											.post(
+													"${ctx}/system/dicdata/${returnDatas.map.typekey}/list/json",
+													function(_json) {
+														if (_json.status == "success") {
+															$.fn.zTree
+																	.init(
+																			$("#dicDataListTree"),
+																			dicDataTreesetting,
+																			_json.data);
+														} else {
+															myalert(_json.message);
+														}
+													});
+
+								});
+
+				function dicDatazTreeOnClick(event, treeId, treeNode) {
+					showdata(treeNode);
+				};
+
+				function showdata(result) {
+					$("#updateForm select ").each(
+							function() {
+								$(this).find('option:first').attr('selected',
+										'selected');
+							});
+					for ( var s in result) {
+						set_val(s, result[s]);
+					}
+					var _pid = result["pid"];
+					if ((!_pid) || _pid == null || _pid == "null" || _pid == "") {
+						jQuery("#pid").val("");
+					} else {
+						jQuery("#pid").val(_pid);
+					}
+					$("#btn_add").hide();
+					$("#btn_reload").show();
+					$("#btn_update").show();
+					$("#btn_delete").show();
+					$("#code").attr("readonly", "readonly")//将input元素设置为readonly
+				}
+
+				function deletedicData() {
+					var id = jQuery("#id").val();
+					if (!id || id == "") {
+						myalert("请选择你要删除的记录");
+						return;
+					} else {
+						var _url = "${ctx}/system/dicdata/${returnDatas.map.typekey}/delete?id="
+								+ id;
+						var listurl = "${ctx}/system/dicdata/${returnDatas.map.typekey}/list";
+						mydelete(_url, listurl, {}, "确定删除数据?");
+					}
+				}
+			</SCRIPT>
+			<input type="hidden" name="typekey" id="typekey"
+				value="${returnDatas.map.typekey}" />
+
+			<div class="operate panel panel-default" style="height: 65px;"
+				style="height:60px;">
+				<div class="panel-body">
+					<div class="pull-right">
+
+						<@shiro.hasPermission
+						name="/system/dicdata/${returnDatas.map.typekey}/update" > <a
+							id="btn_reload" href="javascript:location.reload();"
+							class="btn  btn-sm  btn-primary" style="display: none;">
+							跳转至新增 >> </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+						<a id="btn_add"
+							href="javascript:commonSaveForm('updateForm','${ctx}/system/dicdata/${returnDatas.map.typekey}/list');"
+							class="btn  btn-sm  btn-primary"> <img
+							src="${ctx}/images/btn_save.png" style="vertical-align: middle;" />保存新增
+						</a> <a id="btn_update"
+							href="javascript:commonUpdateForm('updateForm','${ctx}/system/dicdata/${returnDatas.map.typekey}/list');"
+							class="btn  btn-sm  btn-primary" style="display: none;"> <img
+							src="${ctx}/images/btn_save.png" style="vertical-align: middle;" />保存修改
+						</a> </@shiro.hasPermission> <@shiro.hasPermission
+						name="/system/dicdata/${returnDatas.map.typekey}/delete" > <a
+							href="javascript:deletedicData();" class="btn btn-sm btn-danger">删除</a>
+						</@shiro.hasPermission>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- 功能操作区域结束 -->
+			<!-- 列表显示区域  -->
+			<div class="row">
+				<div class="col-sm-4 ">
+					<div class="widget-box">
+						<div class="widget-header">
+							<h4 class="widget-title">内容</h4>
+						</div>
+						<div class="widget-body">
+							<div class="widget-main">
+								<ul id="dicDataListTree" class="ztree"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-8 sub_content">
+					<div class="widget-box">
+						<div class="widget-header">
+							<h4 class="widget-title">操作</h4>
+						</div>
+						<div class="widget-body">
+							<div class="widget-main">
+								<form id="updateForm" name="updateForm" method="post"
+									action="${ctx}/system/dicdata/${returnDatas.map.typekey}/update"
+									class="form-horizontal clearfix">
+									<input type="hidden" name="id" id="id">
+									<div class="form-group col-xs-9">
+										<label class="col-sm-4 control-label" for="code">编码*：</label>
+										<div class="col-sm-8">
+											<input class="form-control" type="text" id="code" name="code"
+												datatype="*" nullmsg="名称不能为空" />
+										</div>
+									</div>
+									<div class="form-group col-xs-9">
+										<label class="col-sm-4 control-label" for="name">名称*：</label>
+										<div class="col-sm-8">
+											<input class="form-control" type="text" id="name" name="name"
+												datatype="*" nullmsg="名称不能为空" />
+										</div>
+									</div>
+
+
+									<div class="form-group col-xs-9">
+										<label class="col-sm-4 control-label" for="sortno">排序：</label>
+										<div class="col-sm-8">
+											<input class="form-control" type="text" id="sortno"
+												name="sortno" placeholder="数字越大,排列越靠前">
+										</div>
+									</div>
+									<div class="form-group col-xs-9">
+										<label class="col-sm-4 control-label" for="state">是否可用*：</label>
+										<div class="col-sm-8">
+											<select name="state" id="state" class="form-control">
+												<option value="是">是</option>
+												<option value="否">否</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group col-xs-9">
+										<label class="col-sm-4 control-label" for="remark">描述：</label>
+										<div class="col-sm-8">
+											<textarea class="form-control" name="remark" id="remark"
+												rows="5" class="col-xs-12"></textarea>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+</body>
+</html>
+

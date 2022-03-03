@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 所需实现的接口全限定名-->
+<mapper namespace="com.feri.fyw.dao.ProjectDao">
+
+    <resultMap id="BaseResultMap" type="com.feri.fyw.entity.Project" >
+        <id property="id" column="id"></id>
+        <result column="sdate" property="sdate" />
+        <result column="name" property="name" />
+        <result column="edate" property="edate" />
+        <result column="srcurl" property="srcurl" />
+        <result column="info" property="info" />
+        <result column="ctime" property="ctime" />
+    </resultMap>
+    <!--    新增 多个参数封装了类-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into t_project(name,sdate,edate,srcurl,info,ctime) values(#{name},#{sdate},#{edate},#{srcurl},#{info},now());
+    </insert>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from t_project
+    </select>
+</mapper>

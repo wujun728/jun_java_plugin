@@ -1,0 +1,116 @@
+<#ftl output_format="HTML" auto_esc=true> 
+<@h.siteCommonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+<script type="text/javascript" src="${ctx}/js/ztree/js/jquery.ztree.all-3.5.js"></script>
+<script type="text/javascript" src="${ctx}/js/ztree/js/ztreeUtils.js"></script>
+<script type="text/javascript" src="${ctx}/js/artTemplate/artTemplate.js"></script>
+
+<link rel="stylesheet" href="${ctx}/js/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/css/custom/common/myztree.css" type="text/css">
+
+<script>
+	jQuery(function(){ 
+		/*
+		全选、反选
+		*/
+		jQuery("#checkAll").bind('click',function(){
+			var _is_check=jQuery(this).get(0).checked;
+			jQuery("input[name='check_li']").each(function(_i,_o){
+				jQuery(_o).get(0).checked=_is_check;
+			});
+		});
+	});
+	
+	function del(id){
+	    if(!id||id==""){
+	        myalert("请选择你要删除的记录");
+	        return;
+	    }else{
+	        var _url="${ctx}/s/${siteId}/${businessId}/comment/delete?id="+id;
+	        var listurl="${ctx}/s/${siteId}/${businessId}/comment/list";
+	        
+	        springrain.mydelete(id, _url, "确定删除该内容?", listurl);
+	    }
+	}
+	function deleteMore(){
+		var _url= "${ctx}/s/${siteId}/${businessId}/comment/delete/more";
+		var formId = "searchForm";
+		var listurl = "${ctx}/s/${siteId}/${businessId}/comment/list";
+		springrain.mydeletemore(formId, _url, "确认删除这些数据?", listurl);
+	}
+	
+    function addNewContent(){
+   		springrain.goTo('${ctx}/s/${siteId}/${businessId}/comment/update/pre');	
+    }
+</script>
+
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+		<!-- 主体内容开始 -->
+		<div class="layui-tab layui-tab-brief">
+			<ul class="layui-tab-title site-demo-title">
+				<li style="float: right;">
+					<@shiro.hasPermission name="/s/${siteId!''}/${businessId!''}/comment/delete" >
+					<button type="button" onclick="deleteMore();"
+						class="layui-btn layui-btn-danger layui-btn-small">
+						<i class="layui-icon">&#xe640;</i>批量删除
+					</button>
+					</@shiro.hasPermission>
+				</li>
+			</ul>
+
+			<div class="layui-body layui-tab-content site-demo-body">
+				<div class="layui-tab-item layui-show">
+					<div class="layui-main">
+						 <div id="LAY_preview">
+						 	<header class="larry-personal-tit">
+								<span>局长信箱查看</span>
+							</header>
+							<div class="larry-personal-body clearfix changepwd">
+									<@cms_comment id=id!''>
+										<div class="layui-form-item col-lg-6">
+											<label class="layui-form-label">来信人姓名</label>
+											<div class="layui-inline col-lg-5">
+												${(cmsComment.userName)!''}
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-6">
+											<label class="layui-form-label">来信人性别</label>
+											<div class="layui-inline col-lg-5">
+												${(cmsComment.bak1)!''}
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-6">
+											<label class="layui-form-label">来信人手机号码</label>
+											<div class="layui-inline col-lg-5">
+												${(cmsComment.mobile)!''}
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-6">
+											<label class="layui-form-label">来信内容</label>
+											<div class="layui-inline col-lg-5">
+												${(cmsComment.content)!''}
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+									</@cms_comment>
+							</div>
+						 </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+	<div id="div_channelZtree" style='display:none;'>
+        <ul id="channelZtree" class="ztree"></ul>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,81 @@
+package ${package}.${module}.controller;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import net.chenlin.dp.common.annotation.SysLog;
+import net.chenlin.dp.common.controller.AbstractController;
+import net.chenlin.dp.common.entity.Page;
+import net.chenlin.dp.common.entity.R;
+import ${package}.${module}.entity.${className}Entity;
+import ${package}.${module}.service.${className}Service;
+
+/**
+ * ${comments}
+ * @author ${author}<${email}>
+ */
+@RestController
+@RequestMapping("/${requestMapping}")
+public class ${className}Controller extends AbstractController {
+	
+	@Autowired
+	private ${className}Service ${objName}Service;
+	
+	/**
+	 * 列表
+	 * @param params
+	 * @return
+	 */
+	@RequestMapping("/list")
+	public Page<${className}Entity> list(@RequestBody Map<String, Object> params) {
+		return ${objName}Service.list${className}(params);
+	}
+		
+	/**
+	 * 新增
+	 * @param ${objName}
+	 * @return
+	 */
+	@SysLog("新增${comments}")
+	@RequestMapping("/save")
+	public R save(@RequestBody ${className}Entity ${objName}) {
+		return ${objName}Service.save${className}(${objName});
+	}
+	
+	/**
+	 * 根据id查询详情
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/info")
+	public R getById(@RequestBody Long id) {
+		return ${objName}Service.get${className}ById(id);
+	}
+	
+	/**
+	 * 修改
+	 * @param ${objName}
+	 * @return
+	 */
+	@SysLog("修改${comments}")
+	@RequestMapping("/update")
+	public R update(@RequestBody ${className}Entity ${objName}) {
+		return ${objName}Service.update${className}(${objName});
+	}
+	
+	/**
+	 * 删除
+	 * @param id
+	 * @return
+	 */
+	@SysLog("删除${comments}")
+	@RequestMapping("/remove")
+	public R batchRemove(@RequestBody Long[] id) {
+		return ${objName}Service.batchRemove(id);
+	}
+	
+}

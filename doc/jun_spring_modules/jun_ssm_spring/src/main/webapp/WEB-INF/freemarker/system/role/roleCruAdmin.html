@@ -1,0 +1,347 @@
+<#ftl output_format="HTML" auto_esc=true> 
+<@h.commonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+<script type="text/javascript" src="${ctx}/js/ztree/js/jquery.ztree.all-3.5.js"></script>
+<script type="text/javascript" src="${ctx}/js/ztree/js/ztreeUtils.js"></script>
+<script type="text/javascript" src="${ctx}/js/select2/js/select2.full.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/select2/js/i18n/zh-CN.js"></script>
+<script type="text/javascript" src="${ctx}/js/custom/common/select2remote.js"></script>
+<script type="text/javascript" src="${ctx}/js/validform/validform.min.js"></script>
+<link rel="stylesheet" href="${ctx}/js/select2/css/select2.min.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/js/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css" media="all">
+
+<script src="${ctx}/js/validform/validform.min.js"></script>
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css" media="all">
+<script>
+	 var _roleType;
+	 var _state;
+	 var menuNames = "";
+	 var menuIds = "";
+	 jQuery(function(){
+		 _roleType="${(returnDatas.data.roleType)!''}";
+		 _state="${(returnDatas.data.active)!''}";
+		 
+		 <#if returnDatas.data?? && returnDatas.data.menus?size gt 0>
+		 	<#list returnDatas.data.menus as _data>
+				 	menuNames+="${(_data.name)!''},";
+				 	menuIds+="${(_data.id)!''},";
+		 	</#list>
+		 	jQuery("#menuNames").val(menuNames);
+			jQuery("#menuIds").val(menuIds);
+		 </#if>
+		 
+		 jQuery("#roleType").val(_roleType);
+		 jQuery("#active").val(_state);
+		 /*
+		 init_valid(_before,_after)
+		 @_before:提交表单前，调用 的函数   可以为空，一般有validform处理不了，独自进行处理时使用
+		 @_after:保存成功后，调用的函数  可以为空，一般为对应的列表页面
+		 */
+		 springrain.initValid(null,function(){window.location.href="${ctx}/system/role/list/all?springraintoken="+springraintoken});
+	 });
+</script>
+<script type="text/javascript">
+				var listurl = '${ctx}/system/role/list';
+				var _valid_form;
+				var menuMultiSelectSetting = {
+					expandAll : true,
+					check : {
+						enable : true,
+						chkStyle : "checkbox",
+						//chkboxType:  { "Y" : "", "N" : "" }
+						chkboxType : {
+							"Y" : "ps",
+							"N" : "ps"
+						}
+					},
+					data : {
+						simpleData : {
+							enable : true,
+							idKey : "id",
+							pIdKey : "pid",
+							rootPId : "null"
+						}
+					} 
+				};
+				function deleteRole() {
+					var id = jQuery("#id").val();
+					if (!id || id == "") {
+						myalert("请选择你要删除的记录");
+						return;
+					} else {
+						var _url = "${ctx}/system/role/delete?id=" + id;
+						springrain.mydelete(null,_url,'确认要删除该角色,与之绑定的帐号将失去此角色绑定关系 ',null);
+					}
+				}
+
+				var menuMultiSelectTree;
+				function showZtreeMenu() {
+
+					if (!menuMultiSelectTree) {
+						jQuery.post("${ctx}/system/menu/list/all/json", function(
+								_json) {
+							if (_json.status == "success") {
+								$.fn.zTree.init($("#menuMultiSelectTree"),
+										menuMultiSelectSetting, _json.data);
+								menuMultiSelectTree = $.fn.zTree
+										.getZTreeObj("menuMultiSelectTree");
+								//zTree.expandAll(true);
+								checkedZtreeNodes(jQuery("#menuIds").val(),
+										"menuMultiSelectTree");
+							} else {
+								myalert(_json.message);
+								return false;
+							}
+						});
+
+					} else {
+						checkedZtreeNodes(jQuery("#menuIds").val(),
+								"menuMultiSelectTree");
+					}
+					//页面层-自定义
+					layer.open({
+						shadeClose : true,
+						type : 1,
+						title : "选择菜单",
+						area : [ '600px', '400px' ], //宽高
+						content : $("#div_menuMultiSelectTree"),
+						closeBtn : 1,
+						btn : [ '确定' ], //按钮
+						yes : function(index, layero) {
+							selectZtreeMenu();
+							layer.close(index); //如果设定了yes回调，需进行手工关闭
+						}
+					});
+					return false;
+				}
+				function selectZtreeMenu() {
+					var nodes = menuMultiSelectTree.getCheckedNodes(true);
+					var menuNames = "";
+					var menuIds = "";
+
+					jQuery(nodes).each(function(i, obj) {
+						menuNames = menuNames + obj.name + ",";
+						menuIds = menuIds + obj.id + ",";
+					});
+					jQuery("#menuNames").val(menuNames);
+					jQuery("#menuIds").val(menuIds);
+				}
+				function doupdate() {
+					_valid_form=springrain.commonUpdateForm("validForm", listurl, '角色更新成功！');
+				}
+
+				function dosave() {
+					_valid_form=springrain.commonSaveForm("validForm", listurl, '角色添加成功！');
+				}
+				
+				
+	
+	
+				var orgSelectSetting = {
+						view: {
+							showLine: true,
+							showIcon: true,
+							selectedMulti: false,
+							dblClickExpand: false,
+							addDiyDom: addDiyDom
+						},
+					callback : {
+						onClick : clickOrgValue
+					},
+					data : {
+						simpleData : {
+							enable : true,
+							idKey : "id",
+							pIdKey : "pid",
+							rootPId : "null",
+						}
+					}
+				};
+				
+				function clickOrgValue(event, treeId, treeNode) {
+					jQuery("#orgname").val(treeNode.name);
+					jQuery("#orgId").val(treeNode.id);
+				};
+				
+				function addDiyDom(treeId, treeNode) {
+					var spaceWidth = 5;
+					var switchObj = $("#" + treeNode.tId + "_switch"),
+					icoObj = $("#" + treeNode.tId + "_ico");
+					switchObj.remove();
+					icoObj.before(switchObj);
+
+					if (treeNode.level > 1) {
+						var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level)+ "px'></span>";
+						switchObj.before(spaceStr);
+					}
+				}
+				var selectOrgZtree;
+				var orgjsondata4select;
+
+				$(document).ready(function() {
+					jQuery.post("${ctx}/system/org/list/json",function(_json) {
+						if (_json.status == "success") {
+							orgjsondata4select = _json;
+							$.fn.zTree.init($("#orgListTree"),orgTreesetting,_json.data);
+							var zTree = $.fn.zTree.getZTreeObj("orgListTree");
+							zTree.expandAll(true);
+							
+							var treeObj = $("#orgListTree");
+							treeObj.hover(function () {
+								if (!treeObj.hasClass("showIcon")) {
+									treeObj.addClass("showIcon");
+								}
+							}, function() {
+								treeObj.removeClass("showIcon");
+							});
+						} else {
+							myalert(_json.message);
+						}
+					});
+					/*
+					不要此方法了，org中去掉了 部门主管角色 
+					*/
+					//springrain.select2Remote("managerRoleId", "${ctx}/system/role/ajax/select2", 250, "id", "name",false);
+				});
+				
+				function showOrgTree() {
+					if (!selectOrgZtree) {
+						$.fn.zTree.init($("#selectOrgTree"), orgSelectSetting,
+								orgjsondata4select.data);
+
+						selectOrgZtree = $.fn.zTree
+								.getZTreeObj("selectOrgTree");
+						selectOrgZtree.expandAll(true);
+						selectZtreeOneNode(jQuery("#orgId").val(),
+								"selectOrgTree");
+					}
+
+					//页面层-自定义
+					layer.open({
+						shadeClose : true,
+						closeBtn : 1,
+						btn : [ '确定' ], //按钮
+						type : 1,
+						title : "选择所属部门",
+						area : [ '600px', '400px' ], //宽高
+						//shadeClose: true,
+						content : $("#div_select_org_tree")
+					});
+
+				}
+			//-->
+			</script>
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+		<!-- 主体内容开始 -->
+			<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title site-demo-title">
+		             <li style="float:right;">
+				        <button type="button" onclick="history.go(-1)" class="layui-btn layui-btn-small" style="margin-top:8px;"><i class="layui-icon layui-icon-specil">&#xe603;</i>返回</button>
+		             </li>
+	       		</ul>
+				
+				<div class="layui-body layui-tab-content site-demo-body">
+					<div class="layui-tab-item layui-show">
+							<div class="layui-main">
+						          <div id="LAY_preview" class="layui-my-form">
+						          				<header class="larry-personal-tit">
+													<span>添加角色</span>
+												</header>
+												<div class="larry-personal-body clearfix changepwd">
+													<form id="validForm" class="layui-form <!--  -->"  method="post" action="${ctx}/system/role/update">
+																<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}"/>	
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">角色名称*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<input type="text" name="name" id="name" datatype="*" nullmsg="不能为空" errormsg="不能为空！" autocomplete="off" class="layui-input" value="${(returnDatas.data.name)!''}">
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<#--
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">权限编码*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<input type="text" name="code" id="code" datatype="*" nullmsg="不能为空" errormsg="不能为空！" autocomplete="off" class="layui-input" value="${(returnDatas.data.code)!''}">
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	-->
+																	<div class="layui-form-item  col-lg-6">
+															    		<label class="layui-form-label">权限菜单</label>
+																	    <div class="layui-inline  col-lg-5">
+																	    	<input name="menuNames" class="layui-input" id="menuNames" type="text" readonly="readonly" onclick="showZtreeMenu();"/> 
+																	      	<input name="menuIds" id="menuIds" type="hidden">
+																	    </div>
+																  	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">角色类型*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<select class="form-control" name="roleType" id="roleType"  datatype="*"  nullmsg="角色类型不能为空">
+																	      		<option value="">请选择角色类型</option>
+																	      		<optgroup label="<<系统级角色>>">
+																					<option value="0">系统角色</option>
+																				</optgroup>
+																				<optgroup label="<<应用级角色>>">
+																					<option value="1">部门主管</option>
+																					<option value="2">业务岗位</option>
+																				</optgroup>
+																			</select>
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	
+																    <div class="layui-form-item  col-lg-6">
+															    		<label class="layui-form-label">归属部门*</label>
+																	    <div class="layui-inline">
+																	      	<input onclick="showOrgTree();" name="orgname" id="orgname"  value="${(returnDatas.data.orgname)!''}" readonly="readonly"  type="text"  placeholder="点击选择归属部门" autocomplete="off" class="layui-input">
+																	    	<input name="orgId" id="orgId" type="hidden" value="${(returnDatas.data.orgId)!''}"/>
+																	    </div>
+																  	</div>
+																	
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">备注*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<textarea name="remark" id="remark" placeholder="请输入内容" class="layui-textarea"></textarea>
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">是否可用*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<select class="form-control" name="active" id="active" datatype="*"  nullmsg="是否可用不能为空">
+																	      		<option value>请选择是否可用</option>
+																				<option value="1">是</option>
+																				<option value="0">否</option>
+																			</select>
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+													<div class="layui-form-item change-submit">
+														<label class="layui-form-label"></label>
+															<div class="layui-inline">
+																<button type="button" class="layui-btn" id="smtbtn">立即提交</button>
+																<button type="button" class="layui-btn layui-btn-primary" id="rstbtn">重置</button>
+															</div>
+														</div>
+													</form>
+												</div>
+								  </div>
+							</div>
+					</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+	<div id="div_menuMultiSelectTree">
+		<ul id="menuMultiSelectTree" class="ztree"></ul>
+	</div>
+		<div id="div_select_org_tree">
+       	<ul id="selectOrgTree" class="ztree"></ul>
+     </div>
+	
+</body>
+</html>

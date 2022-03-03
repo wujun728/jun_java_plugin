@@ -1,0 +1,228 @@
+<#ftl output_format="HTML" auto_esc=true> <@h.commonHead title="用户管理"
+keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+<script type="text/javascript"
+	src="${ctx}/js/ajaxfileupload/ajaxfileupload.js"></script>
+<script type="text/javascript"
+	src="${ctx}/js/validform/validform.min.js"></script>
+<link rel="stylesheet" href="${ctx}/js/select2/css/select2.min.css"
+	type="text/css">
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css"
+	media="all">
+</head>
+<body>
+
+
+
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /> <@h.leftMenu />
+		<!-- 主体内容开始 -->
+		<div class="layui-tab layui-tab-brief">
+			<ul class="layui-tab-title site-demo-title">
+				<li class="layui-this"><i class="layui-icon">&#xe630;</i> <span
+					class="layui-breadcrumb" style="visibility: visible;"> <a
+						href="${ctx}">首页<span class="layui-box">&gt;</span></a> <a href="">系统管理<span
+							class="layui-box">&gt;</span></a> <a><cite>文件管理</cite></a>
+				</span></li>
+				<li style="float: right;"><@shiro.hasPermission
+					name="/system/file/uploadFile" >
+					<button type="button" class="layui-btn layui-btn-small"
+						onclick="showUploadDiv();">
+						<i class="layui-icon layui-icon-specil">&#xe609;</i>上传
+					</button> </@shiro.hasPermission> <@shiro.hasPermission
+					name="/system/file/uploadDic" >
+					<button type="button" class="layui-btn layui-btn-small"
+						onclick="showUploadDicDiv();">
+						<i class="layui-icon layui-icon-specil">&#xe609;</i>创建目录
+					</button> </@shiro.hasPermission> <#if t??>
+					<button type="button" class="layui-btn layui-btn-small"
+						onclick="backTurn('${ctx}/system/file/web/list?p=${parent!''}&t=${t!''}');">
+						<i class="layui-icon layui-icon-specil">&#xe609;</i>返回上一级
+					</button> <#else>
+					<button type="button" class="layui-btn layui-btn-small"
+						onclick="backTurn('${ctx}/system/file/list?p=${parent!''}&t=${t!''}');">
+						<i class="layui-icon layui-icon-specil">&#xe609;</i>返回上一级
+					</button> </#if>
+				</li>
+			</ul>
+			<div class="layui-body layui-tab-content site-demo-body">
+				<div class="layui-tab-item layui-show">
+					<div class="layui-main">
+						<div id="LAY_preview">
+							<!-- 查询  开始 -->
+							<form class="layui-form layui-form-pane" id="searchForm"
+								action="${ctx}/system/user/list" method="post">
+								<input type="hidden" name="pageIndex" id="pageIndex"
+									value="${(returnDatas.page.pageIndex)!'1'}" /> <input
+									type="hidden" name="sort" id="page_sort"
+									value="${(returnDatas.page.sort)!'desc'}" /> <input
+									type="hidden" name="order" id="page_order"
+									value="${(returnDatas.page.order)!'id'}" />
+
+							</form>
+							<!-- 查询  结束 -->
+							<!--start_export-->
+							<table class="layui-table" lay-even>
+								<colgroup>
+									<col>
+									<col>
+									<col>
+								</colgroup>
+								<!--end_no_export-->
+								<!--first_start_export-->
+								<thead>
+									<tr>
+										<th colspan="9">文件列表</th>
+									</tr>
+									<tr>
+										<!--first_start_no_export-->
+										<th>操作</th>
+										<!--first_end_no_export-->
+										<th id="th_name">名称</th>
+										<th id="th_pid">类型</th>
+									</tr>
+								</thead>
+								<!--first_end_export-->
+								<!--start_export-->
+								<tbody>
+									<#if (returnDatas.data??)&&(returnDatas.data?size>0)> <#list
+									returnDatas.data as _data>
+									<!--start_no_export-->
+									<tr class="">
+										<td><#if (_data.type)?? && (_data.type==0)>
+											<@shiro.hasPermission name="/system/file/downfile" > <a
+											data-action="${ctx}/system/file/downfile?p=${(_data.path)!''}&t=${t!''}"
+											class="layui-btn layui-btn-danger layui-btn-mini ajax-delete">下载</a>
+											</@shiro.hasPermission> <#else> <#if t??> <a href="####"
+											data-action="${ctx}/system/file/web/list?p=${(_data.path)!''}"
+											class="layui-btn layui-btn-danger layui-btn-mini ajax-delete">进入</a>
+											<#else> <a href="####"
+											data-action="${ctx}/system/file/list?p=${(_data.path)!''}"
+											class="layui-btn layui-btn-danger layui-btn-mini ajax-delete">进入</a>
+											</#if> </#if>
+										</td>
+										<!--end_no_export-->
+										<td>${(_data.name)!''}</td>
+										<td><#if (_data.type)?? && (_data.type==1)> 文件夹 <#else>
+											文件</#if></td> </#list> </#if>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+
+	<div id='upload' style="display: none; width: 400px; height: 200px">
+		<div class="layui-form-item  col-lg-9">
+			<div class="layui-input-inline">
+				<input type="file" id="_fileUpload" name="_fileUpload"
+					placeholder="请选择文件" nullmsg="账号不能为空" class="layui-input">
+
+				<button type="button" class="layui-btn layui-btn-small"
+					onclick="uploadFile('_fileUpload')">
+					<i class="layui-icon layui-icon-specil">&#xe609;</i>上传
+				</button>
+			</div>
+
+			<div class="layui-inline valid-info"></div>
+		</div>
+	</div>
+	<div id='uploadDic' style="display: none; width: 400px; height: 200px">
+		<div class="layui-form-item  col-lg-9">
+			<div class="layui-input-inline">
+				<input type="text" id="name" name="name" placeholder="目录名称"
+					nullmsg="账号不能为空" class="layui-input">
+
+				<button type="button" class="layui-btn layui-btn-small"
+					onclick="uploadDic()">
+					<i class="layui-icon layui-icon-specil">&#xe609;</i>创建目录
+				</button>
+			</div>
+
+			<div class="layui-inline valid-info"></div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+<!--
+function toEdit(_title,url){
+	springrain.editWindow(_title,url);
+}
+function del(_id){
+	springrain.mydelete(_id,"${ctx}/system/user/delete");
+}
+var _state;
+jQuery(function(){ 
+	_state="${(returnDatas.queryBean.active)!''}";
+	jQuery("#active").val(_state);
+});
+function backTurn(url){
+	springrain.goTo(url);
+}
+function showUploadDiv(){
+	layer.open({
+		type:1,
+		title:'创建目录',
+		area:'aotu',
+		content :$('#upload')
+	});
+}
+function showUploadDicDiv(){
+	layer.open({
+		type:1,
+		title:'上传文件',
+		area:'aotu',
+		content :$('#uploadDic')
+	});
+}
+function uploadFile(id){
+	var par={"p":"${curr!''}","t":"${t!''}"};
+	var index =layer.load();
+	jQuery.ajaxFileUpload({
+		url :springrain.appendToken( ctx + '/system/file/uploadFile'), // 需要链接到服务器地址
+		type : "post",
+		secureuri : false,// 是对POST数据的加密设置
+		fileElementId : id, // 文件选择框的id属性
+		dataType : 'json', // 服务器返回的格式，可以是json，IE中如果返回的不是JOSN会出错，火狐不出错
+		data:par,
+		success : function(data) { // 相当于java中try语句块的用法
+			layer.closeAll('loading');
+			if (data.status != "success") {
+				layer.alert(data.message);
+			} else {
+				window.location.reload();
+			}
+		}
+	});
+}
+function uploadDic(){
+	var name = jQuery("#name").val();
+	if(name==""||name==null){
+		springrain.alert("名称不能为空");
+		return;
+	}
+	var par={"p":"${curr!''}","t":"${t!''}","name":name};
+	jQuery.ajax({
+		url : "${ctx}/system/file/uploadDic",
+		type : "post",
+		data : par,
+		dataType : "json",
+		async : false,
+		success : function(data) {
+			if (data != null && "success" == data.status) {
+				window.location.reload();
+			}else{
+				springrain.alert(data.message);
+			}
+		}
+	})
+}
+
+//-->
+</script>
+

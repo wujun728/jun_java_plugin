@@ -1,0 +1,462 @@
+<#ftl output_format="HTML" auto_esc=true> 
+<@h.commonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+<script type="text/javascript" src="${ctx}/js/ztree/js/jquery.ztree.all-3.5.js"></script>
+<script type="text/javascript" src="${ctx}/js/ztree/js/ztreeUtils.js"></script>
+<script type="text/javascript" src="${ctx}/js/artTemplate/artTemplate.js"></script>
+<script type="text/javascript" src="${ctx}/js/validform/validform.min.js"></script>
+
+<link rel="stylesheet" href="${ctx}/js/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/css/custom/common/myztree.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css" media="all">
+
+
+<script>
+    jQuery(function(){ 
+        /*
+        全选、反选
+        */
+        jQuery("#checkAll").bind('click',function(){
+            var _is_check=jQuery(this).get(0).checked;
+            jQuery("input[name='check_li']").each(function(_i,_o){
+                jQuery(_o).get(0).checked=_is_check;
+            });
+        });
+        
+        //加载栏目列表
+        loadChannelList();
+    });
+    function del(_id){
+        delWrap(_id,"${ctx}/system/cms/channel/delete");
+    }
+    
+    var channelJsondata4select;
+    var saveType=0;
+    function loadChannelList(){
+        jQuery.post("${ctx}/system/cms/channel/list/json",function(_json) {
+            if (_json.status == "success") {
+            	channelJsondata4select = _json;
+                //树节点点击事件
+                var treeNodeClickFunc = function(event, treeId, treeNode){
+                    if(jQuery(event.target).hasClass("myctr")){
+                        //阻止事件冒泡
+                        return;
+                    }
+                    saveType=1;
+                    jQuery(".add_div a").attr('tid',treeNode.tId);
+                    if (treeNode.pid!='null'){
+                    	showdata(treeNode);
+                    }
+                };
+                //添加子栏目方法回调
+                var addSubChannelFunc = function(tree,node){
+                	saveType=0;
+		    		jQuery("#updateForm")[0].reset();
+		    		jQuery("#pname").val(node.name);
+		    		var parentNode = node.getParentNode();
+		    		if(!!parentNode){
+		    			jQuery("#pid").val(node.id);
+		    			while(!!parentNode){
+			    			var tempParentNode = parentNode.getParentNode();
+							if(!!tempParentNode){
+								parentNode = tempParentNode;
+							}else{
+								break;
+							}
+			    		}
+		    		}else{
+		    			parentNode = node;	
+		    		}
+		    		$("#siteId").val(parentNode.id);
+                };
+                //删除方法回调
+                var delChannelFunc = function(tree,node){
+                	if(!!node.pid){
+                		springrain.alert('站点信息不能删除!');
+                	}else{
+                		springrain.confirm('删除这个菜单，是否继续?', function(index) {
+                   			var id = node.id;
+       		    			if (!id || id == "") {
+       		    				springrain.alert('请选择你要删除的记录!');
+       		    				return false;
+       		    			} else {
+       		    				var _url = "${ctx}/system/cms/channel/delete";
+       		    				var listurl = "${ctx}/system/cms/channel/list";
+       		    				var data = {
+       		    					"id" : id
+       		    				};
+       		    				springrain.ajaxpostonlayer(_url, listurl, data, '删除菜单成功！');
+       		    			}
+                    		
+    		    			layer.close(index);
+                    	});
+                	}
+                	
+                };
+                var opt = {
+                    'hasMenu':true,
+                    'id':'channelListTree',
+                    'data':_json.data,
+                    'treeNodeClick':treeNodeClickFunc,
+                    'btns':[
+                        {'text':'添加子栏目','callback':addSubChannelFunc},
+                        {'text':'删除','callback':delChannelFunc}
+                    ]
+                };
+                springrain.tree(opt);
+            }else{
+                myalert(_json.message);
+            }
+        });
+    }
+    
+    //树节点点击方法
+    function showdata(result){
+    	$("#updateForm select ").each(function() {
+			$(this).find('option:first').attr('selected','selected');
+		});
+		//console.log(result);
+		for ( var s in result) {
+			set_val(s, result[s]);
+		}				
+		var _pid = result["pid"];
+		if ((!_pid) || _pid == null || _pid == "null" || _pid == "") {
+			jQuery("#pid").val("");
+		} else {
+			jQuery("#pid").val(_pid);
+		}
+		var _pNode = result.getParentNode();
+		if (_pNode) {
+			jQuery("#pname").val(_pNode["name"]);
+		} else {
+			jQuery("#pname").val("");
+		}
+    }
+    
+    //点击显示父级菜单函数
+    var selectChannelZtree;
+    function showChannelZTree() {
+		if (!selectChannelZtree) {
+			selectChannelZtree=springrain.tree({
+				'hasMenu':false,
+				'id':'channelZtree',
+				'data':channelJsondata4select.data,
+				'treeNodeClick':function(event, treeId, treeNode){
+					if(!!treeNode.pid){
+						jQuery("#pid").val(treeNode.id);
+						var parentNode = treeNode.getParentNode();
+						while(!!parentNode){
+							var tempParentNode = parentNode.getParentNode();
+							if(!!tempParentNode){
+								parentNode = tempParentNode;
+							}else{
+								break;
+							}
+								
+						}
+						console.log(parentNode);
+						$("#siteId").val(parentNode.id);
+					}
+						
+					jQuery("#pname").val(treeNode.name);
+				}
+			});
+			
+			selectChannelZtree.expandAll(true);
+			selectZtreeOneNode(jQuery("#pid").val(), "channelZtree");
+		}
+		//页面层-自定义
+		layer.open({
+			shadeClose : true,
+			closeBtn : 1,
+			btn : [ '确定' ], //按钮
+			type : 1,
+			title : "选择父菜单",
+			area : [ '600px', '400px' ], //宽高
+			//shadeClose: true,
+			content : $("#div_channelZtree")
+		});
+	}
+    
+    
+	function dosubmit() {
+		var _j_t=jQuery("#jumpType").val();
+		var _link=jQuery("#link").val();
+		if(_j_t=="1"||_j_t=="2"){
+			if(_link==null||_link==""||jQuery.trim(_link).length<=0){
+				springrain.info("非默认跳转情况下，需要指定跳转链接");
+				return;
+			}
+		}
+		if(_j_t=="1"){
+			if(_link.toLowerCase().indexOf("http")==-1||_link.toLowerCase().indexOf("http")!=0){
+				springrain.info("自定义跳转情况下，链接需要http开头");
+				return;
+			}
+		}
+		var msg = "菜单添加成功！";
+		if (saveType == 1) {
+			msg = "菜单更新成功！";
+		}
+		var listurl = '${ctx}/system/cms/channel/list';
+		if (saveType == 0) {
+			springrain.commonSaveForm("updateForm",listurl, '菜单添加成功！');
+		} else {
+			springrain.commonUpdateForm("updateForm",listurl, '菜单更新成功！');
+		}
+	}
+</script>
+
+</head>
+<body>
+    <div class="layui-layout layui-layout-admin">
+        <@h.naviHeader /><@h.leftMenu />
+        <!-- 主体内容开始 -->
+        <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title site-demo-title">
+                <li style="float: right;">
+                    <@shiro.hasPermission name="/system/cms/channel/update" >
+                    <!-- <button type="button" class="layui-btn layui-btn-small"
+                        data-action="${ctx}/system/cms/channel/update/pre">
+                        <i class="layui-icon layui-icon-specil">&#xe61f;</i>新增
+                    </button> -->
+                    </@shiro.hasPermission>
+                    <@shiro.hasPermission name="/system/cms/channel/delete" >
+                    <!-- <button type="button"
+                        class="layui-btn layui-btn-danger layui-btn-small">
+                        <i class="layui-icon">&#xe640;</i>批量删除
+                    </button> -->
+                    </@shiro.hasPermission>
+                </li>
+            </ul>
+
+            <div class="layui-body layui-tab-content site-demo-body">
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-main">
+                        <div class="container-fluid" style="overflow:hidden;">
+                            <div class="row">
+                                <div class="fl per30" style="min-width:360px">
+                                    <ul id="channelListTree" class="ztree"></ul>
+                                </div>
+                                <div class="fl per60 rlt">
+                                	<div class="fl per20 line-vertical"></div>
+                               		<form id="updateForm" name="updateForm" action="${ctx}/system/cms/channel/update" method="post" class="layui-form">
+                               			<input type="hidden" id="id" name="id"
+										value="" />
+										<input type="hidden" id="siteId" name="siteId" value=""/>
+										
+										<fieldset class="layui-elem-field layui-field-title">
+										  <legend>基础数据</legend>
+										</fieldset>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">栏目名称*</label>
+											<div class="layui-inline">
+												<input type="text" name="name" id="name" datatype="*"
+													nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+													class="layui-input" value="">
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">父级栏目*</label>
+											<div class="layui-inline">
+												<input type="hidden" name="pid" id="pid" value="">
+												<input type="text" name="pname" id="pname" class="layui-input" value="" onclick="showChannelZTree();"/>
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">是否有内容 *</label>
+											<div class="layui-inline">
+												<select name="hasContent" id="hasContent" lay-verify="required">
+													<option value="0">是</option>
+													<option value="1">否</option>
+												</select>
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label  col-lg-3">编号</label>
+											<div class="layui-inline">
+												<input type="text" name="comcode" id="comcode"  autocomplete="off"
+													class="layui-input" value="">
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label  col-lg-3"></label>
+											<div class="layui-inline" style="color:green;">
+												说明：此处会根据树形结构生成，不用填写
+											</div>
+										</div>
+										
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label  col-lg-3">级别*</label>
+											<div class="layui-inline">
+												<input type="text" name="positionLevel" id="positionLevel"
+													datatype="*" nullmsg="不能为空" errormsg="不能为空！"
+													autocomplete="off" class="layui-input"
+													value="">
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">关键字*</label>
+											<div class="layui-inline">
+												<input type="text" name="keywords" id="keywords" datatype="*"
+													nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+													class="layui-input"
+													value="">
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label  col-lg-3">描述*</label>
+											<div class="layui-inline">
+												<input type="text" name="description" id="description"
+													datatype="*" nullmsg="不能为空" errormsg="不能为空！"
+													autocomplete="off" class="layui-input"
+													value="">
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">排序*</label>
+											<div class="layui-inline">
+												<input type="text" name="sortno" id="sortno" datatype="*"
+													nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+													class="layui-input" value="">
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">状态 *</label>
+											<div class="layui-inline">
+												<select name="active" id="active" lay-verify="required">
+													<option value="1">是</option>
+													<option value="0">否</option>
+												</select>
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+										  <legend>后台模板指定</legend>
+										</fieldset>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">后台列表模板路径*</label>
+											<div class="layui-inline col-lg-6">
+												<input type="text" name="ftlListPath" id="ftlListPath" datatype="*"
+													nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+													class="layui-input"
+													value="">
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">后台更新模板路径*</label>
+											<div class="layui-inline col-lg-6">
+												<input type="text" name="ftlUpdatePath" id="ftlUpdatePath" datatype="*"
+													nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+													class="layui-input"
+													value="">
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">后台查看模板路径*</label>
+											<div class="layui-inline col-lg-6">
+												<input type="text" name="ftlLookPath" id="ftlLookPath" datatype="*"
+													nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+													class="layui-input"
+													value="">
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+										  <legend>前台模板指定</legend>
+										</fieldset>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">前台列表模板路径*</label>
+											<div class="layui-inline col-lg-6">
+												<input type="text" name="frontFtl" id="frontFtl" datatype="*"
+													nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+													class="layui-input"
+													value="">
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">添加内容(子节点)时前台访问详情模板*</label>
+											<div class="layui-inline col-lg-6">
+												<input type="text" name="nodeftlPath" id="nodeftlPath" datatype="*"
+													nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+													class="layui-input"
+													value="">
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+										  <legend>前台跳转</legend>
+										</fieldset>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">前台跳转方式 *</label>
+											<div class="layui-inline">
+												<select name="jumpType" id="jumpType">
+													<option value="0">[默认]返回前台列表模板</option>
+													<option value="2">服务器转发</option>
+													<option value="1">自定义HTTP跳转</option>
+												</select>
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">前台访问链接</label>
+											<div class="layui-inline col-lg-6">
+												<input type="text" name="link" id="link"  autocomplete="off"
+													class="layui-input"
+													value="">
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3"></label>
+											<div class="layui-inline col-lg-6">
+												<div class="layui-inline valid-info" style="color:green;">说明：不传会取默认/f/mp/siteId/bussnissId，如果有https跳转请填写。
+												在跳转方式为"默认"下，此设置无意义</div>
+											</div>
+										</div>
+										<div class="layui-form-item col-lg-9">
+											<label class="layui-form-label col-lg-3">登陆访问*</label>
+											<div class="layui-inline">
+											 	<input type="radio" name="loginuser" value="0" title="否" checked>
+												<input type="radio" name="loginuser" value="1" title="是">
+											</div>
+											<div class="layui-inline valid-info"></div>
+										</div>
+										<div class="layui-form-item change-submit col-lg-9 tc">
+											<label class="layui-form-label  col-lg-3"></label>
+											<div class="layui-inline  col-lg-6">
+												<button type="button" class="layui-btn"   onclick="dosubmit();" id="smtbtn">保存</button>
+											</div>
+										</div>
+                               		</form>     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 主体内容结束 -->
+        <@h.footer />
+    </div>
+    
+    <div id="div_channelZtree" style='display:none;'>
+        <ul id="channelZtree" class="ztree"></ul>
+    </div>
+
+</body>
+</html>
+

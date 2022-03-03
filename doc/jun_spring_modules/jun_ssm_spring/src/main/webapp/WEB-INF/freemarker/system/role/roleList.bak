@@ -1,0 +1,327 @@
+<#ftl output_format="HTML" auto_esc=true> <@h.commonHead title="角色管理" keywords="开源,永久免费"
+description="springrain开源系统管理后台"/>
+<script type="text/javascript" src="${ctx}/js/ztree/js/jquery.ztree.all-3.5.js"></script>
+<script type="text/javascript" src="${ctx}/js/ztree/js/ztreeUtils.js"></script>
+<script type="text/javascript" src="${ctx}/js/select2/js/select2.full.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/select2/js/i18n/zh-CN.js"></script>
+<script type="text/javascript" src="${ctx}/js/custom/common/select2remote.js"></script>
+<script type="text/javascript" src="${ctx}/js/validform/validform.min.js"></script>
+<link rel="stylesheet" href="${ctx}/js/select2/css/select2.min.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/js/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css" media="all">
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /> <@h.leftMenu />
+		<!-- 主体内容开始 -->
+			<script type="text/javascript">
+				var listurl = '${ctx}/system/role/list';
+				var _valid_form;
+				var menuMultiSelectSetting = {
+					expandAll : true,
+					check : {
+						enable : true,
+						chkStyle : "checkbox",
+						//chkboxType:  { "Y" : "", "N" : "" }
+						chkboxType : {
+							"Y" : "ps",
+							"N" : "ps"
+						}
+					},
+					data : {
+						simpleData : {
+							enable : true,
+							idKey : "id",
+							pIdKey : "pid",
+							rootPId : "null"
+						}
+					}
+				};
+
+				jQuery(function(){
+					//左边tr点击的事件绑定
+					$(".springrain-table tbody tr").click(function() {
+						springrain.resetForm(_valid_form);
+						$(".springrain-table tbody tr.active").removeClass("active");
+						$(this).attr("class", "active");
+						var _url = ctx+ "/system/role/look/json?id="+ $(this).attr("id");
+						jQuery.ajax({
+							url : _url,
+							type : "post",
+							dataType : "json",
+							success : function(_json) {
+								      if (_json.status == "success") {
+												showdata(_json);
+									      }
+									}
+						});
+						return false;
+					});
+				});
+					
+				function showdata(result) {
+					var fixed = result.data['fixed'];
+					if (fixed == 1) {
+						$("#btn_role_del").attr("onclick", "").hide();
+					} else {
+						$("#btn_role_del").attr("onclick", "deleteRole();")
+								.show();
+					}
+
+					$("#btn_add").hide();
+					$("#btn_update").show();
+					$("#btn_reload").show();
+					for ( var s in result.data) {
+						set_val(s, result.data[s]);
+					}
+
+					var menuNames = "";
+					var menuIds = "";
+
+					jQuery(result.data.menus).each(function(i, obj) {
+						menuNames = menuNames + obj.name + ",";
+						menuIds = menuIds + obj.id + ",";
+					});
+					jQuery("#menuNames").val(menuNames);
+					jQuery("#menuIds").val(menuIds);
+
+				}
+
+				function deleteRole() {
+					var id = jQuery("#id").val();
+					if (!id || id == "") {
+						myalert("请选择你要删除的记录");
+						return;
+					} else {
+						var _url = "${ctx}/system/role/delete?id=" + id;
+						springrain.mydelete(null,_url,'确认要删除该角色,与之绑定的帐号将失去此角色绑定关系 ',null);
+					}
+				}
+
+				var menuMultiSelectTree;
+				function showZtreeMenu() {
+
+					if (!menuMultiSelectTree) {
+						jQuery.post("${ctx}/system/menu/list/json", function(
+								_json) {
+							if (_json.status == "success") {
+								$.fn.zTree.init($("#menuMultiSelectTree"),
+										menuMultiSelectSetting, _json.data);
+								menuMultiSelectTree = $.fn.zTree
+										.getZTreeObj("menuMultiSelectTree");
+								//zTree.expandAll(true);
+								checkedZtreeNodes(jQuery("#menuIds").val(),
+										"menuMultiSelectTree");
+							} else {
+								myalert(_json.message);
+								return false;
+							}
+						});
+
+					} else {
+						checkedZtreeNodes(jQuery("#menuIds").val(),
+								"menuMultiSelectTree");
+					}
+					//页面层-自定义
+					layer.open({
+						shadeClose : true,
+						type : 1,
+						title : "选择菜单",
+						area : [ '600px', '400px' ], //宽高
+						content : $("#div_menuMultiSelectTree"),
+						closeBtn : 1,
+						btn : [ '确定' ], //按钮
+						yes : function(index, layero) {
+							selectZtreeMenu();
+							layer.close(index); //如果设定了yes回调，需进行手工关闭
+						}
+					});
+					return false;
+				}
+				function selectZtreeMenu() {
+					var nodes = menuMultiSelectTree.getCheckedNodes(true);
+					var menuNames = "";
+					var menuIds = "";
+
+					jQuery(nodes).each(function(i, obj) {
+						menuNames = menuNames + obj.name + ",";
+						menuIds = menuIds + obj.id + ",";
+					});
+					jQuery("#menuNames").val(menuNames);
+					jQuery("#menuIds").val(menuIds);
+				}
+				function doupdate() {
+					_valid_form=springrain.commonUpdateForm("validForm", listurl, '角色更新成功！');
+				}
+
+				function dosave() {
+					_valid_form=springrain.commonSaveForm("validForm", listurl, '角色添加成功！');
+				}
+			//-->
+			</script>
+			<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title site-demo-title">
+	       		</ul>
+	       		<div class="layui-body layui-tab-content site-demo-body">
+					<div class="layui-tab-item layui-show">
+						<div class="layui-main">
+						  		<form class="form-horizontal" method="post" action="${ctx}/system/role/list" name="searchForm" id="searchForm">
+									<input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}" /> 
+									<input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}" /> 
+									<input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}" />
+								</form>
+						  		
+						  		<table class="layui-table">
+							          	<tbody>
+							          		<tr>
+							          			<th>操作</th>
+							          		</tr>
+							          		<tr>
+							          			<td>
+							          				<div class="layui-field-box">
+											    		<button id="btn_reload" onclick="location.reload();" class="layui-btn display-n"><i class="layui-icon"></i> 跳转到新增  >></button>
+											    		<button id="btn_add" onclick="dosave();" class="layui-btn"><i class="layui-icon"></i> 保存新增</button>
+											    		<button id="btn_update" style="display: none;" onclick="doupdate();" class="layui-btn"><i class="layui-icon">&#xe642;</i> 保存修改</button>
+											    		<button id="btn_role_del" style="display: none;" onclick="" class="layui-btn layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除</button>
+											  		</div>
+							          			</td>
+							          		</tr>
+							          	</tbody>
+							    </table>
+							<div class="container-fluid">
+								<div class="row">
+									<div class="per20 fl">
+										<table class="layui-table springrain-table">
+										 	<colgroup>
+									    		<col width="100">
+										    	<col width="80">
+									  		</colgroup>
+									  		<thead>
+												<tr>
+													<th>名称</th>
+													<th>是否可用</th>
+												</tr>
+											</thead>
+											<tbody>
+												<#if (returnDatas.data??)&&(returnDatas.data?size>0)> <#list
+												returnDatas.data as _data>
+												<tr id="${(_data.id)!''}">
+													<td>${(_data.name)!''}</td>
+													<td>
+														<#if (_data.active)?? && (_data.active==1)>
+															是
+														<#else>
+															否
+														</#if>
+													</td>
+												</tr>
+												</#list> </#if>
+											</tbody>
+										</table>
+										<div id="laypageDiv"></div>
+										<@h.layPage cont="laypageDiv" formId="searchForm" page=returnDatas.page/>
+									</div>
+									<div class="per60 fl rlt">
+										<div class="fl per20 line-vertical"></div>
+										<form id="validForm" name="validForm"	action="${ctx}/system/role/update" method="post" class="layui-form">
+											<input type="hidden" name="id" id="id">
+											<div class="layui-form-item  col-lg-9">
+									    		<label class="layui-form-label col-lg-3">名称*</label>
+											    <div class="layui-inline">
+											      	<input type="text" id="name" name="name"
+															placeholder="名称" datatype="*"  nullmsg="名称不能为空"
+															class="layui-input">
+											    </div>
+											    <div class="layui-inline valid-info"></div>
+										  	</div>
+											<div class="layui-form-item  col-lg-9">
+									    		<label class="layui-form-label  col-lg-3">权限菜单</label>
+											    <div class="layui-inline  col-lg-6">
+											    	<input name="menuNames" class="layui-input" id="menuNames" type="text" readonly="readonly" onclick="showZtreeMenu();"/> 
+											      	<input name="menuIds" id="menuIds" type="hidden">
+											    </div>
+										  	</div>
+											<div class="layui-form-item  col-lg-9">
+											    <label class="layui-form-label col-lg-3">角色类型*</label>
+											    <div class="layui-inline ">
+											      	<select class="form-control" name="roleType" id="roleType"  datatype="*"  nullmsg="角色类型不能为空">
+											      		<option value>请选择角色类型</option>
+											      		<optgroup label="<<系统级角色>>">
+															<option value="0">系统角色</option>
+														</optgroup>
+														<optgroup label="<<应用级角色>>">
+															<option value="1">部门主管</option>
+															<option value="2">业务岗位</option>
+														</optgroup>
+													</select>
+											    </div>
+											    <div class="layui-inline valid-info"></div>
+										  	</div>
+										  	<div class="layui-form-item  col-lg-9">
+											    <label class="layui-form-label col-lg-3">管理部门*</label>
+											    <div class="layui-inline  col-lg-6">
+												    <table class="layui-table">
+													 	<colgroup>
+												    		<col width="">
+													    	<col width="80">
+												  		</colgroup>
+												  		<thead>
+															<tr>
+																<th>部门名称</th>
+																<th>是否含下级</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td><input type="text" id="orgId_01" name="orgIds" placeholder="先复制ID" class="layui-input"></td>
+																<td><input type="checkbox"></td>
+															</tr>
+															<tr>
+																<td><input type="text" id="orgId_01" name="orgIds" placeholder="先复制ID"  class="layui-input"></td>
+																<td><input type="checkbox"></td>
+															</tr>
+															<tr>
+																<td><input type="text" id="orgId_01" name="orgIds" placeholder="先复制ID"  class="layui-input"></td>
+																<td><input type="checkbox"></td>
+															</tr>
+														</tbody>
+													</table>
+											    </div>
+											     <div class="layui-inline valid-info"></div>
+										  	</div>
+											<div class="layui-form-item  col-lg-9">
+											    <label class="layui-form-label col-lg-3">是否可用*</label>
+											    <div class="layui-inline ">
+											      	<select class="form-control" name="active" id="active" datatype="*"  nullmsg="是否可用不能为空">
+											      		<option value>请选择是否可用</option>
+														<option value="1">是</option>
+														<option value="0">否</option>
+													</select>
+											    </div>
+											     <div class="layui-inline valid-info"></div>
+										  	</div>
+											
+											<div class="layui-form-item layui-form-text  col-lg-9">
+											    <label class="layui-form-label col-lg-3">备注</label>
+											    <div class="layui-inline col-lg-6">
+											      <textarea name="remark" id="remark" placeholder="请输入内容" class="layui-textarea"></textarea>
+											    </div>
+										  	</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+	<div id="div_menuMultiSelectTree">
+		<ul id="menuMultiSelectTree" class="ztree"></ul>
+	</div>
+	<script src="${ctx}/js/custom/common/form.js"></script>
+</body>
+</html>
+

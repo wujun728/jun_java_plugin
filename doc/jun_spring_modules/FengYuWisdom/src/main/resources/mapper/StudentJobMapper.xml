@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 所需实现的接口全限定名-->
+<mapper namespace="com.feri.fyw.dao.StudentJobDao">
+    <resultMap id="BaseResultMap" type="com.feri.fyw.entity.StudentJob" >
+        <id property="id" column="id"></id>
+        <result column="sid" property="sid" />
+        <result column="salary" property="salary" />
+        <result column="edu" property="edu" />
+        <result column="company" property="company" />
+        <result column="school" property="school" />
+        <result column="major" property="major" />
+        <result column="jobdate" property="jobdate" />
+        <result column="city" property="city" />
+        <result column="aid" property="aid" />
+        <result column="ctime" property="ctime" />
+    </resultMap>
+    <!--    新增 多个参数封装了类-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into t_studentjob(sid,salary,edu,company,school,major,jobdate,city,aid,ctime) values
+        (#{sid},#{salary},#{edu},#{company},#{school},#{major},#{jobdate},#{city},#{aid},now());
+    </insert>
+    <insert id="insertBatch" parameterType="list">
+        insert into t_dayexam(sid,salary,edu,company,school,major,jobdate,city,aid,ctime)values
+        <foreach collection="list" item="s" separator=",">
+            (#{s.sid},#{s.salary},#{s.edu},#{s.company},#{s.school},#{s.major},#{s.jobdate},#{s.city},#{s.aid},now())
+        </foreach>
+    </insert>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from t_studentjob
+    </select>
+    <select id="selectAllTop" resultType="com.feri.fyw.dto.StudentJobDto">
+        select sj.*,st.name sname from t_studentjob sj inner join t_student st on sj.sid=st.id
+    </select>
+</mapper>

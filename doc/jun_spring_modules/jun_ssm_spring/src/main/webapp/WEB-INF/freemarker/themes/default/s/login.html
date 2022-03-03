@@ -1,0 +1,111 @@
+<#ftl output_format="HTML" auto_esc=true>
+<@h.head title="登陆" keywords="开源,永久免费" description="springrain开源系统管理后台登陆页面"/>
+		<style>
+			body{margin: 0;padding: 0;background: #1D7DB1;}input:active{outline: none;}
+			.boxSizing{
+				box-sizing: border-box; display: box; 
+				-moz-box-sizing: border-box; /*Firefox3.5+*/ 
+				-webkit-box-sizing: border-box; /*Safari3.2+*/ 
+				-o-box-sizing: border-box; /*Opera9.6*/ 
+				-ms-box-sizing: border-box; /*IE8*/
+			}
+			.boxShadow{-moz-box-shadow:0px 0px 10px #3137E8; -webkit-box-shadow:0px 0px 10px #3137E8; box-shadow:0px 0px 10px #3137E8;}
+			*,input:focus,button:focus,textarea:focus{ -webkit-tap-highlight-color:rgba(0,0,0,0);outline: none;}
+			.ht300{height: 300px;}.w-500{width: 500px;}.per80{width: 80%;}.display-ib{display: inline-block;}
+			.bg-F4F4F4{background: #F4F4F4;margin: 100px auto;}.tc{text-align: center;}.ht40{height: 40px;}
+			.border{border: 1px solid #DDDDDD;}.bg-white{background: white;}.per20{width: 20%;}.pt40{padding-top: 40px;}
+			.ht30{height: 22px;width: 22px;}.per85{width: 85%;}.mt7{margin: 9px;}.fl{float: left;}.cursor-p{cursor: pointer;}
+			input{height: 34px;width: 100%;border: none;margin-top:2px;font-size: 16px;padding-left: 10px;}.mb40{margin-bottom: 20px;}
+			.radius4{border-radius: 8px;-webkit-border-radius: 8px;-moz-border-radius: 8px;overflow: hidden;}
+			button{background: #007AFF;border: none;color: white;font-size: 18px;font-family: "微软雅黑";}
+			.per30{width: 40%;}.per70{width: 60%;}.tr{text-align: right;}.ht36{height: 36px;}.mt2{margin-top: 2px;}
+		</style>
+		<script src="${ctx}/js/jquery/jquery-1.12.4.js"></script>
+		<script src="${ctx}/js/cache/locache.min.js"></script>
+		<script type="text/javascript" src="${ctx}/js/md5/md5.min.js"></script>
+		<script type="text/javascript" src="${ctx}/js/cookie/jquery.cookie.js"></script>
+		<script type="text/javascript">
+			//清除缓存
+			locache.flush();
+			$.cookie("defaultSiteId","${siteId!''}", {path:"/"});
+			<@cms_site id=siteId!''>
+				var logoData = "${(site.logo)!''}".replace(/&quot;/g, "\""); 
+				logoData = JSON.parse(logoData);
+				var logoUrl = logoData[0].path;
+				locache.set("defaultSiteLogoUrl",logoUrl);
+				locache.set("defaultSiteFooter","${(site.footer)!''}");
+			</@cms_site>
+		</script>
+	</head>
+	<body>
+		<div id="header">
+		</div>
+		<form action="${ctx}/s/${siteId!''}/login" method="post" id="loginForm">
+		 <input type="hidden" name="gotourl" value="${gotourl!''}" />
+			<div class="ht300 w-500 bg-F4F4F4 pt40 boxSizing boxShadow radius4">
+				<div class="ht40 tc mb40">
+					<div class="display-ib per80 ht40 border bg-white radius4">
+						<div class="ht40 fl per20">
+							<img src="${ctx}/img/touxiang.png" class="ht30 mt7" />
+						</div>
+						<div class="ht40 fl per80">
+							<input type="text" name="account" placeholder="用户名" />
+						</div>
+					</div>
+				</div>
+				<div class="ht40 tc mb40">
+					<div class="display-ib per80 ht40 border bg-white radius4">
+						<div class="ht40 fl per20">
+							<img src="${ctx}/img/lock.png" class="ht30 mt7" />
+						</div>
+						<div class="ht40 fl per80">
+							<input type="password" name="password" placeholder="密码" />
+						</div>
+					</div>
+				</div>
+				<div class="tc mb40">
+				<div class="display-ib per80 bg-white radius4">
+					<div class="fl per70">
+						<input type="text" class="border radius4" name="captcha" placeholder="验证码" />
+					</div>
+					<div class="fl per30 tr">
+						<div class="ht36 per80 radius4 display-ib border mt2">
+							<img style="width:100%;height:100%;" id="captchaImg" onclick="reloadValidateCode();" src="${ctx}/getCaptcha"  align="absmiddle"/>
+							<input type="hidden" id="ValidateCodeNum" value="" />
+						</div>
+					</div> 
+				</div>
+					<p style="color:red;">${message!""}</p>
+			</div>
+				<div class="ht40 tc">
+					<button id="sbtButton" type="submit" class="display-ib per80 ht40 radius4 cursor-p">
+						登录
+					</button>
+				</div>
+			</div>
+		</form>
+		<div id="footer" style="position:fixed;width:100%;bottom:0px;">
+		
+		</div>
+		<script>
+			jQuery(function($) {
+	            $("#sbtButton").click(function(){
+	            	var pw=jQuery(":input[name='password']").val();
+	            	if(!pw||pw==""){
+	            		return false;
+	            	}
+	            	
+	            	pw=md5(pw);
+	            	jQuery(":input[name='password']").val(pw);
+	                $("#loginForm").submit(function(){
+	                    return true;
+	                });
+	            });
+	        });
+	        //刷新验证码
+	        function reloadValidateCode() {
+	            document.getElementById("captchaImg").src="${ctx}/getCaptcha?date=" + new Date().getTime();
+	        }
+		</script>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.generator.dao.SysGeneratorMapper">
+	
+	<select id="listTable" resultType="TableEntity">
+		SELECT
+			table_name,
+			engine obj_name,
+			table_comment,
+			create_time
+		FROM
+			information_schema.tables
+		WHERE
+			table_schema = (SELECT DATABASE())
+		<if test="name != null and name.trim() != ''">
+			and table_name like concat('%', #{name}, '%') 
+		</if>
+		ORDER BY
+			create_time DESC
+	</select>
+	
+	<select id="getTableByName" resultType="TableEntity">
+		SELECT
+			table_name,
+			engine obj_name,
+			table_comment,
+			create_time
+		FROM
+			information_schema.tables
+		WHERE
+			table_schema = (SELECT DATABASE())
+		AND table_name = #{value}
+	</select>
+	
+	<select id="listColumn" resultType="ColumnEntity">
+		SELECT
+			column_name,
+			data_type,
+			column_comment,
+			column_key,
+			extra
+		FROM
+			information_schema.columns
+		WHERE
+			table_name = #{value}
+		AND table_schema = (SELECT DATABASE())
+		ORDER BY
+			ordinal_position
+	</select>
+
+</mapper>

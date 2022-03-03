@@ -1,0 +1,7 @@
+<#-- 本文件包含一些公共的变量 -->
+
+<#-- actionBasePath 用于struts,springmvc框架的action路径前缀,如 /namespace/User/list.do的/namespace/User部分,可以自定义这个变量 -->
+<#assign actionBasePath = "/"+namespace+"/"+table.className>
+
+<#-- jspFileBasePath 用于struts,springmvc框架的java文件引用的jsp前缀,如 /namespace/User/list.jsp的/namespace/User部分 -->
+<#assign jspFileBasePath = "/"+namespace+"/"+table.className>

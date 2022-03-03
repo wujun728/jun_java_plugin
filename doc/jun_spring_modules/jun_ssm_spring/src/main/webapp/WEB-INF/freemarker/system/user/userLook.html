@@ -1,0 +1,107 @@
+<#ftl output_format="HTML" auto_esc=true> 
+<@h.commonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+		<!-- 主体内容开始 -->
+			<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title site-demo-title">
+		            <li class="layui-this">
+		            		<i class="layui-icon">&#xe630;</i>
+		             		<span class="layui-breadcrumb" style="visibility: visible;">
+							   <a href="${ctx}">首页<span class="layui-box">&gt;</span></a>
+							   <a><cite>用户管理</cite></a>
+							</span>
+		            </li>
+		             <li style="float:right;">
+				        <button type="button" onclick="history.go(-1)" class="layui-btn layui-btn-small" style="margin-top:8px;"><i class="layui-icon layui-icon-specil">&#xe603;</i>返回</button>
+		             </li>
+	       		</ul>
+				
+				<div class="layui-body layui-tab-content site-demo-body">
+					<div class="layui-tab-item layui-show">
+							<div class="layui-main">
+						          <div id="LAY_preview" class="layui-my-form">
+						          				<header class="larry-personal-tit">
+													<span>添加用户</span>
+												</header>
+												<div class="larry-personal-body clearfix changepwd">
+													<form id="validForm" class="layui-form <!--  -->"  method="post" action="${ctx}/user/update">
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">姓名*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.name)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">账号*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.account)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">密码*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.password)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">性别*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.sex)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">手机号码*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.mobile)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">邮箱*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.email)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">微信Id*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.weixinId)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">0后台管理员|/system/,1会员用户|/front/,2cms管理员|/cms/houtai/|cms_siteManager,3活动管理员|/huodong/houtai*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.userType)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">是否有效(0否,1是)*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.active)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+													</form>
+												</div>
+								  </div>
+							</div>
+					</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+</body>
+</html>

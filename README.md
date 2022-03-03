@@ -133,7 +133,8 @@ jun_plugin 整合Java企业级各种开发组件、开箱即用、不写重复�
 - **Maven 3.5 
 
 - **IDEA 2018.2 + or  STS 4.5 +** (*注意：安装lombok插件）
-  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Abc
+
+- **TOKEN  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Abc
 
   
 #### 笔者其他项目   

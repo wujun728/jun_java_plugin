@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN/EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="SSHFactory" class="com.lxw.oa.util.SSHFactory" autowire="byType"></bean> 
+	
+	<bean id="IUserDao" class="com.lxw.oa.dao.impl.UserDaoImpl" autowire="byType"></bean> 
+	<bean id="IRoleDao" class="com.lxw.oa.dao.impl.RoleDaoImpl" autowire="byType"></bean>
+	<bean id="IDepartmentDao" class="com.lxw.oa.dao.impl.DepartmentDaoImpl" autowire="byType"></bean>
+	<bean id="IResourceDao" class="com.lxw.oa.dao.impl.ResourceDaoImpl" autowire="byType"></bean>
+	<bean id="IMessageDao" class="com.lxw.oa.dao.impl.MessageDaoImpl" autowire="byType"></bean>
+</beans>

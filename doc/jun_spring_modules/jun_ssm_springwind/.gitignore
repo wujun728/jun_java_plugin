@@ -1,0 +1,35 @@
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+
+# Intellij project files
+*.iml
+.idea/
+
+# hibernate & Spring files
+.myhibernatedata
+hibernate.cfg.xml
+hibernate.reveng.xml
+.springBeans
+
+# Others
+target/
+logs/
+bak/
+reports/
+RemoteSystemsTempFiles/
+Servers/
+/src/main/webapp/WEB-INF/classes/*
+/src/main/webapp/userfiles/*
+.mymetadata
+.checkstyle
+
+.DS_Store
+.tern-project
+.war
+.zip
+.rar
+
+.externalToolBuilders/

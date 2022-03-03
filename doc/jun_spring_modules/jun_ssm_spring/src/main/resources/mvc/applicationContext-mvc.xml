@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd 
+	    http://www.springframework.org/schema/mvc
+         http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd"
+	default-lazy-init="false">
+	
+	
+	<!--  
+    <mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+
+			
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	-->
+	
+	
+	
+	    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter ">
+        <property name="messageConverters">  
+	         <list>  
+			       <bean
+		                class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		                <property name="supportedMediaTypes">
+		                    <list>
+		                        <value>application/json;charset=UTF-8</value>
+		                        <value>text/html;charset=UTF-8</value>
+		                    </list>
+		                </property>
+		                <!-- jackson 值为null的属性不转换,默认是com.fasterxml.jackson.databind.ObjectMapper,扩展实现了字符编码,防止xss -->
+		                <property name="objectMapper">
+		                    <bean class="org.springrain.frame.util.FrameObjectMapper">
+		                    <!-- 
+		                        <property name="serializationInclusion">
+		                            <value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>
+		                        </property>
+		                      -->
+		                    </bean>
+		                </property>
+		                
+		            </bean>
+		        
+		            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+		                <constructor-arg value="UTF-8" />
+		            </bean>
+		            
+		            <bean class="org.springframework.http.converter.ResourceHttpMessageConverter" /> 
+		            
+		            <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+			         
+	         </list>
+        </property>
+        </bean>
+	
+	
+	<!-- 继承 RequestMappingHandlerMapping 用于解决spring mvc restful性能问题 -->
+	<bean class="org.springrain.frame.common.FrameRequestMappingHandlerMapping" />
+	
+	<!-- 
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+	 -->
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	<!-- 只扫描Controller 注解 -->
+		<context:component-scan base-package="org.springrain" name-generator="org.springrain.frame.common.SpringMVCAnnotationBeanNameGenerator"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<mvc:resources mapping="/images/**" location="/images/" />
+	<mvc:resources mapping="/img/**" location="/img/" />
+	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/css/**" location="/css/" />
+	<mvc:resources mapping="/layui/**" location="/layui/" />
+	<mvc:resources mapping="/upload/**" location="/upload/"/>
+	<mvc:resources mapping="/u/**" location="/u/"/>
+	
+	<!-- 全局异常配置 start -->
+	<!-- 使用 web.xml的 errorpage 处理,不再使用 spring mvc 控制 -->
+	<!-- 
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">/500</prop>
+				<prop key="java.lang.Throwable">/404</prop>
+			</props>
+		</property>
+		
+		<property name="statusCodes">
+			<props>
+				<prop key="/500">500</prop>
+				<prop key="/500">404</prop>
+			</props>
+		</property>
+		
+		<property name="exceptionAttribute" value="exception"></property>  
+		<property name="warnLogCategory" value="WARN"></property>
+		<property name="defaultErrorView" value="/error"></property>
+		<property name="defaultStatusCode" value="500"></property>
+	</bean>
+	 -->
+	<!-- 全局异常配置 end -->
+	
+	
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<!--  -->
+	    <property name="viewClass"  value="org.springrain.frame.common.StaticHtmlFreeMarkerView" />  
+		
+		<property name="requestContextAttribute" value="ctp" />
+		<property name="cache" value="true" />
+		<!--  
+		<property name="prefix" value="" />
+		-->
+		<property name="suffix" value=".html" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		
+		<!-- 只支持freemarker -->
+		<!-- 
+		<property name="order" value="0" />
+		 -->
+	</bean>
+	<!-- 取消jsp的支持 -->
+	<!-- 
+	 <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="viewClass"  value="org.springframework.web.servlet.view.JstlView" />  
+        <property name="prefix"  value="/WEB-INF/jsp/" />  
+        <property name="suffix"  value=".jsp"/>  
+        <property name="order" value="1" />
+    </bean>  
+     -->
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" /> <!-- 默认编码 (ISO-8859-1) -->
+		<property name="maxInMemorySize" value="10240" /> <!-- 最大内存大小 (10240) -->
+		<property name="uploadTempDir" value="/upload/" /> <!-- 上传后的目录名 (WebUtils#TEMP_DIR_CONTEXT_ATTRIBUTE) -->
+		<property name="maxUploadSize" value="10485760" /> <!-- 最大文件大小，-1为无限止(-1) -->
+	</bean>
+	
+	
+
+	
+
+	<!--  
+	 <import resource="classpath*:mvc/applicationContext-freemarker-config.xml" />
+	-->
+
+</beans>

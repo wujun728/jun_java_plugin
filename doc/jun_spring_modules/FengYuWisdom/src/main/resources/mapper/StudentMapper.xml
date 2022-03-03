@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 所需实现的接口全限定名-->
+<mapper namespace="com.feri.fyw.dao.StudentDao">
+
+    <resultMap id="BaseResultMap" type="com.feri.fyw.entity.Student" >
+        <id property="id" column="id"></id>
+        <result column="no" property="no" />
+        <result column="name" property="name" />
+        <result column="sex" property="sex" />
+        <result column="hometown" property="hometown" />
+        <result column="education" property="education" />
+        <result column="gid" property="gid" />
+        <result column="ctime" property="ctime" />
+    </resultMap>
+
+
+    <!--    新增 多个参数封装了类-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into t_student(name,no,sex,hometown,education,gid,ctime) values(#{name},#{no},#{sex},#{hometown},#{education},#{gid},now());
+    </insert>
+    <insert id="insertBatch" parameterType="list">
+        insert into t_student(name,no,sex,hometown,education,gid,ctime) values
+        <foreach collection="list" item="s" separator=",">
+            (#{s.name},#{s.no},#{s.sex},#{s.hometown},#{s.education},#{s.gid},now())
+        </foreach>
+    </insert>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from t_student order by id desc
+    </select>
+    <select id="selectTjSex" resultType="com.feri.fyw.dto.StudentSexDto">
+        select sex,count(*) ct from t_student group by sex
+    </select>
+    <select id="selectTjPersons" resultType="com.feri.fyw.dto.GradePersonDto">
+        select s.gid,g.name,count(*) ct from t_student s inner join t_grade g on s.gid=g.id group by s.gid
+    </select>
+
+</mapper>

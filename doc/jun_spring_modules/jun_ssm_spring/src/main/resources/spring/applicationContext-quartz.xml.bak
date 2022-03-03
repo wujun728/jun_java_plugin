@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd"
+	default-lazy-init="false">
+
+
+
+	<!-- 集成方式：JobDetailFactoryBean，并且任务类需要继承QuartzJobBean -->
+	<!-- 定义jobDetail -->
+	<bean id="jobDetail"
+		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="org.springrain.quartz.TestQuartzJob"></property>
+		<!-- durability 表示任务完成之后是否依然保留到数据库，默认false -->
+		<property name="durability" value="false" />
+		<!-- 在这个例子中，jobDataAsMap没有用，此目标类中接受的参数 -->
+		<!-- 
+			<property name="jobDataAsMap"> 
+				<map>
+					 <entry key="service"><value>abc</value></entry> 
+				</map>
+		     </property> 
+		 -->
+
+	</bean>
+
+    <!-- 触发器 -->
+	<bean id="cronTriggerBean"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetail"></property>
+		<property name="cronExpression" value="0/5 * * * * ?"></property>
+	</bean>
+	
+<!-- 定义核心调度器 -->
+	<bean id="trigger"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTriggerBean" />
+			</list>
+		</property>
+	</bean>
+
+
+
+
+</beans>

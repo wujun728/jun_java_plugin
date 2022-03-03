@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>
+		代码生成器配置文件:
+		1.会为所有的property生成property_dir属性,如pkg=com.company => pkg_dir=com/company
+		2.可以引用环境变量: ${env.JAVA_HOME} or System.properties: ${user.home},property之间也可以相互引用
+	</comment>
+	<!-- 代码基本的包路径 -->
+	<entry key="basepackage">org.springrain.selenium</entry>
+	<!-- js 和 freemarker 包名称  -->
+	<entry key="targetpackage">selenium</entry>
+	<!-- jsp namespace: web/${namespace}/${className}/list.jsp -->
+	<entry key="namespace">ftl</entry>
+	<!-- 输出的代码路径 -->
+	<entry key="outRoot">generator-output</entry>
+	<!-- 需要移除的表名前缀,使用逗号进行分隔多个前缀,示例值: t_,v_ -->
+	<entry key="tableRemovePrefixes">t_,tc_</entry>
+	<!-- oracle,MSSQL需要指定jdbc.schema,其它数据库忽略此项配置  -->
+	<entry key="jdbc.schema"></entry>
+	<entry key="jdbc.catalog"></entry>
+	<!-- 数据库类型映射  -->
+	<entry key="java_typemapping.java.sql.Timestamp">java.util.Date</entry>
+	<entry key="java_typemapping.java.sql.Date">java.util.Date</entry>
+	<entry key="java_typemapping.java.sql.Time">java.util.Date</entry>
+	<entry key="java_typemapping.java.lang.Byte">Integer</entry>
+	<entry key="java_typemapping.java.lang.Short">Integer</entry>
+	<entry key="java_typemapping.java.math.BigDecimal">java.math.BigDecimal</entry>
+		<!-- 数据库 账号密码  -->
+	<entry key="jdbc.username">root</entry>
+	<entry key="jdbc.password">root</entry>
+	
+	<!-- Mysql -->
+	<entry key="jdbc.url">jdbc:mysql://127.0.0.1:3306/springrain?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false</entry>
+	<entry key="jdbc.driver">com.mysql.jdbc.Driver</entry>
+	
+	<!-- H2
+        <entry key="jdbc.url">jdbc:h2:tcp://localhost/test</entry>
+        <entry key="jdbc.driver">org.h2.Driver</entry>
+    -->
+
+	<!-- Oracle 	jdbc:oracle:oci:@tnsname_devdb
+	<entry key="jdbc.url">jdbc:oracle:thin:@192.168.0.177:1521:[sid]</entry>
+	<entry key="jdbc.driver">oracle.jdbc.driver.OracleDriver</entry>
+	-->
+
+
+	<!-- SQLServer2000 
+	<entry key="jdbc.url">jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=[database]</entry>
+	<entry key="jdbc.driver">com.microsoft.jdbc.sqlserver.SQLServerDriver</entry>
+	-->
+	
+	<!-- SQLServer2005 
+	<entry key="jdbc.url">jdbc:sqlserver://192.168.0.98:1433;DatabaseName=[database]</entry>
+	<entry key="jdbc.driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</entry>
+	-->
+
+	<!-- JTDs for SQLServer -->
+	<!--
+	<entry key="jdbc.url">jdbc:jtds:sqlserver://127.0.0.1:1433/demo</entry>
+	<entry key="jdbc.driver">net.sourceforge.jtds.jdbc.Driver</entry>
+	-->
+	
+	<!-- PostgreSql
+	<entry key="jdbc.url">jdbc:postgresql://localhost/[database]</entry>
+	<entry key="jdbc.driver">org.postgresql.Driver</entry>
+	 -->
+
+	<!-- Sybase
+	<entry key="jdbc.url">jdbc:sybase:Tds:localhost:5007/[database]</entry>
+	<entry key="jdbc.driver">com.sybase.jdbc.SybDriver</entry>
+	 -->
+
+	<!-- DB2 
+	<entry key="jdbc.url">jdbc:db2://localhost:5000/[database]</entry>
+	<entry key="jdbc.driver">com.ibm.db2.jdbc.app.DB2Driver</entry>
+	-->
+
+	<!-- HsqlDB 
+	<entry key="jdbc.url">jdbc:hsqldb:mem:generatorDB</entry>
+	<entry key="jdbc.driver">org.hsqldb.jdbcDriver</entry>
+	-->
+
+	<!-- Derby 
+	<entry key="jdbc.url">jdbc:derby://localhost/databaseName</entry>
+	<entry key="jdbc.driver">org.apache.derby.jdbc.ClientDriver</entry>	
+	-->
+	
+
+</properties>

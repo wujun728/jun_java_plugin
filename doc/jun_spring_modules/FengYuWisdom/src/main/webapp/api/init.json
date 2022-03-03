@@ -1,0 +1,243 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "welcome.html"
+  },
+  "logoInfo": {
+    "title": "锋豫智慧",
+    "image": "images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "常规管理",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "首页",
+          "href": "welcome.html",
+          "icon": "fa fa-home",
+          "target": "_self"
+        },
+        {
+          "title": "用户管理",
+          "href": "",
+          "icon": "fa fa-user-o",
+          "target": "_self",
+          "child": [
+            {
+              "title": "用户新增",
+              "href": "/addadmin.html",
+              "icon": "fa fa-plus-square",
+              "target": "_self"
+            },
+            {
+              "title": "用户列表",
+              "href": "listadmin.html",
+              "icon": "fa fa-table",
+              "target": "_self"
+            },
+            {
+              "title": "用户日志",
+              "href": "listadminlog.html",
+              "icon": "fa fa-table",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "学科管理",
+          "href": "",
+          "icon": "fa fa-file-text",
+          "target": "_self",
+          "child": [
+            {
+              "title": "学科新增",
+              "href": "addsubject.html",
+              "icon": "fa fa-plus-square",
+              "target": "_self"
+            },
+            {
+              "title": "学科列表",
+              "href": "listsubject.html",
+              "icon": "fa fa-table",
+              "target": "_self"
+            }]
+        },
+        {
+          "title": "班级管理",
+          "href": "",
+          "icon": "fa fa-file-text",
+          "target": "_self",
+          "child": [
+            {
+              "title": "班级新增",
+              "href": "addgrade.html",
+              "icon": "fa fa-plus-square",
+              "target": "_self"
+            },
+            {
+              "title": "班级列表",
+              "href": "listgrade.html",
+              "icon": "fa fa-table",
+              "target": "_self"
+            }]
+        },
+        {
+          "title": "学生管理",
+          "href": "",
+          "icon": "fa fa-address-card-o",
+          "target": "_self",
+          "child": [
+            {
+              "title": "学生新增",
+              "href": "addstudent.html",
+              "icon": "fa fa-plus-square",
+              "target": "_self"
+            },
+            {
+              "title": "学生列表",
+              "href": "liststudent.html",
+              "icon": "fa fa-table",
+              "target": "_self"
+            },
+            {
+              "title": "学生导入",
+              "href": "uploadstudent.html",
+              "icon": "fa fa-table",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "通知管理",
+          "href": "",
+          "icon": "fa fa-calendar",
+          "target": "_self",
+          "child": [
+            {
+              "title": "通知新增",
+              "href": "addnotice.html",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "通知列表",
+              "href": "listnotice.html",
+              "icon": "fa fa-table",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "投诉管理",
+          "href": "",
+          "icon": "fa fa-flag-o",
+          "target": "_self",
+          "child": [
+            {
+              "title": "投诉新增",
+              "href": "addcomplaint.html",
+              "icon": "fa fa-stumbleupon-circle",
+              "target": "_self"
+            },
+            {
+              "title": "投诉列表",
+              "href": "listcomplaint.html",
+              "icon": "fa fa-table",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "就业管理",
+          "href": "",
+          "icon": "fa fa-flag-o",
+          "target": "_self",
+          "child": [
+            {
+              "title": "就业新增",
+              "href": "addstudentjob.html",
+              "icon": "fa fa-stumbleupon-circle",
+              "target": "_self"
+            },
+            {
+              "title": "就业列表",
+              "href": "liststudentjob.html",
+              "icon": "fa fa-table",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "成绩管理",
+          "href": "",
+          "icon": "fa fa-home",
+          "target": "_self",
+          "child": [
+            {
+              "title": "日考新增",
+              "href": "adddayexam.html",
+              "icon": "fa fa-hourglass-end",
+              "target": "_self"
+            },
+            {
+              "title": "日考列表",
+              "href": "listdayexam.html",
+              "icon": "fa fa-table",
+              "target": "_self"
+            },{
+              "title": "周考新增",
+              "href": "addweekexam.html",
+              "icon": "fa fa-hourglass-end",
+              "target": "_self"
+            },
+            {
+              "title": "周考列表",
+              "href": "listweekexam.html",
+              "icon": "fa fa-table",
+              "target": "_self"
+            },{
+              "title": "阶考新增",
+              "href": "addstageexam.html",
+              "icon": "fa fa-hourglass-end",
+              "target": "_self"
+            },{
+              "title": "阶考列表",
+              "href": "liststageexam.html",
+              "icon": "fa fa-table",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "统计管理",
+          "href": "",
+          "icon": "fa fa-flag-o",
+          "target": "_self",
+          "child": [
+            {
+              "title": "学员统计",
+              "href": "tjstudent.html",
+              "icon": "fa fa-stumbleupon-circle",
+              "target": "_self"
+            },
+            {
+              "title": "成绩统计",
+              "href": "tjscore.html",
+              "icon": "fa fa-viacoin",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "系统设置",
+          "href": "setting.html",
+          "icon": "fa fa-gears",
+          "target": "_self"
+        }
+      ]}
+    ]
+}

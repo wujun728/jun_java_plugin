@@ -1,0 +1,190 @@
+<#ftl output_format="HTML" auto_esc=true> 
+<@h.siteCommonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+<script type="text/javascript" src="${ctx}/js/ztree/js/jquery.ztree.all-3.5.js"></script>
+<script type="text/javascript" src="${ctx}/js/ztree/js/ztreeUtils.js"></script>
+<script type="text/javascript" src="${ctx}/js/artTemplate/artTemplate.js"></script>
+
+<link rel="stylesheet" href="${ctx}/js/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/css/custom/common/myztree.css" type="text/css">
+
+<script>
+	jQuery(function(){ 
+		/*
+		全选、反选
+		*/
+		jQuery("#checkAll").bind('click',function(){
+			var _is_check=jQuery(this).get(0).checked;
+			jQuery("input[name='check_li']").each(function(_i,_o){
+				jQuery(_o).get(0).checked=_is_check;
+			});
+		});
+	});
+	
+	function del(id){
+	    if(!id||id==""){
+	        myalert("请选择你要删除的记录");
+	        return;
+	    }else{
+	        var _url="${ctx}/s/${siteId}/${businessId}/comment/delete?id="+id;
+	        var listurl="${ctx}/s/${siteId}/${businessId}/comment/list";
+	        
+	        springrain.mydelete(id, _url, "确定删除该内容?", listurl);
+	    }
+	}
+	function deleteMore(){
+		var _url= "${ctx}/s/${siteId}/${businessId}/comment/delete/more";
+		var formId = "searchForm";
+		var listurl = "${ctx}/s/${siteId}/${businessId}/comment/list";
+		springrain.mydeletemore(formId, _url, "确认删除这些数据?", listurl);
+	}
+	
+    function addNewContent(){
+   		springrain.goTo('${ctx}/s/${siteId}/${businessId}/comment/update/pre');	
+    }
+</script>
+
+</head>
+<body>
+	
+	
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+		<!-- 主体内容开始 -->
+		<div class="layui-tab layui-tab-brief">
+			<ul class="layui-tab-title site-demo-title">
+				<li style="float: right;">
+					<@shiro.hasPermission name="/s/${siteId!''}/${businessId!''}/comment/delete" >
+					<button type="button" onclick="deleteMore();"
+						class="layui-btn layui-btn-danger layui-btn-small">
+						<i class="layui-icon">&#xe640;</i>批量删除
+					</button>
+					</@shiro.hasPermission>
+				</li>
+			</ul>
+
+			<div class="layui-body layui-tab-content site-demo-body">
+				<div class="layui-tab-item layui-show">
+					<div class="layui-main">
+						 <div id="LAY_preview">
+						 	<form class="layui-form layui-form-pane" id="searchForm" action="${ctx}/s/${siteId}/${businessId}/comment/list" method="post">
+					          <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}" /> 
+					          <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}" />
+					          <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}" />
+					         <input type="hidden" name="siteId" id="siteId" value="${(returnDatas.queryBean.siteId)!''}"/>
+					         <table class="layui-table search-wrap">
+							  	<colgroup>
+								    <col width="">
+								    <col width="150">
+								</colgroup>
+					          	<tbody>
+					          		<tr>
+					          			<th colspan="2">搜索</th>
+					          		</tr>
+					          		<tr>
+					          			<td>
+					          				<div class="layui-inline">
+							                    <label class="layui-form-label">名称</label>
+							                    <div class="layui-input-inline">
+							                           <input type="text" name="name" value="${(returnDatas.queryBean.name)!''}" placeholder="请输入名称 " class="layui-input">
+							                    </div>
+					                		</div>
+					          			</td>
+					          			<td>
+					          			 	<div class="layui-inline">
+							                    <button class="layui-btn" type="button" onclick="springrain.commonSubmit('searchForm');"><i class="layui-icon" style="top:4px;right:5px;">&#xe615;</i>搜索</button>
+							                </div>
+					          			</td>
+					          		</tr>
+					          	</tbody>
+					          </table>
+            				  </form>
+						 
+						 
+						 	<table class="layui-table" lay-even>
+					            <colgroup>
+					                <col width="40">
+					                <col width="210">
+					                <col>
+					            </colgroup>
+					            <!--end_no_export-->
+					            <!--first_start_export-->
+					            <thead>
+					                <tr>
+					                    <th colspan="8">内容表列表<font id='recordsView' class='recorsView'>共<span></span>页 ,共<span></span>条记录</font></th>
+					                </tr>
+					                <tr>
+					                    <!--first_start_no_export-->
+					                    <th class="center"><label class="position-relative">
+					                            <input id="checkAll" class="ace" type="checkbox">
+					                    </label></th>
+					                    <th>操作</th>
+					                    <!--first_end_no_export-->
+					                    <th id="th_type">举报类型</th>
+					                    <th id="th_bak1">举报对象</th>
+					                    <th id="th_createDate">举报时间</th>
+					                    <th id="th_content">举报内容</th>
+					                </tr>
+					            </thead>
+					            <!--first_end_export-->
+					            <!--start_export-->
+					            <tbody id="dataGrid">
+					               <@cms_comment_list page=(returnDatas.page)!>
+					               		 <#if tag_list?? && (tag_list?size>0)> 
+					               		 <#list tag_list as _data>
+										<!--start_no_export-->
+										<tr class="">
+										    <td class="center"><label class="position-relative">
+										            <input name="check_li" value="${_data.id}" class="ace"
+										            type="checkbox"> <span class="lbl"></span>
+										    </label></td>
+										    <td>
+										        <@shiro.hasPermission name="/s/${siteId!''}/${businessId!''}/comment/delete" >
+										        <a href="javascript:del('${(_data.id)!''}')" class="layui-btn layui-btn-danger layui-btn-mini ajax-delete">删除</a>
+										        </@shiro.hasPermission>
+										        <@shiro.hasPermission name="/s/${siteId!''}/${businessId!''}/comment/look" >
+										        <a href="#" data-action="${ctx}/s/${siteId}/${businessId}/comment/look?id=${(_data.id)!''}" class="layui-btn layui-btn-normal layui-btn-mini">查看</a>
+										        </@shiro.hasPermission>
+										    </td>
+										    <!--end_no_export-->
+										    <td>
+										    	<#if (_data.type==1)>
+										    		违法乱纪举报
+										    	<#elseif (_data.type==2)>
+										    		嫌疑人辨认举报
+										    	<#elseif (_data.type==3)>
+										    		无主物品失物认领举报
+										    	<#else>
+										    	 	其它
+										    	</#if>
+										    </td>
+										    <td>${(_data.userName)!''}</td>
+										    <td>
+										        <!--日期型--> ${((_data.createDate)?string('yyyy-MM-dd'))!''}
+										    </td>
+										    <td>
+										       ${(_data.content)!''}
+										    </td>
+										</tr>
+										</#list> </#if>
+					               </@cms_comment_list>
+					            </tbody>
+					        </table>
+					        <#if (returnDatas.page)??> 
+								<div id='laypageDiv'></div>
+								<@h.layPage page=returnDatas.page /> 
+							</#if>
+						 </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+	<div id="div_channelZtree" style='display:none;'>
+        <ul id="channelZtree" class="ztree"></ul>
+    </div>
+</body>
+</html>
+

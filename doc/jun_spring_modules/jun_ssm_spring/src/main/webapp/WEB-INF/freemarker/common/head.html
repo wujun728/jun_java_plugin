@@ -1,0 +1,172 @@
+<#-- 全局变量 --> 
+<#global ctx="${(ctp.contextPath)!''}"> 
+
+<!-- 页头  -->
+<#macro head title keywords description>
+<html>
+    <head>
+        <title>${title}</title>
+        <meta name="keywords" content="${keywords}" />
+        <meta name="description" content="${description}" />
+        <meta charset="utf-8">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="format-detection" content="telephone=no" />
+</#macro>
+
+<!-- 系统、站点后台通用宏内容  -->
+<#macro commonHeadContent>
+	<link rel="stylesheet" href="${ctx}/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="${ctx}/layui/css/global.css" media="all">
+    
+    <link rel="stylesheet" href="${ctx}/css/custom/common/common.css" media="all">
+    <link rel="stylesheet" href="${ctx}/css/custom/common/personal.css" media="all">
+    <script src="${ctx}/js/jquery/jquery.min.js"></script>
+    <script src="${ctx}/js/cache/locache.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/cookie/jquery.cookie.js"></script>
+    
+    <!-- layui -->
+    <script src="${ctx}/layui/layui.js"></script>
+    <!-- 自定义公共js -->
+   
+    <!-- ztree -->
+    <link rel="stylesheet"
+	href="${ctx}/js/ztree/css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+	<script type="text/javascript" src="${ctx}/js/ztree/js/jquery.ztree.all-3.5.js"></script>
+	<script src="${ctx}/js/custom/common/springrain.js"></script>
+	<script type="text/javascript">
+            var ctx="${ctx}";
+            var springraintoken=springrain.getUrlParam("springraintoken");
+    </script>
+</#macro>
+
+<!-- 内容页面通用头部,该宏包含一些通用js、css，适合业务页面使用，不适用与登陆注册等非业务页面。  -->
+<#macro commonHead title keywords description>
+    <@h.head title="${title}" keywords="${keywords}" description="${description}"/>
+    <@h.commonHeadContent/>
+ 	<script src="${ctx}/js/custom/common/common.js"></script>
+</#macro>
+
+<!-- 站长后台通用头部  -->
+<#macro siteCommonHead title keywords description>
+    <@h.head title="${title}" keywords="${keywords}" description="${description}"/>
+    <@h.commonHeadContent/>
+ 	<script src="${ctx}/js/custom/site/common/common.js"></script>
+</#macro>
+
+
+
+<!-- 头部横向导航  -->
+<#macro naviHeader>
+        <div class="layui-header header header-demo">
+          <div class="layui-main">
+     		<a class="logo" href='javascript:springrain.goTo("${ctx}/system/index")'; style="left:0px;">
+              	<img id="siteLogo" src="${ctx}/img/logo.png" alt="springrain"  style="width:35%;height:auto;">
+            </a>
+            <ul class="layui-nav" style="left:185px;height:50px;" id="naviHeaderMenu">
+            </ul>
+				<ul class="layui-nav beg-layout-nav" lay-filter="user">
+					<li class="layui-nav-item">
+						<a href="javascript:;" class="beg-layou-head">
+							<img src="${ctx}/img/userimg.jpg" style="width: 40px;height: 40px;border-radius: 100%;">
+							<span><@shiro.principal property="name" /></span>
+						<span class="layui-nav-more"></span></a>
+						<dl class="layui-nav-child layui-anim layui-anim-upbit">
+							<dd>
+								<a href="javascript:springrain.goTo('${ctx}/system/user/modifiypwd/pre');" data-tab="true" id="modifypwd" data-url="user.html">
+									<i class="fa fa-user-circle" aria-hidden="true"></i>
+									<cite>修改密码</cite>
+								</a>
+							</dd>
+							<dd>
+								<a href='javascript:exit();'>
+									<i class="fa fa-sign-out" aria-hidden="true"></i>
+									<cite>退出</cite>
+								</a>
+							</dd>
+						</dl>
+					</li>
+				</ul>            
+          </div>
+	</div>
+       
+</#macro>
+
+
+<!-- 左侧菜单  -->
+<#macro leftMenu>
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree site-demo-nav" lay-filter="leftMenu" id="menu">
+                
+                </ul>
+             </div>
+        </div>
+</#macro>
+
+
+
+
+
+<!-- 页脚  -->
+<#macro footer>
+      
+     <!-- footer -->
+        <div class="layui-footer footer footer-demo">
+          <div class="layui-main" id="siteFooter">
+          	<!-- <#if siteId??>
+          		<@cms_site siteId="${siteId!}">${(site.footer)!'<p>2016 &copy; <a href="http://www.weicms.net">www.weicms.net</a>Apache Licence 2.0</p>'}</@cms_site>
+          	<#else>
+          		<p>2016 &copy; <a href="http://www.weicms.net">www.weicms.net</a>Apache Licence 2.0</p>
+          	</#if> -->
+            <p>2016 &copy; <a href="http://www.weicms.net">www.weicms.net</a>Apache Licence 2.0</p>
+          </div>
+        </div>
+        
+        
+        <div class="site-tree-mobile layui-hide">
+          <i class="layui-icon">&#xe602;</i>
+        </div>
+        <div class="site-mobile-shade"></div>
+</#macro>
+
+
+<!-- ******************  -->
+<!-- ********模块宏******  -->
+<!-- 适用于某些页面例如使用分页等模块功能调用  -->
+<!-- ******************  -->
+
+<!-- 分页模块，需要传入参数  -->
+<#macro layPage   page groups="10"  skin="#009688" cont="laypageDiv" formId="searchForm">
+    <script>
+    	jQuery("#recordsView span").eq(0).html('${page.pageCount}');
+    	jQuery("#recordsView span").eq(1).html('${page.totalCount}');
+        layui.use(['laypage'], function(){
+            var prev = !${page.hasPrev?c}?false:"上一页";
+            var next = !${page.hasNext?c}?false:"下一页";
+            var settings = {
+                    cont:'${cont}',
+                    pages:${page.pageCount},
+                    curr:${page.pageIndex},
+                    groups:${groups},
+                    skin:'${skin}',
+                    first:1,
+                    last:${page.pageCount},
+                    prev:prev,
+                    next:next,
+                    skip:true,
+                    jump:function(obj, first){
+                        if("${page.pageIndex}"!=obj.curr){
+                            $("[name='pageIndex']",$("#${formId}")).val(obj.curr);
+                            springrain.commonSubmit("${formId}");
+                        }
+                    }
+            }
+            layui.laypage(settings);
+        });
+    </script>
+</#macro>

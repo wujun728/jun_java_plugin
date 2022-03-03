@@ -1,0 +1,249 @@
+<#ftl output_format="HTML" auto_esc=true> 
+<@h.siteCommonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+
+<script src="${ctx}/js/validform/validform.min.js"></script>
+<script src="${ctx}/js/ueditor/ueditor.config.js"></script>
+<script src="${ctx}/js/ueditor/ueditor.all.js"></script>
+<script src="${ctx}/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css"
+	media="all">
+<script>
+	 jQuery(function(){
+	 	var ue = UE.getEditor('container',{
+			autoHeight: false
+		});
+		 
+	 /* 	layui.upload({
+		  	url: '#',
+		  	success: function(res){
+		    	console.log(res); //上传成功返回值，必须为json格式
+		  	}
+		});  */
+		 
+		 /*
+		 init_valid(_before,_after)
+		 @_before:提交表单前，调用 的函数   可以为空，一般有validform处理不了，独自进行处理时使用
+		 @_after:保存成功后，调用的函数  可以为空，一般为对应的列表页面
+		 */
+		 springrain.initValid(null,function(){window.location.href="${ctx}/s/${siteId}/${businessId}/content/list?springraintoken="+springraintoken});
+	 });
+</script>
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+		<!-- 主体内容开始 -->
+		<div class="layui-tab layui-tab-brief">
+			<ul class="layui-tab-title site-demo-title">
+				<li style="float: right;">
+					<button type="button" onclick="history.go(-1)"
+						class="layui-btn layui-btn-small" style="margin-top: 8px;">
+						<i class="layui-icon layui-icon-specil">&#xe603;</i>返回
+					</button>
+				</li>
+			</ul>
+
+			<div class="layui-body layui-tab-content site-demo-body">
+				<div class="layui-tab-item layui-show">
+					<div class="layui-main">
+						<div id="LAY_preview" class="layui-my-form">
+							<header class="larry-personal-tit">
+								<span>添加内容表</span>
+							</header>
+							<div class="larry-personal-body clearfix changepwd">
+								<form id="validForm" class="layui-form" method="post" action="${ctx}/s/${siteId!''}/${businessId!''}/content/update">
+									<input type="hidden" id="id" name="id" value="<@s_content id="${id!}">${content.id!}</@s_content>" />
+									<input type="hidden" id="siteId" name="siteId" value="${siteId}" />
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">标题*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="title" id="title" datatype="*"
+												nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+												class="layui-input" value="<@s_content id="${id!}">${content.title!}</@s_content>">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">副标题</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="mintitle" id="mintitle" autocomplete="off"
+												class="layui-input"
+												value="<@s_content id="${id!}">${content.mintitle!}</@s_content>">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">关键字</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="keywords" id="keywords" 
+												class="layui-input"
+												value="<@s_content id="${id!}">${content.keywords!}</@s_content>">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">描述</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="description" id="description"
+												 class="layui-input"
+												value="<@s_content id="${id!}">${content.description!}</@s_content>">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">来源</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="source" id="source" 
+												class="layui-input" value="<@s_content id="${id!}">${content.source!}</@s_content>">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">来源地址</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="sourceurl" id="sourceurl"
+												 class="layui-input"
+												value="<@s_content id="${id!}">${content.sourceurl!}</@s_content>">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">排序</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="sortno" id="sortno"
+												 class="layui-input"
+												value="<@s_content id="${id!}">${content.sortno!}</@s_content>">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">是否可用</label>
+										<div class="layui-inline col-lg-5">
+											 <select name="active" id="active" lay-verify="required">
+											 	<@s_content id="${id!}">
+											 		<#if (content.active)?? && (content.active)==1>
+											 			<option value="1" selected="selected">可用</option>
+											 			<option value="0">不可用</option>
+											 		<#else>
+											 			<option value="1">可用</option>
+											 			<option value="0" selected="selected">不可用</option>
+											 		</#if>
+											 	</@s_content>
+										      </select>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">评论开关</label>
+										<div class="layui-inline col-lg-5">
+											<@s_content id="${id!}">
+										 		<#if (content.commentPerm)?? && (content.commentPerm)==1>
+										 			<input type="radio" name="commentPerm" value="0" title="不允许评论">
+													<input type="radio" name="commentPerm" value="1" title="允许评论" checked>
+										 		<#else>
+										 			<input type="radio" name="commentPerm" value="0" title="不允许评论" checked>
+													<input type="radio" name="commentPerm" value="1" title="允许评论" >
+										 		</#if>
+										 	</@s_content>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">登陆访问</label>
+										<div class="layui-inline col-lg-5">
+											<@s_content id="${id!}">
+										        <#if content??>
+									                <@cms_link businessId=(content.id!)>
+								                        <#if (cmsLink.loginuser)?? && (cmsLink.loginuser==0)>
+							                                <input type="radio" name="loginuser" value="0" title="不允许匿名访问" checked>
+															<input type="radio" name="loginuser" value="1" title="允许匿名访问"  >
+														<#else>
+															<input type="radio" name="loginuser" value="0" title="不允许匿名访问">
+															<input type="radio" name="loginuser" value="1" title="允许匿名访问"  checked>
+								                        </#if>
+									                </@cms_link>
+										        <#else>
+									                <input type="radio" name="loginuser" value="0" title="不允许匿名访问">
+													<input type="radio" name="loginuser" value="1" title="允许匿名访问"  checked>
+										        </#if>
+											</@s_content>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<@cms_property_list businessId=id>
+										<#if propertyList?? && (propertyList?size>0)>
+											<#list propertyList as property>
+												<div class="layui-form-item col-lg-6">
+													<label class="layui-form-label">${(property.name)!}</label>
+													<div class="layui-inline col-lg-5">
+														<#if property.inputType==0>
+															<textarea name="propertyList[${property_index}].pvalue" placeholder="请输入内容" class="layui-textarea">${(property.pvalue)!''}</textarea>
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==1>
+															<input type="text" name="propertyList[${property_index}].pvalue" class="layui-input" value="${(property.pvalue)!''}">
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==2>
+															<input type="text" name="propertyList[${property_index}].pvalue" class="layui-input" value="${(property.pvalue)!''}">
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==3>
+															<input type="text" name="propertyList[${property_index}].pvalue" class="layui-input" value="${(property.pvalue)!''}">
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==4>
+															<input type="text" name="propertyList[${property_index}].pvalue" class="layui-input" value="${(property.pvalue)!''}">
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==5>
+															<select name="propertyList[${property_index}].pvalue" lay-verify="required">
+												 				<option value=""></option>
+													      	</select>
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==6>
+															<input type="file" name="propertyList[${property_index}].pvalue" class="layui-upload-file">
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==7>
+															<input type="file" name="propertyList[${property_index}].pvalue" class="layui-upload-file">
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														</#if>
+													</div>
+													<div class="layui-inline valid-info"></div>
+												</div>
+											</#list>
+										</#if>
+									</@cms_property_list>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">内容*</label>
+										<div class="layui-inline col-lg-5">
+											<#noautoesc>
+												<script id="container" name="content" type="text/plain"><@s_content id="${id!}">${content.content!}</@s_content></script>
+											</#noautoesc>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									
+									
+									<div class="layui-form-item change-submit">
+										<div class="layui-inline">
+											<button type="button" class="layui-btn" id="smtbtn">保存</button>
+											<button type="button" class="layui-btn layui-btn-primary"
+												id="rstbtn">重置</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+</body>
+</html>
+

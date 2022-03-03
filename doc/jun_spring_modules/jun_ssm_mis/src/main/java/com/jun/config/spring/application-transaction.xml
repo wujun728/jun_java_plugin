@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd 
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"> 
+
+    <!-- 注册事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!-- 注册事务拦截 -->
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+    	<!-- 指定事务管理器 -->
+    	<property name="transactionManager" ref="transactionManager"></property>
+    	<!-- 指定事务策略 -->
+    	<property name="transactionAttributes">
+    		<props>
+    			<!-- key 方法名      value 策略-->
+    			<!-- 传播行为   隔离级别  异常处理-->
+    			<prop key="delete*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Throwable</prop>
+    			<prop key="add*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Throwable</prop>
+    			<prop key="update*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Throwable</prop>
+    			<prop key="merge*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Throwable</prop>
+    			<prop key="find*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Throwable</prop>
+    			<prop key="get*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Throwable</prop>
+    			<prop key="to*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Throwable</prop>
+    			<prop key="view*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Throwable</prop>
+    			<prop key="initi*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Throwable</prop>
+    			<prop key="check*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Throwable</prop>
+    			<prop key="*">readOnly</prop>
+    		</props>
+    	</property>
+    </bean>
+    <!-- 产生事务代理对象 -->
+    <bean id="autoTransactionProxy" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+    	<property name="beanNames">
+    		<list>
+    			<value>*Dao</value>
+    			<value>*Service</value>
+    		</list>
+    	</property>
+    	<property name="interceptorNames">
+    		<list>
+    			<value>transactionInterceptor</value>
+    		</list>
+    	</property>
+    </bean>
+</beans>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!--    1.加载外部的数据库配置信息-->
+    <context:property-placeholder location="classpath:/dbconfig.properties"></context:property-placeholder>
+<!--    2.创建数据库连接池-->
+    <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <!--连接数据库的四要素 获取外部文件的内容 ${key} -->
+        <property name="driverClassName" value="${db.driver}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.user}"/>
+        <property name="password" value="${db.pass}"/>
+        <property name="initialSize" value="${db.initconn}"/>
+        <property name="maxActive" value="${db.maxconn}"/>
+    </bean>
+<!--    3.配置Mybatis的会话工厂-->
+    <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!--        设置会话工厂的数据库连接池-->
+        <property name="dataSource" ref="dataSource"></property>
+<!--        设置mapper文件夹所在的路径-->
+        <property name="mapperLocations">
+            <array>
+                <value>classpath:mapper/*Mapper.xml</value>
+            </array>
+        </property>
+<!--        配置Mybatis框架的插件-->
+        <property name="plugins">
+            <bean class="com.github.pagehelper.PageInterceptor"></bean>
+        </property>
+    </bean>
+<!--    4.设置Mybatis的dao层所在位置-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+<!--        设置sqlSession的会话对象的名称-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+<!--        Mybatis要生成的接口所在的包-->
+        <property name="basePackage" value="com.feri.fyw.dao"></property>
+    </bean>
+<!--    5.创建service的对象-->
+<!--    <bean name="studentService" class="com.qfedu.ssm.service.impl.StudentServiceImpl">-->
+<!--        <constructor-arg name="dao" ref="studentDao"></constructor-arg>-->
+<!--    </bean>-->
+    <context:component-scan base-package="com.feri.fyw.service.impl"></context:component-scan>
+<!--    6.基于Spring声明式事务 实现事务的配置-->
+<!--    事务管理器 -->
+    <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+<!--        数据库连接池 开启事务-->
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+<!--    增强通知-->
+    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+<!--            指定什么样的方法用什么样的操作 name：方法名 isolation：事务的隔离级别 propagation：事务的传播行为 timeout：超时时间 no-rollback-for：指定哪些异常不回滚 rollback-for：指定哪些异常回滚 -->
+            <tx:method name="insert*" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="save*" isolation="DEFAULT" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+<!--    基于AOP配置事务-->
+    <aop:config proxy-target-class="true">
+<!--        切入点表达式要正确，可以匹配上需要添加事务的类-->
+        <aop:pointcut id="pt" expression="execution(* com.feri.fyw.service.impl.*.*(..))"/>
+        <aop:advisor advice-ref="transactionAdvice" pointcut-ref="pt"></aop:advisor>
+    </aop:config>
+
+
+
+</beans>

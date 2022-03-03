@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${package}.${module}.dao.${className}Mapper">
+	
+	<select id="listForPage" resultType="${className}Entity" flushCache="true">
+		SELECT
+#foreach($column in $columns)
+			`$column.columnName`#if($velocityCount != $columns.size()), 
+#end			
+#end$!empty
+		FROM
+			${tableName}
+		ORDER BY
+			${pk.columnName} DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO ${tableName} (
+#foreach($column in $columns)
+#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
+			`$column.columnName`#if($velocityCount != $columns.size()), 
+#end
+#end			
+#end$!empty
+		)
+		VALUES (
+#foreach($column in $columns)
+#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
+			#{$column.fieldName}#if($velocityCount != $columns.size()), 
+#end
+#end			
+#end$!empty
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="${className}Entity">
+		SELECT
+#foreach($column in $columns)
+			`$column.columnName`#if($velocityCount != $columns.size()), 
+#end			
+#end$!empty
+		FROM
+			${tableName}
+		WHERE
+			${pk.columnName} = #{${pk.fieldName}}
+	</select>
+	
+	<update id="update">
+		UPDATE ${tableName}
+	 	<set>
+#foreach($column in $columns)
+#if($column.columnName != $pk.columnName)
+			<if test="$column.fieldName != null">`$column.columnName` = #{$column.fieldName}#if($velocityCount != $columns.size()), #end</if>
+#end
+#end
+		</set>
+		WHERE
+			${pk.columnName} = #{${pk.fieldName}}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			${tableName}
+		WHERE
+			${pk.columnName} IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+</mapper>

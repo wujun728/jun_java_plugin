@@ -1,0 +1,25 @@
+/**
+ * 新增-${comments}js
+ */
+var vm = new Vue({
+	el:'#dpLTE',
+	data: {
+		${objName}: {
+			${pk.fieldName}: 0
+		}
+	},
+	methods : {
+		acceptClick: function() {
+			if (!$('#form').Validform()) {
+		        return false;
+		    }
+		    $.SaveForm({
+		    	url: '../../${requestMapping}/save?_' + $.now(),
+		    	param: vm.${objName},
+		    	success: function(data) {
+		    		$.currentIframe().vm.load();
+		    	}
+		    });
+		}
+	}
+})

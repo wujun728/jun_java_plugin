@@ -1,0 +1,25 @@
+#override("title")
+SpringWind 管理系统 - 锁定
+#end
+#override("body")
+<body class="gray-bg">
+    <div class="lock-word animated fadeInDown">
+    </div>
+    <div class="middle-box text-center lockscreen animated fadeInDown">
+        <div>
+            <div class="m-b-md">
+                <img alt="image" class="img-circle circle-border" src="#springUrl('/static/img/a1.jpg')">
+            </div>
+            <h3>$!{loginName}</h3>
+            <p>您需要再次输入密码</p>
+            <form class="m-t" role="form" method="post" action="#springUrl('/account/lockscreen.html')">
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="******" required="">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width">登录 SpringWind</button>
+            </form>
+        </div>
+    </div>
+</body>
+#end  
+#extends("/common/base.html")

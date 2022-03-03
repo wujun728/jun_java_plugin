@@ -1,0 +1,184 @@
+<#ftl output_format="HTML" auto_esc=true>
+<@h.siteCommonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+<script>
+	jQuery(function(){ 
+		/*
+		全选、反选
+		*/
+		jQuery("#checkAll").bind('click',function(){
+			var _is_check=jQuery(this).get(0).checked;
+			jQuery("input[name='check_li']").each(function(_i,_o){
+				jQuery(_o).get(0).checked=_is_check;
+			});
+		});
+	});
+</script>
+
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+			<!-- 主体内容开始 -->
+			<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title site-demo-title">
+					 <li style="float:right;">
+		             </li>
+	       		</ul>
+				
+				<div class="layui-body layui-tab-content site-demo-body">
+					<div class="layui-tab-item layui-show">
+							<div class="layui-main">
+						          <div id="LAY_preview">
+						          <!-- 查询  开始 -->
+							          <form class="layui-form layui-form-pane" id="searchForm" action="${ctx}/s/${siteId!}/${businessId!}/site/list" method="post">
+							          <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}" /> 
+							          <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}" />
+							          <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}" />
+									  <table class="layui-table search-wrap">
+									 	<colgroup>
+										    <col width="">
+										    <col width="150">
+										</colgroup>
+							          <tbody>
+							          		<tr>
+							          			<th colspan="2">站点表搜索</th>
+							          		</tr>
+							          		<tr>
+							          			<td>
+							          				<div class="layui-inline">
+									                    <label class="layui-form-label">名称</label>
+									                    <div class="layui-input-inline">
+									                           <input type="text" name="name" value="${(returnDatas.queryBean.name)!''}" placeholder="请输入名称 " class="layui-input">
+									                    </div>
+							                		</div>
+									                
+									                <div class="layui-inline">
+									                    <button class="layui-btn" type="button" onclick="springrain.commonSubmit('searchForm');"><i class="layui-icon" style="top:4px;right:5px;">&#xe615;</i>搜索</button>
+									                </div>
+							          			</td>
+							          		</tr>
+							          	</tbody>
+							          </table>
+							          </form>
+									  <!-- 查询  结束 -->
+									
+									<!--start_export-->
+									<table class="layui-table" lay-even>
+										  <colgroup>
+										    <col width="40">
+										    <col width="120">
+										    <col>
+										  </colgroup>
+										  <!--end_no_export-->
+										  <!--first_start_export-->
+											<thead>
+												<tr>
+													<th colspan="11">站点表列表<font id='recordsView' class='recorsView'>共<span></span>页 ,共<span></span>条记录</font></th>
+												</tr>
+												<tr>
+												  <!--first_start_no_export-->
+												  <th class="center">
+														<label class="position-relative">
+															<input id="checkAll" class="ace" type="checkbox">
+														</label>
+												  </th>
+												  <th>操作</th>
+												  <!--first_end_no_export-->
+													<th id="th_name" >站点名称</th>
+													<th id="th_title" >站点标题</th>
+													<th id="th_domainurl" >域名</th>
+													<th id="th_qq" >QQ</th>
+													<th id="th_phone" >电话</th>
+													<th id="th_contacts" >联系人</th>
+													<th id="th_themeId" >主题</th>
+													<th id="th_siteType" >网站类型   </th>
+													<th id="th_active" >状态</th>
+												</tr> 
+											</thead>
+										  <!--first_end_export-->
+										  <!--start_export-->
+										   <tbody>
+										   		
+										   		<@cms_site_list queryBean=(returnDatas.queryBean)! page=(returnDatas.page)!>
+										   			<#if (siteList??)&&(siteList?size>0)> 
+		                                                <#list  siteList as _data>
+		                                                    <!--start_no_export-->
+		                                                    <tr class="">
+		                                                        <td class="center">
+		                                                            <label class="position-relative">
+		                                                                <input name="check_li" value="${_data.id}" class="ace" type="checkbox"> <span class="lbl"></span>
+		                                                            </label>
+		                                                        </td>
+		                                                        <td>
+		                                                            <@shiro.hasPermission name="/s/${siteId}/${businessId}/site/update" >
+		                                                            <a href="#" data-action="${ctx}/s/${siteId!}/${businessId!}/site/update/pre?id=${(_data.id)!''}" class="layui-btn layui-btn-normal layui-btn-mini">修改</a>
+		                                                            </@shiro.hasPermission>
+		                                                        </td>
+		                                                        <!--end_no_export-->
+		                                                        <td >
+		                                                            <a href="${ctx}${(_data.link)!''}" target="blank">${(_data.name)!''}</a>
+		                                                            
+		                                                        </td>
+		                                                        <td >
+		                                                            ${(_data.title)!''}
+		                                                        </td>
+		                                                        <td >
+		                                                            ${(_data.domainurl)!''}
+		                                                        </td>
+		                                                        <td >
+		                                                            ${(_data.qq)!''}
+		                                                        </td>
+		                                                        <td >
+		                                                            ${(_data.phone)!''}
+		                                                        </td>
+		                                                        <td >
+		                                                            ${(_data.contacts)!''}
+		                                                        </td>
+		                                                        <td >
+		                                                            ${(_data.themeId)!''}
+		                                                        </td>
+		                                                        <td >
+		                                                            <#if (_data.siteType??) && (_data.siteType==11)>
+		                                                               	 微信
+		                                                            <#elseif (_data.siteType??) && (_data.siteType==12)>
+		                                                                	企业号
+		                                                            <#elseif (_data.siteType??) && (_data.siteType==13)>
+		                                                                pc站
+		                                                            <#elseif (_data.siteType??) && (_data.siteType==14)>
+		                                                                wap站
+		                                                            <#elseif (_data.siteType??) && (_data.siteType==15)>
+		                                                                	投票
+		                                                            <#else>
+		                                                               	 错误类型
+		                                                            </#if>
+		                                                        </td>
+		                                                        <td >
+		                                                            <#if (_data.active??) && (_data.active == 0)>
+		                                                                不可用
+		                                                            <#else>
+		                                                                可用
+		                                                            </#if>
+		                                                        </td>
+		                                                    </tr>
+		                                                </#list>
+		                                             </#if>
+										   		</@cms_site_list>
+										    
+											</tbody>
+										</table>
+									<#if returnDatas.page??> 
+										<div id='laypageDiv'></div>
+										<@h.layPage page=returnDatas.page /> 
+									</#if>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+			<!--end_export-->
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+</body>
+</html>

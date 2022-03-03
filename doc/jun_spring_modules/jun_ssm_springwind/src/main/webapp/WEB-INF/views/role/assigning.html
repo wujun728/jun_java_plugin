@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<link href="#springUrl('/static/css/bootstrap.min.css')" rel="stylesheet">
+	<link href="#springUrl('/static/css/style.css')" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="#springUrl('/static/zTree/css/zTreeStyle/zTreeStyle.css')" rel="stylesheet">
+</head>
+<body class="white-bg">
+<div class="ibox-content" style="width: 430px;">
+<form method="post" class="form form-horizontal" style="margin-bottom:50px;">
+		<table  class="table table-bordered">
+			<div>
+				<ul id="treeDiv" class="ztree"></ul>
+			</div>
+		</table>
+	</form>
+	<div style="position:fixed; bottom:0; left:0;width:100%;height:50px; ;background-color:white;">
+		<table  class="table table-bordered">
+			<tr style="text-align:center;">
+				<td colspan="2">
+					<button type="button" class="btn btn-primary" onclick="update(this)" attr="${roleId}">修改</button>&nbsp;&nbsp;&nbsp;
+					<button type="button" class="btn btn-default " onclick="closeAll()">关闭</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<script src="#springUrl('/static/js/jquery-2.1.1.js')"></script>
+<script src="#springUrl('/static/plugins/nice-validator-0.8.1/jquery.validator.js?local=zh-CN')"></script>
+<script src="#springUrl('/static/zTree/js/jquery.ztree.core.js')"></script>
+<script src="#springUrl('/static/zTree/js/jquery.ztree.excheck.js')"></script>
+<script type="text/javascript">
+//获取iframe层的索引
+var index = parent.layer.getFrameIndex(window.name); 
+var treeNodes;
+var setting = {
+		view: {
+	        showLine : true,                  //是否显示节点间的连线  
+	        checkable : true,                  //每个节点上是否显示 CheckBox
+			showIcon: false
+		},
+        check: {
+			enable: true,
+			chkStyle: "checkbox",
+			chkboxType: { "Y": "ps", "N": "ps" }
+		},
+		data: {
+			simpleData: {
+				enable: true,			//数据是否采用简单 Array 格式，默认false
+				idKey: "id",
+				pIdKey: "pId",
+				rootPId: 0
+			}
+		}
+    };
+
+$(function() { 
+ 	var roleId = '${roleId}';
+	$.ajax({
+		url: "#springUrl('/perm/role/right.html')",
+		type: "post",
+		data: {"roleId":roleId},
+		success:function(data){
+			if(data){
+				var treeNodes = JSON.parse(data);
+				$.fn.zTree.init($("#treeDiv"), setting, treeNodes);
+			}
+		}
+	});
+ }); 
+ 
+function update(ele){
+	var treeObj = $.fn.zTree.getZTreeObj("treeDiv");
+	var nodes = treeObj.getCheckedNodes(true);
+	var arr = [];
+	for(var i=0;i<nodes.length;i++){
+		arr.push(nodes[i].id);
+	}
+	$.ajax({
+		url: "#springUrl('/perm/role/updateRoleRight.html')",
+		type: "post",
+		data: {"roleId":ele.getAttribute("attr"),"rights":arr.join()},
+		success:function(data){
+		if(data == "true"){
+			parent.layer.alert("修改成功",function(){
+					parent.layer.closeAll(); 
+			});
+				
+		}else{
+			layer.alert("修改失败");
+		}
+		}
+	});
+}
+//关闭窗口
+function closeAll(){
+	//ifram层关闭自身，传入索引
+	parent.layer.close(index); 
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE struts PUBLIC 
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+        "http://struts.apache.org/dtds/struts-2.0.dtd"> 
+<struts>
+	<package name="message" extends="default"> 
+	    <action name="messageAction" class="messageAction">  
+	    	<result name="toSend">message/addMessage.jsp</result>
+	    	<result name="outBox">message/myOutBox.jsp</result>
+	    	<result name="inBox">message/myInBox.jsp</result>
+	    	<result name="draftBox">message/myDraftBox.jsp</result>
+	    	<result name="detail">message/messageDetail.jsp</result>
+	    	<result name="recevierList">message/recevierList.jsp</result>
+	    	
+	    	<result name="toOutBox" type="redirect-action">
+	    	    <param name="actionName">messageAction</param>
+	    		<param name="method">toOutBox</param>
+	    	</result> 
+	    	<result name="toInBox" type="redirect-action">
+	    	    <param name="actionName">messageAction</param>
+	    		<param name="method">toInBox</param>
+	    	</result>
+	    	<result name="toDraftBox" type="redirect-action">
+	    	    <param name="actionName">messageAction</param>
+	    		<param name="method">toDraftBox</param>
+	    	</result>
+	    	<result name="toOutBoxSend" type="redirect-action">
+	    	    <param name="actionName">messageAction</param>
+	    		<param name="method">toSend</param>
+	    	</result>  
+	    	<result name="toInBoxSend" type="redirect-action">
+	    	    <param name="actionName">messageAction</param>
+	    		<param name="method">toSend</param>
+	    	</result>  
+	    	<result name="toDraftBoxSend" type="redirect-action">
+	    	    <param name="actionName">messageAction</param>
+	    		<param name="method">toSend</param>
+	    	</result>    
+	    </action>  
+	</package>
+</struts>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:redis="http://www.springframework.org/schema/redis"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/cache 
+        http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/redis
+		http://www.springframework.org/schema/redis/spring-redis.xsd"
+	default-lazy-init="false">
+
+
+	<!-- 启用缓存注解功能，这个是必须的，否则注解不会生效  -->
+	<cache:annotation-driven cache-manager="cacheManager" />
+
+
+	<!-- spring自带的缓存管理器,value会自动创建,不需要指定 -->
+	<bean id="cacheManager" class="org.springframework.cache.concurrent.ConcurrentMapCacheManager" />
+
+<!-- 单机redis,用于集中缓存 缓存, redisCache 为redis的工具类,用于业务的缓存. 基于redis分布的session共享也是基于这个redisCache -->
+ 
+<!-- 
+<bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+      <constructor-arg ref="redisTemplate" />
+       <property name="defaultExpiration" value="${cache.timeout}" />
+</bean>
+	
+
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="redisConnectionFactory" />
+	</bean>
+
+	<bean id="redisCache" class="org.springrain.frame.cache.RedisCacheImpl">
+		<property name="redisTemplate" ref="redisTemplate" />
+		<property name="expire" value="${cache.timeout}" />
+	</bean>
+
+	<bean id="redisConnectionFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="hostName" value="${redis.ip}" />
+		<property name="port" value="${redis.port}" />
+		<property name="poolConfig" ref="jedisPoolConfig" />
+	</bean>
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="${redis.pool.maxTotal}" />
+		<property name="maxIdle" value="${redis.pool.maxIdle}" />
+	</bean>
+	
+ -->
+ 
+ 
+ <!-- 集群redis-->
+ 
+ <!--  
+ <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+      <constructor-arg ref="redisTemplate" />
+       <property name="defaultExpiration" value="${cache.timeout}" />
+</bean>
+	
+
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="redisConnectionFactory" />
+	</bean>
+
+	<bean id="redisCache" class="org.springrain.frame.cache.RedisCacheImpl">
+		<property name="redisTemplate" ref="redisTemplate" />
+		<property name="expire" value="${cache.timeout}" />
+	</bean>
+
+	<bean id="redisClusterConfiguration" class="org.springframework.data.redis.connection.RedisClusterConfiguration">
+	<property name="maxRedirects" value="3"></property>
+		<property name="clusterNodes">
+			<set>
+			
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="127.0.0.1"></constructor-arg>
+					<constructor-arg name="port" value="7001"></constructor-arg>
+				</bean>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="127.0.0.1"></constructor-arg>
+					<constructor-arg name="port" value="7002"></constructor-arg>
+				</bean>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="127.0.0.1"></constructor-arg>
+					<constructor-arg name="port" value="7003"></constructor-arg>
+				</bean>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="127.0.0.1"></constructor-arg>
+					<constructor-arg name="port" value="7004"></constructor-arg>
+				</bean>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="127.0.0.1"></constructor-arg>
+					<constructor-arg name="port" value="7005"></constructor-arg>
+				</bean>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="127.0.0.1"></constructor-arg>
+					<constructor-arg name="port" value="7006"></constructor-arg>
+				</bean>
+				
+			</set>
+		</property>
+	</bean>
+	
+	<bean id="redisConnectionFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<constructor-arg ref="redisClusterConfiguration" />
+		<constructor-arg ref="jedisPoolConfig" />
+	</bean>
+	
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="${redis.pool.maxTotal}" />
+		<property name="maxIdle" value="${redis.pool.maxIdle}" />
+	</bean>
+-->
+<!-- 集群结束--> 
+ 
+ 
+ 
+
+
+<!-- 消息队列   生产者和消费者模式 -->
+
+<!-- 	<bean id="sendMessage" class="org.springrain.frame.queue.SendMessage">
+        <property name="redisTemplate" ref="redisTemplate"/>
+    </bean> 
+    
+    <bean id="redisListenContainner" class="org.springframework.data.redis.listener.RedisMessageListenerContainer">
+        <property name="connectionFactory" ref="redisConnectionFactory" />
+    </bean>
+
+     <bean id="jdkSerializationRedisSerializer"
+           class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+ -->
+	
+	
+	
+	
+<!-- 下面的这些配置已修改为注解  删除掉不再使用 -->   
+<!-- 	
+    <bean id="redisMessageDelegateListener" class="org.springrain.frame.queue.RedisMessageDelegateListener"/>
+	<bean id="redisMessageListener"
+        class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter">
+        <property name="delegate" ref="redisMessageDelegateListener" />
+        <property name="serializer" ref="jdkSerializationRedisSerializer" />
+    </bean> 
+    
+    
+    <redis:listener-container>
+        <redis:listener ref="redisMessageListener" method="handleMessage" serializer="jdkSerializationRedisSerializer" topic="springrainqueue_*" />
+    </redis:listener-container>  
+-->
+    
+</beans>

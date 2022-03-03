@@ -1,0 +1,279 @@
+<#ftl output_format="HTML" auto_esc=true> 
+<@h.siteCommonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+
+<script src="${ctx}/js/validform/validform.min.js"></script>
+<script src="${ctx}/js/ueditor/ueditor.config.js"></script>
+<script src="${ctx}/js/ueditor/ueditor.all.js"></script>
+<script src="${ctx}/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="${ctx}/js/webuploader/webuploader.min.js"></script>
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css" media="all">
+<link rel="stylesheet" type="text/css" href="${ctx}/js/webuploader/webuploader.css">
+<script>
+
+	
+
+	 jQuery(function(){
+		 loadLogo();
+		 
+	 	var ue = UE.getEditor('container',{
+			autoHeight: false
+		});
+		 
+		 /*
+		 init_valid(_before,_after)
+		 @_before:提交表单前，调用 的函数   可以为空，一般有validform处理不了，独自进行处理时使用
+		 @_after:保存成功后，调用的函数  可以为空，一般为对应的列表页面
+		 */
+		 springrain.initValid(null,function(){window.location.href="${ctx}/s/${siteId}/${businessId}/content/list?springraintoken="+springraintoken});
+	 
+		 var uploader = WebUploader.create({
+			 	auto:true,
+			    // swf文件路径
+			    swf: '${ctx}/js/webuploader/Uploader.swf',
+			    // 文件接收服务端。
+			    server: '${ctx}/s/${siteId!''}/${businessId!''}/file/logoupload?springraintoken='+springraintoken,
+			    // 选择文件的按钮。可选。
+			    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+			    pick: '#filePicker',
+			    // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+			     accept: {
+			        title: 'Images',
+			        extensions: 'gif,jpg,jpeg,bmp,png',
+			        mimeTypes: 'image/*'
+			    }
+			});
+			
+			 uploader.on( 'fileQueued', function( file ) {
+				 $("#tmpLogo").remove();
+			    var $li = $('<div id="' + file.id + '" class="file-item thumbnail layui-inline">' +
+			                '<img>' +
+			                '<div class="info">' + file.name + '</div>' 
+			                +'</div>'),
+		        $img = $li.find('img');
+
+
+			    // $list为容器jQuery实例
+			    $list = $("#fileList");
+			    $list.append( $li );
+
+			    // 创建缩略图
+			    // 如果为非图片文件，可以不用调用此方法。
+			    // thumbnailWidth x thumbnailHeight 为 100 x 100
+			    var thumbnailWidth = thumbnailHeight = 100;
+			    uploader.makeThumb( file, function( error, src ) {
+			        if ( error ) {
+			            $img.replaceWith('<span>不能预览</span>');
+			            return;
+			        }
+
+			        $img.attr( 'src', src );
+			    }, thumbnailWidth, thumbnailHeight );
+			});
+			 
+			// 文件上传过程中创建进度条实时显示。
+			 uploader.on( 'uploadProgress', function( file, percentage ) {
+			     var $li = $( '#'+file.id ),
+			         $percent = $li.find('.progress span');
+
+			     // 避免重复创建
+			     if ( !$percent.length ) {
+			         $percent = $('<p class="progress"><span></span></p>')
+			                 .appendTo( $li )
+			                 .find('span');
+			     }
+
+			     $percent.css( 'width', percentage * 100 + '%' );
+			 });
+
+			 // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+			 uploader.on( 'uploadSuccess', function( file,response ) {
+				 $("[name=cover]").val(JSON.stringify(response.data));
+			     $( '#'+file.id ).addClass('upload-state-done');
+			 });
+
+			 // 文件上传失败，显示上传出错。
+			 uploader.on( 'uploadError', function( file ) {
+			     var $li = $( '#'+file.id ),
+		         $error = $li.find('div.error');
+
+			     // 避免重复创建
+			     if ( !$error.length ) {
+			         $error = $('<div class="error"></div>').appendTo( $li );
+			     }
+
+			     $error.text('上传失败');
+			 });
+		
+			 // 完成上传完了，成功或者失败，先删除进度条。
+			 uploader.on( 'uploadComplete', function( file ) {
+			     $( '#'+file.id ).find('.progress').remove();
+			 });
+	 });
+	 
+	 function loadLogo(){
+		 var coverData = $("[name='cover']").val();
+		 if(!!coverData){
+		 	var logoData = JSON.parse(coverData);
+			var logoUrl = logoData[0].path;
+			$("#tmpLogo").prop("src",ctx+logoUrl);
+		 }
+	}
+</script>
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+		<!-- 主体内容开始 -->
+		<div class="layui-tab layui-tab-brief">
+			<ul class="layui-tab-title site-demo-title">
+				<li style="float: right;">
+					<button type="button" onclick="history.go(-1)"
+						class="layui-btn layui-btn-small" style="margin-top: 8px;">
+						<i class="layui-icon layui-icon-specil">&#xe603;</i>返回
+					</button>
+				</li>
+			</ul>
+
+			<div class="layui-body layui-tab-content site-demo-body">
+				<div class="layui-tab-item layui-show">
+					<div class="layui-main">
+						<div id="LAY_preview" class="layui-my-form">
+							<header class="larry-personal-tit">
+								<span>添加内容表</span>
+							</header>
+							<div class="larry-personal-body clearfix changepwd">
+								<form id="validForm" class="layui-form" method="post" action="${ctx}/s/${siteId!''}/${businessId!''}/content/update">
+									<input type="hidden" id="id" name="id" value="<@s_content id="${id!}">${content.id!}</@s_content>" />
+									<input type="hidden" id="siteId" name="siteId" value="${siteId}" />
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">标题*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="title" id="title" datatype="*"
+												nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+												class="layui-input" value="<@s_content id="${id!}">${content.title!}</@s_content>">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<!-- <div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">摘要</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="summary" id="summary"
+												 class="layui-input"
+												value="<@s_content id="${id!}">${content.sortno!}</@s_content>">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">封面</label>
+										<div class="layui-inline col-lg-5">
+										 	<img id="tmpLogo" height="100" width="100" alt="" src="">
+									    	<div id="fileList" class="uploader-list"></div>
+										    <div id="filePicker" class="">选择图片</div>
+										    <input type="hidden" value="<@s_content id="${id!}">${content.cover!''}</@s_content>" name="cover">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div> -->
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">排序</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="sortno" id="sortno"
+												 class="layui-input"
+												value="<@s_content id="${id!}">${content.sortno!}</@s_content>">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">是否可用</label>
+										<div class="layui-inline col-lg-5">
+											 <select name="active" id="active" lay-verify="required">
+											 	<@s_content id="${id!}">
+											 		<#if (content.active)?? && (content.active)==1>
+											 			<option value="1" selected="selected">可用</option>
+											 			<option value="0">不可用</option>
+											 		<#else>
+											 			<option value="1">可用</option>
+											 			<option value="0" selected="selected">不可用</option>
+											 		</#if>
+											 	</@s_content>
+										      </select>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<@cms_property_list businessId=id>
+										<#if propertyList?? && (propertyList?size>0)>
+											<#list propertyList as property>
+												<div class="layui-form-item col-lg-6">
+													<label class="layui-form-label">${(property.name)!}</label>
+													<div class="layui-inline col-lg-5">
+														<#if property.inputType==0>
+															<textarea name="propertyList[${property_index}].pvalue" placeholder="请输入内容" class="layui-textarea">${(property.pvalue)!''}</textarea>
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==1>
+															<input type="text" name="propertyList[${property_index}].pvalue" class="layui-input" value="${(property.pvalue)!''}">
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==2>
+															<input type="text" name="propertyList[${property_index}].pvalue" class="layui-input" value="${(property.pvalue)!''}">
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==3>
+															<input type="text" name="propertyList[${property_index}].pvalue" class="layui-input" value="${(property.pvalue)!''}">
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==4>
+															<input type="text" name="propertyList[${property_index}].pvalue" class="layui-input" value="${(property.pvalue)!''}">
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==5>
+															<select name="propertyList[${property_index}].pvalue" lay-verify="required">
+												 				<option value=""></option>
+													      	</select>
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==6>
+															<input type="file" name="propertyList[${property_index}].pvalue" class="layui-upload-file">
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														<#elseif property.inputType==7>
+															<input type="file" name="propertyList[${property_index}].pvalue" class="layui-upload-file">
+															<input type="hidden" value="${(property.id)!}" name="propertyList[${property_index}].id">
+														</#if>
+													</div>
+													<div class="layui-inline valid-info"></div>
+												</div>
+											</#list>
+										</#if>
+									</@cms_property_list>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">内容*</label>
+										<div class="layui-inline col-lg-5">
+											<#noautoesc>
+												<script id="container" name="content" type="text/plain"><@s_content id="${id!}">${content.content!}</@s_content></script>
+											</#noautoesc>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									
+									
+									<div class="layui-form-item change-submit">
+										<div class="layui-inline">
+											<button type="button" class="layui-btn" id="smtbtn">保存</button>
+											<button type="button" class="layui-btn layui-btn-primary"
+												id="rstbtn">重置</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,18 @@
+<#ftl output_format="HTML" auto_esc=true>
+${"'&"}
+	<script type="text/javascript">
+		alert("1");
+	</script>
+
+<@cms_channel_list p="1">
+    <#list channel_list as a>
+    <li>${a.id},${a.name}</li>
+    </#list>
+</@cms_channel_list>
+
+
+
+
+
+
+

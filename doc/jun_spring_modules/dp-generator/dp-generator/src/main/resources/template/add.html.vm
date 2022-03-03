@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/header_css::header('新增-${comments}')"></head>
+<body>
+	<div id="dpLTE" class="container-fluid" v-cloak>
+		<table class="form" id="form">
+#foreach($column in $columns)
+#if($column.columnName != $pk.columnName)
+			<tr>
+	            <td class="formTitle">${column.columnComment}<font face="宋体">*</font></td>
+	            <td class="formValue">
+					<input type="text" class="form-control" placeholder="${column.columnComment}" v-model="${objName}.${column.fieldName}" isvalid="yes" checkexpession="NotNull">
+	            </td>
+        	</tr>
+#end
+#end
+		</table>
+	</div>
+    <div th:include="include/footer_js::footer"></div>
+    <script th:src="@{/statics/js/${viewPath}/add.js}"></script>
+</body>
+</html>

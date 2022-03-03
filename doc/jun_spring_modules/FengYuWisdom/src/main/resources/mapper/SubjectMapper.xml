@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 所需实现的接口全限定名-->
+<mapper namespace="com.feri.fyw.dao.SubjectDao">
+
+    <resultMap id="BaseResultMap" type="com.feri.fyw.entity.Subject" >
+        <id property="id" column="id"></id>
+        <result column="weeks" property="weeks" />
+        <result column="name" property="name" />
+        <result column="syllabus" property="syllabus" />
+        <result column="flag" property="flag" />
+        <result column="ctime" property="ctime" />
+    </resultMap>
+    <!--    新增 多个参数封装了类-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into t_subject(name,weeks,syllabus,flag,ctime) values(#{name},#{weeks},#{syllabus},1,now());
+    </insert>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from t_subject
+    </select>
+    <update id="update">
+        update t_subject set name=#{name},weeks=#{weeks},syllabus=#{syllabus} where id=#{id}
+    </update>
+
+</mapper>

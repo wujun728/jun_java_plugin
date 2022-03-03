@@ -1,0 +1,251 @@
+<#ftl output_format="HTML" auto_esc=true> 
+<@h.commonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+<script type="text/javascript" src="${ctx}/js/ztree/js/jquery.ztree.all-3.5.js"></script>
+<script type="text/javascript" src="${ctx}/js/ztree/js/ztreeUtils.js"></script>
+<script type="text/javascript" src="${ctx}/js/artTemplate/artTemplate.js"></script>
+
+<link rel="stylesheet" href="${ctx}/js/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/css/custom/common/myztree.css" type="text/css">
+
+<script>
+	jQuery(function(){ 
+		/*
+		全选、反选
+		*/
+		jQuery("#checkAll").bind('click',function(){
+			var _is_check=jQuery(this).get(0).checked;
+			jQuery("input[name='check_li']").each(function(_i,_o){
+				jQuery(_o).get(0).checked=_is_check;
+			});
+		});
+	});
+	function del(_id){
+		delWrap(_id,"${ctx}/system/cms/content/delete");
+	}
+    function addNewContent(){
+    	var siteId = $("#siteId").val();
+    	var channelId = $("#channelId").val();
+    	if(!!channelId){
+    		springrain.goTo('${ctx}/system/cms/content/update/pre?siteId='+siteId+'&channelId='+channelId);	
+    	}else{
+    		springrain.alert('请选择栏目!');
+    	}
+    }
+    
+    //点击显示父级菜单函数
+    var selectChannelZtree;
+    function showChannelZTree() {
+    	if(!!selectChannelZtree){
+    		initTree(selectChannelZtree);
+    	}else{
+    		jQuery.post("${ctx}/system/cms/channel/list/json",function(_json) {
+    			selectChannelZtree = springrain.tree({
+    	            'hasMenu':false,
+    	            'id':'channelZtree',
+    	            'data':_json.data,
+    	            'treeNodeClick':function(event, treeId, treeNode){
+    	                if(!!treeNode.pid){
+    	                   
+    	                    var parentNode = treeNode.getParentNode();
+    	                   	if(!!parentNode){
+    	                   		while(!!parentNode){
+        	                        var tempParentNode = parentNode.getParentNode();
+        	                        if(!!tempParentNode){
+        	                            parentNode = tempParentNode;
+        	                        }else{
+        	                            break;
+        	                        }
+        	                    }
+    	                   	 	jQuery("#channelId").val(treeNode.id);
+    	                   	}else{
+    	                   		parentNode = treeNode;
+    	                   	}
+    	                    
+    	                    $("#siteId").val(parentNode.id);
+    	                }
+    	                    
+    	                jQuery("#channelName").val(treeNode.name);
+    	            }
+    	        });
+    			initTree(selectChannelZtree);
+    		});
+    	}
+	}
+    
+    function initTree(selectChannelZtree){
+        selectChannelZtree.expandAll(true);
+        selectZtreeOneNode(jQuery("#channelId").val(), "channelZtree");
+      //页面层-自定义
+        layer.open({
+            shadeClose : true,
+            closeBtn : 1,
+            btn : [ '确定' ], //按钮
+            type : 1,
+            title : "选择父菜单",
+            area : [ '600px', '400px' ], //宽高
+            //shadeClose: true,
+            content : $("#div_channelZtree")
+        });
+    }
+</script>
+
+</head>
+<body>
+	
+	
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+		<!-- 主体内容开始 -->
+		<div class="layui-tab layui-tab-brief">
+			<ul class="layui-tab-title site-demo-title">
+				<li style="float: right;">
+					<@shiro.hasPermission name="/system/cms/content/update" >
+					<button type="button" class="layui-btn layui-btn-small" onclick="addNewContent();">
+						<i class="layui-icon layui-icon-specil">&#xe61f;</i>新增
+					</button>
+					</@shiro.hasPermission>
+					<@shiro.hasPermission name="/system/cms/content/export" >
+					<button type="button" class="layui-btn layui-btn-small">
+						<i class="layui-icon layui-icon-specil">&#xe609;</i>导出
+					</button>
+					</@shiro.hasPermission>
+					<@shiro.hasPermission name="/system/cms/content/import" >
+					<button type="button"
+						class="layui-btn layui-btn-warm layui-btn-small">
+						<i class="layui-icon layui-icon-specil">&#xe601;</i>导入
+					</button>
+					</@shiro.hasPermission>
+					<@shiro.hasPermission name="/system/cms/content/delete" >
+					<button type="button"
+						class="layui-btn layui-btn-danger layui-btn-small">
+						<i class="layui-icon">&#xe640;</i>批量删除
+					</button>
+					</@shiro.hasPermission>
+				</li>
+			</ul>
+
+			<div class="layui-body layui-tab-content site-demo-body">
+				<div class="layui-tab-item layui-show">
+					<div class="layui-main">
+						 <div id="LAY_preview">
+						 	<form class="layui-form layui-form-pane" id="searchForm" action="${ctx}/system/cms/content/list" method="post">
+					          <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}" /> 
+					          <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}" />
+					          <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}" />
+					         <input type="hidden" name="siteId" id="siteId" value="${(returnDatas.queryBean.siteId)!''}"/>
+					         <table class="layui-table search-wrap">
+							  	<colgroup>
+								    <col width="">
+								    <col width="150">
+								</colgroup>
+					          	<tbody>
+					          		<tr>
+					          			<th colspan="2">字典搜索</th>
+					          		</tr>
+					          		<tr>
+					          			<td>
+					          				<div class="layui-inline">
+							                    <label class="layui-form-label">名称</label>
+							                    <div class="layui-input-inline">
+							                           <input type="text" name="name" value="${(returnDatas.queryBean.name)!''}" placeholder="请输入名称 " class="layui-input">
+							                    </div>
+					                		</div>
+							               <div class="layui-inline">
+							                    <label class="layui-form-label">栏目</label>
+							                    <div class="layui-input-inline">
+							                    	<input type="hidden" name="channelId" id="channelId" value="${(returnDatas.queryBean.channelId)!''}">
+						                           	<input type="text" name="channelName" id="channelName" value="${(returnDatas.queryBean.channelName)!''}" placeholder="请选择栏目" class="layui-input" onclick="showChannelZTree();">
+							                    </div>
+					                		</div>
+					          			</td>
+					          			<td>
+					          			 	<div class="layui-inline">
+							                    <button class="layui-btn" type="button" onclick="springrain.commonSubmit('searchForm');"><i class="layui-icon" style="top:4px;right:5px;">&#xe615;</i>搜索</button>
+							                </div>
+					          			</td>
+					          		</tr>
+					          	</tbody>
+					          </table>
+            				  </form>
+						 
+						 
+						 	<table class="layui-table" lay-even>
+					            <colgroup>
+					                <col width="40">
+					                <col width="120">
+					                <col>
+					            </colgroup>
+					            <!--end_no_export-->
+					            <!--first_start_export-->
+					            <thead>
+					                <tr>
+					                    <th colspan="8">内容表列表<font id='recordsView' class='recorsView'>共<span></span>页 ,共<span></span>条记录</font></th>
+					                </tr>
+					                <tr>
+					                    <!--first_start_no_export-->
+					                    <th class="center"><label class="position-relative">
+					                            <input id="checkAll" class="ace" type="checkbox">
+					                    </label></th>
+					                    <th>操作</th>
+					                    <!--first_end_no_export-->
+					                    <th id="th_title">标题</th>
+					                    <th id="th_mintitle">副标题</th>
+					                    <th id="th_keywords">关键字</th>
+					                    <th id="th_description">描述</th>
+					                    <th id="th_createPerson">创建人</th>
+					                    <th id="th_createDate">创建时间</th>
+					                </tr>
+					            </thead>
+					            <!--first_end_export-->
+					            <!--start_export-->
+					            <tbody id="dataGrid">
+					                <#if (returnDatas.data??)&&(returnDatas.data?size>0)> <#list
+					                returnDatas.data as _data>
+					                <!--start_no_export-->
+					                <tr class="">
+					                    <td class="center"><label class="position-relative">
+					                            <input name="check_li" value="${_data.id}" class="ace"
+					                            type="checkbox"> <span class="lbl"></span>
+					                    </label></td>
+					                    <td>
+					                        <@shiro.hasPermission name="/system/cms/content/update" >
+					                        <a href="#" data-action="${ctx}/system/cms/content/update/pre?id=${(_data.id)!''}&siteId=${(_data.siteId)!''}&channelId=${(_data.channelId)!''}" class="layui-btn layui-btn-normal layui-btn-mini">修改</a> 
+					                        </@shiro.hasPermission>
+					                        <@shiro.hasPermission name="/system/cms/content/delete" >
+					                        <a href="javascript:del('${(_data.id)!''}')" class="layui-btn layui-btn-danger layui-btn-mini ajax-delete">删除</a>
+					                        </@shiro.hasPermission>
+					                    </td>
+					                    <!--end_no_export-->
+					                    <td>
+					                        <a href="${ctx}${(_data.link)!'#'}" target="blank">${(_data.title)!''}</a>
+					                    </td>
+					                    <td>${(_data.mintitle)!''}</td>
+					                    <td>${(_data.keywords)!''}</td>
+					                    <td>${(_data.description)!''}</td>
+					                    <td>${(_data.createPerson)!''}</td>
+					                    <td>
+					                        <!--日期型--> ${((_data.createDate)?string('yyyy-MM-dd'))!''}
+					                    </td>
+					                </tr>
+					                </#list> </#if>
+					            </tbody>
+					        </table>
+					        <#if returnDatas.page??> 
+								<div id='laypageDiv'></div>
+								<@h.layPage page=returnDatas.page /> 
+							</#if>
+						 </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+	<div id="div_channelZtree" style='display:none;'>
+        <ul id="channelZtree" class="ztree"></ul>
+    </div>
+</body>
+</html>
+

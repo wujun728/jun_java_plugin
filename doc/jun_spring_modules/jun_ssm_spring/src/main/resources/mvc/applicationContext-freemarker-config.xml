@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd 
+	    http://www.springframework.org/schema/mvc
+         http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd"
+	default-lazy-init="false">
+	
+
+	
+	<bean id="freeMarkerConfigurer"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF/freemarker/" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="freemarkerSettings">
+		   <props>
+                <prop key="template_update_delay">0</prop>
+                <prop key="default_encoding">UTF-8</prop>
+                <prop key="url_escaping_charset">UTF-8</prop>
+                 
+               
+                <prop key="date_format">yyyy-MM-dd</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                
+                <prop key="locale">zh_CN</prop>
+                <prop key="whitespace_stripping">true</prop>
+                <prop key="tag_syntax">auto_detect</prop>
+                <prop key="number_format">#.##</prop>
+                <prop key="auto_import">/common/head.html as h</prop>
+               
+               
+                <!-- 配置自定义的freemarker异常处理-->
+                <!--  
+                <prop key = "template_exception_handler"></prop>
+                -->
+            </props>
+		</property>
+		<property name="freemarkerVariables">  
+            <map>   
+                <entry key="shiro"  value-ref="shiroTags"/>   
+            </map>   
+        </property>  
+	</bean>
+	
+
+</beans>

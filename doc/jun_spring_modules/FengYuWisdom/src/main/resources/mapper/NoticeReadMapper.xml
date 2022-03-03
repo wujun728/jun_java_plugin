@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 所需实现的接口全限定名-->
+<mapper namespace="com.feri.fyw.dao.NoticeReadDao">
+
+    <resultMap id="BaseResultMap" type="com.feri.fyw.entity.NoticeRead" >
+        <id property="id" column="id"></id>
+        <result column="sid" property="sid" />
+        <result column="nid" property="nid" />
+        <result column="ctime" property="ctime" />
+    </resultMap>
+    <!--    新增 多个参数封装了类-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into t_noticeread(sid,nid,ctime) values(#{sid},#{nid},now());
+    </insert>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from t_noticeread
+    </select>
+
+</mapper>

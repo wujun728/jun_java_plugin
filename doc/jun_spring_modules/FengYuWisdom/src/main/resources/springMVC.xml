@@ -1,0 +1,36 @@
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/context
+              http://www.springframework.org/schema/context/spring-context.xsd
+              http://www.springframework.org/schema/mvc
+              http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--    扫描注解的类所在包-->
+    <context:component-scan base-package="com.feri.fyw.controller"></context:component-scan>
+    <!--    SpringMVC的注解驱动-->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+<!--    放行静态资源-->
+    <mvc:default-servlet-handler></mvc:default-servlet-handler>
+<!--    配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/*.do"/>
+            <mvc:mapping path="/*.html"/>
+            <bean class="com.feri.fyw.filter.LoginAuthFilter"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+<!--    文件上传解析器-->
+    <!-- 上传解析器
+      id必须是：“multipartResolver”
+-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 最大可上传的文件大小  单位：byte  超出后会抛出MaxUploadSizeExceededException异常，可以异常解析器捕获 -->
+        <property name="maxUploadSize" value="1048000"></property>
+    </bean>
+</beans>

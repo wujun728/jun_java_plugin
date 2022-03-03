@@ -1,0 +1,77 @@
+package ${package}.${module}.manager.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import net.chenlin.dp.common.entity.Page;
+import net.chenlin.dp.common.entity.Query;
+import ${package}.${module}.dao.${className}Mapper;
+import ${package}.${module}.entity.${className}Entity;
+import ${package}.${module}.manager.${className}Manager;
+
+/**
+ * ${comments}
+ * @author ${author}<${email}>
+ */
+@Component("${objName}Manager")
+public class ${className}ManagerImpl implements ${className}Manager {
+
+	@Autowired
+	private ${className}Mapper ${objName}Mapper;
+
+    /**
+     * 分页查询
+     * @param page
+     * @param search
+     * @return
+     */
+	@Override
+	public List<${className}Entity> list${className}(Page<${className}Entity> page, Query search) {
+		return ${objName}Mapper.listForPage(page, search);
+	}
+
+    /**
+     * 新增
+     * @param ${objName}
+     * @return
+     */
+	@Override
+	public int save${className}(${className}Entity ${objName}) {
+		return ${objName}Mapper.save(${objName});
+	}
+
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
+	@Override
+	public ${className}Entity get${className}ById(Long id) {
+		${className}Entity ${objName} = ${objName}Mapper.getObjectById(id);
+		return ${objName};
+	}
+
+    /**
+     * 修改
+     * @param ${objName}
+     * @return
+     */
+	@Override
+	public int update${className}(${className}Entity ${objName}) {
+		return ${objName}Mapper.update(${objName});
+	}
+
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+	@Override
+	public int batchRemove(Long[] id) {
+		int count = ${objName}Mapper.batchRemove(id);
+		return count;
+	}
+	
+}

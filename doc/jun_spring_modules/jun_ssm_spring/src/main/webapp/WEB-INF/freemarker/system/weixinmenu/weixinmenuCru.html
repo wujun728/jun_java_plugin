@@ -1,0 +1,107 @@
+<#ftl output_format="HTML" auto_esc=true>
+<@h.commonHead title="微信菜单管理" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+</head>
+<SCRIPT type="text/javascript">
+<!--
+
+jQuery(document).ready(function(){
+	//回选 下拉框
+	//jQuery("#search_state option[value='是']").prop("selected",true);
+	
+	/*
+	$('.date-picker').datepicker({
+		    autoclose: true,
+		    format: 'yyyy-mm-dd',
+		    language: 'zh-CN'
+		    //,todayBtn: 'linked',
+		    //startDate:new Date(2014,10,27),
+			//endDate:'+60d',
+		    //startDate: '+1d',
+		}).next().on(ace.click_event, function(){
+			$(this).prev().focus();
+		});
+	*/
+	
+	
+	
+	});
+	
+	
+//-->
+</SCRIPT>
+
+
+<@h.commonPage/>
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" id="validation-form" method="POST" novalidate="novalidate" action="${ctx}/wechat/menu/update" > 
+			<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}"/>	
+			<input type="hidden" id="pname" name="pname" value="${(returnDatas.data.pname)!'无'}">
+	<!--input  hidden  End-->
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="name" >名称</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="name" class="col-xs-12 col-sm-6" id="name" value="${(returnDatas.data.name)!''}"  type="text" />
+					</div><div class="help-block" for="name"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="pid" >父级菜单</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<select name="pid" id="pid">
+							<option value="" checked="checked">无</option>
+						</select>
+						<!-- <input name="pid" class="col-xs-12 col-sm-6" id="pid" value="${(returnDatas.data.pid)!''}"  type="text" /> -->
+					</div><div class="help-block" for="pid"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group" id="hrefInput">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="href" >跳转地址</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="href" class="col-xs-12 col-sm-6" id="href" value="${(returnDatas.data.href)!''}"  type="text" />
+					</div><div class="help-block" for="href"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+		</form>
+		<div class="wizard-actions">
+			<button class="btn btn-success btn-info" data-last="Finish" onclick="commonUpdateForm('validation-form','${ctx}/wechat/menu/list');">
+				保存
+			</button>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		//加载一级菜单
+		$.ajax({
+			url: '${ctx}/wechat/menu/list/json',
+			type: 'POST',
+			dataType: 'json',
+			data: {type: '1'},
+			success:function(ret){
+				var tempData=ret.data;
+				var htmlStr='<option value="" checked="checked">无</option>';
+				if(!!tempData){//添加一级菜单选项
+					
+					for(var i=0;i<tempData.length;i++){
+						htmlStr+='<option value="'+tempData[i].id+'">'+tempData[i].name+'</option>';
+					}
+				}
+				$("#pid").html(htmlStr);
+				
+				$("#pid").change(function(){
+					$("[name=pname]").val($(this).find("option:selected").text());
+				});
+			}
+		});
+	});
+</script>
+<@h.footer/>

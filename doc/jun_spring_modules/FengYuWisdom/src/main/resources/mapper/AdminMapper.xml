@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 所需实现的接口全限定名-->
+<mapper namespace="com.feri.fyw.dao.AdminDao">
+
+    <resultMap id="BaseResultMap" type="com.feri.fyw.entity.Admin" >
+        <id property="id" column="id"></id>
+        <result column="name" property="name" />
+        <result column="no" property="no" />
+        <result column="password" property="password" />
+        <result column="flag" property="flag" />
+    </resultMap>
+
+<!--    新增 多个参数封装了类-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into t_admin(name,no,password,flag) values(#{name},#{no},#{password},1);
+    </insert>
+    <select id="selectByName" resultMap="BaseResultMap">
+        select * from t_admin where flag=1 and name=#{name}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from t_admin order by id desc
+    </select>
+
+</mapper>

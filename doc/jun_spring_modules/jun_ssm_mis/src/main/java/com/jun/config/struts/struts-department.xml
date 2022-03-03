@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE struts PUBLIC 
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+        "http://struts.apache.org/dtds/struts-2.0.dtd"> 
+<struts>
+	<package name="department" extends="default"> 
+	    <action name="departmentAction" class="departmentAction"> 
+	    	<result name="toAdd" type="redirect-action">
+	    	    <param name="actionName">departmentAction</param>
+	    		<param name="method">toAddDepartment</param>
+	    		<param name="departmentVO.flage">add</param>
+	    		<param name="departmentVO.forwardWay">dispatcher</param>
+	    	</result> 
+	    	<result name="toUpdate" type="redirect-action">
+	    	    <param name="actionName">departmentAction</param>
+	    		<param name="method">toUpdateDepartment</param>
+	    		<param name="departmentVO.flage">update</param>
+	    		<param name="departmentVO.forwardWay">dispatcher</param>
+	    	</result> 
+	    	<result name="toSearch" type="redirect-action">
+	    	    <param name="actionName">departmentAction</param>
+	    		<param name="method">findDepartments</param>
+	    		<param name="departmentVO.forwardWay">dispatcher</param>
+	    	</result> 
+	    	<result name="list">department/departmentList.jsp</result>
+	    	<result name="add">department/addOrUpdateDepartment.jsp</result>
+	    	<result name="update">department/addOrUpdateDepartment.jsp</result> 
+	    	<result name="detail">department/departmentDetail.jsp</result>
+	    </action>  
+	</package>
+</struts>

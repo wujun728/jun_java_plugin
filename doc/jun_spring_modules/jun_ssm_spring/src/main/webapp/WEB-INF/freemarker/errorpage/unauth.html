@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>没有权限操作页面</title>
+		<style>
+			body,html{margin: 0;padding: 0;width: 100%;font-family: "微软雅黑";}
+			a:link{text-decoration:none;color:white;}
+			.img_errow{
+				width: 25%;text-align: center;
+				position: absolute;left: 35%;top:20%;
+			}
+			.img_div{position: relative;width: 100%;height: 100%;}
+			.img_errow img{width: 100%;}
+			.img_div div{
+				width: 28%;height: 40px;line-height: 40px;font-size: 14px;color: white;background: #f03d39;
+				border-radius: 8px;-webkit-border-radius: 8px;-moz-border-radius: 8px;
+				display: inline-block;cursor: pointer;
+				position: absolute;left: 36%;bottom: -30%;
+			}
+			
+			@media (min-width: 320px) and (max-width: 768px){
+				.img_errow{
+					width: 90%;text-align: center;
+					position: absolute;left: 5%;top:0;
+				}
+				.img_div{position: relative;width: 100%;height: 100%;}
+				.img_errow img{width: 100%;}
+				.img_div div{
+					width: 46%;height: 40px;line-height: 40px;font-size: 14px;color: white;background: #f03d39;
+					border-radius: 8px;-webkit-border-radius: 8px;-moz-border-radius: 8px;
+					display: inline-block;cursor: pointer;
+					position: absolute;left: 27%;bottom: -40%;
+				}
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="img_errow">
+			<div class="img_div">
+				<img src="${ctx}/img/no_power.png" />
+				
+				<div>
+					<a href="javascript:;" onClick="javascript:history.back(-1);">返回上一级</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

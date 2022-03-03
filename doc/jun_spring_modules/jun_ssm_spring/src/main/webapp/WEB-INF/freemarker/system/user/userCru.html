@@ -1,0 +1,554 @@
+<#ftl output_format="HTML" auto_esc=true> 
+<@h.commonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+<script type="text/javascript" src="${ctx}/js/ztree/js/jquery.ztree.all-3.5.js"></script>
+<script type="text/javascript" src="${ctx}/js/ztree/js/ztreeUtils.js"></script>
+<script type="text/javascript" src="${ctx}/js/select2/js/select2.full.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/select2/js/i18n/zh-CN.js"></script>
+<script type="text/javascript" src="${ctx}/js/custom/common/select2remote.js"></script>
+<script type="text/javascript" src="${ctx}/js/validform/validform.min.js"></script>
+<link rel="stylesheet" href="${ctx}/js/select2/css/select2.min.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/js/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css" media="all">
+<link rel="stylesheet" href="${ctx}/css/custom/common/myztree.css" type="text/css">
+<script>
+	 var _userType;
+	 var orgNames="";
+     var orgIds="";
+	 jQuery(function(){
+		 _userType="${(returnDatas.data.userType)!''}";
+		 jQuery("#userType").val(_userType);
+		 /*
+		 init_valid(_before,_after)
+		 @_before:提交表单前，调用 的函数   可以为空，一般有validform处理不了，独自进行处理时使用
+		 @_after:保存成功后，调用的函数  可以为空，一般为对应的列表页面
+		 */
+		 springrain.initValid(null,function(){window.location.href="${ctx}/system/user/list?springraintoken="+springraintoken});
+	 });
+</script>
+<script>
+var orgMultiSelectSetting = {
+    expandAll:true,
+    check: {
+        enable: true,
+        chkStyle: "checkbox",
+        //chkboxType:  { "Y" : "", "N" : "" }
+        chkboxType: { "Y" : "", "N" : "" }
+    },
+    data : {
+        simpleData : {
+            enable : true,
+            idKey : "id",
+            pIdKey : "pid",
+            rootPId : "null"
+        }
+    } 
+};
+var orgMultiSelectSetting_manager = {
+	    expandAll:true,
+	    data : {
+	        simpleData : {
+	            enable : true,
+	            idKey : "id",
+	            pIdKey : "pid",
+	            rootPId : "null"
+	        }
+	    },
+	    callback : {
+			onClick : clickOrgValue
+		},
+	    view: {
+	    	showLine: false,
+			showIcon: false,
+			selectedMulti: false,
+			dblClickExpand: false,
+			addDiyDom: addDiyDom
+		}
+	};
+function addDiyDom(treeId, treeNode) {
+	var spaceWidth = 5;
+	var switchObj = $("#" + treeNode.tId + "_switch"),
+	icoObj = $("#" + treeNode.tId + "_ico");
+	switchObj.remove();
+	icoObj.before(switchObj);
+
+	if (treeNode.level > 1) {
+		var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level)+ "px'></span>";
+		switchObj.before(spaceStr);
+	}
+}
+
+var orgMultiSelectTree;
+function showZtreeOrg(){
+    if(!orgMultiSelectTree){
+        jQuery.post("${ctx}/system/org/list/json",function(_json) {
+             if (_json.status == "success") {
+            	 //对datas进行处理
+            	 if(_json!=null&&_json.data!=null&&_json.data.length>0){
+            		 for(var i=0;i<_json.data.length;i++){
+            			 if(_json.data[i].orgType=="2"){
+            				 _json.data[i].name+="【虚拟权限部门】";
+            			 }else if(_json.data[i].orgType=="1"){
+            				 _json.data[i].name+="【部门】";
+            			 }else if(_json.data[i].orgType=="0"){
+            				 _json.data[i].name+="【组织结构】";
+            			 }
+            		 }
+            	 }
+                 $.fn.zTree.init($("#orgMultiSelectTree"), orgMultiSelectSetting,_json.data);
+                  orgMultiSelectTree =$.fn.zTree.getZTreeObj("orgMultiSelectTree");
+                 //zTree.expandAll(true);
+                 checkedZtreeNodes(jQuery("#orgIds").val(),"orgMultiSelectTree");
+             } else {
+                 myalert(_json.message);
+                 return false;
+             }
+         });
+        
+    }else{
+        checkedZtreeNodes(jQuery("#orgIds").val(),"orgMultiSelectTree");
+    }
+    //页面层-自定义
+    layer.open({
+      shadeClose:true,
+      type: 1,
+      title: "选择部门",
+      area: ['600px', '400px'], //宽高
+      content: $("#div_orgMultiSelectTree"),
+      closeBtn: 1,
+      btn: ['确定'], //按钮
+      yes:function(index, layero){
+            selectZtreeOrg();
+            layer.close(index); //如果设定了yes回调，需进行手工关闭
+          }
+    });
+    return false;
+}
+var orgMangeMultiSelectTree;
+var _is_cancle=false;
+function showMangerZtreeOrg(_obj){
+	_current_btn=_obj;
+	if(!orgMangeMultiSelectTree){
+        jQuery.post("${ctx}/system/org/list/json",function(_json) {
+             if (_json.status == "success") {
+            	 //对datas进行处理
+            	 if(_json!=null&&_json.data!=null&&_json.data.length>0){
+            		 for(var i=0;i<_json.data.length;i++){
+            			 if(_json.data[i].orgType=="2"){
+            				 _json.data[i].name+="【虚拟权限部门】";
+            			 }else if(_json.data[i].orgType=="1"){
+            				 _json.data[i].name+="【部门】";
+            			 }else if(_json.data[i].orgType=="0"){
+            				 _json.data[i].name+="【组织结构】";
+            			 }
+            		 }
+            	 }
+                 $.fn.zTree.init($("#orgMultiSelectTree_manger"), orgMultiSelectSetting_manager,_json.data);
+                 orgMangeMultiSelectTree =$.fn.zTree.getZTreeObj("orgMultiSelectTree_manger");
+                 orgMangeMultiSelectTree.expandAll(true);
+                 checkedZtreeNodes(jQuery("#ManageOrgIds").val(),"orgMultiSelectTree_manger");
+             } else {
+                 myalert(_json.message);
+                 return false;
+             }
+         });
+        
+    }else{
+        checkedZtreeNodes(jQuery("#ManageOrgIds").val(),"orgMultiSelectTree_manger");
+    }
+    //页面层-自定义
+    layer.open({
+      shadeClose:true,
+      type: 1,
+      title: "管理部门",
+      area: ['600px', '400px'], //宽高
+      content: $("#div_orgMultiSelectTree_manger"),
+      closeBtn: 1,
+      btn: ['取消'], //按钮
+      yes:function(index, layero){
+    	  jQuery("#addTbody tr").last().remove();
+            layer.close(index); //如果设定了yes回调，需进行手工关闭
+      },
+      end:function(){
+    	  if(!_is_cancle){
+    		  jQuery("#addTbody tr").last().remove();
+    	  }else{
+    		  _is_cancle=false;
+    	  }
+      }
+    });
+    return false;
+}
+
+
+function selectZtreeOrg(){
+    var nodes = orgMultiSelectTree.getCheckedNodes(true);
+    var orgNames="";
+    var orgIds="";
+    jQuery(nodes).each(function(i,obj){
+        orgNames=orgNames+obj.name+",";
+        orgIds=orgIds+obj.id+",";
+    });
+    jQuery("#orgNames").val(orgNames);
+    jQuery("#orgIds").val(orgIds);
+}
+
+jQuery(document).ready(function(){
+    //回选 下拉框
+    jQuery("#search_state option[value='${(returnDatas.queryBean.state)!'是'}']").prop("selected",true);
+    
+    //加载角色
+    jQuery.ajax({
+        url : ctx+"/system/role/list/json",
+        type : "post",
+        dataType : "json",
+        success : function(_json) {
+            if(_json.status=="error"){
+                return;
+            }
+            
+            jQuery(_json.data).each(function(i,_obj){
+            	var _roleType=_obj.roleType;
+            	if(_roleType=="0"){
+            		_obj.name+="【系统角色】";
+            	}else if(_roleType=="1"){
+            		_obj.name+="【部门主管】";
+            	}else if(_roleType=="2"){
+            		_obj.name+="【业务岗位】";
+            	}
+                jQuery("#roleIds").append("<option value='"+_obj.id+"'>"+_obj.name+"</option>");
+            });
+            
+            jQuery("#roleIds").select2();
+            
+            <#if returnDatas.data?? && returnDatas.data.userRoles?size gt 0>
+			 	$("#roleIds").find("option:selected").prop("selected",false);
+			 	<#list returnDatas.data.userRoles as _data>
+			 		 jQuery("#roleIds option[value='${(_data.id)!''}']").prop("selected",true);
+			 	</#list>
+			 	 jQuery("#roleIds").trigger("change");
+		 	</#if>
+        }
+    });
+});
+
+function deleteUser(){
+    var id=jQuery("#id").val();
+    if(!id||id==""){
+        myalert("请选择你要删除的记录");
+        return;
+    }else{
+        var _url="${ctx}/system/user/delete?id="+id;
+        var listurl="${ctx}/system/user/list";
+        
+        mydelete(_url,listurl,{},"确定删除用户?");
+    }
+}
+
+function showdata(result) {
+    $("#btn_add").hide();
+    $("#btn_reload").show();
+    $("#btn_update").show();
+    $("#btn_delete").show();
+    
+    for (var s in result.data) {
+        set_val(s, result.data[s]);
+    }
+    jQuery("#account").prop("readonly",true);
+
+    //回选 下拉框
+    jQuery("#state option[value='"+result.data['state']+"']").prop("selected",true);
+      
+      jQuery("#password").val("");
+    
+      $("#roleIds").find("option:selected").prop("selected",false);
+      jQuery(result.data["userRoles"]).each(function(i,_obj){
+            jQuery("#roleIds option[value='"+_obj.id+"']").prop("selected",true);
+      });
+      jQuery("#roleIds").trigger("change");
+      var orgNames="";
+      var orgIds="";
+        
+      jQuery(result.data["userOrgs"]).each(function(i,obj){
+          	orgNames=orgNames+obj.name+",";
+            orgIds=orgIds+obj.id+",";
+	  });
+      jQuery("#orgNames").val(orgNames);
+      jQuery("#orgIds").val(orgIds);
+}
+
+function check(type){
+    if(type=="1"){
+        var password = $('#password').val();
+        if(password==null||password==""){
+            springrain.info("请填写密码!");
+            return;
+        }   
+        //密码长度
+        if(password.length<6){
+        	springrain.info("密码长度不能少于6位!");
+            return false;
+        }
+    }
+    
+    var mobile=$("#mobile").val();
+    if(mobile!="" && mobile!=null){
+         var reg = /^1\d{10}$/;
+         if(!reg.test(mobile)){
+        	 springrain.info("手机号格式错误!");
+                return false;
+         }
+    }
+    var listurl='${ctx}/system/user/list';
+    springrain.commonUpdateForm("updateForm", listurl, null);
+}
+var _current_btn=null;
+function add(){
+	//debugger;
+	jQuery("#addTbody").parents("table").removeClass("off");
+	var _html=["<tr>",
+					"<td><input type='text' readonly onclick='showMangerZtreeOrg(this)'   name='managerOrgNames' placeholder='单击选择' class='layui-input'><input type='hidden' name='managerOrgIds'></td>",
+					"<td><select name='managerType'><option value='10'>员工</option><option value='11'>主管</option><option value='12'>代主管</option><option value='14'>虚拟主管</option></select></td><td><select name='hasleaf'><option value='0'>不包含</option><option value='1'>包含</option></select></td>",
+					"<td><a onclick='del(this)' class='layui-btn layui-btn-danger layui-btn-mini ajax-delete'>删除</a></td>",
+				"</tr>"].join('');
+	var _html=jQuery(_html);
+	jQuery("#addTbody").append(_html);
+	form.render();
+	jQuery(_html).find("input[name='managerOrgNames']").trigger("click");
+	
+}
+function del(_obj){
+	springrain.confirm("确认删除?",function(){
+		jQuery(_obj).parents("tr").remove();
+	});
+}
+function clickOrgValue(event, treeId, treeNode) {
+	var name=treeNode.name;
+	var id=treeNode.id;
+	//先看一下，有没有
+	var _flag=false;
+	jQuery(_current_btn).parents("tr").siblings("tr").find("input[name='managerOrgIds']").each(function(_i,_o){
+		if(jQuery(_o).val()==id){
+			_flag=true;
+		}
+	});
+	if(_flag){
+		springrain.alert("已经添加该部门，请重新选择.",function(){
+		});
+		return;
+	}
+	jQuery(_current_btn).val(name);
+	jQuery(_current_btn).siblings("input").eq(0).val(id);
+	_is_cancle=true;
+	layer.closeAll();
+};
+function modifyPWD(_obj){
+	springrain.prompt("修改密码为", function(data){
+		var _input=jQuery(_obj).parent("div").find("#password");
+		if(_input==null||_input.length==0){
+			_input="<input id='password' type='hidden' name='password' value='"+data+"'>";
+			jQuery(_obj).parent("div").append(_input);
+		}else{
+			jQuery(_input).val(data);
+		}
+		layer.closeAll();
+		springrain.msg("保存后生效");
+	})
+}
+jQuery(function(){
+	selectListener("hasleaf",function(){
+		
+	})
+});
+function hasleafFun(_obj){
+	
+}
+</script>
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+		<!-- 主体内容开始 -->
+			<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title site-demo-title">
+		             <li style="float:right;">
+				        <button type="button" onclick="history.go(-1)" class="layui-btn layui-btn-small" style="margin-top:8px;"><i class="layui-icon layui-icon-specil">&#xe603;</i>返回</button>
+		             </li>
+	       		</ul>
+				
+				<div class="layui-body layui-tab-content site-demo-body">
+					<div class="layui-tab-item layui-show">
+							<div class="layui-main">
+						          <div id="LAY_preview" class="layui-my-form">
+						          				<header class="larry-personal-tit">
+													<span>添加用户</span>
+												</header>
+												<div class="larry-personal-body clearfix changepwd">
+													<form id="validForm" class="layui-form <!--  -->"  method="post" action="${ctx}/system/user/update">
+																<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}"/>	
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">姓名*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<input type="text" name="name" id="name" datatype="*" nullmsg="不能为空" errormsg="不能为空！" autocomplete="off" class="layui-input" value="${(returnDatas.data.name)!''}">
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">账号*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<input type="text" name="account" id="account" datatype="*" nullmsg="不能为空" errormsg="不能为空！" autocomplete="off" class="layui-input" value="${(returnDatas.data.account)!''}">
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">密码*</label>
+																		<div class="layui-inline col-lg-5"> 
+																			<#if (returnDatas.data??)>
+																				 <button type="button" onclick="modifyPWD(this)" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe642;</i>修改密码</button>
+																			<#else>
+																				<input type="password" name="password" id="password" datatype="*" nullmsg="不能为空" errormsg="不能为空！" autocomplete="off" class="layui-input" value="${(returnDatas.data.password)!''}">
+																			</#if>
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																   <div class="layui-form-item col-lg-6">
+															    		<label class="layui-form-label">部门*</label>
+																		   <div class="layui-inline col-lg-5">  
+																				 <button type="button" onclick="add()" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe64c;</i>添加管理关系</button>
+																			</div>
+																	     <div class="layui-inline valid-info"></div>
+																  	</div>
+																  	<div class="layui-form-item col-lg-8">
+															    		<label class="layui-form-label"></label>
+																		   <div class="layui-inline col-lg-8">  
+																				 <table class="layui-table <#if (returnDatas.data??) &&(returnDatas.data.managerOrgs??) &&(returnDatas.data.managerOrgs?size gt 0)><#else>off</#if>">
+																					 	<colgroup>
+																				    		<col width="">
+																					    	<col width="160">
+																					    	<col width="160">
+																					    	<col width="80">
+																				  		</colgroup>
+																				  		<thead>
+																							<tr>
+																								<th>部门名称</th>
+																								<th>管理类型</th>
+																								<th>是否含下级</th>
+																								<th>操作</th>
+																							</tr>
+																						</thead>
+																						<tbody id="addTbody">
+																							<#if (returnDatas.data??) &&(returnDatas.data.managerOrgs??) &&(returnDatas.data.managerOrgs?size gt 0)>
+																								<#list returnDatas.data.managerOrgs as _data>
+																									<tr>
+																										<td><input type='text' readonly onclick='showMangerZtreeOrg(this)'   name='managerOrgNames' placeholder='单击选择' class='layui-input' value="${(_data.orgName)!''}"><input type='hidden' name='managerOrgIds' value="${(_data.orgId)!''}"></td>
+																										<td>
+																											<select name='managerType'>
+																												<option value='10' <#if _data.managerType?c=='10'>selected</#if>>员工</option>
+																												<option value='11' <#if _data.managerType?c=='11'>selected</#if>>主管</option>
+																												<option value='12' <#if _data.managerType?c=='12'>selected</#if>>代理主管</option>
+																												<option value='13' <#if _data.managerType?c=='13'>selected</#if>>虚拟主管</option>
+																											</select>
+																										</td>
+																										<td>
+																											<select name='hasleaf'  lay-filter="hasleaf">
+																												<option value='0' <#if _data.hasleaf?c=='0'>selected</#if>>不包含</option>
+																												<option value='1' <#if _data.hasleaf?c=='1'>selected</#if>>包含</option>
+																											</select>
+																										</td>
+																										<td><a onclick='del(this)' class='layui-btn layui-btn-danger layui-btn-mini ajax-delete'>删除</a></td>
+																									</tr>
+																								</#list>
+																							</#if>
+																						</tbody>
+																					</table>
+																			</div>
+																	     <div class="layui-inline valid-info"></div>
+																  	</div>
+																  	<div class="layui-form-item  col-lg-6">
+																	    <label class="layui-form-label">角色*</label>
+																		    <div class="layui-inline  col-lg-5" id="roleDiv">
+																		      <select id="roleIds" name="roleIds" class="nolayer" datatype="*" nullmsg="角不能为空"  multiple data-placeholder="请选择角色">
+																		      	<option value=""></option>
+																		      </select>
+																		    </div>
+																	     <div class="layui-inline valid-info"></div>
+																  	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">性别*</label>
+																		<div class="layui-inline col-lg-5">  
+																			 <select id="sex" name="sex" >
+																		        	<option value="男">男</option>
+																					<option value="女">女</option>
+																		      </select>
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">手机号码</label>
+																		<div class="layui-inline col-lg-5">  
+																			<input type="text" name="mobile" id="mobile" datatype="phone"  errormsg="手机格式不正确！"   autocomplete="off" class="layui-input" value="${(returnDatas.data.mobile)!''}">
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">邮箱</label>
+																		<div class="layui-inline col-lg-5">  
+																			<input type="text" name="email" id="email" datatype="email"  errormsg="邮箱格式不正确！"  autocomplete="off" class="layui-input" value="${(returnDatas.data.email)!''}">
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">微信Id</label>
+																		<div class="layui-inline col-lg-5">  
+																			<input type="text" name="weixinId" id="weixinId"  autocomplete="off" class="layui-input" value="${(returnDatas.data.weixinId)!''}">
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">用户类型*</label>
+																		<div class="layui-inline col-lg-5">  
+																			 <select id="userType" name="userType" datatype="*" nullmsg="用户类型不能为空" >
+																		      		<option value>请选择用户类型</option>
+																		        	<option value="0">后台管理员</option>
+																					<option value="1">会员用户</option>
+																					<option value="2">cms管理员</option>
+																					<option value="3">活动管理员</option>
+																		      </select>
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">是否有效*</label>
+																		<div class="layui-inline col-lg-5">  
+																			<select id="active" name="active" datatype="*" nullmsg="用户类型不能为空" >
+																		        	<option value="1">是</option>
+																					<option value="0">否</option>
+																		      </select>
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+													<div class="layui-form-item change-submit">
+															<label class="layui-form-label"></label>
+															<div class="layui-inline">
+																<button type="button" class="layui-btn" id="smtbtn">保存</button>
+																<button type="button" class="layui-btn layui-btn-primary" id="rstbtn">重置</button>
+															</div>
+														</div>
+													</form>
+												</div>
+								  </div>
+							</div>
+					</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+	<div id="div_orgMultiSelectTree">
+		<ul id="orgMultiSelectTree" class="ztree"></ul>
+	</div>
+	<div id="div_orgMultiSelectTree_manger">
+		<ul id="orgMultiSelectTree_manger" class="ztree"></ul>
+	</div>
+</body>
+</html>

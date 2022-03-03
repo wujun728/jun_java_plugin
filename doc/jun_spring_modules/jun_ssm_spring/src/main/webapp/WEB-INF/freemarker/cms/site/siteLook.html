@@ -1,0 +1,158 @@
+<#ftl output_format="HTML" auto_esc=true>
+<@h.commonHead title="后台管理系统" keywords="开源,永久免费" description="springrain开源系统管理后台"/>
+
+
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+		<!-- 主体内容开始 -->
+			<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title site-demo-title">
+		             <li style="float:right;">
+				        <button type="button" onclick="history.go(-1)" class="layui-btn layui-btn-small" style="margin-top:8px;"><i class="layui-icon layui-icon-specil">&#xe603;</i>返回</button>
+		             </li>
+	       		</ul>
+				
+				<div class="layui-body layui-tab-content site-demo-body">
+					<div class="layui-tab-item layui-show">
+							<div class="layui-main">
+						          <div id="LAY_preview" class="layui-my-form">
+						          				<header class="larry-personal-tit">
+													<span>添加站点表</span>
+												</header>
+												<div class="larry-personal-body clearfix changepwd">
+													<form id="validForm" class="layui-form <!--  -->"  method="post" action="${ctx}/site/update">
+																	<!--日期型-->
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">创建时间*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${((returnDatas.data.createTime)?string('yyyy-MM-dd'))!'' }
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<!--日期型-->
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">修改时间*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${((returnDatas.data.modifyTime)?string('yyyy-MM-dd'))!'' }
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">用户Id*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.userId)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">名称*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.name)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">title*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.title)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">网站域名*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.domainurl)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">网站logo*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.logo)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">页脚*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.footer)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">QQ*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.qq)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">电话*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.phone)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">联系人*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.contacts)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">keywords*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.keywords)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">description*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.description)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">主题Id*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.themeId)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">打开次数*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.lookcount)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">0微信订阅服务号,1wap,2网站   *</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.siteType)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+																	<div class="layui-form-item col-lg-6">
+																		<label class="layui-form-label">状态 0不可用,1可用*</label>
+																		<div class="layui-inline col-lg-5">  
+																			${(returnDatas.data.active)!''}
+																		</div>
+																		<div class="layui-inline valid-info"></div>
+																	</div>
+													</form>
+												</div>
+								  </div>
+							</div>
+					</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+</body>
+</html>

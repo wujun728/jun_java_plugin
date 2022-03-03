@@ -1,0 +1,381 @@
+<#ftl output_format="HTML" auto_esc=true> <@h.commonHead title="后台管理系统" keywords="开源,永久免费"
+description="springrain开源系统管理后台"/>
+
+<script type="text/javascript" src="${ctx}/js/ztree/js/jquery.ztree.all-3.5.js"></script>
+<script type="text/javascript" src="${ctx}/js/ztree/js/ztreeUtils.js"></script>
+<script src="${ctx}/js/validform/validform.min.js"></script>
+<script src="${ctx}/js/webuploader/webuploader.min.js"></script>
+
+<script src="${ctx}/js/custom/common/springrain.js"></script>
+<link rel="stylesheet" type="text/css" href="${ctx}/js/webuploader/webuploader.css">
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css" media="all">
+<script>
+	var selectOrgZtree;
+	var orgjsondata4select;
+	jQuery(function() {
+		var themeId="${(returnDatas.data.themeId)!''}";
+		if(themeId!=""){
+			$("#themeId").val(themeId);
+		}
+		/*
+		init_valid(_before,_after)
+		@_before:提交表单前，调用 的函数   可以为空，一般有validform处理不了，独自进行处理时使用
+		@_after:保存成功后，调用的函数  可以为空，一般为对应的列表页面
+		 */
+		 springrain.initValid(null,function(){window.location.href="${ctx}/system/cms/site/list?springraintoken="+springraintoken});
+		
+		
+		 jQuery.post("${ctx}/system/org/list/json",function(_json) {
+			if (_json.status == "success") {
+				orgjsondata4select = _json;
+			} else {
+				myalert(_json.message);
+			}
+		});
+		 
+		 
+		 
+		 var uploader = WebUploader.create({
+			 auto:true,
+		    // swf文件路径
+		    swf: '${ctx}/js/webuploader/Uploader.swf',
+		    // 文件接收服务端。
+		    server: '${ctx}/system/cms/site/logoupload?springraintoken='+springraintoken,
+		    // 选择文件的按钮。可选。
+		    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+		    pick: '#filePicker',
+		    // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+		     accept: {
+		        title: 'Images',
+		        extensions: 'gif,jpg,jpeg,bmp,png',
+		        mimeTypes: 'image/*'
+		    }
+		});
+		
+		 uploader.on( 'fileQueued', function( file ) {
+		    var $li = $('<div id="' + file.id + '" class="file-item thumbnail layui-inline">' +
+		                '<img>' +
+		                '<div class="info">' + file.name + '</div>' 
+		                +'</div>'),
+	        $img = $li.find('img');
+
+
+		    // $list为容器jQuery实例
+		    $list = $("#fileList");
+		    $list.append( $li );
+
+		    // 创建缩略图
+		    // 如果为非图片文件，可以不用调用此方法。
+		    // thumbnailWidth x thumbnailHeight 为 100 x 100
+		    var thumbnailWidth = thumbnailHeight = 100;
+		    uploader.makeThumb( file, function( error, src ) {
+		        if ( error ) {
+		            $img.replaceWith('<span>不能预览</span>');
+		            return;
+		        }
+
+		        $img.attr( 'src', src );
+		    }, thumbnailWidth, thumbnailHeight );
+		});
+		 
+		// 文件上传过程中创建进度条实时显示。
+		 uploader.on( 'uploadProgress', function( file, percentage ) {
+		     var $li = $( '#'+file.id ),
+		         $percent = $li.find('.progress span');
+
+		     // 避免重复创建
+		     if ( !$percent.length ) {
+		         $percent = $('<p class="progress"><span></span></p>')
+		                 .appendTo( $li )
+		                 .find('span');
+		     }
+
+		     $percent.css( 'width', percentage * 100 + '%' );
+		 });
+
+		 // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+		 uploader.on( 'uploadSuccess', function( file,response ) {
+			 $("[name=logo]").val(response.data);
+		     $( '#'+file.id ).addClass('upload-state-done');
+		 });
+
+		 // 文件上传失败，显示上传出错。
+		 uploader.on( 'uploadError', function( file ) {
+		     var $li = $( '#'+file.id ),
+	         $error = $li.find('div.error');
+
+		     // 避免重复创建
+		     if ( !$error.length ) {
+		         $error = $('<div class="error"></div>').appendTo( $li );
+		     }
+
+		     $error.text('上传失败');
+		 });
+
+		 // 完成上传完了，成功或者失败，先删除进度条。
+		 uploader.on( 'uploadComplete', function( file ) {
+		     $( '#'+file.id ).find('.progress').remove();
+		 });
+	});
+	
+	
+	var orgSelectSetting = {
+			view: {
+				showLine: false,
+				showIcon: false,
+				selectedMulti: false,
+				dblClickExpand: false,
+				addDiyDom: addDiyDom
+			},
+		callback : {
+			onClick : clickOrgValue
+		},
+		data : {
+			simpleData : {
+				enable : true,
+				idKey : "id",
+				pIdKey : "pid",
+				rootPId : "null",
+			}
+		}
+	};
+	function showOrgTree() {
+
+		if (!selectOrgZtree) {
+			$.fn.zTree.init($("#selectOrgTree"), orgSelectSetting,orgjsondata4select.data);
+
+			selectOrgZtree = $.fn.zTree
+					.getZTreeObj("selectOrgTree");
+			selectOrgZtree.expandAll(true);
+			selectZtreeOneNode(jQuery("#orgId").val(),
+					"selectOrgTree");
+		}
+
+		//页面层-自定义
+		layer.open({
+			shadeClose : true,
+			closeBtn : 1,
+			btn : [ '确定' ], //按钮
+			type : 1,
+			title : "选择父部门",
+			area : [ '600px', '400px' ], //宽高
+			//shadeClose: true,
+			content : $("#div_select_org_tree")
+		});
+
+	}
+	
+	function addDiyDom(treeId, treeNode) {
+		var spaceWidth = 5;
+		var switchObj = $("#" + treeNode.tId + "_switch"),
+		icoObj = $("#" + treeNode.tId + "_ico");
+		switchObj.remove();
+		icoObj.before(switchObj);
+
+		if (treeNode.level > 1) {
+			var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level)+ "px'></span>";
+			switchObj.before(spaceStr);
+		}
+	}
+	
+	function clickOrgValue(event, treeId, treeNode) {
+		jQuery("#orgName").val(treeNode.name);
+		jQuery("#orgId").val(treeNode.id);
+	};
+	
+	function tijiao(){
+		var themeName=$("#themeId").siblings(".layui-unselect").find(".layui-this").text();
+		$("#themeName").val(themeName);
+	}
+</script>
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /><@h.leftMenu />
+		<!-- 主体内容开始 -->
+		<div class="layui-tab layui-tab-brief">
+			<ul class="layui-tab-title site-demo-title">
+				<li style="float: right;">
+					<button type="button" onclick="history.go(-1)"
+						class="layui-btn layui-btn-small" style="margin-top: 8px;">
+						<i class="layui-icon layui-icon-specil">&#xe603;</i>返回
+					</button>
+				</li>
+			</ul>
+
+			<div class="layui-body layui-tab-content site-demo-body">
+				<div class="layui-tab-item layui-show">
+					<div class="layui-main">
+						<div id="LAY_preview" class="layui-my-form">
+							<header class="larry-personal-tit">
+								<span>添加站点表</span>
+							</header>
+							<div class="larry-personal-body clearfix changepwd">
+								<form id="validForm" class="layui-form " method="post" action="${ctx}/system/cms/site/update">
+									<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}" />
+									 <!-- 主题名称 -->
+                                    <input name="themeName" id="themeName" type="hidden"/>
+									<div class="layui-form-item col-lg-6">
+							    		<label class="layui-form-label">上级部门</label>
+									    <div class="layui-inline col-lg-5">
+									      	<input onclick="showOrgTree();" name="orgName" id="orgName" readonly="readonly"  type="text"  placeholder="点击选择部门" autocomplete="off" class="layui-input">
+									    	<input name="orgId" id="orgId" type="hidden" />
+									    </div>
+								  	</div>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">网站名称*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="name" id="name" datatype="*"
+												nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+												class="layui-input" value="${(returnDatas.data.name)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">标题*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="title" id="title" datatype="*"
+												nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+												class="layui-input" value="${(returnDatas.data.title)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">网站域名*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="domainurl" id="domainurl"
+												datatype="*" nullmsg="不能为空" errormsg="不能为空！"
+												autocomplete="off" class="layui-input"
+												value="${(returnDatas.data.domainurl)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">网站logo*</label>
+										<div class="layui-inline col-lg-5">
+											<div id="uploader-demo">
+											    <!--用来存放item-->
+											    <div id="fileList" class="uploader-list"></div>
+											    <div id="filePicker" class="">选择图片</div>
+											    <input type="hidden" value="" name="logo">
+											</div>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">QQ*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="qq" id="qq" datatype="*"
+												nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+												class="layui-input" value="${(returnDatas.data.qq)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">电话*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="phone" id="phone" datatype="*"
+												nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+												class="layui-input" value="${(returnDatas.data.phone)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">联系人*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="contacts" id="contacts" datatype="*"
+												nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+												class="layui-input"
+												value="${(returnDatas.data.contacts)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">关键词*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="keywords" id="keywords" datatype="*"
+												nullmsg="不能为空" errormsg="不能为空！" autocomplete="off"
+												class="layui-input"
+												value="${(returnDatas.data.keywords)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">站点描述*</label>
+										<div class="layui-inline col-lg-5">
+											<input type="text" name="description" id="description"
+												datatype="*" nullmsg="不能为空" errormsg="不能为空！"
+												autocomplete="off" class="layui-input"
+												value="${(returnDatas.data.description)!''}">
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">主题*</label>
+										<div class="layui-inline col-lg-5">
+											<select name="themeId" id="themeId" lay-verify="required">
+											 <option value="-1">请选择</option>
+										        <#if (returnDatas.map["themesList"]??)&&(returnDatas.map["themesList"]?size>0)> 
+                                                    <#list  returnDatas.map["themesList"] as _data>
+                                                        <option value="${(_data.id)!''}" themeName="${(_data.name)!''}">${(_data.name)!''}</option>
+                                                    </#list>
+                                                </#if>
+									      	</select>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">页脚*</label>
+										<div class="layui-inline col-lg-5">
+											 <textarea name="footer" id="footer" placeholder="请输入内容" class="layui-textarea">${(returnDatas.data.footer)!''}</textarea>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">站点类型</label>
+										<div class="layui-inline col-lg-5">
+											<select name="siteType" id="siteType" lay-verify="required">
+											    <option value="11">微信服务号</option>
+											    <option value="12">企业号</option>
+											    <option value="13">pc站</option>
+											    <option value="14">wap站</option>
+											    <option value="15">投票</option>
+											</select>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item col-lg-6">
+										<label class="layui-form-label">状态</label>
+										<div class="layui-inline col-lg-5">
+											<select name="active" id="active" lay-verify="required">
+										        <option value="1">可用</option>
+										        <option value="0">不可用</option>
+									      	</select>
+										</div>
+										<div class="layui-inline valid-info"></div>
+									</div>
+									<div class="layui-form-item change-submit">
+										<div class="layui-inline">
+											<button type="button" class="layui-btn" id="smtbtn" onclick="tijiao()">保存</button>
+											<button type="button" class="layui-btn layui-btn-primary" id="rstbtn">重置</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+	<div id="div_select_org_tree">
+       	<ul id="selectOrgTree" class="ztree"></ul>
+     </div>
+</body>
+</html>
+

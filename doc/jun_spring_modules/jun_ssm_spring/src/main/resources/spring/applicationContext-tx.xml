@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd"
+	default-lazy-init="false">
+
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+	    <property name="dataSource" ref="dataSource"></property>  
+	</bean>  
+	
+	<!-- 处理读写分离,需要复写 DataSourceTransactionManager -->
+	
+	<!--
+	<bean id="transactionManager" class="org.springrain.frame.dao.FrameDataSourceTransactionManager">  
+	    <property name="dataSource" ref="dataSource"></property>  
+	</bean>  
+    -->
+	
+	
+	
+
+	<!-- 基本事务定义,使用transactionManager作事务管理,默认find*方法 没有事务,和动态数据源配合 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 指定哪些方法需要加入事务，可以使用通配符来只加入需要的方法,oracle需要更换isolation -->
+			<tx:method name="save*" propagation="REQUIRED"   isolation="READ_UNCOMMITTED"  timeout="3600"
+				rollback-for="Exception" />
+			<tx:method name="update*" propagation="REQUIRED"  isolation="READ_UNCOMMITTED"  timeout="3600"
+				rollback-for="Exception" />
+			<tx:method name="delete*" propagation="REQUIRED"   isolation="READ_UNCOMMITTED"  timeout="3600"
+				rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<!-- 切面事务操作-->
+		<aop:pointcut id="servicePointcut"
+			expression="execution(* org.springrain..*Service.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut" />
+	</aop:config>
+
+</beans>

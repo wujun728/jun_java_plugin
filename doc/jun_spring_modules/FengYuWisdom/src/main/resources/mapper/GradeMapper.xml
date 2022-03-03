@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 所需实现的接口全限定名-->
+<mapper namespace="com.feri.fyw.dao.GradeDao">
+    <resultMap id="BaseResultMap" type="com.feri.fyw.entity.Grade" >
+        <id property="id" column="id"></id>
+        <result column="address" property="address" />
+        <result column="name" property="name" />
+        <result column="sid" property="sid" />
+        <result column="apacity" property="apacity" />
+        <result column="sdate" property="sdate" />
+        <result column="edate" property="edate" />
+    </resultMap>
+
+
+    <!--    新增 多个参数封装了类-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into t_grade(name,address,apacity,sid,sdate,edate) values(#{name},#{address},#{apacity},#{sid},#{sdate},#{edate});
+    </insert>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from t_grade
+    </select>
+
+</mapper>

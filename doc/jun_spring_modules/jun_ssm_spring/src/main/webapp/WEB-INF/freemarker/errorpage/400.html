@@ -1,0 +1,26 @@
+<#ftl output_format="HTML" auto_esc=true>
+	<@h.head title="400" keywords="开源,永久免费" description="springrain开源系统管理后台登陆页面"/>
+		<style>
+			body,html{margin: 0;padding: 0;width: 100%;font-family: "微软雅黑";}
+			a:link{text-decoration:none;color:white;}
+			.img_errow{width: 40%;height: 45%;text-align: center;position: absolute;left: 30%;top: 13%;}
+			.img_errow img{width: 100%;}
+			.img_errow div{width: 25%;height: 40px;line-height: 40px;font-size: 14px;color: white;background: #66bd78;border-radius: 8px;-webkit-border-radius: 8px;-moz-border-radius: 8px;display: inline-block;cursor: pointer;margin-top: 10px;}
+			
+			@media (min-width: 320px) and (max-width: 768px){
+				.img_errow{width: 80%;height: 50%;text-align: center;position: absolute;left: 0;top: 0;bottom: 0;right: 0;margin: auto;}
+				.img_errow img{width: 100%;}
+				.img_errow div{width: 40%;height: 40px;line-height: 40px;font-size: 14px;color: white;background: #66bd78;border-radius: 8px;-webkit-border-radius: 8px;-moz-border-radius: 8px;display: inline-block;cursor: pointer;margin-top: 10px;}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="img_errow">
+			<img src="${ctx}/img/400.jpg" />
+			${exception!''}
+			<div>
+				<a href="javascript:;" onClick="javascript:history.back(-1);">返回上一级</a>
+			</div>
+		</div>
+	</body>
+</html>

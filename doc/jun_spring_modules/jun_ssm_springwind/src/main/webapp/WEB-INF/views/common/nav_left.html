@@ -1,0 +1,39 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element"> <span>
+                    <img alt="image" class="img-circle" src="#springUrl('/static/img/profile_small.jpg')" />
+                     </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">$!{currentUser.loginName}</strong>
+                     </span> <span class="text-muted text-xs block">设置<b class="caret"></b></span> </span> </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="#springUrl('/perm/user/setAvatar.html')">修改头像</a></li>
+                        <li><a href="profile.html">个人资料</a></li>
+                        <li><a href="contacts.html">联系我们</a></li>
+                        <li><a href="mailbox.html">信箱</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#springUrl('/account/logout.html')">安全退出</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="logo-element">SW</div>
+            </li>
+            #foreach( $menu in $menuList )
+            <li #currentClass($menu.url, "class='active'")>
+                <a href="#">
+                	<i class="${menu.icon}"></i>
+                	<span class="nav-label">${menu.title}</span>
+                	<span class="fa arrow"></span>
+               	</a>
+                <ul class="nav nav-second-level">
+                    #foreach( $m in $menu.mvList)
+                    <li #currentClass($m.url, "class='active'")><a href="#springUrl(${m.url})">${m.title}</a></li>
+                    #end
+                </ul>
+            </li>
+            #end
+        </ul>
+    </div>
+</nav>

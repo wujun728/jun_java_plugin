@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN/EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="IUserService" class="com.lxw.oa.service.impl.UserServiceImpl" autowire="byType"></bean>
+	<bean id="IRoleService" class="com.lxw.oa.service.impl.RoleServiceImpl" autowire="byType"></bean>
+	<bean id="IDepartmentService" class="com.lxw.oa.service.impl.DepartmentServiceImpl" autowire="byType"></bean>
+	<bean id="IResourceService" class="com.lxw.oa.service.impl.ResourceServiceImpl" autowire="byType"></bean>
+	<bean id="IMessageService" class="com.lxw.oa.service.impl.MessageServiceImpl" autowire="byType"></bean>
+</beans>

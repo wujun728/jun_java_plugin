@@ -1,0 +1,15 @@
+package ${package}.${module}.dao;
+
+import org.mybatis.spring.annotation.MapperScan;
+
+import net.chenlin.dp.common.dao.BaseMapper;
+import ${package}.${module}.entity.${className}Entity;
+
+/**
+ * ${comments}
+ * @author ${author}<${email}>
+ */
+@MapperScan
+public interface ${className}Mapper extends BaseMapper<${className}Entity> {
+	
+}

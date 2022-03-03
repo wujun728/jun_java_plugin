@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 所需实现的接口全限定名-->
+<mapper namespace="com.feri.fyw.dao.WeekExamDao">
+
+    <resultMap id="BaseResultMap" type="com.feri.fyw.entity.WeekExam" >
+        <id property="id" column="id"></id>
+        <result column="sid" property="sid" />
+        <result column="info" property="info" />
+        <result column="score" property="score" />
+        <result column="week" property="week" />
+        <result column="ctime" property="ctime" />
+    </resultMap>
+    <!--    新增 多个参数封装了类-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into t_weekexam(sid,info,score,week,ctime) values(#{sid},#{info},#{score},#{week},now());
+    </insert>
+    <insert id="insertBatch" parameterType="list">
+        insert into t_weekexam(sid,info,score,cdate,ctime) values
+        <foreach collection="list" item="s" separator=",">
+            (#{s.sid},#{s.info},#{s.score},#{s.week},now())
+        </foreach>
+    </insert>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from t_weekexam
+    </select>
+
+</mapper>

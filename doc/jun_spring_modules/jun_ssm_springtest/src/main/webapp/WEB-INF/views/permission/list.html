@@ -1,0 +1,116 @@
+#override("title")
+SpringWind - 权限管理
+#end
+#override("css")
+<link href="#springUrl('/static/css/plugins/bootstrap-table/bootstrap-table.min.css')" rel="stylesheet">
+#end
+#override("breadcrumb")
+<li><a>权限管理</a></li><li class="active"><strong>权限管理</strong></li>
+#end
+#override("content")
+<div class="row">
+    <div class="row">
+        <div class="col-sm-12">
+            <table id="dataTable"></table>
+        </div>
+    </div>
+</div>
+#end
+#override("js")
+<script src="#springUrl('/static/js/plugins/bootstrap-table/bootstrap-table.min.js')"></script>
+<script src="#springUrl('/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js')"></script>
+<script src="#springUrl('/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js')"></script>
+<script src="#springUrl('/static/plugins/layer-v2.2/layer/layer.js')"></script>
+<script src="#springUrl('/static/js/base_list.js')"></script>
+<script src="#springUrl('/static/js/common.js')"></script>
+<script type="text/javascript">
+var dataUrl="#springUrl('/perm/permission/getPermissionList.html')";
+var dataColumns = [{
+    field: 'id',
+    title: '序号'
+}, {
+    field: 'title',
+    title: '标题'
+}, {
+    field: 'type',
+    title: '类型'
+},{
+    field: 'state',
+    title: '状态'
+}, {
+    field: 'url',
+    title: '地址'
+}, {
+	field: 'permCode',
+	title: '权限编码'
+}, {
+    field: 'icon',
+    title: '图标'
+}, {
+	field: 'description',
+	title: '描述'
+}, {
+    title: '操作',
+    formatter: function (value, row, index) {
+        var id = row.id;
+        return '<a class="btn btn-xs btn-primary" onclick="editPermission(' + "'" + id + "'" + ')"><i class="fa fa-pencil"></i>新增</a> '
+                +'<a class="btn btn-xs btn-info" onclick="editPermission(' + "'" + id + "'" + ')"><i class="fa fa-pencil"></i>编辑</a> '
+                + '<a class="btn btn-xs btn-danger" onclick="delPermission(' + "'" + id + "'" + ')"><i class="fa fa-remove"></i>删除</a>';
+    }
+}];
+function dataQueryParams(params) {
+	console.log(params)
+	return {
+		_size: params.limit,  //页面大小
+		_index: params.offset, //页码
+	};
+}
+function delPermission(permId) {
+    //询问框
+    layer.confirm('确定删除吗？', {
+        btn: ['确定', '取消'] //按钮
+    }, function () {
+        $.ajax({
+            type: "POST",
+            url: "#springUrl('/perm/permission/delete/')" + permId,
+            datatype: "text",
+            success: function (data) {
+                if(data == 'true'){
+                    $('#dataTable').bootstrapTable('refresh',{url:dataUrl});
+                    layer.alert('删除成功', {icon: 1},function(index){
+                    	  layer.closeAll();
+                    	});       
+                }else{
+                	layer.alert('删除失败,需要删除的菜单存在关联角色', {icon: 2},function(index){
+                  	  layer.closeAll();
+                  	});
+                }
+            }
+        });
+    }, function () {
+        return;
+    });
+}
+
+function editPermission(permId,type){
+    var title;
+    if(type == 1){
+        title = "新增用户";
+    } else{
+        title = "编辑用户";
+    }
+    //iframe层
+    layer.open({
+        type: 2,
+        title: title,
+        shadeClose: true,
+        shade: 0.8,
+        area: ['540px', '600px'],
+        fix: false, //不固定
+        maxmin: true,
+        content: "#springUrl('/perm/user/addUser/1')" //iframe的url
+    });
+}
+</script>
+#end
+#extends("/common/framework.html")

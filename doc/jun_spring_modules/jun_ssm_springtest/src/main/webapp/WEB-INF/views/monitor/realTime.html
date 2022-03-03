@@ -1,0 +1,12 @@
+#override("title")
+SpringWind 管理系统 - 实时监控
+#end
+#override("breadcrumb")
+<li><a>系统监控</a></li><li class="active"><strong>实时监控</strong></li>
+#end
+#override("content")
+<div class="row" style="height: 500px;">
+	<iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="#springUrl('/druid/index.html')" frameborder="0" data-id="index_v1.html" seamless></iframe>
+</div>
+#end
+#extends("/common/framework.html")

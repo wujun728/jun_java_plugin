@@ -1,0 +1,67 @@
+#override("title")
+用户管理
+#end
+#override("body")
+<body class="gray-bg">
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>标题</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index-2.html">权限管理</a>
+            </li>
+            <li>
+                <strong>用户管理</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="empty_page.html" class="btn btn-primary">活动区域</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <table id="dataTable"></table>
+        </div>
+    </div>
+</div>
+</body>
+#end
+#override("js")
+<script type="text/javascript">
+    var dataUrl = "#springUrl('/user/getUserList.html')";
+    var dataColumns = [{
+        field: 'id',
+        title: '序号'
+    }, {
+        field: 'loginName',
+        title: '登录名'
+    }, {
+        field: 'email',
+        title: '邮箱'
+    }, {
+        field: 'type',
+        title: '用户类型'
+    }, {
+        field: 'status',
+        title: '状态̬'
+    }, {
+        field: 'crTime',
+        title: '创建时间'
+    }, {
+        field: 'lastTime',
+        title: '最后更新时间'
+    }];
+    function dataQueryParams(params) {
+        return {
+            _size: params.limit,  //页面大小
+            _index: params.offset, //页码
+        };
+    }
+</script>
+#end
+#extends("/common/base_list.html")

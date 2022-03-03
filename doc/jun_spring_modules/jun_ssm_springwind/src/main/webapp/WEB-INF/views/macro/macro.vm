@@ -1,0 +1,46 @@
+
+
+## 分页宏
+#macro(pager $__pageObj $__formId)
+#if($__pageObj.total >= 1)
+<div class="page-dd">
+	<input type="hidden" id="vkoPagerFormId" value="$__formId"/>
+	#set($__p = $__pageObj.current)
+	#set($__count = $__pageObj.pages)
+	#set($pre_page = $__p - 1)
+    #set($next_page = $__p + 1)
+    #if($__p > 3)
+        #set($begin_idx = $__p - 3)
+    #else
+        #set($begin_idx = 1)
+    #end
+    #set($end_idx = $__p + 3)
+    #if($end_idx > $__count)#set($end_idx = $__count)#end
+    #if($__p > 1)
+	<a href="javascript:void(0);" pn="$pre_page">上一页</a>
+	#end
+    #if($begin_idx > 1)
+    <a href="javascript:void(0);" pn="1">1</a>
+	#end
+	#foreach($idx in [$begin_idx..$end_idx])
+		#if($idx == $__p)
+	<a href="javascript:void(0);" class="active" pn="$idx">$idx</a>
+		#else
+	<a href="javascript:void(0);" pn="$idx">$idx</a>
+		#end
+	#end
+	#if($end_idx < $__count)
+	<a href="javascript:void(0);" pn="$__count">$__count</a>
+	#end
+	#if($__p < $__count)
+	<a href="javascript:void(0);" pn="$next_page">下一页</a>
+	#end
+</div>
+#end
+#end
+
+## 导航菜单选择宏
+#macro(currentClass $modulePath $className)
+#set($url=$request.getRequestURI())
+#if($modulePath && $modulePath != '' && ${url.contains($modulePath)})${className}#end
+#end

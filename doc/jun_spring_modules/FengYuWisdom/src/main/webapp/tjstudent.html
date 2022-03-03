@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>锋豫智慧平台</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="lib/layui-v2.6.3/css/layui.css" media="all">
+		<link rel="stylesheet" href="css/public.css" media="all">
+		<!-- 1.引入js库 -->
+		<script src="https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js"></script>
+		<script src="lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+	</head>
+	<body>
+	<div class="layuimini-container">
+		<div class="layuimini-main">
+			<div class="layui-col-lg-offset1 layui-col-lg5" id="dvsex" style="height: 500px;">
+			</div>
+			<div class="layui-col-lg-offset1 layui-col-lg5" id="dvgrade" style="height: 500px;">
+			</div>
+		</div>
+	</div>
+		<script type="text/javascript">
+			//实例化
+			var studentsex = echarts.init(document.getElementById('dvsex'));
+			//配置项
+			var option = {
+						title: {
+							text: '学员性别统计',
+							left: 'center'
+						},
+						tooltip: {
+							trigger: 'item',
+							formatter: '{a} <br/>{b} : {c} ({d}%)'
+						},
+						legend: {
+							type: 'scroll',
+							orient: 'vertical',
+							right: 10,
+							top: 20,
+							bottom: 20,
+							data: ["男","女"]
+						},
+						series: [
+							{
+								name: '性别',
+								type: 'pie',
+								radius: '55%',
+								center: ['40%', '50%'],
+								data: [{name:"男",value:33}],
+								emphasis: {
+									itemStyle: {
+										shadowBlur: 10,
+										shadowOffsetX: 0,
+										shadowColor: 'rgba(0, 0, 0, 0.5)'
+									}
+								}
+							}
+						]
+					};
+			//赋值
+			studentsex.setOption(option);
+
+			//ajax网络请求
+			$.get("/api/student/tjsex.do",function(res){
+				if(res.code==10000){
+					option.legend.data=res.data.sexs;
+					option.series[0].data=res.data.sexvals;
+					//赋值
+					studentsex.setOption(option);
+				}
+			})
+
+			//实例化
+			var grade = echarts.init(document.getElementById('dvgrade'));
+			var option1={
+		             title: {
+		                 text: '班级人数统计'
+		             },
+		             tooltip: {},
+					 toolbox: {
+					     show: true,
+					         feature: {
+					             dataZoom: {
+					                 yAxisIndex: 'none'
+					             },
+					             dataView: {readOnly: false},
+					             magicType: {type: ['line', 'bar']},
+					             restore: {},
+					             saveAsImage: {}
+					         }
+					 },
+		             legend: {
+		                 data:['人数']
+		             },
+		             xAxis: {
+		                 data: ["Java213","Java214"]
+		             },
+		             yAxis: {},
+		             series: [{
+		                 name: '人数',
+		                 type: 'bar',
+		                 data: [5, 100]
+		             }]
+		         };
+
+		         // 使用刚指定的配置项和数据显示图表。
+		         grade.setOption(option1);
+			//ajax网络请求
+			$.get("/api/student/tjpersons.do",function(res){
+				if(res.code==10000){
+					option1.xAxis.data=res.data.grades;
+					option1.series[0].data=res.data.persons;
+					//赋值
+					grade.setOption(option1);
+				}
+			})
+		</script>
+	</body>
+</html>

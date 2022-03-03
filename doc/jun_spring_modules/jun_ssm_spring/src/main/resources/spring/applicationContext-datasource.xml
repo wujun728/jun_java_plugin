@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd"
+	default-lazy-init="false">
+
+	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+		<property name="slowSqlMillis" value="1000" />
+		<property name="logSlowSql" value="true" />
+	</bean>
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		
+		<!-- oracle 需要更换语句  -->
+		<property name="validationQuery">
+			<value>select 1 </value>
+		</property>
+		
+		<property name="driverClassName">
+			<value>${db.springrain.driver}</value>
+		</property>
+		<property name="url">
+			<value>${db.springrain.url}</value>
+		</property>
+
+		<property name="username">
+			<value>${db.springrain.username}</value>
+		</property>
+		<property name="password">
+			<value>${db.springrain.password}</value>
+		</property>
+		
+		
+		
+		<property name="proxyFilters">
+			<list>
+				<ref bean="stat-filter" />
+			</list>
+		</property>
+
+		<property name="maxActive">
+			<value>50</value>
+		</property>
+		<property name="initialSize">
+			<value>5</value>
+		</property>
+		<property name="maxWait">
+			<value>60000</value>
+		</property>
+		<property name="minIdle">
+			<value>5</value>
+		</property>
+		<property name="removeAbandoned">
+			<value>true</value>
+		</property>
+
+		<!-- 关闭abanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="true" />
+
+		<property name="removeAbandonedTimeout">
+			<value>1800</value>
+		</property>
+		<property name="testWhileIdle">
+			<value>true</value>
+		</property> 
+		<!-- 打开检查,用异步线程evict进行检查 -->
+		<property name="testOnBorrow">
+			<value>true</value>
+		</property>
+		<property name="testOnReturn">
+			<value>false</value>
+		</property>
+
+		<property name="minEvictableIdleTimeMillis">
+			<value>300000</value>
+		</property>
+		<property name="timeBetweenEvictionRunsMillis">
+			<value>60000</value>
+		</property>
+		<property name="numTestsPerEvictionRun">
+			<value>50</value>
+		</property>
+
+	</bean>
+	
+	
+	
+	<!-- 根据事务隔离级别做读写分离,有事务就写,无事务就是读 -->
+	<!-- 
+	<bean id="dataSource" class="org.springrain.frame.dao.TransactionDataSourceRouter">
+	   <property name="targetDataSources">
+		 <map>
+		   <entry key="dataSourceWrite" value-ref="dataSourceWrite"/>
+		   <entry key="dataSourceRead"  value-ref="dataSourceRead"/>
+		 </map>
+	   </property>
+	   <property name="defaultTargetDataSource" ref="dataSourceRead"/>
+	</bean>
+    -->
+	
+	
+	
+
+
+
+	<!-- 配置namedParameterJdbcTemplate -->
+	<bean id="jdbc"
+		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+
+	<!-- 配置jdbcCall 用于调用存储过程和数据库函数 ,不要使用单例模式!!!!!! -->
+	<bean id="jdbcCall" scope="prototype"
+		class="org.springframework.jdbc.core.simple.SimpleJdbcCall">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+</beans>

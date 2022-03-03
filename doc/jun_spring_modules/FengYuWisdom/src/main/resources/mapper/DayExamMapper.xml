@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 所需实现的接口全限定名-->
+<mapper namespace="com.feri.fyw.dao.DayExamDao">
+
+    <resultMap id="BaseResultMap" type="com.feri.fyw.dto.DayExamDto" >
+        <id property="id" column="id"></id>
+        <result column="sid" property="sid" />
+        <result column="sname" property="sname" />
+        <result column="info" property="info" />
+        <result column="score" property="score" />
+        <result column="cdate" property="cdate" />
+        <result column="ctime" property="ctime" />
+    </resultMap>
+    <!--    新增 多个参数封装了类-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into t_dayexam(sid,info,score,cdate,ctime) values(#{sid},#{info},#{score},now(),now());
+    </insert>
+    <insert id="insertBatch" parameterType="list">
+        insert into t_dayexam(sid,info,score,cdate,ctime) values
+        <foreach collection="list" item="s" separator=",">
+            (#{s.sid},#{s.info},#{s.score},#{cdate},now())
+        </foreach>
+    </insert>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select d.*,s.name sname from t_dayexam d inner join t_student s on d.sid=s.id
+    </select>
+
+</mapper>

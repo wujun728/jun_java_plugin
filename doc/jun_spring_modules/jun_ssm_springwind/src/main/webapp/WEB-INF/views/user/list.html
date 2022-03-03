@@ -1,0 +1,125 @@
+#override("title")
+SpringWind - 用户管理
+#end
+#override("css")
+<link href="#springUrl('/static/css/plugins/bootstrap-table/bootstrap-table.min.css')" rel="stylesheet">
+#end
+#override("breadcrumb")
+<li><a>权限管理</a></li><li class="active"><strong>用户管理</strong></li>
+#end
+#override("content")
+<div class="row">
+	<div class="ibox-content text-right form-inline" style="background: #F3F3F4;">
+		<div class="input-group">
+			<input type="text" class="form-control">
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-info">搜索</button>
+			</span>
+		</div>
+		<button class="btn btn-primary" onclick="editUser(null)" type="button">
+		<i class="fa fa-pencil"></i>&nbsp;添加用户</button>
+	</div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <table id="dataTable"></table>
+    </div>
+</div>
+#end
+#override("js")
+<script src="#springUrl('/static/js/plugins/bootstrap-table/bootstrap-table.min.js')"></script>
+<script src="#springUrl('/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js')"></script>
+<script src="#springUrl('/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js')"></script>
+<script src="#springUrl('/static/plugins/layer-v2.2/layer/layer.js')"></script>
+<script src="#springUrl('/static/js/base_list.js')"></script>
+<script src="#springUrl('/static/js/common.js')"></script>
+<script type="text/javascript">
+    var dataUrl = "#springUrl('/perm/user/getUserList.html')";
+    var dataColumns = [{
+        field: 'id',
+        title: '序号'
+    }, {
+        field: 'loginName',
+        title: '登录名'
+    }, {
+        field: 'email',
+        title: '邮箱'
+    }, {
+        field: 'type',
+        title: '用户类型'
+    }, {
+        field: 'status',
+        title: '状态'
+    }, {
+        field: 'crTime',
+        title: '创建时间',
+        formatter: function (value, row, index) {
+            return formatDate(row.crTime);
+        }
+    }, {
+        field: 'lastTime',
+        title: '最后更新时间',
+        formatter: function (value, row, index) {
+            return formatDate(row.lastTime);
+        }
+    }, {
+        title: '操作',
+        formatter: function (value, row, index) {
+            var id = row.id;
+            return '<a class="btn btn-xs btn-warning" onclick="editUser(' + "'" + id + "'" + ')"><i class="fa fa-pencil"></i>编辑</a> '
+                    <!-- 此处按钮级别权限控制，目前只有 admin 拥有该权限！ -->
+                    #if($SSOPermission.isActionable("10010"))
+                    + '<a class="btn btn-xs btn-danger" onclick="delUser(' + "'" + id + "'" + ')"><i class="fa fa-remove"></i>删除</a>'
+                    #end;
+        }
+    }
+    ];
+    function dataQueryParams(params) {
+        return {
+            _size: params.limit,  //页面大小
+            _index: params.offset, //页码
+        };
+    }
+
+    function delUser(userId) {
+        //询问框
+        layer.confirm('确定删除吗？', {
+            btn: ['确定', '取消'] //按钮
+        }, function () {
+            $.ajax({
+                type: "POST",
+                url: "#springUrl('/perm/user/delUser/')" + userId,
+                datatype: "text",
+                success: function (data) {
+                    if(data == 'true'){
+                        $('#dataTable').bootstrapTable('refresh',{url:dataUrl});
+                    }
+                    layer.closeAll();
+                }
+            });
+        }, function () {
+            return;
+        });
+    }
+
+function editUser(id){
+   	var title = "新增用户";
+   	var url = "#springUrl('/perm/user/edit.html')";
+   	if(id!=null){
+   		title = "编辑用户";
+   		url = url + "?id=" + id;
+   	}
+    layer.open({
+        type: 2,
+        title: title,
+        shadeClose: true,
+        shade: 0.8,
+        area: ['600px', '430px'],
+        fix: false,
+        maxmin: true,
+        content: url
+    });
+}
+</script>
+#end
+#extends("/common/framework.html")

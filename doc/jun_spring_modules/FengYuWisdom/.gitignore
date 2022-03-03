@@ -1,0 +1,8 @@
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+target/
+src/main/java/com/feri/fyw/exception/
+src/test/

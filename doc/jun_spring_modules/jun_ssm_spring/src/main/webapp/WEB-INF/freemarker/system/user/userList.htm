@@ -1,0 +1,451 @@
+<#ftl output_format="HTML" auto_esc=true> <@h.commonHead title="后台管理系统" keywords="开源,永久免费"
+description="springrain开源系统管理后台"/>
+<script type="text/javascript" src="${ctx}/js/ztree/js/jquery.ztree.all-3.5.js"></script>
+<script type="text/javascript" src="${ctx}/js/ztree/js/ztreeUtils.js"></script>
+<script type="text/javascript" src="${ctx}/js/select2/js/select2.full.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/select2/js/i18n/zh-CN.js"></script>
+<script type="text/javascript" src="${ctx}/js/custom/common/select2remote.js"></script>
+<script type="text/javascript" src="${ctx}/js/validform/validform.min.js"></script>
+<link rel="stylesheet" href="${ctx}/js/select2/css/select2.min.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/js/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="${ctx}/js/validform/validform.css" media="all">
+</head>
+<body>
+<script>
+var orgMultiSelectSetting = {
+    expandAll:true,
+    check: {
+        enable: true,
+        chkStyle: "checkbox",
+        //chkboxType:  { "Y" : "", "N" : "" }
+        chkboxType: { "Y" : "", "N" : "" }
+    },
+    data : {
+        simpleData : {
+            enable : true,
+            idKey : "id",
+            pIdKey : "pid",
+            rootPId : "null"
+        }
+    }
+};
+    
+var orgMultiSelectTree;
+function showZtreeOrg(){
+    if(!orgMultiSelectTree){
+        jQuery.post("${ctx}/system/org/list/json",function(_json) {
+             if (_json.status == "success") {
+            	 //对datas进行处理
+            	 if(_json!=null&&_json.data!=null&&_json.data.length>0){
+            		 for(var i=0;i<_json.data.length;i++){
+            			 if(_json.data[i].orgType=="2"){
+            				 _json.data[i].name+="【虚拟权限部门】";
+            			 }else if(_json.data[i].orgType=="1"){
+            				 _json.data[i].name+="【部门】";
+            			 }else if(_json.data[i].orgType=="0"){
+            				 _json.data[i].name+="【组织结构】";
+            			 }
+            		 }
+            	 }
+                 $.fn.zTree.init($("#orgMultiSelectTree"), orgMultiSelectSetting,_json.data);
+                  orgMultiSelectTree =$.fn.zTree.getZTreeObj("orgMultiSelectTree");
+                 //zTree.expandAll(true);
+                 checkedZtreeNodes(jQuery("#orgIds").val(),"orgMultiSelectTree");
+             } else {
+                 myalert(_json.message);
+                 return false;
+             }
+         });
+        
+    }else{
+        checkedZtreeNodes(jQuery("#orgIds").val(),"orgMultiSelectTree");
+    }
+    //页面层-自定义
+    layer.open({
+      shadeClose:true,
+      type: 1,
+      title: "选择部门",
+      area: ['600px', '400px'], //宽高
+      content: $("#div_orgMultiSelectTree"),
+      closeBtn: 1,
+      btn: ['确定'], //按钮
+      yes:function(index, layero){
+            selectZtreeOrg();
+            layer.close(index); //如果设定了yes回调，需进行手工关闭
+          }
+    });
+    return false;
+}
+
+
+
+function selectZtreeOrg(){
+    var nodes = orgMultiSelectTree.getCheckedNodes(true);
+    var orgNames="";
+    var orgIds="";
+    jQuery(nodes).each(function(i,obj){
+        orgNames=orgNames+obj.name+",";
+        orgIds=orgIds+obj.id+",";
+    });
+    jQuery("#orgNames").val(orgNames);
+    jQuery("#orgIds").val(orgIds);
+}
+
+jQuery(document).ready(function(){
+	//显示搜索框
+	jQuery(".search").bind("click",function(){
+		var _dom=jQuery(this).parents("table").find(".search_tr");
+		if(jQuery(_dom).hasClass("off")){
+			jQuery(_dom).removeClass("off");
+			jQuery(this).find("i").html("&#xe619;").css("padding-top","0px");
+		}else{
+			jQuery(_dom).addClass("off");
+			jQuery(this).find("i").html("&#xe61a;").css("padding-top","3px");
+			
+		}
+	});
+    //回选 下拉框
+    jQuery("#search_state option[value='${(returnDatas.queryBean.state)!'是'}']").prop("selected",true);
+    
+    //加载角色
+    jQuery.ajax({
+        url : ctx+"/system/role/list/json",
+        type : "post",
+        dataType : "json",
+        success : function(_json) {
+            if(_json.status=="error"){
+                return;
+            }
+            
+            jQuery(_json.data).each(function(i,_obj){
+            	var _roleType=_obj.roleType;
+            	if(_roleType=="0"){
+            		_obj.name+="【系统角色】";
+            	}else if(_roleType=="1"){
+            		_obj.name+="【部门主管】";
+            	}else if(_roleType=="2"){
+            		_obj.name+="【业务岗位】";
+            	}
+                jQuery("#roleIds").append("<option value='"+_obj.id+"'>"+_obj.name+"</option>");
+            });
+            
+            jQuery("#roleIds").select2();
+        }
+    });
+    
+    $(".springrain-table tbody tr").click(function() {
+        $("#pwdDiv").hide();
+        $(".sub_left_menu tbody tr").removeClass("active");
+        $(this).attr("class", "active");
+        var _url=ctx + "/system/user/look/json?id="+ $(this).attr("id");
+    
+        jQuery.ajax({
+            url : _url,
+            type : "post",
+            dataType : "json",
+            success : function(_json) {
+                if(_json.status=="success"){
+                    showdata(_json);
+                }
+            }
+        });
+        return false;
+    })
+    
+    
+   
+});
+
+function deleteUser(){
+    var id=jQuery("#id").val();
+    if(!id||id==""){
+        myalert("请选择你要删除的记录");
+        return;
+    }else{
+        var _url="${ctx}/system/user/delete?id="+id;
+        var listurl="${ctx}/system/user/list";
+        
+        mydelete(_url,listurl,{},"确定删除用户?");
+    }
+}
+
+function showdata(result) {
+    $("#btn_add").hide();
+    $("#btn_reload").show();
+    $("#btn_update").show();
+    $("#btn_delete").show();
+    
+    for (var s in result.data) {
+        set_val(s, result.data[s]);
+    }
+    jQuery("#account").prop("readonly",true);
+
+    //回选 下拉框
+    jQuery("#state option[value='"+result.data['state']+"']").prop("selected",true);
+      
+      jQuery("#password").val("");
+    
+      $("#roleIds").find("option:selected").prop("selected",false);
+      jQuery(result.data["userRoles"]).each(function(i,_obj){
+            jQuery("#roleIds option[value='"+_obj.id+"']").prop("selected",true);
+      });
+      jQuery("#roleIds").trigger("change");
+      var orgNames="";
+      var orgIds="";
+        
+      jQuery(result.data["userOrgs"]).each(function(i,obj){
+          	orgNames=orgNames+obj.name+",";
+            orgIds=orgIds+obj.id+",";
+	  });
+      jQuery("#orgNames").val(orgNames);
+      jQuery("#orgIds").val(orgIds);
+}
+
+function check(type){
+    if(type=="1"){
+        var password = $('#password').val();
+        if(password==null||password==""){
+            springrain.info("请填写密码!");
+            return;
+        }   
+        //密码长度
+        if(password.length<6){
+        	springrain.info("密码长度不能少于6位!");
+            return false;
+        }
+    }
+    
+    var mobile=$("#mobile").val();
+    if(mobile!="" && mobile!=null){
+         var reg = /^1\d{10}$/;
+         if(!reg.test(mobile)){
+        	 springrain.info("手机号格式错误!");
+                return false;
+         }
+    }
+    var listurl='${ctx}/system/user/list';
+    springrain.commonUpdateForm("updateForm", listurl, null);
+}
+</script>
+	<div class="layui-layout layui-layout-admin">
+		<@h.naviHeader /> 
+		<@h.leftMenu />
+		
+		<!-- 主体内容开始 -->
+		<div class="layui-tab layui-tab-brief">
+			<ul class="layui-tab-title site-demo-title">
+	       	</ul>
+	       	<div class="layui-body layui-tab-content site-demo-body">
+					<div class="layui-tab-item layui-show">
+							<div class="layui-main">
+								<table class="layui-table">
+							          	<tbody>
+							          		<tr>
+							          			<th>操作</th>
+							          		</tr>
+							          		<tr>
+							          			<td>
+							          				<div class="layui-field-box">
+							          					<button id="btn_reload" onclick="location.reload();" class="layui-btn display-n "><i class="layui-icon"></i> 跳转到新增  >></button>
+							          					<button id="btn_add" onclick="check('1');" class="layui-btn"><i class="layui-icon"></i> 保存新增</button>
+											    		<button id="btn_update" style="display: none;" onclick="check('2');" class="layui-btn"><i class="layui-icon">&#xe642;</i> 保存修改</button>
+														<button id="btn_delete" style="display: none;" onclick="deleteUser();" class="layui-btn layui-btn-danger ml10"><i class="layui-icon">&#x1006;</i> 删除</button>											    		
+											  		</div>
+							          			</td>
+							          		</tr>
+							          	</tbody>
+							    </table>
+								<div class="container-fluid ">
+									<div class="row">
+										<div class="per40 fl">
+										<form class="layui-form" method="post" action="${ctx}/system/user/list" name="searchForm" id="searchForm">
+											<input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}" /> 
+											<input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}" /> 
+											<input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}" />
+											<table class="layui-table">
+										          	<tbody>
+										          		<tr>
+										          			<th style="text-align: right;" colspan="2"><a id="serach" class="search"><font>搜索</font><i class="layui-icon layui-icon-specil">&#xe61a;</i></a></th>
+										          		</tr>
+										          		<tr class="off search_tr">
+										          			<td>
+										          				<div class="layui-inline">
+												                    <label class="layui-form-label">帐号</label>
+												                    <div class="layui-input-inline">
+												                           <input type="text" name="name" value="${(returnDatas.queryBean.name)!''}" placeholder="请输入名称 " class="layui-input">
+												                    </div>
+								                				</div>
+										          			</td>
+										          			<td rowspan="3">
+										          				<div class="layui-inline">
+												                    <button class="layui-btn"><i class="layui-icon" style="top:4px;right:5px;">&#xe615;</i>搜索</button>
+												                </div>
+										          			</td>
+										          		</tr>
+								                		<tr  class="off search_tr">
+								                			<td>
+												                <div class="layui-inline">
+												                    <label class="layui-form-label">类型</label>
+												                    <div class="layui-input-inline">
+												                        <select id="userTypeSearch" name="userType" datatype="*" nullmsg="用户类型不能为空" >
+																      		<option value>请选择用户类型</option>
+																        	<option value="0">后台管理员</option>
+																			<option value="1">会员用户</option>
+																			<option value="2">cms管理员</option>
+																			<option value="3">活动管理员</option>
+																        </select>
+												                    </div>
+												                </div>
+											                </td>
+										          		</tr>
+										          	</tbody>
+								     		</table>
+								     		</form>
+											<table class="layui-table springrain-table">
+											 	<colgroup>
+										    		<col width="150">
+											    	<col width="200">
+											    	<col width="100">
+											    	<col width="200">
+											    	<col width="200">
+										  		</colgroup>
+										  		<thead>
+													<tr>
+														<th>账号</th>
+														<th>姓名</th>
+														<th>性别</th>
+														<th>用户类型</th>
+													</tr>
+												</thead>
+												<tbody>
+													<#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+													<#list returnDatas.data as _data>
+													<tr id="${(_data.id)!''}">
+														<td>${(_data.account)!''}</td>
+														<td>${(_data.name)!''}</td>
+														<td>${(_data.sex)!''}</td>
+														<td>
+															<#if _data.userType?c=="0">
+																后台管理员
+															<#elseif _data.userType?c=="1">
+																会员用户
+															<#elseif _data.userType?c=="2">
+																cms管理员
+															<#elseif _data.userType?c=="3">
+																活动管理员
+															</#if>
+														</td>
+													</tr>
+													</#list> </#if>
+												</tbody>
+											</table>
+											<div id="laypageDiv"></div>
+											<@h.layPage page=returnDatas.page/>
+										</div>
+										<div class="per60 fl rlt">
+											<div class="fl per20 line-vertical"></div>
+													<form class="layui-form" method="post" action="${ctx}/system/user/update" name="updateForm" id="updateForm">
+														<input type="hidden" id="id" name="id" value=""> 
+														<input type="hidden" id="pname" name="pname" value="">
+														
+													 	<div class="layui-form-item  col-lg-9">
+												    		<label class="layui-form-label col-lg-3">账号*</label>
+														    <div class="layui-inline">
+														      	<input type="text" id="account" name="account"
+																		placeholder="账号" datatype="*1-200"
+																		errormsg="账号长度1--200位之间!" nullmsg="账号不能为空"
+																		class="layui-input" autocomplete="off">
+														    </div>
+														    <div class="layui-inline valid-info"></div>
+													  	</div>
+														
+														 <div class="layui-form-item  col-lg-9">
+														    <label class="layui-form-label col-lg-3">密码*</label>
+														    <div class="layui-inline">
+														      <input type="password" id="password" name="password"  placeholder="请输入密码" autocomplete="off" class="layui-input">
+														    </div>
+														    <div class="layui-inline valid-info"></div>
+													  	</div>
+														
+														<div class="layui-form-item  col-lg-9">
+												    		<label class="layui-form-label col-lg-3">部门*</label>
+														    <div class="layui-inline">
+														      	<input name="orgNames" id="orgNames" type="text" datatype="*" nullmsg="部门不能为空" readonly="readonly" class="layui-input" onclick="showZtreeOrg();">
+																<input name="orgIds" id="orgIds" type="hidden" />
+														    </div>
+														     <div class="layui-inline valid-info"></div>
+													  	</div>
+														
+														<div class="layui-form-item  col-lg-9">
+														    <label class="layui-form-label col-lg-3">角色*</label>
+														    <div class="layui-inline  col-lg-5" id="roleDiv">
+														      <select id="roleIds" name="roleIds" class="nolayer" datatype="*" nullmsg="角不能为空"  multiple data-placeholder="请选择角色">
+														      	<option value=""></option>
+														      </select>
+														    </div>
+														     <div class="layui-inline valid-info"></div>
+													  	</div>
+													  	<div class="layui-form-item col-lg-9">
+														    <label class="layui-form-label col-lg-3">用户类型*</label>
+														    <div class="layui-inline">
+														      <select id="userType" name="userType" datatype="*" nullmsg="用户类型不能为空" >
+														      		<option value>请选择用户类型</option>
+														        	<option value="0">后台管理员</option>
+																	<option value="1">会员用户</option>
+																	<option value="2">cms管理员</option>
+																	<option value="3">活动管理员</option>
+														      </select>
+														    </div>
+														    <div class="layui-inline valid-info"></div>
+													  	</div>
+													  	<div class="layui-form-item col-lg-9">
+												    		<label class="layui-form-label col-lg-3">手机号</label>
+														    <div class="layui-inline">
+														      	<input type="text" id="mobile" name="mobile" placeholder="手机号" class="layui-input">
+														    </div>
+													  	</div>
+													  	
+													  	<div class="layui-form-item col-lg-9">
+												    		<label class="layui-form-label col-lg-3">电子邮箱</label>
+														    <div class="layui-inline">
+														      	<input type="email" id="email" name="email" placeholder="电子邮箱" class="layui-input">
+														    </div>
+													  	</div>
+													  	
+													  	<div class="layui-form-item col-lg-9">
+														    <label class="layui-form-label col-lg-3">性别</label>
+														    <div class="layui-inline">
+														      <select id="sex" name="sex" >
+														        	<option value="男">男</option>
+																	<option value="女">女</option>
+														      </select>
+														    </div>
+													  	</div>
+													  	
+													  	<div class="layui-form-item col-lg-9">
+														    <label class="layui-form-label col-lg-3">是否可用</label>
+														    <div class="layui-inline">
+														      <select id="state" name="state" >
+														        	<option value="是">是</option>
+																	<option value="否">否</option>
+														      </select>
+														    </div>
+													  	</div>
+													</form>
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<!-- 主体内容结束 -->
+		<@h.footer />
+	</div>
+	<div id="div_orgMultiSelectTree">
+		<ul id="orgMultiSelectTree" class="ztree"></ul>
+	</div>
+	<script src="${ctx}/js/custom/common/form.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,50 @@
+package ${package}.${module}.service;
+
+import java.util.Map;
+
+import net.chenlin.dp.common.entity.Page;
+import net.chenlin.dp.common.entity.R;
+import ${package}.${module}.entity.${className}Entity;
+
+/**
+ * ${comments}
+ * @author ${author}<${email}>
+ */
+public interface ${className}Service {
+
+    /**
+     * 分页查询
+     * @param params
+     * @return
+     */
+	Page<${className}Entity> list${className}(Map<String, Object> params);
+
+    /**
+     * 新增
+     * @param ${objName}
+     * @return
+     */
+	R save${className}(${className}Entity ${objName});
+
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
+	R get${className}ById(Long id);
+
+    /**
+     * 修改
+     * @param ${objName}
+     * @return
+     */
+	R update${className}(${className}Entity ${objName});
+
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+	R batchRemove(Long[] id);
+	
+}

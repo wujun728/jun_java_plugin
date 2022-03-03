@@ -1,0 +1,83 @@
+package ${package}.${module}.service.impl;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import net.chenlin.dp.common.entity.Page;
+import net.chenlin.dp.common.entity.Query;
+import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.utils.CommonUtils;
+import ${package}.${module}.entity.${className}Entity;
+import ${package}.${module}.manager.${className}Manager;
+import ${package}.${module}.service.${className}Service;
+
+/**
+ * ${comments}
+ * @author ${author}<${email}>
+ */
+@Service("${objName}Service")
+public class ${className}ServiceImpl implements ${className}Service {
+
+	@Autowired
+	private ${className}Manager ${objName}Manager;
+
+    /**
+     * 分页查询
+     * @param params
+     * @return
+     */
+	@Override
+	public Page<${className}Entity> list${className}(Map<String, Object> params) {
+		Query query = new Query(params);
+		Page<${className}Entity> page = new Page<>(query);
+		${objName}Manager.list${className}(page, query);
+		return page;
+	}
+
+    /**
+     * 新增
+     * @param ${objName}
+     * @return
+     */
+	@Override
+	public R save${className}(${className}Entity ${objName}) {
+		int count = ${objName}Manager.save${className}(${objName});
+		return CommonUtils.msg(count);
+	}
+
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
+	@Override
+	public R get${className}ById(Long id) {
+		${className}Entity ${objName} = ${objName}Manager.get${className}ById(id);
+		return CommonUtils.msg(${objName});
+	}
+
+    /**
+     * 修改
+     * @param ${objName}
+     * @return
+     */
+	@Override
+	public R update${className}(${className}Entity ${objName}) {
+		int count = ${objName}Manager.update${className}(${objName});
+		return CommonUtils.msg(count);
+	}
+
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+	@Override
+	public R batchRemove(Long[] id) {
+		int count = ${objName}Manager.batchRemove(id);
+		return CommonUtils.msg(id, count);
+	}
+
+}
