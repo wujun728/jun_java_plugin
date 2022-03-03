@@ -30,7 +30,7 @@
 		<commons.io.version>2.5</commons.io.version>
 		<commons.fileupload.version>1.3.3</commons.fileupload.version>
 		<velocity.version>1.7</velocity.version>
-		<jsoup.version>1.11.3</jsoup.version>
+		<jsoup.version>1.14.2</jsoup.version>
         <oracle.version>10.2.0.4.0</oracle.version>
         <sqlserver.version>7.4.1.jre8</sqlserver.version>
 	</properties>
