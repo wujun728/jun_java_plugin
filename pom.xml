@@ -18,6 +18,7 @@
 		<module>jun_spring_plugin</module>
 		<module>jun_springboot_plugin</module>
 		<module>jun_springcloud_plugin</module>
+		<module>jun_code_generator</module>
 	</modules>
 
 	<dependencies>
