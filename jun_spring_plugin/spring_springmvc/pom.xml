@@ -14,7 +14,7 @@
     <spring.version>4.3.2.RELEASE</spring.version>
     <junit.version>4.12</junit.version>
     <aspectj.version>1.8.9</aspectj.version>
-    <jackson.json.version>2.7.4</jackson.json.version>
+    <jackson.json.version>2.13.2.1</jackson.json.version>
     <fasterxml.jackson.version>2.7.4</fasterxml.jackson.version>
     <codehaus.woodstox.version>4.4.1</codehaus.woodstox.version>
   </properties>
