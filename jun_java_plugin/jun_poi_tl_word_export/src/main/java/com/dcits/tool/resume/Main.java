@@ -1,12 +1,5 @@
 package com.dcits.tool.resume;
 
-import com.alibaba.fastjson.JSONObject;
-import com.deepoove.poi.XWPFTemplate;
-import com.deepoove.poi.config.Configure;
-import com.deepoove.poi.data.PictureRenderData;
-import com.deepoove.poi.data.TextRenderData;
-import com.deepoove.poi.policy.ListRenderPolicy;
-
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,7 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections4.CollectionUtils;
+import com.alibaba.fastjson.JSONObject;
+import com.deepoove.poi.XWPFTemplate;
+import com.deepoove.poi.data.PictureRenderData;
 
 public class Main {
     static String  basePath="D:\\Documents\\Desktop\\dynamic-resume\\start\\";
