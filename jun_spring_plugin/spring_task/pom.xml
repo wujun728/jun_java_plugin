@@ -9,7 +9,7 @@
     
     <!-- 依赖库版本 公共变量 -->
     <properties>
-        <spring.version>4.1.3.RELEASE</spring.version>
+        <spring.version>5.2.21.RELEASE</spring.version>
         <shiro.version>1.2.3</shiro.version>
         <mybatis.version>3.2.8</mybatis.version>
         <mysql.version>5.1.34</mysql.version>
