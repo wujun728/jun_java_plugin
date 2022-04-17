@@ -18,7 +18,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <spring.version>5.1.7.RELEASE</spring.version>
-    <jackson.verion>2.9.0</jackson.verion>
+    <jackson.verion>2.12.6.1</jackson.verion>
     <swagger2.version>2.7.0</swagger2.version>
   </properties>
 
