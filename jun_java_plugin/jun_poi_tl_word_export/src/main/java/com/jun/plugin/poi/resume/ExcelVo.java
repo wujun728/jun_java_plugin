@@ -1,6 +1,6 @@
-package com.dcits.tool.resume;
+package com.jun.plugin.poi.resume;
 
-import com.dcits.tool.resume.annotation.ExcelField;
+import com.jun.plugin.poi.resume.annotation.ExcelField;
 
 
 

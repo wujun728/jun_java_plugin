@@ -1,4 +1,4 @@
-package com.dcits.tool.resume;
+package com.jun.plugin.poi.resume;
 
 import com.deepoove.poi.XWPFTemplate;
 import com.deepoove.poi.policy.RenderPolicy;
