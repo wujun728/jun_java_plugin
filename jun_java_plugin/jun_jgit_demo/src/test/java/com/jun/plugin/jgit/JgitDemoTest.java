@@ -1,4 +1,4 @@
-package com.ringo.jgit;
+package com.jun.plugin.jgit;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,8 +17,9 @@ import org.eclipse.jgit.api.errors.WrongRepositoryStateException;
 import org.eclipse.jgit.errors.NoWorkTreeException;
 import org.junit.Test;
 
-import com.ringo.enity.LogEnity;
-import com.ringo.enity.StatusList;
+import com.jun.plugin.jgit.enity.LogEnity;
+import com.jun.plugin.jgit.enity.StatusList;
+import com.jun.plugin.jgit.jgit.JgitDemo;
 
 public class JgitDemoTest {
 

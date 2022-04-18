@@ -1,4 +1,4 @@
-package com.ringo.jgit;
+package com.jun.plugin.jgit.jgit;
 
 /**
  * Hello world!

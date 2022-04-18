@@ -1,4 +1,4 @@
-package com.ringo.enity;
+package com.jun.plugin.jgit.enity;
 
 
 public class LogEnity {

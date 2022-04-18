@@ -1,4 +1,4 @@
-package com.ringo.jgit;
+package com.jun.plugin.jgit;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

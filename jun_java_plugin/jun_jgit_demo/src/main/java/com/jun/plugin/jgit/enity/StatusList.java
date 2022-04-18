@@ -1,4 +1,4 @@
-package com.ringo.enity;
+package com.jun.plugin.jgit.enity;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.ringo.jgit;
+package com.jun.plugin.jgit.jgit;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -56,9 +56,9 @@ import org.eclipse.jgit.treewalk.AbstractTreeIterator;
 import org.eclipse.jgit.treewalk.CanonicalTreeParser;
 import org.eclipse.jgit.treewalk.TreeWalk;
 
-import com.ringo.enity.LogEnity;
-import com.ringo.enity.StatusList;
-import com.rinog.connect.SshConnect;
+import com.jun.plugin.jgit.connect.SshConnect;
+import com.jun.plugin.jgit.enity.LogEnity;
+import com.jun.plugin.jgit.enity.StatusList;
 
 import ch.ethz.ssh2.Connection;
 

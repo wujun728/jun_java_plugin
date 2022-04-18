@@ -1,8 +1,10 @@
-package com.rinog.connect;
+package com.jun.plugin.jgit.connect;
 
 import java.io.IOException;
 
 import org.junit.Test;
+
+import com.jun.plugin.jgit.connect.SshConnect;
 
 import ch.ethz.ssh2.Connection;
 

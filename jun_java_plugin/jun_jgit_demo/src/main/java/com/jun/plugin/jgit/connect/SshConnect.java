@@ -1,4 +1,4 @@
-package com.rinog.connect;
+package com.jun.plugin.jgit.connect;
 
 import java.io.IOException;
 import java.io.InputStream;
