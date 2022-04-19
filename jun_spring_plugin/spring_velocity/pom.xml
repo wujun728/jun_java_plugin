@@ -13,7 +13,7 @@
 		<project.build.jdkVersion>1.7</project.build.jdkVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<spring.version>4.3.4.RELEASE</spring.version>
+		<spring.version>5.2.21.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
