@@ -1,2 +1,0 @@
-
-	private [type] [column2];//[columnComment]

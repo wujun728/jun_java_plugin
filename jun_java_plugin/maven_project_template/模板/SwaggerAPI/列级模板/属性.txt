@@ -1,3 +1,0 @@
-      [column]:
-        type: "string"        
-        description: "[columnComment]"
