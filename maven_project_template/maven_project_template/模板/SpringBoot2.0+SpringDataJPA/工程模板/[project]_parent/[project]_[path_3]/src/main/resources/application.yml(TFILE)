@@ -1,0 +1,13 @@
+server: 
+  port: 9001
+spring: 
+  application:  
+    name: [project]-[path_3] #指定服务名
+  datasource:  
+    driverClassName: [driverName]
+    url: [url]
+    username: [dbuser]
+    password: [dbpassword]
+  jpa: 
+    database: MySQL
+    show-sql: true

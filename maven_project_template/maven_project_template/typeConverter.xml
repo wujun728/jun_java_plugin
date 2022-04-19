@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<converter>
+	<!-- MYSQL数据库 -->
+	<type key="VARCHAR" value="String"></type>
+	<type key="BIGINT" value="Long"></type>
+	<type key="INT" value="Integer"></type>	
+	<type key="DATE" value="java.util.Date"></type>	
+	<type key="DATETIME" value="java.util.Date"></type>	
+	<type key="DOUBLE" value="Double"></type>
+	<type key="TEXT" value="String"></type>
+	<type key="BIT" value="Boolean"></type>
+	<type key="TINYINT" value="Byte"></type>
+	<type key="CHAR" value="String"></type>
+	<type key="TIME" value="java.util.Date"></type>
+	<type key="TIMESTAMP" value="java.util.Date"></type>
+	<type key="BLOB" value="byte[]"></type>
+	<type key="VARBINARY" value="byte[]"></type>
+	<type key="CLOB" value="String"></type>
+	<type key="SMALLINT" value="Short"></type>
+	<type key="FLOAT" value="Float"></type>
+	<type key="NUMERIC" value="Double"></type>
+	<type key="FLOAT" value="Float"></type>
+	<type key="BINARY" value="byte[]"></type>
+	<!-- ORACLE -->
+	<type key="VARCHAR2" value="String"></type>
+	<type key="NVARCHAR2" value="String"></type>
+	<type key="NUMBER" value="Long"></type>
+	<type key="CHAR" value="String"></type>	
+</converter>
