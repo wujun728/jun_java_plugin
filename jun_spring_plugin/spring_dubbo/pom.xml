@@ -15,7 +15,7 @@
 	</properties>
 
 	<modules>
-		<module>jdep_test</module><!-- 阿里云短信发送 --> 
+		<module>dubbo</module><!-- 阿里云短信发送 -->
 	</modules>
 
 	<dependencies>
