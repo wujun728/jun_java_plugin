@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
 	  <groupId>com.jun.plugin</groupId>
-	  <artifactId>jun_spring</artifactId>
+	  <artifactId>jun_java_plugin</artifactId>
 	  <version>1.0</version>
   </parent>
   <artifactId>spring_data_jpa</artifactId>
