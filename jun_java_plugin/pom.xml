@@ -74,20 +74,8 @@
 		<module>jun_webservlet</module>
 		<module>jun_webservlet_guice_dbutil</module>
 		<module>jun_websocket</module>
-		<module>jun_xml</module>
-<!-- 		<module>tomcat-cluster-redis-session-manager</module> -->
-<!-- 		<module>tinyid</module> -->
-		
-		<module>maven_account_parent</module>
-		<module>maven_javaproject</module>
-		<module>maven_project_template</module>
-		<module>maven_spring4_multi_modules</module>
-		<module>maven_spring5_multi_modules</module>
-		<module>maven_spring5template</module>
-		<module>maven_springboot_jpa_jsp</module>
-		<module>maven_springboot_mybatis</module>
-		<module>maven_springboot_permission_example</module> 
-		<module>maven_springboot_template</module> 
+		<module>jun_xml</module> 
+ 
 		
 	</modules>
 
