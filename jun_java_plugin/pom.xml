@@ -21,8 +21,6 @@
 	</properties>
 
 	<modules>
-	 
-		<module>jun_activiti</module>
 		<module>jun_algorithm</module>
 		<module>jun_aliyun_sms</module>
 		<module>jun_apache_commons</module>
@@ -33,7 +31,6 @@
 		<module>jun_designpattern</module>
 		<module>jun_drools</module>
 		<module>jun_ehcache</module>
-		<module>jun_dubbo</module>
 		<module>jun_email</module>
 		<module>jun_excel</module>
 		<module>jun_fileupload</module>
@@ -47,9 +44,7 @@
 		<module>jun_j2cache</module>
 		<module>jun_jar2maven</module>
 		<module>jun_javase</module>
-		<module>jun_jbpm</module>
 		<module>jun_jdbc</module>
-		<module>jun_jdk</module>
 		<module>jun_jsoup</module>
 		<module>jun_leetcode</module>
 		<module>jun_multicluster</module>
@@ -60,13 +55,9 @@
 		<module>jun_qrcode</module>
 		<module>jun_quartz</module>
 		<module>jun_redis</module>
-		<module>jun_serializable_json_protobuf_kyro_hessian</module>
 		<module>jun_serialization</module>
-		<module>jun_servlet</module>
 		<module>jun_shiro</module>
 		<module>jun_solr</module>
-		<module>jun_sso</module>
-		<module>jun_templatespider</module>
 		<module>jun_threadpool</module>
 		<module>jun_util</module>
 		<module>jun_webmagic</module>

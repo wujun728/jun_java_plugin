@@ -8,6 +8,7 @@
 		<groupId>com.jun.plugin</groupId>
 		<artifactId>jun_java_plugin</artifactId>
 		<version>1.0</version>
+		<relativePath></relativePath>
 	</parent>
 
 	<artifactId>jun_captcha_slider</artifactId>

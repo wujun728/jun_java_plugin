@@ -24,7 +24,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.jun.base</groupId>
+			<groupId>com.jun.plugin</groupId>
 			<artifactId>jun_datasource</artifactId>
 			<version>1.0</version>
 		</dependency>
@@ -72,9 +72,10 @@
 			-DartifactId=ojdbc14 -Dversion=11.2.0 -Dpackaging=jar -Dfile=D:\ojdbc14-11.2.0.jar -->
 		<dependency>
 			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
-			<version>11.2.0</version>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.3</version>
 		</dependency>
+
 
 	</dependencies>
 	<build>

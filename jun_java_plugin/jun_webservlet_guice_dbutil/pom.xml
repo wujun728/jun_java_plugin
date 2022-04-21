@@ -19,7 +19,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.jun.plugin</groupId>
-			<artifactId>jun_utils</artifactId>
+			<artifactId>jun_util</artifactId>
 			<version>1.0</version>
 		</dependency>
 		<dependency>

@@ -19,7 +19,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.jun.plugin</groupId>
-			<artifactId>jun_utils</artifactId>
+			<artifactId>jun_util</artifactId>
 			<version>1.0</version>
 		</dependency>
 		<dependency>
@@ -58,7 +58,6 @@
 
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
-		<testSourceDirectory>src/test/java</testSourceDirectory>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>

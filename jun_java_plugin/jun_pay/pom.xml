@@ -7,6 +7,7 @@
 		<groupId>com.jun.plugin</groupId>
 		<artifactId>jun_java_plugin</artifactId>
 		<version>1.0</version>
+		<relativePath></relativePath>
 	</parent>
 	<groupId>com.jun.plugin</groupId>
 	<artifactId>jun_pay</artifactId>
