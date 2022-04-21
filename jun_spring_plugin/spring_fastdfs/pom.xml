@@ -20,13 +20,14 @@
 	<!-- https://mvnrepository.com/artifact/org.csource/fastdfs-client-java -->
       <!-- https://mvnrepository.com/artifact/org.csource/fastdfs-client-java -->
       <dependency>
-          <groupId>org.csource</groupId>
+          <groupId>cn.aghost</groupId>
           <artifactId>fastdfs-client-java</artifactId>
-          <version>1.27-RELEASE</version>
+          <version>1.29.0</version>
       </dependency>
 
 
-    <dependency>  
+
+      <dependency>
             <groupId>log4j</groupId>  
             <artifactId>log4j</artifactId>  
             <version>1.2.16</version>  

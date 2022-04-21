@@ -23,7 +23,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.jun.base</groupId>
+			<groupId>com.jun.plugin</groupId>
 			<artifactId>jun_datasource</artifactId>
 			<version>1.0</version>
 		</dependency>
@@ -74,9 +74,9 @@
 			<version>5.1.40</version>
 		</dependency>
 		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
-			<version>11.2.0</version>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc5</artifactId>
+			<version>11.2.0.4</version>
 		</dependency>
 	</dependencies>
 	<build>
