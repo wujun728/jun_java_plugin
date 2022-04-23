@@ -131,7 +131,7 @@
 		<module>springboot_ureport2</module>
 		<module>springboot_urule</module>
 		<module>springboot_war</module>
-		<module>springboot_webflux</module>
+		<!--<module>springboot_webflux</module>-->
 		<module>springboot_webflux_crud</module>
 		<module>springboot_webflux_reactive_rest_api</module>
 		<module>springboot_webhook</module>

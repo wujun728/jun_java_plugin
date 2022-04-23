@@ -9,7 +9,7 @@
     
     <!-- 子模块定义 -->
     <modules>
-        <module>mvn_template</module> 
+        <!--<module>mvn_template</module> -->
     </modules>
 
 
