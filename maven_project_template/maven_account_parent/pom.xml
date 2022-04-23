@@ -14,7 +14,7 @@
 		<module>maven_account_web</module>
 	</modules>
 	<properties>
-		<springframework.version>2.5.6</springframework.version>
+		<springframework.version>5.3.19</springframework.version>
 		<junit.version>4.13.1</junit.version>
 	</properties>
 	<dependencyManagement>
