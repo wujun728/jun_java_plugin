@@ -139,7 +139,7 @@
 	<build>
 		<plugins>
 			<!-- source attach plugin -->
-			<plugin>
+			<!--<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>3.0.1</version>
@@ -151,7 +151,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 
 			<!-- 打包测试用的jar包，classfier为tests -->
 			<plugin>
@@ -217,7 +217,7 @@
 			<id>release</id>
 			<build>
 				<plugins>
-					<plugin>
+					<!--<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
 						<version>1.6.7</version>
@@ -244,7 +244,7 @@
 								</goals>
 							</execution>
 						</executions>
-					</plugin>
+					</plugin>-->
 
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>

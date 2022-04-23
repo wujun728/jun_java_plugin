@@ -36,7 +36,7 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
 
-      <plugin>
+     <!-- <plugin>
         <groupId>com.spotify</groupId>
         <artifactId>dockerfile-maven-plugin</artifactId>
         <version>${dockerfile-maven-plugin.version}</version>
@@ -50,7 +50,7 @@
             <NAME>${project.artifactId}</NAME>
           </buildArgs>
         </configuration>
-      </plugin>
+      </plugin>-->
 
     </plugins>
   </build>

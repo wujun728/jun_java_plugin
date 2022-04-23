@@ -50,9 +50,9 @@
 		
 		<!-- oracle驱动 -->
 		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
-			<version>11.2.0</version>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc5</artifactId>
+			<version>11.2.0.4</version>
 		</dependency>
 		
 		<!-- druid数据源驱动 -->
