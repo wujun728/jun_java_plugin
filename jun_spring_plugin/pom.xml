@@ -24,14 +24,14 @@
 		<module>spring_atomikos</module>
 		<module>spring_autowired</module>
 		<module>spring_camel</module>
-		<module>spring_captcha</module>
+		<!--<module>spring_captcha</module>
 		<module>spring_cas</module>
-		<module>spring_cors</module>
+		<module>spring_cors</module>-->
 		<module>spring_data_jpa</module>
 		<module>spring_demo</module>
-		<module>spring_disruptor</module>
 		<module>spring_distributed_datasource</module>
-		<module>spring_distributed_config</module>
+		<!--<module>spring_disruptor</module>
+		<module>spring_distributed_config</module>-->
 		<module>spring_distributed_fastdfs</module>
 		<module>spring_distributed_lock</module>
 		<module>spring_distributed_multidatasource</module>
@@ -47,29 +47,25 @@
 		<module>spring_easyexcel</module>
 		<module>spring_elasticsearch</module>
 		<module>spring_email</module>
-		<module>spring_example</module>
-		<module>spring_excel</module>
 		<module>spring_fastdfs</module>
 		<module>spring_fastdfs_test</module>
 		<module>spring_fileupload</module>
-		<module>spring_generator</module>
 		<module>spring_hibernate</module>
 		<module>spring_hibernate_plus</module>
 		<module>spring_hibernate_validator</module>
 		<module>spring_images</module>
 		<module>spring_ioc_aop</module>
-		<module>spring_jbpm</module>
+		<!--<module>spring_jbpm</module>-->
 		<module>spring_jedis_cluster</module>
 		<module>spring_jedis_simple</module>
-		<module>spring_jasperreport</module>
 		<module>spring_jpa</module>
 		<module>spring_jqgrid</module>
 		<module>spring_json_view</module>
 		<module>spring_jsonp</module>
 		<module>spring_jsoup</module>
 		<module>spring_jwt_ssm</module>
-		<module>spring_jwt</module>
-		<module>spring_kafka</module>
+		<!--<module>spring_jwt</module>
+		<module>spring_kafka</module>-->
 		<module>spring_lucene</module>
 		<module>spring_mina</module>
 		<module>spring_mongodb</module>
@@ -79,11 +75,9 @@
 		<module>spring_mybatis_mulidatasource</module>
 		<module>spring_mybatis_mulidatasource_atomikos</module>
 		<module>spring_mybatis_plus_generator</module>
-		<module>spring_mybatis_plus_samples</module>
 		<module>spring_mybatis3_simple</module>
 		<module>spring_mybatisplus</module>
 		<module>spring_netty</module>
-		<module>spring_nutch</module>
 		<module>spring_oauth</module>
 		<module>spring_oschina</module>
 		<module>spring_plupload</module>
@@ -100,9 +94,7 @@
 		<module>spring_s2sh</module>
 		<module>spring_session</module>
 		<module>spring_shiro_redis</module>
-		<module>spring_simplessh14</module>
 		<module>spring_solr</module>
-		<module>spring_spider</module>
 		<module>spring_springbatch</module>
 		<module>spring_springjdbc</module>
 		<module>spring_springmv_bootstrap</module>
@@ -110,17 +102,14 @@
 		<module>spring_springtest</module>
 		<module>spring_ssh</module>
 		<module>spring_ssh2</module>
-		<module>spring_ssm_dubbo</module>
 		<module>spring_ssm_freemarker</module>
 		<module>spring_ssm_layui</module>
 		<module>spring_ssm2</module>
-		<module>spring_struts2</module>
 		<module>spring_swagger</module>
 		<module>spring_task</module>
 		<module>spring_thymeleaf</module>
-		<module>spring_validator</module>
 		<module>spring_velocity</module>
-		<module>spring_webmagic</module>
+		<!--<module>spring_webmagic</module>-->
 		<module>spring_websocket</module>
 	</modules>
 
