@@ -23,14 +23,14 @@
         <module>spring-mvc-with-redis</module>
         <module>web-native-jar</module>
         <module>spring-with-ehcache</module>
-        <module>java-exec-remote-shell</module>
+        <module>spring-mvc-with-redis-rank</module>
+        <!--<module>java-exec-remote-shell</module>
         <module>example</module>
         <module>test-jar</module>
-        <module>spring-mvc-with-redis-rank</module>
         <module>spring-act</module>
         <module>spring-mvc-with-schedule</module>
         <module>spring-mvc-with-security</module>
-        <module>spring-mvc-with-websocket</module>
+        <module>spring-mvc-with-websocket</module>-->
     </modules>
 
 </project>

@@ -202,46 +202,6 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<warName>quxue</warName>
-					<archiveClasses>false</archiveClasses>
-					<webResources>
-						<resource>
-							<directory>src/main/webapp</directory>
-							<includes>
-								<include>WEB-INF/**.xml</include>
-							</includes>
-							<filtering>true</filtering>
-						</resource>
-						<!-- <resource> <directory>src/main/webapp</directory> <excludes> <include>WEB-INF/**.xml</include> 
-							</excludes> </resource> -->
-					</webResources>
-				</configuration>
-			</plugin>
-
-			<!--add maven jetty plugin to developemet -->
-
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.4.3</version>
-				<configuration>
-					<!-- <skip>true</skip> -->
-					<!-- <skipTests>true</skipTests> -->
-					<systemProperties>
-						<property>
-							<name>log4j.configuration</name>
-							<value>log4j.xml</value>
-						</property>
-					</systemProperties>
-				</configuration>
-			</plugin>
-
 		</plugins>
 	</build>
 

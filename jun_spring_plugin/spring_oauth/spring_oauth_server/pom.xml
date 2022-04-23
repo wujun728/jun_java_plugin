@@ -73,45 +73,6 @@
             </plugin>
 
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>sql-maven-plugin</artifactId>
-                <version>1.4</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.35</version>
-                    </dependency>
-                </dependencies>
-
-                <configuration>
-                    <driver>${jdbc.driver}</driver>
-                    <url>${jdbc.url}</url>
-                    <username>${jdbc.user}</username>
-                    <password>${jdbc.pass}</password>
-                    <skip>${jdbc.execute.skip}</skip>
-                </configuration>
-
-                <executions>
-                    <!-- <execution>
-                        <id>init db</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <url>${jdbc.url}</url>
-                            <autocommit>true</autocommit>
-                            <srcFiles>
-                                <srcFile>others/database/initial_db.ddl</srcFile>
-                                <srcFile>others/database/oauth.ddl</srcFile>
-                            </srcFiles>
-                            <onError>continue</onError>
-                        </configuration>
-                    </execution> -->
-                </executions>
-            </plugin>
-            <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
