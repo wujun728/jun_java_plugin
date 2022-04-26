@@ -45,20 +45,25 @@
 		<module>jun_jar2maven</module>
 		<module>jun_javase</module>
 		<module>jun_jdbc</module>
+		<module>jun_jgit</module>
 		<module>jun_jsoup</module>
 		<module>jun_leetcode</module>
 		<module>jun_multicluster</module>
 		<module>jun_mybatisplus</module>
+		<module>jun_okhttp</module>
 		<module>jun_pay</module>
 		<module>jun_pdf</module>
 		<module>jun_poi</module>
+		<module>jun_poi_tl_word_export</module>
 		<module>jun_qrcode</module>
 		<module>jun_quartz</module>
 		<module>jun_redis</module>
 		<module>jun_serialization</module>
 		<module>jun_shiro</module>
 		<module>jun_solr</module>
+		<module>jun_springside4</module>
 		<module>jun_threadpool</module>
+		<module>jun_uid</module>
 		<module>jun_util</module>
 		<module>jun_webmagic</module>
 		<module>jun_webservice</module>
