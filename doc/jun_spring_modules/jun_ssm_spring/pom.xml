@@ -66,7 +66,7 @@
 		<!-- <quartz.version>2.2.3</quartz.version> -->
 
 		<servlet-api.version>2.5</servlet-api.version>
-		<mysql-connector-java.version>5.1.45</mysql-connector-java.version>
+		<mysql-connector-java.version>8.0.28</mysql-connector-java.version>
 
 		<!-- <org.postgresql-java.version>42.1.4</org.postgresql-java.version> -->
 
