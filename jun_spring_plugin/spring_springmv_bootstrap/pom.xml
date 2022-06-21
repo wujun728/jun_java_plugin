@@ -48,7 +48,7 @@
 		<quartz.version>2.2.1</quartz.version>
 
 		<!-- jdbc -->
-		<mysql-connector-java.version>5.1.38</mysql-connector-java.version>
+		<mysql-connector-java.version>8.0.28</mysql-connector-java.version>
 		<sqlite.jdbc.version>3.8.11.2</sqlite.jdbc.version>
 		<mongodb-driver.version>3.2.2</mongodb-driver.version>
 

@@ -14,7 +14,7 @@
         <mybatis.version>3.4.6</mybatis.version>
         <mybatis-spring.version>2.0.4</mybatis-spring.version>
         <junit.version>4.12</junit.version>
-        <mysql.version>8.0.17</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <druid.version>1.1.23</druid.version>
         <servlet.version>2.5</servlet.version>
         <jsp.version>2.2</jsp.version>
@@ -176,7 +176,7 @@
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.17</version>
+                        <version>8.0.28</version>
                     </dependency>
                 </dependencies>
             </plugin>
