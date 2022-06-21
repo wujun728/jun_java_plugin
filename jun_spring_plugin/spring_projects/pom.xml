@@ -16,7 +16,7 @@
         <jackson.version>2.3.2</jackson.version>
         <jersey.version>2.9</jersey.version>
         <org.slf4j.version>1.7.13</org.slf4j.version>
-        <mysql.version>5.1.38</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
     </properties>
     <modules>
         <module>spring-mvc-session-with-redis</module>

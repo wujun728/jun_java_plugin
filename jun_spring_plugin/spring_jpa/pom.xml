@@ -49,7 +49,7 @@
 		<quartz.version>2.2.1</quartz.version>
 
 		<!-- jdbc -->
-		<mysql-connector-java.version>5.1.34</mysql-connector-java.version>
+		<mysql-connector-java.version>8.0.28</mysql-connector-java.version>
 		<sqlite.jdbc.version>3.8.7</sqlite.jdbc.version>
 
 		<!-- sitemesh -->

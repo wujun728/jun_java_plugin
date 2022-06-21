@@ -13,7 +13,7 @@
 		<druid.version>1.1.0</druid.version>
 		<fastjson.version>1.2.8</fastjson.version>
 		<mybaitsplus.version>2.1.9</mybaitsplus.version>
-		<mysql.version>5.1.38</mysql.version>
+		<mysql.version>8.0.28</mysql.version>
 		<log4j.version>1.2.17</log4j.version>
 		<slf4j.version>1.7.19</slf4j.version>
 		<aspectjweaver.version>1.8.8</aspectjweaver.version>
