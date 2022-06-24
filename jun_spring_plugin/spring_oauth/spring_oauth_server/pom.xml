@@ -14,7 +14,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <spring.version>4.1.6.RELEASE</spring.version>
+        <spring.version>5.2.21.RELEASE</spring.version>
         <spring.security.version>4.0.4.RELEASE</spring.security.version>
         <spring.security.oauth.version>2.0.7.RELEASE</spring.security.oauth.version>
         <fasterxml.jackson.version>2.5.4</fasterxml.jackson.version>
