@@ -10,7 +10,7 @@
 <properties>
 		<!-- 主要依赖库的版本定义 -->
 		<spring.version>3.2.4.RELEASE</spring.version>
-		<spring-data-jpa.version>1.4.1.RELEASE</spring-data-jpa.version>
+		<spring-data-jpa.version>1.11.23.RELEASE</spring-data-jpa.version>
 		<hibernate.version>4.2.6.Final</hibernate.version>
 		<ehcache.version>2.6.6</ehcache.version>
 		<slf4j.version>1.7.5</slf4j.version>
