@@ -43,7 +43,7 @@
 		<log4j-version>1.2.17</log4j-version>
 		<fastjson-version>1.2.30</fastjson-version>
 		<cglib-version>3.2.2</cglib-version>
-		<shiro-version>1.3.2</shiro-version>
+		<shiro-version>1.9.1</shiro-version>
 		<kaptcha-version>0.0.9</kaptcha-version>
 		<velocity-version>1.7</velocity-version>
 		<velocity-tools-version>2.0</velocity-tools-version>
