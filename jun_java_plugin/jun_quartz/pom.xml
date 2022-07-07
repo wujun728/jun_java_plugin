@@ -18,7 +18,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.0.6.RELEASE</spring.version>
+		<spring.version>5.2.21.RELEASE</spring.version>
 		<jackson.version>1.9.13</jackson.version>
 		<jackson-databind.version>2.5.1</jackson-databind.version>
 		<druid.version>1.0.18</druid.version>
