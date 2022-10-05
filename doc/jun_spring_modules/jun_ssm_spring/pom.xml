@@ -15,7 +15,7 @@
 	<properties>
 		<finalName>springrain</finalName>
 		<jdk.version>1.8</jdk.version>
-		<jetty.version>9.2.3.v20140905</jetty.version>
+		<jetty.version>9.4.41.v20210516</jetty.version>
 		<jetty.jsp.version>7.5.4.v20111024</jetty.jsp.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.12</junit.version>
