@@ -27,7 +27,7 @@
 		<java-version>1.8</java-version>
 		<sourceEncoding>UTF-8</sourceEncoding>
 		<slf4j-version>1.7.25</slf4j-version>
-		<log4j-version>2.8.2</log4j-version>
+		<log4j-version>2.17.1</log4j-version>
 		<quartz-version>2.2.3</quartz-version>
 		<druid-version>1.1.9</druid-version>
 		<fastjson-version>1.2.17</fastjson-version>
