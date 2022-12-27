@@ -1,7 +1,0 @@
-
-import java.util.*;
-import ${basepackage}.domain.*;
-import ${basepackage}.dao.*;
-import ${basepackage}.service.*;
-import ${basepackage}.web.*;
-
