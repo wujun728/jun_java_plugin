@@ -1,0 +1,9 @@
+minio:
+  endpoint: http://web.codepeople.cn/
+  port: 9000
+  accessKey: minioadmin
+  secretKey: minioadmin
+  secure: false
+  bucketName: "hkeducation"
+  configDir: "/opt/minio/data"
+

@@ -1,0 +1,6 @@
+2023-05-29 15:37:39.349 ERROR 12292 --- [main] c.j.p.l.SpringBootDemoLogbackApplication SpringBootDemoLogbackApplication.java:32: Spring boot启动初始化了 122 个 Bean
+2023-05-29 15:37:39.349 ERROR 12292 --- [main] c.j.p.l.SpringBootDemoLogbackApplication SpringBootDemoLogbackApplication.java:37: 【SpringBootDemoLogbackApplication】启动异常：
+
+java.lang.ArithmeticException: / by zero
+	at com.jun.plugin.logback.SpringBootDemoLogbackApplication.main(SpringBootDemoLogbackApplication.java:35)
+

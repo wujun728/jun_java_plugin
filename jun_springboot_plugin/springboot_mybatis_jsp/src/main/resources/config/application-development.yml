@@ -1,0 +1,45 @@
+#服务容器配置
+server:
+  port: 9999
+  context-path: /kiwipeach
+#实体bean属性配置
+author:
+  auId: 10086
+  auName: 孙悟空
+  email: sunwukong@qq.com
+
+#数据库数据源配置、SpringMVC视图配置
+
+spring:
+    datasource:
+        name: test
+        url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
+        username: scott
+        password: 123456
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: oracle.jdbc.driver.OracleDriver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+    mvc:
+      view:
+        prefix: /WEB-INF/jsp/
+        suffix: .jsp
+
+#Mybatis配置
+mybatis:
+  mapperLocations: classpath:mappings/**/*.xml
+  typeAliasesPackage: cn.example.business.model
+  executorType: SIMPLE
+
+

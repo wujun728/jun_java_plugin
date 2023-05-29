@@ -22,6 +22,8 @@ classes
 .settings
 .factorypath
 doc2
+log
+target
 
 # Idea
 .idea

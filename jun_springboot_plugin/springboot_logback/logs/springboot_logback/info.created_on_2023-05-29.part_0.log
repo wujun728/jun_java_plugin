@@ -1,0 +1,12 @@
+2023-05-29 15:37:38.314  INFO 12292 --- [main] c.j.p.l.SpringBootDemoLogbackApplication : Starting SpringBootDemoLogbackApplication on DESKTOP-BFKA690 with PID 12292 (D:\workspace\github\jun_java_plugin\jun_springboot_plugin\springboot_logback\target\classes started by Administrator in D:\workspace\github\jun_java_plugin\jun_springboot_plugin\springboot_logback)
+2023-05-29 15:37:38.316  INFO 12292 --- [main] c.j.p.l.SpringBootDemoLogbackApplication : No active profile set, falling back to default profiles: default
+2023-05-29 15:37:39.081  INFO 12292 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-05-29 15:37:39.089  INFO 12292 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-29 15:37:39.090  INFO 12292 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.36]
+2023-05-29 15:37:39.139  INFO 12292 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/demo]   : Initializing Spring embedded WebApplicationContext
+2023-05-29 15:37:39.139  INFO 12292 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 789 ms
+2023-05-29 15:37:39.244  INFO 12292 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-05-29 15:37:39.339  INFO 12292 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/demo'
+2023-05-29 15:37:39.345  INFO 12292 --- [main] c.j.p.l.SpringBootDemoLogbackApplication : Started SpringBootDemoLogbackApplication in 1.351 seconds (JVM running for 1.643)
+2023-05-29 15:37:39.347  INFO 12292 --- [main] c.j.p.l.SpringBootDemoLogbackApplication : Spring boot启动初始化了 122 个 Bean
+2023-05-29 15:37:39.349  WARN 12292 --- [main] c.j.p.l.SpringBootDemoLogbackApplication : Spring boot启动初始化了 122 个 Bean

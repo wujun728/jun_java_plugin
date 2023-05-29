@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 属性文件 -->
+	<property name="processName" value="camunda-demo"/>
+	<property name="logDir" value="/logs/" />
+	<!-- 默认的控制台日志输出，一般生产环境都是后台启动，这个没太大作用 -->
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- <Encoding>UTF-8</Encoding> -->
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%date [%thread] %-5level %logger{50}:%L - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<!-- 配置文件轮转 -->
+	<appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!--<Encoding>UTF-8</Encoding> -->
+		<File>${logDir}/service.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${logDir}/history/service.%d{yyyy-MM-dd}.log.gz
+			</FileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%date [%thread] %-5level %logger{50}:%L - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	
+	<logger name="org.apache.ibatis" level="DEBUG">
+		<appender-ref ref="stdout" />
+	</logger>
+
+	<logger name="java.sql" level="DEBUG">
+		<appender-ref ref="stdout" />
+	</logger>
+	<logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    <logger name="org.apache.http" level="ERROR" />
+    <logger name="com.netflix.discovery" level="ERROR"/>
+
+ 	
+
+	<!-- <logger name="org.activiti.engine.impl.persistence.entity" level="DEBUG" /> -->
+
+	<!-- root 默认日志配置 ， 注意这里的级别哈！小心生产环境用DEBUG，压爆你的磁盘！ -->
+	<!-- TRACE , DEBUG , INFO , WARN , ERROR , FATAL , OFF -->
+	<root level="DEBUG">
+		<appender-ref ref="logfile" />
+		<appender-ref ref="stdout" />
+	</root>
+</configuration>
