@@ -1,0 +1,23 @@
+需要再写一个mapper文件 和 sql语句
+建立 studentClassMapper.xml
+
+一对多延迟加载
+
+mybatis中的延迟加载 需要配置
+   <setting name="lazyLoadingEnabled" value="true"/>
+     <!--关闭立即加载-->
+   <setting name="aggressiveLazyLoading" value="false"/>
+
+
+
+    <!--一对多   延迟加载-->
+    <select id="querystudentAndClassLazy" parameterType="int" resultMap="collectionQueryLazy">先查询班级 再查询班级的学生
+         select c.* from  studentclass c where class_id = #{classId}
+    </select>
+    <resultMap id="collectionQueryLazy" type="studentClass">
+        <id property="classId" column="class_id"/>
+        <result property="className" column="class_name" />
+        <!--        属性类型 javaType 元素类型 ofType
+                   再查询班级对应的学生       -->
+        <collection property="students"  ofType="student" select="nuc.yznl.pojo.studentMapper.queryAllStudent" column="class_id"></collection>
+    </resultMap>

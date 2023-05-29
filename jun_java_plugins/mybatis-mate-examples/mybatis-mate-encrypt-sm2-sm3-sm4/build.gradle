@@ -1,0 +1,13 @@
+description "字段国密 sm2 sm3 sm4 加解密示例"
+
+dependencies {
+    implementation("com.h2database:h2")
+
+    // 默认加密库，自定义加密可以不依赖
+    implementation("org.jasypt:jasypt")
+    // sm4 依赖加密库
+    implementation("org.bouncycastle:bctls-jdk15on:1.69")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("junit:junit")
+}

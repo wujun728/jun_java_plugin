@@ -1,0 +1,16 @@
+log4j的jar
+<dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
+</dependency>
+
+开启日志
+   <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+编写配置日志输出文件  log4j.propertis
+
+日志级别: 从高到低 ERROR、WARN、INFO、DEBUG
+如果设置为INFO 则只会先是info及以上级别的信息

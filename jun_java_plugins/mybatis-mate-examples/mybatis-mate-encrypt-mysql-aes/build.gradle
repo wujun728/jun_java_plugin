@@ -1,0 +1,11 @@
+description "字段加解密示例"
+
+dependencies {
+    implementation("mysql:mysql-connector-java")
+
+    // 默认加密库，自定义加密可以不依赖
+    implementation("org.jasypt:jasypt")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("junit:junit")
+}

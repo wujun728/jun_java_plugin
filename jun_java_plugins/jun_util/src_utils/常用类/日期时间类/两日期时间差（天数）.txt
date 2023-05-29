@@ -1,0 +1,27 @@
+public static int getBetweenDate(String oldTime,String nowTime) throws ParseException{
+			//把传入的日期中的"-"符号去掉放入一个字符串数组strdata[]中
+			String[] strOldData = oldTime.split("-");
+			//循环把数组中的值保存为一个字符串对象
+			oldTime = strOldData[0];
+			for(int i=1;i<strOldData.length;i++){
+				oldTime = oldTime+strOldData[i];
+			}
+			//把传入的日期中的"-"符号去掉放入一个字符串数组strdata[]中
+			String[] strNowData = nowTime.split("-");
+			//循环把数组中的值保存为一个字符串对象
+			nowTime = strNowData[0];
+			for(int i=1;i<strNowData.length;i++){
+				nowTime = nowTime+strNowData[i];
+			}
+			
+			//设定日期格式
+			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+			//把之前的字符串对象转为设定好格式的日期对象
+			Date date1 =  format.parse(oldTime);
+			
+			Date date2 = format.parse(nowTime);  
+			//把传入的日期跟当前系统日期相减，得出2个日期之间相差天数
+			int differ = Math.abs((int)((date1.getTime()-date2.getTime())/(24*60*60*1000)));
+			//返回相差天数
+			return differ;
+		}

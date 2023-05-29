@@ -1,0 +1,4 @@
+组成ssm框架的三个框架核心组件及主要作用：
+一、spring框架核心组件及其作用。spring框架核心组件包括：bean、context、Core，spring归根到底可理解为一个容器，而容器中存放的数据就是bean（类），context是发现、创建并维护这些数据（类）之间的依赖关系的容器，即IOC，core是context发现创建并维护这些类之间依赖关系的工具。
+二、springMVC核心组件及其作用。springMVC核心组件主要包括：前端控制器（DispatcherServlet）、处理器映射器（HandlerMapping）、处理器适配器（HandlerAdapter）、处理器、视图解析器（ModelAndView）。springMvc主要是将前后端分离的一个框架，前端控制器的作用是接受用户请求，处理器映射器的作用是将前端用户请求与后端控制器相对应（@RequestMapping("login")），处理器适配器的作用是调用具体的处理函数，视图解析器的作用是根据处理器方法的返回值拼接路径，把逻辑视图变成物理视图，可简单理解为返回一个页面。
+三、MyBatis框架核心组件及其作用：封装JDBC操作，利用反射实现ORM(根据mapper接口生成mapper代理)。SqlSessionFactoryBuilder（构造器）、SqlSessionFactory（工厂接口）、SqlSession（会话接口）、SQL Mapper（映射器）。其中最核心的是SqlSession接口和Mapper映射器，SqlSession具体作用：1）获取映射器，让映射器通过命名空间和方法名称找到对应的SQL，发送给数据库执行后返回结果；2）执行SQL语句，通过update、insert、select、delete等方法，带上SQL的id来操作在XML中配置好的SQL，从而完成工作；3）与此同时它也支持事务，通过commit、rollback方法提交或者回滚事务。SqlSession接口下的核心对象是ParameterHandler（参数映射）、SQL解析（生成SQL语句，SqlSource）、SQL执行（Executor）、结果处理与映射（ResultSetHandler）。注意：mapper的代理类是在加载配置文件时就已经自动生成等待调用。

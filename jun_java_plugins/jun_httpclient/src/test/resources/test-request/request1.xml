@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE httphelper-config SYSTEM "httphelper-config.dtd">
+<httphelper-config>
+    <requests>
+        <request name="downloadImage" url="http://image.baidu.com/search/index" charset="UTF-8" response-type="HTML">
+            <parameters>
+                <parameter name="tn" defaultValue="baiduimage"/>
+                <parameter name="word" defaultValue="美女图片"/>
+            </parameters>
+            <handlers>
+                <pro>
+                    <handler clazz="org.ws.httphelper.request.handler.DownloadAllImageHandle"/>
+                </pro>
+            </handlers>
+        </request>
+        <request name="saveImageRequest" url="{url}" response-type="BYTE_ARRAY">
+            <handlers>
+                <pro>
+                    <handler clazz="org.ws.httphelper.request.handler.SaveImageHandle"/>
+                </pro>
+            </handlers>
+        </request>
+    </requests>
+</httphelper-config>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--该mapper.xml映射文件的唯一标识-->
+<mapper namespace="nuc.yznl.pojo.IBlogMapper">
+
+
+    <select id="selectBlogWithHashMap" resultType="blog" parameterType="HashMap">
+      select * from blog where id = #{id}
+    </select>
+<!--    输入参数是基本类型 占位符号可以是任意的-->
+    <select id="selectBlogById" resultType="nuc.yznl.pojo.blog" parameterType="int">
+      select * from blog where id = #{id}
+    </select>
+<!--  使用类型转换器
+     如果类中的属性和表中的字段类型和名字可以合理识别 (String 和 varchar ) 那么就可以使用resultType
+     否则 resultMap
+-->
+    <select id="selectBlogByIdWithConverter" resultMap="converter" parameterType="int">
+       select * from blog where id = #{id}
+    </select>
+
+    <resultMap id="converter" type="blog">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="authOr" column="author"/>
+        <result property="create_time" column="create_time"/>
+        <result property="views" column="views"/>
+        <result property="sex" column="sex" javaType="boolean" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="time" resultType="String" parameterType="int">
+      select create_time from blog where id = #{id}
+    </select>
+
+    <select id="queryAll" resultType="nuc.yznl.pojo.blog">
+      select * from blog
+    </select>
+
+
+    <insert id="addBlog" parameterType="nuc.yznl.pojo.blog">
+       insert into blog(id,title,author,create_time,views) values(#{id},#{title},#{authOr},#{create_time},#{views})
+    </insert>
+
+    <insert id="addBlogWithConverter" parameterType="nuc.yznl.pojo.blog">
+       insert into blog(id,title,author,create_time,views,sex) values(#{id},#{title},#{authOr},#{create_time},#{views},#{sex, javaType=boolean,jdbcType=INTEGER})
+    </insert>
+
+    <delete id="deleteBlogById" parameterType="int">
+        delete from blog where id =#{id}
+    </delete>
+
+    <update id="updateBlog" parameterType="nuc.yznl.pojo.blog">
+        update blog set title=#{title},authoR=#{authOr},create_time=#{create_time},views=#{views} where id =#{id}
+    </update>
+<!--    输出类型为HashMap 通过别名作为Map的key-->
+    <select id="ResultByMap" resultType="HashMap">
+       select Id "ID",author "TITLE" from blog
+    </select>
+<!--    迭代器-->
+    <select id="foreach" parameterType="grade" resultType="blog">
+        select * from blog
+        <where>
+           <if test="ids!=null and ids.size>0">
+               <foreach collection="ids" open=" and id in (" close=")" item="id" separator=",">
+                   #{id}
+               </foreach>
+           </if>
+        </where>
+    </select>
+
+    <select id="arrayForeach" parameterType="int[]" resultType="blog">
+        select * from blog
+        <where>
+            <if test="array!=null and array.length>0">
+                <foreach collection="array" open=" and id in (" close=")" item="id" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="listForeach" parameterType="list" resultType="blog">
+        select * from blog
+        <where>
+            <if test="list!=null and list.size>0">
+                <foreach collection="list" open=" and id in (" close=")" item="id" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="objectForeach" parameterType="Object[]" resultType="blog">
+        select * from blog
+        <where>
+            <if test="array!=null and array.length>0">
+                <foreach collection="array" open=" and id in (" close=")" item="blog" separator=",">
+                    #{blog.title}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+</mapper>

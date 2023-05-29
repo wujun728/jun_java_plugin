@@ -1,0 +1,1 @@
+mysqldump -u root -p db_book > c:\db_book.sql

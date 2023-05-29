@@ -1,0 +1,15 @@
+SELECT CURDATE(),CURTIME(),MONTH(birthday) AS m FROM t_t;
+
+SELECT userName,CHAR_LENGTH(userName),UPPER(userName),LOWER(userName) FROM t_t;
+
+SELECT num,ABS(num) FROM t_t;
+
+SELECT SQRT(4),MOD(9,4) FROM t_t;
+
+INSERT INTO t_t VALUES(NULL,'2013-1-1','a',1,PASSWORD('123456'));
+
+INSERT INTO t_t VALUES(NULL,'2013-1-1','a',1,MD5('123456'));
+
+INSERT INTO t_t VALUES(NULL,'2013-1-1','a',1,MD5('123456'),ENCODE('abcd','aa'));
+
+SELECT DECODE(pp,'aa') FROM t_t WHERE id=5;

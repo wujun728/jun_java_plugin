@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>Temporary Properties</comment>
+    <entry key="ant.core.resources.profile">dev</entry>
+    <entry key="ant.core.resources.db.dataSource">cn.antcore.resources.db.datasource.DefaultDataSource</entry>
+    <entry key="ant.core.resources.db.driveClassName">com.mysql.jdbc.Driver</entry>
+    <entry key="ant.core.resources.db.url">jdbc:mysql://127.0.0.1:3306/db_config?characterEncoding=utf-8&amp;useSSL=false</entry>
+    <entry key="ant.core.resources.db.username">root</entry>
+    <entry key="ant.core.resources.db.password">E|77781F4448CAA0046542033EDDCC97B2</entry>
+    <entry key="ant.core.resources.db.tableName">tb_config</entry>
+    <entry key="ant.core.resources.git.uri"></entry>
+    <entry key="ant.core.resources.git.username"></entry>
+    <entry key="ant.core.resources.git.password"></entry>
+    <entry key="ant.core.resources.git.branch"></entry>
+    <entry key="ant.core.resources.git.localDir"></entry>
+</properties>

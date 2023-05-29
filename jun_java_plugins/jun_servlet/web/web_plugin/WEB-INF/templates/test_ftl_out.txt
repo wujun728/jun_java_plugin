@@ -1,0 +1,27 @@
+FreeMarker,世界你好
+FreeMarker,标题
+FreeMarker,
+
+listvalue:
+
+	listvalue0 [0]
+	listvalue1 [1]
+	listvalue2 [2]
+	listvalue3 [3]
+	listvalue4 [4]
+	listvalue5 [5]
+	listvalue6 [6]
+	listvalue7 [7]
+	listvalue8 [8]
+	listvalue9 [9]
+
+
+
+
+
+	Hello,张三
+	Hello,李四
+
+ 
+	Hello,张三
+	Hello,李四

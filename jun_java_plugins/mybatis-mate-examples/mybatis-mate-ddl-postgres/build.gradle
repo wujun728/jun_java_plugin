@@ -1,0 +1,6 @@
+description "表结构自动维护 PostgreSQL 示例"
+
+dependencies {
+    implementation("org.postgresql:postgresql")
+
+}

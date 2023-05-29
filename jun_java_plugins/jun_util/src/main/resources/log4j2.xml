@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<configuration status="DEBUG" xmlns="http://logging.apache.org/log4j/2.0/config">
+	<properties>
+		<!-- 日志输出目录 -->  
+        <property name="LOG_HOME">logs</property>
+        <!--文件日志级别 --> 
+        <property name="LOG_LEVEL_FILE">info</property>
+        <!-- 控制台日志级别 -->
+        <property name="LOG_LEVEL_CONSOLE">debug</property>  
+        <!-- logstash网络日志输出 -->
+        <property name="LOG_LEVEL_SOKCET_HOST">127.0.0.1</property>         
+        <property name="LOG_LEVEL_SOKCET_PORT">12201</property>    
+    </properties>
+	<!--定义所有的appender-->  
+    <appenders>  
+    	 <!--输出到控制台的配置-->
+        <Console name="Console" target="SYSTEM_OUT">  
+        	<!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="${LOG_LEVEL_CONSOLE}" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!--输出日志的格式-->
+            <PatternLayout pattern="%d{yy-MM-dd HH:mm:ss.SSS} [%t:%r] %-5level %logger{36} - %msg%n" />  
+        </Console>
+        <!--输出到文件,append属性决定程序启动是否自动清空log文件-->
+        <File name="ErrorLogFile" fileName="${LOG_HOME}/error.log" append="false">
+        	<ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yy-MM-dd HH:mm:ss.SSS} [%t:%r] %-5level %logger{36} - %msg%n" />
+        </File>
+        <!--分段输出到文件，每次大小超过size，则这size大小的日志会自动存入按/年份-月份/年份-月份-天-序号.log.gz文件,作为存档-->
+        <RollingFile name="LogFile" fileName="${LOG_HOME}/log.log" filePattern="${LOG_HOME}/$${date:yyyy-MM}-logs/%d{yyyy-MM-dd}-%i.log.gz">
+            <ThresholdFilter level="${LOG_LEVEL_FILE}" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yy-MM-dd HH:mm:ss.SSS} [%t:%r] %-5level %logger{36} - %msg%n" />
+            <SizeBasedTriggeringPolicy size="5MB"/>
+        </RollingFile>
+        <!-- 设置为异步输出,Asynchronous Appenders 性能比同步快,比Asynchronous Loggers慢
+        <Async name="Async">
+      		<AppenderRef ref="ErrorLogFile"/>
+      		<AppenderRef ref="RollingFile"/>
+    	</Async>
+    	-->
+    	<!-- logstash输出,需要引入依赖包
+      	https://github.com/juebanlin/logstash-gelf
+      	maven 配置:
+      	<dependency>
+			<groupId>biz.paluch.logging</groupId>
+			<artifactId>logstash-gelf</artifactId>
+			<version>1.11.0</version>
+		</dependency>
+		logstash配置：
+		input {
+		 gelf {
+		    host => '0.0.0.0'
+		    port => 12201
+		  }
+		}
+		output {
+		  elasticsearch {
+		    hosts => ["127.0.0.1:9200"]
+		    index => "logstash-%{+YYYY.MM.dd}"
+		  }
+		}
+        -->
+      <Gelf name="Logstash" host="udp:${LOG_LEVEL_SOKCET_HOST}" port="${LOG_LEVEL_SOKCET_PORT}" version="1.1" extractStackTrace="true"
+              filterStackTrace="true" mdcProfiling="true" includeFullMdc="true" maximumMessageSize="8192"
+              originHost="%host{fqdn}" additionalFieldTypes="fieldName1=String,fieldName2=Double,fieldName3=Long">
+            <Field name="timestamp" pattern="%d{dd MMM yyyy HH:mm:ss,SSS}" />
+            <Field name="level" pattern="%level" />
+            <Field name="simpleClassName" pattern="%c{1}" />
+            <Field name="className" pattern="%logger{36}" />
+            <Field name="thread" pattern="%t:%r" />
+            <!-- This is a static field -->
+            <Field name="fieldName2" literal="fieldValue2" />
+
+            <!-- This is a field using MDC -->
+            <Field name="mdcField2" mdc="mdcField2" /> 
+            <DynamicMdcFields regex="mdc.*" />
+            <DynamicMdcFields regex="(mdc|MDC)fields" />
+      </Gelf>
+    </appenders>  
+    <loggers>
+    	<!-- 同步日志
+    	 <logger name="net.jueb" level="trace" additivity="false">  
+    		<appender-ref ref="Console" />
+    		<appender-ref ref="LogFile" />
+    		<appender-ref ref="ErrorLogFile" />
+    	</logger>
+   	 	<root level="trace">  
+            <appender-ref ref="Console" />
+        </root> 
+        -->
+    	<!--
+    	异步日志,需要依赖Disruptor包
+    	net.jueb包范围的日志都以trace级别输出到appender
+    	会覆盖root的包范围配置
+    	additivity开启的话,logger的level如果也是满足root的,会被打印两遍
+    	-->
+    	<AsyncLogger name="net.jueb" level="trace" additivity="false">  
+    		<appender-ref ref="Console" />
+    		<appender-ref ref="LogFile" />
+    		<appender-ref ref="ErrorLogFile" />
+    	</AsyncLogger>
+    	<!-- 所有包范围的日志都以trace级别输出控制台 -->
+   	 	<AsyncRoot level="trace">  
+            <appender-ref ref="Console" /><!--所有包的日志输出会到LogFile,除了特别声明的logger-->
+        </AsyncRoot> 
+    </loggers>  
+</configuration>

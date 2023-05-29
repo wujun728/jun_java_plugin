@@ -1,0 +1,12 @@
+description "数据库分库分表多数动态据源示例"
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.postgresql:postgresql")
+    implementation("mysql:mysql-connector-java")
+    // spring boot 推荐 jta atomikos 分布式事务解决方案
+    implementation("org.springframework.boot:spring-boot-starter-jta-atomikos")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("junit:junit")
+}

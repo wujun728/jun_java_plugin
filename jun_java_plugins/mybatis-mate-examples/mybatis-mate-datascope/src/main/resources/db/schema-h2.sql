@@ -1,0 +1,20 @@
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS department;
+
+CREATE TABLE user
+(
+    id BIGINT(20) NOT NULL COMMENT '主键ID',
+    department_id BIGINT(20) NOT NULL COMMENT '部门ID',
+    username VARCHAR(30) NULL DEFAULT NULL COMMENT '用户名',
+    mobile VARCHAR(11) NULL DEFAULT NULL COMMENT '手机号',
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE department
+(
+    id BIGINT(20) NOT NULL COMMENT '主键ID',
+    pid BIGINT(20) NOT NULL COMMENT '父ID',
+    name VARCHAR(30) NULL DEFAULT NULL COMMENT '名称',
+    sort int(11) NULL DEFAULT NULL COMMENT '排序',
+    PRIMARY KEY (id)
+);

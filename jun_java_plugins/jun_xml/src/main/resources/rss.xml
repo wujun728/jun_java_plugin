@@ -1,0 +1,57 @@
+<rss version="2.0">
+    <channel>
+
+        <title>Apache</title>
+        <link>http://www.apache.org</link>
+        <description>The Apache Software Foundation</description>
+        <language>en-US</language>
+        <rating>(PICS-1.1 "http://www.rsac.org/ratingsv01.html"
+            2 gen true comment "RSACi North America Server"
+            for "http://www.rsac.org" on "1996.04.16T08:15-0500"
+            r (n 0 s 0 v 0 l 0))
+        </rating>
+
+        <image>
+            <title>Apache</title>
+            <url>http://jakarta.apache.org/images/jakarta-logo.gif</url>
+            <link>http://jakarta.apache.org</link>
+            <width>505</width>
+            <height>480</height>
+            <description>The Jakarta project. Open source, serverside java.
+            </description>
+        </image>
+
+        <item>
+            <title>Commons Attributes 2.1 Released</title>
+            <link>http://jakarta.apache.org/site/news/news-2004-2ndHalf.html#20040815.1
+            </link>
+            <description>The Apache Commons team is happy to announce the release
+                of Commons Attributes 2.1.
+                This is the first release of the new Commons-Attributes code.
+            </description>
+        </item>
+
+        <item>
+            <title>Cloudscape Becomes Apache Derby</title>
+            <link>http://jakarta.apache.org/site/news/elsewhere-2004-2ndHalf.html#20040803.1
+            </link>
+            <description>IBM has submitted a proposal to the Apache DB project
+                for a Java-based package to be called 'Derby'.
+            </description>
+        </item>
+
+        <item>
+            <title>Commons BeanUtils 1.7 Released</title>
+            <link>http://jakarta.apache.org/site/news/news-2004-2ndHalf.html#20040802.1
+            </link>
+            <description/>
+        </item>
+
+        <item>
+            <title>Commons JXPath 1.2 Released</title>
+            <link>http://jakarta.apache.org/site/news/news-2004-2ndHalf.html#20040801.2
+            </link>
+            <description/>
+        </item>
+    </channel>
+</rss>

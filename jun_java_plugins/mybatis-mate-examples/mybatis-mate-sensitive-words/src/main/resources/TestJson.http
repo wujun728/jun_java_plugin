@@ -1,0 +1,33 @@
+
+POST http://localhost:8080/json
+Content-Type: application/json
+
+{
+  "content": "王安石有一只猫tomcat汤姆凯特",
+  "see": 1,
+  "size": 6
+}
+
+###
+
+POST http://localhost:8080/json
+Content-Type: application/json
+
+{
+  "content": "没有敏感词",
+  "see": 1,
+  "size": 6
+}
+
+###
+
+POST http://localhost:8080/test
+Content-Type: application/json
+
+{
+  "content": "一只猫tomcat汤姆凯特，不处理敏感词",
+  "see": 1,
+  "size": 2
+}
+
+###

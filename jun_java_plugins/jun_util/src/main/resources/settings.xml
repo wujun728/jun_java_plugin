@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<servers>
+		<!-- 中央仓库账号密码-->
+		<server>
+			<id>ossrh</id>
+			<username>??????</username>
+			<password>??????</password>
+		</server>
+	</servers>
+	<mirrors>
+		<mirror>
+			<id>nexus-aliyun</id>
+			<mirrorOf>central</mirrorOf>
+			<name>Nexus aliyun</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</mirror>
+		<mirror>
+			<id>nexus-aliyun-thirdparty</id>
+			<mirrorOf>thirdparty</mirrorOf>
+	        <name>Nexus aliyun thirdparty</name>
+	        <url>http://maven.aliyun.com/nexus/content/repositories/thirdparty/</url>
+		</mirror>
+	</mirrors>
+	<profiles>
+    	<!-- 中央pgp签名密码配置,需要系统安装gpg4win-->
+		<profile>
+	      <id>ossrh</id>
+	      <activation>
+	        <activeByDefault>true</activeByDefault>
+	      </activation>
+	      <properties>
+	        <gpg.executable>gpg2</gpg.executable>
+	        <gpg.passphrase>??????</gpg.passphrase>
+	      </properties>
+	    </profile>
+		<profile>
+			<id>aliyun-profile</id>
+			<!-- 配置除了镜像外其它仓库 -->
+			<repositories>
+				<repository>
+					<!-- 虽然镜像存在了,但是要禁用测试版jar -->
+					<id>nexus-aliyun</id>
+					<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+			<!-- 插件仓库  maven自身执行命令所需要的依赖-->
+			<pluginRepositories>
+				<pluginRepository>
+					<id>nexus-aliyun</id>
+					<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
+	<!--激活仓库配置 填入配置ID -->
+	<activeProfiles>
+		<activeProfile>aliyun-profile</activeProfile>
+	</activeProfiles>
+</settings>

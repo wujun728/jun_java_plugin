@@ -1,0 +1,19 @@
+输入参数是： parameterType
+1:类型是简单类型(8个基本类型+String)
+#{}和${}
+#{任意值}
+${value}
+#{}自动给String类型加上‘’ (自动类型转换)
+${} 原样输出 但是适合于 动态排序 (动态转换)
+
+select stuno,stuname,stuage from student where stuname =#{value}
+select stuno,stuname,stuage from student where stuname ='${value}'
+
+动态排序 重点是 不加''
+select * from student order by ${value} asc
+
+#{} 可以放置sql注入 不适合like 在传入值得时候就应该加上 %%
+${} 这个不可以 适合like  eg: '%${stuNo}%'
+
+级联属性
+select * from studentwhere homeaddress = #{address.homeAddress} or schooladdress = '${address.schoolAddress}'

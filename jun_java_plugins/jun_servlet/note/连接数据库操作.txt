@@ -1,0 +1,23 @@
+一、步骤：
+	1、加载数据库驱动：
+		Class.forName("com.mysql.jdbc.Driver");
+	2、利用DriverManager类中的getConnection()方法建立与指定数据库的连接：
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/db_food", "root","root");
+	3、编写SQL语句：
+		select/inert into/update/delete
+	4、利用Connection接口中的createStatement()方法建立Statement对象，Statement对象的作用：已经建立连接的基础上，发送sql语句：
+		Statement stat=null;
+		stat=conn.createStatement();
+	5、获取结果集：
+		ResultSet rs=null;
+		rs=stat.executeQuery(sql);
+	6、取出结果集：
+		while(re.next()){...}
+二、SQL语句的编写：
+	1、查询语句："select * from tb_user where"+"username like '张%'";
+	2、插入语句："insert into tb_user(id,username,password,status) values ("+id+",'"+name+"','"+password+"',"status")";
+	3、删除语句："delete from tb_user where id="+id;
+	4、更新语句："update t_user set username='"+username+"',password='"+password+"',status="+status+" where id="+id;
+
+
+	

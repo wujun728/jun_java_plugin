@@ -1,0 +1,76 @@
+{
+  "properties": [
+    {
+      "name": "ant.core.resources.profile",
+      "type": "java.lang.String",
+      "description": "Profile环境配置.",
+      "defaultValue": ""
+    },
+    {
+      "name": "ant.core.resources.db.dataSource",
+      "type": "java.lang.String",
+      "description": "DB 数据源.",
+      "defaultValue": "cn.antcore.resources.db.datasource.DefaultDataSource"
+    },
+    {
+      "name": "ant.core.resources.db.driveClassName",
+      "type": "java.lang.String",
+      "description": "DB 驱动.",
+      "defaultValue": ""
+    },
+    {
+      "name": "ant.core.resources.db.url",
+      "type": "java.lang.String",
+      "description": "DB 连接字符串.",
+      "defaultValue": ""
+    },
+    {
+      "name": "ant.core.resources.db.username",
+      "type": "java.lang.String",
+      "description": "DB 用户名.",
+      "defaultValue": ""
+    },
+    {
+      "name": "ant.core.resources.db.password",
+      "type": "java.lang.String",
+      "description": "DB 密码.",
+      "defaultValue": ""
+    },
+    {
+      "name": "ant.core.resources.db.tableName",
+      "type": "java.lang.String",
+      "description": "DB 数据库表名.",
+      "defaultValue": ""
+    },
+    {
+      "name": "ant.core.resources.git.uri",
+      "type": "java.lang.String",
+      "description": "Git仓库地址.",
+      "defaultValue": ""
+    },
+    {
+      "name": "ant.core.resources.git.username",
+      "type": "java.lang.String",
+      "description": "Git仓库验证用户名.",
+      "defaultValue": ""
+    },
+    {
+      "name": "ant.core.resources.git.password",
+      "type": "java.lang.String",
+      "description": "Git仓库验证密码.",
+      "defaultValue": ""
+    },
+    {
+      "name": "ant.core.resources.git.branch",
+      "type": "java.lang.String",
+      "description": "Git仓库分支.",
+      "defaultValue": ""
+    },
+    {
+      "name": "ant.core.resources.git.localDir",
+      "type": "java.lang.String",
+      "description": "Git仓库资源本地保存路径.",
+      "defaultValue": ""
+    }
+  ]
+}

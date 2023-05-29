@@ -1,0 +1,15 @@
+/.settings/
+/**/.settings/
+/target/
+/**/target/
+/.idea/
+/*.iml
+/**/*.iml
+/.project
+/**/.project
+/**/.classpath
+*.prefs
+*.classpath
+*.project
+/**/apidoc
+*.log

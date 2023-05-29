@@ -1,0 +1,8 @@
+description "Json数据绑定示例"
+
+dependencies {
+    implementation("com.h2database:h2")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("junit:junit")
+}

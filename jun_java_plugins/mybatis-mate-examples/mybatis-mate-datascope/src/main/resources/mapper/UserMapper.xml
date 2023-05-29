@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mate.datascope.mapper.UserMapper">
+
+    <sql id="testSql">
+        select u.id,u.username,u.mobile from user u, department d where d.id = u.department_id and u.id in
+        <foreach collection="userIds" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        and u.username like CONCAT('%',#{username},'%')
+    </sql>
+
+    <select id="selectDeptNamesByUserIds" resultType="mybatis.mate.datascope.entity.User">
+        <include refid="testSql" />
+    </select>
+
+    <select id="selectTestIgnoreDataScope" resultType="mybatis.mate.datascope.entity.User">
+        <include refid="testSql" />
+    </select>
+
+    <select id="selectTestXmlSql" resultType="mybatis.mate.datascope.entity.User">
+        <include refid="testSql" />
+    </select>
+</mapper>

@@ -1,0 +1,9 @@
+description "数据审计示例"
+
+dependencies {
+    implementation("com.h2database:h2")
+    implementation("org.javers:javers-core")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("junit:junit")
+}

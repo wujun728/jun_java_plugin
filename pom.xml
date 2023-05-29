@@ -14,7 +14,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<modules>
-		<module>jun_java_plugin</module>
+		<module>jun_java_plugins</module>
 		<module>jun_spring_plugin</module>
 		<module>jun_springboot_plugin</module>
 		<module>jun_springcloud_plugin</module>

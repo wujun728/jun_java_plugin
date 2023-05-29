@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8"/>
+  <title>SM4加解密</title>
+</head>
+<body>
+<strong>打开控制台，查看结果</strong>
+<br>脚本来自：https://github.com/JuneAndGreen/sm-crypto
+<script src="sm4.js"></script>
+<script>
+  /**
+   * SM4-ECB-PKCS5Padding对称加密
+   * @param text {string} 要加密的明文
+   * @param secretKey {string} 密钥，43位随机大小写与数字
+   * @returns {string} 加密后的密文，Base64格式
+   */
+  function SM4_ECB_ENCRYPT(text, secretKey) {
+	return sm4.encrypt(text, secretKey).toUpperCase();
+  }
+
+  /**
+   * SM4-ECB-PKCS5Padding对称解密
+   * @param textBase64 {string} 要解密的密文，Base64格式
+   * @param secretKey {string} 密钥，43位随机大小写与数字
+   * @returns {string} 解密后的明文
+   */
+  function SM4_ECB_DECRYPT(textBase64, secretKey) {
+	return sm4.decrypt(textBase64, secretKey);
+  }
+
+</script>
+<script>
+  var message = "sm4对称加密<pkcs5>演示←←";
+  var key = "FA171555405706F73D7B973DB89F0B47";
+
+  var ecbEncrypt = SM4_ECB_ENCRYPT(message, key);
+  console.log("ecb加密", ecbEncrypt);
+  var ecbDecrypt = SM4_ECB_DECRYPT(ecbEncrypt, key);
+  console.log("ecb解密", ecbDecrypt);
+  console.log("明文与解密结果比较---", message === ecbDecrypt)
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<root>
+    <bean super="false">
+        <rate>9.99</rate>
+    </bean>
+</root>

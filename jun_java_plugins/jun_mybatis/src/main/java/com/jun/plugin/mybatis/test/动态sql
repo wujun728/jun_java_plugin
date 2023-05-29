@@ -1,0 +1,67 @@
+<where> 语句会自动处理第一个<if> 标签中的 and 但不会处理之后的<if>
+
+<foreach> 查询id为 1,2,3的信息
+<foreach>迭代的类型: 数组 对象数组 集合 属性类(Grade类： List<Integer> ids)
+ids={1,2,53}
+select stuno,stuname,stuAge from student where stuno in(ids)
+
+
+其中的参数 先拼接open 然后就是item的东西 之后就是close中的东西
+
+<!--    迭代器  将多个元素放入对象中的属性-->
+    <select id="foreach" parameterType="grade" resultType="blog">
+        select * from blog
+        <where>
+           <if test="ids!=null and ids.size>0">
+               <foreach collection="ids" open=" and id in （" close=")" item="id" separator=",">
+                   #{id}
+               </foreach>
+           </if>
+        </where>
+    </select>
+
+<!--    迭代器  将多个元素放入数组中    List<blog> queryBlog(int[] ids)
+         int ids={1,2,3}
+         无论编写代码时候,传递的是什么参数名,在mapper.xml中必须使用array来代替 约定
+         数组固定叫array   -->
+
+
+   <select id="arrayForeach" parameterType="int[]" resultType="blog">
+        select * from blog
+        <where>
+            <if test="array!=null and array.length>0">
+                <foreach collection="array" open=" and id in (" close=")" item="id" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+<!--    迭代器  将多个元素放入集合中
+         List<blog> listForeach(List<Integer> ids);
+         无论编写代码时候,传递的是什么参数名,在mapper.xml中必须使用list来代替 约定
+         集合固定叫list   -->
+   <select id="listForeach" parameterType="list" resultType="blog">
+           select * from blog
+           <where>
+               <if test="list!=null and list.size>0">
+                   <foreach collection="list" open=" and id in (" close=")" item="id" separator=",">
+                       #{id}
+                   </foreach>
+               </if>
+           </where>
+       </select>
+
+    <!--    迭代器  将多个元素放入集合中   blog[] blogs =  {blog1,blog2...}
+             无论编写代码时候,传递的是什么参数名,在mapper.xml中必须使用object来代替 约定
+             对象数组固定叫object  -->
+     <select id="objectForeach" parameterType="Object[]" resultType="blog">
+            select * from blog
+            <where>
+                <if test="array!=null and array.length>0">
+                    <foreach collection="array" open=" and id in (" close=")" item="blog" separator=",">
+                        #{blog.title}
+                    </foreach>
+                </if>
+            </where>
+        </select>

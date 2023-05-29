@@ -28,7 +28,6 @@
 		<module>maven_spring5_multi_modules</module>
 		<module>maven_spring5template</module>
 		<module>maven_springboot_jpa_jsp</module>
-		
 	</modules>
 
 	<dependencies>

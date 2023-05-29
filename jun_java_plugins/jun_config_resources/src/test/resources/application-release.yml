@@ -1,0 +1,18 @@
+ant:
+  core:
+    resources:
+      name: Hong release
+      db:
+        dataSource: cn.antcore.resources.db.datasource.DefaultDataSource
+        driveClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/db_config?characterEncoding=utf-8&useSSL=false
+        username: root
+        password: E|77781F4448CAA0046542033EDDCC97B2 #原始密码是:123456
+        tableName: tb_config
+
+      git:
+        uri:
+        username:
+        password:
+        branch: master
+        localDir:

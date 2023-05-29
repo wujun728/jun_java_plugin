@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--该mapper.xml映射文件的唯一标识-->
+<mapper namespace="nuc.yznl.pojo.studentMapper">
+
+    <!--    一对多   -->
+    <select id="querystudentAndClass" parameterType="int" resultMap="collectionQuery">
+         select s.*,c.* from student s inner join studentclass c
+        on s.class_id = c.class_id
+        where c.class_id = #{classId}
+
+    </select>
+
+    <resultMap id="collectionQuery" type="studentClass">
+        <id property="classId" column="class_id"/>
+        <result property="className" column="class_name" />
+<!--        属性类型 javaType 元素类型 ofType-->
+        <collection property="students"  ofType="student">
+            <id property="id" column="id"/>
+            <result property="name" column="name" />
+            <result property="sex" column="sex" />
+            <result property="classId" column="class_id" />
+        </collection>
+    </resultMap>
+<!--    测试驼峰转换-->
+    <select id="testTf" resultType="student" parameterType="int">
+        select * from student where class_id = #{id}
+    </select>
+<!--   延迟加载所需要的-->
+    <select id="queryAllStudent" resultType="student" parameterType="int">
+         select * from student where class_id = #{class_id};
+    </select>
+
+
+</mapper>

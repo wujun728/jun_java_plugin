@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<ehcache>
+   <!-- 
+         磁盘存储:将缓存中暂时不使用的对象,转移到硬盘,类似于Windows系统的虚拟内存
+          path:指定在硬盘上存储对象的路径
+   -->
+   <diskStore path="C:\ehcache" />
+    
+   <!-- 
+        defaultCache:默认的缓存配置信息,如果不加特殊说明,则所有对象按照此配置项处理
+        maxElementsInMemory:设置了缓存的上限,最多存储多少个记录对象
+        eternal:代表对象是否永不过期
+        overflowToDisk:当内存中Element数量达到maxElementsInMemory时，Ehcache将会Element写到磁盘中
+   -->
+   <defaultCache
+      maxElementsInMemory="100"
+      eternal="true"
+      overflowToDisk="true"/>
+ 
+     
+    <cache 
+      name="a"
+      maxElementsInMemory="100"
+      eternal="true"
+      overflowToDisk="true"/>
+ 
+</ehcache>

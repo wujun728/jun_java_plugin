@@ -1,0 +1,5 @@
+当属性名字和字段名不一致的时候,除了使用resultMap以外,还可以使用resultType + HashMap
+
+<select id="QueryByHashMap" parameterType="int" resultType="blog">
+         select id "stuNo",name "stuName" from blog where id =#{id}
+</select>

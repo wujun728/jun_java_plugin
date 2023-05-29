@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--该mapper.xml映射文件的唯一标识-->
+<mapper namespace="nuc.yznl.pojo.studentClassMapper">
+
+
+
+    <!--    一对多   延迟加载-->
+    <select id="querystudentAndClassLazy" parameterType="int" resultMap="collectionQueryLazy">
+--                 先查询班级 再查询班级的学生
+         select c.* from  studentclass c where class_id = #{classId}
+    </select>
+
+    <resultMap id="collectionQueryLazy" type="studentClass">
+        <id property="classId" column="class_id"/>
+        <result property="className" column="class_name" />
+        <!--        属性类型 javaType 元素类型 ofType
+                   再查询班级对应的学生       -->
+        <collection property="students"  ofType="student" select="nuc.yznl.pojo.studentMapper.queryAllStudent" column="class_id"></collection>
+    </resultMap>
+
+</mapper>

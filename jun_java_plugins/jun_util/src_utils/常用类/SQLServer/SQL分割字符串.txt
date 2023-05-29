@@ -1,0 +1,31 @@
+alter procedure sp_split_string
+(
+    @string        NVARCHAR(4000),--要分割的字符串
+    @SpLitString  varchar(2000) --中间的分割符
+)
+AS
+BEGIN
+    DECLARE @object_id     nvarchar(500)
+    DECLARE    @i          INT
+    DECLARE    @len        INT    
+    print @string
+    IF (@string IS NULL) OR (LTRIM(@string) = '')
+        RETURN
+    --查找字符串@string的中是否包含@SpLitString字符
+    WHILE CHARINDEX(@SpLitString,@string) > 0
+        BEGIN
+            SET @len = LEN(@string)--总的长度
+            print @len
+            SET @i = CHARINDEX(@SpLitString, @string)--找到第一个包含分割符的地方
+             print @i
+            SET @object_id = LEFT(@string, @i-1)--截取开始到分割前一个数据（分割数据）--右边开始算
+            print 'object_id='+ @object_id
+           -- -INSERT INTO a (id) VALUES (@object_id)--少做修改，改成需要的sql语句即可
+            SET @string = RIGHT(@string, @len - @i)--给变量从新复制数据-从分割符后面到整个长度-RIGHT从左边开始算
+        END
+    SET @object_id = @string
+--    INSERT INTO a (id) VALUES (@object_id)--少做修改，改成需要的sql语句即可
+END
+go
+
+exec sp_split_string '102,103,105,106,107,108,200,500,306,408',','

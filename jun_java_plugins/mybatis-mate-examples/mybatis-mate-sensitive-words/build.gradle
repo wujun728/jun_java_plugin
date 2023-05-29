@@ -1,0 +1,10 @@
+description "请求参数 敏感词 过滤示例"
+
+dependencies {
+    implementation("com.h2database:h2")
+    // AC 算法依赖
+    implementation("org.ahocorasick:ahocorasick:0.6.3")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("junit:junit")
+}

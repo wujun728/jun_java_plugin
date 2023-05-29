@@ -1,0 +1,34 @@
+关联查询
+一对一:  业务扩展类
+ <select id="" parameterType="int" resultType="业务扩展类(继承属性多的)" >
+     select s.*,c.* from student s inner join studentCard c
+     on s.cardid = c.cardid
+     where s.stuno = #{stuNo}
+ </select>
+一对一:  resultMap 将其中的一个类作为属性作为其中的一个类的成员
+ <select id="" parameterType="int" resultMap="**" >
+     select s.*,c.* from student s inner join studentCard c
+     on s.cardid = c.cardid
+     where s.stuno = #{stuNo}
+ </select>
+ <resultMap id="**" type="属性多的">
+    <!-- 学生的信息 -->
+    <id property="stuNo" column="stuNo"/>
+    <result properties="stuName" column="stuName" />
+    <!-- yiyi映射 填写对象名 private StudentCard card-->
+    <association property="card" javaType="StudentCard">
+           <id property="cardId" column="cardId"/>
+           <result property="cardInfo" column="cardInfo" />
+    </association>
+ </resultMap>
+
+
+ 一对多 collection 关联:
+     通过该字段将student和studentClass之间建立起来联系
+     private List<student> students;
+   <select id="querystudentAndClassLazy" parameterType="int" resultMap="collectionQueryLazy">
+        select s.*,c.* from student s inner join studentclass c
+        on s.class_id = c.class_id
+        where c.class_id = #{classId}
+    </select>
+

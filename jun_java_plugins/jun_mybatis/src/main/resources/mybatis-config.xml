@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="db.properties"/>
+   <settings>
+     <setting name="mapUnderscoreToCamelCase" value="true"/>
+     <setting name="logImpl" value="LOG4J"/>
+     <setting name="lazyLoadingEnabled" value="true"/>
+<!--       关闭立即加载-->
+     <setting name="aggressiveLazyLoading" value="false"/>
+   </settings>
+    <typeAliases>
+         <package name="nuc.yznl.pojo"/>
+    </typeAliases>
+
+<!--    配置转换器-->
+    <typeHandlers>
+         <typeHandler handler="nuc.yznl.converter.booleanAndInt" javaType="boolean" jdbcType="INTEGER"/>
+    </typeHandlers>
+
+    <environments default="development">
+
+        <environment id="development">
+            <!--          事务提交方式
+                  JDBC： 传统的jdbc方式处理事务 commit rollback close
+                  managed: 将事务交由其它的组件去托管(spring jboss),默认使用完会关闭事务链接
+                  如果不想关闭 可以配置
+                  <property name="closeConnection" value="false"/>
+                  -->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+            <!--         数据源类型
+                  Unpooled： 传统的jdbc 打开链接 释放连接
+                  pooled：使用数据库连接池 一般是三方连接池
+                  jndi: 从tomcat中获取一个内置的数据库连接池
+                  -->
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+        <mappers>
+            <mapper resource="nuc/yznl/pojo/blogMapperInterface.xml"/>
+            <mapper resource="nuc/yznl/pojo/studentMapper.xml"/>
+            <mapper resource="nuc/yznl/pojo/studentClassMapper.xml"/>
+        </mappers>
+</configuration>

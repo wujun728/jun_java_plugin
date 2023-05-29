@@ -1,0 +1,136 @@
+package ${dao_p};
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.orm.ibatis.SqlMapClientTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.caland.common.page.Pagination;
+import ${entity_p}.${Entity};
+import ${query_p}.${Entity}Query;
+
+@Repository
+public class ${Entity}Dao {
+
+	@Resource
+	SqlMapClientTemplate sqlMapClientTemplate;
+
+	public <@fieldType type=fields[0].fieldType/> add${Entity}(${Entity} ${entity}) throws SQLException {
+		return (<@fieldType type=fields[0].fieldType/>) this.sqlMapClientTemplate.insert("${Entity}.insert${Entity}", ${entity});
+	}
+
+	/**
+	 * 根据主键查找
+	 * 
+	 * @throws SQLException
+	 */
+	public ${Entity} get${Entity}ByKey(<@fieldType type=fields[0].fieldType/> id) throws SQLException {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		${Entity} result = (${Entity}) this.sqlMapClientTemplate.queryForObject(
+				"${Entity}.get${Entity}ByKey", params);
+		return result;
+	}
+
+	/**
+	 * 根据主键批量查找
+	 * 
+	 * @throws SQLException
+	 */
+	public List<${Entity}> get${Entity}ByKeys(List<<@fieldType type=fields[0].fieldType/>> idList) throws SQLException {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("keys", idList);
+		return (List<${Entity}>) this.sqlMapClientTemplate.queryForList(
+				"${Entity}.get${Entity}sByKeys", params);
+	}
+
+	/**
+	 * 根据主键删除
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
+	public Integer deleteByKey(<@fieldType type=fields[0].fieldType/> id) throws SQLException {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		Integer row = (Integer) this.sqlMapClientTemplate.delete(
+				"${Entity}.deleteByKey", params);
+		return row;
+	}
+
+	/**
+	 * 根据主键批量删除
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
+	public Integer deleteByKeys(List<<@fieldType type=fields[0].fieldType/>> idList) throws SQLException {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("keys", idList);
+		Integer row = (Integer) this.sqlMapClientTemplate.delete(
+				"${Entity}.deleteByKeys", params);
+		return row;
+	}
+
+	/**
+	 * 根据主键更新
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
+	public Integer update${Entity}ByKey(${Entity} ${entity}) throws SQLException {
+		return (Integer) this.sqlMapClientTemplate.update(
+				"${Entity}.update${Entity}ByKey", ${entity});
+	}
+
+	@SuppressWarnings("unchecked")
+	public Pagination get${Entity}ListWithPage(${Entity}Query ${entity}Query) {
+		Pagination p = null;
+		try {
+			p = new Pagination(${entity}Query.getPage(), ${entity}Query.getPageSize(), (Integer) this.sqlMapClientTemplate.queryForObject(
+					"${Entity}.get${Entity}ListCount", ${entity}Query));
+			if (${entity}Query.getFields() != null && ${entity}Query.getFields() != "") {
+				p.setList((List<${Entity}>) this.sqlMapClientTemplate.queryForList(
+						"${Entity}.get${Entity}ListWithPageFields", ${entity}Query));
+			} else {
+				p.setList((List<${Entity}>) this.sqlMapClientTemplate.queryForList(
+						"${Entity}.get${Entity}ListWithPage", ${entity}Query));
+			}
+		} catch (Exception e) {
+
+		}
+		return p;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<${Entity}> get${Entity}List(${Entity}Query ${entity}Query) throws SQLException {
+		if (${entity}Query.getFields() != null && ${entity}Query.getFields() != "") {
+			return (List<${Entity}>) this.sqlMapClientTemplate.queryForList(
+					"${Entity}.get${Entity}ListFields", ${entity}Query);
+		}
+		return (List<${Entity}>) this.sqlMapClientTemplate.queryForList(
+				"${Entity}.get${Entity}List", ${entity}Query);
+	}
+}
+<#macro fieldType type>
+	<#if type?contains("bigint")>
+	Long<#t/>
+	<#elseif type?contains("int")>
+	Integer<#t/>
+	<#elseif type?contains("datetime")>
+	Date<#t/>
+	<#elseif type?contains("binary") || type?contains("blob")>
+	Byte[]<#t/>
+	<#elseif type?contains("float")>
+	Float<#t/>
+	<#elseif type?contains("double")>
+	Double<#t/>
+	<#else>
+	String<#t/>
+	</#if>
+</#macro>

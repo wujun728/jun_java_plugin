@@ -1,0 +1,70 @@
+有如下四张表：
+student(sid,sname,sage,ssex) 学生表
+course(cid,cname,tid) 课程表
+SC(sid,cid,score) 成绩表
+teacher(tid,tname) 教师表
+
+select
+from 
+where 
+group by 
+having
+order by 
+limit 
+ 	
+1.查询01课程比02课程成绩高的学生的信息以及课程分数？
+2.查询所有课程成绩小于60分的同学的学号、姓名？
+3.查询学过编号01并且也学过编号02的课程的同学的信息？
+4.查询没有学全所有课程的同学的信息？ 
+5.查询没有学过张三老师讲授的任一门课程的学生姓名？
+6.查询两门及以上不及格课程的同学的学号，姓名以及其平均成绩？
+7.统计各科成绩各分数段的人数：课程编号，课程名称 【100-85】【85-70】【70-60】【0-60】？
+8.把“SC”表中叶老师教的课的成绩都更改为此课程的平均成绩？
+9.不用max()求学号最大的学生信息
+10.查询和“1002”号的同学学习的课程完全相同的其他同学学号和姓名；
+
+
+1.查询01课程比02课程成绩高的学生的信息以及课程分数？
+select a.sid,a.score from sc a,sc b
+where a.sid=b.sid and a.cid=1 and b.cid=2 and a.score>b.score;
+2.查询所有课程成绩小于60分的同学的学号、姓名？
+select s.sid,s.sname from sc,student s where sc.sid=s.sid group by sid having max(score)<70;
+3.查询学过编号01并且也学过编号02的课程的同学的信息？
+select a.sid from sc a,sc b where a.sid=b.sid and a.cid=1 and b.cid=2;
+4.查询没有学全所有课程的同学的信息？
+select  distinct  sid from sc where sid not in(
+select  sid from sc group by sid having count(cid)=(select count(cid)-2 from course)); 
+5.查询没有学过张三老师讲授的任一门课程的学生姓名？
+select s.sid from student s
+where s.sid not in(
+select sc.sid from sc
+where sc.cid in(
+select c.cid from course c,teacher t
+where c.tid=t.tid and t.tname='zou'));
+6.查询两门及以上不及格课程的同学的学号，姓名以及其平均成绩？
+select s.sid,s.sname,c.agc
+from student s,(select sid,avg(score) agc from sc where score<75 
+group by sid having count(cid)>=2) c
+where s.sid=c.sid;
+7.统计各科成绩各分数段的人数：课程编号，课程名称 【100-85】【85-70】【70-60】【0-60】？
+select cid, 
+sum(case  when score>=85 then 1 else 0 end) "【100-85】",
+sum(case  when score>=70 and score<85 then 1 else 0 end) "【85-70】" ,
+sum(case  when score>=60 and score<70 then 1 else 0 end) "【70-60】" ,
+sum(case  when score<60 then 1 else 0 end) "【0-60】" 
+from sc 
+group by sc.cid;
+8.把“SC”表中叶老师教的课的成绩都更改为此课程的平均成绩？
+update   sc,
+(select sc.cid tc,avg(sc.score) tcs from sc,teacher t,course c where sc.cid=c.cid and c.tid=t.tid and t.tname='李老师' group by sc.cid) t
+set score=t.tcs 
+where cid=t.tc;
+9.不用max()求学号最大的学生信息
+select sid from student order by sid desc limit 0,1;
+10.查询和“1002”号的同学学习的课程完全相同的其他同学学号和姓名；
+select sc.sid,(select count(cid) from sc where sid = 2) n
+from  sc left join (select * from sc where sid = 2) a 
+on sc.cid=a.cid
+where sc.sid!=2 
+group by sc.sid
+having    count(sc.cid)= n and count(a.cid)=n;

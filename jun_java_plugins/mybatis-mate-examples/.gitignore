@@ -1,0 +1,23 @@
+# ignore file
+*.iml
+*.log
+*.logs
+*.ipr
+*.classpath
+*.project
+/hs_err_pid*.log
+
+# ignore direcoties
+transaction-logs
+tmlog*
+/c:/
+**/out/**
+/logs/
+**/contiperf-report/
+**/build/
+**/target/
+.gradle/
+.idea/
+.settings/
+bin/
+/hs_err*.log
