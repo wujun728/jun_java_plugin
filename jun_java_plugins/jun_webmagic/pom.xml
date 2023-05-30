@@ -10,7 +10,8 @@
 	<groupId>com.jun.plugin</groupId>
 	<artifactId>jun_webmagic</artifactId>
 	<version>1.0</version>
-	<build>
+
+	<!--<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -23,12 +24,9 @@
 			</plugin>
 		</plugins>
 
-	</build>
+	</build>-->
 
-	<packaging>war</packaging>
-
-	<name>jun_webmagic</name>
-	<url>http://maven.apache.org</url>
+	<packaging>jar</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

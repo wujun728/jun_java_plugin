@@ -16,43 +16,43 @@ import us.codecraft.webmagic.monitor.SpiderMonitor;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 public class myImageProcess implements PageProcessor{
-	//Ò³ÃæURLµÄÕýÔò±í´ïÊ½
-    //.ÊÇÆ¥ÅäËùÓÐµÄ×Ö·û£¬//.±íÊ¾Ö»Æ¥ÅäÒ»¸ö£¬//.?Í¬Àí
+	//Ò³URLÊ½
+    //.Æ¥ÐµÖ·//.Ê¾Ö»Æ¥Ò»//.?Í¬
 	
     private static String REGEX_PAGE_URL = "http://www\\.win4000\\.com/zt/gaoqing_\\w+.html";
-    //ÅÀÈ¡µÄÒ³Êý
+    //È¡Ò³
     public static int PAGE_SIZE = 6;
-    //ÏÂÔØÕÅÊý
+    //
     public static int INDEX_PHOTO =1;
     
 	public void process(Page page) {
 		  List<String> SpidertURL = new ArrayList<String>();
 		  
-	        for (int i = 2; i < PAGE_SIZE; i++){//Ìí¼Óµ½Ä¿±êurlÖÐ
+	        for (int i = 2; i < PAGE_SIZE; i++){//ÓµÄ¿url
 	        	SpidertURL.add("http://www.win4000.com/zt/gaoqing_" + i + ".html");
 	        }
-	        //Ìí¼Óurlµ½ÇëÇóÖÐ
+	        //url
 	        page.addTargetRequests(SpidertURL);
-	        //ÊÇÍ¼Æ¬ÁÐ±íÒ³Ãæ
+	        //Í¼Æ¬Ð±Ò³
 	        System.out.println(page.getUrl());
 	        if (page.getUrl().regex(REGEX_PAGE_URL).match()) {
-	            //»ñµÃËùÓÐÏêÇéÒ³µÄÁ¬½Ó
+	            //Ò³
 	            //page.getHtml().xpath("//a[@class=\"title\"]").links().all();
 	            List<String> detailURL = page.getHtml().xpath("//ul[@class='clearfix']/li/a").links().all();
 	            int x = 1;
-	            for (String str:detailURL){//Êä³öËùÓÐÁ¬½Ó
+	            for (String str:detailURL){//
 	            	System.out.println(x+"----"+str);
 	            	x++;
 	            }
 	            page.addTargetRequests(detailURL);
-	        } else {//ÏêÇéÒ³
+	        } else {//Ò³
 	        		String detailUrl = page.getUrl().toString();
 	        		System.out.println(detailUrl);
 	                String picURL = page.getHtml().xpath("//div[@class='pic-meinv']/a").css("img", "src").toString();
 	                System.out.println(picURL);
 	                String currentIndex = page.getHtml().xpath("//div[@class='ptitle']/span/text()").toString();
 	                String picname = page.getHtml().xpath("//div[@class='ptitle']/h1/text()").toString();
-	                if(!"1".equals(currentIndex)){//Èç¹û²»ÊÇµÚÒ»Ò³£¬ÔòÍ¼Æ¬Ãû³Æ¼ÓÉÏÒ³ÂëË³Ðò
+	                if(!"1".equals(currentIndex)){//ÇµÒ»Ò³Í¼Æ¬Æ¼Ò³Ë³
 	                	picname = picname+"_"+detailUrl;
 //	                	picname = picname+"_"+StringUtil.getURLIndex(detailUrl);
 	                }
@@ -68,13 +68,13 @@ public class myImageProcess implements PageProcessor{
 	                System.out.println(picname);
 	                try {
 	                    /**
-	                     * String Í¼Æ¬µØÖ·
-	                     * String Í¼Æ¬Ãû³Æ
-	                     * String ±£´æÂ·¾¶
+	                     * String Í¼Æ¬Ö·
+	                     * String Í¼Æ¬
+	                     * String Â·
 	                     */
 	                	if(picURL !=null){
 //	                		DownloadUtil.download( picURL, picname + ".jpg", "E:\\image3\\");
-	                		System.out.println("µÚ"+(INDEX_PHOTO++)+"ÕÅ"+",picname="+picname+",picURL="+picURL);
+	                		System.out.println(""+(INDEX_PHOTO++)+""+",picname="+picname+",picURL="+picURL);
 	                	}
 	                } catch (Exception e) {
 	                    e.printStackTrace();
@@ -90,13 +90,13 @@ public class myImageProcess implements PageProcessor{
 	
 	public static void main(String [] args) throws JMException{
 		Date stdate = new Date();
-		System.out.println("¿ªÊ¼Ê±¼ä£º"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(stdate));
+		System.out.println("Ê¼Ê±ä£º"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(stdate));
 		Spider picSpider = Spider.create(new myImageProcess()).addUrl("http://www.win4000.com/zt/gaoqing_1.html")
 		.thread(5);
 		SpiderMonitor.instance().register(picSpider);
 		picSpider.start();
 		Date edDate = new Date();
-		System.out.println("½áÊøÊ±¼ä£º"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(edDate));
-		System.out.println("¹²ºÄÊ±"+(edDate.getTime()-stdate.getTime())/1000/60+"·ÖÖÓ");
+		System.out.println("Ê±ä£º"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(edDate));
+		System.out.println("Ê±"+(edDate.getTime()-stdate.getTime())/1000/60+"");
 	}
 }

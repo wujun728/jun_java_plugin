@@ -44,7 +44,7 @@ public class MysqlDBUtils {
 
     public static void selectTest() {
 
-        //以下为一个查询的例子，和正常的jdbc操作�?�?
+        //以下为一个查询的例子，和正常的jdbc操作??
         String sql = "select * from sys_user";
         PreparedStatement pstmt;
         try {

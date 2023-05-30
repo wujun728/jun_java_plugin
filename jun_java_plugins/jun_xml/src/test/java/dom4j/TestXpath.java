@@ -21,15 +21,15 @@ public class TestXpath {
         reader.read("src/books.xml");
 			Node root = 
         doc.selectSingleNode("/bookstore");
-      //root.selectNodes("book[author='¹ÅÁú']");
+      //root.selectNodes("book[author='']");
       //root.selectNodes("book[price<40]");
       //root.selectNodes("book[@category='WEB']");
 			//root.selectNodes("book[title[@lang='zh']]");
-			//root.selectNodes("book[author='½ðÓ¹' and price>50]");
+			//root.selectNodes("book[author='Ó¹' and price>50]");
 			//root.selectNodes("book[title[@lang='zh'] and price>50]");
-      //root.selectNodes("book[author='½ðÓ¹' or author='¹ÅÁú']");
+      //root.selectNodes("book[author='Ó¹' or author='']");
       List list = 
-        root.selectNodes("book[title='ÌìÁú°Ë²¿']");
+        root.selectNodes("book[title='Ë²']");
 			for (Object o : list) {
 				Element e = (Element) o;//e = book
 				System.out.println(e.elementText("title"));

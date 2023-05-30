@@ -11,15 +11,15 @@ public class ReadXml {
     String fileName = 
       "src/dom4j/book.xml";
     ReadXml test = new ReadXml();
-    //»ñµÃDocument¶ÔÏó
+    //Document
     Document doc = test.read(fileName);
-    //»ñµÃ¸ùÔªËØ
+    //Ã¸Ôª
     Element root = test.getRootElement(doc);
-    //±éÀú¸ùÔªËØÏÂµÄ¼ÆËã»úÊé¼®
+    //ÔªÂµÄ¼é¼®
     test.list(root);
   }
 
-  // ´ÓÎÄ¼ş¶ÁÈ¡XML£¬ÊäÈëÎÄ¼şÃû£¬·µ»ØXMLÎÄµµ
+  // Ä¼È¡XMLÄ¼XMLÄµ
   public Document read(String fileName) 
   throws DocumentException {
     SAXReader reader = new SAXReader();
@@ -33,12 +33,12 @@ public class ReadXml {
   }
 
   public void list(Element root) {
-    // ±éÀúÃû³ÆÎª¼ÆËã»úÊé¼®µÄ½Úµã
+    // Îªé¼®Ä½Úµ
     for (Iterator i = 
-      root.elementIterator("¼ÆËã»úÊé¼®"); 
+      root.elementIterator("é¼®"); 
     i.hasNext();) {
       Element book = (Element) i.next();
-      // ±éÀú¼ÆËã»úÊé¼®µÄÊôĞÔ
+      // é¼®
       for (Iterator it = 
         book.attributeIterator(); 
       it.hasNext();) {
@@ -50,11 +50,11 @@ public class ReadXml {
       }
 
       String bookname = 
-        book.elementText("ÊéÃû");
+        book.elementText("");
       String author = 
-        book.elementText("×÷Õß");
+        book.elementText("");
       String price = 
-        book.elementText("¼Û¸ñ");
+        book.elementText("Û¸");
       
       /*String sql = "insert into book" + 
        *" values(?,?,?)";
@@ -68,19 +68,19 @@ public class ReadXml {
       
       
       System.out.println(bookname);
-      System.out.println(book.elementText("¼Û¸ñ"));
-      System.out.println(book.elementText("×÷Õß"));
+      System.out.println(book.elementText("Û¸"));
+      System.out.println(book.elementText(""));
 
-      // ±éÀú¼ÆËã»úÊé¼®µÄ×Ó½Úµã¡°×÷Õß¡±µÄÊôĞÔ
+      // é¼®Ó½Úµã¡°ß¡
       for (Iterator it = 
-        book.element("×÷Õß").attributeIterator(); 
+        book.element("").attributeIterator(); 
       it.hasNext();) {
         Attribute attribute = 
           (Attribute) it.next();
         System.out.println(attribute.getName() 
             + ":" + attribute.getValue());
       }
-      System.out.println(book.elementText("¼ò½é"));
+      System.out.println(book.elementText(""));
     }
   }
 
