@@ -34,8 +34,6 @@ public class JMemoryJavaFileObject extends JAbstractJavaFileObject {
     /**
      * 遵循Java规范的类名
      * 
-     * @param className
-     * @param content
      */
     public JMemoryJavaFileObject(String className, Kind kind) {
         super(className, kind);
@@ -50,7 +48,6 @@ public class JMemoryJavaFileObject extends JAbstractJavaFileObject {
     /**
      * 获得编译后的字节数组
      * 
-     * @return
      */
     public byte[] getCompiledBytes() {
         return this.compileStream.toByteArray();

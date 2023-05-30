@@ -72,9 +72,6 @@ public class JMemoryJavaCompiler implements Closeable {
     /**
      * 编译
      * 
-     * @param content
-     * @return
-     * @throws Exception
      */
     public JCompileResult compile(String content) throws Exception {
         return this.compile(getFullClassName(content), content);
@@ -83,10 +80,6 @@ public class JMemoryJavaCompiler implements Closeable {
     /**
      * 编译
      * 
-     * @param className
-     * @param content
-     * @return
-     * @throws Exception
      */
     public JCompileResult compile(String className, String content) throws Exception {
         DiagnosticCollector<JavaFileObject> diagnosticCollector = new DiagnosticCollector<>();
@@ -105,8 +98,6 @@ public class JMemoryJavaCompiler implements Closeable {
     /**
      * 通过代码简单解析全限定类名
      * 
-     * @param content
-     * @return
      */
     private String getFullClassName(String content) {
         StringBuilder builder = new StringBuilder();
@@ -126,8 +117,6 @@ public class JMemoryJavaCompiler implements Closeable {
     /**
      * 类编译锁
      * 
-     * @param className 类名
-     * @return 锁对象
      */
     private Object getClassCompilingLock(String className) {
         Object lock = this;

@@ -13,8 +13,6 @@
 	<version>1.0</version>
 	<packaging>war</packaging>
 
-	<name>jun_fileupload Maven Webapp</name>
-	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

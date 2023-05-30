@@ -32,8 +32,6 @@ public class JStringJavaFileObject extends JAbstractJavaFileObject {
     /**
      * 遵循Java规范的类名及文件
      * 
-     * @param className
-     * @param content
      */
     public JStringJavaFileObject(String className, String content) {
         super(className, Kind.SOURCE);

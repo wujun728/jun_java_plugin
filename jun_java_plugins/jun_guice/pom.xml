@@ -12,9 +12,6 @@
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>guice-demo</name>
-	<url>http://maven.apache.org</url>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.11</junit.version>

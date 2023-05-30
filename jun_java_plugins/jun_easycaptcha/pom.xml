@@ -23,10 +23,6 @@
         </plugins>
     </build>
 
-    <name>EasyCaptcha</name>
-    <description>Java web graphics verification code, support gif verification code.</description>
-    <url>https://github.com/whvcse/EasyCaptcha</url>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

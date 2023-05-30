@@ -37,10 +37,6 @@ public class JCompileBytesClassLoader extends ClassLoader {
 
     /**
      * 加载编译后的字节码
-     * 
-     * @param className
-     * @param compileBytes
-     * @return
      */
     public Class<?> loadCompileBytesClass(String className, byte[] compileBytes) {
         return new JCompileBytesClassLoader().defineClass(className, compileBytes, 0, compileBytes.length);
@@ -49,10 +45,6 @@ public class JCompileBytesClassLoader extends ClassLoader {
     /**
      * 加载编译后的字节码
      * 
-     * @param className
-     * @param compileBytes 不会自动关闭
-     * @return
-     * @throws IOException
      */
     public Class<?> loadCompileBytesClass(String className, InputStream compileBytes) throws IOException {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();

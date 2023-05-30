@@ -132,7 +132,7 @@ public class JsonUtil {
 	// *************************************************************************************
 	// *************************************************************************************
 	/**
-	 * List转换成Json字符�?
+	 * List转换成Json字符
 	 */
 	public static String listToJson(List list, final String[] filters) {
 		if (null == list || list.size() == 0) {
@@ -167,12 +167,12 @@ public class JsonUtil {
 	}
 
 	/**
-	 * Object转换成Json字符�?
+	 * Object转换成Json字符
 	 * 
 	 * @param object
-	 *            源对�?
+	 *            源对
 	 * @param ignorFields
-	 *            忽略属�?�数�?
+	 *            忽略属�数
 	 * @return
 	 */
 	public static String objectToJson(Object object, final String[] ignorFields) {
@@ -206,7 +206,7 @@ public class JsonUtil {
 	}
 
 	/**
-	 * 输出Json字符串到客户�?
+	 * 输出Json字符串到客户
 	 * 
 	 * @param jsonModel
 	 *            json模型
@@ -233,11 +233,11 @@ public class JsonUtil {
 	// *************************************************************************************
 
 	/**
-	 * jquery-Treeview树形菜单json数据生成工具�? @描述�?
-	 * 由于jquery_treeview插件�?要的json数据属�?�格式是固定的，无法用json-lib自动生成，除非实体类属�?�与之对�?
-	 * 采用ajax异步加载子节点方式，初始阶段只加载顶级节�? 生成的json格式如下�? { "id":"1", //id "text":"aaa",
-	 * //显示�? "value":"1", //提交�? "expanded":true, //是否展开 "hasChildren":true,
-	 * //是否有子节点 "ChildNodes":[{},{}], //子节点集�? "showcheck":true, //是否显示checkbox
+	 * jquery-Treeview树形菜单json数据生成工具 @描述
+	 * 由于jquery_treeview插件要的json数据属�格式是固定的，无法用json-lib自动生成，除非实体类属�与之对
+	 * 采用ajax异步加载子节点方式，初始阶段只加载顶级节 生成的json格式如下 { "id":"1", //id "text":"aaa",
+	 * //显示 "value":"1", //提交 "expanded":true, //是否展开 "hasChildren":true,
+	 * //是否有子节点 "ChildNodes":[{},{}], //子节点集 "showcheck":true, //是否显示checkbox
 	 * "complete":false //是否已加载子节点 }
 	 * 
 	 * @author Lanxiaowei

@@ -63,7 +63,6 @@ public class JCompileResult {
     /**
      * 是否成功
      * 
-     * @return
      */
     public boolean isSuccess() {
         return success;
@@ -72,7 +71,6 @@ public class JCompileResult {
     /**
      * 获得编译使用时间
      * 
-     * @return
      */
     public long getUseTime() {
         return useTime;
@@ -85,7 +83,6 @@ public class JCompileResult {
     /**
      * 将诊断结果转换为字符串
      * 
-     * @return
      */
     public String getDiagnostics() {
         StringBuilder builder = new StringBuilder();
@@ -98,7 +95,6 @@ public class JCompileResult {
     /**
      * 获得类名
      * 
-     * @return
      */
     public String getClassName() {
         return className;
@@ -107,7 +103,6 @@ public class JCompileResult {
     /**
      * 获得编译后字节码的字节数组
      * 
-     * @return
      */
     public byte[] getCompiledBytes() {
         return compiledBytes;
@@ -116,8 +111,6 @@ public class JCompileResult {
     /**
      * 创建对象
      * 
-     * @return
-     * @throws Exception
      */
     public Object newInstance() throws Exception {
         return this.getCompiledClass().newInstance();
@@ -126,7 +119,6 @@ public class JCompileResult {
     /**
      * 获得编译后的类
      * 
-     * @return
      */
     public Class<?> getCompiledClass() {
         if (this.compiledClass == null) {
