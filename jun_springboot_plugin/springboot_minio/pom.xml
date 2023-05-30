@@ -13,8 +13,6 @@
     <artifactId>springboot_minio</artifactId>
     <version>1.0</version>
     
-    
-    <name>spring-boot-minio</name>
     <description>MinIO 对象存储系统</description>
 
     <properties>

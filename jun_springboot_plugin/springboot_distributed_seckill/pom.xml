@@ -7,8 +7,6 @@
 	  <artifactId>springboot_distributed_seckill</artifactId>
 	  <version>1.0</version>
   
-	<name>distributed-seckill</name>
-
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

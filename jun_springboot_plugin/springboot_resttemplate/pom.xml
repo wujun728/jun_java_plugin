@@ -9,7 +9,6 @@
 	<version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>springboot-resttemplate</name>
     <description>使用RestTemplate访问RESTful API接口</description>
 
     <parent>

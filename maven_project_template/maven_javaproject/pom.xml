@@ -6,8 +6,6 @@
     <artifactId>maven_javaproject</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <name>maven_javaproject</name>
-    <url>http://www.java.com</url>
 
     <!-- 共用的一些属性定义 -->
     <properties>

@@ -5,11 +5,8 @@
 
     <groupId>com.project</groupId>
     <artifactId>springboot_dynamic_datasource2</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
-
-    <name>dynamicDataSource</name>
-    <description>Demo project for Spring Boot</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

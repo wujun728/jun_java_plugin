@@ -7,8 +7,6 @@
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-    <name>kisso_springboot</name>
-    <url>http://maven.apache.org</url>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>

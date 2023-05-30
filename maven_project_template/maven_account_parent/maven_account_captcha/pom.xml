@@ -8,7 +8,6 @@
 	</parent>
 
 	<artifactId>maven_account_captcha</artifactId>
-	<name>Account Captcha</name>
 
 	<properties>
 		<kaptcha.version>2.3</kaptcha.version>

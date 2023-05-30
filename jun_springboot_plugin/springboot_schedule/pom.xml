@@ -9,7 +9,6 @@
 	<version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>springboot-schedule</name>
     <description>定时任务</description>
 
     <parent>

@@ -9,7 +9,6 @@
 	<version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>springboot-echarts</name>
     <description>通过接口实现Echarts图片保存</description>
 
     <parent>

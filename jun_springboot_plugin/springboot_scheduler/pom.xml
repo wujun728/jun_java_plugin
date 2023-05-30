@@ -8,7 +8,6 @@
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>spring-boot-scheduler</name>
 	<description>Demo project for Spring Boot and scheduler</description>
 
 	<parent>

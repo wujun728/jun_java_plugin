@@ -4,10 +4,11 @@
 
   <parent>
   	<groupId>com.jun.user</groupId>
-    <artifactId>maven_spring4_parent</artifactId>
+    <artifactId>maven_spring4_multi_modules</artifactId>
     <version>1.0</version>
-  </parent>	
-  
+  </parent>
+
+
   <artifactId>maven_spring4_common</artifactId>
   <packaging>jar</packaging>
 

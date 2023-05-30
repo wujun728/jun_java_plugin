@@ -9,7 +9,6 @@
 	<version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>springboot-shiro</name>
     <description>集成Shiro权限管理</description>
 
     <parent>

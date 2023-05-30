@@ -9,7 +9,6 @@
 	<version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>springboot-socketio</name>
     <description>集成SocketIO实时通信</description>
 
     <parent>

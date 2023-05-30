@@ -9,7 +9,6 @@
 	<version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>springboot-starter</name>
     <description>自己写starter</description>
 
     <parent>

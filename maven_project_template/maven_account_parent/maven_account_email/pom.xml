@@ -9,7 +9,6 @@
 	</parent>
 	
 	<artifactId>maven_account_email</artifactId>
-	<name>Account Email</name>
 
 	<properties>
 		<javax.mail.version>1.4.1</javax.mail.version>

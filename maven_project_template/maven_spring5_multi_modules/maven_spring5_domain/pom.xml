@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>com.jun</groupId>
-        <artifactId>maven_spring5_parent</artifactId>
+        <artifactId>maven_spring5_multi_modules</artifactId>
         <version>1.0</version>
     </parent>
 
