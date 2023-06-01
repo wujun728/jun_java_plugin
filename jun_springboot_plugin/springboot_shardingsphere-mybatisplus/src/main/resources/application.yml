@@ -1,0 +1,53 @@
+server:
+  port: 8088
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+  mapper-locations: classpath:mapper/*.xml,classpath:mapper/**/*.xml
+
+
+spring:
+  shardingsphere:
+    datasource:
+      names: ds,ds0,ds1
+      ds:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: root
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mysql://localhost:3306/ds?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true
+        username: root
+      ds0:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: root
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mysql://localhost:3306/ds0?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true
+        username: root
+      ds1:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: root
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mysql://localhost:3306/ds1?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true
+        username: root
+    props:
+      sql:
+        show: true
+    sharding:
+      # 默认数据源
+      default-data-source-name: ds
+      default-database-strategy:
+        inline:
+          algorithm-expression: ds$->{id % 2}
+          sharding-column: id
+      tables:
+        tab_user:
+          actual-data-nodes: ds$->{0..1}.tab_user$->{0..1}
+          table-strategy:
+            inline:
+              algorithm-expression: tab_user$->{age % 2}
+              sharding-column: age

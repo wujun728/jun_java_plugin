@@ -1,0 +1,10 @@
+spring:
+  redis:
+#    host: redis-master
+#    port: 6379
+    password: abc
+    sentinel:
+      master: springboot
+      nodes:
+        - redis-sentinel:26379
+

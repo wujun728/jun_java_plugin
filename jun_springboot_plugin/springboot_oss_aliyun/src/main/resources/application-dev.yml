@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+# 日志打印位置
+logging:
+  file: /server/log/file-upload-${server.port}.log
+  level:
+    com.liang: INFO
+
+# 阿里云 oss 配置 替换为自己阿里云OSS的配置
+config:
+  aliyun_oss:
+    endpoint: oss-cn-XXXXXX.aliyuncs.com
+    access_key_id: LTAI4FcaACPBXXXXXXXXXXXX
+    access_key_secret: BzwfrfbtmT78w5I7wUXXXXXXXXXXXX
+    bucket_name: doumuxie
+    folder: default
+
+# 上传最大文件限制
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB

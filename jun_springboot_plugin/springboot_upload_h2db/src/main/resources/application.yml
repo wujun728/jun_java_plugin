@@ -1,0 +1,30 @@
+server:
+  port: 8080
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: H2
+    openInView: false
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: null
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /console/*
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 10Mb
+      max-request-size: 10Mb
+      

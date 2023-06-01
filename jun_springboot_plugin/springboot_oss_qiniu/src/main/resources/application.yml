@@ -1,0 +1,8 @@
+#tomcat端口
+server:
+  port: 70
+#日志记录级别
+logging:
+  level:
+    com.itheima: debug
+    org.springframework: info

@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+
+  redis-master:
+    image: bitnami/redis:4.0
+    networks:
+      - my-net
+    environment:
+      REDIS_REPLICATION_MODE: master
+      REDIS_PASSWORD: abc
+    ports:
+      - "5000:6379"
+
+  redis-slave:
+    image: bitnami/redis:4.0
+    networks:
+      - my-net
+    environment:
+      REDIS_REPLICATION_MODE: slave
+      REDIS_MASTER_HOST: redis-master
+      REDIS_MASTER_PASSWORD: abc
+      REDIS_PASSWORD: abc
+    ports:
+      - "5001:6379"
+
+  redis-sentinel:
+    image: bitnami/redis-sentinel:4.0
+    networks:
+      - my-net
+    environment:
+      REDIS_MASTER_HOST: redis-master
+      REDIS_MASTER_PASSWORD: abc
+      REDIS_MASTER_SET: springboot
+      REDIS_SENTINEL_QUORUM: 1
+    ports:
+      - "26379:26379"
+
+  spring-boot:
+    image: chanjarster/spring-boot-redis-sentinel-example:0.1
+    networks:
+      - my-net
+
+networks:
+  my-net:
+    driver: overlay

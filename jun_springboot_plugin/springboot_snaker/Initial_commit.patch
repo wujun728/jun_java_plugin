@@ -1,0 +1,9 @@
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- README.md	(date 1545134171000)
++++ README.md	(date 1545134171000)
+@@ -0,0 +1,1 @@
++#Springboot_snakerflow

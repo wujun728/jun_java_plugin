@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yangzheng.mapper.TestEncryptMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap id="BaseResultMap" type="com.yangzheng.entity.TestEncrypt">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.yangzheng.entity.TestEncrypt">
+        insert into test_encrypt(`name`) value(#{name});
+    </insert>
+
+    <select id="getTestEncryptById" resultType="com.yangzheng.entity.TestEncrypt">
+        select id,name from test_encrypt where id = #{id}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>支付宝扫码支付</title>
+</head>
+<body>
+<div id="qrcode" style="text-align: center;"></div>
+</body>
+<script type="text/javascript" src="https://cdn.jiedanba.cn/lib/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jiedanba.cn/lib/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#qrcode").qrcode({text:"#(url)",correctLevel:1,width:165,height:165});
+	});
+</script>
+</html>

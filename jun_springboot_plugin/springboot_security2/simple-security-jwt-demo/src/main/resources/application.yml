@@ -1,0 +1,6 @@
+jwt:
+  filter:
+    debug: true
+simple:
+  security:
+    passwordEncoder: md5
