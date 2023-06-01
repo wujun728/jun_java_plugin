@@ -1,0 +1,89 @@
+<!-- 
+	任务调度
+-->
+<properties>
+	<config file="application.properties"/>
+	<property name="quartz.config">
+		<map>
+			<property name="org.quartz.scheduler.instanceName" value="DefaultQuartzScheduler111" />
+			<property name="org.quartz.scheduler.rmi.export" value="false" />
+			<property name="org.quartz.scheduler.rmi.proxy" value="false" />
+			<property name="org.quartz.scheduler.wrapJobExecutionInUserTransaction" value="false" />
+			<property name="org.quartz.threadPool.class" value="org.quartz.simpl.SimpleThreadPool" />
+			<property name="org.quartz.threadPool.threadCount" value="10" />
+			<property name="org.quartz.threadPool.threadPriority" value="5" />
+			<property name="org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread" value="true" />
+			<property name="org.quartz.jobStore.misfireThreshold" value="6000" />
+			<property name="org.quartz.jobStore.class" value="org.quartz.simpl.RAMJobStore" />
+		</map>
+		<!-- for cluster -->
+		
+	</property>
+
+	<property name="taskconfig" enable="true">
+		<list>
+			<property name="定时任务执行器" taskid="default"
+				class="org.frameworkset.task.DefaultScheduleService" used="true">
+				<!--
+					可执行的任务项
+					属性说明：
+					name：任务项名称
+					id:任务项标识
+					action:具体的任务执行处理程序,实现org.frameworkset.task.Execute接口
+					cron_time：	cron格式的时间表达式，用来管理任务执行的生命周期，相关的规则请参照日期管理控件quartz的说明文档
+					基本格式 : [参数间必须使用空格隔开]
+					*　　*　　*　　*　　*　　command
+					分　时　日　月　周　命令
+
+					第1列表示分钟1～59 每分钟用*或者 */1表示
+					第2列表示小时1～23（0表示0点）
+					第3列表示日期1～31
+					第4列表示月份1～12
+					第5列标识号星期0～6（0表示星期天）
+					第6列要运行的命令
+					shouldRecover:集群环境下属性必须设置为 true，当Quartz服务被中止后，再次启动或集群中其他机器接手任务时会尝试恢复执行之前未完成的所有任务。
+					used 是否使用
+					true 加载，缺省值
+					false 不加载	  
+					子元素说明：
+					parameter:设置任务执行的参数，name标识参数名称，value指定参数的值
+				-->
+				<list>
+					<property name="quartzImportTask" jobid="quartzImportTask"
+							  bean-name="quartzImportTask"
+							  method="execute"
+						cronb_time="${quartzImportTask.crontime}" used="false"
+						shouldRecover="false"
+						/>
+					<property name="quartzES2DBImportTask" jobid="QuartzES2DBImportTask"
+							  bean-name="QuartzES2DBImportTask"
+							  method="execute"
+							  cronb_time="${quartzImportTask.crontime}" used="false"
+							  shouldRecover="false"
+					/>
+					<property name="QuartzTimestampImportTask" jobid="QuartzTimestampImportTask"
+							  bean-name="QuartzTimestampImportTask"
+							  method="execute"
+							  cronb_time="${quartzImportTask.crontime}" used="true"
+							  shouldRecover="false"
+					/>
+				</list>
+			</property>
+		</list>
+	</property>
+
+	<property name="quartzImportTask" class="org.frameworkset.elasticsearch.imp.QuartzImportTask"
+			  destroy-method="destroy"
+			  init-method="init"
+	/>
+	<property name="QuartzES2DBImportTask" class="org.frameworkset.elasticsearch.imp.QuartzES2DBImportTask"
+			  destroy-method="destroy"
+			  init-method="init"
+	/>
+	<property name="QuartzTimestampImportTask" class="org.frameworkset.elasticsearch.imp.QuartzTimestampImportTask"
+			  destroy-method="destroy"
+			  init-method="init"
+	/>
+
+
+</properties>

@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/cache
+     http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <!--
+        缓存的配置, 使用Spring cache + EhCache.
+        在使用时使用Spring cache 注解,如 @Cacheable
+        ehcache.xml 配置主要的缓存设置
+    -->
+    <cache:annotation-driven/>
+
+    <!-- cache manager -->
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager" p:cacheManager-ref="ehcache"/>
+
+    <bean class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" id="ehcache"
+          p:configLocation="classpath:ehcache.xml" p:shared="true"/>
+
+</beans>

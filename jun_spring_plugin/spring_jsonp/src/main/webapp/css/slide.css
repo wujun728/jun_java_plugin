@@ -1,0 +1,27 @@
+*{margin: 0;padding: 0;list-style: none;border: 0;}
+a{text-decoration:none;}
+#focus{position: relative;height: 345px;width: 750px;margin:80px auto;}
+#focus .bd{position: relative}
+#focus .btn-prev, #focus .btn-next{display: none;position: absolute;top: 130px;width: 40px;height: 80px;z-index: 2}
+#focus .btn-prev{left: 0;background: url(../images/left-arrow.png) no-repeat;_background: 0;
+filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=image, src="../images/left-arrow.png")}
+#focus .btn-next{right: 0;background: url(../images/right-arrow.png) no-repeat;_background: 0;
+filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=image, src="../images/right-arrow.png")}
+#focus .focus-bar-box{width: 100%;height: 345px;position: relative;overflow: hidden}
+#focus .focus-bar{width: 10000px}
+#focus .focus-bar li{float: left;width: 750px;height: 345px}
+#focus .focus-bar li a{width: 100%;height: 100%;display: block}
+#focus .focus-bar li img{width: 100%;min-height: 100%}
+#focus .ft{position: absolute;left: 0;bottom: 0;z-index: 1;width: 750px;height: 40px}
+#focus .ftbg{position: absolute;top: 0;left: 0;z-index: -1;width: 750px;height: 40px;background: #000;opacity: .6;filter: alpha(opacity=60)}
+#focus .change{position: absolute;right: 0;bottom: 15px;height: 10px}
+#focus .change a{float: left;width: 10px;height: 10px;margin-right: 10px;background: url(../images/btn-normal.png) no-repeat;_background: 0;
+_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=image, src="../images/btn-normal.png");cursor: pointer}
+#focus .change a.on{background: url(../images/btn-active.png) no-repeat;_background: 0;
+_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=image, src="../images/btn-active.png")}
+#focus .hd{position: absolute;left: 0;bottom: 0;z-index: 2;width: 550px;height: 40px}
+#focus .focus-title{overflow: hidden;position: absolute;top: 0;left: 0;height: 40px;padding: 0 14px 0 80px;line-height: 40px;font-size: 16px;font-weight: bold}
+#focus .focus-title .title{color: #64d734}
+#focus .hdicon{position: absolute;left:10px;bottom: 10px;width: 59px;height: 59px;background: url(../images/play-btn.png) no-repeat;_background: 0;
+filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=image, src="../images/play-btn.png")}
+#focus .focus-title a{display: none;color: #fff}

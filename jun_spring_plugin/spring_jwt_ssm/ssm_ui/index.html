@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+欢迎你:<span id="user"></span>
+<br>
+<button onclick="logout()">注销</button>
+</body>
+<script src="./js/jquery-1.4.2.js"></script>
+<script src="./js/jquery.cookie.js"></script>
+<script type="text/javascript">
+    /**
+     * 请求数据的ajax，需要从cookie读取token放入head传给后台。
+     */
+     loadDeptTree();
+	function loadDeptTree() {
+        console.log('获取到的token = ' + $.cookie('token'));
+	    $.ajax({
+	        // 自定义的headers字段，会出现option请求，在GET请求之前，后台要记得做检验。
+            beforeSend: function (XMLHttpRequest) {
+                XMLHttpRequest.setRequestHeader("token", $.cookie('token'));
+            },
+	        url: "http://localhost:8090/index/ok",
+	        type: 'GET',
+	        dataType: 'json',
+	        success : function (result) {
+				$('#user').html($.cookie('name'));
+                console.log(result);
+				if(result.code==200){
+					alert("加载到的数据："+result+",并进行渲染页面.....");
+				}else{
+					alert("异常,非法token，这里不直接判断是否token不对，实际开发需要各种判断返回码。");
+				}
+	        }
+	    })
+    }
+    
+    /**
+     * 注销，清空所有cookie(或者只清空保存着token的Cookie就行)
+     */
+	function logout() {
+	    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+	    if(keys) {
+	        for(var i = keys.length; i--;)
+	            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+	    }
+	    //返回登录页面或者主页
+	    window.location.href = "login.html";
+	}
+</script>
+</html>

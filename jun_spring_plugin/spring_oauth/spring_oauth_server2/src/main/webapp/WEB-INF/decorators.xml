@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    sitemesh 配置
+-->
+<decorators defaultdir="/WEB-INF/jsp/decorators">
+
+    <!--main decorator-->
+    <decorator name="main" page="main.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+
+
+    <excludes>
+        <pattern>/resources/api/*</pattern>
+    </excludes>
+
+</decorators>

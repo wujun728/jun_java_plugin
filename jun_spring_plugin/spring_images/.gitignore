@@ -1,0 +1,16 @@
+# Maven
+target/
+
+# H2
+springimages.h2.db
+springimages.lock.db
+
+# Eclipse
+.project
+.classpath
+.springBeans
+.settings/
+
+# Vim
+*.swp
+*.swo

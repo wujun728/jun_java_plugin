@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="  
+	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+       http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<!--注解说明 -->
+	<context:annotation-config />
+	<!-- Spring自动扫描包 -->
+	<context:component-scan base-package="cn.springmvc.mybatis.timedtask" />
+
+	<!-- 注释方式，加在类及方法上 -->
+	<task:executor id="executor" pool-size="5" />
+	<task:scheduler id="scheduler" pool-size="10" />
+	<task:annotation-driven executor="executor" scheduler="scheduler" />
+
+	<!-- 统一配置 -->
+	<!-- <bean id="springTaskService" class="cn.springmvc.mybatis.timedtask.SpringTaskService"></bean> -->
+	<!-- <task:scheduled-tasks> -->
+	<!-- <task:scheduled ref="springTaskService" method="task" cron="0/2 * * * * ?" /> -->
+	<!-- </task:scheduled-tasks> -->
+
+</beans> 

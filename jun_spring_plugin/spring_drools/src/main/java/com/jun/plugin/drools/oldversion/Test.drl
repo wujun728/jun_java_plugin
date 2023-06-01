@@ -1,0 +1,18 @@
+package com.us.demo.oldversion
+
+rule "test0"
+//lock-on-active true  
+date-effective "2016-01-03 18:42:59"   
+date-expires "2016-01-03 18:43:59"  
+when 
+	// 输出1次
+	eval( true )
+	// 输出2次
+	//Object()
+then
+	System.out.println("OK");
+	//drools.getRule("test0");
+	//printString("ok");
+	//update();
+	
+end

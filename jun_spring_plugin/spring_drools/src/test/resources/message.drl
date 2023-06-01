@@ -1,0 +1,17 @@
+#created on: 2014-01-17
+package com.zandili.demo.drools.service
+
+import com.zandili.demo.drools.pojo.Message; 
+import java.io.Console;
+
+rule "Hello World 2" 
+     when 
+        $message:Message (type=="Test")
+     then 
+        #测试一下在规则文件里修改fact的属性值
+        $message.setMsg("hello");
+	    System.out.println("Test, Drools!");
+end
+
+ 
+

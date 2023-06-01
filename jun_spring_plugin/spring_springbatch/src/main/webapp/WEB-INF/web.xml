@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+    <!-- Spring核心监听器 -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+
+    <!-- 注意：经过多次测试之后发现， 1、这个spring配置文件不在WEB-INF目录下： 如果在DispatcherServlet这个servlet中指定<init-param>参数的话,如果contextConfigLocation的内容不是/WEB-INF/applicationContext.xml，同时也没有指定全局<context-param>，则启动的时候会报错.会报在WEB-INF下面找不到application.xml文件. 
+        解决方式： 1、在web.xml中使用全局的<context-param>进行指定，名称任意,同时需要配置springmvc所需的文件. 2、contextConfigLocation参数指定的文件名称必须是/WEB-INF/applicationContext.xml才行. 
+        2、这个spring配置文件在WEB-INF目录下： 如果名称是applicationContext.xml,同时没有spring-servlet.xml的话，虽然启动的时候没有报错，但是当访问一个springmvc拦截的请求的时候，会报 
+        Could not open ServletContext resource [/WEB-INF/spring-servlet.xml]这说明spring找不到默认的配置文件 
+        如果名称是spring-servlet.xml的话： 1、如果没有全局指定<context-param>指向配置文件，启动的时候会报找不到/WEB-INF/applicationContext.xml文件 
+        2、如果也指定了全局<context-param>指向配置文件,启动不会报错。访问也正常 经过上面叙述，有几种配置方式： 1、在web.xml中配置全局<context-param>参数，同时在spring的servlet的配置中指定springmvc所需的文件 
+        2、在 spring的servlet中的<init-param>进行指定配置文件.文件名称如果是applicationContext.xml,,则无需配置全局<context-param>,, 
+        如果不是applicationContext.xml,,则需要配置全局<context-param>,,同时给框架指定springmvc和spring默认的2个配置文件 -->
+
+    <!-- 这个全局配置还是有意思的~~~看上面说明 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:/spring/applicationContext.xml</param-value>
+    </context-param>
+
+    <!-- 请求地址过滤。记录上一次请求的url，登录成功后进行重定向请求。 -->
+    <!-- <filter> <filter-name>reqUrlFilter</filter-name> <filter-class>com.zb.filter.ReqUrlFilter</filter-class> 
+        </filter> <filter-mapping> <filter-name>reqUrlFilter</filter-name> <url-pattern>/*</url-pattern> 
+        </filter-mapping> <filter-mapping> <filter-name>reqUrlFilter</filter-name> 
+        <url-pattern>/index.jsp</url-pattern> </filter-mapping> -->
+
+
+    <!-- Spring控制器 -->
+    <servlet>
+        <servlet-name>spring</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 值小于0的时候，只有请求的时候,这个servlet才会被加载,大于等于0的时候，在容器启动的时候就加载 -->
+        <load-on-startup>1</load-on-startup>
+
+        <!-- 不指定 <init-param> 会自动找web.xml相同路径下 spring-servlet.xml文件 -->
+        <!-- <init-param> <param-name>contextConfigLocation</param-name> 
+            <param-value>/WEB-INF/spring-servlet.xml</param-value> </init-param> -->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>spring</servlet-name>
+        <!-- Spring拦截请求 -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Spring防止内存泄漏 -->
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+
+    <!-- spring编码过滤器 -->
+    <filter>
+        <filter-name>characterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- webAppRootKey: 配置项目的别名，上面配置别名为project。 若你部署的项目不在tomcat中的话这个可以忽略，因为tomcat没为每个应用配置不同的webappRoot属性，所以如果出现两个或以上相同的应用属性名的话就会报错了。 
+        然后修改log4j.properties的配置，把日志文件输出的路径配置修改为： log4j.appender.A1.File=${my.root}/WEB-INF/logs/Project.log 
+        注：若不需要配置应用别名的话，即没配置webAppRootKey。可以直接这么写： log4j.appender.A1.File=${webapp.root}WEB-INF/logs/Project.log 
+        webapp.root为默认属性。若有配置webAppRootKey的话就被覆盖。 -->
+    <!-- 
+    <context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value>system.info</param-value>
+    </context-param>
+     -->
+    <!--log4j配置文件加载 -->
+    <!-- 
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>classpath:/log4j.properties</param-value> 
+    </context-param>
+     -->
+    <!--启动一个watchdog线程每1800秒扫描一下log4j配置文件的变化 -->
+    <!-- 
+    <context-param>
+        <param-name>log4jRefreshInterval</param-name>
+        <param-value>1800000</param-value>
+    </context-param>
+    -->
+    <!--spring log4j监听器 -->
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+
+    <welcome-file-list>
+        <welcome-file>/index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

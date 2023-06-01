@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css"  media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+
+<!-- 搜索框 -->
+<div class="demoTable">
+    搜索姓名：
+    <div class="layui-inline">
+        <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+    </div>
+    <button class="layui-btn" data-type="reload">搜索</button>
+</div>
+
+<table class="layui-hide" id="test" lay-filter="test"></table>
+
+<!-- 工具栏 -->
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="batchdel">删除选中数据</button>
+        <button class="layui-btn layui-btn-sm" lay-event="batchadd">添加用户</button>
+    </div>
+</script>
+
+<!-- 工具组件 -->
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+</script>
+
+<script src="../../../layuiadmin/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<script type="text/javascript" th:inline="javascript">
+
+
+    layui.use('table', function(){
+        var $ = layui.$ //由于layer弹层依赖jQuery，所以可以直接得到
+        var table = layui.table;
+
+
+
+        table.render({
+            elem: '#test'// test指的是table的id
+            ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            ,url:'../../../user/queryAllUserPage'
+            ,cellMinWidth: 80
+            ,page: true
+            ,title: '用户列表'
+            ,cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                ,{field:'id', title: 'ID', sort: true}
+                ,{field:'name', title: '姓名'}
+                ,{field:'username', title: '用户名'}
+                ,{field:'sex', title: '性别', sort: true,
+                    templet: function (data) { return data.sex == 1 ? '<span class="layui-badge layui-bg-green">男</span>' : '<span class="layui-badge layui-bg-orange">女</span>' }}
+                ,{field:'age', title: '年龄'}
+                ,{field:'email', title: '邮箱'}
+                ,{field:'photo', title: '图像'}
+                ,{field:'phone', title: '手机号', sort: true}
+                ,{field:'createBy', title: '创建者', sort: true}
+                ,{field:'createDate', title: '创建时间', sort: true}
+                ,{field:'updateBy', title: '更新者', sort: true}
+                ,{field:'updateDate', title: '更新时间'}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+            ]]
+        });
+        //头工具栏事件
+        table.on('toolbar(test)', function(obj){// 指的是table的`lay-filter`的test
+            var checkStatus = table.checkStatus("test");// test指的是table的id
+            switch(obj.event){
+                // 删除选中数据
+                case 'batchdel':
+                    var data = checkStatus.data;// 当前选中的数据
+                    // 未选中数据提示
+                    if(data.length === 0){
+                        return layer.msg('请选择数据');
+                    }
+                    var params = '';
+                    $.each(data, function (i, obj) {
+                        params += obj.id + ','
+                    });
+                    // 去除最后的`，`逗号
+                    var datas = params.slice(0, -1)
+                    layer.confirm('确定删除吗？', function() {
+                        console.log(JSON.stringify(data))
+                        //执行 Ajax 后重载
+                        $.ajax({
+                            url: '../../../user/deleteUserByIds',
+                            data: {users: JSON.stringify(data)},
+                            method: 'post',
+                            success: function(result) {
+                                console.log(result)
+                            }
+                        })
+                        table.reload('test', {});
+                        layer.msg('已删除');
+                    });
+                    break;
+                // 添加用户
+                case 'batchadd':
+                    layer.open({
+                        type: 2
+                        ,title: '添加用户'
+                        ,content: './userform.html'
+                        ,maxmin: true
+                        ,area: ['550px', '550px']
+                        ,btn: ['确定', '取消']
+                        ,yes: function(index, layero){
+                            var iframeWindow = window['layui-layer-iframe'+ index]
+                                ,submitID = 'LAY-user-front-submit'
+                                ,submit = layero.find('iframe').contents().find('#'+ submitID);
+
+                            //监听提交
+                            iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
+                                var field = data.field; //获取提交的字段
+                                //提交 Ajax 成功后，静态更新表格中的数据
+                                $.ajax({
+                                    url: '../../../user/insertUser',
+                                    data: {userString: JSON.stringify(field)},
+                                    method: 'post',
+                                    success: function(result) {
+                                        console.log(result)
+                                    }
+                                })
+                                table.reload('test', {});//数据刷新
+                                layer.msg('添加成功！');
+                                layer.close(index); //关闭弹层
+                            });
+
+                            submit.trigger('click');
+                        }
+                    });
+                    break;
+            };
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'del'){
+                layer.confirm('确定删除吗？', function() {
+                    //执行 Ajax 后重载
+                    $.ajax({
+                        url: '../../../user/deleteUserById',
+                        data: {id: data.id},
+                        method: 'post',
+                        success: function(result) {}
+                    })
+                    table.reload('test', {});
+                    layer.msg('已删除');
+                });
+            } else if(obj.event === 'edit'){
+                layer.open({
+                    type: 2
+                    ,title: '编辑用户'
+                    ,content: './userform.html?id='+data.id
+                    ,maxmin: true
+                    ,area: ['500px', '450px']
+                    ,btn: ['确定', '取消']
+                    ,data: data.id
+                    ,yes: function(index, layero){
+                        var iframeWindow = window['layui-layer-iframe'+ index]
+                            ,submitID = 'LAY-user-front-submit'
+                            ,submit = layero.find('iframe').contents().find('#'+ submitID);
+
+                        //监听提交
+                        iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
+                            var field = data.field; //获取提交的字段
+                            //提交 Ajax 成功后，静态更新表格中的数据
+                            $.ajax({
+                                url: '../../../user/updateUser',
+                                data: {userString: JSON.stringify(field)},
+                                method: 'post',
+                                success: function(result) {
+                                    console.log(result)
+                                }
+                            })
+                            table.reload('test', {});
+                            layer.msg('更新成功！');
+                            table.reload('LAY-user-front-submit'); //数据刷新
+                            layer.close(index); //关闭弹层
+                        });
+
+                        submit.trigger('click');
+                    }
+                });
+            }
+        });
+
+        active = {
+            reload: function(){
+                var demoReload = $('#demoReload');
+
+                //执行重载
+                table.reload('testReload', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        key: {
+                            id: demoReload.val()
+                        }
+                    }
+                }, 'data');
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            console.log(111)
+        });
+
+    });
+
+
+</script>
+
+</body>
+</html>

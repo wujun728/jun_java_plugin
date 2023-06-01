@@ -1,0 +1,35 @@
+@import "colors";
+
+body {
+  font-family: sans-serif;
+  color: @text-color;
+  background-color: @background-color;
+}
+
+div#topmenu {
+  a {
+    padding: 5px;
+    background-color: @dark-color;
+    color: lighten(@light-color, 35%);
+    
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+
+    &:hover {
+      background-color: @light-color;
+    }
+  }
+
+  ul {
+    display: block;
+    list-style: none;
+    margin: 0 0 10px 0;
+
+    li {
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+    }
+  }
+}

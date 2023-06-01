@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>文章内容</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../assets/css/semantic.min.css"/>
+</head>
+<body class="ui grid page">
+    <main class="row">
+        <div class="ui column segment">
+            <p th:text="${post.title}"></p>
+            <p th:text="${post.content}"></p>
+        </div>
+    </main>
+</body>
+</html>

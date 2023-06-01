@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.springmvc.mybatis.mapper.simple.NewsMapper">
+
+	<resultMap id="newsMap" type="cn.springmvc.mybatis.entity.simple.News">
+		<result column="ID" property="id" />
+		<result column="ADDRESS" property="address" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="DESCRIPTION" property="description" />
+		<result column="NEWS_TIME" property="newsTime" />
+		<result column="TITLE" property="title" />
+		<result column="USER_ID" property="userId" />
+	</resultMap>
+
+	<insert id="insert" parameterType="cn.springmvc.mybatis.entity.simple.News">
+		INSERT INTO T_NEWS(ID , ADDRESS , CREATE_TIME , DESCRIPTION , NEWS_TIME , TITLE , USER_ID)
+		VALUES(#{id} , #{address} , #{createTime} , #{description} , #{newsTime} , #{title} , #{userId})
+	</insert>
+
+	<sql id="find_xxx">
+	    <![CDATA[
+			SELECT ID , ADDRESS , CREATE_TIME , DESCRIPTION , NEWS_TIME , TITLE , USER_ID
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+	    <![CDATA[
+	    	FROM T_NEWS
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+	    <![CDATA[
+	    	WHERE 1=1
+	    ]]>
+	</sql>
+
+	<select id="findById" parameterType="string" resultMap="newsMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<![CDATA[
+			WHERE ID=#{id}
+		]]>
+	</select>
+
+	<select id="findNewsByKeywords" parameterType="string" resultMap="newsMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<where>
+			<if test="keywords != null and keywords != ''"> title like '%${keywords}%'</if>
+		</where>
+	</select>
+
+	<select id="findNewsByPage" resultMap="newsMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<where>
+			<if test="paramMap.keywords != null and paramMap.keywords != ''"> title like '%${paramMap.keywords}%'</if>
+		</where>
+	</select>
+
+	<update id="update" parameterType="cn.springmvc.mybatis.entity.simple.News">
+		UPDATE T_NEWS
+		<set>
+			<if test="address != null">
+				ADDRESS = #{address},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime},
+			</if>
+			<if test="description != null">
+				DESCRIPTION = #{description},
+			</if>
+			<if test="newsTime != null">
+				NEWS_TIME = #{newsTime},
+			</if>
+			<if test="title != null">
+				TITLE = #{title},
+			</if>
+			<if test="userId != null">
+				USER_ID = #{userId}
+			</if>
+		</set>
+		WHERE ID = #{id}
+	</update>
+
+	<select id="findAllByFilter" parameterType="Map" resultMap="newsMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+		<if test="start != null and limit != null">
+			LIMIT #{start},#{limit}
+		</if>
+	</select>
+
+	<select id="findAllByFilterCount" parameterType="Map" resultType="int">
+		SELECT COUNT(id)
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+	</select>
+
+	<delete id="delete" parameterType="string">
+		DELETE FROM T_NEWS WHERE ID #{id}
+	</delete>
+
+</mapper>

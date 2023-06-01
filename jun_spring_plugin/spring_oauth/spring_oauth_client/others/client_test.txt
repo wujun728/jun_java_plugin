@@ -1,0 +1,38 @@
+
+
+
+-- grant_type = 'client_credentials'
+
+-- SQL
+insert into oauth_client_details
+(client_id, resource_ids, client_secret, scope, authorized_grant_types,
+web_server_redirect_uri,authorities, access_token_validity,
+refresh_token_validity, additional_information, create_time, archived, trusted)
+values
+('credentials-client','unity-resource', 'credentials-secret', 'read,write','client_credentials',
+null,'ROLE_UNITY,ROLE_USER',null,
+null,null, now(), 0, 0);
+
+-- get access_token
+http://localhost:8080/spring-oauth-server/oauth/token?client_id=credentials-client&client_secret=credentials-secret&grant_type=client_credentials&scope=read,write
+
+
+
+-- grant_type = 'implicit'
+
+--SQL
+insert into oauth_client_details
+(client_id, resource_ids, client_secret, scope, authorized_grant_types,
+web_server_redirect_uri,authorities, access_token_validity,
+refresh_token_validity, additional_information, create_time, archived, trusted)
+values
+('implicit-client','unity-resource', 'implicit-secret', 'read','implicit',
+'http://localhost:7777/spring-oauth-client/implicit','ROLE_UNITY,ROLE_USER',null,
+null,null, now(), 0, 0);
+
+http://localhost:8080/spring-oauth-server/oauth/token?client_id=implicit-client&client_secret=implicit-secret&grant_type=implicit&scope=read
+
+
+http://localhost:8080/spring-oauth-server/oauth/authorize?client_id=implicit-client&client_secret=implicit-secret&redirect_uri=http%3a%2f%2flocalhost%3a7777%2fspring-oauth-client%2fimplicit&response_type=token&scope=read
+
+
