@@ -21,8 +21,9 @@ bin
 classes
 .settings
 .factorypath
-doc
+doc2
 log
+logs
 target
 
 # Idea

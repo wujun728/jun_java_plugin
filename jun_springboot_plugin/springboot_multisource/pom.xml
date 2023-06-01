@@ -9,7 +9,6 @@
 	<version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>springboot-multisource</name>
     <description>SpringBoot配置多数据源</description>
 
     <parent>

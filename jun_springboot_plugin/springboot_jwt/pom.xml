@@ -9,7 +9,6 @@
 	<version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>springboot-jwt</name>
     <description>集成JWT实现接口权限认证</description>
 
     <parent>

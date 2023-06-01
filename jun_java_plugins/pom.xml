@@ -63,6 +63,8 @@
 		<module>jun_mybatisplus</module>
 		<module>jun_mycat</module>
 		<module>jun_mysql</module>
+		<module>jun_okhttp</module>
+		<module>jun_online_java_complier</module>
 		<module>jun_oracle</module>
 		<module>jun_pay</module>
 		<module>jun_pdf</module>
@@ -76,6 +78,7 @@
 		<module>jun_shiro</module>
 		<module>jun_solr</module>
 		<module>jun_threadpool</module>
+		<module>jun_uid</module>
 		<module>jun_upload_jsp_servlet</module>
 		<module>jun_util</module>
 		<module>jun_webmagic</module>

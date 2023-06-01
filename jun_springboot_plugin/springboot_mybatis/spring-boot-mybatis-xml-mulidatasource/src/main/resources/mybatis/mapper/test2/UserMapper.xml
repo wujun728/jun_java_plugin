@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.neo.mapper.test2.User2Mapper" >
-    <resultMap id="BaseResultMap" type="com.neo.model.User" >
+    <resultMap id="BaseResultMap" type="model.com.jun.plugin.User" >
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="userName" property="userName" jdbcType="VARCHAR" />
         <result column="passWord" property="passWord" jdbcType="VARCHAR" />
@@ -26,7 +26,7 @@
 	   WHERE id = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.neo.model.User" >
+    <insert id="insert" parameterType="model.com.jun.plugin.User" >
        INSERT INTO 
        		users
        		(userName,passWord,user_sex) 
@@ -34,7 +34,7 @@
        		(#{userName}, #{passWord}, #{userSex})
     </insert>
     
-    <update id="update" parameterType="com.neo.model.User" >
+    <update id="update" parameterType="model.com.jun.plugin.User" >
        UPDATE 
        		users 
        SET 

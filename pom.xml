@@ -17,6 +17,9 @@
 		<module>jun_java_plugins</module>
 		<module>jun_springboot_plugin</module>
 		<module>maven_project_template</module>
+		<module>jun_spring_plugin</module>
+		<module>jun_springboot_starter</module>
+		<module>jun_springcloud_plugin</module>
 	</modules>
 
 	<dependencies>

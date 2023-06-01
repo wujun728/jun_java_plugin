@@ -21,6 +21,6 @@ spring:
 logging:
   level:
     root: INFO
-    com.xncoding: DEBUG
+    com.jun.plugin: DEBUG
   path: D:/logs/springboot-aop
 

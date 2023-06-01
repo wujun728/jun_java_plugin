@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>com.jun.plugin</groupId>
         <artifactId>jun_java_plugin</artifactId>
@@ -13,46 +14,49 @@
     <version>1.0</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
     <modules>
+        <module>springboot_a_test</module>
         <module>springboot_actuator</module>
         <module>springboot_aop</module>
         <module>springboot_async</module>
         <module>springboot_batch</module>
         <module>springboot_cache</module>
-        <module>springboot_camunda</module>
         <module>springboot_canal</module>
         <module>springboot_codegen</module>
         <module>springboot_content_negotiation</module>
-        <module>springboot_cors_support</module>
         <module>springboot_cxf</module>
         <module>springboot_data_jpa</module>
-        <module>springboot_devtools</module>
         <module>springboot_distributed_seckill</module>
         <module>springboot_docker</module>
         <module>springboot_drools</module>
         <module>springboot_dubbo_zookeeper</module>
         <module>springboot_dynamic_datasource</module>
-        <module>springboot_dynamic_datasource2</module>
         <module>springboot_echarts</module>
         <module>springboot_ehcache_cache</module>
         <module>springboot_elastic_job</module>
         <module>springboot_email</module>
         <module>springboot_excel</module>
-        <module>springboot_exception_handler</module>
         <module>springboot_fastdfs</module>
         <module>springboot_file_upload</module>
-        <module>springboot_filter_interceptor</module>
+        <module>springboot_file_uploader</module>
         <module>springboot_flowable</module>
         <module>springboot_flyway</module>
         <module>springboot_freemarker</module>
         <module>springboot_graphql_mongodb</module>
         <module>springboot_graylog</module>
+        <module>springboot_groovy</module>
         <module>springboot_hibernate</module>
         <module>springboot_hibernate_validator</module>
         <module>springboot_https</module>
-        <module>springboot_image_upload</module>
+        <module>springboot_upload_h2db</module>
+        <module>springboot_jasypt</module>
         <module>springboot_jackson2</module>
-        <module>springboot_jdbctemplate</module>
         <module>springboot_jdbctemplate_multidatasource</module>
         <module>springboot_jpa_thymeleaf_curd</module>
         <module>springboot_jsp</module>
@@ -61,6 +65,7 @@
         <module>springboot_kafka</module>
         <module>springboot_kisso</module>
         <module>springboot_ldap</module>
+        <module>springboot_log4jmonitor</module>
         <module>springboot_logback</module>
         <module>springboot_mapper_pagehelper</module>
         <module>springboot_minio</module>
@@ -73,133 +78,124 @@
         <module>springboot_multisource</module>
         <module>springboot_mybatis</module>
         <module>springboot_mybatis_jsp</module>
-        <module>springboot_mybatis_plus</module>
         <module>springboot_mybatisplus</module>
+        <module>springboot_netty_websocket</module>
+        <module>springboot_oauth2</module>
+        <module>springboot_orm_jdbctemplate</module>
+        <module>springboot_oss_aliyun</module>
+        <module>springboot_oss_qiniu</module>
+        <module>springboot_pay</module>
+        <module>springboot_quartz</module>
+        <module>springboot_ratelimit_guava</module>
+        <module>springboot_ratelimit_redis</module>
+        <module>springboot_rbac_security</module>
+        <module>springboot_rbac_shiro</module>
         <module>springboot_redis</module>
-        <module>springboot_restful</module>
+        <module>springboot_redis_cluster</module>
+        <module>springboot_redis_sentinel</module>
+        <module>springboot_redislock</module>
         <module>springboot_resttemplate</module>
         <module>springboot_schedule</module>
-        <module>springboot_scheduler</module>
-        <module>springboot_session_data_redis</module>
-        <module>springboot_sharding_jdbc</module>
+        <module>springboot_security2</module>
+        <module>springboot_session</module>
+        <module>springboot_shardingsphere-mybatisplus</module>
         <module>springboot_shiro</module>
+        <module>springboot_snaker</module>
+        <module>springboot_justauth</module>
         <module>springboot_socketio</module>
         <module>springboot_starter</module>
-        <module>springboot_swagger</module>
+        <module>springboot_swagger_beauty</module>
+        <module>springboot_task_xxl_job</module>
+        <module>springboot_template_freemarker</module>
+        <module>springboot_template_thymeleaf</module>
+        <module>springboot_testing</module>
+        <module>springboot_thumbnailator</module>
         <module>springboot_thymeleaf</module>
         <module>springboot_transaction</module>
-        <module>springboot_web</module>
-        <module>springboot_web_thymeleaf</module>
+        <module>springboot_upload</module>
+        <module>springboot_validation</module>
+        <module>springboot_war</module>
         <module>springboot_webflux</module>
+        <module>springboot_webservice</module>
         <module>springboot_websocket</module>
+        <module>springboot_websocket_socketio</module>
+        <module>springboot_zookeeper</module>
     </modules>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <spring.boot.version>2.3.1.RELEASE</spring.boot.version>
-        <mysql.version>8.0.12</mysql.version>
-        <hutool.version>5.0.0</hutool.version>
-        <guava.version>28.1-jre</guava.version>
-        <user.agent.version>1.20</user.agent.version>
-    </properties>
+    <dependencies>
+        <!-- <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.40</version>
+        </dependency> -->
+    </dependencies>
 
-    <repositories>
-        <repository>
-            <id>aliyun</id>
-            <name>aliyun</name>
-            <url>https://maven.aliyun.com/repository/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
+    <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+            <!-- SpringBoot的依赖配置-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.version}</version>
+                <!-- <version>2.6.9</version> -->
+                <!-- <version>2.3.12.RELEASE</version> -->
+                <!-- <version>2.4.13</version> -->
+                <version>2.5.14</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
-            </dependency>
-            <!-- hutool工具类 -->
-            <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
+                <version>5.8.15</version>
             </dependency>
-            <!-- guava工具类 -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-            <!-- 解析 UserAgent 信息 -->
-            <dependency>
-                <groupId>eu.bitwalker</groupId>
-                <artifactId>UserAgentUtils</artifactId>
-                <version>${user.agent.version}</version>
+                <version>31.1-jre</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <profiles>
+        <profile>
+            <id>jdk-1.8</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <jdk>1.8</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
+                <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+            </properties>
+        </profile>
+    </profiles>
+
+
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.0.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.7.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.20.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>2.5.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring.boot.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

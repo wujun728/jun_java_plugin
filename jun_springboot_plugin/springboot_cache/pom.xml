@@ -9,7 +9,6 @@
 	<version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>springboot-cache</name>
     <description>SpringBoot Transaction演示</description>
 
     <parent>

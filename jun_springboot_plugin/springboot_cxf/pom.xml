@@ -9,7 +9,6 @@
 	<version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>springboot-restful</name>
     <description>CXF实现WebService</description>
 
     <parent>
