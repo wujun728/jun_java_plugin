@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: h2
+
+server:
+  port: 8080
