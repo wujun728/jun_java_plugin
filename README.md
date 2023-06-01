@@ -3,7 +3,7 @@
 ### 项目说明
 jun_java_plugin 整合Java企业级各种开发组件、开箱即用、不写重复代码，包含基础Java基础开发组件，Spring企业级开发组，SpringBoot常用开发组件、SpringCloud开发组件
 
-### 功能清单
+### 功能清单
 
 1. 集成Java常用开发组件：**java_plugin**，Java常用开发组件，当前**包含60+类各种**lib类库示例与文档。
 2. 集成Spring常用开发组件：**spring_plugin**，企业级开发常用组件，当前**集成100+种**lib类库示例与文档。
@@ -12,28 +12,28 @@ jun_java_plugin 整合Java企业级各种开发组件、开箱即用、不写重
 5. 集成SpringCloud常用开发组件：**springcloud_plugin**，含个版本netflix、alibaba、dubbo等，主要为示例与文档。
 
 
-#### 基础篇：企业级开发组件(开发组件、代码生成、前端组件) [jun_java_plugin]
+#### 基础篇：企业级开发组件(开发组件、代码生成、前端组件) [jun_java_plugin]
 
 > Java基础系开发组件-通用篇（jun_plugin） 常用开发组件，基础公共lib包的组件不依赖Spring的组件，主要供原生开发的项目集成：
 
 
 
 
-#### 工程截图(组件较多，随意截了几个，所有组件正常编译运行)
+#### 工程截图(组件较多，随意截了几个，所有组件正常编译运行)
 
 <table>
-    <tr>
+    <tr>
 		<td><img src="doc/java1.png"/> 
-    </tr>
+     </tr>
     <tr>
 		<td><img src="doc/spring1.png"/>
-    </tr>
+    </tr>
     <tr>
 	<td><img src="doc/springboot1.png"/>
 </tr>
 <tr>
 	<td><img src="doc/maven1.png"/>
-	  </tr>
+   </tr>
 </table>
 
 
@@ -383,13 +383,13 @@ jun_java_plugin 整合Java企业级各种开发组件、开箱即用、不写重
  [俊哥个人技术栈代码库(持续更新)](https://github.com/wujun728)  
 TODO PLAN：  
 【Step1基础篇】：  
-	jun_java_plugin Java基础框架-Java开发组件、Spring开发组件、SpringBoot开发组件、SpringCloud开发组件、Maven项目模板  
+	jun_java_plugin  Java基础框架-Java开发组件、Spring开发组件、SpringBoot开发组件、SpringCloud开发组件、Maven项目模板  
 	jun_ssh_parent  SSH基础框架-SpringBoot+EasyUI+JSP  
 	jun_ssm_springboot SSM基础框架-SpringBoot+MybatisPlus+Boostrap+Shiro+JWT  
 	jun_code_generator 代码生成器-SpringBoot+Freemarker+API接口  
 	jun_frontend_ui    前端框架，Bootstrap、LayUI、Vue、Vue-element-admin  
 	jun_linux    服务器部署、gitlab部署、Nginx部署、Redis部署、Docker部署、MySQL部署、等等  
- 	---TODO审视项目本身，给出待办调整清单，给出下步计划  
+ 	---TODO审视项目本身，给出待办调整清单，给出下步计划  
 【Step2微服务&大数据】：  
 	jun_api_service API接口服务框架，SpringBoot+Rest API  
 	jun_springboot_vue 前后端分离框架，SpringBoot+Vue+JWT  
