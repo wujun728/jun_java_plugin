@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cn.kiiwii.framework.springcloud.microservice</groupId>
+	<artifactId>springcloud_netflix_edgware</artifactId>
+	<version>1.0</version>
+	<modules>
+		<module>microservice-discovery-eureka</module>
+		<module>microservice-provider-user</module>
+		<module>microservice-consumer-ribbon</module>
+		<module>microservice-consumer-feign</module>
+		<module>microservice-hystrix-dashboard</module>
+		<module>microservice-hystrix-turbine</module>
+		<module>microservice-api-gateway</module>
+		<module>microservice-config</module>
+
+
+
+		<module>cloud-config-repo</module>
+		<module>cloud-config-server</module>
+		<module>cloud-eureka-server</module>
+		<module>cloud-hystrix-dashboard</module>
+		<module>cloud-hystrix-turbine</module>
+		<module>cloud-monitor-server</module>
+		<module>cloud-simple-docker</module>
+		<module>cloud-simple-helloword</module>
+		<module>cloud-simple-log4j</module>
+		<module>cloud-simple-service</module>
+		<module>cloud-simple-ui</module>
+		<module>cloud-simple-zuul</module>
+		<module>cloud-sleuth-server</module>
+		<module>cloud-sleuth-service1</module>
+		<module>cloud-sleuth-service2</module>
+		<module>cloud-sleuth-stream-server</module>
+		<module>cloud-sleuth-stream-service</module>
+	</modules>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.11.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Edgware.SR3</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,32 @@
+server:
+  port: 8060
+
+management:
+  security:
+    enabled: false
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+
+zuul:
+  ignoredServices: '*'
+  routes:
+    auth-service:
+      path: /uaa/**
+      stripPrefix: false
+      sensitiveHeaders:
+    svca-service:
+      path: /svca/**
+      sensitiveHeaders:
+    svcb-service:
+      path: /svcb/**
+      sensitiveHeaders:

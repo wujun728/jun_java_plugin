@@ -1,0 +1,52 @@
+# 本地开发环境， 本地启动请修改dubbo版本为自己的，如 provider.version=devWenbin
+provider:
+  version: dev
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: ${nacos.server}:${nacos.port}
+        namespace: ${nacos.namespace}
+        file-extension: yaml
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          password: root
+          url: jdbc:mysql://localhost:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2b8&rewriteBatchedStatements=true
+          username: root
+    dynamicgetDictValue:
+      primary: master
+nacos:
+  server: localhost
+  port: 8848
+  namespace: b7df687a-c44f-4769-bac0-7f82da817d7a
+dubbo:
+  application:
+    id: ${spring.application.name}
+    name: ${spring.application.name}
+    qos-accept-foreign-ip: false
+    qos-enable: false
+  consumer:
+    check: false
+    version: ${provider.version}
+  protocol:
+    name: dubbo
+    port: -1
+  provider:
+    filter: -exception,customException
+    version: ${provider.version}
+  registry:
+    address: ${nacos.server}:${nacos.port}?namespace=${nacos.namespace}
+    check: false
+    protocol: nacos
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+  mapper-locations: classpath:mapper/*.xml

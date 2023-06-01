@@ -1,0 +1,40 @@
+eureka:
+  instance:
+    hostname: registry
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://user:${REGISTRY_SERVER_PASSWORD:password}@registry:8761/eureka/
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
+spring:
+  rabbitmq:
+    host: rabbitmq
+  sleuth:
+    sampler:
+      percentage: 1
+    integration:
+      enabled: false
+    scheduled:
+      skip-pattern: "^org.*HystrixStreamTask$"
+
+authserver:
+    hostname: auth-service
+    port: 5000
+    contextPath: /uaa
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://${authserver.hostname}:${authserver.port}${authserver.contextPath}/current

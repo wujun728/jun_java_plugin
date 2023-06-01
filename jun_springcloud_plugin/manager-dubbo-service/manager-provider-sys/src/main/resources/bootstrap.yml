@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: sys-provider
+  profiles:
+    active: @activeProfile@

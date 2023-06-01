@@ -1,0 +1,23 @@
+server: 
+  port: 91 
+  context-path: /
+
+
+
+
+
+eureka: 
+  client: 
+    service-url: 
+      defaultZone: http://eureka2001.java1234.com:2001/eureka/,http://eureka2002.java1234.com:2002/eureka/,http://eureka2003.java1234.com:2003/eureka/
+
+
+turbine: 
+  app-config: microservice-student   # 指定要监控的应用名称 
+  clusterNameExpression: "'default'" #表示集群的名字为default
+
+
+
+spring: 
+  application: 
+    name: turbine

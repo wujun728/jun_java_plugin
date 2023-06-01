@@ -1,0 +1,51 @@
+# 本地开发环境， 本地启动请修改dubbo版本为自己的，如 provider.version=devWenbin
+provider:
+  version: dev
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: ${nacos.server}:${nacos.port}
+        namespace: ${nacos.namespace}
+        file-extension: yaml
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  redis:
+    database: 3
+    host: localhost
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+    key:
+      expire:
+        passwordError: 3600
+        userToken: 86400
+      prefix:
+        passwordError: 'user:web:password:error:'
+        userToken: 'user:web:token:'
+    password:
+    port: 34112
+    timeout: 3000ms
+nacos:
+  server: localhost
+  port: 8848
+  namespace: b7df687a-c44f-4769-bac0-7f82da817d7a
+# 实际配置：
+dubbo:
+  application:
+    id: ${spring.application.name}
+    name: ${spring.application.name}
+    qos-accept-foreign-ip: false
+    qos-enable: false
+  consumer:
+    check: false
+    timeout: 4000
+    version: ${provider.version}
+  registry:
+    address: ${nacos.server}:${nacos.port}?namespace=${nacos.namespace}
+    check: false
+    protocol: nacos

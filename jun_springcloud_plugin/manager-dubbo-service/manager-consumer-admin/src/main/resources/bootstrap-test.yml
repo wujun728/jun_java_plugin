@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: ${nacos.server}:${nacos.port}
+        namespace: ${nacos.namespace}
+        file-extension: yaml
+nacos:
+  server: 10.138.130.1
+  port: 8848
+  namespace: 2614b874-11ce-4e3a-bf8d-8b0baf3d6a31

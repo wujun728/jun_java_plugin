@@ -1,0 +1,22 @@
+server:
+  context-path: /uaa
+  port: 5000
+
+management:
+  security:
+    enabled: false
+  context-path: /mgmt
+
+eureka:
+  instance:
+    health-check-url-path: ${server.context-path}${management.context-path}/health
+    status-page-url-path: ${server.context-path}${management.context-path}/info
+    metadata-map:
+      management.context-path: ${server.context-path}${management.context-path}
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:user
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true

@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: web-consumer
+  profiles:
+    active: @activeProfile@
+server:
+  servlet:
+    context-path: /api
+  port: 8082

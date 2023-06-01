@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: product-provider-9093
+
+  cloud:
+    nacos:
+      discovery:
+        # 配置 nacos 的服务地址
+        server-addr: localhost:8847
+        # 注册服务名，默认值就是获取spring.application.name的值
+        service: product-provider
+        # 设置元数据
+        metadata:
+          version: v1
+          author: huan
+server:
+  port: 9093

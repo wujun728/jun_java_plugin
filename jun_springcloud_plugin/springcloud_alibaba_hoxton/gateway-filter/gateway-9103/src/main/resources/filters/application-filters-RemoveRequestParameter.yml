@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: gateway-filter
+  cloud:
+    nacos:
+      discovery:
+        # 配置 nacos 的服务地址
+        server-addr: localhost:8847
+    gateway:
+      routes:
+        - id: product-provider-01
+          uri: lb://product-provider
+          predicates:
+            - Path=/product/findOne
+          filters:
+            - RemoveRequestParameter=password
+server:
+  port: 9103

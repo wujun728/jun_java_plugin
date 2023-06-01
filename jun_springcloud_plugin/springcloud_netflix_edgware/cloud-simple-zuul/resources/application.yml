@@ -1,0 +1,21 @@
+logging:
+  level.org.springframework.cloud: DEBUG
+  
+server: 
+  port: 8080
+zuul:
+  ignoredPatterns: /health,/error
+  retryable: true  
+  routes:
+    smarts:
+      stripPrefix: true
+      path: /smart/**  
+      serviceId: smarts
+    
+ribbon:
+  eureka:
+    enabled: false
+
+smarts:
+  ribbon:
+    listOfServers: localhost:8082,localhost:8083
