@@ -1,0 +1,2875 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- Standard Meta -->
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<!-- Site Properties -->
+		<title>renren</title>
+		<link href="https://cdn.bootcss.com/semantic-ui/2.3.0/semantic.min.css" rel="stylesheet">
+		<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/semantic-ui/2.3.0/semantic.min.js"></script>
+		<!-- Content JS HERE !-->
+		<style>
+			.last.container {
+				margin-bottom: 300px !important;
+			}
+			
+			h1.ui.center.header {
+				margin-top: 3em;
+			}
+			
+			h2.ui.center.header {
+				margin: 4em 0em 2em;
+			}
+			
+			h3.ui.center.header {
+				margin-top: 2em;
+				padding: 2em 0em;
+			}
+			.hide{
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 目录开始 -->
+		<h1 id="top" class="ui center aligned header ">数据库名称：renren</h1>
+		
+		<div  class="ui text container last db-index">
+			<h3 class="ui center aligned">目录</h3>
+			
+				<div class="ui segment">
+					<div class="ui list divided ">
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(0)">1. qrtz_blob_triggers</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(1)">2. qrtz_calendars</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(2)">3. qrtz_cron_triggers</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(3)">4. qrtz_fired_triggers</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(4)">5. qrtz_job_details</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(5)">6. qrtz_locks</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(6)">7. qrtz_paused_trigger_grps</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(7)">8. qrtz_scheduler_state</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(8)">9. qrtz_simple_triggers</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(9)">10. qrtz_simprop_triggers</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(10)">11. qrtz_triggers</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(11)">12. schedule_job</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(12)">13. schedule_job_log</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(13)">14. sys_config</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(14)">15. sys_log</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(15)">16. sys_menu</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(16)">17. sys_oss</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(17)">18. sys_role</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(18)">19. sys_role_menu</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(19)">20. sys_user</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(20)">21. sys_user_role</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(21)">22. sys_user_token</a>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="content">
+								<a onclick="toTable(22)">23. tb_user</a>
+							</div>
+						</div>
+						
+					</div>
+
+				</div>
+			
+		</div>
+		
+		<!--目录结束-->
+		<!--表说明开始-->
+		<div id="db-table-0" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:qrtz_blob_triggers</h3>
+			<h3 class="ui center aligned ">注释:</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>SCHED_NAME</td>
+						<td>varchar(120)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_NAME</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_GROUP</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>BLOB_DATA</td>
+						<td>blob</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>SCHED_NAME</td>
+						<td>SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-1" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:qrtz_calendars</h3>
+			<h3 class="ui center aligned ">注释:</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>SCHED_NAME</td>
+						<td>varchar(120)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>CALENDAR_NAME</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>CALENDAR</td>
+						<td>blob</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>SCHED_NAME,CALENDAR_NAME</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-2" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:qrtz_cron_triggers</h3>
+			<h3 class="ui center aligned ">注释:</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>SCHED_NAME</td>
+						<td>varchar(120)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_NAME</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_GROUP</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>CRON_EXPRESSION</td>
+						<td>varchar(120)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TIME_ZONE_ID</td>
+						<td>varchar(80)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-3" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:qrtz_fired_triggers</h3>
+			<h3 class="ui center aligned ">注释:</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>SCHED_NAME</td>
+						<td>varchar(120)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>ENTRY_ID</td>
+						<td>varchar(95)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_NAME</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_GROUP</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>INSTANCE_NAME</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>FIRED_TIME</td>
+						<td>bigint(13)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>SCHED_TIME</td>
+						<td>bigint(13)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>PRIORITY</td>
+						<td>int(11)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>STATE</td>
+						<td>varchar(16)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>JOB_NAME</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>JOB_GROUP</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IS_NONCONCURRENT</td>
+						<td>varchar(1)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>REQUESTS_RECOVERY</td>
+						<td>varchar(1)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>IDX_QRTZ_FT_TRIG_INST_NAME</td>
+						<td>SCHED_NAME,INSTANCE_NAME</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_FT_T_G</td>
+						<td>SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_FT_J_G</td>
+						<td>SCHED_NAME,JOB_NAME,JOB_GROUP</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_FT_INST_JOB_REQ_RCVRY</td>
+						<td>SCHED_NAME,INSTANCE_NAME,REQUESTS_RECOVERY</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>PRIMARY</td>
+						<td>SCHED_NAME,ENTRY_ID</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_FT_TG</td>
+						<td>SCHED_NAME,TRIGGER_GROUP</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_FT_JG</td>
+						<td>SCHED_NAME,JOB_GROUP</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-4" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:qrtz_job_details</h3>
+			<h3 class="ui center aligned ">注释:</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>SCHED_NAME</td>
+						<td>varchar(120)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>JOB_NAME</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>JOB_GROUP</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>DESCRIPTION</td>
+						<td>varchar(250)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>JOB_CLASS_NAME</td>
+						<td>varchar(250)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IS_DURABLE</td>
+						<td>varchar(1)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IS_NONCONCURRENT</td>
+						<td>varchar(1)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IS_UPDATE_DATA</td>
+						<td>varchar(1)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>REQUESTS_RECOVERY</td>
+						<td>varchar(1)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>JOB_DATA</td>
+						<td>blob</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>IDX_QRTZ_J_GRP</td>
+						<td>SCHED_NAME,JOB_GROUP</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>PRIMARY</td>
+						<td>SCHED_NAME,JOB_NAME,JOB_GROUP</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_J_REQ_RECOVERY</td>
+						<td>SCHED_NAME,REQUESTS_RECOVERY</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-5" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:qrtz_locks</h3>
+			<h3 class="ui center aligned ">注释:</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>SCHED_NAME</td>
+						<td>varchar(120)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>LOCK_NAME</td>
+						<td>varchar(40)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>SCHED_NAME,LOCK_NAME</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-6" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:qrtz_paused_trigger_grps</h3>
+			<h3 class="ui center aligned ">注释:</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>SCHED_NAME</td>
+						<td>varchar(120)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_GROUP</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>SCHED_NAME,TRIGGER_GROUP</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-7" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:qrtz_scheduler_state</h3>
+			<h3 class="ui center aligned ">注释:</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>SCHED_NAME</td>
+						<td>varchar(120)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>INSTANCE_NAME</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>LAST_CHECKIN_TIME</td>
+						<td>bigint(13)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>CHECKIN_INTERVAL</td>
+						<td>bigint(13)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>SCHED_NAME,INSTANCE_NAME</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-8" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:qrtz_simple_triggers</h3>
+			<h3 class="ui center aligned ">注释:</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>SCHED_NAME</td>
+						<td>varchar(120)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_NAME</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_GROUP</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>REPEAT_COUNT</td>
+						<td>bigint(7)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>REPEAT_INTERVAL</td>
+						<td>bigint(12)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TIMES_TRIGGERED</td>
+						<td>bigint(10)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-9" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:qrtz_simprop_triggers</h3>
+			<h3 class="ui center aligned ">注释:</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>SCHED_NAME</td>
+						<td>varchar(120)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_NAME</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_GROUP</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>STR_PROP_1</td>
+						<td>varchar(512)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>STR_PROP_2</td>
+						<td>varchar(512)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>STR_PROP_3</td>
+						<td>varchar(512)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>INT_PROP_1</td>
+						<td>int(11)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>INT_PROP_2</td>
+						<td>int(11)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>LONG_PROP_1</td>
+						<td>bigint(20)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>LONG_PROP_2</td>
+						<td>bigint(20)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>DEC_PROP_1</td>
+						<td>decimal(13,4)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>DEC_PROP_2</td>
+						<td>decimal(13,4)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>BOOL_PROP_1</td>
+						<td>varchar(1)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>BOOL_PROP_2</td>
+						<td>varchar(1)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-10" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:qrtz_triggers</h3>
+			<h3 class="ui center aligned ">注释:</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>SCHED_NAME</td>
+						<td>varchar(120)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_NAME</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_GROUP</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>JOB_NAME</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>JOB_GROUP</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>DESCRIPTION</td>
+						<td>varchar(250)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>NEXT_FIRE_TIME</td>
+						<td>bigint(13)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>PREV_FIRE_TIME</td>
+						<td>bigint(13)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>PRIORITY</td>
+						<td>int(11)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_STATE</td>
+						<td>varchar(16)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TRIGGER_TYPE</td>
+						<td>varchar(8)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>START_TIME</td>
+						<td>bigint(13)</td>
+						<td></td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>END_TIME</td>
+						<td>bigint(13)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>CALENDAR_NAME</td>
+						<td>varchar(200)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>MISFIRE_INSTR</td>
+						<td>smallint(2)</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>JOB_DATA</td>
+						<td>blob</td>
+						<td></td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>IDX_QRTZ_T_N_STATE</td>
+						<td>SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP,TRIGGER_STATE</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_T_NEXT_FIRE_TIME</td>
+						<td>SCHED_NAME,NEXT_FIRE_TIME</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_T_C</td>
+						<td>SCHED_NAME,CALENDAR_NAME</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_T_G</td>
+						<td>SCHED_NAME,TRIGGER_GROUP</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_T_J</td>
+						<td>SCHED_NAME,JOB_NAME,JOB_GROUP</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>PRIMARY</td>
+						<td>SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_T_JG</td>
+						<td>SCHED_NAME,JOB_GROUP</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_T_N_G_STATE</td>
+						<td>SCHED_NAME,TRIGGER_GROUP,TRIGGER_STATE</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_T_NFT_ST</td>
+						<td>SCHED_NAME,TRIGGER_STATE,NEXT_FIRE_TIME</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_T_NFT_ST_MISFIRE</td>
+						<td>SCHED_NAME,MISFIRE_INSTR,NEXT_FIRE_TIME,TRIGGER_STATE</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_T_STATE</td>
+						<td>SCHED_NAME,TRIGGER_STATE</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_T_NFT_MISFIRE</td>
+						<td>SCHED_NAME,MISFIRE_INSTR,NEXT_FIRE_TIME</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>IDX_QRTZ_T_NFT_ST_MISFIRE_GRP</td>
+						<td>SCHED_NAME,MISFIRE_INSTR,NEXT_FIRE_TIME,TRIGGER_GROUP,TRIGGER_STATE</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-11" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:schedule_job</h3>
+			<h3 class="ui center aligned ">注释:定时任务</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>job_id</td>
+						<td>bigint(20)</td>
+						<td>任务id</td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td>auto_increment</td>
+					</tr>
+					<tr>
+						<td>bean_name</td>
+						<td>varchar(200)</td>
+						<td>spring bean名称</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>method_name</td>
+						<td>varchar(100)</td>
+						<td>方法名</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>params</td>
+						<td>varchar(2000)</td>
+						<td>参数</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>cron_expression</td>
+						<td>varchar(100)</td>
+						<td>cron表达式</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>status</td>
+						<td>tinyint(4)</td>
+						<td>任务状态  0：正常  1：暂停</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>remark</td>
+						<td>varchar(255)</td>
+						<td>备注</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>create_time</td>
+						<td>datetime</td>
+						<td>创建时间</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>job_id</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-12" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:schedule_job_log</h3>
+			<h3 class="ui center aligned ">注释:定时任务日志</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>log_id</td>
+						<td>bigint(20)</td>
+						<td>任务日志id</td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td>auto_increment</td>
+					</tr>
+					<tr>
+						<td>job_id</td>
+						<td>bigint(20)</td>
+						<td>任务id</td>
+						<td>MUL</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>bean_name</td>
+						<td>varchar(200)</td>
+						<td>spring bean名称</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>method_name</td>
+						<td>varchar(100)</td>
+						<td>方法名</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>params</td>
+						<td>varchar(2000)</td>
+						<td>参数</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>status</td>
+						<td>tinyint(4)</td>
+						<td>任务状态    0：成功    1：失败</td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>error</td>
+						<td>varchar(2000)</td>
+						<td>失败信息</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>times</td>
+						<td>int(11)</td>
+						<td>耗时(单位：毫秒)</td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>create_time</td>
+						<td>datetime</td>
+						<td>创建时间</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>log_id</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>job_id</td>
+						<td>job_id</td>
+						<td>
+								NORMAL
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-13" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:sys_config</h3>
+			<h3 class="ui center aligned ">注释:系统配置信息表</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>id</td>
+						<td>bigint(20)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td>auto_increment</td>
+					</tr>
+					<tr>
+						<td>key</td>
+						<td>varchar(50)</td>
+						<td>key</td>
+						<td>UNI</td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>value</td>
+						<td>varchar(2000)</td>
+						<td>value</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>status</td>
+						<td>tinyint(4)</td>
+						<td>状态   0：隐藏   1：显示</td>
+						<td></td>
+						<td>YES</td>
+						<td>1</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>remark</td>
+						<td>varchar(500)</td>
+						<td>备注</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>id</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>key</td>
+						<td>key</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-14" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:sys_log</h3>
+			<h3 class="ui center aligned ">注释:系统日志</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>id</td>
+						<td>bigint(20)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td>auto_increment</td>
+					</tr>
+					<tr>
+						<td>username</td>
+						<td>varchar(50)</td>
+						<td>用户名</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>operation</td>
+						<td>varchar(50)</td>
+						<td>用户操作</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>method</td>
+						<td>varchar(200)</td>
+						<td>请求方法</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>params</td>
+						<td>varchar(5000)</td>
+						<td>请求参数</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>time</td>
+						<td>bigint(20)</td>
+						<td>执行时长(毫秒)</td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>ip</td>
+						<td>varchar(64)</td>
+						<td>IP地址</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>create_date</td>
+						<td>datetime</td>
+						<td>创建时间</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>id</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-15" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:sys_menu</h3>
+			<h3 class="ui center aligned ">注释:菜单管理</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>menu_id</td>
+						<td>bigint(20)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td>auto_increment</td>
+					</tr>
+					<tr>
+						<td>parent_id</td>
+						<td>bigint(20)</td>
+						<td>父菜单ID，一级菜单为0</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>name</td>
+						<td>varchar(50)</td>
+						<td>菜单名称</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>url</td>
+						<td>varchar(200)</td>
+						<td>菜单URL</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>perms</td>
+						<td>varchar(500)</td>
+						<td>授权(多个用逗号分隔，如：user:list,user:create)</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>type</td>
+						<td>int(11)</td>
+						<td>类型   0：目录   1：菜单   2：按钮</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>icon</td>
+						<td>varchar(50)</td>
+						<td>菜单图标</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>order_num</td>
+						<td>int(11)</td>
+						<td>排序</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>menu_id</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-16" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:sys_oss</h3>
+			<h3 class="ui center aligned ">注释:文件上传</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>id</td>
+						<td>bigint(20)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td>auto_increment</td>
+					</tr>
+					<tr>
+						<td>url</td>
+						<td>varchar(200)</td>
+						<td>URL地址</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>create_date</td>
+						<td>datetime</td>
+						<td>创建时间</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>id</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-17" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:sys_role</h3>
+			<h3 class="ui center aligned ">注释:角色</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>role_id</td>
+						<td>bigint(20)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td>auto_increment</td>
+					</tr>
+					<tr>
+						<td>role_name</td>
+						<td>varchar(100)</td>
+						<td>角色名称</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>remark</td>
+						<td>varchar(100)</td>
+						<td>备注</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>create_user_id</td>
+						<td>bigint(20)</td>
+						<td>创建者ID</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>create_time</td>
+						<td>datetime</td>
+						<td>创建时间</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>role_id</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-18" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:sys_role_menu</h3>
+			<h3 class="ui center aligned ">注释:角色与菜单对应关系</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>id</td>
+						<td>bigint(20)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td>auto_increment</td>
+					</tr>
+					<tr>
+						<td>role_id</td>
+						<td>bigint(20)</td>
+						<td>角色ID</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>menu_id</td>
+						<td>bigint(20)</td>
+						<td>菜单ID</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>id</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-19" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:sys_user</h3>
+			<h3 class="ui center aligned ">注释:系统用户</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>user_id</td>
+						<td>bigint(20)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td>auto_increment</td>
+					</tr>
+					<tr>
+						<td>username</td>
+						<td>varchar(50)</td>
+						<td>用户名</td>
+						<td>UNI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>password</td>
+						<td>varchar(100)</td>
+						<td>密码</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>salt</td>
+						<td>varchar(20)</td>
+						<td>盐</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>email</td>
+						<td>varchar(100)</td>
+						<td>邮箱</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>mobile</td>
+						<td>varchar(100)</td>
+						<td>手机号</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>status</td>
+						<td>tinyint(4)</td>
+						<td>状态  0：禁用   1：正常</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>create_user_id</td>
+						<td>bigint(20)</td>
+						<td>创建者ID</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>create_time</td>
+						<td>datetime</td>
+						<td>创建时间</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>user_id</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>username</td>
+						<td>username</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-20" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:sys_user_role</h3>
+			<h3 class="ui center aligned ">注释:用户与角色对应关系</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>id</td>
+						<td>bigint(20)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td>auto_increment</td>
+					</tr>
+					<tr>
+						<td>user_id</td>
+						<td>bigint(20)</td>
+						<td>用户ID</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>role_id</td>
+						<td>bigint(20)</td>
+						<td>角色ID</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>id</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-21" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:sys_user_token</h3>
+			<h3 class="ui center aligned ">注释:系统用户Token</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>user_id</td>
+						<td>bigint(20)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>token</td>
+						<td>varchar(100)</td>
+						<td>token</td>
+						<td>UNI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>expire_time</td>
+						<td>datetime</td>
+						<td>过期时间</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>update_time</td>
+						<td>datetime</td>
+						<td>更新时间</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>user_id</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>token</td>
+						<td>token</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div id="db-table-22" style="display: none" class="ui container last db-table ">
+			<h1 class="ui center aligned header">表名:tb_user</h3>
+			<h3 class="ui center aligned ">注释:用户</h3>
+			<h3 class="ui center aligned " ><a onclick="toIndex()">返回目录</a></h3>
+			<table class="ui orange celled   table">
+				<caption>表格信息</caption>
+				<thead>
+					<tr>
+						<th>字段</th>
+						<th>类型</th>
+						<th>注释</th>
+						<th>键</th>
+						<th>能否为空</th>
+						<th>默认值</th>
+						<th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>user_id</td>
+						<td>bigint(20)</td>
+						<td></td>
+						<td>PRI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td>auto_increment</td>
+					</tr>
+					<tr>
+						<td>username</td>
+						<td>varchar(50)</td>
+						<td>用户名</td>
+						<td>UNI</td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>mobile</td>
+						<td>varchar(20)</td>
+						<td>手机号</td>
+						<td></td>
+						<td>NO</td>
+						<td>无</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>password</td>
+						<td>varchar(64)</td>
+						<td>密码</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>create_time</td>
+						<td>datetime</td>
+						<td>创建时间</td>
+						<td></td>
+						<td>YES</td>
+						<td>NULL</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+			
+			<table class="ui orange celled   table">
+				<caption>索引信息</caption>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>栏位</th>
+						<th>索引类型</th>
+						<th>索引方式</th>
+						<th>索引备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>PRIMARY</td>
+						<td>user_id</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>username</td>
+						<td>username</td>
+						<td>
+								UNIQUE
+						</td>
+						<td>BTREE</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		
+
+		<script type="text/javascript">
+			
+			
+			function toTable(id){
+				$(".db-table").hide();
+				$(".db-index").hide();
+				$("#db-table-"+id).show();
+				toTop();
+			}
+			
+			function toIndex(){
+				$(".db-table").hide();
+				$(".db-index").show();
+				toTop();
+			}
+			
+			function toTop(){
+				location.href = "#top";
+			}
+			
+		</script>
+
+	</body>
+
+</html>
