@@ -1,87 +1,87 @@
 ## [俊哥个人技术栈代码库(持续更新)](https://github.com/wujun728)
 --------------------------------------------------------------------------------------------------------------
 
-#### 产品篇：[产品及解决方案(重点)][jun_product_center,jun_website,wujun728.github.io]
+#### 产品篇：[产品及解决方案(重点)][jun_product_center,jun_website,wujun728.github.io]
 
-> 企业信息化系统：
+> 企业信息化系统：
 
-【企业TPG门户系统】[仿中软国际TPG门户系统](https://github.com/wujun728/jun_product/jun_portal/)
-【企业财经服务系统】[产品功能说明](https://github.com/wujun728/jun_product/tree/master/jun_finance)
-【企业HR服务系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_hr)
-【企业项目管理系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_project)
-【企业OA系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_oa)
-【企业CRM系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_crm)
-【企业ERP系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_erp)
-【企业信息管理系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_mis)
-【Blog管理系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_blog)
-【俊哥的个人简历】[产品功能说明](https://github.com/wujun728/jun_product/jun_resume)
-【企业官网门户】[产品功能说明,企业网站产品,网站开发](https://github.com/wujun728/jun_website/jun_official_website)
-【企业CMS系统】[产品功能说明](https://github.com/wujun728/jun_website/jun_cms)
-【WordPress】[基于WordPress的CMS管理系统](https://github.com/wujun728/jun_website/jun_wordpress)
+【企业TPG门户系统】[仿中软国际TPG门户系统](https://github.com/wujun728/jun_product/jun_portal/)<br/>
+【企业财经服务系统】[产品功能说明](https://github.com/wujun728/jun_product/tree/master/jun_finance)<br/>
+【企业HR服务系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_hr)<br/>
+【企业项目管理系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_project)<br/>
+【企业OA系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_oa)<br/>
+【企业CRM系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_crm)<br/>
+【企业ERP系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_erp)<br/>
+【企业信息管理系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_mis)<br/>
+【Blog管理系统】[产品功能说明](https://github.com/wujun728/jun_product/jun_blog)<br/>
+【俊哥的个人简历】[产品功能说明](https://github.com/wujun728/jun_product/jun_resume)<br/>
+【企业官网门户】[产品功能说明,企业网站产品,网站开发](https://github.com/wujun728/jun_website/jun_official_website)<br/>
+【企业CMS系统】[产品功能说明](https://github.com/wujun728/jun_website/jun_cms)<br/>
+【WordPress】[基于WordPress的CMS管理系统](https://github.com/wujun728/jun_website/jun_wordpress)<br/>
 
-#### 移动篇：产品及解决方案(重点) [jun_android,jun_app,jun_weixin]
+#### 移动篇：产品及解决方案(重点) [jun_android,jun_app,jun_weixin]
 
 > APP开发框架 jun_app, APP开发，Android开发，Vue+uniapp+Nodejs+Bigdata：
 
-【Android程序开发】[产品功能说明](https://github.com/wujun728/jun_android)
-【H5混合App程序开发】[产品功能说明](https://github.com/wujun728/jun_app)
+【Android程序开发】[产品功能说明](https://github.com/wujun728/jun_android)<br/>
+【H5混合App程序开发】[产品功能说明](https://github.com/wujun728/jun_app)<br/>
 
 > 微信开发框架, 微信开发 [jun_weixin]
 
-【微信小程序】[产品功能说明](https://github.com/wujun728/jun_weixin/weixin_miniprogram)
-【微信小程序管理系统】[产品功能说明](https://github.com/wujun728/jun_weixin/weixin_manager)
-【微信公众号】[产品功能说明](https://github.com/wujun728/jun_weixin//weixin_product)
-【微信公众号管理系统】[产品功能说明](https://github.com/wujun728/jun_weixin/weixin_manager)
-【微信工具系统-爬虫-代码生成器】[产品功能说明](https://github.com/wujun728/jun_weixin/weixin_crawler)
-【微信推送更新订阅管理系统】[产品功能说明](https://github.com/wujun728/jun_weixin/weixin_push)
+【微信小程序】[产品功能说明](https://github.com/wujun728/jun_weixin/weixin_miniprogram)<br/>
+【微信小程序管理系统】[产品功能说明](https://github.com/wujun728/jun_weixin/weixin_manager)<br/>
+【微信公众号】[产品功能说明](https://github.com/wujun728/jun_weixin//weixin_product)<br/>
+【微信公众号管理系统】[产品功能说明](https://github.com/wujun728/jun_weixin/weixin_manager)<br/>
+【微信工具系统-爬虫-代码生成器】[产品功能说明](https://github.com/wujun728/jun_weixin/weixin_crawler)<br/>
+【微信推送更新订阅管理系统】[产品功能说明](https://github.com/wujun728/jun_weixin/weixin_push)<br/>
 
 --------------------------------------------------------------------------------------------------------------
 #### 大数据篇：大数据场景,大数据开发，Hadoop、Spark、Strom开发 [jun_bigdata,jun_linux]
 
-【Hadoop大数据】[Spring连接Hadoop实现CRUD](https://github.com/wujun728/jun_bigdata/Spring-mongoDB)
-【Spark大数据】[Spring连接Spark实现CRUD](https://github.com/wujun728/jun_bigdata/Spring-mongoDB)
-【MongoDB数据库】[Spring连接mongoDB数据库实现增删改查](https://github.com/wujun728/jun_bigdata/Spring-mongoDB)
-【Oracle数据库】[实现Oracle数据库的CRUD](https://github.com/wujun728/jun_bigdata/Spring-redis)
-【MySQL数据库】[实现Mysql数据库的主从复制、读写分离、分表分库、负载均衡和高可用](https://github.com/wujun728/jun_bigdata/Spring-redis)
-【H2数据库】[Spring连接H2数据库实现CRUD](https://github.com/wujun728/jun_bigdata/Spring-redis)
-【SQLite数据库】[Spring连接SQLite实现CRUD](https://github.com/wujun728/jun_bigdata/Spring-redis)
-【Neo4j图数据库】[Spring连接图存数据库Neo4j实现增删改查](https://github.com/wujun728/jun_bigdata/Spring-neo4j)
-【ETL数据转换Kettle】[使用ETL工具Kettle的实例](https://github.com/wujun728/jun_bigdata/Kettle-demo)
-【Zeppelin数据分析】[使用数据仓库进行OLAP数据分析（Mysql+Kettle+Zeppelin）](https://github.com/wujun728/jun_bigdata)
+【Hadoop大数据】[Spring连接Hadoop实现CRUD](https://github.com/wujun728/jun_bigdata/Spring-mongoDB)<br/>
+【Spark大数据】[Spring连接Spark实现CRUD](https://github.com/wujun728/jun_bigdata/Spring-mongoDB)<br/>
+【MongoDB数据库】[Spring连接mongoDB数据库实现增删改查](https://github.com/wujun728/jun_bigdata/Spring-mongoDB)<br/>
+【Oracle数据库】[实现Oracle数据库的CRUD](https://github.com/wujun728/jun_bigdata/Spring-redis)<br/>
+【MySQL数据库】[实现Mysql数据库的主从复制、读写分离、分表分库、负载均衡和高可用](https://github.com/wujun728/jun_bigdata/Spring-redis)<br/>
+【H2数据库】[Spring连接H2数据库实现CRUD](https://github.com/wujun728/jun_bigdata/Spring-redis)<br/>
+【SQLite数据库】[Spring连接SQLite实现CRUD](https://github.com/wujun728/jun_bigdata/Spring-redis)<br/>
+【Neo4j图数据库】[Spring连接图存数据库Neo4j实现增删改查](https://github.com/wujun728/jun_bigdata/Spring-neo4j)<br/>
+【ETL数据转换Kettle】[使用ETL工具Kettle的实例](https://github.com/wujun728/jun_bigdata/Kettle-demo)<br/>
+【Zeppelin数据分析】[使用数据仓库进行OLAP数据分析（Mysql+Kettle+Zeppelin）](https://github.com/wujun728/jun_bigdata)<br/>
 
 --------------------------------------------------------------------------------------------------------------
 #### 微服务篇：基于Spring系微服务[jun_springcloud,jun_springboot]
 
-【微服务快速开发平台SpringCoud】[产品功能说明](https://github.com/wujun728/jun_cloud)
-【微服务快速开发平台SpringBoot】[产品功能说明](https://github.com/wujun728/jun_boot)
-【SpringBoot微服务】[基于SpringBoot实现各种服务应用](https://github.com/wujun728/jun_cloud)
-【SpringCloud微服务Netflex】[基于SpringCloud2.1的微服务开发脚手架，整合了oauth2、nacos、gateway等](https://github.com/zhoutaoo/SpringCloud)
-【SpringCloud微服务2020】[基于SpringCloud2020最新版构建微服务框架](https://github.com/wujun728/jun_cloud)
-【SpringCloudAlibaba微服务】[基于SpringCloudAlibaba提供微服务开发的一站式解决方案](https://github.com/wujun728/jun_cloud)
-【ApacheDubbo微服务】[基于Dubbo实现高性能、轻量级的Java微服务框架](https://github.com/wujun728/jun_cloud)
-【分布式session】[Spring框架的session模块实现集中式session管理 ](https://github.com/wujun728/jun_cloud)
-【分布式文件】[使用FastDFS搭建分布式文件系统（高可用、负载均衡）](https://github.com/wujun728/jun_cloud/Spring-fastdfs)
-【分布式事务】[基于可靠消息最终一致性实现分布式事务（activeMQ），使用TCC框架实现分布式事务]
-【高并发事务】[高并发，数据库锁机制和事务隔离级别的实现](https://github.com/wujun728/jun_cloud)
-【分布式锁】[高并发：使用redis实现分布式锁，使用zookeeper实现分布式锁](https://github.com/wujun728/jun_cloud)
-【线程池&异步现场】[高并发：Java多线程编程实例 ](https://github.com/wujun728/jun_cloud)
-【高性能NIO】[高并发：使用netty实现高性能NIO通信]
-【dubbo RPC服务】[Spring boot整合Apache dubbo v2.7实现分布式服务治理（SOA架构）]
-【Spring Cloud微服务】[使用Spring Cloud实现微服务架构（MSA架构）]
-【Redis&Redis Cluster】[基于Redis集群实现分布式缓存](https://github.com/wujun728/jun_cloud/Spring-redis)
-【分库分表Mycat】[实现Mysql数据库的主从复制、读写分离、分表分库、负载均衡和高可用](https://github.com/wujun728/jun_cloud/Spring-redis)
+【微服务快速开发平台SpringCoud】[产品功能说明](https://github.com/wujun728/jun_cloud)<br/>
+【微服务快速开发平台SpringBoot】[产品功能说明](https://github.com/wujun728/jun_boot)<br/>
+【SpringBoot微服务】[基于SpringBoot实现各种服务应用](https://github.com/wujun728/jun_cloud)<br/>
+【SpringCloud微服务Netflex】[基于SpringCloud2.1的微服务开发脚手架，整合了oauth2、nacos、gateway等](https://github.com/zhoutaoo/SpringCloud)<br/>
+【SpringCloud微服务2020】[基于SpringCloud2020最新版构建微服务框架](https://github.com/wujun728/jun_cloud)<br/>
+【SpringCloudAlibaba微服务】[基于SpringCloudAlibaba提供微服务开发的一站式解决方案](https://github.com/wujun728/jun_cloud)<br/>
+【ApacheDubbo微服务】[基于Dubbo实现高性能、轻量级的Java微服务框架](https://github.com/wujun728/jun_cloud)<br/>
+【分布式session】[Spring框架的session模块实现集中式session管理 ](https://github.com/wujun728/jun_cloud)<br/>
+【分布式文件】[使用FastDFS搭建分布式文件系统（高可用、负载均衡）](https://github.com/wujun728/jun_cloud/Spring-fastdfs)<br/>
+【分布式事务】[基于可靠消息最终一致性实现分布式事务（activeMQ），使用TCC框架实现分布式事务]<br/>
+【高并发事务】[高并发，数据库锁机制和事务隔离级别的实现](https://github.com/wujun728/jun_cloud)<br/>
+【分布式锁】[高并发：使用redis实现分布式锁，使用zookeeper实现分布式锁](https://github.com/wujun728/jun_cloud)<br/>
+【线程池&异步现场】[高并发：Java多线程编程实例 ](https://github.com/wujun728/jun_cloud)<br/>
+【高性能NIO】[高并发：使用netty实现高性能NIO通信]<br/>
+【dubbo RPC服务】[Spring boot整合Apache dubbo v2.7实现分布式服务治理（SOA架构）]<br/>
+【Spring Cloud微服务】[使用Spring Cloud实现微服务架构（MSA架构）]<br/>
+【Redis&Redis Cluster】[基于Redis集群实现分布式缓存](https://github.com/wujun728/jun_cloud/Spring-redis)<br/>
+【分库分表Mycat】[实现Mysql数据库的主从复制、读写分离、分表分库、负载均衡和高可用](https://github.com/wujun728/jun_cloud/Spring-redis)<br/>
 
 > Linux环境部署&架构&分布式&高并发，Linux环境部署、各种中间件部署 [jun_linux]
 
 【Gitlib&SVN服务&搭建】[Git指南和分支管理策略
 
 吴俊:
-【Gitlib&SVN服务&搭建】[Git指南和分支管理策略](https://github.com/wujun728/jun_linux)
-【Nginx集群】[搭建高可用nginx集群和Tomcat负载均衡](https://github.com/wujun728/jun_linux)
-【zookeeper注册中心】[产品功能说明](https://github.com/wujun728/jun_linux)=
-【jenkins自动化部署】[使用jenkins+git+maven搭建持续集成环境自动化部署分布式服务]
-【Docker微服务自动化】[使用docker+jenkins+gitlab+spring cloud实现微服务的编排、持续集成和动态扩容]
-【kubernetes服务编排】[基于Kubernetes实现服务编排、自动部署，扩展和管理容器化]
+【Gitlib&SVN服务&搭建】[Git指南和分支管理策略](https://github.com/wujun728/jun_linux)<br/>
+【Nginx集群】[搭建高可用nginx集群和Tomcat负载均衡](https://github.com/wujun728/jun_linux)<br/>
+【zookeeper注册中心】[产品功能说明](https://github.com/wujun728/jun_linux)<br/>
+【jenkins自动化部署】[使用jenkins+git+maven搭建持续集成环境自动化部署分布式服务]<br/>
+【Docker微服务自动化】[使用docker+jenkins+gitlab+spring cloud实现微服务的编排、持续集成和动态扩容]<br/>
+【kubernetes服务编排】[基于Kubernetes实现服务编排、自动部署，扩展和管理容器化]<br/>
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -89,46 +89,42 @@
 
 > Java基础系开发组件jun_plugin 常用开发组件，调整，新增并优化项目组件：
 
-【Java基础】[文件上传下载，邮件、Echart报表、二维码，开发工具](https://github.com/wujun728/jun_plugin/jun_redis)
-【设计模式】[23种设计模式及常见数据结构与算法](https://github.com/wujun728/jun_plugin/SSM)
+【Java基础】[文件上传下载，邮件、Echart报表、二维码，开发工具](https://github.com/wujun728/jun_plugin/jun_redis)<br/>
+【设计模式】[23种设计模式及常见数据结构与算法](https://github.com/wujun728/jun_plugin/SSM)<br/>
 
 > Spring系开发框架组件 Spring常用开发组件，万能粘合剂，企业级J2EE实际标准平台
 
-【SSH框架】[Struts2,Hibernate,Spring三大框架](https://github.com/wujun728/jun_spring_plugin/S2SH)
-【SSM框架】 [SpringMVC,Mybatis,Spring三大框架](https://github.com/wujun728/jun_spring_plugin/SSM)
-【SSH框架2】 [Spring,SpringMVC和Hibernate的整合实现增删改查](https://github.com/wujun728/jun_spring_plugin/SSH)
-【SSM微服务】[使用Spring boot整合mybatis,rabbitmq,redis,mongodb实现增删改查](https://github.com/wujun728/jun_spring_plugin)
-【Activiti工作流】 [Spring平台整合activiti工作流引擎实现OA开发](https://github.com/wujun728/jun_spring_plugin/Spring-activiti)
-【WebService服务】 [Spring发布与调用REST风格的WebService](https://github.com/wujun728/jun_spring_plugin/Spring-REST)
-【Shiro权限控制】 [Spring整合Apache Shiro框架，实现用户管理和权限控制](https://github.com/wujun728/jun_spring_plugin/Spring-shiro)
-【Spring security权限控制】 [使用Spring security做权限控制](https://github.com/wujun728/jun_spring_plugin/spring-security-demo)
-【Quartz定时JOB】[SpringTask 使用Spring security做权限控制](https://github.com/wujun728/jun_spring_plugin/spring-security-demo)
-【Lucence搜索】[SpringTask 使用Spring security做权限控制](https://github.com/wujun728/jun_spring_plugin/spring-security-demo)
-【ActiveMQ消息队列】[Spring平台整合消息队列ActiveMQ实现发布订阅、生产者消费者模型（JMS）](https://github.com/wujun728/jun_spring_plugin/Spring-activeMQ)
-【RabbitMQ消息队列】[Spring整合消息队列RabbitMQ实现四种消息模式（AMQP）](https://github.com/wujun728/jun_spring_plugin/Spring-rabbitMQ)
-【Websocket协议】[Spring整合websocket实现即时通讯](https://github.com/wujun728/jun_spring_plugin/Spring-websocket)
-【Elastic search全文检索】[Spring整合Elastic search实现全文检索](https://github.com/wujun728/jun_spring_plugin/Spring-elastic_search)
-【单点登录】[Spring整合CAS框架&JWT实现单点登录](https://github.com/wujun728/jun_spring_plugin/Spring-cas-sso)
+【SSH框架】[Struts2,Hibernate,Spring三大框架](https://github.com/wujun728/jun_spring_plugin/S2SH)<br/>
+【SSM框架】 [SpringMVC,Mybatis,Spring三大框架](https://github.com/wujun728/jun_spring_plugin/SSM)<br/>
+【SSH框架2】 [Spring,SpringMVC和Hibernate的整合实现增删改查](https://github.com/wujun728/jun_spring_plugin/SSH)<br/>
+【SSM微服务】[使用Spring boot整合mybatis,rabbitmq,redis,mongodb实现增删改查](https://github.com/wujun728/jun_spring_plugin)<br/>
+【Activiti工作流】 [Spring平台整合activiti工作流引擎实现OA开发](https://github.com/wujun728/jun_spring_plugin/Spring-activiti)<br/>
+【WebService服务】 [Spring发布与调用REST风格的WebService](https://github.com/wujun728/jun_spring_plugin/Spring-REST)<br/>
+【Shiro权限控制】 [Spring整合Apache Shiro框架，实现用户管理和权限控制](https://github.com/wujun728/jun_spring_plugin/Spring-shiro)<br/>
+【Spring security权限控制】 [使用Spring security做权限控制](https://github.com/wujun728/jun_spring_plugin/spring-security-demo)<br/>
+【Quartz定时JOB】[SpringTask 使用Spring security做权限控制](https://github.com/wujun728/jun_spring_plugin/spring-security-demo)<br/>
+【Lucence搜索】[SpringTask 使用Spring security做权限控制](https://github.com/wujun728/jun_spring_plugin/spring-security-demo)<br/>
+【ActiveMQ消息队列】[Spring平台整合消息队列ActiveMQ实现发布订阅、生产者消费者模型（JMS）](https://github.com/wujun728/jun_spring_plugin/Spring-activeMQ)<br/>
+【RabbitMQ消息队列】[Spring整合消息队列RabbitMQ实现四种消息模式（AMQP）](https://github.com/wujun728/jun_spring_plugin/Spring-rabbitMQ)<br/>
+【Websocket协议】[Spring整合websocket实现即时通讯](https://github.com/wujun728/jun_spring_plugin/Spring-websocket)<br/>
+【Elastic search全文检索】[Spring整合Elastic search实现全文检索](https://github.com/wujun728/jun_spring_plugin/Spring-elastic_search)<br/>
+【单点登录】[Spring整合CAS框架&JWT实现单点登录](https://github.com/wujun728/jun_spring_plugin/Spring-cas-sso)<br/>
 
 Java基础系开发组件，代码生成器&开发模板，基于freemarker及MetaData&SQL解析的代码生成器
-【Java代码生成模块】[数据库表代码生成、页面代码生成](https://github.com/wujun728/jun_code_generator/jun_code_helper)
-【Mybatis代码生成模块】[Mybatis代码生成](https://github.com/wujun728/jun_code_generator)
-【MybatisPlus代码生成模块】[Mybatis-Plus代码生成](https://github.com/wujun728/jun_code_generator)
+【Java代码生成模块】[数据库表代码生成、页面代码生成](https://github.com/wujun728/jun_code_generator/jun_code_helper)<br/>
+【Mybatis代码生成模块】[Mybatis代码生成](https://github.com/wujun728/jun_code_generator)<br/>
+【MybatisPlus代码生成模块】[Mybatis-Plus代码生成](https://github.com/wujun728/jun_code_generator)<br/>
 【Maven项目模板】常用项目开发模板，新增SSH、SSM、Boot、Cloud、Android、APP模板
 
 > 前端系开发框架[jun_frontend_ui]：
 
-【JQueryEasyUI】[基于JQuery的前端UI组件快速开发框架](https://github.com/wujun728/jun_frontend)
-【LayUI框架】[经典模块化前端UI 框架](https://github.com/wujun728/jun_frontend/)
-【Bootstrap框架】[前端响应式CSS/HTML框架](https://github.com/wujun728/jun_frontend)
-【Vue框架】[前端、构建用户界面的渐进式JavaScript框架](https://github.com/wujun728/jun_frontend)
+【JQueryEasyUI】[基于JQuery的前端UI组件快速开发框架](https://github.com/wujun728/jun_frontend)<br/>
+【LayUI框架】[经典模块化前端UI 框架](https://github.com/wujun728/jun_frontend/)<br/>
+【Bootstrap框架】[前端响应式CSS/HTML框架](https://github.com/wujun728/jun_frontend)<br/>
+【Vue框架】[前端、构建用户界面的渐进式JavaScript框架](https://github.com/wujun728/jun_frontend)<br/>
 
 
-
-产品清单：上传服务器发布
-1、清理jun_android仓库，并重置仓库
-2、jun_api_service，重置仓库
-3、
+ 
 
 
 > > jun_code_generator 代码生成器
@@ -348,33 +344,33 @@ Vue+uniapp+Nodejs+WordPress+PHP+Android+Bigdata
 https://blog.csdn.net/xiaojinlai123/article/details/90694372
 https://blog.csdn.net/sxdtzhaoxinguo/article/details/77965226
 
-https://hub.fastgit.org/moshowgame/SpringBootCodeGenerator
-https://hub.fastgit.org/SpringCloud/spring-cloud-codegen
+https://github.com/moshowgame/SpringBootCodeGenerator
+https://github.com/SpringCloud/spring-cloud-codegen
 http://hub.fastgit.org/thinkgem/jeesite_autocode
 
 Readme.md template
 
 plugin
-https://hub.fastgit.org/RudeCrab/rude-java/tree/master/project-practice
+https://github.com/RudeCrab/rude-java/tree/master/project-practice
 
 干掉，放到plugin里面
-https://hub.fastgit.org/wujun728/jun_frontend_ui
+https://github.com/wujun728/jun_frontend_ui
 
 boot
 
-https://hub.fastgit.org/wujun728/jun_springboot 
+https://github.com/wujun728/jun_springboot 
 合并到jun_ssm,并重命名
 
-https://hub.fastgit.org/wangyushuai/inspinia_admin_java_ssm
+https://github.com/wangyushuai/inspinia_admin_java_ssm
 
 前端模板-合并到front里面
-https://hub.fastgit.org/wenfengSAT/wenfengSAT-UI
+https://github.com/wenfengSAT/wenfengSAT-UI
 迁移到CRM里面
-https://hub.fastgit.org/wenfengSAT/SpringbootCRM
+https://github.com/wenfengSAT/SpringbootCRM
 迁移到plugin里面
-https://hub.fastgit.org/wenfengSAT/wenfengSAT-SpringBoot
+https://github.com/wenfengSAT/wenfengSAT-SpringBoot
 迁移到uniapp里面
-https://hub.fastgit.org/fanchaoo/netease-cloud-music-community
+https://github.com/fanchaoo/netease-cloud-music-community
 待处理：
 迁移到cloud里面
 fsLayui
@@ -449,105 +445,104 @@ jun_code_mybatisplus\  
 38. 决战高并发：使用zookeeper实现分布式锁 [购买](http://t.cn/Ai8Y4Cuq)
 39. 决战高并发：Java多线程编程实例 [购买](http://t.cn/Ai8Y4s0r)
 40. 决战高并发：使用netty实现高性能NIO通信 [购买](http://t.cn/Ai8Ybq3e)
-### 快捷入口
-<a href="http://t.cn/Ai8YycFz" target="_blank">我的网店</a>
+ 
 
 <a href="https://www.jianguofaka.com/details/B1143645" target="_blank">全套大礼包2020年版</a>
 
 1、jun_api_service
 初始化API_Service
-https://hub.fastgit.org/lihengming/spring-boot-api-project-seed
+https://github.com/lihengming/spring-boot-api-project-seed
 干掉jun_api-plugin
 
 2、jun_cache   ---干掉
 新增springcache
-https://hub.fastgit.org/iamsixer/spring-cache-demo
-https://hub.fastgit.org/zheng-zy/spring-boot-redis-guava-caffeine-cache
+https://github.com/iamsixer/spring-cache-demo
+https://github.com/zheng-zy/spring-boot-redis-guava-caffeine-cache
 
 3、camel 干掉，没啥用
 
 4、jun_crawler 调整，跑起来，净化
 
 5、jun_datasource_cluster rename 到 DataSource
-新增 https://hub.fastgit.org/ran-jit/tomcat-cluster-redis-session-manager
+新增 https://github.com/ran-jit/tomcat-cluster-redis-session-manager
 
 6、分解jun_dbutils
-https://hub.fastgit.org/objcoding/jdbc-utils
+https://github.com/objcoding/jdbc-utils
 
 7、jun_demo rename到 jun_test
 
 8、设计模式，合并到一起，分三种合并，中文转英文
 
 9、jun_note 新增
-https://hub.fastgit.org/GourdErwa/review-notes
+https://github.com/GourdErwa/review-notes
 
 10、新增jun_webservlet_guice_dbutil
 https://www.cnblogs.com/huzi007/p/5802022.html
 https://www.cnblogs.com/huzi007/p/5796372.html
 
-11、drools https://hub.fastgit.org/maxxbwsDemo
+11、drools https://github.com/maxxbwsDemo
 
 12、email 调整，清理
-https://hub.fastgit.org/biezhi/oh-my-email/blob/master/pom.xml
-https://hub.fastgit.org/isliqian/NiceEmail
+https://github.com/biezhi/oh-my-email/blob/master/pom.xml
+https://github.com/isliqian/NiceEmail
 
 13、excel 集成 easyexcel
-https://hub.fastgit.org/HowieYuan/easyexcel-encapsulation
+https://github.com/HowieYuan/easyexcel-encapsulation
 新增jun_poi demo
 
 14、jun_fileupload
-https://hub.fastgit.org/wemakebug/FileUpload.Java
+https://github.com/wemakebug/FileUpload.Java
 Spring fileupload
-https://hub.fastgit.org/jdmr/fileUpload
+https://github.com/jdmr/fileUpload
 
-15、freemarker boot https://hub.fastgit.org/JavaCodeMood/freemarker
+15、freemarker boot https://github.com/JavaCodeMood/freemarker
 
 16、guava
-https://hub.fastgit.org/tiantiangao/guava-study
-https://hub.fastgit.org/tfnico/guava-examples
+https://github.com/tiantiangao/guava-study
+https://github.com/tfnico/guava-examples
 
 17、guice
-https://hub.fastgit.org/timlien/servlet-guice
-https://hub.fastgit.org/greengerong/guice-demo
-https://hub.fastgit.org/lg625740749/GuiceDemo
+https://github.com/timlien/servlet-guice
+https://github.com/greengerong/guice-demo
+https://github.com/lg625740749/GuiceDemo
 
 18、hibernate
-https://hub.fastgit.org/hibernate/hibernate-demos
+https://github.com/hibernate/hibernate-demos
 
 19、httpclient
-https://hub.fastgit.org/Arronlong/httpclientutil
-https://hub.fastgit.org/JourWon/httpclientutil
+https://github.com/Arronlong/httpclientutil
+https://github.com/JourWon/httpclientutil
 
 20、image
-https://hub.fastgit.org/xuehuayous/ImageUpload
-https://hub.fastgit.org/jmitchener/spring-images
-https://hub.fastgit.org/woobong/spring-boot-jpa-summernote-image-upload-example
-https://hub.fastgit.org/mrmodise/java-spring-file-upload
+https://github.com/xuehuayous/ImageUpload
+https://github.com/jmitchener/spring-images
+https://github.com/woobong/spring-boot-jpa-summernote-image-upload-example
+https://github.com/mrmodise/java-spring-file-upload
 
 21、jbpm4
-https://hub.fastgit.org/xxg3053/jbpm-study
-https://hub.fastgit.org/American/workflow/tree/master/workflow
+https://github.com/xxg3053/jbpm-study
+https://github.com/American/workflow/tree/master/workflow
 
 22.jdk 清理，调整
 
 23、lucenne
-https://hub.fastgit.org/abel533/SearchEngine
-https://hub.fastgit.org/doushini/lucene
-https://hub.fastgit.org/pumadong/cl-search
+https://github.com/abel533/SearchEngine
+https://github.com/doushini/lucene
+https://github.com/pumadong/cl-search
 Springboot+ElasticSearch
-https://hub.fastgit.org/Motianshi/all-search
+https://github.com/Motianshi/all-search
 
 24、pay
-https://hub.fastgit.org/kongzhidea/pay
-https://hub.fastgit.org/iyangyuan/pay-spring-boot
+https://github.com/kongzhidea/pay
+https://github.com/iyangyuan/pay-spring-boot
 
 Spring-cloud
 
  
 
 41、 webmagic
-https://hub.fastgit.org/scsfwgy/WebMagic_CSDN_Demo
-https://hub.fastgit.org/EzioL/neteasemusic
+https://github.com/scsfwgy/WebMagic_CSDN_Demo
+https://github.com/EzioL/neteasemusic
 
 42、api_service
 合并都api里面，其他的2个干掉
@@ -555,12 +550,12 @@ https://hub.fastgit.org/EzioL/neteasemusic
 Spring
 43、 jwt rename一下
 新增springboot jwt
-https://hub.fastgit.org/dolyw/VueStudy/tree/master/VueStudy08-JWT
-https://hub.fastgit.org/dolyw/ShiroJwt.git
+https://github.com/dolyw/VueStudy/tree/master/VueStudy08-JWT
+https://github.com/dolyw/ShiroJwt.git
 
 44、spring activemq
 清理代码，优化test及readme
-https://hub.fastgit.org/888xin/activeMQ
+https://github.com/888xin/activeMQ
 
 45、camel 调整为zip里面的spring
 46、cas 干掉
@@ -573,44 +568,44 @@ https://hub.fastgit.org/888xin/activeMQ
 49、fastdfs
 
 50、dubbo
-https://hub.fastgit.org/GenshenWang/DubboDemo
+https://github.com/GenshenWang/DubboDemo
 
 51、quartz
-https://hub.fastgit.org/ameizi/spring-quartz-cluster-sample
+https://github.com/ameizi/spring-quartz-cluster-sample
 
 52、新增xxl-job
-https://hub.fastgit.org/xuxueli/xxl-job
+https://github.com/xuxueli/xxl-job
 
 53、email
-https://hub.fastgit.org/fangjieDevp/spring-email-master
+https://github.com/fangjieDevp/spring-email-master
 
 54、Excel 干掉
 
 55、hibernate
-https://hub.fastgit.org/zhonglinlin1305/Spring
-https://hub.fastgit.org/zhonglinlin1305/spring-projects/
+https://github.com/zhonglinlin1305/Spring
+https://github.com/zhonglinlin1305/spring-projects/
 
 0、Boot&cloud
-https://hub.fastgit.org/zhonglinlin1305/spring-boot-sample/
-https://hub.fastgit.org/zhonglinlin1305/spring-cloud-microservice
-https://hub.fastgit.org/SpringForAll/springcloud-thoth
+https://github.com/zhonglinlin1305/spring-boot-sample/
+https://github.com/zhonglinlin1305/spring-cloud-microservice
+https://github.com/SpringForAll/springcloud-thoth
 
 56、kafka
-https://hub.fastgit.org/smallnest/spring-kafka-demo
+https://github.com/smallnest/spring-kafka-demo
 
 57、lucenne
-https://hub.fastgit.org/FuZhucheng/SSM
+https://github.com/FuZhucheng/SSM
 
  
 
 00、boot starter
-https://hub.fastgit.org/battcn/extend-spring-boot
+https://github.com/battcn/extend-spring-boot
 
 00、util
-https://hub.fastgit.org/864381832/xJavaFxTool-spring
+https://github.com/864381832/xJavaFxTool-spring
 
 00、ppt
-https://hub.fastgit.org/aalansehaiyang/technology-talk
+https://github.com/aalansehaiyang/technology-talk
 
 1、plugin 代码全部梳理一遍，package/pom/test/readme
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
@@ -625,16 +620,16 @@ https://www.jianshu.com/p/31e532392a74
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
 6、apiservice 代码一套，功能一套，同步ssm
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
-https://hub.fastgit.org/callicoder/spring-webflux-reactive-rest-api-demo
+https://github.com/callicoder/spring-webflux-reactive-rest-api-demo
 https://blog.csdn.net/qq_35067322/article/details/106935320
-https://hub.fastgit.org/dolyw/ShiroJwt
+https://github.com/dolyw/ShiroJwt
 7、linux 部署文档，部署包、docker部署
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
 部署环境
 
 Step2
 main
-https://hub.fastgit.org/Heeexy/SpringBoot-Shiro-Vue
+https://github.com/Heeexy/SpringBoot-Shiro-Vue
 jun_springboot_jwt_layui\   合并到ssm框架
 jun_springboot_jwt_shiro_api\   空的
 jun_springboot_vue\   干掉
@@ -642,41 +637,41 @@ jun_springboot_vue_pro\ 合并到上面里面
 
 Step4
 1、uniapp
-https://hub.fastgit.org/zsptsf/uniapp.git
-https://hub.fastgit.org/c1013529993/springboot-uniapp-21cake
+https://github.com/zsptsf/uniapp.git
+https://github.com/c1013529993/springboot-uniapp-21cake
 
 Step1
 Jdbc_template
 https://gitee.com/jervain_y/repository
 
-https://hub.fastgit.org/horsecms/layuiCMS
+https://github.com/horsecms/layuiCMS
 
 Step2
 1、vue-element-admin
-https://hub.fastgit.org/panjiachen/vue-element-admin-site
+https://github.com/panjiachen/vue-element-admin-site
 https://panjiachen.github.io/vue-element-admin-site/zh/guide/
 2、cloud
 https://www.8kee.com/article/17347.html
-https://hub.fastgit.org/JourWon/springcloud-learning
-https://hub.fastgit.org/wenren0819/Spring-Cloud-2020
+https://github.com/JourWon/springcloud-learning
+https://github.com/wenren0819/Spring-Cloud-2020
 https://blog.csdn.net/ThinkWon/article/details/103726655
 
 2、api_service
-https://hub.fastgit.org/koocyton/reactor-guice
-https://hub.fastgit.org/jwpttcg66/NettyGameServer
+https://github.com/koocyton/reactor-guice
+https://github.com/jwpttcg66/NettyGameServer
 3、bigdata
 爬虫
-https://hub.fastgit.org/brianway/webporter
+https://github.com/brianway/webporter
 ETL
-https://hub.fastgit.org/zhaxiaodong9860/kettle-scheduler
+https://github.com/zhaxiaodong9860/kettle-scheduler
 数仓
-https://hub.fastgit.org/fenglei110/DataWarehouse
-https://hub.fastgit.org/jd-bigdata/rtf-lake
-https://hub.fastgit.org/xzt1995/Data-Warehouse
+https://github.com/fenglei110/DataWarehouse
+https://github.com/jd-bigdata/rtf-lake
+https://github.com/xzt1995/Data-Warehouse
 新增用户画像、用户行为
-https://hub.fastgit.org/monsonlee/BigData
-https://hub.fastgit.org/whirlys/BigData-In-Practice
-https://hub.fastgit.org/597365581/bigdata_tools
+https://github.com/monsonlee/BigData
+https://github.com/whirlys/BigData-In-Practice
+https://github.com/597365581/bigdata_tools
 https://blog.csdn.net/u013967628/article/details/83656560
 
 1、plugin 代码全部梳理一遍，package/pom/test/readme
@@ -692,16 +687,16 @@ https://www.jianshu.com/p/31e532392a74
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
 6、apiservice 代码一套，功能一套，同步ssm
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
-https://hub.fastgit.org/callicoder/spring-webflux-reactive-rest-api-demo
+https://github.com/callicoder/spring-webflux-reactive-rest-api-demo
 https://blog.csdn.net/qq_35067322/article/details/106935320
-https://hub.fastgit.org/dolyw/ShiroJwt
+https://github.com/dolyw/ShiroJwt
 7、linux 部署文档，部署包、docker部署
 1、清理没用代码、工程pom、工程package、工程test、readme、截图、胶片
 部署环境
 
 Step2
 main
-https://hub.fastgit.org/Heeexy/SpringBoot-Shiro-Vue
+https://github.com/Heeexy/SpringBoot-Shiro-Vue
 jun_springboot_jwt_layui\   合并到ssm框架
 jun_springboot_jwt_shiro_api\   空的
 jun_springboot_vue\   干掉
@@ -709,41 +704,41 @@ jun_springboot_vue_pro\ 合并到上面里面
 
 Step4
 1、uniapp
-https://hub.fastgit.org/zsptsf/uniapp.git
-https://hub.fastgit.org/c1013529993/springboot-uniapp-21cake
+https://github.com/zsptsf/uniapp.git
+https://github.com/c1013529993/springboot-uniapp-21cake
 
 Step1
 Jdbc_template
 https://gitee.com/jervain_y/repository
 
-https://hub.fastgit.org/horsecms/layuiCMS
+https://github.com/horsecms/layuiCMS
 
 Step2
 1、vue-element-admin
-https://hub.fastgit.org/panjiachen/vue-element-admin-site
+https://github.com/panjiachen/vue-element-admin-site
 https://panjiachen.github.io/vue-element-admin-site/zh/guide/
 2、cloud
 https://www.8kee.com/article/17347.html
-https://hub.fastgit.org/JourWon/springcloud-learning
-https://hub.fastgit.org/wenren0819/Spring-Cloud-2020
+https://github.com/JourWon/springcloud-learning
+https://github.com/wenren0819/Spring-Cloud-2020
 https://blog.csdn.net/ThinkWon/article/details/103726655
 
 2、api_service
-https://hub.fastgit.org/koocyton/reactor-guice
-https://hub.fastgit.org/jwpttcg66/NettyGameServer
+https://github.com/koocyton/reactor-guice
+https://github.com/jwpttcg66/NettyGameServer
 3、bigdata
 爬虫
-https://hub.fastgit.org/brianway/webporter
+https://github.com/brianway/webporter
 ETL
-https://hub.fastgit.org/zhaxiaodong9860/kettle-scheduler
+https://github.com/zhaxiaodong9860/kettle-scheduler
 数仓
-https://hub.fastgit.org/fenglei110/DataWarehouse
-https://hub.fastgit.org/jd-bigdata/rtf-lake
-https://hub.fastgit.org/xzt1995/Data-Warehouse
+https://github.com/fenglei110/DataWarehouse
+https://github.com/jd-bigdata/rtf-lake
+https://github.com/xzt1995/Data-Warehouse
 新增用户画像、用户行为
-https://hub.fastgit.org/monsonlee/BigData
-https://hub.fastgit.org/whirlys/BigData-In-Practice
-https://hub.fastgit.org/597365581/bigdata_tools
+https://github.com/monsonlee/BigData
+https://github.com/whirlys/BigData-In-Practice
+https://github.com/597365581/bigdata_tools
 https://blog.csdn.net/u013967628/article/details/83656560
 
 Eureka
@@ -755,20 +750,20 @@ Ribbon的负载均衡，主要通过LoadBalancerClient来实现的，而LoadBala
 架构
 https://blog.csdn.net/shenhuxi10000/article/details/105058723
 
-https://hub.fastgit.org/wujun728/learningSummary
+https://github.com/wujun728/learningSummary
 
 Springboot security
 https://blog.csdn.net/yuanlaijike/article/details/80249235
 
 mxtheme02
 
-https://hub.fastgit.org/hemin1003
+https://github.com/hemin1003
 jun_temp     临时仓库
-https://hub.fastgit.org/c1013529993/springboot-uniapp-21cake
+https://github.com/c1013529993/springboot-uniapp-21cake
 
 JWT+VUE
-https://hub.fastgit.org/cailichao/easyweb-jwt
-https://hub.fastgit.org/whvcse/JwtPermission
+https://github.com/cailichao/easyweb-jwt
+https://github.com/whvcse/JwtPermission
 
 Elasticsearch
 
@@ -781,55 +776,44 @@ https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.htm
 ***************************************************************************************************
 
 Springboot_fileupload
-https://hub.fastgit.org/gaoyuyue/MyUploader-Backend
+https://github.com/gaoyuyue/MyUploader-Backend
 
 springcloud_plugin
 Superboot    --- 迁移到jun_cloud_center
 Jun_dubbo ---迁移到jun_microservice
 Spring
 
-https://hub.fastgit.org/liuge1988/kitty-generator
-https://hub.fastgit.org/zhoutaoo/SpringCloud
+https://github.com/liuge1988/kitty-generator
+https://github.com/zhoutaoo/SpringCloud
 
 Api_service
 1、API_BOOT代码生成器合并到code_generator里面
 2、api里面的layui抽出来，合并到
-https://hub.fastgit.org/Radom7/springboot-layui
+https://github.com/Radom7/springboot-layui
 jun_layuiadmin
 3、新增apijson
-https://hub.fastgit.org/APIJSON/APIJSON-Demo
+https://github.com/APIJSON/APIJSON-Demo
 https://vincentcheng.github.io/apijson-doc/
 
 Api_service
 1、API_BOOT代码生成器合并到code_generator里面
 2、api里面的layui抽出来，合并到
-https://hub.fastgit.org/Radom7/springboot-layui
+https://github.com/Radom7/springboot-layui
 jun_layuiadmin
 3、新增apijson
-https://hub.fastgit.org/APIJSON/APIJSON-Demo
+https://github.com/APIJSON/APIJSON-Demo
 https://vincentcheng.github.io/apijson-doc/
 
-https://hub.fastgit.org/scaladte
+https://github.com/scaladte
 
-https://hub.fastgit.org/malizhigithub/CRM
+https://github.com/malizhigithub/CRM
 
 https://blog.csdn.net/qq_22211217/article/details/83759513
 https://www.cnblogs.com/softidea/p/10271266.html
 Mysql 递归查询
-
-代码生成-springbootcodegenerator模板为主，逻辑为辅+新增数据查询转元数据+文件生成的方式
-https://blog.csdn.net/houxinlin_csdn/article/details/108683593
-https://blog.csdn.net/znwnymys/article/details/80739722
-https://hub.fastgit.org/houbb/low-code
-https://www.cnblogs.com/lbangel/p/3487796.html
-https://blog.csdn.net/linhao_obj/article/details/88921170
-Jdbc metabase
+ 
 
 WordPress 多站点
 企业官网
 中软门户网站
-
- 
-
- 
 
