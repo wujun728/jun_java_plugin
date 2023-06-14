@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>29.0-jre</version>
+			<version>32.0.0-jre</version>
 		</dependency>
 		<!-- 目标数据库，这里采用mysql -->
 		<dependency>
@@ -202,7 +202,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>27.1-jre</version>
+			<version>32.0.0-jre</version>
 		</dependency>
 
 		<!-- 工具包 end -->
