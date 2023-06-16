@@ -88,7 +88,9 @@
 		<module>jun_websocket</module>
 		<module>jun_xml</module>
 		<module>mybatis-mate-examples</module>
-		
+		<module>jun_db_document</module>
+		<module>JustAuth-demo</module>
+
 	</modules>
 
 	<dependencies>

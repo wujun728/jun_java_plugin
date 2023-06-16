@@ -8,7 +8,6 @@
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>db-doc-generator</name>
 	<description>数据库文档生成工具</description>
 
 	<parent>
