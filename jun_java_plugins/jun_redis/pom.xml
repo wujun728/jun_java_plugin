@@ -16,7 +16,7 @@
 		<jdk.version>1.7</jdk.version>
 		<surefire.version>2.16</surefire.version>
 		<slf4j.version>1.7.2</slf4j.version>
-		<jackson.version>2.3.0</jackson.version>
+		<jackson.version>2.12.7.1</jackson.version>
 		<logback.version>1.0.9</logback.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
