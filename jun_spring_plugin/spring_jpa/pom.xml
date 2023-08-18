@@ -38,7 +38,7 @@
 		<commons-codec.version>1.10</commons-codec.version>
 
 		<!-- json -->
-		<jackson.version>2.5.0</jackson.version>
+		<jackson.version>2.12.7.1</jackson.version>
 
 		<!-- xml -->
 		<xstream.version>1.4.7</xstream.version>
