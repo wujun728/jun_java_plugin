@@ -19,7 +19,7 @@
         <ojdbc6.version>12.1.0.1-atlassian-hosted</ojdbc6.version>
         <sqlserver.version>4.0</sqlserver.version>
         <commons.lang.version>2.6</commons.lang.version>
-        <commons.io.version>2.5</commons.io.version>
+        <commons.io.version>2.7</commons.io.version>
         <commons.configuration.version>1.10</commons.configuration.version>
         <velocity.version>1.7</velocity.version>
         <quartz.version>2.3.2</quartz.version>
