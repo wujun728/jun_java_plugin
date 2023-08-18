@@ -23,7 +23,7 @@
         <commons.configuration.version>1.10</commons.configuration.version>
         <velocity.version>1.7</velocity.version>
         <quartz.version>2.3.2</quartz.version>
-        <shiro.version>1.4.0</shiro.version>
+        <shiro.version>1.7.1</shiro.version>
         <druid.version>1.1.10</druid.version>
         <fastjson.version>1.2.74</fastjson.version>
         <thymeleaf-shiro.version>2.0.0</thymeleaf-shiro.version>
