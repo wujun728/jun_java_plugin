@@ -14,8 +14,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>dubbo-spring-boot-starter</module>
-        <module>dubbo-tcc-spring-boot-starter</module>
         <module>dynamic-datasource-spring-boot-starter</module>
         <module>encrypt-body-spring-boot-starter</module>
         <module>justauth-spring-boot-starter</module>
