@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.github.snakerflow.plugin.SnakeFlowConfiguration,\
-com.github.snakerflow.plugin.TransactionManagerConfig

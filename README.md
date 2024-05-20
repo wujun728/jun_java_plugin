@@ -6,10 +6,10 @@ jun_java_plugin 整合Java企业级各种开发组件、开箱即用、不写重
 ### 功能清单
 
 1. 集成Java常用开发组件：**java_plugin**，Java常用开发组件，当前**包含60+类各种**lib类库示例与文档。
-2. 集成Spring常用开发组件：**spring_plugin**，企业级开发常用组件，当前**集成100+种**lib类库示例与文档。
-3. 集成SpringBoot常用开发组件：**springboot_plugin**，当前**集成100+**种类库示例与文档。
-4. 集成Maven常用项目模板：**maven_template**，当前集成了**10种模板**，含单体及多模块、SSH、SSM、Boot、Cloud等。
-5. 集成SpringCloud常用开发组件：**springcloud_plugin**，含个版本netflix、alibaba、dubbo等，主要为示例与文档。
+2. 集成SpringBoot常用开发组件：**springboot_plugin**，当前**集成100+**种类库示例与文档。
+3. 集成Maven常用项目模板：**maven_template**，当前集成了**10种模板**，含单体及多模块、SSH、SSM、Boot、Cloud等。
+4. 集成SpringCloud常用开发组件：**springcloud_plugin**，含个版本netflix、alibaba、dubbo等，主要为示例与文档。
+5. 集成Spring常用开发组件：**spring_plugin**，企业级开发常用组件，当前**集成100+种**lib类库示例与文档(Spring的XML时代)。
 
 
 #### 基础篇：企业级开发组件(开发组件、代码生成、前端组件) [jun_java_plugin]
