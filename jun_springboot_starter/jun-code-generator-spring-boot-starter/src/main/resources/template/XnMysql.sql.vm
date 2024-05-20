@@ -1,0 +1,32 @@
+
+#foreach ($id in $sqlMenuId)
+#if($foreach.count == 1)
+INSERT INTO `sys_menu` VALUES
+('$id', '0', '${menuPids}', '${functionName}', '${busName}_index', '1', null, '/${className}/index', null, '${appCode}', '1', '100', null, '0', null, null, null, null);
+#set ($pid=$id)
+
+#elseif($foreach.count == 2)
+INSERT INTO `sys_menu` VALUES
+('$id', '$pid', '${menuPids}', '${functionName}查询', '${busName}_index_page', '2', null, null, '${className}:page', '${appCode}', '1', '100', null, '0', null, null, null, null);
+
+#elseif($foreach.count == 3)
+INSERT INTO `sys_menu` VALUES
+('$id', '$pid', '${menuPids}', '${functionName}新增', '${busName}_index_add', '2', null, null, '${className}:add', '${appCode}', '1', '100', null, '0', null, null, null, null);
+
+#elseif($foreach.count == 4)
+INSERT INTO `sys_menu` VALUES
+('$id', '$pid', '${menuPids}', '${functionName}编辑', '${busName}_index_edit', '2', null, null, '${className}:edit', '${appCode}', '1', '100', null, '0', null, null, null, null);
+
+#elseif($foreach.count == 5)
+INSERT INTO `sys_menu` VALUES
+('$id', '$pid', '${menuPids}', '${functionName}删除', '${busName}_index_delete', '2', null, null, '${className}:delete', '${appCode}', '1', '100', null, '0', null, null, null, null);
+
+#elseif($foreach.count == 6)
+INSERT INTO `sys_menu` VALUES
+('$id', '$pid', '${menuPids}', '${functionName}查看', '${busName}_index_detail', '2', null, null, '${className}:detail', '${appCode}', '1', '100', null, '0', null, null, null, null);
+
+#elseif($foreach.count == 7)
+INSERT INTO `sys_menu` VALUES
+('$id', '$pid', '${menuPids}', '${functionName}列表', '${busName}_index_list', '2', null, null, '${className}:list', 'systool', '1', '100', null, '0', null, null, null, null);
+#end
+#end
