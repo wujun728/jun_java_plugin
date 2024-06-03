@@ -6,9 +6,11 @@ import cn.hutool.log.StaticLog;
 import com.jun.plugin.db.DataSourcePool;
 import com.jun.plugin.db.record.Db;
 import com.jun.plugin.db.record.DbKit;
+import com.jun.plugin.db.record.DbPro;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -16,6 +18,7 @@ import javax.sql.DataSource;
 import static com.jun.plugin.db.DataSourcePool.main;
 
 @Slf4j
+@Order(1)
 @Component
 public class DbCommandRun implements CommandLineRunner {
     @Override
@@ -27,7 +30,9 @@ public class DbCommandRun implements CommandLineRunner {
                 StaticLog.error("当前数据库未设置默认数据源，请设置默认数据源！！！");
             }else{
                 DataSourcePool.add(main,ds);
-                Db.init(main, DataSourcePool.get(DbKit.MAIN_CONFIG_NAME));
+                if(Db.use(main) == null){
+                    Db.init(main, DataSourcePool.get(DbKit.MAIN_CONFIG_NAME));
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,7 +87,9 @@ public class DbCommandRun implements CommandLineRunner {
         StaticLog.info("spring.datasource.driver-class-name"+"="+driver);
         StaticLog.info("current datasource is default ");
         if(!StringUtils.isEmpty(url)) {
-            Db.initAlias(main,url,username, password);
+            if(Db.use(main) == null){
+                Db.initAlias(main,url,username, password);
+            }
             return DataSourcePool.init(main,url,username,password,driver);
         }else {
             return null;

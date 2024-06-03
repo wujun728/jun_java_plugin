@@ -138,7 +138,7 @@ public class Db {
     /**
      * for DbKit.removeConfig(configName)
      */
-    static void removeDbProWithConfig(String configName) {
+    public static void removeDbProWithConfig(String configName) {
     	if (MAIN != null && MAIN.config.getName().equals(configName)) {
     		MAIN = null;
     	}

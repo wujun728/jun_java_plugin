@@ -13,3 +13,39 @@
    3、解压下载的代码，直接复制main文件夹到本地项目的src目录下
    4、数据库执行sql，生成菜单
    5、修改角色所绑定的菜单的权限，刷新页面查看
+   
+   
+   
+
+git branch new_branch
+切换到这个新分支：
+
+git checkout new_branch
+将新分支推送到远程仓库，并设置为默认分支：
+
+git push -u origin new_branch
+git push --delete origin master # 如果原来的默认分支名叫master
+
+
+
+创建一个新的空分支：
+
+git checkout --orphan new_branch
+清除工作目录中的所有文件：
+
+git rm -rf .
+提交一个空的commit：
+
+git commit --allow-empty -m "Initial empty commit"
+将新的空分支推送到远程仓库，并将其设置为默认分支：
+
+git push -u origin new_branch
+git push -f origin :master
+git push -f origin :main  # 如果你的默认分支不是master，可能需要执行这个命令
+如果你想要保留原有的默认分支名，你可以删除旧的master分支：
+
+
+git checkout --orphan master
+git rm -rf .
+git commit --allow-empty -m "Initial empty commit"
+git push -f origin :master

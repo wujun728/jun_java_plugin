@@ -24,6 +24,19 @@
 <!--		<module>jun-security-spring-boot-starter</module>-->
 <!--		<module>jun-code-generator-spring-boot-starter</module>-->
 <!--		<module>jun-dynamic-form-spring-boot-starter</module>-->
+		<!--<module>dynamic-datasource-spring-boot-starter</module>
+        <module>encrypt-body-spring-boot-starter</module>
+        <module>justauth-spring-boot-starter</module>
+        <module>kaptcha-spring-boot-starter</module>
+        <module>lock4j-spring-boot-starter</module>
+        <module>minio-spring-boot-starter</module>
+        <module>p6spy-spring-boot-starter</module>
+        <module>redisson-spring-boot-starter</module>
+        <module>security-spring-boot-starter</module>
+        <module>sms-spring-boot-starter</module>
+        <module>snakerflow-spring-boot-starter</module>
+        <module>version-mapping-spring-boot-starter</module>
+        <module>xxl-job-spring-boot-starter</module>-->
 	</modules>
 
 	<dependencies>

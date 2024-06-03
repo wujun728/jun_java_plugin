@@ -1,8 +1,12 @@
 package com.jun.plugin.groovy.groovy;
 
 import cn.hutool.core.lang.Console;
+import cn.hutool.extra.spring.SpringUtil;
 import com.alibaba.fastjson2.JSON;
 //import com.jfinal.plugin.activerecord.ActiveRecordException;
+import com.jun.plugin.common.utils.spring.SpringUtils;
+import com.jun.plugin.db.record.Db;
+import com.jun.plugin.db.record.DbKit;
 import com.jun.plugin.groovy.common.model.ApiConfig;
 import com.jun.plugin.groovy.cache.IApiConfigCache;
 import com.jun.plugin.groovy.service.ApiService;
@@ -30,6 +34,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +69,7 @@ public class GroovyDynamicLoader implements ApplicationContextAware, Initializin
 
 		long start = System.currentTimeMillis();
 		System.out.println("开始解析groovy脚本...");
+		Db.init(DbKit.MAIN_CONFIG_NAME, SpringUtil.getBean(DataSource.class));
 		initNew();
 		long cost = System.currentTimeMillis() - start;
 		System.out.println("结束解析groovy脚本...，耗时：" + cost);
