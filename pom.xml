@@ -14,7 +14,10 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<modules>
-		<module>jun_springboot_starter</module>
+		<module>jun_springboot_starter</module> 
+		<module>jun_springcloud_starter</module>
+		
+		
 		<!--近期准备一模块一个模块更新重构-->
 		<!--<module>jun_java_plugins</module>
 		<module>jun_springboot_plugin</module>

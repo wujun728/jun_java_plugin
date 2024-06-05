@@ -17,35 +17,35 @@
    
    
 
-git branch new_branch
-切换到这个新分支：
-
-git checkout new_branch
-将新分支推送到远程仓库，并设置为默认分支：
-
-git push -u origin new_branch
-git push --delete origin master # 如果原来的默认分支名叫master
-
-
-
-创建一个新的空分支：
-
-git checkout --orphan new_branch
-清除工作目录中的所有文件：
-
-git rm -rf .
-提交一个空的commit：
-
-git commit --allow-empty -m "Initial empty commit"
-将新的空分支推送到远程仓库，并将其设置为默认分支：
-
-git push -u origin new_branch
-git push -f origin :master
-git push -f origin :main  # 如果你的默认分支不是master，可能需要执行这个命令
-如果你想要保留原有的默认分支名，你可以删除旧的master分支：
+chcp 65001
+@echo off
+set /p gd=输入要清除历史提交信息的仓库目录的绝对路径:
+echo 待处理的路径：%gd%
+set /p gm=输入提交说明：
+pushd
+cd /d %gd%
+git checkout --orphan latest_branch
+git add -A
+git commit -am "%gm%"
+git branch -D master
+git branch -m master
+git push -f origin master
+git pull
+echo "已清除全部的历史记录!"
+echo "查看新仓库信息："
+git log --pretty=oneline
+git branch -a
+git tag
+git ls-remote --tags
+pause
+popd
+exit
 
 
-git checkout --orphan master
-git rm -rf .
-git commit --allow-empty -m "Initial empty commit"
-git push -f origin :master
+git checkout --orphan latest_branch
+git add -A
+git commit -am "%gm%"
+git branch -D main
+git branch -m main
+git push -f origin main
+git pull
