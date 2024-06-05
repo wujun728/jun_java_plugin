@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>JFinal极速开发企业应用管理系统</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+ 
+	<link rel="stylesheet" href="../../assets/css/gougu.css?v=1.0.24" media="all">
+
+<style type="text/css"> 
+
+/** 树图标样式 */
+body .layui-tree-skin-skin .layui-tree-branch{
+	color: #00C5CD;
+}
+/** 隐藏树图标 */
+.layui-tree-branch/*, .layui-tree-leaf ,.layui-xtree-icon-null  */{
+    display: none;
+}  
+#maingrid {
+	border: none;
+}
+
+.l-accordion-header{
+	display:none;
+}
+.cite{
+   color:#5FB878;
+}
+#container{
+  background: #ffffff;
+}
+</style>
+<script type="text/javascript">
+	
+	//获取业务字典数据 
+	function getOption(code,type,value,name,isSql,disabled){		
+		var url='/portal/core/dictionary/value/getOption';
+		if(isSql){
+			url='/portal/form/sql/getOption';
+		}
+		var checkboxValue=value.split(',');
+		$.ajax({
+			url:url,
+			data:{
+				"code":code
+			},
+			type:"post",
+			success:function(data){
+				var option="";
+				for(var i=0;i<data.length;i++){
+					if(type=="radio"){
+						if(data[i].value==value){
+							option+='<input type="radio" lay-filter="'+name+'" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'" checked="checked"'+disabled+'/>';
+						}else{
+							option+='<input type="radio" lay-filter="'+name+'" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'" '+disabled+'/>';
+						}
+					}else if(type=="checkbox"){
+						if(checkboxValue.length>0){
+							var isCheck=false;
+							$.each(checkboxValue,function(key,val){
+								if(data[i].value==val){
+									isCheck=true;
+								}								
+							});	
+							
+							if(isCheck){
+								option+='<input type="checkbox" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'" checked="checked"'+disabled+'/>';
+							}else{
+								option+='<input type="checkbox" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'"'+disabled+' />';
+							}				
+						}else{
+							option+='<input type="checkbox" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'"'+disabled+' />';
+						}
+					}else{
+						if(data[i].value==value){
+						    option+='<option value="'+data[i].value+'" selected="selected">'+data[i].name+'</option>';
+						}else{
+							option+='<option value="'+data[i].value+'">'+data[i].name+'</option>';
+						}
+					}	
+				}					
+				name=name.replace(/\./g,"_");
+				$('#'+type+"_"+code+"_"+name).append(option);
+				//立即渲染元素，防止有些情况渲染不成功
+				layui.use('form', function() {
+					var form = layui.form;
+					form.render();
+				});
+			}			
+		});
+	}
+
+  </script>
+</head>
+<body>
+	<div class="layui-container-fluid">
+<div id='container' class="layui-row">	
+	<!-- 左侧树 -->
+	<div class="layui-col-xs12 layui-col-sm3 div-scroll" position="left" id="accordion1"> 
+	     <div class="l-layout-header">sql分类
+	     	<div class="layui-btn-group">
+				<button id='addBtn_1' class="layui-btn layui-btn-normal layui-btn-sm">
+				  <i class="layui-icon">&#xe608;</i> 新增
+				</button>
+				<button id='updateBtn_1' class="layui-btn layui-btn-normal layui-btn-sm">
+				  <i class="layui-icon">&#xe642;</i> 修改
+				</button>		
+				<button id='deleteBtn_1' class="layui-btn  layui-btn-normal layui-btn-sm">
+				  <i class="layui-icon">&#xe640;</i> 删除
+				</button>			
+			</div>
+	     </div>
+         <div title="功能列表" class="l-scroll"style="left: 0px;  top: 0px;">
+             <ul id="leftLayout" style="margin-top:0px;margin-bottom:10px;">
+             </ul>
+         </div>
+     </div>
+    
+    <!-- 右侧表格 -->
+	<div class="layui-col-xs12 layui-col-sm9" position='center'  id="tablelist"style="border:1px solid #DCDCDC;">
+    	<!-- 表头按钮 -->  
+		<div class='layui-row table-button'>
+			<div class='layui-col-xs12'>
+				<div class="layui-btn-group">
+					<button id='addBtn_' type="button" class="layui-btn layui-btn-mini layui-btn-normal layui-btn-sm">
+						<i class="layui-icon">&#xe608;</i> 添加
+					</button>
+					<button id='removeCacheBtn_' type="button" class="layui-btn layui-btn-mini layui-btn-normal layui-btn-sm">
+						<i class="layui-icon">&#xe640;</i> 清缓存
+					</button>
+					<button   id='deleteBtn_' type="button" class="layui-btn layui-btn-mini layui-btn-normal layui-btn-sm">
+						<i class="layui-icon">&#xe640;</i> 删除
+					</button>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 列表条件查询 -->
+<form class="layui-form layui-form-pane f-form layui-hide-xs" id='searchForm' lay-filter='searchForm' action="javascript:;">
+	<div class='layui-row layui-col-space1 task-row search-model'>
+		<div class='layui-col-xs12 layui-col-sm12 layui-col-md12'> 
+			<div class="layui-form-item">
+		<div class="layui-inline" style="">
+			   <input type="search" name="name" autocomplete="off" class="layui-input" placeholder="名称"/>
+		</div>
+		<div class="layui-inline" style="">
+			   <input type="search" name="code" autocomplete="off" class="layui-input" placeholder="编号"/>
+		</div>
+				<div class="layui-inline">
+					<div class="layui-btn-group">
+						<button class="layui-btn layui-btn-disabled " disabled id="searchBtn_">
+							<i class="layui-icon">&#xe615;</i>查询
+						</button>
+						<button class="layui-btn layui-hide" type="reset" id="resetBtn" style="margin-left: 5px!important;">
+							<i class="layui-icon layui-icon-close"></i>重置
+						</button>
+						<button class="layui-btn " type="reset" onclick="$('#resetBtn').click();$('#searchBtn_').click()" style="margin-left: 5px!important;">
+							<i class="layui-icon layui-icon-close"></i>清空
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+		
+		<!-- 列表表格 -->
+      	<table id="maingrid" lay-filter="maingrid"></table>
+    </div>
+	
+ </div>
+	</div>
+	<!-- /脚本 -->
+<script src="../../assets/layui/layui.js"></script>
+<script src="../../assets/gouguInit.js"></script>
+<script type="text/javascript" src="../../assets/js/core.util.js"></script>
+
+<script type="text/javascript">
+	var ddlSqlId=document.getElementById("ddlSql");
+	if(ddlSqlId){
+		/**
+	    * 初始化 table sql 3
+	    */
+	   var ddlSql = CodeMirror.fromTextArea(ddlSqlId, {
+	       lineNumbers: true,
+	       matchBrackets: true,
+	       mode: "text/x-sql",
+	       lineWrapping:false,
+	       readOnly:false,
+	       foldGutter: true,
+	       gutters:["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+	   });
+	   ddlSql.setSize('auto','auto');		
+	}
+
+//	ddlSql.getValue();//取文本域值
+//	ddlSql.setValue(...);//给文本域赋值
+</script>
+<!-- 表格行按钮 -->
+<script type="text/html" id="bar_maingrid">
+  	<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+	<a class="layui-btn layui-btn-xs" lay-event="review">预览</a>
+  	<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+</script>
+
+<script type="text/javascript">
+var leftOtions,leftNodes,itemId="",itemName="";
+//openDialog关闭回调
+var option={
+		end : function() {
+			reloadLeftTree();
+		}
+	}
+
+$(function(){
+	setHeight();queryLeftTree();getTableList();
+	
+	$(window).resize(function(){
+		setHeight();
+	});
+	
+	$("#addBtn_1").click(function(){
+		var url='/portal/form/sysTree/add?itemId='+itemId+'&type=sql';
+		openDialog("添加sql分类",url,false,null,null,option);
+	});
+	
+	$("#updateBtn_1").click(function(){
+		if(itemId==""){
+			warn("请选择sql分类");
+			return;
+		}
+		var url='/portal/form/sysTree/edit?itemId='+itemId;
+		openDialog("修改-"+itemName,url,false,null,null,option);
+	});
+	 
+	$("#deleteBtn_1").click(function(){	
+		if(itemId==""){
+			warn("请选择sql分类");
+			return;
+		}		
+		jsConfirm('确定要删除 '+itemName+' 吗？',function(){
+			$.ajax({
+				url:"/portal/form/sysTree/delete?ids[0]="+itemId,
+				type:"POST",
+				success:function(data){
+					reloadLeftTree();
+					success(data.msg);
+				}
+			});
+		});
+	});
+	
+	//清缓存
+	$("#removeCacheBtn_").click(function(){	
+		jsConfirm('确定要清除缓存吗？',function(){
+			$.ajax({
+				url:"/portal/form/sql/removeCacheByCode",
+				type:"POST",
+				success:function(data){
+					success(data.msg);
+				}
+			});
+		});
+	});
+});
+
+function setHeight(){
+	var contentHeight=$(window).height()-10;
+	var width =$('#container').width();
+	$("#accordion1").css("height",contentHeight);
+	$("#tablelist").css("height",contentHeight);
+	var col3=$('#accordion1').width();
+	if(col3<=280){
+		// $("#tablelist").css("width",width-col3-2);	
+	}
+}
+
+//预览
+function reviewFunc(obj){	
+	var data=obj.data;
+	var sqlId=data.id;
+	openDialog("SQL预览","/portal/form/sql/review?sqlId="+sqlId,false,null,null,null);	
+}
+	
+
+//表格数据
+function getTableList(){
+	// gridArgs.title='SQL';
+	gridArgs.dataId='id';
+	gridArgs.deleteUrl='/portal/form/sql/delete?treeId='+itemId;
+	gridArgs.updateUrl='/portal/form/sql/edit?id=';
+	gridArgs.addUrl='/portal/form/sql/add?treeId='+itemId+"&treeName="+itemName;
+	gridArgs.gridDivId ='maingrid';
+	gridArgs.heightDiff=113;
+	initGrid({id : 'maingrid',
+			elem : '#maingrid',
+			cols : [ [
+				{title : '主键',field : 'id',width : 35,checkbox : true},
+				{title:'序号',type:'numbers',width:35},
+	   			{title: '名称', field: 'name'},
+	   			{title: '编号', field: 'code'},     			      				      			
+	   			{title: 'SQL', field: 'content'},     			      				      			
+	   			{title: '创建时间', field: 'create_time'},
+				{title: '操作',fixed:'right',width : 180,align : 'left',toolbar : '#bar_maingrid'} // 这里的toolbar值是模板元素的选择器
+			] ],
+			url:"/portal/form/sql/list",
+			where:{"tree_id":itemId},
+			searchForm : 'searchForm'
+		},{review:reviewFunc});
+}
+
+//查询左侧树菜单数据
+function queryLeftTree(){
+	leftNodes="";
+	$.ajax({
+		url:"/portal/form/sysTree/tree?type=sql",  
+	    type:"POST", 
+	    data: {
+	    },
+	    success:function(data){
+	    	if(data.length>0){
+	    		showLeftTree(data[0],0,true);
+	    		leftTree();
+	    	}
+	    }	
+	});
+}
+
+var nodeNum=0;
+/**
+ * spred：true-展开，false-不展开
+ */
+function showLeftTree(treeNode,num,spred){
+  	var id=treeNode.id;
+	var text=treeNode.text;
+	if(num!=0){
+		leftNodes+=",";
+	}
+	nodeNum++;
+	if(nodeNum>2){
+		spred=false;
+	}
+	leftNodes+="{title:'"+text+"',spread:"+spred+",id:'"+id+"',children:[";
+	var children=treeNode.children;
+	if(children.length>0){
+		for(var i=0;i<children.length;i++){			
+			showLeftTree(children[i],i,spred);
+		}
+	}
+	leftNodes+="]}";
+}
+
+    
+function strToJson(str){
+    var json = (new Function("return " + str ))();
+    return json;
+  }
+
+function reloadLeftTree(){
+	nodeNum=0;
+	queryLeftTree();
+}
+
+//左侧树
+function leftTree(){
+	layui.use('tree',function(){
+		var node=[strToJson(leftNodes.replace("undefined",""))];
+		leftOtions={
+				elem: '#leftLayout' //传入元素选择器
+			    ,onlyIconControl: true  //是否仅允许节点左侧图标控制展开收缩					
+				,click: function(item){ //点击节点回调
+				      treeClick(item);
+				      $("#addBtn_").off("click");//去掉添加按钮重复绑定事件	      			     
+				      getTableList();	
+				 }
+				,data: node				
+		}	
+		$('ul li').remove();
+		layui.tree.render(leftOtions);
+	});
+}
+
+//添加树选中样式 
+function treeClick(item){
+	itemName=item.data.title;
+	itemId=item.data.id;
+	var cite=document.getElementsByTagName('span');
+	var event=window.event||arguments.callee.caller.arguments[0];//消除浏览器差异
+    for(var i=0;i<cite.length;i++){
+  	  if(cite[i]==event.srcElement){
+		 cite[i].classList.add("cite")
+  	  }else{
+	     cite[i].classList.remove("cite")  
+  	  }
+    }
+}
+</script>
+<script>
+	layui.use([ 'table', 'form', 'jquery','laydate','element'], function() {
+		var table = layui.table;
+		var form = layui.form;
+		var layer = layui.layer;
+		var $ = layui.$;
+		var laydate = layui.laydate;
+		var element = layui.element; 
+		//执行一个laydate日期选择控件实例
+		lay('.layui-date').each(function(){
+			laydate.render({
+			    elem: this
+			    ,trigger:'click'
+			});		  
+		});
+		
+		//执行一个laydate日期时间控件实例
+		lay('.layui-date-time').each(function(){
+			laydate.render({
+			    elem: this
+			    ,type:'datetime'
+			    ,trigger:'click'
+			});
+		});
+		
+		//layui相关语法函数
+ 	//监听表单操作
+	  form.on('switch(isStopFilter)', function(obj){
+		 var id = obj.value;
+		 var checked=obj.elem.checked;
+		 var status="DEPLOYED";
+		 if(!checked){
+		    status="INIT"
+		 }
+		
+        $.post("/portal/form/sql/update"
+        ,param({
+			'id' : id
+			,'status':status
+		}),function(ret) {
+			if (ret.state=='ok') {
+				layer.tips("修改成功", obj.othis);
+			} else {
+				layer.alert(ret.msg);
+			}
+			$(".layui-laypage-btn").click();
+		});
+	  });
+	  
+
+		//表单提交监听
+		form.on('submit(saveForm)', function(data) {
+			$(this).ajaxSubmit({
+				type : 'post', 
+				url : saveUrl, 
+				success : function(data) { 
+					if (data.state == 'ok') {
+						parent.success(data.msg);
+						$('#closeWinBtn').click();
+					} else {	
+						warn(data.msg);
+						$('#submitBtn').attr("disabled",false);
+					}
+				}
+			});		
+		 });	
+		 
+		form.render();
+	});
+
+    //预览文件方法,url为file_uploaded表中的url字段内容
+	function previewFile(url,fileName){
+		var fileType=fileName.substring(fileName.lastIndexOf(".")+1).toLowerCase()
+		var protocol=window.location.protocol;
+		var host=window.location.host;
+		var port=window.location.port;
+		var location=protocol+"//"+host;
+		var fileUrl = location+'/portal/download/'+url+'?fullfilename='+fileName;
+		//文件在线预览服务地址
+        var onlinePreviewUrl='https://sign.qinhaisenlin.com/onlinePreview?url='+encodeURIComponent(Base64.encode(fileUrl));
+        var onlinePreview=true;
+        if(!onlinePreview){
+        	onlinePreviewUrl='/portal/view/'+url;
+        }
+        openDialog(fileName,onlinePreviewUrl,false,null,null,null);
+	}
+	//附件删除
+	function deleteFile(url,fileName,num){
+		var url='/portal/delete/'+url;
+		layer.confirm('确定要删除 '+fileName+' 吗',{icon: 3, title:'提示'},function(index){
+			$.post(url,function(data){
+				if(data.state=='ok'){
+					$('#upload-'+num).addClass('layui-hide');	
+				   layer.msg("删除成功",{icon:1});
+				}else{
+					layer.msg(data.msg||"附件不存在",{icon:2});
+				}
+			});
+		});
+	}
+	//附件下载
+	function downloadFile(url){
+		window.location.href='/portal/download/'+url;
+	}
+
+	//调取用户选择器,dataType:0单选，1多选
+	function getUser(inputId,dataType){
+    	sessionStorage.setItem('inputId',inputId);
+    	var userIds=$('#'+inputId).val();
+    	var url='/portal/core/sysOrg/getUser?userIds='+userIds+'&dataType='+dataType;
+    	openDialog('选择用户',url,false,840,460,null);
+    }
+
+    //确定按钮回调函数
+    function getUserData(userDataList,dataType){
+    	var resultValue=new Array();
+    	var resultTitle=new Array();
+    	$.each(userDataList,function(index,value){
+        		if(dataType=='0'&&index>0){
+					return
+            	}
+               resultValue.push(value.id);
+               resultTitle.push(value.user_name);
+        });
+        
+        var inputId=sessionStorage.getItem('inputId');
+        $('#'+inputId).val(resultValue.join(',')); 
+        $('#'+inputId+'_name').val(resultTitle.join(','));        
+              
+        if(inputId!=null)
+        	sessionStorage.removeItem('inputId');
+    }
+
+</script>
+<script type="text/javascript">
+//部门下拉树
+function getOrgOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled){
+	var url='/portal/core/sysOrg/getXmSelectData';
+	getXmSelectOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled,url);
+}
+//功能下拉树
+function getFuncOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled){
+	var url='/portal/core/sysFunc/getXmSelectData';
+	getXmSelectOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled,url);
+}
+function getXmSelectOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled,url){
+	var xmSelectRender = xmSelect.render({
+		el: '#'+divId, 
+		model: { label: { type: 'text' } },
+		radio: radio,
+		clickClose: radio,		
+		name:inputName,				//表单提交名称
+		tree: {
+			show: true,
+			strict: false, 
+			expandedKeys: ['sys','frame'],//默认展开节点
+		},
+		height: 'auto',
+		disabled:disabled,			//禁用属性：true/false
+		tips:tips,					//默认提示, 类似于placeholder
+		filterable:filterable,		//搜索开关：true/false
+		layVerify:layVerify,		//表单验证, 同layui的lay-verify
+		size:size 					//控件大小：large / medium / small / mini
+	})
+	
+	$.ajax({
+		url:url,
+		type:"POST",
+		data:{
+			"selectData":selectData,
+			"disabledData":disabledData
+		},
+		success:function(ret){
+			if(ret.state=='ok'){
+				var data=ret.data;
+				xmSelectRender.update({
+					data: data,
+					autoRow: true,
+				})
+			}
+		}
+	})
+}
+</script>
+</body>
+</html>
+
+
+ 

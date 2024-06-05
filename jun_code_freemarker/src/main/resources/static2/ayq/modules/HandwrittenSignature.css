@@ -1,0 +1,56 @@
+.signNameCanvasBox {
+    background: rgba(243, 243, 243, 1);
+}
+
+.title {
+    height: 3rem;
+    line-height: 3rem;
+    padding-left: 2rem;
+    position: relative;
+    font-size: 14px;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: rgba(46, 46, 46, 1);
+}
+
+.title::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    width: 0.29rem;
+    height: 1.14rem;
+    background: linear-gradient(225deg, rgba(87, 229, 199, 1) 0%, rgba(74, 192, 166, 1) 100%);
+    border-radius: 0.14rem;
+}
+
+.signToolLine {
+    overflow: hidden;
+    margin: 2rem 1rem 0;
+}
+
+.signToolLine .btnItem {
+    width: 44%;
+    height: 3rem;
+    text-align: center;
+    line-height: 3rem;
+    font-size: 1.14rem;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+}
+
+.signToolLine .btnItem.chongxie {
+    float: left;
+    color: rgba(37, 170, 141, 1);
+    border-radius: 0.29rem;
+    border: 0.04rem solid rgba(45, 197, 165, .3);
+    box-sizing: border-box;
+}
+
+.signToolLine .btnItem.shengcheng {
+    float: right;
+    background: rgba(37, 170, 141, 1);
+    border-radius: 0.29rem;
+    color: rgba(255, 255, 255, 1);
+}

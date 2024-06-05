@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="renderer" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="mobile-prefetch" href=""/>
+
+
+	<title>勾股OA</title>		
+
+
+	<meta name="keywords" content="勾股OA"/>
+	<meta name="description" content="勾股办公是一款基于ThinkPHP6 + Layui + MySql打造的，简单实用的开源免费的企业办公系统框架。系统集成了系统设置、人事管理模块、消息管理模块、日常办公、财务管理等基础模块。系统简约，易于功能扩展，方便二次开发，让开发者更专注于业务深度需求的开发，帮助开发者简单高效降低二次开发成本，通过二次开发之后可以用来做CRM，ERP，业务管理等系统。   "/>
+
+
+	<link rel="stylesheet" href="../../assets/css/gougu.css?v=1.0.24" media="all">
+
+
+  <style>
+	.layui-tree-entry{font-size:15px; line-height:24px}
+	.layui-tree-set{padding:2px 0}
+	.layui-tree-iconClick .layui-icon{color:#1E9FFF}
+	.layui-icon layui-icon-file{font-size:16px;}
+	.layui-tree-icon {height: 15px;width: 15px; text-align: center;border: 1px solid #1E9FFF; color:#1E9FFF}
+	.layui-tree-line .layui-tree-set .layui-tree-set:after{top:18px;}
+	.tree-left{width:200px; float:left; height:calc(100% - 30px); overflow: scroll; border:1px solid #eeeeee; background-color:#FAFAFA; padding:12px 12px 12px 5px;}
+	.tree-left h3{font-size:16px; height:30px; padding-left:10px; font-weight:800}
+	
+	.gougu-upload-files{background-color: #ffffff; border:1px solid #e4e7ed;color: #c0c4cc;cursor: not-allowed; padding:0 12px; width:180px; box-sizing: border-box; display: inline-block; font-size: inherit; height: 38px; line-height: 35px; margin-right:8px; border-radius:2px;}
+	.gougu-upload-tips{color:#969696}
+	.layui-form-item{margin-bottom:8px;}
+	.layui-input-block{min-height:24px;}
+  </style>
+
+<script>
+	const login_admin=7;
+</script>
+
+</head>
+<body class="main-body">
+	<!-- 主体 -->
+	
+<div class="p-3" style="height:100%; box-sizing: border-box;">
+	<div class="tree-left">
+		<h3>企业组织架构</h3>
+		<div id="depament"></div>
+	</div>
+	<div class="body-table" style="margin-left:228px; overflow:hidden;">
+		<form class="layui-form gg-form-bar border-t border-x" lay-filter="barsearchform">
+			<div class="layui-input-inline" style="width:136px">
+				<select name="status">
+					<option value="">选择员工状态</option>
+					<option value="1">正常状态</option>
+					<option value="2">离职状态</option>
+					<option value="0">禁止登录</option>
+				</select>
+			</div>
+			<div class="layui-input-inline" style="width:136px">
+				<select name="type">
+					<option value="">选择员工类型</option>
+					<option value="1">正式员工</option>
+					<option value="2">试用员工</option>
+					<option value="3">实习员工</option>
+				</select>
+			</div>
+			<div class="layui-input-inline" style="width:240px">
+				<input type="text" name="keywords" placeholder="输入关键字，如：ID/姓名/手机号码" class="layui-input" autocomplete="off" />
+			</div>
+			<div class="layui-input-inline" style="width:150px;">
+				<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="webform"><i class="layui-icon layui-icon-search mr-1"></i>搜索</button>
+				<button type="reset" class="layui-btn layui-btn-reset" lay-filter="reset">清空</button>
+			</div>
+		</form>
+		<table class="layui-hide" id="test" lay-filter="test"></table>
+	</div>
+</div>
+
+<script type="text/html" id="thumb">
+	<img src="{{d.thumb}}" width="30" height="30" />
+</script>
+<script type="text/html" id="toolbara">
+	<div class="layui-btn-group">
+		<button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe61f;</i>添加员工</button>
+		<button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="disable"><i class="layui-icon">&#x1006;</i>禁止登录</button>
+		<button class="layui-btn layui-btn-warm layui-btn-sm" lay-event="recovery"><i class="layui-icon">&#xe605;</i>恢复正常</button>
+		<button class="layui-btn layui-btn-normal layui-btn-sm" lay-event="import"><i class="layui-icon">&#xe66f;</i>批量导入</button>
+	</div>
+</script>
+
+
+	<!-- /主体 -->
+
+	<!-- 底部 -->
+	
+	<!-- /底部 -->
+	
+	<!-- 脚本 -->
+	
+<script>
+	const moduleInit = ['tool','tablePlus'];
+	function gouguInit() {
+		var table = layui.tablePlus, tool = layui.tool,tree = layui.tree,form = layui.form,upload = layui.upload;			
+		$.ajax({
+			url: "get_department_tree.json",
+			type:'get',
+			success:function(res){					
+				//仅节点左侧图标控制收缩
+				tree.render({
+					elem: '#depament',
+					data: res.trees,
+					onlyIconControl: true,  //是否仅允许节点左侧图标控制展开收缩
+					click: function(obj){
+						//layer.msg(JSON.stringify(obj.data));
+						layui.pageTable.reload({
+						   where: {did: obj.data.id}
+						   ,page:{curr:1}
+						});
+						$('[name="keywords"]').val('');
+						$('[name="status"]').val('');
+						$('[name="type"]').val('');
+						layui.form.render('select');
+					}
+				});	
+			}
+		})		
+		
+		let uploadFiles;
+		function clearFile() {
+			for (let x in uploadFiles) {
+				delete uploadFiles[x];
+			}
+			$('#gougu-upload-choosed').html('');
+		}
+		function uploadImport(){
+			layer.open({
+				'title':'批量导入员工',
+				'type':1,
+				'area': ['640px', '360px'],
+				'content':'<div class="layui-form p-3">\
+						<div id="uploadType1">\
+							<div class="layui-form-item">\
+								<label class="layui-form-label">文件：</label>\
+								<div class="layui-input-block">\
+									<span class="gougu-upload-files">.xls,.xlsx</span><button type="button" class="layui-btn layui-btn-normal" id="uploadSelect">选择文件</button><a href="../../home/files/勾股OA员工导入模板.xlsx" class="layui-btn ml-4">Execl表格模板下载</a>\
+								</div>\
+							</div>\
+							<div class="layui-form-item">\
+								<label class="layui-form-label"></label>\
+								<div class="layui-input-block">\
+									<span class="gougu-upload-tips">1、只有超级管理员才能进行批量导入操作；<br>2、只能上传 .xls、.xlsx文件；<br>3、数据请勿放在合并的单元格中；<br>4、文件大小请勿超过2MB，导入数据不能超过3000条<br>5、如果导入失败，请注意检查表格数据，格式按照样本填写，部门、职位需要系统中存在，不存在的话可能会导入失败。</span>\
+								</div>\
+							</div>\
+							<div class="layui-form-item">\
+								<label class="layui-form-label"></label>\
+								<div class="layui-input-block green" id="gougu-upload-choosed"></div>\
+							</div>\
+							<div class="layui-form-item">\
+								<label class="layui-form-label"></label>\
+								<div class="layui-input-block red" id="gougu-upload-note"></div>\
+							</div>\
+							<div class="layui-form-item layui-form-item-sm">\
+								<label class="layui-form-label"></label>\
+								<div class="layui-input-block">\
+									<button type="button" class="layui-btn" id="uploadAjax">上传并导入</button>\
+								</div>\
+							</div>\
+						</div> \
+				</div>',
+				success: function(layero, idx){
+					form.render();
+					//选文件
+					let uploadImport = upload.render({
+						elem: '#uploadSelect'
+						,url: '/api/import/import_admin'
+						,auto: false
+						,accept: 'file' //普通文件
+						,acceptMime: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' // 此处设置上传的文件格式
+						,exts: 'xls|xlsx' //只允许上传文件格式
+						,bindAction: '#uploadAjax'
+						,choose: function(obj){
+							uploadFiles = obj.pushFile();
+							// 清空,防止多次上传
+							clearFile();
+							obj.preview(function(index, file, result){
+								obj.pushFile();// 再添加
+								$('#gougu-upload-choosed').html('已选择：'+file.name);
+							});
+						}
+						,before: function(obj){
+						}
+						,progress: function(n, elem, e){
+							$('#gougu-upload-note').html('文件上转中...');
+							if(n==100){
+								$('#gougu-upload-note').html('数据导入中...');
+							}
+						}
+						,error: function(index, upload){
+							clearFile();
+							$('#gougu-upload-note').html('数据导入失败，请关闭重试');
+						}
+						,done: function(res, index, upload){
+							clearFile();
+							layer.msg(res.msg);
+							$('#gougu-upload-note').html(res.msg);
+							if(res.code==0){
+								layer.close(idx);
+								layui.pageTable.reload();
+							}						
+						}
+					});
+				}
+			});	
+		}
+		
+		layui.pageTable = table.render({
+			elem: '#test',
+			title: '员工列表',
+			toolbar: '#toolbara',
+			defaultToolbar: [],
+			is_excel:true,
+			url: "index.json", //数据接口	
+			page: true, //开启分页
+			limit: 20,
+			height: 'full-85',
+			cols: [
+				[
+					{type:'checkbox',fixed:'left'},
+					{
+						field: 'id',
+						title: 'ID号',
+						align: 'center',
+						width: 80
+					}, {
+						field: 'status',
+						title: '状态',
+						align: 'center',
+						width: 80,
+						templet: function (d) {
+							var html = '<span class="layui-badge layui-bg-green">正常</span>';
+							if(d.status == 2){
+								html = '<span class="layui-badge layui-bg-orange">已离职</span>'
+							}
+							else if(d.status == 0){
+								html = '<span class="layui-badge">被禁用</span>'
+							}
+							return html;
+						}
+					},{
+						field: 'type',
+						title: '员工类型',
+						align: 'center',
+						width: 80,
+						templet: function (d) {
+							var html = '<span style="color:#393D49">正式员工</span>';
+							if(d.type == 2){
+								html = '<span style="color:#01AAED">试用员工</span>'
+							}
+							else if(d.type == 3){
+								html = '<span style="color:#5FB878">实 习 生</span>'
+							}
+							return html;
+						}
+					}, {
+						field: 'username',
+						title: '登录账号',
+						width: 132
+					}, {
+						field: 'thumb',
+						title: '头像',
+						toolbar: '#thumb',
+						align: 'center',
+						width: 60
+					}, {
+						field: 'name',
+						title: '用户姓名',
+						align: 'center',
+						width: 80
+					},{
+						field: 'mobile',
+						title: '手机号码',
+						align: 'center',
+						width: 120
+					},{
+						field: 'email',
+						title: '电子邮箱',
+						width: 200
+					},{
+						field: 'sex',
+						title: '性别',
+						align: 'center',
+						width: 60,
+						templet: function (d) {
+							var html = '未知';
+							if(d.sex == 1){
+								html = '男'
+							}
+							else if(d.sex == 2){
+								html = '女'
+							}
+							return html;
+						}
+					},{
+						field: 'department',
+						title: '所在部门',
+						align: 'center',
+						width: 110
+					}, {
+						field: 'position',
+						title: '岗位职称',
+						align: 'center',
+						width: 110
+					}, {
+						field: 'entry_time',
+						title: '入职日期',
+						align: 'center',
+						width: 100
+					}, {
+						field: 'login_num',
+						title: '累计登录',
+						align: 'center',
+						width: 80
+					}, {
+						field: 'last_login_time',
+						title: '最后登录时间',
+						align: 'center',
+						minWidth: 136
+					},{
+						field: 'right',
+						fixed:'right',
+						title: '操作',
+						width: 160,
+						align: 'center',
+						templet: function (d) {
+							var html = '';
+							var btn1 = '<span class="layui-btn layui-btn-xs layui-btn-normal" lay-event="view">详情</span>';
+							var btn2 = '<span class="layui-btn layui-btn-xs" lay-event="edit">编辑</span>';
+							var btn3 = '<span class="layui-btn layui-btn-xs layui-btn-warm" lay-event="copy">复制密码</span>';
+							var btn4 = '<span class="layui-btn layui-btn-xs layui-btn-danger" lay-event="psw">重置密码</span>';
+							if(d.reg_pwd == ''){
+								html = '<div class="layui-btn-group">'+btn1+btn2+btn4+'</div>';
+							}
+							else{
+								html = '<div class="layui-btn-group">'+btn1+btn2+btn3+'</div>';
+							}
+							return html;
+						}						
+					}
+				]
+			]
+		});
+
+		//表头工具栏事件
+		table.on('toolbar(test)', function(obj){
+			var checkStatus = table.checkStatus(obj.config.id); //获取选中行状态
+			var data = checkStatus.data;
+			if (obj.event === 'add') {
+				tool.side("/user/user/add.html");
+				return;
+			}
+			if (obj.event === 'import') {
+				uploadImport();	
+				return;				
+			}
+			if(obj.config.where.status == 2){
+				layer.msg('离职员工不支持操作');
+				return false;
+			}
+			var uidArray=[],msg='是否执行该操作？',type=0;
+			for(var i=0;i<data.length;i++){
+				uidArray.push(data[i].id);
+			}
+			if (obj.event === 'disable') {
+				if(data.length==0){
+					layer.msg('请选择要操作的员工');
+					return false;
+				}
+				layer.confirm('您确定要把选中的员工设为禁止登录?', {
+					icon: 3,
+					title: '提示'
+				}, function (index) {
+					let callback = function (e) {
+						layer.msg(e.msg);
+						if (e.code == 0) {
+							layui.pageTable.reload();
+						}
+					}
+					tool.post("/user/user/set", {ids: uidArray.join(','),type:0}, callback);
+					layer.close(index);
+				});
+			}
+			
+			if (obj.event === 'recovery') {
+				if(data.length==0){
+					layer.msg('请选择要操作的员工');
+					return false;
+				}
+				layer.confirm('您确定要把选中的员工恢复正常?', {
+					icon: 3,
+					title: '提示'
+				}, function (index) {
+					let callback = function (e) {
+						layer.msg(e.msg);
+						if (e.code == 0) {
+							layui.pageTable.reload();
+						}
+					}
+					tool.post("/user/user/set", {ids: uidArray.join(','),type:1}, callback);
+					layer.close(index);
+				});
+			}
+			
+		});
+
+
+		//监听行工具事件
+		table.on('tool(test)', function (obj) {
+			var data = obj.data;			
+			if (obj.event === 'view') {
+				tool.side('/user/user/view.html?id='+data.id);
+				return;
+			}
+			if(obj.data.status == 2){
+				layer.msg('离职员工不支持操作');
+				return false;
+			}
+			if(obj.event === 'edit'){
+				tool.side('/user/user/add.html?id='+data.id);
+			}
+			else if (obj.event === 'copy') {
+				copyToClip(data.reg_pwd);
+				return;
+			}
+			else if (obj.event === 'psw') {
+				layer.confirm('确定要重设该用户的密码？', {
+					icon: 3,
+					title: '提示'
+				}, function (index) {
+					let callback = function (e) {
+						layer.msg(e.msg);
+						if (e.code == 0) {
+							layui.pageTable.reload();
+						}
+					}
+					tool.post("/user/user/reset_psw", {id: data.id}, callback);
+					layer.close(index);
+				});
+				return;
+			}
+		});
+
+		//监听搜索提交
+		form.on('submit(webform)', function (data) {
+			layui.pageTable.reload({
+				where: {
+					keywords: data.field.keywords,
+					status: data.field.status,
+					type: data.field.type
+				},
+				page: {
+					curr: 1
+				}
+			});
+			return false;
+		});
+	}	
+	
+	//拷贝密码
+	function copyToClip(content) {
+		var save = function(e){
+			e.clipboardData.setData('text/plain', content);
+			e.preventDefault();
+		}
+		document.addEventListener('copy', save);
+		document.execCommand('copy');
+		document.removeEventListener('copy',save);
+		if (content != '') {
+			layer.msg('复制成功');
+		}
+	}
+</script>
+
+	<!-- /脚本 -->
+	<script src="../../assets/layui/layui.js"></script>
+	<script src="../../assets/gouguInit.js"></script>
+	<!-- 统计代码 -->
+	
+	<!-- /统计代码 -->
+</body>
+</html>

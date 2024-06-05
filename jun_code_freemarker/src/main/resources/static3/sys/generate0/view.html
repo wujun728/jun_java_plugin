@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <!--<th:block th:include="include :: header('全局配置')"/>-->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<link rel="stylesheet" href="/layui/css/layui.css">
+	<link rel="stylesheet" href="/css/custom.form.css">
+    <link rel="stylesheet" href="/js/highlight/styles/vs.css">
+    <link rel="stylesheet" href="/views/admin/component/pear/css/pear.css">
+
+	<!--<th:block th:include="include :: footer"/>-->
+	<!--<script> let rootPath="[[${rootPath}]]";</script>-->
+	<!--script<script th:src="@{/static/component/layui/layui.js}"></script>-->
+	<!--<script th:src="@{/static/component/pear/pear.js}"></script>-->
+	<!--<script th:src="@{/static/component/jquery.min.js}"></script>-->
+
+	<script src="/views/admin/component/pear/pear.js"></script>
+	<script src="/js/highlight/highlight.pack.js"></script>
+
+	<script src="/layui/layui.all.js"></script>
+	<script src="/js/core.util.js"></script>
+	<script src="/js/jquery.js"></script>
+	<script src="/js/jquery.fileDownload.js"></script>
+
+
+	<style type="text/css">
+		div.code {
+		  white-space: pre;
+		}
+	</style>
+</head>
+<body class="pear-container">
+
+    <div class="user-main">
+    	
+    	<div class="layui-card">
+	    	<div class="layui-tab layui-tab-brief" lay-filter="test1">
+				<ul class="layui-tab-title">
+				    <li th:each="mapEntry,userStat: ${viewmap}" th:text="${mapEntry.key}" th:lay-id="${userStat.index}" >用户管理</li>
+				</ul>
+				<div class="layui-tab-content">
+					<div class="layui-tab-item" th:each="mapEntry: ${viewmap}">
+						<pre>
+							<code th:if="${mapEntry.key.indexOf('.java')!=-1}" class="language-java" th:text="${mapEntry.value}">
+							</code>
+							<code th:if="${mapEntry.key.indexOf('.sql')!=-1}" class="language-sql"  th:text="${mapEntry.value}">
+							</code>
+							<code th:if="${mapEntry.key.indexOf('.html')!=-1}" class="language-html" th:text="${mapEntry.value}">
+							</code>
+							<code th:if="${mapEntry.key.indexOf('.xml')!=-1}" class="language-xml" th:text="${mapEntry.value}">
+							</code>
+						</pre>
+					</div>  
+				</div>
+			</div>
+    	</div>
+    </div>
+</body>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+	  document.querySelectorAll('pre code').forEach((block) => {
+	    hljs.highlightBlock(block);
+	  });
+	});
+    layui.use(['element','jquery'], function () {
+    	var element = layui.element;
+    	 element.tabChange('test1', "0"); //假设当前地址为：http://a.com#test1=222，那么选项卡会自动切换到“发送消息”这一项
+    	  
+    })
+</script>
+</html>

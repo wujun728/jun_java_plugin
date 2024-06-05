@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "code": 200,
+  "message": "请求成功",
+  "data": [
+    {
+      "createTime": "2020-03-25 19:07:00",
+      "createUser": "1265476890672672808",
+      "updateTime": "2020-11-24 17:45:28",
+      "updateUser": "1265476890672672808",
+      "id": "1265476890672672821",
+      "name": "系统应用",
+      "code": "system",
+      "active": "Y",
+      "status": 0
+    },
+    {
+      "createTime": "2020-12-15 23:08:51",
+      "createUser": "1265476890672672808",
+      "updateTime": null,
+      "updateUser": null,
+      "id": "1338863594871304193",
+      "name": "系统工具",
+      "code": "systool",
+      "active": "Y",
+      "status": 0
+    }
+  ]
+}

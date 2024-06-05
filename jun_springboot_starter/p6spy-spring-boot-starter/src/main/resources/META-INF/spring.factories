@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.github.klboke.springboot.autoconfigure.p6spy.P6spyAutoConfiguration
+

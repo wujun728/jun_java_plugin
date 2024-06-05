@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!-- <link rel="stylesheet" href="/layui/css/layui.css">
+  <link rel="stylesheet" href="/css/custom.form.css"> -->
+  <link rel="stylesheet" href="../../assets/css/gougu.css?v=1.0.24" media="all">
+</head>
+<body>
+<div class="table_div">
+  <div id="searchParam"  shiro:hasPermission="sysGenerator:list">
+    <div class="layui-form-item">
+      <div class="layui-input-inline">
+        <input type="text" id="tableName" class="layui-input"  autocomplete="off" placeholder="请输入表名">
+      </div>
+
+      <div class="layui-input-inline ">
+        <button class="layui-btn" onclick="search()">查询</button>
+      </div>
+    </div>
+
+  </div>
+  <table class="layui-table" id="showTable" lay-filter="showTable" ></table>
+</div>
+<script type="text/html" id="toolbar">
+  <div class="layui-btn-container">
+    <button class="layui-btn layui-btn-sm" lay-event="batchGen"  shiro:hasPermission="sysGenerator:add">批量生成</button>
+    <button class="layui-btn layui-btn-sm" lay-event="zip"  shiro:hasPermission="sysGenerator:add">生成ZIP</button>
+    <button class="layui-btn layui-btn-sm" lay-event="view"  shiro:hasPermission="sysGenerator:add">在线预览</button>
+  </div>
+</script>
+<script type="text/html" id="tool">
+  <a class="layui-btn layui-btn-xs" lay-event="gen" shiro:hasPermission="sysGenerator:add">生成</a>
+</script>
+
+</body>
+</html>
+<!-- /脚本 -->
+<!-- <script type="text/javascript"  src="../../assets/js/jquery.js"></script> -->
+<script type="text/javascript"  src="../../assets/layui/layui.js"></script>
+<script type="text/javascript"  src="../../assets/gouguInit.js"></script>
+<script type="text/javascript"  src="../../assets/js/core.util.js"></script>
+<script type="text/javascript"  src="../../assets/js/jquery.fileDownload.js"></script>
+
+
+<script>
+  //获取token
+  var token = CoreUtil.getData("access_token");
+  //地址栏转义token中的#号
+  var tokenQuery;
+  if(token){
+    tokenQuery = token.replace("#", "%23");
+  }
+  var tableIns1;
+  var table = layui.table;
+  var form = layui.form;
+  var layer = layui.layer;
+  var laydate = layui.laydate;
+
+  layui.use(['table', 'layer', 'laydate'], function () {
+
+    //加载table
+    tableIns1 = table.render({
+      elem: '#showTable'
+      , contentType: 'application/json'
+      , headers: {"authorization": token}
+      , page: true //开启分页
+      , url: '/api/sysGenerator/listByPage' //数据接口
+      , method: 'POST'
+      , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
+        return {
+          "code": res.code, //解析接口状态
+          "msg": res.msg, //解析提示文本
+          "count": CoreUtil.isEmpty(res.data) ? 0 : res.data.total, //解析数据长度
+          "data": CoreUtil.isEmpty(res.data) ? null : res.data.records //解析数据列表
+        }
+      }
+      , cols: [
+        [
+          {type: 'checkbox', fixed: 'left'}, //{type:'radio'}
+          {field: 'tableName', title: '表名', sort: true},
+          {field: 'tableComment', title: '表备注',  sort: true},
+          {field: 'createTime', title: '表创建时间',  sort: true},
+          { toolbar: "#tool", title: '操作'}
+        ]
+      ]
+      , toolbar: '#toolbar'
+    });
+
+      //表头工具栏事件
+      table.on('toolbar(showTable)', function (obj) {
+          switch (obj.event) {
+              case 'batchGen':
+                  var checkStatus = table.checkStatus(obj.config.id);
+                  var data = checkStatus.data;
+                  if (data.length == 0) {
+                      layer.msg("请选择要批量生成的表");
+                  } else {
+                      var tables = [];
+                      $(data).each(function (index, item) {
+                          tables.push(item.tableName);
+                      });
+                      $.fileDownload("/api/sysGenerator/gen?authorization=" + tokenQuery + "&tables=" + tables,{httpMethod: 'get'})
+                  }
+                  break;
+             case 'zip':
+                  var checkStatus = table.checkStatus(obj.config.id);
+                  var data = checkStatus.data;
+                  if (data.length == 0) {
+                      layer.msg("请选择要批量生成的表");
+                  } else {
+                      var tables = [];
+                      var tableComments = [];
+                      $(data).each(function (index, item) {
+                          tables.push(item.tableName);
+                          tableComments.push(item.tableComment);
+                      });
+                      //$.fileDownload("/api/sysGenerator/gen?authorization=" + tokenQuery + "&tables=" + tables,{httpMethod: 'get'})
+
+                    //document.location.href= "/api/sysGenerator/createAutoZip?" + "tableName="+tables;
+                    $.fileDownload("/api/sysGenerator/createAutoZip?authorization=" + tokenQuery + "&tableName=" + tables+ "&tableComment=" + tableComments,{httpMethod: 'get'})
+
+                  }
+             break;
+
+             case 'view':
+                   var checkStatus = table.checkStatus(obj.config.id);
+                  var data = checkStatus.data;
+                  if (data.length == 0) {
+                      layer.msg("请选择要批量生成的表");
+                  } else {
+                      var tables = [];
+                      var tableComments = [];
+                      $(data).each(function (index, item) {
+                          tables.push(item.tableName);
+                          tableComments.push(item.tableComment);
+                      });
+
+                      var urlpar= "/api/sysGenerator/viewAuto" + "?tableName="+tables + "&tableComment=" + tableComments +"&authorization=" +token;
+                      var index = layer.open({
+                        type: 2,
+                        title: '预览',
+                        shade: 0.1,
+                        maxmin: true,
+                        area: ['800px', '600px'],
+                        content: urlpar
+                    });
+                    layer.full(index);
+
+                  }
+
+             break;
+
+          };
+
+      });
+
+
+
+      //操作工具栏事件
+      table.on('tool(showTable)', function (obj) {
+          var data = obj.data;
+          switch (obj.event) {
+              case 'gen':
+                $.fileDownload("/api/sysGenerator/gen?authorization=" + tokenQuery + "&tables=" + data.tableName,{httpMethod: 'get'})
+                break;
+          }
+      });
+
+  });
+
+        //zip
+        window.zip = function () {
+        }
+
+  //执行查询
+  function search() {
+    //这里以搜索为例
+    tableIns1.reload({
+      where: { //设定异步数据接口的额外参数，任意设
+        tableName: $("#tableName").val()
+      }
+      , page: {
+        curr: 1 //重新从第 1 页开始
+      }
+    });
+  };
+
+</script>

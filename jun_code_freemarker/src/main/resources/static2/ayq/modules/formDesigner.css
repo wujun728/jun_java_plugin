@@ -1,0 +1,779 @@
+.layui-layout-admin .layui-logo {
+    color    : #fff;
+    font-size: 20px;
+}
+
+.layui-side-right {
+    position  : fixed;
+    right     : 0;
+    top       : 0;
+    bottom    : 0;
+    z-index   : 999;
+    width     : 350px;
+    overflow-x: hidden
+}
+
+.layui-layout-admin .layui-side {
+    top       : 60px;
+    width     : 260px;
+    overflow-x: hidden
+}
+
+.layui-layout-admin .layui-side-right {
+    top       : 60px;
+    width     : 350px;
+    overflow-x: hidden
+}
+
+.layui-body {
+    position    : absolute;
+    left        : 260px;
+    right       : 350px;
+    top         : 0;
+    bottom      : 0;
+    z-index     : 998;
+    width       : auto;
+    overflow-y  : auto;
+    box-sizing  : border-box;
+    min-width   : 250px;
+    border-left : 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+}
+
+.layui-layout-admin .layui-body {
+    bottom: 0;
+}
+
+/* components-list*/
+
+.components-list {
+    padding           : 4px;
+    -webkit-box-sizing: border-box;
+    box-sizing        : border-box;
+    height            : 100%
+}
+
+.components-list .components-item {
+    display           : inline-block;
+    width             : 49%;
+    margin            : 0.5%;
+    margin-top        : 5px;
+    -webkit-transition: -webkit-transform 0ms !important;
+    transition        : -webkit-transform 0ms !important;
+    transition        : transform 0ms !important;
+    transition        : transform 0ms, -webkit-transform 0ms !important
+}
+
+.components-draggable {
+    padding-bottom: 20px
+}
+
+.components-title {
+    font-size: 14px;
+    color    : #2196f3;
+    margin   : 6px 2px;
+    font-weight: bold;
+}
+
+.right-button {
+    float: right;
+    padding: 1px 3px;
+    border: none;
+    cursor: pointer;
+}
+
+.button--text {
+    color: #009688;
+    background: 0 0;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 10px;
+}
+
+.components-title .svg-icon {
+    color    : #666;
+    font-size: 18px
+}
+
+.components-body {
+    padding      : 8px 10px;
+    background   : #f6f7ff;
+    font-size    : 12px;
+    cursor       : move;
+    border       : 1px dashed #f6f7ff;
+    border-radius: 3px
+}
+
+.components-body .svg-icon {
+    color    : #777;
+    font-size: 15px
+}
+
+.components-body:hover {
+    border: 1px dashed #787be8;
+    color : #787be8
+}
+
+.components-body:hover .svg-icon {
+    color: #787be8
+}
+
+.ghost {
+    border       : 1px dashed #e06c1d;
+    outline-width: 0;
+    height       : 39px;
+    box-sizing   : border-box;
+    content      : '';
+    padding      : 0;
+}
+.ghost div {
+    color:#fff;
+}
+
+
+.layui-body .active {
+    outline       : 2px solid #409EFF;
+    border        : 1px solid #409EFF;
+    outline-offset: 0;
+}
+
+#formDesignerForm .layui-form-item {
+    position: relative;
+}
+
+#formDesignerForm .grid {
+    padding: 5px 5px;
+}
+
+#formDesignerForm .layui-form-item:hover {
+    border          : 1px solid #409EFF;
+    background-color: #e9f4fd !important;
+}
+
+.widget-view-drag {
+    position   : absolute;
+    left       : -2px;
+    top        : -2px;
+    bottom     : -18px;
+    height     : 28px;
+    line-height: 28px;
+    background : #409EFF;
+    z-index    : 9;
+}
+
+.widget-view-drag i {
+    font-size: 14px;
+    color    : #fff;
+    margin   : 0 5px;
+    cursor   : move;
+}
+
+.select-option-drag {
+    cursor: move;
+}
+
+.select-option-delete {
+    cursor: pointer;
+}
+
+.widget-view-action {
+    position   : absolute;
+    right      : 0;
+    bottom     : 0;
+    height     : 28px;
+    line-height: 28px;
+    background : #409EFF;
+    z-index    : 9;
+}
+
+.widget-view-action i {
+    font-size: 14px;
+    color    : #fff;
+    margin   : 0 5px;
+    cursor   : pointer;
+
+}
+
+#formDesignerForm {
+    background: #fff;
+    border    : 1px dashed #999;
+    min-height: 94%;
+    margin    : 10px;
+    padding   : 10px 10px;
+}
+
+#formDesignerForm .widget-col-list {
+    min-height: 50px;
+    border    : 1px dashed #ccc;
+    background: #fff;
+}
+
+#formDesignerForm .widget-slider {
+    margin: 18px 10px;
+    width : 90%;
+    position: absolute!important;
+}
+
+.layui-empty {
+    margin    : 10px 60px;
+    color     : #9e9e9e;
+    font-size : 16px;
+    text-align: center;
+
+}
+
+#columnProperty .layui-form-item.option {
+    margin-bottom: 2px;
+}
+
+#columnProperty .layui-form-item.option .layui-inline {
+    margin-bottom: 2px;
+}
+
+/* 图片上传 */
+.uploader-list {
+    margin-left: -15px;
+}
+
+.uploader-list .info {
+    position        : relative;
+    margin-top      : -25px;
+    background-color: black;
+    color           : white;
+    filter          : alpha(Opacity=80);
+    -moz-opacity    : 0.5;
+    opacity         : 0.5;
+    width           : 100px;
+    height          : 25px;
+    text-align      : center;
+    display         : none;
+}
+
+.uploader-list .handle {
+    position        : relative;
+    background-color: black;
+    color           : white;
+    filter          : alpha(Opacity=80);
+    -moz-opacity    : 0.5;
+    opacity         : 0.5;
+    width           : 100px;
+    text-align      : right;
+    height          : 18px;
+    margin-bottom   : -18px;
+    display         : none;
+}
+
+.uploader-list .handle i {
+    margin-right: 5px;
+}
+
+.uploader-list .handle i:hover {
+    cursor: pointer;
+}
+
+.uploader-list .file-iteme {
+    margin : 12px 0 0 15px;
+    padding: 1px;
+    float  : left;
+}
+
+
+/*自定义layer颜色*/
+body .cool-black .layui-layer-title {
+    color           : #fff;
+    height          : 50px;
+    line-height     : 50px;
+    background-color: #191a23;
+    border          : none;
+}
+
+body .cool-black .layui-layer-setwin a {
+    color                  : #fff;
+    font-size              : 16px;
+    font-style             : normal;
+    font-family            : layui-icon !important;
+    -webkit-font-smoothing : antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body .cool-black .layui-layer-btn a {
+    background: #333;
+}
+
+
+
+.htmlcodeview,
+.importjsoncodeview {
+    position: relative;
+    display : none;
+}
+
+.htmlcodeview textarea,
+.getFormData textarea,
+.importjsoncodeview textarea {
+    display         : block;
+    width           : 760px;
+    height          : 560px;
+    border          : 10px solid #F8F8F8;
+    border-top-width: 0;
+    padding         : 10px;
+    line-height     : 20px;
+    overflow        : auto;
+    background-color: #3F3F3F;
+    color           : #eee;
+    font-size       : 12px;
+    font-family     : Courier New;
+}
+
+.htmlcodeview a,
+.importjsoncodeview a {
+    position: absolute;
+    right   : 20px;
+    bottom  : 20px;
+}
+
+.htmlcodeview,
+.importjsoncodedataview {
+    position: relative;
+    display : none;
+}
+
+.htmlcodeview textarea,
+.getFormData textarea,
+.importjsoncodedataview textarea {
+    display         : block;
+    width           : 760px;
+    height          : 560px;
+    border          : 10px solid #F8F8F8;
+    border-top-width: 0;
+    padding         : 10px;
+    line-height     : 20px;
+    overflow        : auto;
+    background-color: #3F3F3F;
+    color           : #eee;
+    font-size       : 12px;
+    font-family     : Courier New;
+}
+
+.htmlcodeview a,
+.importjsoncodedataview a {
+    position: absolute;
+    right   : 20px;
+    bottom  : 20px;
+}
+
+.aboutusview .about {
+    display         : block;
+    width           : 760px;
+    height          : 554px;
+    padding         : 20px 20px;
+    overflow        : hidden;
+    background-color: #191a23;
+    color           : #ccc;
+}
+.aboutusview .about p{
+    line-height: 30px;
+
+}
+
+.aboutusview .about .yellow{
+    color:#e6ec8d;
+}
+
+.layui-disabled {
+    background-color: #f5f7fa;
+    border-color: #dfe4ed;
+    color: #c0c4cc;
+}
+
+.custom-lg{
+    margin: -3px 0px 0px 10px;
+}
+.custom-zc{
+    margin: 0px 0px 0px 10px;
+}
+.custom-sm{
+    margin: 5px 0px 0px 10px;
+}
+.custom-xs{
+    margin: 10px 0px 0px 10px;
+}
+
+.iceEditor-disabled {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(245,247,250,0.79) !important;
+    border-color: #dfe4ed !important;
+    color: #c0c4cc !important;
+    z-index: 1 !important;
+    display: block;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    color: #000;
+}
+
+.component-group ol {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    min-width: 70px;
+    width: 32%;
+    height: 70px;
+    line-height: 1;
+    text-align: center;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.component-group ol:hover {
+    background: #009688;
+    border-radius: 5px;
+    color: #fff;
+    border-color: #fff;
+}
+
+
+.component-group ol .icon {
+    padding: 10px 5px 12px;
+    display: inline-block;
+}
+
+.component-group ol .icon i {
+    font-size: 18px;
+}
+
+.layui-icon-switch {
+    border: 1px solid #666;
+    border-radius: 20px;
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    position: relative;
+}
+
+.layui-icon-switch k {
+    position: absolute;
+    left: 4px;
+    top: 2px;
+    width: 6px;
+    height: 6px;
+    border-radius: 20px;
+    background-color: #666;
+    -webkit-transition: .1s linear;
+    transition: .1s linear;
+}
+
+.component {
+    margin-bottom: 15px;
+}
+
+.component-group ol:hover .layui-icon-switch {
+    color: #fff;
+    border-color: #fff;
+}
+
+.component-group ol:hover k {
+    background-color: #fff;
+}
+
+.component-group ol .name {
+    font-size: 12px;
+}
+
+.layui-col-md2,.layui-col-md8 {
+    border-right: 1px solid #f6f6ff;
+}
+
+.fr {
+    float: right;
+}
+
+
+.layui-form-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 -1px 5px rgba(0,0,0,.15);
+    padding: 15px;
+    z-index: 9999;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    text-align: center;
+}
+.layui-inlioc {
+    clear: both;
+}
+
+.layui-fluid {
+    padding-top: 20px;
+}
+
+#layui-form-attribute .layui-input-inline {
+    width: 169px;
+    margin-right: 0;
+}
+
+#layui-form-attribute .layui-form-label {
+    padding: 6px;
+    padding-right: 10px;
+    width: 60px!important;
+}
+
+.layui-minmax {
+    width: 76px;
+    display: inline-block;
+}
+
+.layui-input-inline em {
+    margin: 0px 5px;
+}
+
+.layui-component-tools {
+    position: absolute;
+    background: #009688;
+    right: 0;
+    bottom: 0;
+    padding: 1px 5px;
+    cursor: pointer;
+    z-index: 21;
+    color: #fff;
+    width: 32px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    display: none;
+}
+.layui-input-none {
+    display: none;
+}
+
+.layui-component-tools i,.layui-component-move i {
+    font-size: 12px;
+}
+
+#layui-elem-field legend {
+    margin-left: 39%;
+    font-size: 14px;
+}
+
+
+#tab-options input {
+    width: 139px;
+    display: inline-block;
+    margin: 0px 8px;
+}
+
+#form-options .layui-add-option,#tab-options .layui-add-tab {
+    position: relative;
+    left: 26px;
+}
+
+.layui-slider {
+    margin-top: 3px;
+}
+
+#Propertie .layui-slider {
+    margin-top: 13px;
+}
+
+#tpl_main,#tpl_right_main {
+    margin: 25% auto;
+    text-align: center;
+    font-size: 18px;
+    color: #c9e0f3;
+}
+
+#layui-form-template .item-list {
+    padding: 8px 0px;
+}
+
+.item-body {
+    border: 1px solid #f6f6f6;
+    padding: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.item-body:hover {
+    border: 1px solid #009688;
+}
+
+.item-body .item-img {
+    overflow: hidden;
+}
+
+.item-body .item-img img {
+    width: 100%;;
+}
+
+.item-body .item-desc {
+    margin-top: 10px;
+}
+
+.item-body .item-desc span.item-title{
+    font-size: 13px;
+    font-weight: 700;
+}
+.right-button {
+    float: right;
+    padding: 1px 3px;
+    border: none;
+    cursor: pointer;
+}
+
+.button--text {
+    color: #009688;
+    background: 0 0;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 10px;
+}
+
+.layui-htmlview {
+    position: relative;
+}
+
+.layui-htmlview textarea {
+    display: block;
+    width: 760px;
+    height: 566px;
+    border: 10px solid #F8F8F8;
+    border-top-width: 0;
+    padding: 10px;
+    line-height: 20px;
+    overflow: auto;
+    background-color: #3F3F3F;
+    color: #eee;
+    font-size: 12px;
+    font-family: Courier New;
+}
+
+.layui-htmlview .layui-htmlbtn{
+    position: absolute;
+    right: 20px;
+    bottom:20px;
+}
+
+#parse-table .layui-input {
+    height: 30px;
+    width: 139px;
+    font-size: 12px;
+    border: none;
+}
+
+
+.components-draggable ol {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    min-width: 70px;
+    width: 32%;
+    height: 70px;
+    line-height: 1;
+    text-align: center;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.components-draggable ol:hover {
+    background: #009688;
+    border-radius: 5px;
+    color: #fff;
+    border-color: #fff;
+}
+
+
+.components-draggable ol .icon {
+    padding: 10px 5px 12px;
+    display: inline-block;
+}
+
+.components-draggable ol .icon i {
+    font-size: 18px;
+}
+#formPreviewForm .widget-slider {
+    margin: 18px 10px;
+    width : 90%;
+    position: absolute!important;
+}
+.custom-lg{
+    margin: -3px 0px 0px 10px;
+}
+.custom-zc{
+    margin: 0px 0px 0px 10px;
+}
+.custom-sm{
+    margin: 5px 0px 0px 10px;
+}
+.custom-xs{
+    margin: 10px 0px 0px 10px;
+}
+.my-disabled{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(191,191,191,.79);
+}
+.iceEditor-disabled {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(245,247,250,0.79) !important;
+    border-color: #dfe4ed !important;
+    color: #c0c4cc !important;
+    z-index: 1 !important;
+    display: block;
+}
+/* 图片上传 */
+.uploader-list {
+    margin-left: -15px;
+}
+.uploader-list .info {
+    position: relative;
+    margin-top: -25px;
+    background-color: black;
+    color: white;
+    filter: alpha(Opacity=80);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    width: 100px;
+    height: 25px;
+    text-align: center;
+    display: none;
+}
+.uploader-list .handle {
+    position: relative;
+    background-color: black;
+    color: white;
+    filter: alpha(Opacity=80);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    width: 100px;
+    text-align: right;
+    height: 18px;
+    margin-bottom: -18px;
+    display: none;
+}
+.uploader-list .handle i {
+    margin-right: 5px;
+}
+.uploader-list .handle i:hover {
+    cursor: pointer;
+}
+.uploader-list .file-iteme {
+    margin: 12px 0 0 15px;
+    padding: 1px;
+    float: left;
+}
