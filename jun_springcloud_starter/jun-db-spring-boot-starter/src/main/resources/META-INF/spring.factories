@@ -1,3 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.jun.plugin.db.config.TenantAutoConfigure,\
-com.jun.plugin.db.config.MybatisPlusAutoConfigure
+io.github.wujun728.db.config.TenantAutoConfigure,\
+io.github.wujun728.db.config.MybatisPlusAutoConfigure

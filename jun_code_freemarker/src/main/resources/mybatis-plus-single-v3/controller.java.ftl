@@ -23,7 +23,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.servlet.ModelAndView;
-import com.jun.plugin.common.Result;
+import io.github.wujun728.common.Result;
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Date;

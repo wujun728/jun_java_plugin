@@ -9,8 +9,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>jun-common</module>
+
+        <module>jun-mybatis-sql-engine</module>
         <module>jun-db-record-sql-engine</module>
+        <module>jun-common</module>
         <module>jun-groovy-api-spring-boot-starter</module>
         <module>jun-common-spring-boot-starter</module>
         <module>jun-db-spring-boot-starter</module>
@@ -24,7 +26,9 @@
         <module>jun-zookeeper-spring-boot-starter</module> 
         <module>jun-oauth2-spring-boot-starter</module>
         <module>jun-uidgenerator-spring-boot-starter</module>
-        <module>jun-mybatis-sql-engine</module>
+
+        <module>jun-code-generator-spring-boot-starter</module>
+        <module>jun-dynamic-form-spring-boot-starter</module>
     </modules>
 
     <properties>

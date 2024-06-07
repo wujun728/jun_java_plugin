@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.central.common.zookeeper.ZookeeperAutoConfiguration
+io.github.wujun728.common.zookeeper.ZookeeperAutoConfiguration

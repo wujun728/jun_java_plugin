@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.jun.plugin.groovy.ApiAutoConfig
+io.github.wujun728.groovy.ApiAutoConfig

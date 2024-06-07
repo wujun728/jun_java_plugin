@@ -1,5 +1,5 @@
 org.springframework.context.ApplicationContextInitializer=\
-com.jun.plugin.log.config.TtlMDCAdapterInitializer
+io.github.wujun728.log.config.TtlMDCAdapterInitializer
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.jun.plugin.log.LogAutoConfigure
+io.github.wujun728.log.LogAutoConfigure

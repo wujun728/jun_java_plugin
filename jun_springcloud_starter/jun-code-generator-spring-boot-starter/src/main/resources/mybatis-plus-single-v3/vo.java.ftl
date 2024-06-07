@@ -10,7 +10,7 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import com.jun.plugin.common.entity.BaseEntity;
+import entity.io.github.wujun728.common.BaseEntity;
 <#if isSwagger?exists && isSwagger==true>
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;</#if>

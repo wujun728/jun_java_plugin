@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.jun.plugin.common.entity.BaseEntity;
+import entity.io.github.wujun728.common.BaseEntity;
 <#assign isSwagger=false />
 <#if isSwagger?exists && isSwagger==true>
 import io.swagger.annotations.ApiModel;

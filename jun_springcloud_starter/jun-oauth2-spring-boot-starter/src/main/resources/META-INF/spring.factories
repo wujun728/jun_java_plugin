@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.jun.plugin.oauth2.common.AuthClientAutoConfiguration
+io.github.wujun728.oauth2.common.AuthClientAutoConfiguration

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jun.plugin.generate.modular.mapper.CodeGenerateMapper">
+<mapper namespace="mapper.modular.io.github.wujun728.generate.CodeGenerateMapper">
 
-    <resultMap id="informationResult" type="com.jun.plugin.generate.modular.result.InformationResult">
+    <resultMap id="informationResult" type="result.modular.io.github.wujun728.generate.InformationResult">
         <result column="table_name" property="tableName" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
         <result column="table_comment" property="tableComment" />
     </resultMap>
 
-    <resultMap id="inforMationColumnsResult" type="com.jun.plugin.generate.modular.result.InforMationColumnsResult">
+    <resultMap id="inforMationColumnsResult" type="result.modular.io.github.wujun728.generate.InforMationColumnsResult">
         <result column="column_name" property="columnName" />
         <result column="data_type" property="dataType" />
         <result column="column_comment" property="columnComment" />

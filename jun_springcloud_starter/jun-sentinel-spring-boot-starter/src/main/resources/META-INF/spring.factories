@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.jun.plugin.sentinel.config.SentinelAutoConfigure
+io.github.wujun728.sentinel.config.SentinelAutoConfigure

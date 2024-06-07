@@ -1,1 +1,1 @@
-logTrace=trace.com.jun.plugin.log.DubboTraceFilter
+logTrace=io.github.wujun728.log.trace.DubboTraceFilter

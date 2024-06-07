@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.jun.plugin.oss.config.OssAutoConfigure
+io.github.wujun728.oss.config.OssAutoConfigure

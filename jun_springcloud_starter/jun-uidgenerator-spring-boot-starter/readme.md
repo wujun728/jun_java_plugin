@@ -71,7 +71,7 @@ server:
 3.   获取id
 ```java
 #启动类无需添加
-#@ComponentScan(basePackages = {"io.github.wujun728.uidgenerator","com.jun.plugin"})
+#@ComponentScan(basePackages = {"io.github.wujun728.uidgenerator","io.github.wujun728"})
 #使用
 @Resource
 private UidGenerator uidGenerator;

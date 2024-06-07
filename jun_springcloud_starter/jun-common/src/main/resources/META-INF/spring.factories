@@ -1,7 +1,7 @@
 # org.springframework.context.ApplicationContextInitializer=\
-# com.jun.plugin.common.config.BannerInitializer
+# io.github.wujun728.common.config.BannerInitializer
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.jun.plugin.common.feign.fallback.UserServiceFallbackFactory,\
-com.jun.plugin.common.lock.LockAspect,\
-com.jun.plugin.common.utils.SpringUtils
+io.github.wujun728.common.feign.fallback.UserServiceFallbackFactory,\
+io.github.wujun728.common.lock.LockAspect,\
+io.github.wujun728.common.utils.SpringUtils

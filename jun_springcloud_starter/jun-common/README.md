@@ -8,9 +8,9 @@
 ### maven 使用
 ```
 <dependency>
-	<groupId>com.jun.plugin</groupId>
+	<groupId>io.github.wujun728</groupId>
 	<artifactId>jun-commmon</artifactId>
-	<version>1.0.9</version>
+	<version>1.0.16</version>
 </dependency>
 ```
 
