@@ -26,7 +26,6 @@
         <!--<dependency>
             <groupId>io.github.wujun728</groupId>
             <artifactId>jun-common</artifactId>
-            <version>1.0.15</version>
         </dependency>-->
         <dependency>
             <groupId>org.projectlombok</groupId>

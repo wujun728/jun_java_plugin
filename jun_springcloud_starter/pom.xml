@@ -1,16 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-     
-	<groupId>com.jun.plugin</groupId>
+
+    <groupId>io.github.wujun728</groupId>
     <artifactId>jun_springcloud_starter</artifactId>
 	<version>1.0.16</version>
     <description>SpirngCloud通用组件</description>
     <packaging>pom</packaging>
 
     <modules>
-<!--        <module>jun-common</module>-->
-        <module>jun-common-core</module>
+        <module>jun-common</module>
         <module>jun-db-record-sql-engine</module>
         <module>jun-groovy-api-spring-boot-starter</module>
         <module>jun-common-spring-boot-starter</module>
@@ -24,6 +23,8 @@
         <module>jun-elasticsearch-spring-boot-starter</module>
         <module>jun-zookeeper-spring-boot-starter</module> 
         <module>jun-oauth2-spring-boot-starter</module>
+        <module>jun-uidgenerator-spring-boot-starter</module>
+        <module>jun-mybatis-sql-engine</module>
     </modules>
 
     <properties>
@@ -120,59 +121,89 @@
         <dependencies>
             <!-- 自定义 starter -->
             <dependency>
-                <groupId>com.jun.plugin</groupId>
+                <groupId>io.github.wujun728</groupId>
+                <artifactId>jun-uidgenerator-spring-boot-starter</artifactId>
+                <version>${jun.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.wujun728</groupId>
+                <artifactId>jun-mybatis-sql-engine</artifactId>
+                <version>${jun.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.wujun728</groupId>
+                <artifactId>jun-groovy-api-spring-boot-starter</artifactId>
+                <version>${jun.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-common-spring-boot-starter</artifactId>
                 <version>${jun.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jun.plugin</groupId>
+                <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-db-spring-boot-starter</artifactId>
                 <version>${jun.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jun.plugin</groupId>
+                <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-log-spring-boot-starter</artifactId>
                 <version>${jun.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jun.plugin</groupId>
+                <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-redis-spring-boot-starter</artifactId>
                 <version>${jun.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jun.plugin</groupId>
+                <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-swagger2-spring-boot-starter</artifactId>
                 <version>${jun.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jun.plugin</groupId>
+                <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-loadbalancer-spring-boot-starter</artifactId>
                 <version>${jun.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jun.plugin</groupId>
+                <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-auth-client-spring-boot-starter</artifactId>
                 <version>${jun.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jun.plugin</groupId>
+                <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-sentinel-spring-boot-starter</artifactId>
                 <version>${jun.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jun.plugin</groupId>
+                <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-config</artifactId>
                 <version>${jun.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jun.plugin</groupId>
-                <artifactId>jun-common-core</artifactId>
+                <groupId>io.github.wujun728</groupId>
+                <artifactId>jun-common</artifactId>
                 <version>${jun.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jun.plugin</groupId>
+                <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-elasticsearch-spring-boot-starter</artifactId>
                 <version>${jun.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.wujun728</groupId>
+                <artifactId>jun-oss-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.wujun728</groupId>
+                <artifactId>jun-zookeeper-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.wujun728</groupId>
+                <artifactId>search-client</artifactId>
+                <version>${project.version}</version>
             </dependency>
             <!-- 自定义 starter -->
             <dependency>
@@ -305,11 +336,6 @@
                 <version>${fastdfs-client.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jun.plugin</groupId>
-                <artifactId>search-client</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>eu.bitwalker</groupId>
                 <artifactId>UserAgentUtils</artifactId>
                 <version>${userAgent.version}</version>
@@ -383,16 +409,6 @@
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo</artifactId>
                 <version>${dubbo.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.jun.plugin</groupId>
-                <artifactId>jun-oss-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.jun.plugin</groupId>
-                <artifactId>jun-zookeeper-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.curator</groupId>

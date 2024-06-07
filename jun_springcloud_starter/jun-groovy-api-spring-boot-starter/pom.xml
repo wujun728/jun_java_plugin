@@ -3,11 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>io.github.wujun728</groupId>
+	<parent>
+		<groupId>io.github.wujun728</groupId>
+		<artifactId>jun_springcloud_starter</artifactId>
+		<version>1.0.16</version>
+	</parent>
 	<artifactId>jun-groovy-api-spring-boot-starter</artifactId>
-	<version>1.0.16</version>
-	<name>jun-groovy-api 动态API在线开发,可动态生成API并执行,动态编译加载映射并执行</name>
+	<name>jun-groovy-api-spring-boot-starter</name>
 	<description>jun-groovy-api 动态API生成开发，可动态生成API并执行API</description>
 	<url>https://github.com/wujun728/jun-spring-boot-starter/jun-groovy-api-spring-boot-starter</url>
 
@@ -18,9 +20,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.jun.plugin</groupId>
-			<artifactId>jun-common-core</artifactId>
-			<version>1.0.16</version>
+			<groupId>io.github.wujun728</groupId>
+			<artifactId>jun-common</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.github.ulisesbocchio/jasypt-spring-boot-starter -->
 		<dependency>
@@ -31,7 +32,6 @@
 		<!--<dependency>
 			<groupId>io.github.wujun728</groupId>
 			<artifactId>jun-common</artifactId>
-			<version>1.0.15</version>
 		</dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

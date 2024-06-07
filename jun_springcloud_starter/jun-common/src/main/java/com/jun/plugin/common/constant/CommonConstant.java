@@ -1,140 +1,133 @@
 package com.jun.plugin.common.constant;
 
 /**
- * 通用常量
+ * 全局公共常量
  *
- * @date 2020/3/11 16:51
+ * @date 2018/10/29
  */
 public interface CommonConstant {
+    /**
+     * 项目版本号(banner使用)
+     */
+    String PROJECT_VERSION = "5.6.0";
 
     /**
-     * id
+     * token请求头名称
      */
-    String ID = "id";
+    String TOKEN_HEADER = "Authorization";
 
     /**
-     * 名称
+     * The access token issued by the authorization server. This value is REQUIRED.
      */
-    String NAME = "name";
+    String ACCESS_TOKEN = "access_token";
+
+    String BEARER_TYPE = "Bearer";
 
     /**
-     * 编码
+     * 标签 header key
      */
-    String CODE = "code";
+    String HEADER_LABEL = "x-label";
 
     /**
-     * 激活标识
+     * 标签 header 分隔符
      */
-    String ACTIVE = "active";
+    String HEADER_LABEL_SPLIT = ",";
 
     /**
-     * 值
+     * 标签或 名称
      */
-    String VALUE = "value";
+    String LABEL_OR = "labelOr";
 
     /**
-     * 类型
+     * 标签且 名称
      */
-    String TYPE = "type";
+    String LABEL_AND = "labelAnd";
 
     /**
-     * 目录标识
+     * 权重key
      */
-    String IS_DIR = "isDir";
+    String WEIGHT_KEY = "weight";
 
     /**
-     * 路径
+     * 删除
      */
-    String URL = "url";
+    String STATUS_DEL = "1";
 
     /**
-     * 正序标识
+     * 正常
      */
-    String ASC = "asc";
+    String STATUS_NORMAL = "0";
 
     /**
-     * 倒序标识
+     * 锁定
      */
-    String DESC = "desc";
+    String STATUS_LOCK = "9";
 
     /**
-     * 默认标识状态的字段名称
+     * 目录
      */
-    String STATUS = "status";
+    Integer CATALOG = -1;
 
     /**
-     * 默认逻辑删除的状态值
+     * 菜单
      */
-    String DEFAULT_LOGIC_DELETE_VALUE = "2";
+    Integer MENU = 1;
 
     /**
-     * 用户代理
+     * 权限
      */
-    String USER_AGENT = "User-Agent";
+    Integer PERMISSION = 2;
 
     /**
-     * 请求头token标识
+     * 删除标记
      */
-    String AUTHORIZATION = "Authorization";
+    String DEL_FLAG = "is_del";
 
     /**
-     * 请求头接收标识
+     * 超级管理员用户名
      */
-    String ACCEPT = "Accept";
+    String ADMIN_USER_NAME = "admin";
 
     /**
-     * token名称
+     * 公共日期格式
      */
-    String TOKEN_NAME = "token";
+    String MONTH_FORMAT = "yyyy-MM";
+    String DATE_FORMAT = "yyyy-MM-dd";
+    String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    String SIMPLE_MONTH_FORMAT = "yyyyMM";
+    String SIMPLE_DATE_FORMAT = "yyyyMMdd";
+    String SIMPLE_DATETIME_FORMAT = "yyyyMMddHHmmss";
+    String TIME_ZONE_GMT8 = "GMT+8";
+
+    String DEF_USER_PASSWORD = "123456";
+
+    String LOCK_KEY_PREFIX = "LOCK_KEY";
 
     /**
-     * token类型
+     * 租户id参数
      */
-    String TOKEN_TYPE_BEARER = "Bearer";
+    String TENANT_ID_PARAM = "tenantId";
+
 
     /**
-     * 首页提示语
+     * 日志链路追踪id信息头
      */
-    String INDEX_TIPS = "Welcome To Snowy";
+    String TRACE_ID_HEADER = "x-traceId-header";
+    /**
+     * 日志链路追踪id日志标志
+     */
+    String LOG_TRACE_ID = "traceId";
+    /**
+     * 负载均衡策略-版本号 信息头
+     */
+    String Z_L_T_VERSION = "z-l-t-version";
+    /**
+     * 注册中心元数据 版本号
+     */
+    String METADATA_VERSION = "version";
 
     /**
-     * 未知标识
+     * 文件分隔符
      */
-    String UNKNOWN = "Unknown";
-
-    /**
-     * 默认包名
-     */
-    String DEFAULT_PACKAGE_NAME = "vip.xiaonuo";
-
-    /**
-     * 默认密码
-     */
-    String DEFAULT_PASSWORD = "123456";
-
-    /**
-     * 请求号在header中的唯一标识
-     */
-    String REQUEST_NO_HEADER_NAME = "Request-No";
-
-    /**
-     * 验证码键值
-     */
-    String CAPTCHA_SESSION_KEY = "CAPTCHA_SESSION_KEY";
-
-    /**
-     * 数据库链接URL标识
-     */
-    String DATABASE_URL_NAME = "DATABASE_URL_NAME";
-
-    /**
-     * 数据库链接驱动标识
-     */
-    String DATABASE_DRIVER_NAME = "DATABASE_DRIVER_NAME";
-
-    /**
-     * 数据库用户标识
-     */
-    String DATABASE_USER_NAME = "DATABASE_USER_NAME";
-
+    String PATH_SPLIT = "/";
 }

@@ -1,6 +1,6 @@
 package com.jun.plugin.common.config;
 
-import com.jun.plugin.common.filter.EncodingFilter;
+import com.jun.plugin.common.base.filter.EncodingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -22,13 +22,13 @@ public class FilterConfig {
         return filterRegistrationBean;
     }
 
-//    @Bean
-//    public FilterRegistrationBean<EncodingFilter> userFilterConfigFilterRegistrationBean(){
-//        FilterRegistrationBean<EncodingFilter> userFilter = new FilterRegistrationBean<>();
-//        Builder<EncodingFilter> userBuilder = new Builder<>(userFilter);
-//        userBuilder.filterConfiguration(EncodingFilter.class,1,false,"/*");
-//        return userFilter;
-//    }
+    /*@Bean
+    public FilterRegistrationBean<EncodingFilter> userFilterConfigFilterRegistrationBean(){
+        FilterRegistrationBean<EncodingFilter> userFilter = new FilterRegistrationBean<>();
+        Builder<EncodingFilter> userBuilder = new Builder<>(userFilter);
+        userBuilder.filterConfiguration(EncodingFilter.class,1,false,"/*");
+        return userFilter;
+    }*/
 
 
     private class Builder<T extends Filter>{

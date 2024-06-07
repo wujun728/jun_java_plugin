@@ -16,6 +16,7 @@
 package io.github.wujun728.uidgenerator.worker;
 
 //import com.baidu.fsg.uid.worker.dao.WorkerNodeDAO;
+import cn.hutool.extra.spring.SpringUtil;
 import io.github.wujun728.uidgenerator.utils.DockerUtils;
 import io.github.wujun728.uidgenerator.utils.NetUtils;
 import io.github.wujun728.uidgenerator.worker.entity.WorkerNodeEntity;
@@ -39,8 +40,8 @@ import javax.annotation.Resource;
 @Component
 public class DisposableWorkerIdAssigner implements WorkerIdAssigner {
 
-    @Autowired
-    private WorkerNodeResposity workerNodeResposity;
+//    @Autowired
+//    private WorkerNodeResposity workerNodeResposity;
 
 //    @Resource
 //    private WorkerNodeDAO workerNodeDAO;
@@ -59,6 +60,7 @@ public class DisposableWorkerIdAssigner implements WorkerIdAssigner {
 
         // add worker node for new (ignore the same IP + PORT)
         // workerId可自定义实现，比如mysql自增主键,redis递增数,zk,uuid
+        WorkerNodeResposity workerNodeResposity = SpringUtil.getBean(WorkerNodeResposity.class);
         workerNodeResposity.addWorkerNode(workerNodeEntity);
         log.info("Add worker node:" + workerNodeEntity);
 

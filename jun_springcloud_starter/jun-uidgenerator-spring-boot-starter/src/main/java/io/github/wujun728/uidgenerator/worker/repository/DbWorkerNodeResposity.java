@@ -62,28 +62,33 @@ public class DbWorkerNodeResposity implements WorkerNodeResposity {
      */
     @Override
     public void addWorkerNode(WorkerNodeEntity entity) {
-        try {
-            KeyHolder keyHolder = new GeneratedKeyHolder();
-            PreparedStatementCreator preparedStatementCreator = con -> {
-                PreparedStatement ps = con.prepareStatement(ADD_WORKER_NODE_SQL, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, entity.getHostName());
-                ps.setString(2, entity.getPort());
-                ps.setInt(3, entity.getType());
-                ps.setObject(4, entity.getLaunchDate());
-                return ps;
-            };
-            this.jdbcTemplate.update(preparedStatementCreator, keyHolder);
-            entity.setId(Objects.requireNonNull(keyHolder.getKey()).longValue());
-        } catch (BadSqlGrammarException e) {
-            if(e.getMessage().contains("doesn't exist")){
-                this.jdbcTemplate.update(DROP_WORKER_NODE_SQL);
-                this.jdbcTemplate.update(CREATE_WORKER_NODE_SQL);
-                this.addWorkerNode(entity);//如果表没有，见建表
-            }else{
+        WorkerNodeEntity nodeEntity= getWorkerNodeByHostPort(entity.getHostName(), entity.getPort());
+        if(nodeEntity!=null && nodeEntity.getId()>0){
+            entity.setId(nodeEntity.getId());
+        }else{
+            try {
+                KeyHolder keyHolder = new GeneratedKeyHolder();
+                PreparedStatementCreator preparedStatementCreator = con -> {
+                    PreparedStatement ps = con.prepareStatement(ADD_WORKER_NODE_SQL, Statement.RETURN_GENERATED_KEYS);
+                    ps.setString(1, entity.getHostName());
+                    ps.setString(2, entity.getPort());
+                    ps.setInt(3, entity.getType());
+                    ps.setObject(4, entity.getLaunchDate());
+                    return ps;
+                };
+                this.jdbcTemplate.update(preparedStatementCreator, keyHolder);
+                entity.setId(Objects.requireNonNull(keyHolder.getKey()).longValue());
+            } catch (BadSqlGrammarException e) {
+                if(e.getMessage().contains("doesn't exist")){
+                    this.jdbcTemplate.update(DROP_WORKER_NODE_SQL);
+                    this.jdbcTemplate.update(CREATE_WORKER_NODE_SQL);
+                    this.addWorkerNode(entity);//如果表没有，见建表
+                }else{
+                    e.printStackTrace();
+                }
+            }catch (Exception e){
                 e.printStackTrace();
             }
-        }catch (Exception e){
-            e.printStackTrace();
         }
     }
 

@@ -1,3 +1,6 @@
+### 0.说明
+1、强制启动会报错，本模块含有userService的FeignClient，启动的时候需要Mock userService接口Bean注入Spring容器，具体见示例项目
+
 ### db.record
 通过 record(map)的方式操作表数据,似orm非orm,半对像操作
 本类库基于jfinal V1.9 改造
@@ -127,3 +130,6 @@ Db.initAlias("toDb","jdbc:mysql://xxx:3306/platform_dress_base?characterEncoding
 Db.use().find();//默认数据源
 Db.use("toDb").find();//指定数据源
 ```
+
+
+##### 6.多数据源
