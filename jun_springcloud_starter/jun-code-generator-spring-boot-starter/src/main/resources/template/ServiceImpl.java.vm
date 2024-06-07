@@ -1,0 +1,105 @@
+package ${packageName}.${modularName}.${busName}.service.impl;
+
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import vip.xiaonuo.core.consts.CommonConstant;
+import vip.xiaonuo.core.enums.CommonStatusEnum;
+import vip.xiaonuo.core.exception.ServiceException;
+import vip.xiaonuo.core.factory.PageFactory;
+import vip.xiaonuo.core.pojo.page.PageResult;
+import ${packageName}.${modularName}.${busName}.entity.${ClassName};
+import ${packageName}.${modularName}.${busName}.enums.${ClassName}ExceptionEnum;
+import ${packageName}.${modularName}.${busName}.mapper.${ClassName}Mapper;
+import ${packageName}.${modularName}.${busName}.param.${ClassName}Param;
+import ${packageName}.${modularName}.${busName}.service.${ClassName}Service;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * ${functionName}service接口实现类
+ *
+ * @author ${authorName}
+ * @date ${createDateString}
+ */
+@Service
+public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${ClassName}> implements ${ClassName}Service {
+
+    @Override
+    public PageResult<${ClassName}> page(${ClassName}Param ${className}Param) {
+        QueryWrapper<${ClassName}> queryWrapper = new QueryWrapper<>();
+        if (ObjectUtil.isNotNull(${className}Param)) {
+
+#foreach ($column in $tableField)
+#if (${column.queryWhether} == "Y")
+            // 根据${column.columnComment} 查询
+            if (ObjectUtil.isNotEmpty(${className}Param.get${column.columnKeyName}())) {
+                queryWrapper.lambda().${column.queryType}(${ClassName}::get${column.columnKeyName}, ${className}Param.get${column.columnKeyName}());
+            }
+#end
+#end
+        }
+        return new PageResult<>(this.page(PageFactory.defaultPage(), queryWrapper));
+    }
+
+    @Override
+    public List<${ClassName}> list(${ClassName}Param ${className}Param) {
+        return this.list();
+    }
+
+    @Override
+    public void add(${ClassName}Param ${className}Param) {
+        ${ClassName} ${className} = new ${ClassName}();
+        BeanUtil.copyProperties(${className}Param, ${className});
+        this.save(${className});
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void delete(List<${ClassName}Param> ${className}ParamList) {
+        ${className}ParamList.forEach(${className}Param -> {
+        ${ClassName} ${className} = this.query${ClassName}(${className}Param);
+#foreach ($column in $tableField)
+#if (${column.columnKey} == "PRI")
+            this.removeById(${className}.get${column.columnKeyName}());
+        });
+#end
+#end
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void edit(${ClassName}Param ${className}Param) {
+        ${ClassName} ${className} = this.query${ClassName}(${className}Param);
+        BeanUtil.copyProperties(${className}Param, ${className});
+        this.updateById(${className});
+    }
+
+    @Override
+    public ${ClassName} detail(${ClassName}Param ${className}Param) {
+        return this.query${ClassName}(${className}Param);
+    }
+
+    /**
+     * 获取${functionName}
+     *
+     * @author ${authorName}
+     * @date ${createDateString}
+     */
+    private ${ClassName} query${ClassName}(${ClassName}Param ${className}Param) {
+#foreach ($column in $tableField)
+#if (${column.columnKey} == "PRI")
+        ${ClassName} ${className} = this.getById(${className}Param.get${column.columnKeyName}());
+#end
+#end
+        if (ObjectUtil.isNull(${className})) {
+            throw new ServiceException(${ClassName}ExceptionEnum.NOT_EXIST);
+        }
+        return ${className};
+    }
+}
