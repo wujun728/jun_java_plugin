@@ -11,8 +11,9 @@ import java.net.UnknownHostException;
  * @author zlt
  * @date 2019/9/8
  */
+@Deprecated
 @Slf4j
-public class AddrUtil {
+public class IPUtil {
     private final static String UNKNOWN_STR = "unknown";
     /**
      * 获取客户端IP地址

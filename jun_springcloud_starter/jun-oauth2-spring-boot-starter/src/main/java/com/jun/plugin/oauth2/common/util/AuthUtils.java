@@ -4,7 +4,7 @@ import com.jun.plugin.common.constant.CommonConstant;
 import com.jun.plugin.common.constant.SecurityConstants;
 import com.jun.plugin.common.context.LoginUserContextHolder;
 import com.jun.plugin.common.model.SysUser;
-import com.jun.plugin.common.utils.SpringUtil;
+import com.jun.plugin.common.utils.SpringUtils;
 import com.jun.plugin.oauth2.common.token.CustomWebAuthenticationDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -83,7 +83,7 @@ public class AuthUtils {
     }
 
     public static SysUser checkAccessToken(String accessTokenValue) {
-        TokenStore tokenStore = SpringUtil.getBean(TokenStore.class);
+        TokenStore tokenStore = SpringUtils.getBean(TokenStore.class);
         OAuth2AccessToken accessToken = tokenStore.readAccessToken(accessTokenValue);
         if (accessToken == null || accessToken.getValue() == null) {
             throw new InvalidTokenException("Invalid access token: " + accessTokenValue);

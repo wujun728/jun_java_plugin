@@ -23,6 +23,7 @@ import java.util.TimeZone;
  * Blog: https://zlt2000.gitee.io
  * Github: https://github.com/zlt2000
  */
+@Deprecated
 public class JsonUtil {
     private final static ObjectMapper MAPPER = new ObjectMapper();
 

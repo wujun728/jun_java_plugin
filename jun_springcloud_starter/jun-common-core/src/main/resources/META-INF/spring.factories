@@ -4,4 +4,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.jun.plugin.common.feign.fallback.UserServiceFallbackFactory,\
 com.jun.plugin.common.lock.LockAspect,\
-com.jun.plugin.common.utils.SpringUtil
+com.jun.plugin.common.utils.SpringUtils

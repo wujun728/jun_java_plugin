@@ -18,10 +18,10 @@ import java.util.Set;
 @Data
 public class DataScopeProperties {
     private static final Set<String> INGORE_SQL_ID = ImmutableSet
-            .of("com.central.user.mapper.findRolesByUserId"
-                    , "com.central.user.mapper.SysUserMapper.selectList"
-                    , "com.central.user.mapper.SysUserRoleMapper.findRolesByUserId"
-                    , "com.central.user.mapper.SysRoleMenuMapper.findMenusByRoleIds");
+            .of("com.jun.plugin.user.mapper.findRolesByUserId"
+                    , "com.jun.plugin.user.mapper.SysUserMapper.selectList"
+                    , "com.jun.plugin.user.mapper.SysUserRoleMapper.findRolesByUserId"
+                    , "com.jun.plugin.user.mapper.SysRoleMenuMapper.findMenusByRoleIds");
     /**
      * 是否开启权限控制
      */

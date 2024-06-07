@@ -48,7 +48,7 @@ public class LoginUserUtils {
 
             if (StrUtil.isAllNotBlank(username, userId)) {
                 if (isFull) {
-                    UserService userService = SpringUtil.getBean(UserService.class);
+                    UserService userService = SpringUtils.getBean(UserService.class);
                     user = userService.selectByUsername(username);
                 } else {
                     user = new SysUser();
