@@ -2,6 +2,7 @@ package io.github.wujun728.common.redis;
 
 import io.github.wujun728.common.redis.properties.CacheManagerProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

@@ -8,6 +8,7 @@ import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.DbKit;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ import static io.github.wujun728.db.DataSourcePool.main;
 @Slf4j
 @Order(1)
 @Component
-public class DbCommandRun implements CommandLineRunner {
+public class CommandLineRunnerDS implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
@@ -29,10 +30,14 @@ public class DbCommandRun implements CommandLineRunner {
                 StaticLog.error("当前数据库未设置默认数据源，请设置默认数据源！！！");
             }else{
                 DataSourcePool.add(main,ds);
-                if(Db.use(main) == null){
+                if(DbKit.getConfig(main) == null){
                     Db.init(main, DataSourcePool.get(DbKit.MAIN_CONFIG_NAME));
                 }
             }
+        } catch (NoSuchBeanDefinitionException e) {
+            StaticLog.error("Spring无内置DataSource数据源！");
+            initDefaultDataSource();
+            //throw new RuntimeException(e);
         } catch (Exception e) {
             e.printStackTrace();
             StaticLog.error("DbCommandRun 数据源初始化失败！！！");
@@ -47,10 +52,7 @@ public class DbCommandRun implements CommandLineRunner {
         if(dataSource == null){
             dataSource = initDefaultDataSourceV1();
             if(dataSource == null){
-                initActiveRecordPlusin();
-                Console.log("initDefaultDataSource 数据源为空，需要手动初始化DataSource");
-            }else {
-                log.info("initDefaultDataSourceV1  datasource autowried init step2 ");
+                Console.log("initDefaultDataSource 默认数据源为空，需要手动初始化DataSource end ");
             }
         }else {
             log.info("datasource autowried sucess init step1 ");
@@ -58,21 +60,21 @@ public class DbCommandRun implements CommandLineRunner {
         return dataSource;
     }
 
-    private static DataSource initActiveRecordPlusin() {
-        String url = SpringUtil.getProperty("project.datasource.url");
-        String username = SpringUtil.getProperty("project.datasource.username");
-        String password = SpringUtil.getProperty("project.datasource.password");
-        String driver = SpringUtil.getProperty("project.datasource.driver-class-name");
-        StaticLog.info("project.datasource.url"+"="+url);
-        StaticLog.info("project.datasource.username"+"="+username);
-        StaticLog.info("project.datasource.password"+"="+password);
-        StaticLog.info("project.datasource.driver-class-name"+"="+driver);
-        StaticLog.info("current datasource is master ");
-        DataSource masterDataSource = DataSourcePool.init("master",url,username,password,driver);
-        Db.initAlias("master",url,username, password);
-//		DataSourcePool.initActiveRecordPlugin("master",masterDataSource);
-        return masterDataSource;
-    }
+//    private static DataSource initActiveRecordPlusin() {
+//        String url = SpringUtil.getProperty("project.datasource.url");
+//        String username = SpringUtil.getProperty("project.datasource.username");
+//        String password = SpringUtil.getProperty("project.datasource.password");
+//        String driver = SpringUtil.getProperty("project.datasource.driver-class-name");
+//        StaticLog.info("project.datasource.url"+"="+url);
+//        StaticLog.info("project.datasource.username"+"="+username);
+//        StaticLog.info("project.datasource.password"+"="+password);
+//        StaticLog.info("project.datasource.driver-class-name"+"="+driver);
+//        StaticLog.info("current datasource is master ");
+//        DataSource masterDataSource = DataSourcePool.init("master",url,username,password,driver);
+//        Db.initAlias("master",url,username, password);
+////		DataSourcePool.initActiveRecordPlugin("master",masterDataSource);
+//        return masterDataSource;
+//    }
 
     public static DataSource initDefaultDataSourceV1() {
         String url = SpringUtil.getProperty("spring.datasource.url");
@@ -86,7 +88,7 @@ public class DbCommandRun implements CommandLineRunner {
         StaticLog.info("spring.datasource.driver-class-name"+"="+driver);
         StaticLog.info("current datasource is default ");
         if(!StringUtils.isEmpty(url)) {
-            if(Db.use(main) == null){
+            if(DbKit.getConfig(main) == null){
                 Db.initAlias(main,url,username, password);
             }
             return DataSourcePool.init(main,url,username,password,driver);

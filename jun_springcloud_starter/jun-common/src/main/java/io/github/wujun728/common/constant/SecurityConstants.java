@@ -117,7 +117,7 @@ public interface SecurityConstants {
     /**
      * zlt公共前缀
      */
-    String ZLT_PREFIX = "zlt:";
+    String JUN_PREFIX = "jun:";
     /**
      * 缓存client的redis key，这里是hash结构存储
      */
