@@ -1,4 +1,4 @@
-package io.github.wujun728.groovy.plugin;
+package io.github.wujun728.rest.plugin;
 
 public interface BasePlugin {
 

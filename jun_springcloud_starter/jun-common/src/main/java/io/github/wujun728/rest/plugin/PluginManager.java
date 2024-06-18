@@ -1,4 +1,4 @@
-package io.github.wujun728.groovy.plugin;
+package io.github.wujun728.rest.plugin;
 
 import com.alibaba.fastjson2.JSONObject;
 import lombok.extern.slf4j.Slf4j;

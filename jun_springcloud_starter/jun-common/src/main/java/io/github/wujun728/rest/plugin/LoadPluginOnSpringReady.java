@@ -1,4 +1,4 @@
-package io.github.wujun728.groovy.plugin;
+package io.github.wujun728.rest.plugin;
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;

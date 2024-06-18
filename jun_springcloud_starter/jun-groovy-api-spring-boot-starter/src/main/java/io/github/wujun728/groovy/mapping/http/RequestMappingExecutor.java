@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -17,20 +14,18 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.CharsetUtil;
 import com.alibaba.fastjson2.JSON;
 import io.github.wujun728.common.utils.HttpRequestUtil;
 import io.github.wujun728.common.utils.RequestWrapper;
-import io.github.wujun728.db.DataSourcePool;
 import io.github.wujun728.groovy.cache.ApiConfigCache;
 import io.github.wujun728.groovy.cache.IApiConfigCache;
 import io.github.wujun728.groovy.common.model.ApiConfig;
-import io.github.wujun728.groovy.common.model.ApiDataSource;
-import io.github.wujun728.groovy.common.model.ApiSql;
+import io.github.wujun728.rest.entity.ApiSql;
 import io.github.wujun728.common.base.interfaces.AbstractExecutor;
 import io.github.wujun728.common.base.interfaces.IExecutor;
 //import io.github.wujun728.groovy.cache.ApiConfigCache;
@@ -38,10 +33,7 @@ import io.github.wujun728.common.base.interfaces.IExecutor;
 import io.github.wujun728.groovy.service.ApiService;
 import io.github.wujun728.common.Result;
 import io.github.wujun728.common.exception.BusinessException;
-import io.github.wujun728.groovy.plugin.CachePlugin;
-import io.github.wujun728.groovy.plugin.PluginManager;
-import io.github.wujun728.groovy.plugin.TransformPlugin;
-import io.github.wujun728.sql.SqlEngine;
+import io.github.wujun728.rest.service.IRestApiService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +51,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.TypeReference;
-import com.google.common.collect.Lists;
 
 import cn.hutool.extra.spring.SpringUtil;
 //import cn.hutool.core.bean.BeanUtil;
@@ -137,49 +128,6 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 		}
 	}
 
-	public List<Object> executeSql(Connection connection, List<ApiSql> sqlList, Map<String, Object> sqlParam,
-                                   boolean flag) {
-		List<Object> dataList = new ArrayList<>();
-		try {
-			if (flag)
-				connection.setAutoCommit(false);
-			else
-				connection.setAutoCommit(true);
-			for (ApiSql apiSql : sqlList) {
-//				SqlMeta sqlMeta = JdbcUtil.getEngine().parse(apiSql.getSqlText(), sqlParam);
-//				Object data = JdbcUtil.executeSql(connection, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
-				Object data = SqlEngine.executeSql(connection, apiSql.getSqlText(), sqlParam);
-				dataList.add(data);
-			}
-			if (flag)
-				connection.commit();
-			return dataList;
-		} catch (Exception e) {
-			try {
-				if (flag)
-					connection.rollback();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-			}
-			throw new RuntimeException(e);
-		} finally {
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-
-	private List<String> getSQLs(ApiConfig apiConfig) {
-		if (StringUtils.isNotEmpty(apiConfig.getScriptContent())) {
-			return Arrays.asList(apiConfig.getScriptContent().split("###"));
-		}
-		return Lists.newArrayList();
-
-	}
 
 	public static Map<String, Object> getParameters(HttpServletRequest request1, ApiConfig apiConfig) {
 		HttpServletRequest request = null;
@@ -330,6 +278,8 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 	//*****************************************************************************************************************
 
 
+	@Resource
+	IRestApiService restApiService;
 	/**
 	 * 执行脚本逻辑
 	 */
@@ -344,7 +294,6 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 		String servletPath = request.getRequestURI();
 		PrintWriter out = null;
 		try {
-
 			//  执行SQL逻辑  *****************************************************************************************************
 			// 校验接口是否存在
 			ApiConfig config = apiInfoCache.get(servletPath);
@@ -357,7 +306,11 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 			}
 			switch (config.getScriptType()) {
 				case "SQL":
-					data = doSQLProcess(config, request, response);
+					ApiSql apiSql = new ApiSql();
+					apiSql.setSqlId(config.getPath());
+					apiSql.setSqlText(config.getScriptContent());
+					Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
+					data = restApiService.doSQLProcess(apiSql, parameters);
 					break;
 				case "Class":
 					data = doGroovyProcess(config, request, response);
@@ -455,62 +408,5 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 	}
 
 
-	public Object doSQLProcess(ApiConfig config, HttpServletRequest request, HttpServletResponse response) throws SQLException {
-		try {
-			ApiDataSource datasource = apiService.getDatasource(config.getDatasourceId());
-			if (datasource == null || datasource.getId()==null) {
-				response.setStatus(500);
-				return Result.fail("Datasource not exists 请配置API的数据源(或datasource_id在api_datasource不存在)!");
-			}
-			Map<String, Object> params = getParameters(request, config);
-//			if(MapUtil.getStr(params,"pageNumber")!=null && MapUtil.getStr(params,"pageSize")!=null ){
-//				Integer size = Convert.convert(Integer.class, params.get("pageSize"));
-//				Integer page = Convert.convert(Integer.class, params.get("pageNumber"));
-//				params.put("pageSize", size);
-//				params.put("pageNumber", size*(page-1));
-//			}
-			List<ApiSql> sqlList = config.getSqlList();
-			if (CollectionUtils.isEmpty(params) && !CollectionUtils.isEmpty(sqlList) && JSON.toJSONString(sqlList).contains("#")) {
-				return Result.fail("Request parameter is not exists(请求入参不能为空)!");
-			}
-			ApiDataSource ds = new ApiDataSource();
-			BeanUtil.copyProperties(datasource,ds, false);
-			//DruidPooledConnection connection = PoolManager.getPooledConnection(ds);
-			Connection connection = DataSourcePool.init(ds.getName(),ds.getUrl(),ds.getUsername(),ds.getPassword(),ds.getDriver()).getConnection();
-			// 是否开启事务
-			boolean flag = config.getOpenTrans() == 1 ? true : false;
-			// 执行sql
-			List<Object> dataList = executeSql(connection, sqlList, params, flag);
-			// 执行数据转换
-			for (int i = 0; i < sqlList.size(); i++) {
-				ApiSql apiSql = sqlList.get(i);
-				Object data = dataList.get(i);
-				// 如果此单条sql是查询类sql，并且配置了数据转换插件
-				if (data instanceof Iterable && StringUtils.isNotBlank(apiSql.getTransformPlugin())) {
-					log.info("transform plugin execute");
-					List<JSONObject> sourceData = (List<JSONObject>) (data); // 查询类sql的返回结果才可以这样强制转换，只有查询类sql才可以配置转换插件
-					TransformPlugin transformPlugin = (TransformPlugin) PluginManager.getPlugin(apiSql.getTransformPlugin());
-					Object resData = transformPlugin.transform(sourceData, apiSql.getTransformPluginParams());
-					dataList.set(i, resData);// 重新设置值
-				}
-			}
-			Object res = dataList;
-			// 如果只有单条sql,返回结果不是数组格式
-			if (dataList.size() == 1) {
-				res = dataList.get(0);
-			}
-			// 设置缓存
-			if (StringUtils.isNoneBlank(config.getCachePlugin())) {
-				CachePlugin cachePlugin = (CachePlugin) PluginManager.getPlugin(config.getCachePlugin());
-				ApiConfig apiConfig = new ApiConfig();
-				BeanUtil.copyProperties(config,apiConfig, false);
-				cachePlugin.set(apiConfig, params, res);
-			}
-			return res;
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		}
-	}
 
 }

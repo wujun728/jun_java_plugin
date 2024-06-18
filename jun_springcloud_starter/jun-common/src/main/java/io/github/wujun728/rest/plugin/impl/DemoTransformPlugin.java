@@ -1,9 +1,9 @@
-package io.github.wujun728.groovy.plugin.impl;
+package io.github.wujun728.rest.plugin.impl;
 
 import java.util.List;
 
 import com.alibaba.fastjson2.JSONObject;
-import io.github.wujun728.groovy.plugin.TransformPlugin;
+import io.github.wujun728.rest.plugin.TransformPlugin;
 
 public class DemoTransformPlugin extends TransformPlugin {
     @Override

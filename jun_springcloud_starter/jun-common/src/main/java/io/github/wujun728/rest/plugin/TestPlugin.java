@@ -1,7 +1,7 @@
-package io.github.wujun728.groovy.plugin;
+package io.github.wujun728.rest.plugin;
 
 
-import io.github.wujun728.groovy.common.model.ApiConfig;
+import io.github.wujun728.rest.entity.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,6 +18,6 @@ public abstract class TestPlugin implements BasePlugin {
      * @param request 请求
      * @param pluginParam 告警插件局部参数
      */
-    public abstract void alarm(Exception e, ApiConfig config, HttpServletRequest request, String pluginParam);
+    public abstract void alarm(Exception e, Api config, HttpServletRequest request, String pluginParam);
 
 }

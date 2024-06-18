@@ -19,6 +19,7 @@ import io.github.wujun728.common.utils.TreeUtil;
 import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.common.utils.HttpRequestUtil;
 import io.github.wujun728.common.utils.IdGenerator15;
+import io.github.wujun728.rest.service.IRestApiService;
 import io.github.wujun728.rest.util.RestUtil;
 import io.github.wujun728.db.record.*;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
@@ -46,7 +48,10 @@ import static io.github.wujun728.db.DataSourcePool.main;
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping({"${platform.path:}/rest", "${platform.path:}/public/rest"})
 //@Api(value = "实体公共增删改查接口")
-public class RestController {
+public class RestApiController {
+
+    @Resource
+    IRestApiService rescApiService;
 
     static AtomicReference<Map<String, Table>> tableCache = new AtomicReference<>();
 
@@ -56,9 +61,12 @@ public class RestController {
 
 
     private static Result check(String tableName) {
+        return check(tableName, main);
+    }
+    private static Result check(String tableName,String ds) {
         Map map = tableCache.get();
         if (!map.containsKey(tableName)) {
-            Table table = MetaUtil.getTableMeta(Db.use(main).getConfig().getDataSource(), tableName);
+            Table table = MetaUtil.getTableMeta(Db.use(ds).getConfig().getDataSource(), tableName);
             map.put(tableName, table);
             tableCache.set(map);
             if (CollectionUtils.isEmpty(table.getColumns())) {

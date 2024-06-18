@@ -7,8 +7,8 @@ import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
 import io.github.wujun728.groovy.common.model.ApiConfig;
-import io.github.wujun728.groovy.common.model.ApiDataSource;
-import io.github.wujun728.groovy.common.model.ApiSql;
+import io.github.wujun728.rest.entity.ApiDataSource;
+import io.github.wujun728.rest.entity.ApiSql;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -101,7 +101,7 @@ public class ApiService {
 									continue;
 								}
 								ApiSql apisql = new ApiSql();
-								apisql.setApiId(item.getId()+"");
+								apisql.setSqlId(item.getId()+"");
 								apisql.setSqlText(sql);
 								sqlList.add(apisql);
 							}

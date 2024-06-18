@@ -36,7 +36,7 @@ import io.github.wujun728.db.record.kit.SyncWriteMap;
  * Db. Powerful database query and update tool box.
  */
 @SuppressWarnings("rawtypes")
-public class Db {
+public class Db<T> {
 	
 	
 	private static DbPro MAIN = null;
@@ -376,7 +376,7 @@ public class Db {
 	public static List<Record> find(String sql, Object... paras) {
 		return MAIN.find(sql, paras);
 	}
-	
+
 	/**
 	 * @param sql the sql statement
 	 */

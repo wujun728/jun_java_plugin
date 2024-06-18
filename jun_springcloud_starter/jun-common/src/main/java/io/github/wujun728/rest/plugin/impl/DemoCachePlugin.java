@@ -1,9 +1,9 @@
-package io.github.wujun728.groovy.plugin.impl;
+package io.github.wujun728.rest.plugin.impl;
 
 import java.util.Map;
 
-import io.github.wujun728.groovy.common.model.ApiConfig;
-import io.github.wujun728.groovy.plugin.CachePlugin;
+import io.github.wujun728.rest.entity.Api;
+import io.github.wujun728.rest.plugin.CachePlugin;
 
 public class DemoCachePlugin extends CachePlugin {
     @Override
@@ -12,17 +12,17 @@ public class DemoCachePlugin extends CachePlugin {
     }
 
     @Override
-    public void set(ApiConfig config, Map<String, Object> requestParams, Object data) {
+    public void set(Api config, Map<String, Object> requestParams, Object data) {
         System.out.println("--------------");
     }
 
     @Override
-    public void clean(ApiConfig config) {
+    public void clean(Api config) {
         System.out.println("--------------");
     }
 
     @Override
-    public Object get(ApiConfig config, Map<String, Object> requestParams) {
+    public Object get(Api config, Map<String, Object> requestParams) {
         return null;
     }
 

@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.druid.pool.DruidDataSource;
 
 import lombok.extern.slf4j.Slf4j;
@@ -70,6 +71,9 @@ public class DataSourcePool {
             }
     }
     public static DataSource get(String dsname) {
+        if(StrUtil.isEmpty(dsname)){
+            return null;
+        }
         if (map.containsKey(dsname)) {
             return map.get(dsname);
         } else {

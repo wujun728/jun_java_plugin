@@ -1,4 +1,4 @@
-package io.github.wujun728.groovy.common.model;
+package io.github.wujun728.rest.entity;
 
 import lombok.Data;
 
