@@ -1,0 +1,6 @@
+org.springframework.context.ApplicationContextInitializer=\
+io.github.wujun728.log.config.TtlMDCAdapterInitializer
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+io.github.wujun728.log.LogAutoConfigure,\
+io.github.wujun728.aoplog.config.LogAutoConfig

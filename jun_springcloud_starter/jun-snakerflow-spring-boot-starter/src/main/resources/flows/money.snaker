@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<process displayName="办公用品申购流程" name="office">
+    <start displayName="start1" layout="38,125,-1,-1" name="start1">
+        <transition g="" name="transition1" offset="0,0" to="apply"/>
+    </start>
+    <end displayName="end1" layout="713,122,-1,-1" name="end1"/>
+    <task assignee="step1" displayName="出纳" layout="127,121,-1,-1" name="apply" performType="ANY">
+        <transition g="" name="transition2" offset="0,0" to="approveDept"/>
+    </task>
+    <task assignee="step2" displayName="部门经理审批" layout="265,121,110,52" name="approveDept" performType="ANY">
+        <transition g="" name="transition3" offset="0,0" to="node3"/>
+    </task>
+    <task assignee="step3" autoExecute="Y" displayName="分管副总经理" layout="425,120,-1,-1" name="node3" performType="ANY" taskType="Major">
+        <transition g="" name="transition4" offset="0,0" to="node4"/>
+    </task>
+    <task assignee="step4" autoExecute="Y" displayName="董事长审批" layout="568,119,-1,-1" name="node4" performType="ANY" taskType="Major">
+        <transition g="" name="transition5" offset="0,0" to="end1"/>
+    </task>
+</process>
