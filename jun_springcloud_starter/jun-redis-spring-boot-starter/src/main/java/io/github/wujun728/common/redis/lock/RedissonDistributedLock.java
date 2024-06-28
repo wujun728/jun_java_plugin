@@ -17,11 +17,6 @@ import java.util.concurrent.TimeUnit;
  * 本接口能满足绝大部分的需求，高级的锁功能，请自行扩展或直接使用原生api
  * https://gitbook.cn/gitchat/activity/5f02746f34b17609e14c7d5a
  *
- * @author zlt
- * @date 2020/5/5
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @ConditionalOnClass(RedissonClient.class)
 @ConditionalOnProperty(prefix = "jun.lock", name = "lockerType", havingValue = "REDIS", matchIfMissing = true)

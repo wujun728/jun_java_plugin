@@ -27,7 +27,7 @@ package io.github.wujun728.generate.core.ref;
 /**
  * 成功响应结果
  *
- * @author xuyuxiang
+ * 
  * @date 2020/3/30 15:04
  */
 public class SuccessResponseData extends ResponseData {

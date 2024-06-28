@@ -18,11 +18,6 @@ import java.security.KeyPair;
 /**
  * 认证服务器使用 JWT RSA 非对称加密令牌
  *
- * @author zlt
- * @date 2018/7/24 16:21
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @Configuration
 @ConditionalOnProperty(prefix = "jun.oauth2.token.store", name = "type", havingValue = "authJwt")

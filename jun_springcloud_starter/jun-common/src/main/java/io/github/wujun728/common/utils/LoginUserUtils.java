@@ -19,12 +19,6 @@ import java.util.List;
 /**
  * 获取当前登录人工具类
  *
- * @author zlt
- * @version 1.0
- * @date 2022/6/26
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 public class LoginUserUtils {
     /**

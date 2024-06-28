@@ -57,7 +57,7 @@ public class CodeGenerateController {
     /**
      * 代码生成基础数据
      *
-     * @author yubaoshan
+     * 
      * @date 2020年12月16日20:58:48
      */
     //@Permission
@@ -101,7 +101,7 @@ public class CodeGenerateController {
     /**
      * 删除代码生成基础配置
      *
-     * @author yubaoshan
+     * 
      * @date 2020年12月16日22:13:32
      */
     //@Permission
@@ -116,7 +116,7 @@ public class CodeGenerateController {
     /**
      * 查询当前数据库用户下的所有表
      *
-     * @author yubaoshan
+     * 
      * @date 2020-12-16 01:55:48
      */
     //@Permission
@@ -161,7 +161,7 @@ public class CodeGenerateController {
     /**
      * 系统字典类型与字典值构造的树
      *
-     * @author yubaoshan
+     * 
      * @date 2020/4/30 22:20
      */
     @ResponseBody

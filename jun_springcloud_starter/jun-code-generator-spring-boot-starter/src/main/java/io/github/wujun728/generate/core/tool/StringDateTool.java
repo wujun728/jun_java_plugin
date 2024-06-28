@@ -30,7 +30,7 @@ import java.util.Date;
 /**
  * 时间与String转换工具类
  *
- * @author yubaoshan
+ * 
  * @date 2020-12-17 23:42
  */
 public class StringDateTool {
@@ -39,7 +39,7 @@ public class StringDateTool {
     /**
      * 获取现在时间
      *
-     * @author yubaoshan
+     * 
      * @date 2020-12-17 23:42
      */
     public static String getStringDate() {

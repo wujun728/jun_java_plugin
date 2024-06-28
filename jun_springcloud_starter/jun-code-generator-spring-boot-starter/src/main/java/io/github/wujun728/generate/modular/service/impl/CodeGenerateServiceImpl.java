@@ -70,7 +70,7 @@ import java.util.zip.ZipOutputStream;
 /**
  * 代码生成基础配置service接口实现类
  *
- * @author yubaoshan
+ * 
  * @date 2020年12月16日21:31:57
  */
 @Service
@@ -154,7 +154,7 @@ public class CodeGenerateServiceImpl extends ServiceImpl<CodeGenerateMapper, Cod
     /**
      * 获取代码生成基础配置
      *
-     * @author yubaoshan
+     * 
      * @date 2020年12月16日21:19:10
      */
     private CodeGenerate queryCodeGenerate(CodeGenerateParam codeGenerateParam) {
@@ -185,7 +185,7 @@ public class CodeGenerateServiceImpl extends ServiceImpl<CodeGenerateMapper, Cod
     /**
      * 校验表中是否包含主键
      *
-     * @author yubaoshan
+     * 
      * @date 2020年12月23日 00点32分
      */
     private boolean vldTablePri (String tableName) {
@@ -202,7 +202,7 @@ public class CodeGenerateServiceImpl extends ServiceImpl<CodeGenerateMapper, Cod
     /**
      * 下载方式组装代码基础
      *
-     * @author yubaoshan
+     * 
      * @date 2020年12月23日 00点32分
      */
     private void downloadCode(XnCodeGenParam xnCodeGenParam, HttpServletResponse response) {
@@ -221,7 +221,7 @@ public class CodeGenerateServiceImpl extends ServiceImpl<CodeGenerateMapper, Cod
     /**
      * 获取表中所有字段集合
      *
-     * @author yubaoshan
+     * 
      * @date 2021-02-06 22:36
      */
     private List<InforMationColumnsResult> getInforMationColumnsResultList (CodeGenerateParam codeGenerateParam) {

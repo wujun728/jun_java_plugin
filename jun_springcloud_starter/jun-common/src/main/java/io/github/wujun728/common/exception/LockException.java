@@ -3,7 +3,6 @@ package io.github.wujun728.common.exception;
 /**
  * 分布式锁异常
  *
- * @author zlt
  */
 public class LockException extends RuntimeException {
     private static final long serialVersionUID = 6610083281801529147L;

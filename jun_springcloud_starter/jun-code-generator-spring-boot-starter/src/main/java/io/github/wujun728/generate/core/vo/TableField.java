@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * 数据库表字段实体
  *
- * @author yubaoshan
+ * 
  * @date 2020年12月17日00:08:40
  */
 @Data

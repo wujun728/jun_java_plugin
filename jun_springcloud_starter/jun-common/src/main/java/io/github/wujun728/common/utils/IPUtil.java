@@ -8,7 +8,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * @author zlt
  * @date 2019/9/8
  */
 @Deprecated

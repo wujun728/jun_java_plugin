@@ -13,7 +13,6 @@ import java.sql.SQLException;
 /**
  * 异常通用处理
  *
- * @author zlt
  */
 @ResponseBody
 @Slf4j

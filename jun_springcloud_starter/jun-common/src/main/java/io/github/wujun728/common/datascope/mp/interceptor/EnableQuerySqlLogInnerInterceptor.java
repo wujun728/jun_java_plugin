@@ -15,7 +15,6 @@ import java.sql.SQLException;
 /**
  * 示例
  *
- * @author jarvis create by 2023/2/2
  */
 @Slf4j
 public class EnableQuerySqlLogInnerInterceptor implements InnerInterceptor{

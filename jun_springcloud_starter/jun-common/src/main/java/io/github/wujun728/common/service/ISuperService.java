@@ -7,11 +7,6 @@ import io.github.wujun728.common.lock.DistributedLock;
 /**
  * service接口父类
  *
- * @author zlt
- * @date 2019/1/10
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 public interface ISuperService<T> extends IService<T> {
     /**

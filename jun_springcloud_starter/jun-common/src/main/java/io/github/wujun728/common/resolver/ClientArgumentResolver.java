@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * head中的应用参数注入clientId中
  *
- * @author zlt
- * @date 2019/7/10
  */
 @Slf4j
 public class ClientArgumentResolver implements HandlerMethodArgumentResolver {

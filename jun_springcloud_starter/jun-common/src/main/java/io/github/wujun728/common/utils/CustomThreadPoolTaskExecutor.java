@@ -11,7 +11,6 @@ import java.util.concurrent.Future;
 /**
  * 这是{@link ThreadPoolTaskExecutor}的一个简单替换，可搭配TransmittableThreadLocal实现父子线程之间的数据传递
  *
- * @author zlt
  * @date 2019/8/14
  */
 public class CustomThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {

@@ -1,7 +1,6 @@
 package io.github.wujun728.common.model;
 
 /**
- * @Author: zlt
  */
 public enum CodeEnum {
     SUCCESS(0),

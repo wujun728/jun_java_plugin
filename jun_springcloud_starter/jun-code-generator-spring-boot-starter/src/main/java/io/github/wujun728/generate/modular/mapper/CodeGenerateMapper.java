@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * 代码生成基础配置
  *
- * @author yubaoshan
+ * 
  * @date 2020年12月16日21:07:28
  */
 public interface CodeGenerateMapper extends BaseMapper<CodeGenerate> {
@@ -54,7 +54,7 @@ public interface CodeGenerateMapper extends BaseMapper<CodeGenerate> {
     /**
      * 查询指定表中所有字段
      *
-     * @author yubaoshan
+     * 
      * @date 2020年12月17日20:06:05
      */
     @Select(" select\n" +

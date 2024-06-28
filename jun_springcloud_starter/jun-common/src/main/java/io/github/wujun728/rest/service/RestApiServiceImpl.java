@@ -1,16 +1,16 @@
 package io.github.wujun728.rest.service;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Record;
 import io.github.wujun728.common.Result;
-import io.github.wujun728.db.DataSourcePool;
-import io.github.wujun728.db.record.Db;
-import io.github.wujun728.db.record.Record;
+import io.github.wujun728.rest.util.DataSourcePool;
 import io.github.wujun728.rest.entity.ApiDataSource;
 import io.github.wujun728.rest.entity.ApiSql;
 import io.github.wujun728.rest.plugin.PluginManager;
 import io.github.wujun728.rest.plugin.TransformPlugin;
+import io.github.wujun728.rest.util.RecordUtil;
 import io.github.wujun728.sql.SqlEngine;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static io.github.wujun728.db.DataSourcePool.main;
+import static io.github.wujun728.rest.util.DataSourcePool.main;
 
 @Slf4j
 @Service
@@ -91,7 +91,7 @@ public class RestApiServiceImpl implements IRestApiService {
     public ApiDataSource getDatasource(String id) {
         ApiDataSource info = new ApiDataSource();
         Record record= Db.use(main).findById( "api_datasource" , id);
-        return Record.recordToBean(record,ApiDataSource.class);
+        return RecordUtil.recordToBean(record,ApiDataSource.class);
     }
 
 

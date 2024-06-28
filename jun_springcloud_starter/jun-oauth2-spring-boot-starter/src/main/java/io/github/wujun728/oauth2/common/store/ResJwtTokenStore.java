@@ -29,8 +29,6 @@ import java.util.stream.Collectors;
 /**
  * 资源服务器 TokenStore 配置类，使用 JWT RSA 非对称加密
  *
- * @author zlt
- * @date 2018/8/20 9:25
  */
 @Configuration
 @ConditionalOnProperty(prefix = "jun.oauth2.token.store", name = "type", havingValue = "resJwt")

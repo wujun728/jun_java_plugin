@@ -31,7 +31,7 @@ import lombok.Getter;
  * <p>
  * 用于标识mapping.xml中不同数据库的标识
  *
- * @author yubaoshan
+ * 
  * @date 2020/6/20 21:08
  */
 @Getter

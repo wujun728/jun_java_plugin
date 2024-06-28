@@ -1,5 +1,6 @@
 package io.github.wujun728.common.utils;
 
+import cn.hutool.json.JSONUtil;
 import io.github.wujun728.common.model.Result;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferFactory;
@@ -13,11 +14,6 @@ import reactor.core.publisher.Mono;
 import java.nio.charset.Charset;
 
 /**
- * @author zlt
- * @date 2020/5/5
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 public class WebfluxResponseUtil {
     /**
@@ -48,7 +44,7 @@ public class WebfluxResponseUtil {
         response.setStatusCode(HttpStatus.valueOf(httpStatus));
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
         DataBufferFactory dataBufferFactory = response.bufferFactory();
-        DataBuffer buffer = dataBufferFactory.wrap(JsonUtil.toJSONString(result).getBytes(Charset.defaultCharset()));
+        DataBuffer buffer = dataBufferFactory.wrap(JSONUtil.toJsonStr(result).getBytes(Charset.defaultCharset()));
         return response.writeWith(Mono.just(buffer)).doOnError((error) -> {
             DataBufferUtils.release(buffer);
         });

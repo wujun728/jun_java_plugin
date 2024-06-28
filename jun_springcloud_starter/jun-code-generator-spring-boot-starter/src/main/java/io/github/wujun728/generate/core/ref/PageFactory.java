@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 默认分页参数构建
  *
- * @author yubaoshan
+ * 
  * @date 2017/11/15 13:52
  */
 public class PageFactory {
@@ -51,7 +51,7 @@ public class PageFactory {
     /**
      * 默认分页，在使用时PageFactory.defaultPage会自动获取limit和page参数
      *
-     * @author xuyuxiang
+     * 
      * @date 2020/3/30 16:42
      */
     public static <T> Page<T> defaultPage() {

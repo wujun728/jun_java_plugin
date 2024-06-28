@@ -19,7 +19,6 @@ import org.springframework.util.ClassUtils;
 /**
  * 版本控制的路由选择类配置
  *
- * @author jarvis create by 2022/3/9
  */
 @Slf4j
 public class VersionLoadBalancerConfig{

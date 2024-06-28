@@ -45,7 +45,7 @@ import javax.annotation.Resource;
 /**
  * 代码生成详细配置控制器
  *
- * @author yubaoshan
+ * 
  * @date 2021-02-06 20:19:49
  */
 @Controller
@@ -71,7 +71,7 @@ public class SysCodeGenerateConfigController {
     /**
      * 编辑代码生成详细配置
      *
-     * @author yubaoshan
+     * 
      * @date 2021-02-06 20:19:49
      */
     //@Permission
@@ -86,7 +86,7 @@ public class SysCodeGenerateConfigController {
     /**
      * 查看代码生成详细配置
      *
-     * @author yubaoshan
+     * 
      * @date 2021-02-06 20:19:49
      */
     //@Permission
@@ -100,7 +100,7 @@ public class SysCodeGenerateConfigController {
     /**
      * 代码生成详细配置列表
      *
-     * @author yubaoshan
+     * 
      * @date 2021-02-06 20:19:49
      */
     //@Permission

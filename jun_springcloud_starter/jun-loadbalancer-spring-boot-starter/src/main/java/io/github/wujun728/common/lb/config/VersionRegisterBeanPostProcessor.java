@@ -11,7 +11,6 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 /**
  * 将版本注册到注册中心的组件
  *
- * @author jarvis create by 2022/3/20
  */
 public class VersionRegisterBeanPostProcessor  implements BeanPostProcessor {
     @Value("${"+ ConfigConstants.CONFIG_LOADBALANCE_VERSION+":}")

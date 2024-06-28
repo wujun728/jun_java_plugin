@@ -47,5 +47,9 @@
             <artifactId>tomcat-embed-websocket</artifactId>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>net.dreamlu</groupId>
+            <artifactId>mica-auto</artifactId>
+        </dependency>
     </dependencies>
 </project>

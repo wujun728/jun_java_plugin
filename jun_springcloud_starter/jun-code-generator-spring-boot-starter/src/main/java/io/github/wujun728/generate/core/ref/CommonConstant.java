@@ -27,7 +27,7 @@ package io.github.wujun728.generate.core.ref;
 /**
  * 通用常量
  *
- * @author xuyuxiang yubaoshan
+ *  yubaoshan
  * @date 2020/3/11 16:51
  */
 public interface CommonConstant {

@@ -1,4 +1,4 @@
-package io.github.wujun728.common.utils;
+package io.github.wujun728.rest.util;
 
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;

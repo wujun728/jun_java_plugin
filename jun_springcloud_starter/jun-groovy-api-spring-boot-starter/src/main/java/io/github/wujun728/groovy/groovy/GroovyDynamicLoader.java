@@ -3,8 +3,13 @@ package io.github.wujun728.groovy.groovy;
 import cn.hutool.core.lang.Console;
 import cn.hutool.extra.spring.SpringUtil;
 //import com.jfinal.plugin.activerecord.ActiveRecordException;
-import io.github.wujun728.db.record.Db;
-import io.github.wujun728.db.record.DbKit;
+//import io.github.wujun728.db.record.Db;
+//import io.github.wujun728.db.record.DbKit;
+import cn.hutool.log.StaticLog;
+import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.DbKit;
+import com.jfinal.plugin.druid.DruidPlugin;
 import io.github.wujun728.groovy.common.model.ApiConfig;
 import io.github.wujun728.groovy.cache.IApiConfigCache;
 import io.github.wujun728.groovy.service.ApiService;
@@ -36,6 +41,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static io.github.wujun728.rest.util.DataSourcePool.main;
+
 @Slf4j
 @Configuration
 @Service
@@ -66,7 +73,20 @@ public class GroovyDynamicLoader implements ApplicationContextAware, Initializin
 
 		long start = System.currentTimeMillis();
 		System.out.println("开始解析groovy脚本...");
-		Db.init(DbKit.MAIN_CONFIG_NAME, SpringUtil.getBean(DataSource.class));
+		//Db.init(DbKit.MAIN_CONFIG_NAME, SpringUtil.getBean(DataSource.class));
+		if(DbKit.getConfig(main) == null){
+			//Db.initAlias(main,url,username, password);
+			if(DbKit.getConfig(main) == null){
+				//Db.init(main, DataSourcePool.get(DbKit.MAIN_CONFIG_NAME));
+				//DruidPlugin dp = new DruidPlugin(url, username, password);
+				ActiveRecordPlugin arp = new ActiveRecordPlugin(main, SpringUtil.getBean(DataSource.class));
+				arp.setDevMode(true);
+				arp.setShowSql(true);
+				//dp.start();
+				arp.start();
+				log.warn("Config have bean created by configName: {}",main);
+			}
+		}
 		initNew();
 		long cost = System.currentTimeMillis() - start;
 		System.out.println("结束解析groovy脚本...，耗时：" + cost);
@@ -109,7 +129,9 @@ public class GroovyDynamicLoader implements ApplicationContextAware, Initializin
 			try {
 				if(groovyInfo.getScriptType().equalsIgnoreCase("Class")){
 					Class clazz = groovyClassLoader.parseClass(groovyInfo.getScriptContent());
-					registerBean(groovyInfo.getBeanName()+groovyInfo.getId(), clazz);
+					String clazzname = clazz.getName();
+					StaticLog.info("clazzName = "+ clazzname);
+					registerBean(clazzname+groovyInfo.getId(), clazz);
 //					registerBean(groovyInfo.getPath()+groovyInfo.getBeanName(), clazz);
 				}else if(groovyInfo.getScriptType().equalsIgnoreCase("SQL")){
 					log.info("当前Groovy脚本类型SQL类型脚本1：className-{},path-{},beanName-{},BeanType-{}：",groovyInfo.getBeanName(),groovyInfo.getPath(),groovyInfo.getBeanName(),groovyInfo.getScriptType());

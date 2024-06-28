@@ -3,7 +3,6 @@ package io.github.wujun728.common.enums;
 /**
  * 接口
  *
- * @author jarvis create by 2023/1/20
  */
 public interface ZltEnum {
     /**

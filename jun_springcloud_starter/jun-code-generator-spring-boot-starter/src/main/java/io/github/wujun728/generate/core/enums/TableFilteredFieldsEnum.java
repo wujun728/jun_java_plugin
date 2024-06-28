@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * 代码生成过程中被过滤的字段
  *
- * @author yubaoshan
+ * 
  * @date 2020年12月17日00:11:40
  */
 @Getter
@@ -25,7 +25,7 @@ public enum TableFilteredFieldsEnum {
     /**
      * 是否本枚举包含该字段
      *
-     * @author yubaoshan
+     * 
      * @date 2020年12月17日00:11:40
      */
     public static boolean contains(String propertyName) {

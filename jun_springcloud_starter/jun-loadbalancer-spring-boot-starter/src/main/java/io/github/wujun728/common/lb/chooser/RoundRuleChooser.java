@@ -10,7 +10,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 轮询选择器
  *
- * @author jarvis create by 2022/3/13
  */
 @Slf4j
 public class RoundRuleChooser implements IRuleChooser{

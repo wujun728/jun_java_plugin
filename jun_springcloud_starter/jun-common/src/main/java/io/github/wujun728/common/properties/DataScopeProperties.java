@@ -12,7 +12,6 @@ import java.util.Set;
 /**
  * 示例
  *
- * @author jarvis create by 2023/1/8
  */
 @ConfigurationProperties(prefix = "jun.datascope")
 @Data

@@ -12,7 +12,6 @@ import java.lang.annotation.Target;
 /**
  * 开启feign拦截器传递数据给下游服务，包含基础数据和http的相关数据
  *
- * @author zlt
  */
 
 @Target(ElementType.TYPE)

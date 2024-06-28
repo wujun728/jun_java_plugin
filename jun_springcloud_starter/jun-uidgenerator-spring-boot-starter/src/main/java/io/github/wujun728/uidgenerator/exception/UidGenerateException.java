@@ -18,7 +18,7 @@ package io.github.wujun728.uidgenerator.exception;
 /**
  * UidGenerateException
  * 
- * @author yutianbao
+ * 
  */
 public class UidGenerateException extends RuntimeException {
 

@@ -1,7 +1,7 @@
 package io.github.wujun728.compile.controller;
 
 import com.alibaba.fastjson2.JSON;
-import io.github.wujun728.common.utils.HttpRequestUtil;
+import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.compile.service.ExecuteStringSourceService;
 import io.github.wujun728.compile.util.CompileResult;
 import org.slf4j.Logger;

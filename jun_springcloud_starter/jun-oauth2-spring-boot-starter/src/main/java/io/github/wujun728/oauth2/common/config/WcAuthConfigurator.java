@@ -10,12 +10,6 @@ import javax.websocket.server.ServerEndpointConfig;
 /**
  * webSocket鉴权配置
  *
- * @author zlt
- * @version 1.0
- * @date 2022/5/8
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @Slf4j
 public class WcAuthConfigurator extends ServerEndpointConfig.Configurator {

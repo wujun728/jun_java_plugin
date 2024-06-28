@@ -37,11 +37,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * @author zlt
- * @date 2018/11/18 9:22
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @Configuration
 @EnableSwagger2

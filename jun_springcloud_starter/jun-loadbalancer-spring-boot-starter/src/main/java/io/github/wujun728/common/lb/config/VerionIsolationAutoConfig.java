@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Import;
 /**
  * 
  *
- * @author jarvis create by 2022/4/10
  */
 @LoadBalancerClients(defaultConfiguration = VersionLoadBalancerConfig.class)
 @ConditionalOnProperty(prefix = ConfigConstants.CONFIG_LOADBALANCE_ISOLATION, name = "enabled", havingValue = "true", matchIfMissing = false)

@@ -19,10 +19,6 @@ import java.util.concurrent.TimeUnit;
  * Redis Repository
  * redis 基本操作 可扩展,基本够用了
  *
- * @author zlt
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @Slf4j
 public class RedisRepository {

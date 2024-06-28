@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 /**
  * 解析request的query参数工具
  *
- * @author jarvis create by 2022/5/8
  */
 public class QueryUtils {
     /**

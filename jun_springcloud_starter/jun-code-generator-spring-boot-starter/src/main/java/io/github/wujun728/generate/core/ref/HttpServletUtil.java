@@ -40,7 +40,7 @@ import java.util.Objects;
 /**
  * HttpServlet工具类，获取当前request和response
  *
- * @author xuyuxiang
+ * 
  * @date 2020/3/30 15:09
  */
 public class HttpServletUtil {
@@ -53,7 +53,7 @@ public class HttpServletUtil {
     /**
      * 获取当前请求的request对象
      *
-     * @author xuyuxiang
+     * 
      * @date 2020/3/30 15:10
      */
     public static HttpServletRequest getRequest() {
@@ -68,7 +68,7 @@ public class HttpServletUtil {
     /**
      * 获取当前请求的response对象
      *
-     * @author xuyuxiang
+     * 
      * @date 2020/3/30 15:10
      */
     public static HttpServletResponse getResponse() {
@@ -82,7 +82,6 @@ public class HttpServletUtil {
 
     /**
      * @description 从header.referer获取token信息
-     * @author dongxiayu
      * @date 2022/7/2 0:46
      * @return
      **/

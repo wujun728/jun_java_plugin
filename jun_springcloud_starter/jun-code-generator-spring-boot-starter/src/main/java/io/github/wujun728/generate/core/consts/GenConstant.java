@@ -5,7 +5,7 @@ import java.io.File;
 /**
  * 代码生成配置
  *
- * @author yubaoshan
+ * 
  * @date 2020-12-19 02:30:56
  */
 public class GenConstant {

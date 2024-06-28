@@ -24,7 +24,7 @@ import java.util.Date;
 /**
  * DateUtils provides date formatting, parsing
  *
- * @author yutianbao
+ * 
  */
 public abstract class DateUtils extends org.apache.commons.lang.time.DateUtils {
     /**
@@ -111,7 +111,6 @@ public abstract class DateUtils extends org.apache.commons.lang.time.DateUtils {
      * Get current day using format date by 'yyyy-MM-dd HH:mm:ss' pattern
      *
      * @return
-     * @author yebo
      */
     public static String getCurrentDayByDayPattern() {
         Calendar cal = Calendar.getInstance();

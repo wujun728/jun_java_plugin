@@ -6,11 +6,6 @@ import lombok.Setter;
 /**
  * aws s3协议配置
  *
- * @author zlt
- * @date 2021/2/11
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @Setter
 @Getter

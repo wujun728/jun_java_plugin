@@ -17,8 +17,6 @@ import java.io.IOException;
 /**
  * 租户过滤器
  *
- * @author zlt
- * @date 2019/9/15
  */
 @ConditionalOnClass(Filter.class)
 public class TenantFilter extends OncePerRequestFilter {

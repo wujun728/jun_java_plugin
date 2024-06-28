@@ -27,7 +27,7 @@ package io.github.wujun728.generate.core.tool;
 /**
  * java与sql工具类
  *
- * @author yubaoshan
+ * 
  * @date 2020-12-17 23:42
  */
 public class JavaSqlTool {
@@ -35,7 +35,7 @@ public class JavaSqlTool {
     /**
      * 数据类型转化JAVA
      *
-     * @author yubaoshan
+     * 
      * @date 2020-12-17 23:42
      */
     public static String sqlToJava (String sqlType) {

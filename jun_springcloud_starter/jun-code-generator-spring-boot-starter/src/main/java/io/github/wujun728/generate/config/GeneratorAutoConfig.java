@@ -5,8 +5,6 @@ import cn.hutool.core.text.NamingCase;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
-import io.github.wujun728.db.DataSourcePool;
-import io.github.wujun728.db.record.Db;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
@@ -27,8 +25,6 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-
-import static io.github.wujun728.db.DataSourcePool.main;
 
 /**
  * @author wujun

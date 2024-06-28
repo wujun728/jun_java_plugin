@@ -4,9 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.wujun728</groupId>
+    <parent>
+        <groupId>io.github.wujun728</groupId>
+        <artifactId>jun_springcloud_starter</artifactId>
+        <version>1.0.16</version>
+    </parent>
     <artifactId>jun-db-record-sql-engine</artifactId>
-    <version>1.0.16</version>
     <name>jun-db-record-sql-engine</name>
     <description>dynamic sql engine tool</description>
     <url>https://github.com/wujun728/jun-spring-boot-starter/jun-db-record-sql-engine</url>
@@ -38,11 +41,11 @@
             <artifactId>fastjson2</artifactId>
             <version>2.0.37</version>
         </dependency>-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
-        </dependency>
+        </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -77,6 +80,16 @@
             <version>3.13.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.jfinal</groupId>
+            <artifactId>activerecord</artifactId>
+            <version>5.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jfinal</groupId>
+            <artifactId>enjoy</artifactId>
+            <version>5.1.2</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
         <dependency>
             <groupId>com.mysql</groupId>
@@ -93,8 +106,18 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.dreamlu</groupId>
+            <artifactId>mica-auto</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
         </dependency>
     </dependencies>
 

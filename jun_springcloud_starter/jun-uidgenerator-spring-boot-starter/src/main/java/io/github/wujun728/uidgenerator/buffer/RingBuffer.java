@@ -33,7 +33,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * <li><b>tail:</b> a sequence of the max slot position to produce 
  * <li><b>cursor:</b> a sequence of the min slot position to consume
  * 
- * @author yutianbao
+ * 
  */
 public class RingBuffer {
     private static final Logger LOGGER = LoggerFactory.getLogger(RingBuffer.class);

@@ -4,19 +4,19 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 多租户配置
- * @author zlt
- * @date 2019/8/5
  */
 @Setter
 @Getter
 @ConfigurationProperties(prefix = "jun.tenant")
 @RefreshScope
+@Component
 public class TenantProperties {
     /**
      * 是否开启多租户

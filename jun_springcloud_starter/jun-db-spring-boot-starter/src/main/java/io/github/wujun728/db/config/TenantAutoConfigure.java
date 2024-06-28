@@ -13,8 +13,6 @@ import org.springframework.context.annotation.Bean;
 /**
  * 多租户自动配置
  *
- * @author zlt
- * @date 2019/8/5
  */
 @EnableConfigurationProperties(TenantProperties.class)
 public class TenantAutoConfigure {

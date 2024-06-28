@@ -34,8 +34,6 @@ import java.util.List;
  * 2. 使用pipeline减少连接次数，提升性能
  * 3. 自动续签token（可配置是否开启）
  *
- * @author zlt
- * @date 2019/7/7
  */
 public class CustomRedisTokenStore implements TokenStore {
     private static final String ACCESS = "access:";

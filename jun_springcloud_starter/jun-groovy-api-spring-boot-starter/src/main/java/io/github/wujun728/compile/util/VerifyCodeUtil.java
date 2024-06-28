@@ -6,7 +6,7 @@ import cn.hutool.captcha.CircleCaptcha;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.ServletUtil;
-import io.github.wujun728.common.utils.HttpRequestUtil;
+import io.github.wujun728.rest.util.HttpRequestUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

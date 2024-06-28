@@ -29,7 +29,7 @@ import lombok.Data;
 /**
  * 响应结果数据
  *
- * @author xuyuxiang
+ * 
  * @date 2020/3/30 15:04
  */
 @Data

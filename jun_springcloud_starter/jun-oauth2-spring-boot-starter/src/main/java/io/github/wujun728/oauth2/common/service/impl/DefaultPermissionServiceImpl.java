@@ -23,11 +23,6 @@ import java.util.stream.Collectors;
 /**
  * 请求权限判断service
  *
- * @author zlt
- * @date 2018/10/28
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @Slf4j
 public abstract class DefaultPermissionServiceImpl {

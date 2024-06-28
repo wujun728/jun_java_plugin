@@ -55,7 +55,7 @@ import java.util.concurrent.TimeUnit;
  *
  * <b>Note that:</b> The total bits must be 64 -1
  *
- * @author yutianbao
+ * 
  */
 public class DefaultUidGenerator implements UidGenerator, InitializingBean {
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultUidGenerator.class);

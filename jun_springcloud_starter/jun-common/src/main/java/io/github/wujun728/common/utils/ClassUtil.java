@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 /**
  * 类工具类
  *
- * @author L.cm
+ * 
  */
 public class ClassUtil extends ClassUtils {
 

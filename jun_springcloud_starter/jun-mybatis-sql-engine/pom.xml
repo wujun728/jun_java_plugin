@@ -127,13 +127,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.10</version>
         </dependency>
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.projectlombok</groupId>-->
-        <!--            <artifactId>lombok</artifactId>-->
-        <!--            <version>1.18.12</version>-->
-        <!--            <scope>provided</scope>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -145,6 +138,10 @@
             <artifactId>hutool-all</artifactId>
             <version>5.8.21</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.dreamlu</groupId>
+            <artifactId>mica-auto</artifactId>
         </dependency>
 
     </dependencies>

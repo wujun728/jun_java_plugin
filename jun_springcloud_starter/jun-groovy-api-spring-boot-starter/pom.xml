@@ -82,6 +82,10 @@
             <artifactId>mybatis-plus</artifactId>
             <version>3.5.3.2</version>
         </dependency>-->
+		<dependency>
+			<groupId>net.dreamlu</groupId>
+			<artifactId>mica-auto</artifactId>
+		</dependency>
 	</dependencies>
 	
 	<!-- 依赖声明 -->

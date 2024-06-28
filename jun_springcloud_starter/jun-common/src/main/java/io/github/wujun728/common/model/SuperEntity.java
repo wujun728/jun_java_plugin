@@ -13,7 +13,6 @@ import java.util.Date;
 /**
  * 实体父类
  *
- * @author zlt
  */
 @Setter
 @Getter

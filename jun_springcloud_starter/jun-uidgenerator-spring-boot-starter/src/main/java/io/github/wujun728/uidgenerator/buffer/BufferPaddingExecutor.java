@@ -32,7 +32,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * Represents an executor for padding {@link RingBuffer}<br>
  * There are two kinds of executors: one for scheduled padding, the other for padding immediately.
  * 
- * @author yutianbao
+ * 
  */
 public class BufferPaddingExecutor {
     private static final Logger LOGGER = LoggerFactory.getLogger(RingBuffer.class);

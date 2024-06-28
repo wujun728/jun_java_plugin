@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 /**
  * 代码生成工具类
  *
- * @author yubaoshan
+ * 
  * @Date 2020年12月16日23:29:53
  */
 public class Util {
@@ -27,7 +27,7 @@ public class Util {
     /**
      * 初始化vm
      *
-     * @author yubaoshan
+     * 
      * @Date 2020年12月16日23:29:53
      */
     public static void initVelocity() {
@@ -45,7 +45,7 @@ public class Util {
     /**
      * 生成压缩包文件
      *
-     * @author yubaoshan
+     * 
      * @Date 2020年12月16日23:29:53
      */
     public static void DownloadGen(HttpServletResponse response, byte[] bytes) throws IOException {
@@ -62,7 +62,7 @@ public class Util {
      * @param string 字符串
      * @param i      第i次出现
      * @param str    子字符串
-     * @author yubaoshan
+     * 
      * @date 2020年12月16日23:29:53
      */
     private static int getIndex(String string, int i, String str) {
@@ -81,7 +81,7 @@ public class Util {
     /**
      * 获取数据库用户
      *
-     * @author yubaoshan
+     * 
      * @date 2021-03-11 18:37:00
      */
     public static String getDataBasename () {

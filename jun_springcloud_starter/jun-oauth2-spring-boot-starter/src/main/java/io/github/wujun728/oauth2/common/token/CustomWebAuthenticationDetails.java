@@ -7,12 +7,6 @@ import java.io.Serializable;
 /**
  * 表单登录的认证信息对象
  *
- * @author zlt
- * @version 1.0
- * @date 2021/7/24
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @Getter
 public class CustomWebAuthenticationDetails implements Serializable {

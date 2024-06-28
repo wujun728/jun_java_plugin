@@ -17,11 +17,6 @@ import java.util.List;
 /**
  * feign拦截器，只包含http相关数据
  *
- * @author zlt
- * @date 2019/10/26
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 public class FeignHttpInterceptorConfig {
     protected List<String> requestHeaders = new ArrayList<>();

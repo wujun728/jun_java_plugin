@@ -34,7 +34,6 @@ import java.util.*;
 /**
  * 数据权限拦截器
  *
- * @author jarvis create by 2023/1/7
  */
 @Slf4j
 @Data

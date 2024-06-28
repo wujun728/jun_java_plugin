@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 /**
  * 自定义版本路由选择
  *
- * @author jarvis create by 2022/3/9
  */
 @Slf4j
 public class VersionLoadBalancer implements ReactorServiceInstanceLoadBalancer {

@@ -3,7 +3,7 @@ package io.github.wujun728.common.aop.aspectj;
 import cn.hutool.extra.servlet.ServletUtil;
 import com.alibaba.fastjson2.JSON;
 import io.github.wujun728.common.aop.annotation.LogAnnotation;
-import io.github.wujun728.common.utils.HttpRequestUtil;
+import io.github.wujun728.rest.util.HttpRequestUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

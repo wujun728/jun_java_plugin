@@ -1,6 +1,5 @@
 package io.github.wujun728.groovy.mapping.http;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -20,8 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cn.hutool.core.util.CharsetUtil;
 import com.alibaba.fastjson2.JSON;
-import io.github.wujun728.common.utils.HttpRequestUtil;
-import io.github.wujun728.common.utils.RequestWrapper;
+import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.groovy.cache.ApiConfigCache;
 import io.github.wujun728.groovy.cache.IApiConfigCache;
 import io.github.wujun728.groovy.common.model.ApiConfig;
@@ -41,16 +39,12 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import com.alibaba.fastjson2.TypeReference;
 
 import cn.hutool.extra.spring.SpringUtil;
 //import cn.hutool.core.bean.BeanUtil;
@@ -126,79 +120,6 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-	}
-
-
-	public static Map<String, Object> getParameters(HttpServletRequest request1, ApiConfig apiConfig) {
-		HttpServletRequest request = null;
-		try {
-			request = new RequestWrapper((HttpServletRequest) request1);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		String unParseContentType = request.getContentType();
-
-		// 如果是浏览器get请求过来，取出来的contentType是null
-		if (unParseContentType == null) {
-			unParseContentType = MediaType.APPLICATION_FORM_URLENCODED_VALUE;
-		}
-		// issues/I57ZG2
-		// 解析contentType 格式: appliation/json;charset=utf-8
-		String[] contentTypeArr = unParseContentType.split(";");
-		String contentType = contentTypeArr[0];
-		Map<String, Object> params = null;
-		// 如果是application/json请求，不管接口规定的content-type是什么，接口都可以访问，且请求参数都以json body 为准
-		if (contentType.equalsIgnoreCase(MediaType.APPLICATION_JSON_VALUE)) {
-			cn.hutool.json.JSONObject jo = HttpRequestUtil.getHttpJsonBody(request);
-			if (!ObjectUtils.isEmpty(jo)) {
-				params = JSONObject.parseObject(jo.toStringPretty(), new TypeReference<Map<String, Object>>() {
-				});
-			}
-		}
-		// 如果是application/x-www-form-urlencoded请求，先判断接口规定的content-type是不是确实是application/x-www-form-urlencoded
-		else if (contentType.equalsIgnoreCase(MediaType.APPLICATION_FORM_URLENCODED_VALUE)) {
-			if (MediaType.APPLICATION_FORM_URLENCODED_VALUE.equalsIgnoreCase(contentType)) {
-				params = getSqlParam(request, apiConfig);
-			} else if (MediaType.APPLICATION_FORM_URLENCODED_VALUE.equalsIgnoreCase(apiConfig.getContentType())) {
-				params = getSqlParam(request, apiConfig);
-			} else {
-				params = getSqlParam(request, apiConfig);
-				System.err.println("this API only support content-type: " + apiConfig.getContentType()
-						+ ", but you use: " + contentType);
-			}
-		} 
-		// 如果multipart/form-data请求，先判断接口规定的content-type是不是确实是multipart/form-data
-		else if (contentType.equalsIgnoreCase(MediaType.MULTIPART_FORM_DATA_VALUE)) {
-			params = getSqlParam(request, apiConfig);
-		} 
-		else {
-			params = getSqlParam(request, apiConfig);
-			throw new RuntimeException("content-type not supported: " + contentType);
-		}
-		String uri = request.getRequestURI();
-		Map<String, String> header = HttpRequestUtil.buildHeaderParams(request);
-		Map<String, Object> session = HttpRequestUtil.buildSessionParams(request);
-		Map<String, Object> urivar = HttpRequestUtil.getParam(request);
-		String pattern = HttpRequestUtil.buildPattern(request);
-		Map<String, String> pathvar = HttpRequestUtil.getPathVar(pattern, uri);
-		Map<String, Object> params1 = HttpRequestUtil.getFromParams(request);
-		if (!CollectionUtils.isEmpty(session)) {
-			params.putAll(session);
-		}
-		if (!CollectionUtils.isEmpty(header)) {
-			params.putAll(header);
-		}
-		if (!CollectionUtils.isEmpty(pathvar)) {
-			params.putAll(pathvar);
-		}
-		if (!CollectionUtils.isEmpty(urivar)) {
-			params.putAll(urivar);
-		}
-		if (!CollectionUtils.isEmpty(params1)) {
-			params.putAll(params1);
-		}
-		params.put("path",apiConfig.getPath());
-		return params;
 	}
 
 	@SneakyThrows
@@ -378,8 +299,7 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 
 	public Object doGroovyProcess(ApiConfig config, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String beanName = ApiConfigCache.getByPath(config.getPath());
-		//GroovyInfo groovyInfo = GroovyInnerCache.getGroovyInfoByPath(config.getPath());
-		Map<String, Object> params = getParameters(request, config);
+		Map<String, Object> params =HttpRequestUtil.getAllParameters(request);
 		Object beanObj = SpringUtil.getBean(beanName);
 		try {
 			if(beanObj instanceof IExecutor){

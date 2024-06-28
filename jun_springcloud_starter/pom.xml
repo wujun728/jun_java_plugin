@@ -29,6 +29,9 @@
 
         <module>jun-code-generator-spring-boot-starter</module>
         <module>jun-dynamic-form-spring-boot-starter</module>
+        <module>jun-job-spring-boot-starter</module>
+        <module>jun-sms-spring-boot-starter</module>
+        <module>jun-snakerflow-spring-boot-starter</module>
     </modules>
 
     <properties>
@@ -142,6 +145,11 @@
             <dependency>
                 <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-common-spring-boot-starter</artifactId>
+                <version>${jun.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.wujun728</groupId>
+                <artifactId>jun-common</artifactId>
                 <version>${jun.version}</version>
             </dependency>
             <dependency>
@@ -480,6 +488,11 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
                 <version>${jackson-databind.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.dreamlu</groupId>
+                <artifactId>mica-auto</artifactId>
+                <version>2.3.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

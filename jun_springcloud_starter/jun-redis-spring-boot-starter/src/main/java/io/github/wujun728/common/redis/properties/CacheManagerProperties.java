@@ -7,8 +7,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.List;
 
 /**
- * @author zlt
- * @date 2019/1/6
  */
 @Setter
 @Getter

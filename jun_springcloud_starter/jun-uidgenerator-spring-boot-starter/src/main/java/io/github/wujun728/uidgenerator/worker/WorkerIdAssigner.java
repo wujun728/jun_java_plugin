@@ -21,7 +21,7 @@ import io.github.wujun728.uidgenerator.impl.DefaultUidGenerator;
 /**
  * Represents a worker id assigner for {@link DefaultUidGenerator}
  * 
- * @author yutianbao
+ * 
  */
 public interface WorkerIdAssigner {
 

@@ -29,5 +29,9 @@
             <groupId>com.github.zlt2000</groupId>
             <artifactId>swagger-butler-core</artifactId>
         </dependency>-->
+        <dependency>
+            <groupId>net.dreamlu</groupId>
+            <artifactId>mica-auto</artifactId>
+        </dependency>
     </dependencies>
 </project>

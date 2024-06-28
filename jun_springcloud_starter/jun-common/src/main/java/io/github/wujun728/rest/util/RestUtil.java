@@ -10,11 +10,10 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Column;
 import cn.hutool.db.meta.Table;
 import com.google.common.collect.Lists;
+import com.jfinal.plugin.activerecord.Record;
 import io.github.wujun728.common.base.interfaces.IRecordHandler;
 import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.common.utils.ClassUtil;
-import io.github.wujun728.db.record.FieldUtils;
-import io.github.wujun728.db.record.Record;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
@@ -30,7 +29,7 @@ public class RestUtil {
         return primaryKey;
     }
 
-    public static void fillRecord(Record record,String tableName,Boolean isSave) {
+    public static void fillRecord(Record record, String tableName, Boolean isSave) {
         List<Class> allSuperclasses = ClassUtil.getAllClassByInterface(IRecordHandler.class);
         for (Class clazz : allSuperclasses) {
             try {

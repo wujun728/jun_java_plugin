@@ -4,7 +4,7 @@ package io.github.wujun728.compile.service;
 //import com.ibeetl.olexec.compile.StringSourceCompilerExtend;
 //import com.ibeetl.olexec.execute.JavaClassExecutor;
 //import com.ibeetl.olexec.util.HttpRequestLocal;
-import io.github.wujun728.common.utils.HttpRequestUtil;
+import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.compile.compile.StringSourceCompiler;
 import io.github.wujun728.compile.compile.StringSourceCompilerExtend;
 import io.github.wujun728.compile.execute.JavaClassExecutor;

@@ -27,7 +27,7 @@ package io.github.wujun728.generate.core.tool;
 /**
  * 命名转换
  *
- * @author yubaoshan
+ * 
  * @date 2020-12-17 23:55
  */
 public class NamingConTool {
@@ -35,7 +35,7 @@ public class NamingConTool {
     /**
      * 下划线命名转为驼峰命名
      *
-     * @author yubaoshan
+     * 
      * @date 2020-12-17 23:55
      */
     public static String UnderlineToHump(String para, String prefix){
@@ -55,7 +55,7 @@ public class NamingConTool {
     /**
      * 驼峰命名转为下划线命名
      *
-     * @author yubaoshan
+     * 
      * @date 2020-12-17 23:55
      */
     public static String HumpToUnderline(String para){

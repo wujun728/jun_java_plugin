@@ -5,7 +5,6 @@ import lombok.Getter;
 /**
  * 查询类型的枚举
  *
- * @author yubaoshan
  * @date 2021/2/8 20:31
  */
 @Getter

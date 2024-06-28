@@ -34,7 +34,7 @@ import java.util.List;
 /**
  * 分页结果集
  *
- * @author xuyuxiang
+ * 
  * @date 2020/3/30 15:44
  */
 @Data
@@ -78,7 +78,7 @@ public class PageResult<T> implements Serializable {
     /**
      * 将mybatis-plus的page转成自定义的PageResult
      *
-     * @author xuyuxiang
+     * 
      * @date 2020/4/8 19:20
      */
     public PageResult(Page<T> page) {
@@ -91,7 +91,7 @@ public class PageResult<T> implements Serializable {
     /**
      * 将list转为分页方式（无分页）
      *
-     * @author xuyuxiang
+     * 
      * @date 2020/12/4 15:47
      */
     public PageResult(List<T> t) {
@@ -102,7 +102,7 @@ public class PageResult<T> implements Serializable {
      * 将mybatis-plus的page转成自定义的PageResult
      * 可单独设置rows
      *
-     * @author xuyuxiang
+     * 
      * @date 2020/4/14 20:55
      */
     public PageResult(Page<T> page, List<T> t) {

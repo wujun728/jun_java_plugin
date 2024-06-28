@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 /**
  * 代码生成参数类
  *
- * @author yubaoshan
+ * 
  * @date 2020年12月16日20:41:21
  */
 @EqualsAndHashCode(callSuper = true)

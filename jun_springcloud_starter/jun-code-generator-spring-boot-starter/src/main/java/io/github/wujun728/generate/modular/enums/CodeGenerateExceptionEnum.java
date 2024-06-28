@@ -33,7 +33,7 @@ import io.github.wujun728.generate.core.ref.AbstractBaseExceptionEnum;
 /**
  * 代码生成基础配置相关异常枚举
  *
- * @author yubaoshan
+ * 
  * @date 2020年12月16日21:21:14
  */
 //@ExpEnumType(module = GenExpEnumConstant.SNOWY_GEN_MODULE_EXP_CODE, kind = GenExpEnumConstant.GEN_CODE_EXCEPTION_ENUM)

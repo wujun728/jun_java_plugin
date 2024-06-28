@@ -22,7 +22,7 @@
 ///**
 // * DAO for M_WORKER_NODE
 // *
-// * @author yutianbao
+// * 
 // */
 //@Repository
 //public interface WorkerNodeDAO {

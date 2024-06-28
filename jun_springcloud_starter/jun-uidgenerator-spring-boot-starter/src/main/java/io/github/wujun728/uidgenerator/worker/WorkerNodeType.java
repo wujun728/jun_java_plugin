@@ -23,7 +23,7 @@ import io.github.wujun728.uidgenerator.utils.ValuedEnum;
  * <li>CONTAINER: Such as Docker
  * <li>ACTUAL: Actual machine
  * 
- * @author yutianbao
+ * 
  */
 public enum WorkerNodeType implements ValuedEnum<Integer> {
 

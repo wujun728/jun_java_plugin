@@ -29,7 +29,7 @@ import lombok.Getter;
 /**
  * 是或否的枚举
  *
- * @author yubaoshan
+ * 
  * @date 2020/4/13 22:59
  */
 @Getter

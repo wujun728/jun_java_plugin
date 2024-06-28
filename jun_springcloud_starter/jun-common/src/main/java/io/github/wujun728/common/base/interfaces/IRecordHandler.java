@@ -1,7 +1,7 @@
 package io.github.wujun728.common.base.interfaces;
 
 import cn.hutool.core.util.ObjUtil;
-import io.github.wujun728.db.record.Record;
+import com.jfinal.plugin.activerecord.Record;
 
 import java.util.Objects;
 

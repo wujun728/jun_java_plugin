@@ -3,12 +3,6 @@ package io.github.wujun728.oauth2.common.constants;
 /**
  * id_token属性名常量
  *
- * @author zlt
- * @version 1.0
- * @date 2021/4/23
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 public class IdTokenClaimNames {
     /**

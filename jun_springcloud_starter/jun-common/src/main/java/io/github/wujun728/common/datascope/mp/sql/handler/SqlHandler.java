@@ -3,7 +3,6 @@ package io.github.wujun728.common.datascope.mp.sql.handler;
 /**
  * 数据权限的sql获取接口
  *
- * @author jarvis create by 2023/1/8
  */
 public interface SqlHandler {
 

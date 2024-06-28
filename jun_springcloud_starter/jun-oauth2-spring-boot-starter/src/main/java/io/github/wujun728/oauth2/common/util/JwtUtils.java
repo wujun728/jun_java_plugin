@@ -26,8 +26,6 @@ import java.util.stream.Collectors;
 /**
  * jwt工具类
  *
- * @author zlt
- * @date 2019/7/21
  */
 public class JwtUtils {
     private static final String PUBKEY_START = "-----BEGIN PUBLIC KEY-----";

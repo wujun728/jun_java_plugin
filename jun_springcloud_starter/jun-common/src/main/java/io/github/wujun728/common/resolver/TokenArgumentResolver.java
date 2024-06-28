@@ -17,11 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Token转化SysUser
  *
- * @author zlt
- * @date 2018/12/21
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @Slf4j
 public class TokenArgumentResolver implements HandlerMethodArgumentResolver {

@@ -12,7 +12,6 @@ import java.util.UUID;
 /**
  * 设置上下文缓存
  *
- * @author yubaoshan
  * @date 2020年12月17日02:04:56
  */
 public class XnVelocityContext {
@@ -20,7 +19,6 @@ public class XnVelocityContext {
     /**
      * 创建上下文用到的参数
      *
-     * @author yubaoshan
      * @date 2020年12月17日02:04:56
      */
     public VelocityContext createVelContext (XnCodeGenParam xnCodeGenParam) {

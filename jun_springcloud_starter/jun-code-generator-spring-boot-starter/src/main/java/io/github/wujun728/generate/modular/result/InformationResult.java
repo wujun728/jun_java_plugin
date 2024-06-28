@@ -29,7 +29,7 @@ import lombok.Data;
 /**
  * 数据表返回对象
  *
- * @author yubaoshan
+ * 
  * @date 2020年12月17日20:01:56
  */
 @Data

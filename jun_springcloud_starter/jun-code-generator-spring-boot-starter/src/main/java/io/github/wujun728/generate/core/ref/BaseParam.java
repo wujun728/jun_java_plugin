@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * 通用基础参数，相关实体参数校验可继承此类
  *
- * @author xuyuxiang
+ * 
  * @date 2020/3/10 16:02
  */
 @Data

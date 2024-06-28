@@ -5,7 +5,6 @@ import lombok.Getter;
 /**
  * 枚举类型
  *
- * @author jarvis create by 2023/1/10
  */
 @Getter
 public enum DataScope implements ZltEnum{

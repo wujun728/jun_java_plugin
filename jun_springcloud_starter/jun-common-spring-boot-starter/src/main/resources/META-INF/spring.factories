@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.github.wujun728.common.filter.TenantFilter, \
-io.github.wujun728.common.filter.LoginUserFilter

@@ -14,12 +14,6 @@ import java.util.List;
 /**
  * MyBatis-plus租户拦截器
  *
- * @author zlt
- * @version 1.0
- * @date 2022/5/6
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 public class CustomTenantInterceptor extends TenantLineInnerInterceptor {
     private List<String> ignoreSqls;

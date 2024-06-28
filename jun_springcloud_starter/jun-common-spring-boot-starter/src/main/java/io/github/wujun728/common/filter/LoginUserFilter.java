@@ -17,11 +17,6 @@ import java.io.IOException;
 /**
  * 获取当前登录人过滤器
  *
- * @author zlt
- * @date 2022/6/26
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @ConditionalOnClass(Filter.class)
 @Order

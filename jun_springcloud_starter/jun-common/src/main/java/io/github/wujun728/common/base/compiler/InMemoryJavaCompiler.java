@@ -13,7 +13,7 @@ import java.util.Collections;
 /**
  * 内存的代码编译器，参考自 oracle jdk
  *
- * @author L.cm
+ * 
  */
 public class InMemoryJavaCompiler {
 	/**

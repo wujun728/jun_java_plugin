@@ -13,12 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 自定义 TokenExtractor
  *
- * @author zlt
- * @version 1.0
- * @date 2022/6/4
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @ConditionalOnClass(HttpServletRequest.class)
 @Component

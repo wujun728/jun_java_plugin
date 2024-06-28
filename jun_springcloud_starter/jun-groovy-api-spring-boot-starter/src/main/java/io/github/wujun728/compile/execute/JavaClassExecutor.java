@@ -1,7 +1,7 @@
 package io.github.wujun728.compile.execute;
 
 import com.alibaba.fastjson2.JSON;
-import io.github.wujun728.common.utils.HttpRequestUtil;
+import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.common.utils.SpringUtils;
 import io.github.wujun728.compile.compile.StringSourceCompilerExtend;
 import io.github.wujun728.compile.util.ClassLoaderUtil;

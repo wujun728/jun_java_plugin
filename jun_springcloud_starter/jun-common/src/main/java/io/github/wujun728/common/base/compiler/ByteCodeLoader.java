@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * 内存的代码 class loader，参考自 oracle jdk
  *
- * @author L.cm
+ * 
  */
 public class ByteCodeLoader extends SecureClassLoader {
 	/**

@@ -22,11 +22,6 @@ import org.springframework.context.annotation.Bean;
 /**
  * mybatis-plus自动配置
  *
- * @author zlt
- * @date 2020/4/5
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @EnableConfigurationProperties({MybatisPlusAutoFillProperties.class, DataScopeProperties.class})
 public class MybatisPlusAutoConfigure {

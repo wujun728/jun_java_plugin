@@ -17,11 +17,6 @@ import java.util.TimeZone;
 /**
  * 基于 Jackson 的 json 工具类
  *
- * @author zlt
- * @date 2020/10/8
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @Deprecated
 public class JsonUtil {

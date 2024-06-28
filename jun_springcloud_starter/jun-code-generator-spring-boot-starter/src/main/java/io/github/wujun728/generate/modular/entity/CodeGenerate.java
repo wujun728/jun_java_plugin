@@ -36,7 +36,7 @@ import lombok.EqualsAndHashCode;
 /**
  * 代码生成基础配置
  *
- * @author yubaoshan
+ * 
  * @date 2020年12月16日21:04:37
  */
 @EqualsAndHashCode(callSuper = true)

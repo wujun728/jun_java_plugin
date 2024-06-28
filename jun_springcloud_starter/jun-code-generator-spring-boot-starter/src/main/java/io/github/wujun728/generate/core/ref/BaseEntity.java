@@ -35,7 +35,7 @@ import java.util.Date;
 /**
  * 通用基础字段，需要此通用字段的实体可继承此类
  *
- * @author xuyuxiang
+ * 
  * @date 2020/3/10 16:02
  */
 @Data

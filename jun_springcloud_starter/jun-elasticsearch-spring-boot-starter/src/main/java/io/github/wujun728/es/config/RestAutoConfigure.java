@@ -18,11 +18,6 @@ import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 /**
  * es自动配置
  *
- * @author zlt
- * @date 2020/3/28
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @EnableConfigurationProperties(RestClientPoolProperties.class)
 public class RestAutoConfigure {

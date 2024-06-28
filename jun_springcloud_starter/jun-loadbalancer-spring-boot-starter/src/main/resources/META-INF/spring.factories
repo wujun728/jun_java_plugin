@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.github.wujun728.common.lb.RestTemplateAutoConfigure,\
-io.github.wujun728.common.lb.config.VerionIsolationAutoConfig

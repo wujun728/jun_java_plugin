@@ -30,7 +30,7 @@ import cn.hutool.core.util.ObjectUtil;
 /**
  * 系统参数配置容器
  *
- * @author yubaoshan
+ * 
  * @date 2019/6/20 13:37
  */
 public class ConstantContext {
@@ -43,7 +43,7 @@ public class ConstantContext {
     /**
      * 添加系统常量
      *
-     * @author yubaoshan
+     * 
      * @date 2020/6/20 22:32
      */
     public static void putConstant(String code, Object value) {
@@ -56,7 +56,7 @@ public class ConstantContext {
     /**
      * 删除常量，系统常量无法删除，在sysConfig已判断
      *
-     * @author yubaoshan
+     * 
      * @date 2020/6/20 22:32
      */
     public static void deleteConstant(String code) {
@@ -69,7 +69,7 @@ public class ConstantContext {
     /**
      * 获取系统常量本身
      *
-     * @author yubaoshan
+     * 
      * @date 2020/6/20 22:32
      */
     public static Dict me() {

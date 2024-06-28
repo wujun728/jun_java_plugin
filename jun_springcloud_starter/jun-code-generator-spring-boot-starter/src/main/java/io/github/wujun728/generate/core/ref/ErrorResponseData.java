@@ -30,7 +30,7 @@ import lombok.EqualsAndHashCode;
 /**
  * 失败响应结果
  *
- * @author xuyuxiang
+ * 
  * @date 2020/3/30 15:05
  */
 @EqualsAndHashCode(callSuper = true)

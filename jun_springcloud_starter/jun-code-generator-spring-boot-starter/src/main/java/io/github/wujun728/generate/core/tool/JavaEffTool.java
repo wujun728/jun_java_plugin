@@ -27,7 +27,7 @@ package io.github.wujun728.generate.core.tool;
 /**
  * java与effect工具类
  *
- * @author yubaoshan
+ * 
  * @date 2021-2-8 02:30
  */
 public class JavaEffTool {
@@ -35,7 +35,7 @@ public class JavaEffTool {
     /**
      * java转显示类型
      *
-     * @author yubaoshan
+     * 
      * @date 2021-2-8 02:30
      */
     public static String javaToEff (String javaType) {

@@ -3,9 +3,10 @@ package io.github.wujun728.common.base.run;
 import cn.hutool.core.lang.Console;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.log.StaticLog;
-import io.github.wujun728.db.DataSourcePool;
-import io.github.wujun728.db.record.Db;
-import io.github.wujun728.db.record.DbKit;
+import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.plugin.activerecord.DbKit;
+import com.jfinal.plugin.druid.DruidPlugin;
+import io.github.wujun728.rest.util.DataSourcePool;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 
-import static io.github.wujun728.db.DataSourcePool.main;
+import static io.github.wujun728.rest.util.DataSourcePool.main;
 
 @Slf4j
 @Order(1)
@@ -31,7 +32,14 @@ public class CommandLineRunnerDS implements CommandLineRunner {
             }else{
                 DataSourcePool.add(main,ds);
                 if(DbKit.getConfig(main) == null){
-                    Db.init(main, DataSourcePool.get(DbKit.MAIN_CONFIG_NAME));
+                    //Db.init(main, DataSourcePool.get(DbKit.MAIN_CONFIG_NAME));
+                    //DruidPlugin dp = new DruidPlugin(url, username, password);
+                    ActiveRecordPlugin arp = new ActiveRecordPlugin("main", ds);
+                    arp.setDevMode(true);
+                    arp.setShowSql(true);
+                    //dp.start();
+                    arp.start();
+                    log.warn("Config have bean created by configName: {}","main");
                 }
             }
         } catch (NoSuchBeanDefinitionException e) {
@@ -89,7 +97,17 @@ public class CommandLineRunnerDS implements CommandLineRunner {
         StaticLog.info("current datasource is default ");
         if(!StringUtils.isEmpty(url)) {
             if(DbKit.getConfig(main) == null){
-                Db.initAlias(main,url,username, password);
+                //Db.initAlias(main,url,username, password);
+                if(DbKit.getConfig(main) == null){
+                    //Db.init(main, DataSourcePool.get(DbKit.MAIN_CONFIG_NAME));
+                    DruidPlugin dp = new DruidPlugin(url, username, password);
+                    ActiveRecordPlugin arp = new ActiveRecordPlugin(main, dp);
+                    arp.setDevMode(true);
+                    arp.setShowSql(true);
+                    dp.start();
+                    arp.start();
+                    log.warn("Config have bean created by configName: {}",main);
+                }
             }
             return DataSourcePool.init(main,url,username,password,driver);
         }else {

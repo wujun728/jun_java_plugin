@@ -17,7 +17,6 @@ import java.util.Objects;
 /**
  * 个人权限的处理器
  *
- * @author jarvis create by 2023/1/10
  */
 public class CreatorDataScopeSqlHandler implements SqlHandler{
 

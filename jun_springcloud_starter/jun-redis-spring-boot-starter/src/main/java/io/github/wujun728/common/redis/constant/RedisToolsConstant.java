@@ -3,8 +3,6 @@ package io.github.wujun728.common.redis.constant;
 /**
  * redis 工具常量
  *
- * @author zlt
- * @date 2018/5/21 11:59
  */
 public class RedisToolsConstant {
     private RedisToolsConstant() {
