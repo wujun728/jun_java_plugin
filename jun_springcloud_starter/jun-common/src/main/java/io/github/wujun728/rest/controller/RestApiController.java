@@ -7,6 +7,7 @@ import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.db.meta.Column;
 import cn.hutool.db.meta.Table;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
@@ -18,6 +19,7 @@ import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import io.github.wujun728.common.Result;
 import io.github.wujun728.common.exception.BusinessException;
+import io.github.wujun728.rest.util.FieldUtils;
 import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.rest.util.RecordUtil;
 import io.github.wujun728.rest.util.RestUtil;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +53,7 @@ public class RestApiController extends BaseController{
         Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
         main = MapUtil.getStr(parameters, "ds","main");
         String tableName = StrUtil.toUnderlineCase(entityName);
+        Boolean isUnderLine = entityName.equals(tableName);
         try {
             String url = request.getRequestURI();
             StaticLog.info("url = "+ url);
@@ -76,11 +80,11 @@ public class RestApiController extends BaseController{
                     limit = 10;
                 }
                 Page<Record> pages = Db.use(main).paginate(page, limit, select, from);
-                List<Map> datas = RecordUtil.recordToMaps(pages.getList());
+                List<Map> datas = RecordUtil.recordToMaps(pages.getList(),isUnderLine);
                 return Result.success(datas).put("count", pages.getTotalRow()).put("pageSize", pages.getPageSize()).put("totalPage", pages.getTotalPage()).put("pageNumber", pages.getPageNumber());
             } else {
                 List<Record> datas1 = Db.use(main).find(sql.toString());
-                List<Map> datas = RecordUtil.recordToMaps(datas1);
+                List<Map> datas = RecordUtil.recordToMaps(datas1,isUnderLine);
                 //是否构建树 begin
                 if(isTree){
                     String treeId = MapUtil.getStr(parameters, "id") == null ? "id" : MapUtil.getStr(parameters, "id");
@@ -137,6 +141,7 @@ public class RestApiController extends BaseController{
         Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
         main = MapUtil.getStr(parameters, "ds","main");
         String tableName = StrUtil.toUnderlineCase(entityName);
+        Boolean isUnderLine = entityName.equals(tableName);
         try {
             parameters.put("entityName" , entityName);
             parameters.put("tableName" , tableName);
@@ -146,7 +151,7 @@ public class RestApiController extends BaseController{
             Record record = Db.use(main).findByIds(tableName, primaryKey, args.toArray());
 //            Record record = Db.use(main).findById(tableName,primaryKey, (Number) args.get(0));
             if (ObjectUtil.isNotNull(record)) {
-                Map data = RecordUtil.recordToMap(record);
+                Map data = RecordUtil.recordToMap(record,isUnderLine);
                 return Result.success(data);
             } else {
                 return Result.fail("无此ID对应的记录！");
@@ -198,7 +203,55 @@ public class RestApiController extends BaseController{
         Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
         main = MapUtil.getStr(parameters, "ds","main");
         try {
-            return saveOrUpdate(entityName, parameters, true);
+            //return saveOrUpdate(entityName, parameters, true);
+            //Step1,校验表信息，并获取表定义及主键信息
+            String tableName = StrUtil.toUnderlineCase(entityName);
+            main = MapUtil.getStr(parameters, "ds","main");
+            parameters.put("entityName" , entityName);
+            parameters.put("tableName" , tableName);
+            Table table = getTableMeta(tableName,main);
+            //Step2,根据表定义，获取表主键，并根据新增及修改，生成主键或者判断主键数据是否存在
+            //Step3,根据表定义，新增必填字段信息校验，并将默认或者内置字段生成默认值
+            //String primaryKey = RestUtil.getTablePrimaryKes(table);
+            Record record = new Record();
+            Collection<Column> columns = table.getColumns();
+            for (Column column : columns) {
+                String paramValue = RestUtil.getParamValue(parameters, column.getName());
+                paramValue = RestUtil.getId(paramValue);
+                checkDataFormat(column, paramValue);
+                if (ObjectUtil.isNotEmpty(paramValue)) {//非空值，直接设置
+                    record.set(column.getName(), (paramValue));
+                } else {
+                    String fieldName = FieldUtils.columnNameToFieldName(column.getName());
+                    if (ObjectUtil.isNotEmpty(RestUtil.getDefaultValue(fieldName))) {//设置默认值的字段
+                        record.set(column.getName(), RestUtil.getDefaultValue(fieldName));
+                    } else {
+                        if(column.isPk()){
+                            if(column.isAutoIncrement()){
+                                //自增的主键，不自动赋值
+                            }else{
+                                setPkValue(record, column);
+                                StaticLog.warn("参数未传值： " + column.getName());
+                            }
+                        }else{
+                            if (!column.isNullable()){ //非空字段，保存的时候，必填直接返回提示
+                                    throw new BusinessException("参数[" + column.getName() + "]不能为空！");
+                            }
+                        }
+                    }
+                }
+            }
+            //Step4，根据表定义拿到全部参数并生成入库的对象，并持久化并返回数据
+            Boolean isSucess;
+            RestUtil.fillRecord(record,tableName,true);
+            Record finalRecord = record;
+            isSucess = Db.use(main).save(tableName, finalRecord);
+            System.out.println("返回数据为：" + JSONUtil.toJsonStr(isSucess));
+            if (isSucess) {
+                    return Result.success("保存成功！",isSucess);
+            } else {
+                return Result.fail("新增失败");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             if (e.getMessage().contains("Duplicate")) {
@@ -222,7 +275,60 @@ public class RestApiController extends BaseController{
         Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
         main = MapUtil.getStr(parameters, "ds","main");
         try {
-            return saveOrUpdate(entityName, parameters, false);
+            //return saveOrUpdate(entityName, parameters, false);
+            //Step1,校验表信息，并获取表定义及主键信息
+            String tableName = StrUtil.toUnderlineCase(entityName);
+            main = MapUtil.getStr(parameters, "ds","main");
+            parameters.put("entityName" , entityName);
+            parameters.put("tableName" , tableName);
+            Table table = getTableMeta(tableName,main);
+            //Step2,根据表定义，获取表主键，并根据新增及修改，生成主键或者判断主键数据是否存在
+            //Step3,根据表定义，新增必填字段信息校验，并将默认或者内置字段生成默认值
+            String primaryKey = RestUtil.getTablePrimaryKes(table);
+            String primaryValue = RestUtil.getParamValue(parameters, primaryKey);
+            Record record = new Record();
+            List args = RestUtil.getPrimaryKeyArgs(parameters, table);
+            record = Db.use(main).findByIds(tableName, primaryKey, args.toArray());
+            if (ObjectUtil.isNull(record)) {
+                return Result.fail("修改失败，无此ID对应的记录！");
+            }
+            Collection<Column> columns = table.getColumns();
+            for (Column column : columns) {
+                String paramValue = RestUtil.getParamValue(parameters, column.getName());
+                checkDataFormat(column, paramValue);
+                if (ObjectUtil.isNotEmpty(paramValue)) {//非空值，直接设置
+                    record.set(column.getName(), (paramValue));
+                } else {
+                    String fieldName = FieldUtils.columnNameToFieldName(column.getName());
+                    if (ObjectUtil.isNotEmpty(RestUtil.getDefaultValue(fieldName))) {//设置默认值的字段
+                        record.set(column.getName(), RestUtil.getDefaultValue(fieldName));
+                    } else {
+                        if(column.isPk()){
+                            if(column.isAutoIncrement()){
+                                //自增的主键，不自动赋值
+                            }else{
+                                setPkValue(record, column);
+                                StaticLog.warn("参数未传值： " + column.getName());
+                            }
+                        }else{
+                            if (!column.isNullable()){ //非空字段，保存的时候，必填直接返回提示
+                            }
+                        }
+                    }
+                }
+            }
+            //Step4，根据表定义拿到全部参数并生成入库的对象，并持久化并返回数据
+            Boolean isSucess;
+            RestUtil.fillRecord(record,tableName,false);
+            Record finalRecord1 = record;
+            //isSucess = Db.use(main).tx(() -> Db.use(main).update(tableName, finalRecord1));
+            isSucess = Db.use(main).update(tableName, finalRecord1);
+            System.out.println("返回数据为：" + JSONUtil.toJsonStr(isSucess));
+            if (isSucess) {
+                    return Result.success("修改成功！",isSucess);
+            } else {
+                return Result.fail("修改失败");
+            }
         } catch (Exception e1) {
             e1.printStackTrace();
             if (e1.getMessage().contains("Duplicate")) {

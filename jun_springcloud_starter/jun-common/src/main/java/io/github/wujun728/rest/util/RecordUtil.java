@@ -133,14 +133,17 @@ public class RecordUtil {
         return obj;
     }
 
-    public static List<Map> recordToMaps(List<Record> recordList){
+//    public static List<Map> recordToMaps(List<Record> recordList){
+//        return recordToMaps(recordList,false);
+//    }
+    public static List<Map> recordToMaps(List<Record> recordList,Boolean isUnderLine){
         if (recordList == null || recordList.size() == 0){
             return null;
         }
         List<Map> list = new ArrayList<>();
         for (Record record : recordList){
             try {
-                list.add(RecordUtil.recordToMap(record));
+                list.add(RecordUtil.recordToMap(record,isUnderLine));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -148,7 +151,7 @@ public class RecordUtil {
         return list;
     }
 
-    public static Page pageRecordToPage(Page<Record> pageList){
+    public static Page pageRecordToPage(Page<Record> pageList,Boolean isUnderLine){
         if (pageList == null || pageList.getList().size() == 0){
             return null;
         }
@@ -156,7 +159,7 @@ public class RecordUtil {
         List<Record> recordList = pageList.getList();
         for (Record record : recordList){
             try {
-                list.add(RecordUtil.recordToMap(record));
+                list.add(RecordUtil.recordToMap(record,isUnderLine));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -170,12 +173,18 @@ public class RecordUtil {
         return page;
     }
 
-    public static Map<String, Object> recordToMap(Record record) {
+//    public static Map<String, Object> recordToMap(Record record) {
+//        return recordToMap(record,false);
+//    }
+    public static Map<String, Object> recordToMap(Record record,Boolean isUnderLine) {
         Map<String, Object> map = new HashMap<String, Object>();
         if (record != null) {
             String[] columns = record.getColumnNames();
             for (String col : columns) {
                 String fieldName = FieldUtils.columnNameToFieldName(col);
+                if(isUnderLine){
+                    fieldName = col;
+                }
                 map.put(fieldName, record.get(col));
             }
         }

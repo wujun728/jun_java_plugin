@@ -63,7 +63,7 @@ public class ApiService {
 	public List<ApiDataSource> queryDatasourceList() {
 		Page<Record> lists = Db.use(main).paginate(1,2,"select * "," from  "+"api_datasource"+"  where id <> ? ",1);
 		//Console.log(JSON.toJSONString(lists));
-		Console.log(JSON.toJSONString(RecordUtil.pageRecordToPage(lists)));
+		Console.log(JSON.toJSONString(RecordUtil.pageRecordToPage(lists,false)));
 
 		String from = "from  "+"api_datasource"+"  where id > ?";
 		String totalRowSql = "select count(*) " + from;
@@ -79,7 +79,7 @@ public class ApiService {
 		List<Record> lists = Db.use(main).find("select * from  "+"api_config"+"  ");
 		// List<Map<String, Object>> lists = jdbcTemplate.queryForList("select * from api_sql where api_id = "+apiId);
 		List<ApiSql> datas = RecordUtil.recordToListBean(lists,ApiSql.class);
-		List<Map>  datas2 = RecordUtil.recordToMaps(lists);
+		List<Map>  datas2 = RecordUtil.recordToMaps(lists,false);
 //		List<ApiSql> datas = RecordUtil.mapToBeans(lists,ApiSql.class);
 		//log.info(JSON.toJSONString(datas));
 		return datas2;

@@ -68,13 +68,15 @@ public class BaseController {
         Table table = getTableMeta(tableName,main);
         //Step2,根据表定义，获取表主键，并根据新增及修改，生成主键或者判断主键数据是否存在
         //Step3,根据表定义，新增必填字段信息校验，并将默认或者内置字段生成默认值
+        String primaryKey = RestUtil.getTablePrimaryKes(table);
+        String primaryValue = RestUtil.getParamValue(parameters, primaryKey);
+        if(StrUtil.isNotEmpty(primaryValue)){
+            isSave = false;
+        }
         Record record = new Record();
         if (!isSave) {
-            String primaryKey = RestUtil.getTablePrimaryKes(table);
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
             record = Db.use(main).findByIds(tableName, primaryKey, args.toArray());
-//            record = Db.use(main).findById(tableName, primaryKey, args.toArray());
-//            record = Db.use(main).findById(tableName,primaryKey, (Number) args.get(0));
             if (ObjectUtil.isNull(record)) {
                 return Result.fail("修改失败，无此ID对应的记录！");
             }
@@ -135,7 +137,7 @@ public class BaseController {
         }
     }
 
-    private static void checkDataFormat(Column column, String val) {
+    public static void checkDataFormat(Column column, String val) {
         if ("DATE".equalsIgnoreCase(column.getTypeName()) ||
                 "datetime".equalsIgnoreCase(column.getTypeName()) ||
                 "DATE".equalsIgnoreCase(column.getTypeName())) {
@@ -149,7 +151,7 @@ public class BaseController {
         }
     }
 
-    private static void setPkValue(Record record, Column column) {
+    public static void setPkValue(Record record, Column column) {
         if ("VARCHAR".equalsIgnoreCase(column.getTypeName()) ||
                 "TEXT".equalsIgnoreCase(column.getTypeName()) ||
                 "LONGTEXT".equalsIgnoreCase(column.getTypeName()) ||
