@@ -29,7 +29,6 @@ public class SqlEngine {
 	 * 3、连接没有关闭，需要在调用方关闭
 	 * @param connection
 	 * @param sql
-	 * @param jdbcParamValues
 	 * @return
 	 */
 	public static Object executeSql(Connection connection, String sql, Map<String, Object> sqlParam,Boolean closeConn) throws SQLException {
