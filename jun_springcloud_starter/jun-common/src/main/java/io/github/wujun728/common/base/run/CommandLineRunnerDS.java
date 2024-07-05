@@ -3,9 +3,8 @@ package io.github.wujun728.common.base.run;
 import cn.hutool.core.lang.Console;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.log.StaticLog;
-import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.DbKit;
-import com.jfinal.plugin.druid.DruidPlugin;
+import io.github.wujun728.rest.util.ActiveRecordUtil;
 import io.github.wujun728.rest.util.DataSourcePool;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -31,16 +30,7 @@ public class CommandLineRunnerDS implements CommandLineRunner {
                 StaticLog.error("当前数据库未设置默认数据源，请设置默认数据源！！！");
             }else{
                 DataSourcePool.add(main,ds);
-                if(DbKit.getConfig(main) == null){
-                    //Db.init(main, DataSourcePool.get(DbKit.MAIN_CONFIG_NAME));
-                    //DruidPlugin dp = new DruidPlugin(url, username, password);
-                    ActiveRecordPlugin arp = new ActiveRecordPlugin("main", ds);
-                    arp.setDevMode(true);
-                    arp.setShowSql(true);
-                    //dp.start();
-                    arp.start();
-                    log.warn("Config have bean created by configName: {}","main");
-                }
+                ActiveRecordUtil.initActiveRecordPlugin(main,ds);
             }
         } catch (NoSuchBeanDefinitionException e) {
             StaticLog.error("Spring无内置DataSource数据源！");
@@ -68,21 +58,6 @@ public class CommandLineRunnerDS implements CommandLineRunner {
         return dataSource;
     }
 
-//    private static DataSource initActiveRecordPlusin() {
-//        String url = SpringUtil.getProperty("project.datasource.url");
-//        String username = SpringUtil.getProperty("project.datasource.username");
-//        String password = SpringUtil.getProperty("project.datasource.password");
-//        String driver = SpringUtil.getProperty("project.datasource.driver-class-name");
-//        StaticLog.info("project.datasource.url"+"="+url);
-//        StaticLog.info("project.datasource.username"+"="+username);
-//        StaticLog.info("project.datasource.password"+"="+password);
-//        StaticLog.info("project.datasource.driver-class-name"+"="+driver);
-//        StaticLog.info("current datasource is master ");
-//        DataSource masterDataSource = DataSourcePool.init("master",url,username,password,driver);
-//        Db.initAlias("master",url,username, password);
-////		DataSourcePool.initActiveRecordPlugin("master",masterDataSource);
-//        return masterDataSource;
-//    }
 
     public static DataSource initDefaultDataSourceV1() {
         String url = SpringUtil.getProperty("spring.datasource.url");
@@ -98,16 +73,7 @@ public class CommandLineRunnerDS implements CommandLineRunner {
         if(!StringUtils.isEmpty(url)) {
             if(DbKit.getConfig(main) == null){
                 //Db.initAlias(main,url,username, password);
-                if(DbKit.getConfig(main) == null){
-                    //Db.init(main, DataSourcePool.get(DbKit.MAIN_CONFIG_NAME));
-                    DruidPlugin dp = new DruidPlugin(url, username, password);
-                    ActiveRecordPlugin arp = new ActiveRecordPlugin(main, dp);
-                    arp.setDevMode(true);
-                    arp.setShowSql(true);
-                    dp.start();
-                    arp.start();
-                    log.warn("Config have bean created by configName: {}",main);
-                }
+                ActiveRecordUtil.initActiveRecordPlugin(main,url,username,password);
             }
             return DataSourcePool.init(main,url,username,password,driver);
         }else {
@@ -115,15 +81,5 @@ public class CommandLineRunnerDS implements CommandLineRunner {
         }
     }
 
-//	public ActiveRecordPlugin initActiveRecordPlugin() {
-//		DataSource dataSource = null;
-//		if(dataSource == null){
-//			dataSource = SpringUtil.getBean(DataSource.class);
-//		}
-//		if(dataSource != null){
-//			return DataSourcePool.initActiveRecordPlugin("main",dataSource);
-//		}else {
-//			return null;
-//		}
-//	}
+
 }

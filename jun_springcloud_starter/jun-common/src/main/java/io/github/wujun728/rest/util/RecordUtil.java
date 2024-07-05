@@ -136,11 +136,11 @@ public class RecordUtil {
 //    public static List<Map> recordToMaps(List<Record> recordList){
 //        return recordToMaps(recordList,false);
 //    }
-    public static List<Map> recordToMaps(List<Record> recordList,Boolean isUnderLine){
+    public static List<Map<String, Object>> recordToMaps(List<Record> recordList,Boolean isUnderLine){
         if (recordList == null || recordList.size() == 0){
             return null;
         }
-        List<Map> list = new ArrayList<>();
+        List<Map<String, Object>> list = new ArrayList<>();
         for (Record record : recordList){
             try {
                 list.add(RecordUtil.recordToMap(record,isUnderLine));

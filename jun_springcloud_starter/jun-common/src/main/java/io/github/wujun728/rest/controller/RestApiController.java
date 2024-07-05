@@ -80,18 +80,19 @@ public class RestApiController extends BaseController{
                     limit = 10;
                 }
                 Page<Record> pages = Db.use(main).paginate(page, limit, select, from);
-                List<Map> datas = RecordUtil.recordToMaps(pages.getList(),isUnderLine);
+                List<Map<String, Object>> datas = RecordUtil.recordToMaps(pages.getList(),isUnderLine);
                 return Result.success(datas).put("count", pages.getTotalRow()).put("pageSize", pages.getPageSize()).put("totalPage", pages.getTotalPage()).put("pageNumber", pages.getPageNumber());
             } else {
                 List<Record> datas1 = Db.use(main).find(sql.toString());
-                List<Map> datas = RecordUtil.recordToMaps(datas1,isUnderLine);
+                List<Map<String,Object>> datas = RecordUtil.recordToMaps(datas1,isUnderLine);
                 //是否构建树 begin
                 if(isTree){
                     String treeId = MapUtil.getStr(parameters, "id") == null ? "id" : MapUtil.getStr(parameters, "id");
                     String treePid = MapUtil.getStr(parameters, "pid") == null ? "pid" : MapUtil.getStr(parameters, "pid");
                     Object rootId = parameters.get("rootId") == null ? 0L : parameters.get("rootId");
                     if (StrUtil.isNotEmpty(treePid)) {
-                        TreeNodeConfig treeNodeConfig = new TreeNodeConfig();
+                        List treeList = RestUtil.listToTree(datas,String.valueOf(rootId),treeId,treePid);
+                        /*TreeNodeConfig treeNodeConfig = new TreeNodeConfig();
                         treeNodeConfig.setIdKey(treeId);
                         treeNodeConfig.setParentIdKey(treePid);
                         List<Tree<Long>> treeList = TreeUtil.build(datas, Long.valueOf(String.valueOf(rootId)), treeNodeConfig, (map, tree) -> {
@@ -104,7 +105,7 @@ public class RestApiController extends BaseController{
                                     tree.putExtra(String.valueOf(k),map.get(k));
                                 }
                             });
-                        });
+                        });*/
                         StaticLog.info(JSONUtil.toJsonPrettyStr(treeList));
                         return Result.success(treeList);
                     }

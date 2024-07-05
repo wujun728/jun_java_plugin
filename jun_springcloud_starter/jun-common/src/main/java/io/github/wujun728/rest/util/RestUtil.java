@@ -9,16 +9,59 @@ import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Column;
 import cn.hutool.db.meta.Table;
+import cn.hutool.log.StaticLog;
+import com.alibaba.fastjson2.JSON;
 import com.google.common.collect.Lists;
 import com.jfinal.plugin.activerecord.Record;
 import io.github.wujun728.common.base.interfaces.IRecordHandler;
 import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.common.utils.ClassUtil;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StopWatch;
 
 import java.util.*;
 
 public class RestUtil {
+
+
+    /**
+     * 对象List转为Tree树形结构
+     *
+     * @param entityList       传进来的泛型List
+     * @param primaryFieldName 主键名称
+     * @param parentFieldName  父级字段名称
+     * @return
+     */
+    public static List<Map<String, Object>> listToTree(List<Map<String, Object>> entityList,String rootField, String primaryFieldName, String parentFieldName) {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        List<Map<String, Object>> treeMap = new ArrayList<>();
+        List<Map<String, Object>> listMap = JSON.parseObject(JSON.toJSONString(entityList), List.class);
+        Map<String, Map<String, Object>> entityMap = new Hashtable<>();
+        listMap.forEach(map -> entityMap.put(map.get(primaryFieldName).toString(), map));
+        listMap.forEach(map -> {
+            Object pid = map.get(parentFieldName);
+            if (pid == null ||/* StrUtil.equals(pid.toString(), "0") ||*/ StrUtil.equals(pid.toString(), rootField)) {
+                treeMap.add(map);
+            } else {
+                Map<String, Object> parentMap = entityMap.get(pid.toString());
+                if (parentMap == null) { //如果parentMap为空，则说明当前map没有父级，当前map就是顶级
+                    treeMap.add(map);
+                } else {
+                    List<Map<String, Object>> children = (List<Map<String, Object>>) parentMap.get("children");
+                    if (children == null) {  //判断子级集合是否为空，为空则新创建List
+                        children = new ArrayList<>();
+                        parentMap.put("children", children);
+                    }
+                    children.add(map);
+                }
+            }
+        });
+        stopWatch.stop();
+        stopWatch.getTotalTimeMillis();
+        StaticLog.info("listToTree 耗时， " + stopWatch.getTotalTimeMillis());
+        return treeMap;
+    }
 
     public static String getTablePrimaryKes(Table table) {
         Set<String> pks = table.getPkNames();

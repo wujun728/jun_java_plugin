@@ -4,12 +4,12 @@ import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import com.google.common.collect.Lists;
-import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.druid.DruidPlugin;
 import io.github.wujun728.common.exception.BusinessException;
+import io.github.wujun728.rest.util.ActiveRecordUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,12 +57,13 @@ public abstract class AbstractExecutor<T,P> {
 		Boolean isExtsis = false;
 		try {
 //			Db.init(url,username, password);
-			DruidPlugin dp = new DruidPlugin(url, username, password);
-			ActiveRecordPlugin arp = new ActiveRecordPlugin(MASTER, dp);
-			arp.setDevMode(true);
-			arp.setShowSql(true);
-			dp.start();
-			arp.start();
+//			DruidPlugin dp = new DruidPlugin(url, username, password);
+//			ActiveRecordPlugin arp = new ActiveRecordPlugin(MASTER, dp);
+//			arp.setDevMode(true);
+//			arp.setShowSql(true);
+//			dp.start();
+//			arp.start();
+			ActiveRecordUtil.initActiveRecordPlugin(appNo,url,username,password);
 			log.warn("Config have bean created by configName: {}",MASTER);
 			//Db.use(appNo);
 		} catch (IllegalArgumentException e) {
