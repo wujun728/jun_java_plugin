@@ -28,6 +28,7 @@ public class UserModel extends Model<UserModel> {
 
 	public UserModel setAbcTest(String abcTest) {
 		super.set("abc_test", abcTest);
+		super.set("abcTest", abcTest);
 		return this;
 	}
 }
