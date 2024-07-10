@@ -1,5 +1,25 @@
-Microsoft Windows [版本 10.0.19044.2846]
-(c) Microsoft Corporation。保留所有权利。
+Real name: wujun728
+Email address: wujun728@163.com
+You selected this USER-ID:
+"wujun728 <wujun728@163.com>"
+
+Change (N)ame, (E)mail, or (O)kay/(Q)uit? O
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+gpg: revocation certificate stored as 'C:\\Users\\Administrator\\AppData\\Roaming\\gnupg\\openpgp-revocs.d\\ECB23E2FDD65521C21EAD5360ECD3DDD5A391E46.rev'
+public and secret key created and signed.
+
+pub   ed25519 2024-07-08 [SC] [expires: 2026-07-08]
+ECB23E2FDD65521C21EAD5360ECD3DDD5A391E46
+uid                      wujun728 <wujun728@163.com>
+sub   cv25519 2024-07-08 [E] [expires: 2026-07-08]
+
 
 
 d:\workspace\github\jun-spring-boot-starter\jun-uidgenerator-spring-boot-starter>gpg --generate-key
@@ -43,20 +63,20 @@ gpg --generate-key
 复制代码
 后续就根据自己情况输入，最后回车会生成公钥和私钥，我们接下来需要把生成的公钥上传到公共服务器供 sonatype 验证。
 可以通过以下命令把公钥发送给公共服务器：
-gpg --keyserver pgp.mit.edu --send-keys EF79913B9AF7AF55BAEA1B56CB18FA1CB53CD02D
+gpg --keyserver pgp.mit.edu --send-keys ECB23E2FDD65521C21EAD5360ECD3DDD5A391E46
 gpg --keyserver pgp.mit.edu --send-keys [公钥]
 复制代码
 或
-gpg --keyserver keyserver.ubuntu.com --send-keys EF79913B9AF7AF55BAEA1B56CB18FA1CB53CD02D
+gpg --keyserver keyserver.ubuntu.com --send-keys ECB23E2FDD65521C21EAD5360ECD3DDD5A391E46
 gpg --keyserver keyserver.ubuntu.com --send-keys [公钥]
 
-gpg --keyserver pgp.mit.edu --send-keys EF79913B9AF7AF55BAEA1B56CB18FA1CB53CD02D
-gpg --keyserver keyserver.ubuntu.com --recv-keys EF79913B9AF7AF55BAEA1B56CB18FA1CB53CD02D
-gpg --keyserver keys.openpgp.org --send-keys EF79913B9AF7AF55BAEA1B56CB18FA1CB53CD02D
+gpg --keyserver pgp.mit.edu --send-keys ECB23E2FDD65521C21EAD5360ECD3DDD5A391E46
+gpg --keyserver keyserver.ubuntu.com --recv-keys ECB23E2FDD65521C21EAD5360ECD3DDD5A391E46
+gpg --keyserver keys.openpgp.org --send-keys ECB23E2FDD65521C21EAD5360ECD3DDD5A391E46
 
 复制代码
 或
-gpg --keyserver keys.openpgp.org --send-keys EF79913B9AF7AF55BAEA1B56CB18FA1CB53CD02D
+gpg --keyserver keys.openpgp.org --send-keys ECB23E2FDD65521C21EAD5360ECD3DDD5A391E46
 gpg --keyserver keys.openpgp.org --send-keys [公钥]
 复制代码
 以上分别为向三个公共服务器发生公钥，只要其中一个成功即可。

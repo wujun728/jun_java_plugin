@@ -177,6 +177,7 @@
 				</executions>
 			</plugin>
 			<!-- GPG --><!--
+			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
@@ -190,7 +191,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			-->
 			<!--Compiler -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
