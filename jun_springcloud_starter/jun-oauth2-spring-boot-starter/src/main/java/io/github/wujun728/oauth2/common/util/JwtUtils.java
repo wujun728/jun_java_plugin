@@ -3,7 +3,8 @@ package io.github.wujun728.oauth2.common.util;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.wujun728.common.constant.SecurityConstants;
 import io.github.wujun728.common.utils.JsonUtil;
-import io.github.wujun728.common.utils.RsaUtils;
+//import io.github.wujun728.common.utils.RsaUtils;
+import io.github.wujun728.common.utils.RSAUtil;
 import org.springframework.cloud.bootstrap.encrypt.KeyProperties;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -35,16 +36,25 @@ public class JwtUtils {
      * 通过classpath获取公钥值
      */
     public static RSAPublicKey getPubKeyObj() {
-        Resource res = new ClassPathResource(SecurityConstants.RSA_PUBLIC_KEY);
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(res.getInputStream()))) {
-            String pubKey = br.lines().collect(Collectors.joining("\n"));
-            pubKey = pubKey.substring(PUBKEY_START.length(), pubKey.indexOf(PUBKEY_END));
-            return RsaUtils.getPublicKey(pubKey);
-        } catch (Exception ioe) {
-            ioe.printStackTrace();
+//        Resource res = new ClassPathResource(SecurityConstants.RSA_PUBLIC_KEY);
+//        try (BufferedReader br = new BufferedReader(new InputStreamReader(res.getInputStream()))) {
+//            String pubKey = br.lines().collect(Collectors.joining("\n"));
+//            pubKey = pubKey.substring(PUBKEY_START.length(), pubKey.indexOf(PUBKEY_END));
+//            return RsaUtils.getPublicKey(pubKey);
+//        } catch (Exception ioe) {
+//            ioe.printStackTrace();
+//        }
+        KeyPair keyPair = null;
+        try {
+            keyPair = RSAUtil.getKeyPair();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+        String publicKeyStr = RSAUtil.getPublicKey(keyPair);
         return null;
     }
+
+
 
     /**
      * {"exp":1563256084,"user_name":"admin","authorities":["ADMIN"],"jti":"4ce02f54-3d1c-4461-8af1-73f0841a35df","client_id":"webApp","scope":["app"]}

@@ -11,7 +11,7 @@
     <relativePath/>
   </parent>
 
-	<groupId>com.jun.plugin</groupId>
+	<groupId>io.github.wujun728</groupId>
 	<artifactId>kaptcha-spring-boot-starter</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>

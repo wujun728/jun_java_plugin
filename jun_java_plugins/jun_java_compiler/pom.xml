@@ -2,39 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>com.jun.plugin</groupId>
-		<artifactId>jun_java_plugins</artifactId>
-		<version>1.0</version>
-	</parent>
+	<groupId>io.github.wujun728</groupId>
+	<version>1.0</version>
 	<artifactId>jun_java_compiler</artifactId>
 	<packaging>jar</packaging>
 	
-	<description>Compile Java code in memory using Java 7 compiler API</description>
-	<url>https://github.com/michaelliao/compiler</url>
-
-	<licenses>
-		<license>
-			<name>The Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-		</license>
-	</licenses>
-
-	<developers>
-		<developer>
-			<name>Michael Liao</name>
-			<email>askxuefeng@gmail.com</email>
-			<organization>iTranswarp</organization>
-			<organizationUrl>http://www.liaoxuefeng.com</organizationUrl>
-		</developer>
-	</developers>
-
-	<scm>
-		<url>https://github.com:michaelliao/compiler.git</url>
-		<connection>scm:git:git@github.com:michaelliao/compiler.git</connection>
-		<developerConnection>scm:git:git@github.com:michaelliao/compiler.git</developerConnection>
-	</scm>
-
 	<properties>
 		<!-- source encoding -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

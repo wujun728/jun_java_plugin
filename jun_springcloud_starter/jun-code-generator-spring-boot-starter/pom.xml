@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.wujun728</groupId>
         <artifactId>jun_springcloud_starter</artifactId>
-        <version>1.0.16</version>
+        <version>1.1.2</version>
     </parent>
     <artifactId>jun-code-generator-spring-boot-starter</artifactId>
     <packaging>jar</packaging>
@@ -24,42 +24,26 @@
             <groupId>io.github.wujun728</groupId>
             <artifactId>jun-common</artifactId>
         </dependency>
-        <!--<dependency>
-            <groupId>io.github.wujun728</groupId>
-            <artifactId>jun-groovy-api-spring-boot-starter</artifactId>
-            <version>1.0.10</version>
-        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.5.3.1</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-core</artifactId>
-            <version>3.5.3.2</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.3.2</version>
         </dependency>
-        <!--<dependency>
-            <groupId>commons-configuration</groupId>
-            <artifactId>commons-configuration</artifactId>
-            <version>1.10</version>
-        </dependency>-->
         <dependency>
             <artifactId>velocity</artifactId>
             <groupId>org.apache.velocity</groupId>
-            <version>1.7</version>
         </dependency>
         <dependency>
             <groupId>commons-configuration</groupId>
             <artifactId>commons-configuration</artifactId>
-            <version>1.10</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -150,7 +134,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!-- -->
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -165,6 +149,7 @@
                     </execution>
                 </executions>
             </plugin>
+             -->
         </plugins>
     </build>
 

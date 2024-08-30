@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>springcloud_netflix_hoxton_v2</artifactId>
-        <groupId>com.jun.plugin</groupId>
+        <groupId>io.github.wujun728</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -31,7 +31,7 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.jun.plugin</groupId>
+            <groupId>io.github.wujun728</groupId>
             <artifactId>cloud-api-commons</artifactId>
             <version>1.0</version>
         </dependency>

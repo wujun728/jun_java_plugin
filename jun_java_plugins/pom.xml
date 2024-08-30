@@ -3,16 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.jun.plugin</groupId>
+	<groupId>io.github.wujun728</groupId>
 	<artifactId>jun_java_plugins</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
-	
-	<parent>
-		<groupId>com.jun.plugin</groupId>
-		<artifactId>jun_java_plugin</artifactId>
-		<version>1.0</version>
-    </parent>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -60,6 +54,7 @@
 		<module>jun_mongodb</module>
 		<module>jun_multicluster</module>
 		<module>jun_mybatis</module>
+		<module>jun_mybatis_mate</module>
 		<module>jun_mybatisplus</module>
 		<module>jun_mycat</module>
 		<module>jun_mysql</module>
@@ -87,9 +82,8 @@
 		<module>jun_webservlet_guice_dbutil</module>
 		<module>jun_websocket</module>
 		<module>jun_xml</module>
-		<module>mybatis-mate-examples</module>
+<!--		<module>mybatis-mate-examples</module>-->
 		<module>jun_db_document</module>
-		<module>JustAuth-demo</module>
 
 	</modules>
 

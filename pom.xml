@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.wujun728</groupId>
 	<artifactId>jun_java_plugin</artifactId>
-	<version>1.0.16</version>
+	<version>1.1.2</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -14,7 +14,8 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<modules>
-		<module>jun_springboot_starter</module> 
+		<module>jun_java_plugins</module>
+		<module>jun_springboot_starter</module>
 		<module>jun_springcloud_starter</module>
 		<!--近期准备一模块一个模块更新重构-->
 		<!--<module>jun_java_plugins</module>

@@ -11,7 +11,7 @@
   <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.jun.plugin</groupId>
+        <groupId>io.github.wujun728</groupId>
 		<artifactId>jun_springboot_plugin</artifactId>
 		<version>1.0</version>
     </parent>

@@ -1,6 +1,0 @@
-description "表结构自动维护 Mysql 示例"
-
-dependencies {
-    implementation fileTree(dir: "libs", include: "*.jar")
-
-}

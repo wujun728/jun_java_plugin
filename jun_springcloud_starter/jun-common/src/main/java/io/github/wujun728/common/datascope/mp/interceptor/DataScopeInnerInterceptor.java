@@ -96,9 +96,9 @@ public class DataScopeInnerInterceptor implements InnerInterceptor {
      * @param <T>
      * @throws JSQLParserException
      */
-    public <T extends SelectBody>void reform(SelectBody selectBody) throws JSQLParserException {
+    public <T extends Select>void reform(Select selectBody) throws JSQLParserException {
         // 如果是plainSelect的话进行改造
-        if(selectBody instanceof PlainSelect&& ObjectUtil.isNotNull(sqlHandler)){
+        if(selectBody instanceof PlainSelect && ObjectUtil.isNotNull(sqlHandler)){
             PlainSelect select = (PlainSelect) selectBody;
             // 获取权限的where条件
             String scopeWhereSql = sqlHandler.handleScopeSql();
@@ -125,8 +125,8 @@ public class DataScopeInnerInterceptor implements InnerInterceptor {
                         // 写入缓存
                         tableInfoMap.put(upperTableName, new TableConfig(upperTableName, ignore));
                     }
-                }else if(fromItem instanceof SubSelect){
-                    reform(((SubSelect) fromItem).getSelectBody());
+                }else if(fromItem instanceof Select){
+                    reform(((Select) fromItem).getSelectBody());
                 }
                 // 获取join列表，然后获取对应的表或者递归子查询
                 List<Join> joinList = select.getJoins();
@@ -149,8 +149,8 @@ public class DataScopeInnerInterceptor implements InnerInterceptor {
                                 tableInfoMap.put(joinTable, new TableConfig(joinTable, ignore));
                             }
                         }
-                        if(join.getRightItem() instanceof SubSelect){
-                            reform(((SubSelect) join.getRightItem()).getSelectBody());
+                        if(join.getRightItem() instanceof Select){
+                            reform(((Select) join.getRightItem()).getSelectBody());
                         }
                     }
                 }
@@ -160,8 +160,8 @@ public class DataScopeInnerInterceptor implements InnerInterceptor {
                 }
             }
             // 如果select不是plainSelect的话则进行递归改造
-        }else if(selectBody instanceof WithItem&& Objects.nonNull(((WithItem)selectBody).getSubSelect())){
-            reform(((WithItem)selectBody).getSubSelect().getSelectBody());
+        }else if(selectBody instanceof WithItem && Objects.nonNull(((WithItem)selectBody).getSelect())){
+            reform(((WithItem)selectBody).getSelect());
         }
     }
 
@@ -213,8 +213,8 @@ public class DataScopeInnerInterceptor implements InnerInterceptor {
                 }
             }
             // 如果from的子查询
-            if(fromItem instanceof SubSelect){
-                SelectBody subSelectBody = ((SubSelect) fromItem).getSelectBody();
+            if(fromItem instanceof Select){
+                Select subSelectBody = ((Select) fromItem).getSelectBody();
                 reform(subSelectBody);
             }
         }
@@ -229,7 +229,7 @@ public class DataScopeInnerInterceptor implements InnerInterceptor {
      * @return
      * @throws JSQLParserException
      */
-    private SelectBody reformWhere(PlainSelect select, String whereSql, List<String> aliasName) throws JSQLParserException {
+    private Select reformWhere(PlainSelect select, String whereSql, List<String> aliasName) throws JSQLParserException {
 
         // todo 处理exists
         if(StrUtil.isNotBlank(whereSql)&& CollUtil.isNotEmpty(aliasName)){

@@ -17,7 +17,7 @@ jun-security-boot-starter是一个基于SpringBoot开发的轻量级权限控制
 #### 2.1.1、引入依赖
 ```xml
 <dependency>
-    <groupId>com.jun.plugin</groupId>
+    <groupId>io.github.wujun728</groupId>
     <artifactId>jun-security-spirng-boot-starter</artifactId>
     <version>1.0.8</version>
 </dependency>

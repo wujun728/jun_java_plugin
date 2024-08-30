@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.github.wujun728</groupId>
         <artifactId>jun_springcloud_starter</artifactId>
-        <version>1.0.16</version>
+        <version>1.1.2</version>
     </parent>
     <artifactId>jun-common</artifactId> 
     <packaging>jar</packaging>
@@ -17,35 +17,18 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	
-	
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.jasypt/jasypt -->
-        <!--<dependency>
-            <groupId>org.jasypt</groupId>
-            <artifactId>jasypt</artifactId>
-            <version>1.9.3</version>
-        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/com.github.ulisesbocchio/jasypt-spring-boot-starter -->
-        <!--<dependency>
-            <groupId>com.github.ulisesbocchio</groupId>
-            <artifactId>jasypt-spring-boot-starter</artifactId>
-            <version>2.1.1</version>
-        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
         <dependency>
             <groupId>com.jfinal</groupId>
             <artifactId>activerecord</artifactId>
-            <version>5.1.2</version>
         </dependency>
         <dependency>
             <groupId>com.jfinal</groupId>
             <artifactId>enjoy</artifactId>
-            <version>5.1.2</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.2.21</version>
         </dependency>
         <dependency>
             <groupId>io.github.wujun728</groupId>
@@ -54,12 +37,10 @@
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>2.3.32</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
-            <version>2.0.37</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -95,14 +76,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-        <!--<dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-        </dependency>-->
-        <!--<dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-        </dependency>-->
         <!--   easypoi   -->
         <dependency>
             <groupId>cn.afterturn</groupId>
@@ -128,12 +101,6 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-
-        <!--<dependency>
-            <groupId>com.nepxion</groupId>
-            <artifactId>banner</artifactId>
-        </dependency>-->
-
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-core</artifactId>
@@ -160,11 +127,14 @@
             <version>8.0.33</version>
             <scope>runtime</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.jsqlparser/jsqlparser -->
         <dependency>
-            <groupId>net.dreamlu</groupId>
-            <artifactId>mica-auto</artifactId>
-            <version>2.3.2</version>
+            <groupId>com.github.jsqlparser</groupId>
+            <artifactId>jsqlparser</artifactId>
+            <version>4.9</version>
+            <scope>compile</scope>
         </dependency>
+
     </dependencies>
 	
 	<developers>
@@ -250,7 +220,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- GPG --><!-- -->
+			<!-- GPG --><!--
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
@@ -264,7 +234,7 @@
 					</execution>
 				</executions>
 			</plugin>
-
+            -->
 			<!--Compiler -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

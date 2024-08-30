@@ -2,16 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
- <!--   <parent>
-       	<groupId>com.jun.plugin</groupId>
-		<artifactId>jun_springboot_api_service</artifactId>
-		<version>1.0</version>
-    </parent>-->
-    
-    <groupId>com.jun.plugin</groupId>
-	<version>1.0</version>
+
+    <groupId>io.github.wujun728</groupId>
     <artifactId>jun_springboot_simple</artifactId>
-    
+    <version>1.0</version>
+
     <properties>
         <java.version>1.8</java.version>
         <mybatis-plus.version>3.4.0</mybatis-plus.version>
@@ -38,59 +33,59 @@
 			<version>1.0.2-RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>com.jun.plugin</groupId>
+            <groupId>io.github.wujun728</groupId>
             <artifactId>jun_api_service_api_interface</artifactId>
             <version>1.0</version>
         </dependency>
          
         <dependency>
-            <groupId>com.jun.plugin</groupId>
+            <groupId>io.github.wujun728</groupId>
     		<artifactId>jun_api_service_biz_service</artifactId>
     		<version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.jun.plugin</groupId>
+            <groupId>io.github.wujun728</groupId>
     		<artifactId>jun_api_service_common</artifactId>
     		<version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.jun.plugin</groupId>
+            <groupId>io.github.wujun728</groupId>
 		    <artifactId>jun_api_service_code_generator</artifactId>
 			<version>1.0</version>
         </dependency>
         <!--<dependency>
-            <groupId>com.jun.plugin</groupId>
+            <groupId>io.github.wujun728</groupId>
 		    <artifactId>jun_api_service_job</artifactId>
 			<version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.jun.plugin</groupId>
+            <groupId>io.github.wujun728</groupId>
 		    <artifactId>jun_api_service_mq</artifactId>
 			<version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.jun.plugin</groupId>
+            <groupId>io.github.wujun728</groupId>
 		    <artifactId>jun_api_service_file</artifactId>
 			<version>1.0</version>
         </dependency>-->
 
         <dependency>
-            <groupId>com.jun.plugin</groupId>
+            <groupId>io.github.wujun728</groupId>
 		    <artifactId>jun_api_service_user_service</artifactId>
 			<version>1.0</version>
         </dependency>
         <!-- <dependency>
-            <groupId>com.jun.plugin</groupId>
+            <groupId>io.github.wujun728</groupId>
 		    <artifactId>jun_api_service_flow</artifactId>
 			<version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.jun.plugin</groupId>
+            <groupId>io.github.wujun728</groupId>
             <artifactId>jun_api_service_sms</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.jun.plugin</groupId>
+            <groupId>io.github.wujun728</groupId>
             <artifactId>jun_api_service_user_shiro</artifactId>
             <version>1.0</version>
             <scope>compile</scope>

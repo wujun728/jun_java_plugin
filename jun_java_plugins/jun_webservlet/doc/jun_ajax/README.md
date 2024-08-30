@@ -10,7 +10,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-	  <groupId>com.jun.plugin</groupId>
+	  <groupId>io.github.wujun728</groupId>
 	  <artifactId>jun_plugin</artifactId>
 	  <version>1.0</version>
   </parent>

@@ -10,7 +10,7 @@
 <dependency>
 	<groupId>io.github.wujun728</groupId>
 	<artifactId>jun-commmon</artifactId>
-	<version>1.0.16</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 

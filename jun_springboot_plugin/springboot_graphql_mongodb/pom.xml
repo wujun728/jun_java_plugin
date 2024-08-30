@@ -8,7 +8,7 @@
         <version>2.2.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.jun.plugin</groupId>
+    <groupId>io.github.wujun728</groupId>
     <artifactId>springboot_graphql_mongodb</artifactId>
     <version>1.0</version>
     <description>easy graphql for spring boot</description>

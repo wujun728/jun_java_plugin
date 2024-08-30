@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.github.wujun728</groupId>
         <artifactId>jun_springcloud_starter</artifactId>
-        <version>1.0.16</version>
+        <version>1.1.2</version>
     </parent>
     <artifactId>jun-db-record-sql-engine</artifactId>
     <name>jun-db-record-sql-engine</name>
@@ -61,17 +61,14 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.2.18</version>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.21</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -203,7 +200,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+            <!--<plugin>
                  <groupId>org.apache.maven.plugins</groupId>
                  <artifactId>maven-gpg-plugin</artifactId>
                  <version>1.0</version>
@@ -216,7 +213,7 @@
                          </goals>
                      </execution>
                  </executions>
-             </plugin><!-- -->
+             </plugin> -->
 
         </plugins>
     </build>

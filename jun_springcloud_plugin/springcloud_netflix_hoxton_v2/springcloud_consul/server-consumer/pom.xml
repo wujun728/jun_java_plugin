@@ -8,7 +8,7 @@
         <version>2.0.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.jun.plugin</groupId>
+    <groupId>io.github.wujun728</groupId>
     <artifactId>server-consumer</artifactId>
     <version>1.0</version>
     <name>server-consumer</name>

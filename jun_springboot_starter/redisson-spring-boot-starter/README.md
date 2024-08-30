@@ -30,7 +30,7 @@
 
 ```xml
 <dependency>
-	<groupId>com.jun.plugin</groupId>
+	<groupId>io.github.wujun728</groupId>
 	<artifactId>springboot_starter_redisson</artifactId>
 	<version>1.0</version>
 </dependency>

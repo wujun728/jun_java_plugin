@@ -8,7 +8,7 @@
         <version>2.1.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.jun.plugin</groupId>
+    <groupId>io.github.wujun728</groupId>
     <artifactId>springboot_kafka</artifactId>
     <version>1.0</version>
 
