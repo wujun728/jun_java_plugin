@@ -9,11 +9,11 @@ import com.alibaba.fastjson2.JSON;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
+import io.github.wujun728.db.RecordUtil;
 import io.github.wujun728.groovy.common.model.ApiConfig;
 import io.github.wujun728.rest.entity.ApiDataSource;
 import io.github.wujun728.rest.entity.ApiSql;
 import com.google.common.collect.Lists;
-import io.github.wujun728.rest.util.RecordUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static io.github.wujun728.rest.util.DataSourcePool.main;
+import static io.github.wujun728.db.DataSourcePool.main;
+
 
 @Component
 @Slf4j

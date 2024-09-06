@@ -41,7 +41,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static io.github.wujun728.rest.util.DataSourcePool.main;
+//import static io.github.wujun728.db.DataSourcePool.main;
+
 
 @Slf4j
 @Configuration
@@ -67,6 +68,8 @@ public class GroovyDynamicLoader implements ApplicationContextAware, Initializin
 
 	@Resource
 	private RequestMappingService requestMappingService;
+
+	public static final String main = "main";
 
 	@Override
 	public void afterPropertiesSet() throws Exception {

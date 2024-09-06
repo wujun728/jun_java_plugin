@@ -4,15 +4,14 @@
 
     <groupId>io.github.wujun728</groupId>
     <artifactId>jun_springcloud_starter</artifactId>
-	<version>1.1.2</version>
+	<version>1.25.01</version>
     <packaging>pom</packaging>
 
     <description>SpirngCloud通用组件</description>
     <modules>
-
         <module>jun-mybatis-sql-engine</module>
         <module>jun-db-record-sql-engine</module>
-        <module>jun-common</module>
+        <module>jun-common-core</module>
         <module>jun-groovy-api-spring-boot-starter</module>
         <module>jun-common-spring-boot-starter</module>
         <module>jun-db-spring-boot-starter</module>
@@ -26,7 +25,6 @@
         <module>jun-zookeeper-spring-boot-starter</module>
         <module>jun-oauth2-spring-boot-starter</module>
         <module>jun-uidgenerator-spring-boot-starter</module>
-
         <module>jun-code-generator-spring-boot-starter</module>
         <module>jun-dynamic-form-spring-boot-starter</module>
         <module>jun-job-spring-boot-starter</module>
@@ -35,6 +33,7 @@
     </modules>
 
     <properties>
+        <jun.version>1.25.01</jun.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -89,7 +88,6 @@
         <docker.java.security.egd>-Djava.security.egd=file:/dev/./urandom</docker.java.security.egd>
         <docker.java.opts>-Xms128m -Xmx128m</docker.java.opts>
         <guava.version>20.0</guava.version>
-        <jun.version>1.1.2</jun.version>
     </properties>
 
     <dependencies>
@@ -149,7 +147,7 @@
             </dependency>
             <dependency>
                 <groupId>io.github.wujun728</groupId>
-                <artifactId>jun-common</artifactId>
+                <artifactId>jun-common-core</artifactId>
                 <version>${jun.version}</version>
             </dependency>
             <dependency>

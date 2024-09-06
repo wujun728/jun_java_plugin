@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>io.github.wujun728</groupId>
 		<artifactId>jun_springcloud_starter</artifactId>
-		<version>1.1.2</version>
+		<version>1.25.01</version>
 	</parent>
 	<artifactId>jun-groovy-api-spring-boot-starter</artifactId>
 	<name>jun-groovy-api-spring-boot-starter</name>
@@ -21,7 +21,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>io.github.wujun728</groupId>
-			<artifactId>jun-common</artifactId>
+			<artifactId>jun-common-core</artifactId>
 		</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

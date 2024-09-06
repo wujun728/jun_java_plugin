@@ -25,7 +25,7 @@
     <dependencies>
         <!--<dependency>
             <groupId>io.github.wujun728</groupId>
-            <artifactId>jun-common</artifactId>
+            <artifactId>jun-common-core</artifactId>
         </dependency>-->
         <dependency>
             <groupId>org.projectlombok</groupId>
