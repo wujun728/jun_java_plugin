@@ -1,14 +1,16 @@
 package io.github.wujun728.db;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.cglib.CglibUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.util.StopWatch;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
 public class TreeBuildUtil {
 
@@ -21,11 +23,11 @@ public class TreeBuildUtil {
      * @param parentIdField  parentId,父级字段名称
      * @return
      */
-    public static List<Map<String, Object>> listToTree(List<Map<String, Object>> entityList, String rootValue, String idField, String parentIdField) {
+    public static List<Map<String, Object>> listToTree(List<Map<String, Object>> entityList, String rootValue, String idField, String parentIdField) throws IOException {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         List<Map<String, Object>> treeMap = new ArrayList<>();
-        List<Map<String, Object>> listMap = JSONUtil.toBean(JSONUtil.toJsonStr(entityList), List.class);
+        List<Map> listMap = BeanUtil.copyToList(entityList,Map.class);
         Map<String, Map<String, Object>> entityMap = new Hashtable<>();
         listMap.forEach(map -> entityMap.put(map.get(idField).toString(), map));
         listMap.forEach(map -> {
