@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import io.github.wujun728.aoplog.entity.SysLog;
 import io.github.wujun728.aoplog.service.LogService;
-import io.github.wujun728.common.Result;
+import io.github.wujun728.common.base.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.util.StringUtils;

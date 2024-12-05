@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.github.wujun728.common.entity.BaseEntity;
+import io.github.wujun728.common.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

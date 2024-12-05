@@ -1,7 +1,6 @@
 package io.github.wujun728.quartz.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import io.github.wujun728.common.constant.Constant;
 import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.quartz.utils.ScheduleUtils;
 import io.github.wujun728.quartz.entity.SysJobEntity;
@@ -50,7 +49,7 @@ public class SysJobServiceImpl extends ServiceImpl<SysJobMapper, SysJobEntity> i
 
     @Override
     public void saveJob(SysJobEntity sysJob) {
-        sysJob.setStatus(Constant.SCHEDULER_STATUS_NORMAL);
+        sysJob.setStatus(0);
         this.save(sysJob);
 
         ScheduleUtils.createScheduleJob(scheduler, sysJob);
@@ -91,7 +90,7 @@ public class SysJobServiceImpl extends ServiceImpl<SysJobMapper, SysJobEntity> i
             ScheduleUtils.pauseJob(scheduler, jobId);
         }
 
-        updateBatch(ids, Constant.SCHEDULER_STATUS_PAUSE);
+        updateBatch(ids, 1);
     }
 
     @Override
@@ -101,7 +100,7 @@ public class SysJobServiceImpl extends ServiceImpl<SysJobMapper, SysJobEntity> i
             ScheduleUtils.resumeJob(scheduler, jobId);
         }
 
-        updateBatch(ids, Constant.SCHEDULER_STATUS_NORMAL);
+        updateBatch(ids, 0);
     }
 
     @Override

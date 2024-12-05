@@ -1,7 +1,7 @@
 package io.github.wujun728.quartz.utils;
 
-import io.github.wujun728.common.Result;
-import io.github.wujun728.common.utils.SpringUtils;
+import cn.hutool.extra.spring.SpringUtil;
+import io.github.wujun728.common.base.Result;
 import io.github.wujun728.quartz.entity.SysJobEntity;
 import io.github.wujun728.quartz.entity.SysJobLogEntity;
 import io.github.wujun728.quartz.service.SysJobLogService;
@@ -36,7 +36,7 @@ public class ScheduleJob extends QuartzJobBean {
                 .get(SysJobEntity.JOB_PARAM_KEY);
 
         //获取spring bean
-        SysJobLogService scheduleJobLogService = (SysJobLogService) SpringUtils.getBean("sysJobLogService");
+        SysJobLogService scheduleJobLogService = (SysJobLogService) SpringUtil.getBean("sysJobLogService");
 
         //数据库保存执行记录
         SysJobLogEntity log = new SysJobLogEntity();
@@ -51,7 +51,7 @@ public class ScheduleJob extends QuartzJobBean {
             //执行任务
             logger.debug("任务准备执行，任务ID：" + scheduleJob.getId());
 
-            Object target = SpringUtils.getBean(scheduleJob.getBeanName());
+            Object target = SpringUtil.getBean(scheduleJob.getBeanName());
             assert target != null;
             Method method = target.getClass().getDeclaredMethod("run", String.class);
             method.invoke(target, scheduleJob.getParams());
@@ -91,7 +91,7 @@ public class ScheduleJob extends QuartzJobBean {
             return Result.fail("spring bean名称不能为空");
         }
 
-        Object target = SpringUtils.getBean(beanName);
+        Object target = SpringUtil.getBean(beanName);
         if (target == null) {
             return Result.fail("spring bean不存在，请检查");
         }

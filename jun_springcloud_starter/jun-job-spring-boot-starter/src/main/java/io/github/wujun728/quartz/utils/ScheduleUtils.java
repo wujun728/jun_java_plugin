@@ -1,6 +1,5 @@
 package io.github.wujun728.quartz.utils;
 
-import io.github.wujun728.common.constant.Constant;
 import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.quartz.entity.SysJobEntity;
 import org.quartz.*;
@@ -61,7 +60,7 @@ public class ScheduleUtils {
             scheduler.scheduleJob(jobDetail, trigger);
 
             //暂停任务
-            if (Constant.SCHEDULER_STATUS_PAUSE.equals(scheduleJob.getStatus())) {
+            if ("1".equals(scheduleJob.getStatus())) {
                 pauseJob(scheduler, scheduleJob.getId());
             }
         } catch (SchedulerException e) {
@@ -91,7 +90,7 @@ public class ScheduleUtils {
             scheduler.rescheduleJob(triggerKey, trigger);
 
             //暂停任务
-            if (Constant.SCHEDULER_STATUS_PAUSE.equals(scheduleJob.getStatus())) {
+            if ("1".equals(scheduleJob.getStatus())) {
                 pauseJob(scheduler, scheduleJob.getId());
             }
 

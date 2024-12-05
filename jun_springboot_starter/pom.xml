@@ -5,7 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.wujun728</groupId>
 	<artifactId>jun_springboot_starter</artifactId>
-	<version>1.0.8</version>
+	<version>1.0.20</version>
+
 	<packaging>pom</packaging>
 
 	<properties>

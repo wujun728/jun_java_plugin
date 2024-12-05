@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.deepoove.poi.XWPFTemplate;
 import com.deepoove.poi.data.PictureRenderData;
-import io.github.wujun728.common.Result;
+import io.github.wujun728.common.base.Result;
 import io.github.wujun728.file.config.FileProperties;
 import io.github.wujun728.file.utils.FileUtils;
 import io.github.wujun728.file.entity.SysFilesEntity;

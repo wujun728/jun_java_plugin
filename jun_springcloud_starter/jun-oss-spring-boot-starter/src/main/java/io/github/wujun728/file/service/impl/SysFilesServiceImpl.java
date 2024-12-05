@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
-import io.github.wujun728.common.Result;
+import io.github.wujun728.common.base.Result;
 import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.file.entity.SysFilesEntity;
 import io.github.wujun728.file.mapper.SysFilesMapper;
@@ -133,7 +133,7 @@ public class SysFilesServiceImpl extends ServiceImpl<SysFilesMapper, SysFilesEnt
 
 
     @Override
-    public Result saveFile(MultipartFile file,String bizType,String bizid) {
+    public Result saveFile(MultipartFile file, String bizType, String bizid) {
         try {
             String username = "admin";
             String fileName = file.getOriginalFilename();

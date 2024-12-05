@@ -4,36 +4,32 @@
 
     <groupId>io.github.wujun728</groupId>
     <artifactId>jun_springcloud_starter</artifactId>
-	<version>1.25.01</version>
+	<version>1.0.21</version>
     <packaging>pom</packaging>
 
-    <description>SpirngCloud通用组件</description>
+    <name>jun_springcloud_starter</name>
+    <url>https://github.com/wujun728/jun_java_plugin/jjun_springcloud_starter</url>
+    <description>SpringBoot-SpirngCloud通用组件、工具、stater</description>
     <modules>
         <module>jun-mybatis-sql-engine</module>
-        <module>jun-db-record-sql-engine</module>
+        <module>jun-db-activerecord</module>
+        <module>jun-common-base</module>
         <module>jun-common-core</module>
-        <module>jun-groovy-api-spring-boot-starter</module>
-        <module>jun-common-spring-boot-starter</module>
+        <module>jun-groovyApi-spring-boot-starter</module>
+        <module>jun-uidgenerator-spring-boot-starter</module>
+        <module>jun-codegen-spring-boot-starter</module>
+        <module>jun-onlineForm-spring-boot-starter</module>
+        <module>jun-snakerflow-spring-boot-starter</module>
         <module>jun-db-spring-boot-starter</module>
         <module>jun-log-spring-boot-starter</module>
-        <module>jun-redis-spring-boot-starter</module>
         <module>jun-oss-spring-boot-starter</module>
         <module>jun-swagger2-spring-boot-starter</module>
         <module>jun-sentinel-spring-boot-starter</module>
-        <module>jun-loadbalancer-spring-boot-starter</module>
-        <module>jun-elasticsearch-spring-boot-starter</module>
-        <module>jun-zookeeper-spring-boot-starter</module>
-        <module>jun-oauth2-spring-boot-starter</module>
-        <module>jun-uidgenerator-spring-boot-starter</module>
-        <module>jun-code-generator-spring-boot-starter</module>
-        <module>jun-dynamic-form-spring-boot-starter</module>
         <module>jun-job-spring-boot-starter</module>
-        <module>jun-sms-spring-boot-starter</module>
-        <module>jun-snakerflow-spring-boot-starter</module><!---->
     </modules>
 
     <properties>
-        <jun.version>1.25.01</jun.version>
+        <jun.version>1.0.21</jun.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -87,7 +83,7 @@
         <docker.image.prefix>hub.docker.com:8080/jun-microservices</docker.image.prefix>
         <docker.java.security.egd>-Djava.security.egd=file:/dev/./urandom</docker.java.security.egd>
         <docker.java.opts>-Xms128m -Xmx128m</docker.java.opts>
-        <guava.version>20.0</guava.version>
+        <guava.version>33.2.1-jre</guava.version>
     </properties>
 
     <dependencies>
@@ -106,25 +102,38 @@
             <version>${commons-beanutils.version}</version>
         </dependency>
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.5</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
             <!-- 自定义 starter -->
+            <dependency>
+                <groupId>io.github.wujun728</groupId>
+                <artifactId>jun-db-activerecord</artifactId>
+                <version>${jun.version}</version>
+            </dependency>
             <dependency>
                 <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-uidgenerator-spring-boot-starter</artifactId>
@@ -140,11 +149,11 @@
                 <artifactId>jun-groovy-api-spring-boot-starter</artifactId>
                 <version>${jun.version}</version>
             </dependency>
-            <dependency>
+            <!--<dependency>
                 <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-common-spring-boot-starter</artifactId>
                 <version>${jun.version}</version>
-            </dependency>
+            </dependency>-->
             <dependency>
                 <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-common-core</artifactId>
@@ -638,7 +647,7 @@
                      </execution>
                  </executions>
              </plugin>
-        -->
+ -->
         </plugins>
     </build>
 

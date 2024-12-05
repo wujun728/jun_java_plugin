@@ -9,7 +9,7 @@ import org.snaker.engine.entity.WorkItem;
 import org.springframework.beans.factory.annotation.Autowired;
 
 //import io.github.wujun728.module.ext.mapper.BizCommonMapper;
-import io.github.wujun728.common.entity.BaseFlowEntity;
+import io.github.wujun728.common.base.BaseFlowEntity;
 //import io.github.wujun728.system.mapper.SysUserMapper;
 //import io.github.wujun728.system.service.HttpSessionService;
 

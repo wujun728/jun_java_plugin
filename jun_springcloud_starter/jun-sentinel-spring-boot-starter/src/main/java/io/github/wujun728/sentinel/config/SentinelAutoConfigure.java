@@ -3,7 +3,7 @@ package io.github.wujun728.sentinel.config;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.csp.sentinel.adapter.spring.webflux.callback.BlockRequestHandler;
 import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHandler;
-import io.github.wujun728.common.model.Result;
+import io.github.wujun728.common.base.Result;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +29,7 @@ public class SentinelAutoConfigure {
         public BlockExceptionHandler webmvcBlockExceptionHandler() {
             return (request, response, e) -> {
                 response.setStatus(429);
-                Result result = Result.failed(e.getMessage());
+                Result result = Result.error(e.getMessage());
                 response.getWriter().print(JSONUtil.toJsonStr(result));
             };
         }
@@ -47,7 +47,7 @@ public class SentinelAutoConfigure {
             return (exchange, t) ->
                     ServerResponse.status(HttpStatus.TOO_MANY_REQUESTS)
                             .contentType(MediaType.APPLICATION_JSON)
-                            .body(BodyInserters.fromValue(Result.failed(t.getMessage())));
+                            .body(BodyInserters.fromValue(Result.error(t.getMessage())));
         }
     }
 }

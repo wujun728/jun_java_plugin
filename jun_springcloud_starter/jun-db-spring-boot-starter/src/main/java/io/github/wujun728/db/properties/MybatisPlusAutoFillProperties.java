@@ -3,7 +3,7 @@ package io.github.wujun728.db.properties;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
+//import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 /**
  * mybatis-plus 配置
@@ -12,7 +12,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 @Setter
 @Getter
 @ConfigurationProperties(prefix = "jun.mybatis-plus.auto-fill")
-@RefreshScope
+//@RefreshScope
 public class MybatisPlusAutoFillProperties {
     /**
      * 是否开启自动填充字段

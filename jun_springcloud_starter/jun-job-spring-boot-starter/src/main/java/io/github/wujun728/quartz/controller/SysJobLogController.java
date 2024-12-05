@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.github.wujun728.common.Result;
+import io.github.wujun728.common.base.Result;
 import io.github.wujun728.quartz.service.SysJobLogService;
 import io.github.wujun728.quartz.entity.SysJobLogEntity;
 

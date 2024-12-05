@@ -96,7 +96,6 @@ public class SQLUtil {
 	/**
 	 * 读取SQL内容
 	 * 
-	 * @param args
 	 * @throws IOException
 	 */
 
@@ -313,7 +312,6 @@ public class SQLUtil {
   	 * 自动生成查询条件HQL
   	 * 模糊查询
   	 * 【只对Integer类型和String类型的字段自动生成查询条件】
-  	 * @param hql
   	 * @param values
   	 * @param searchObj
   	 * @throws Exception

@@ -1,7 +1,7 @@
 package io.github.wujun728.file.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import io.github.wujun728.common.Result;
+import io.github.wujun728.common.base.Result;
 import io.github.wujun728.file.entity.SysFilesEntity;
 
 import org.springframework.web.multipart.MultipartFile;

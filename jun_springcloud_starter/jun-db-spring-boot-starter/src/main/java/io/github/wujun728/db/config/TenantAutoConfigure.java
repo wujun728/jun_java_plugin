@@ -1,7 +1,7 @@
 package io.github.wujun728.db.config;
 
 import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
-import io.github.wujun728.common.context.TenantContextHolder;
+//import io.github.wujun728.common.context.TenantContextHolder;
 import io.github.wujun728.common.properties.TenantProperties;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.NullValue;
@@ -27,10 +27,10 @@ public class TenantAutoConfigure {
              */
             @Override
             public Expression getTenantId() {
-                String tenant = TenantContextHolder.getTenant();
+                /*String tenant = TenantContextHolder.getTenant();
                 if (tenant != null) {
                     return new StringValue(TenantContextHolder.getTenant());
-                }
+                }*/
                 return new NullValue();
             }
 
