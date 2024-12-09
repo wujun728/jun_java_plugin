@@ -32,7 +32,9 @@ public class DbPro {
     private JdbcTemplate jdbcTemplate = null;
     private Dialect dialect = new MysqlDialect();
 
-    private static final Map<String, DbPro> map = new HashMap<String, DbPro>();
+//    private static final Map<String, DbPro> map = new HashMap<String, DbPro>();
+
+    public static final Map<String, DbPro> cache = new HashMap<>(32, 0.25F);
     public static final Map<String, JdbcTemplate> jdbcTemplateMap = new ConcurrentHashMap<>(24);
     public static final Map<String, DataSource> dataSourceMap = new ConcurrentHashMap<>(24);
 
@@ -41,13 +43,13 @@ public class DbPro {
     }
 
     public static DbPro use(String configName) {
-        DbPro result = map.get(configName);
+        DbPro result = cache.get(configName);
         if (result == null) {
             result = new DbPro();
             result.setJdbcTemplate(jdbcTemplateMap.get(configName));
             result.setDataSource(dataSourceMap.get(configName));
             result.setDialect(getDialect(result.getDataSource()));
-            map.put(configName, result);
+            cache.put(configName, result);
         }
         return result;
     }
@@ -284,7 +286,7 @@ public class DbPro {
     }
 
 
-    public Object findEntityById(Class beanClass, Object... id) {
+    public Object findObjectById(Class beanClass, Object... id) {
         SqlContext sqlContext = SqlUtil.getByKey(beanClass, id);
         return findObject(beanClass, sqlContext.getSql(), sqlContext.getParams());
     }
@@ -489,7 +491,8 @@ public class DbPro {
         if (pKeys.length != idValues.length)
             throw new IllegalArgumentException("primary key number must equals id value number");
         String sql = dialect.forDbDeleteById(tableName, pKeys);
-        int flag = jdbcTemplate.update(sql, idValues);
+        int flag = getJdbcTemplate().update(sql, idValues);
+        //int flag = jdbcTemplate.update(sql, idValues);
         return flag > 0;
     }
 

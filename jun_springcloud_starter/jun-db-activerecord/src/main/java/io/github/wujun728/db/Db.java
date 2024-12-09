@@ -38,8 +38,7 @@ public class Db<T> {
     private static Map<String, String> TABLE_PK_MAP = new HashMap<>();
 
     public final static String main = "main";
-    private static final Map<String, DbPro> cache = new HashMap<>(32, 0.25F);
-
+//    private static final Map<String, DbPro> cache = new HashMap<>(32, 0.25F);
     static {
         try {
             DataSource dataSource = SpringUtil.getBean(DataSource.class);
@@ -65,7 +64,7 @@ public class Db<T> {
     }
 
     public static DbPro use(String configName) {
-        DbPro result = cache.get(configName);
+        DbPro result = DbPro.cache.get(configName);
         if (result == null || dataSourceMap.get(configName) == null || jdbcTemplateMap.get(configName) == null) {
             System.err.println("error : 当前Db.use(" + configName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的configName数据源。");
             throw new RuntimeException("error : 当前Db.use(" + configName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的configName数据源。");
@@ -79,9 +78,7 @@ public class Db<T> {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplateMap.put(configName, jdbcTemplate);
         dataSourceMap.put(configName, dataSource);
-        DbPro result = new DbPro(configName);
-        cache.put(configName, result);
-        MAIN = cache.get(main);
+        MAIN = DbPro.use(main);
         registerRecord(dataSource);
     }
 
@@ -233,8 +230,8 @@ public class Db<T> {
     }
 
 
-    public static Object findObject(Class clazz, String sql, Object... params) {
-        return MAIN.findEntityById(clazz, sql, params);
+    public static Object findObjectById(Class clazz, String sql, Object... params) {
+        return MAIN.findObjectById(clazz, sql, params);
     }
 
     public static <T> Page findPages(Class beanClass, int page, int rows) {

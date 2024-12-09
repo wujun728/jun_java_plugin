@@ -192,7 +192,7 @@ public class RestApiController {
             Table table = getTableMeta(tableName,main);
             String primaryKey = RestUtil.getTablePrimaryKes(table);
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
-            Record record = Db.use(main).findByIds(tableName, primaryKey, args.toArray());
+            Record record = Db.use(main).findById(tableName, primaryKey, args.toArray());
 //            Record record = Db.use(main).findById(tableName,primaryKey, (Number) args.get(0));
             if (ObjectUtil.isNotNull(record)) {
                 Map data = RecordUtil.recordToMap(record,isUnderLine);
@@ -236,7 +236,7 @@ public class RestApiController {
                 argsDelete = args.toArray();
             }
             //Boolean flag = Db.use(main).tx(() -> Db.use(main).deleteByIds(tableName, primaryKey, args.toArray()));
-            Boolean flag =   Db.use(main).deleteByIds(tableName, primaryKey, argsDelete);
+            Boolean flag =   Db.use(main).deleteById(tableName, primaryKey, argsDelete);
 //            Boolean flag = Db.use(main).deleteByIds(tableName, primaryKey, args.toArray());
             if (flag) {
                 return Result.success("删除成功！",flag);
@@ -331,7 +331,7 @@ public class RestApiController {
             String primaryValue = RestUtil.getParamValue(parameters, primaryKey);
             Record record = new Record();
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
-            record = Db.use(main).findByIds(tableName, primaryKey, args.toArray());
+            record = Db.use(main).findById(tableName, primaryKey, args.toArray());
             if (ObjectUtil.isNull(record)) {
                 return Result.fail("修改失败，无此ID对应的记录！");
             }
@@ -446,7 +446,7 @@ public class RestApiController {
         Record record = new Record();
         if (!isSave) {
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
-            record = Db.use(main).findByIds(tableName, primaryKey, args.toArray());
+            record = Db.use(main).findById(tableName, primaryKey, args.toArray());
             if (ObjectUtil.isNull(record)) {
                 return Result.fail("修改失败，无此ID对应的记录！");
             }
