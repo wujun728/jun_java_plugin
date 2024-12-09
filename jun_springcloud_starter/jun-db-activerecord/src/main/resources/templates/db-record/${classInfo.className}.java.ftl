@@ -4,6 +4,7 @@ import java.io.Serializable;
 import lombok.Data;
 import java.util.Date;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonFormat;
 </#if>
 <#if isSwagger?exists && isSwagger==true>
 import io.swagger.annotations.ApiModel;
@@ -24,7 +25,8 @@ public class ${classInfo.className} implements Serializable {
     <#if isComment?exists && isComment==true>/**
     * ${fieldItem.fieldComment}
     */</#if><#if isSwagger?exists && isSwagger==true>
-    @ApiModelProperty("${fieldItem.fieldComment}")</#if>
+    @ApiModelProperty("${fieldItem.fieldComment}")</#if><#if fieldItem.fieldClass=='Date'>
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")</#if>
     private ${fieldItem.fieldClass} ${fieldItem.fieldName};
 
 </#list>

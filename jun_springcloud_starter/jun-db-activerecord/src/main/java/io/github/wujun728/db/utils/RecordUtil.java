@@ -19,89 +19,40 @@ import java.util.*;
  */
 public class RecordUtil {
 
-    public static <T> List<Record> beanToRecords(List<T> objs) throws IllegalArgumentException, IllegalAccessException{
-        List<Record> datas = new ArrayList();
-        for(T item :objs){
-            datas.add(beanToRecord(item));
-        }
-        return datas;
-    }
-    public static <T> Record beanToRecord(T obj) throws IllegalArgumentException, IllegalAccessException{
-        if(obj != null){
-            Record record = new Record();
-            Class clazz = obj.getClass();
-            Field[] fields = clazz.getDeclaredFields();
-            for(int i=0; i<fields.length; i++){
-                Field field = fields[i];
-                if(!field.isAccessible())  {
-                    field.setAccessible(true);
-                }
-                String columnName = FieldUtils.fieldNameToColumnName(field.getName());
-                record.set(columnName, field.get(obj));
-            }
-            return record;
 
-        }
-        return null;
-    }
-
-    public static <T> List<Map> beanToMaps(List<T> objs) throws IllegalArgumentException, IllegalAccessException{
-        List<Map> datas = new ArrayList();
-        for(T item :objs){
-            datas.add(beanToMap(item));
-        }
-        return datas;
-    }
-    public static <T> Map beanToMap(T obj) throws IllegalArgumentException, IllegalAccessException{
-        if(obj != null){
-            Map record = new HashMap();
-            Class clazz = obj.getClass();
-            Field[] fields = clazz.getDeclaredFields();
-            for(int i=0; i<fields.length; i++){
-                Field field = fields[i];
-                if(!field.isAccessible())  {
-                    field.setAccessible(true);
-                }
-                String columnName = FieldUtils.fieldNameToColumnName(field.getName());
-                record.put(columnName, field.get(obj));
-            }
-            return record;
-
-        }
-        return null;
-    }
-
-    @Deprecated
-	public List convertRecord(List<Record> lists,Class clazz){
-		List datas = new ArrayList();
-        if(lists!=null && lists.size()>0) {
-			lists.forEach(item->{
-				Object info = null;
-				try {
-					//info = BeanMapUtil.columnsMapToBean(item.getColumns(), clazz);
-					info = BeanUtil.mapToBean(item.getColumns(),clazz,true,CopyOptions.create());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				datas.add(info);
-			});
-
-		}
-		return datas;
-	}
-    @Deprecated
-	public Object convertRecord(Record record,Class clazz){
-		Object info = null;
-		try {
-            info = BeanUtil.mapToBean(record.getColumns(), clazz,true, CopyOptions.create());
-			//info = BeanMapUtil.columnsMapToBean(record.getColumns(), clazz);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return info;
-	}
-
-    @SuppressWarnings("unchecked")
+//
+//
+//
+//
+//    public static <T> List<Record> beanToRecords(List<T> objs) throws IllegalArgumentException, IllegalAccessException{
+//        List<Record> datas = new ArrayList();
+//        for(T item :objs){
+//            datas.add(beanToRecord(item));
+//        }
+//        return datas;
+//    }
+//    public static <T> Record beanToRecord(T obj) throws IllegalArgumentException, IllegalAccessException{
+//        if(obj != null){
+//            Record record = new Record();
+//            Class clazz = obj.getClass();
+//            Field[] fields = clazz.getDeclaredFields();
+//            for(int i=0; i<fields.length; i++){
+//                Field field = fields[i];
+//                if(!field.isAccessible())  {
+//                    field.setAccessible(true);
+//                }
+//                String columnName = FieldUtils.fieldNameToColumnName(field.getName());
+//                record.set(columnName, field.get(obj));
+//            }
+//            return record;
+//
+//        }
+//        return null;
+//    }
+//
+//
+//
+//
     public static <T> List mapToBeans(List<Map<String, Object>> lists, Class<T> clazz){
         List<T> datas = new ArrayList();
         if(lists!=null && lists.size()>0) {
@@ -118,7 +69,6 @@ public class RecordUtil {
             m.put(FieldUtils.columnNameToFieldName(String.valueOf(k)), v);
         });
         try {
-            //obj = BeanMapUtil.mapToBean(item,clazz);
             obj = BeanUtil.mapToBean(item, clazz,true, CopyOptions.create());
         } catch (Exception e) {
             e.printStackTrace();
@@ -126,7 +76,7 @@ public class RecordUtil {
         return obj;
     }
 
-    public static List<Map> recordToMaps(List<Record> recordList){
+    public static List<Map> recordListToMapList(List<Record> recordList){
         return recordToMaps(recordList,false);
     }
     public static List<Map> recordToMaps(List<Record> recordList,Boolean isUnderLine){
@@ -143,8 +93,22 @@ public class RecordUtil {
         }
         return list;
     }
+    public static Map<String, Object> recordToMap(Record record,Boolean isUnderLine) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (record != null) {
+            String[] columns = record.getColumnNames();
+            for (String col : columns) {
+                String fieldName = FieldUtils.columnNameToFieldName(col);
+                if(isUnderLine){
+                    fieldName = col;
+                }
+                map.put(fieldName, record.get(col));
+            }
+        }
+        return map;
+    }
 
-    public static Page pageRecordToPage(Page<Record> pageList, Boolean isUnderLine){
+    public static Page pageRecordToPageMap(Page<Record> pageList, Boolean isUnderLine){
         if (pageList == null || pageList.getList().size() == 0){
             return null;
         }
@@ -166,29 +130,29 @@ public class RecordUtil {
         return page;
     }
 
-//    public static Map<String, Object> recordToMap(Record record) {
-//        return recordToMap(record,false);
-//    }
-    public static Map<String, Object> recordToMap(Record record,Boolean isUnderLine) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        if (record != null) {
-            String[] columns = record.getColumnNames();
-            for (String col : columns) {
-                String fieldName = FieldUtils.columnNameToFieldName(col);
-                if(isUnderLine){
-                    fieldName = col;
-                }
-                map.put(fieldName, record.get(col));
+
+    public static <T> List<T> recordToBeanList(List<Record> recordList, Class<T> clazz){
+        if (recordList == null || recordList.size() == 0){
+            return null;
+        }
+        List<T> list = new ArrayList<>();
+        for (Record record : recordList){
+            try {
+                list.add((T) RecordUtil.recordToBean(record, clazz));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
-        return map;
+        return list;
     }
 
     public static <T> T recordToBean(Record record, Class<T> clazz){
         if (record == null){
             return null;
         }
-        try {
+        Map maps = recordToMap(record,false);
+        return (T) mapToBean(maps,clazz);
+        /*try {
             T vo = clazz.newInstance();
             Field[] fields = clazz.getDeclaredFields();
             for (Field field : fields) {
@@ -214,8 +178,7 @@ public class RecordUtil {
                         field.set(vo, new BigDecimal(obj.toString()));
                     }else if ("boolean".equals(fieldClassName)){
                         field.set(vo,obj);
-                    }else
-                    if (field.getType().toString().equals("class java.time.LocalDateTime") || "LocalDateTime".equals(fieldClassName) ) {
+                    }else if ("LocalDateTime".equals(fieldClassName) ) {
                         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
                         LocalDateTime ldt = LocalDateTime.from(df.parse(obj.toString()));
                         field.set(obj, ldt);
@@ -224,6 +187,12 @@ public class RecordUtil {
                             Timestamp timestamp = (Timestamp) obj;
                             Date date = new Date(timestamp.getTime());
                             field.set(obj, date);
+                        }else if(obj instanceof LocalDateTime){
+                            DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+                            LocalDateTime ldt = LocalDateTime.from(df.parse(obj.toString()));
+                            field.set(obj, ldt);
+                        }else{
+                            field.set(obj, obj);
                         }
                     } else {
                         field.set(obj, obj);
@@ -236,33 +205,9 @@ public class RecordUtil {
             throw new RuntimeException(e);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 
-
-    /**
-     * Record数据集合转为实体类List集合
-     *
-     * @param recordList        Record数据
-     * @param clazz             实体类
-     * @param <T>               泛型
-     * @return                  实体类List集合
-     * @throws Exception        抛出异常
-     */
-    public static <T> List<T> recordToListBean(List<Record> recordList, Class<T> clazz){
-        if (recordList == null || recordList.size() == 0){
-            return null;
-        }
-        List<T> list = new ArrayList<>();
-        for (Record record : recordList){
-            try {
-                list.add(RecordUtil.recordToBean(record, clazz));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return list;
-    }
 
 
 //    public static <T> T recordToBean(Record record, Class<T> clazz){

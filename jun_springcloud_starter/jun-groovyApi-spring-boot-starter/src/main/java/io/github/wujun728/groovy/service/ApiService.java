@@ -3,9 +3,11 @@ package io.github.wujun728.groovy.service;
 import cn.hutool.core.lang.Console;
 import cn.hutool.extra.spring.SpringUtil;
 import com.alibaba.fastjson2.JSON;
-import io.github.wujun728.db.record.Db;
-import io.github.wujun728.db.record.Page;
-import io.github.wujun728.db.record.Record;
+import io.github.wujun728.db.Db;
+import io.github.wujun728.db.Record;
+import io.github.wujun728.db.Db;
+import io.github.wujun728.db.Page;
+import io.github.wujun728.db.Record;
 import io.github.wujun728.db.utils.RecordUtil;
 import io.github.wujun728.groovy.common.model.ApiConfig;
 import io.github.wujun728.rest.entity.ApiDataSource;
@@ -31,7 +33,7 @@ public class ApiService {
 	public List<ApiConfig> queryApiConfigList() {
 		List<Record> lists = Db.use("main").find("select * from "+"api_config"+" where status = 'ENABLE' ");
 		// List<Map<String, Object>> lists = jdbcTemplate.queryForList("select * from  "+tablename+"  where status = 'ENABLE' ");
-		List<ApiConfig> datas = RecordUtil.recordToListBean(lists,ApiConfig.class);
+		List<ApiConfig> datas = RecordUtil.recordToBeanList(lists,ApiConfig.class);
 		if(!CollectionUtils.isEmpty(datas)) {
 			buildApiConifgSubApiSql(datas);
 		}
@@ -48,20 +50,20 @@ public class ApiService {
 
 	public Integer queryCountSql() {
 		//Long aLong = jdbcTemplate.queryForObject("select count(*) from test ", Long.class);
-		Integer count = Db.use("main").findInt("select count(*) from  "+"api_config"+"  ");
+		Integer count = Db.use("main").queryForInt("select count(*) from  "+"api_config"+"  ");
 		return count;
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<ApiDataSource> queryDatasourceList() {
-		Page<Record> lists = Db.use("main").paginate(1,2,"select * "," from  "+"api_datasource"+"  where id <> ? ",1);
+		Page<Record> lists = Db.use("main").paginate(1,2,"select * "," from  "+"api_datasource"+"  where id <> ? ");
 		//Console.log(JSON.toJSONString(lists));
-		Console.log(JSON.toJSONString(RecordUtil.pageRecordToPage(lists,false)));
+		Console.log(JSON.toJSONString(RecordUtil.pageRecordToPageMap(lists,false)));
 
 		String from = "from  "+"api_datasource"+"  where id > ?";
 		String totalRowSql = "select count(*) " + from;
 		String findSql = "select * " + from + " order by id";
-		Db.paginateByFullSql(1, 10, totalRowSql, findSql, 18);
+		Db.paginate(1, 10, totalRowSql, findSql);
 //		Db.paginate(1,10,findSql);
 
 		return null;
@@ -71,7 +73,7 @@ public class ApiService {
 	public List<Map> querySQLList(String apiId) {
 		List<Record> lists = Db.use("main").find("select * from  "+"api_config"+"  ");
 		// List<Map<String, Object>> lists = jdbcTemplate.queryForList("select * from api_sql where api_id = "+apiId);
-		List<ApiSql> datas = RecordUtil.recordToListBean(lists,ApiSql.class);
+		List<ApiSql> datas = RecordUtil.recordToBeanList(lists,ApiSql.class);
 		List<Map>  datas2 = RecordUtil.recordToMaps(lists,false);
 //		List<ApiSql> datas = RecordUtil.mapToBeans(lists,ApiSql.class);
 		//log.info(JSON.toJSONString(datas));

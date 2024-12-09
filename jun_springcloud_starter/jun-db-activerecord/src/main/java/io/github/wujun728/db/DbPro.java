@@ -210,7 +210,7 @@ public class DbPro {
 //	************************************************************************************************************************************************
     public <T> List<T> findList(Class<T> clazz, String sql) {
         List<Record> lists = find(sql);
-        List<T> datas = RecordUtil.recordToListBean(lists, clazz);
+        List<T> datas = RecordUtil.recordToBeanList(lists, clazz);
         return datas;
     }
     /*public <T> List findBySql(Class clazz, String sql) {
@@ -289,7 +289,7 @@ public class DbPro {
         if (record == null) {
             return null;
         }
-        T datas = RecordUtil.recordToBean(record, clazz);
+        T datas = (T) RecordUtil.recordToBean(record, clazz);
         return datas;
     }
 
