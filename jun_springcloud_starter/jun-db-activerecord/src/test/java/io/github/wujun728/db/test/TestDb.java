@@ -2,13 +2,13 @@ package io.github.wujun728.db.test;
 
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
-import io.github.wujun728.db.record.Db;
-import io.github.wujun728.db.record.Record;
+import io.github.wujun728.db.Db;
+import io.github.wujun728.db.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
 
 import javax.sql.DataSource;
 
-import static io.github.wujun728.db.record.Db.main;
+import static io.github.wujun728.db.Db.main;
 
 public class TestDb {
 
@@ -19,8 +19,8 @@ public class TestDb {
         String driver = "com.mysql.cj.jdbc.Driver";
         DataSource ds = DataSourcePool.init("main",url,username,password,driver);
         Db.init(main,ds);
-        Record record = Db.findById("biz_mail",2);
-        Record record2 = Db.findById("api_sql","id,sql_id","getBizTests");
+        Record record = Db.use().findById("biz_mail",2);
+        Record record2 = Db.use().findById("api_sql","id,sql_id","getBizTests");
     }
 
 
@@ -33,7 +33,7 @@ public class TestDb {
         //registerRecord("db_qixing_bk");
         Db.init(main,dataSource);
         //查询数据并返回单条Record
-        Record record = Db.findById("biz_mail",new Object[]{2,"getBizTests"});
+        Record record = Db.use().findById("biz_mail",new Object[]{2,"getBizTests"});
 //        record.set()
         StaticLog.info(JSONUtil.toJsonPrettyStr(record));
 

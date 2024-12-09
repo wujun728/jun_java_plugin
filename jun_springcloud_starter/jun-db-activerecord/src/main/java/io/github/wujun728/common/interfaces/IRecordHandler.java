@@ -1,7 +1,7 @@
 package io.github.wujun728.common.interfaces;
 
 import cn.hutool.core.util.ObjUtil;
-import io.github.wujun728.db.record.Record;
+import io.github.wujun728.db.Record;
 //import io.github.wujun728.db.record.Record;
 
 import java.util.Objects;

@@ -2,17 +2,15 @@ package io.github.wujun728.db.utils;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import io.github.wujun728.db.record.Page;
-import io.github.wujun728.db.record.Record;
-//import io.github.wujun728.db.record.Page;
-//import io.github.wujun728.db.record.Record;
+import io.github.wujun728.db.Page;
+import io.github.wujun728.db.Record;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 /**
  * @ClassName: RecordUtils
@@ -208,11 +206,29 @@ public class RecordUtil {
                         field.set(vo, obj.toString());
                     }else if ("int".equals(fieldClassName) || "Integer".equals(fieldClassName)) {
                         field.set(vo,Integer.parseInt(obj.toString()));
+                    }else if ("long".equals(fieldClassName) || "Long".equals(fieldClassName)) {
+                        field.set(vo,Long.parseLong(obj.toString()));
+                    }else if ("double".equals(fieldClassName) || "Double".equals(fieldClassName)) {
+                        field.set(vo,Double.parseDouble(obj.toString()));
                     }else if ("BigDecimal".equalsIgnoreCase(fieldClassName)){
                         field.set(vo, new BigDecimal(obj.toString()));
                     }else if ("boolean".equals(fieldClassName)){
                         field.set(vo,obj);
+                    }else
+                    if (field.getType().toString().equals("class java.time.LocalDateTime") || "LocalDateTime".equals(fieldClassName) ) {
+                        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+                        LocalDateTime ldt = LocalDateTime.from(df.parse(obj.toString()));
+                        field.set(obj, ldt);
+                    }else if("Date".equals(fieldClassName) ){
+                        if(obj instanceof Timestamp){
+                            Timestamp timestamp = (Timestamp) obj;
+                            Date date = new Date(timestamp.getTime());
+                            field.set(obj, date);
+                        }
+                    } else {
+                        field.set(obj, obj);
                     }
+
                 }
             }
             return vo;
@@ -222,6 +238,8 @@ public class RecordUtil {
             throw new RuntimeException(e);
         }
     }
+
+
     /**
      * Record数据集合转为实体类List集合
      *

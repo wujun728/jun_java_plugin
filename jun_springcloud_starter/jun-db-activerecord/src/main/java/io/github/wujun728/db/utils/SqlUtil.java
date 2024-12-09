@@ -7,7 +7,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.github.wujun728.db.record.annotation.Key;
+import io.github.wujun728.db.annotation.Key;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import static io.github.wujun728.db.record.Db.getPkNames;
+import static io.github.wujun728.db.Db.getPkNames;
 
 
 public class SqlUtil {
@@ -53,6 +53,16 @@ public class SqlUtil {
 	private static final String R_ORDER = "ORDER.*";
 	private static final String R_LIMIT = "LIMIT.*";
 
+
+	public static String getTableName(Object bean) {
+		String tableName = FieldUtils.getUnderlineName(bean.getClass().getSimpleName());
+		if(AnnotationUtil.hasAnnotation(bean.getClass(),Table.class)){
+			tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),Table.class,"name");
+		}else if(AnnotationUtil.hasAnnotation(bean.getClass(),TableName.class)){
+			tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),TableName.class,"value");
+		}
+		return tableName;
+	}
 	/**
 	 * 构建insert语句
 	 *

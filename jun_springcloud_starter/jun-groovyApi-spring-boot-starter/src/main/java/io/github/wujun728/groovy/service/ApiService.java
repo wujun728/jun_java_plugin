@@ -48,7 +48,7 @@ public class ApiService {
 
 	public Integer queryCountSql() {
 		//Long aLong = jdbcTemplate.queryForObject("select count(*) from test ", Long.class);
-		Integer count = Db.use("main").queryInt("select count(*) from  "+"api_config"+"  ");
+		Integer count = Db.use("main").findInt("select count(*) from  "+"api_config"+"  ");
 		return count;
 	}
 

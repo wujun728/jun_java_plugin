@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.github.wujun728</groupId>
         <artifactId>jun_springcloud_starter</artifactId>
-        <version>1.0.21</version>
+        <version>1.0.22</version>
     </parent>
     <artifactId>jun-common-core</artifactId> 
     <packaging>jar</packaging>
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>io.github.wujun728</groupId>
             <artifactId>jun-db-activerecord</artifactId>
-            <version>1.0.21</version>
+            <version>1.0.22</version>
         </dependency>
 	</dependencies>
 	

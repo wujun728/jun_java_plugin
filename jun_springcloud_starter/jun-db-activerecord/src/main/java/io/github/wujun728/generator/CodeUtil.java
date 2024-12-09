@@ -1,6 +1,7 @@
 package io.github.wujun728.generator;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Column;
 import cn.hutool.db.meta.MetaUtil;
@@ -18,6 +19,7 @@ import javax.sql.DataSource;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +28,10 @@ import java.util.Map;
 @Slf4j
 public class CodeUtil {
 
+    public static String authorName = "authorName";
+    private static String AUTHOR_NAME = "wujun";
+    public static String packageName = "packageName";
+    private static String PACKAGE_NAME = "io.github.wujun728.biz";
     public static String MYBATIS_PLUG_SINGLE_VO_JAVA = "/mybatis-plus-single-v3/${classInfo.className}Vo.java.ftl";
     public static String MYBATIS_PLUG_SINGLE_CONTROLLER_JAVA = "/mybatis-plus-single-v3/${classInfo.className}Controller.java.ftl";
     public static String MYBATIS_PLUG_SINGLE_DTO_JAVA = "/mybatis-plus-single-v3/${classInfo.className}Dto.java.ftl";
@@ -39,6 +45,9 @@ public class CodeUtil {
     public static String BEETLSQL_BEETLCONTROLLER = "/beetlsql/${classInfo.className}Controller.java.ftl";
     public static String BEETLSQL_BEETLENTITY = "/beetlsql/${classInfo.className}.java.ftl";
     public static String BEETLSQL_BEETLMD = "/beetlsql/${classInfo.className}.md.ftl";
+
+    public static String Db_RECORD_CONTROLLER = "/db-record/${classInfo.className}Controller.java.ftl";
+    public static String Db_RECORD_ENTITY = "/db-record/${classInfo.className}.java.ftl";
 
 
     public static String JDBCTEMPLATE_JTDAO = "/jdbctemplate/I${classInfo.className}DAO.java.ftl";
@@ -83,6 +92,7 @@ public class CodeUtil {
             MYBATIS_PLUG_SINGLE_ENTITY_JAVA, MYBATIS_PLUG_SINGLE_MAPPER_JAVA,MYBATIS_PLUG_SINGLE_SERVICE_JAVA,MYBATIS_PLUG_SINGLE_SERVICE_IMPL_JAVA,MYBATIS_PLUG_SINGLE_EDIT_HTML,
             MYBATIS_PLUG_SINGLE_LIST_HTML);
     public  static List<String> GROUP_BEETLSQL = Lists.newArrayList(BEETLSQL_BEETLMD,BEETLSQL_BEETLENTITY,BEETLSQL_BEETLCONTROLLER);
+    public  static List<String> GROUP_DB_RECORD = Lists.newArrayList(Db_RECORD_CONTROLLER,Db_RECORD_ENTITY);
     public  static List<String> GROUP_JDBCTEMPLATE = Lists.newArrayList(JDBCTEMPLATE_JTDAO,JDBCTEMPLATE_JTDAOIMPL);
     public  static List<String> GROUP_JPA = Lists.newArrayList(JPA_ENTITY,JPA_REPOSITORY,JPA_JPACONTROLLER);
     public  static List<String> GROUP_MYBATISPLUS = Lists.newArrayList(MYBATISPLUS_PLUSCONTROLLER,MYBATISPLUS_PLUSENTITY,MYBATISPLUS_PLUSMAPPER,MYBATISPLUS_PLUSSERVICE);
@@ -131,14 +141,11 @@ public class CodeUtil {
             ClassInfo classInfo = getClassInfo(dataSource,tableName);
             params = new HashMap<>();
             params.put("classInfo", classInfo);
-            params.put("packageController", "io.github.wujun728.biz.controller");
-            params.put("packageService", "io.github.wujun728.biz.service");
-            params.put("packageServiceImpl", "io.github.wujun728.biz.service.impl");
-            params.put("packageDao", "io.github.wujun728.biz.dao");
-            params.put("packageMybatisXML", "io.github.wujun728.biz.model");
-            params.put("packageModel", "io.github.wujun728.biz.model");
             params.put("ClassName", classInfo.getClassName());
-            params.put("authorName", "wujun");
+            params.put(authorName, AUTHOR_NAME);
+            params.put(packageName, PACKAGE_NAME);
+            params.put("isAutoImport", true);
+            params.put("isSwagger", true);
             params.putAll(customeConfig);
             Map<String, String> result = new HashMap<String, String>();
             if(isCustom){
@@ -160,9 +167,15 @@ public class CodeUtil {
             if(StrUtil.isNotEmpty(filePath)){
                 String content = templateContent;
                 String path_tmep = templateFileName.replace(".ftl","");
-                String fileName = FreemarkerUtil.processStringTemplate(path_tmep,params);
-                FileUtil.writeString(content,filePath+File.separator+fileName, Charset.defaultCharset());
-                StaticLog.info("生成代码{}，生成代码行数：{}", fileName, lineNum);
+                String path_tmep2 = removeFirstFloderPath(path_tmep);
+                String fileName = FreemarkerUtil.processStringTemplate(path_tmep2,params);
+                String fulllPahtName = filePath+File.separator+fileName;
+                if(StrUtil.isNotEmpty(MapUtil.getStr(params,packageName))){
+                    String floder1= StrUtil.replace(MapUtil.getStr(params,packageName),".",File.separator);
+                    fulllPahtName = filePath+File.separator+floder1+fileName;
+                }
+                FileUtil.writeString(content,fulllPahtName, Charset.defaultCharset());
+                StaticLog.info("生成代码{}，生成代码行数：{}", fulllPahtName, lineNum);
             }else {
                 result.keySet().forEach(key->{
                     StaticLog.info("key="+key);
@@ -256,6 +269,17 @@ public class CodeUtil {
 
     public static String simpleName(String type) {
         return type.replace("java.lang.", "").replaceFirst("java.util.", "");
+    }
+
+    private static String removeFirstFloderPath(String str) {
+        String strPath = new String(str.getBytes(StandardCharsets.UTF_8));
+        if(StrUtil.isNotEmpty(strPath) && strPath.contains("/") && strPath.split("/").length>1){
+            List<String> strs = StrUtil.split(strPath,"/");
+            String newFloderPath = strPath.replaceFirst("/"+strs.get(1),"");
+            System.out.println(newFloderPath);
+            return newFloderPath;
+        }
+        return strPath;
     }
 
 

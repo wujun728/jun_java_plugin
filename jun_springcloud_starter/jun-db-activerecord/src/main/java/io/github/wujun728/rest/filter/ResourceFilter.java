@@ -16,11 +16,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.http.ContentType;
 import cn.hutool.log.Log;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 
 /**
  * Servlet Filter implementation class ResourceFilter
@@ -50,9 +49,9 @@ public class ResourceFilter implements Filter {
                         String mimeType = mimetypesFileTypeMap.getContentType(FileUtil.getName(url));
                         arg1.setContentType(mimeType);
                     }*/
-                    IOUtils.copy(in, arg1.getOutputStream());
+                    IoUtil.copy(in, arg1.getOutputStream());
                 } finally {
-                    IOUtils.closeQuietly(in);
+                    IoUtil.close(in);
                 }
             }else{
                 Log.get().error("error url:"+url);
