@@ -145,13 +145,13 @@ public class DbTest {
 
     @Test
     public void testDelete2() throws Exception {
-        int result = Db.delete("delete from api_sql where sql_id = 'paras' ");
+        boolean result = Db.deleteBySql("delete from api_sql where sql_id = 'paras' ");
         StaticLog.info(String.valueOf(result));
     }
 
     @Test
     public void findEntityList() throws Exception {
-        List<ApiSql> result = Db.findEntityList(ApiSql.class," select * from api_sql ",  null);
+        List<ApiSql> result = Db.findList(ApiSql.class," select * from api_sql ",  null);
         StaticLog.info(JSONUtil.toJsonPrettyStr(result));
     }
 
@@ -201,7 +201,7 @@ public class DbTest {
 
     @Test
     public void testGetById() throws Exception {
-        ApiSql result = (ApiSql) Db.findEntityById(ApiSql.class,1243333563,"test1622823114");
+        ApiSql result = (ApiSql) Db.findById(ApiSql.class,1243333563,"test1622823114");
         StaticLog.info(JSONUtil.toJsonPrettyStr(result));
     }
     @Test
@@ -223,7 +223,7 @@ public class DbTest {
     }
     @Test
     public void testCoun11t() throws Exception {
-        List<ApiSql> apiSqls = Db.use(main).findEntityBySql(ApiSql.class," select * from api_sql ");
+        List<ApiSql> apiSqls = Db.use(main).findBySql(ApiSql.class," select * from api_sql ");
         System.out.println(JSONUtil.toJsonPrettyStr(apiSqls));
     }
 

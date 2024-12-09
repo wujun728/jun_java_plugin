@@ -208,18 +208,18 @@ public class DbPro {
 //	************************************************************************************************************************************************
 //	Class 111111111111111111  begin   **************************************************************************************************************
 //	************************************************************************************************************************************************
-    public <T> List<T> findEntityList(Class<T> clazz, String sql) {
+    public <T> List<T> findList(Class<T> clazz, String sql) {
         List<Record> lists = find(sql);
         List<T> datas = RecordUtil.recordToListBean(lists, clazz);
         return datas;
     }
 
-    public <T> List findEntityList(Class clazz, String sql, Object... params) {
+    public <T> List findList(Class clazz, String sql, Object... params) {
         List datas = queryList(sql, params);
         return RecordUtil.mapToBeans(datas, clazz);
     }
 
-    public <T> List findEntityBySql(Class clazz, String sql) {
+    public <T> List findBySql(Class clazz, String sql) {
         List<Map<String, Object>> results = jdbcTemplate.queryForList(sql);
         return RecordUtil.mapToBeans(results, clazz);
     }
@@ -232,17 +232,17 @@ public class DbPro {
     }
 
 
-    public List<Map<String, Object>> findEntityList(Class beanClass, Map<String, Object> params) {
+    public List<Map<String, Object>> findList(Class beanClass, Map<String, Object> params) {
         return findList(SqlUtil.getSelect(beanClass, params));
     }
 
 
-    public List<Map<String, Object>> findEntityList(Class beanClass, String field, Object parmas) {
-        return findEntityList(beanClass, new String[]{field}, parmas);
+    public List<Map<String, Object>> findList(Class beanClass, String field, Object parmas) {
+        return findList(beanClass, new String[]{field}, parmas);
     }
 
 
-    public List<Map<String, Object>> findEntityList(Class beanClass, String[] fields, Object... parmas) {
+    public List<Map<String, Object>> findList(Class beanClass, String[] fields, Object... parmas) {
         return findList(SqlUtil.getByParams(beanClass, fields, parmas));
     }
 
@@ -297,6 +297,16 @@ public class DbPro {
         return obj;
     }
 
+    public <T> T findEntityById(Class beanClass, String[] primaryKeys, Object... idValue){
+        String tableName = SqlUtil.getTableName(beanClass);
+        String primaryKeyStr = getPkNames(tableName);
+        Record record = findById(tableName, primaryKeyStr, idValue);
+        if (record == null) {
+            return null;
+        }
+        T datas = (T) RecordUtil.recordToBean(record, beanClass);
+        return datas;
+    }
     public <T> T findEntityById(Class<T> clazz, Object idValue) {
         String tableName = SqlUtil.getTableName(clazz);
         String primaryKeyStr = getPkNames(tableName);
@@ -476,7 +486,7 @@ public class DbPro {
     }
 
 
-    public Boolean deleteById(String tableName, Object... idValues) {
+    public Boolean deleteById(String tableName, Object idValues) {
         String primaryKeyStr = getPkNames(tableName);
         if (primaryKeyStr.contains(",")) {
             return deleteById(tableName, primaryKeyStr, idValues);
@@ -523,7 +533,7 @@ public class DbPro {
      * @param id        主键
      * @return Record
      */
-    public Record findById(String tableName, Object... id) {
+    public Record findById(String tableName, Object id) {
         String primaryKeyStr = getPkNames(tableName);
         if (primaryKeyStr.contains(",")) {
             return findById(tableName, primaryKeyStr, id);

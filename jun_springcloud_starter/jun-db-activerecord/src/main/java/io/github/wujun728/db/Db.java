@@ -6,19 +6,8 @@ import cn.hutool.db.meta.Table;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
-import com.google.common.collect.Maps;
-import io.github.wujun728.db.dialect.*;
-import io.github.wujun728.db.exception.SqlException;
 import io.github.wujun728.db.utils.DataSourcePool;
-import io.github.wujun728.db.utils.RecordUtil;
-import io.github.wujun728.db.utils.SqlContext;
-import io.github.wujun728.db.utils.SqlUtil;
 import io.github.wujun728.rest.entity.ApiSql;
-import io.github.wujun728.sql.SqlXmlUtil;
-import org.springframework.dao.DataAccessException;
-import org.springframework.dao.DuplicateKeyException;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -148,16 +137,16 @@ public class Db<T> {
 //	************************************************************************************************************************************************
 
 
-    public static <T> List<T> findEntityList(Class<T> clazz, String sql) {
-        return MAIN.findEntityList(clazz, sql);
+    public static <T> List<T> findList(Class<T> clazz, String sql) {
+        return MAIN.findList(clazz, sql);
     }
 
-    public static <T> List findEntityList(Class clazz, String sql, Object... params) {
-        return MAIN.findEntityList(clazz, sql, params);
+    public static <T> List findList(Class clazz, String sql, Object... params) {
+        return MAIN.findList(clazz, sql, params);
     }
 
-    public static <T> List findEntityBySql(Class clazz, String sql) {
-        return MAIN.findEntityBySql(clazz, sql);
+    public static <T> List findBySql(Class clazz, String sql) {
+        return MAIN.findBySql(clazz, sql);
     }
 
 
@@ -167,20 +156,19 @@ public class Db<T> {
     }
 
 
-    public static List<Map<String, Object>> findEntityList(Class beanClass, Map<String, Object> params) {
-        return MAIN.findEntityList(beanClass, params);
+    public static List<Map<String, Object>> findList(Class beanClass, Map<String, Object> params) {
+        return MAIN.findList(beanClass, params);
     }
 
 
-    public static List<Map<String, Object>> findEntityList(Class beanClass, String field, Object parmas) {
-        return MAIN.findEntityList(beanClass, field, parmas);
+    public static List<Map<String, Object>> findList(Class beanClass, String field, Object parmas) {
+        return MAIN.findList(beanClass, field, parmas);
     }
 
 
-    public static List<Map<String, Object>> findEntityList(Class beanClass, String[] fields, Object... parmas) {
-        return MAIN.findEntityList(beanClass, fields, parmas);
+    public static List<Map<String, Object>> findList(Class beanClass, String[] fields, Object... parmas) {
+        return MAIN.findList(beanClass, fields, parmas);
     }
-
 
 	/*public static  Integer saveEntity(Object bean) {
 		return updateSqlContext(SqlUtil.getInsert(bean));
@@ -217,9 +205,12 @@ public class Db<T> {
     }
 
 
-    public static Object findEntityById(Class beanClass, Object... id) {
-        return MAIN.findEntityById(beanClass, id);
+    public static Object findEntityById(Class beanClass, String[] primaryKeys, Object... id) {
+        return MAIN.findEntityById(beanClass,primaryKeys, id);
     }
+    /*public static Object findEntityById(Class beanClass, Object... id) {
+        return MAIN.findEntityById(beanClass, id);
+    }*/
 
     public static Object findEntityByParams(Class beanClass, String[] fields, Object... parmas) {
         return MAIN.findEntityByParams(beanClass, fields, parmas);
@@ -356,7 +347,7 @@ public class Db<T> {
     }
 
 
-    public static Boolean deleteById(String tableName, Object... idValues) {
+    public static Boolean deleteById(String tableName, Object idValues) {
         return MAIN.deleteById(tableName, idValues);
     }
 
@@ -390,7 +381,7 @@ public class Db<T> {
      * @param id        主键
      * @return Record
      */
-    public static Record findById(String tableName, Object... id) {
+    public static Record findById(String tableName, Object id) {
         return MAIN.findById(tableName, id);
     }
 

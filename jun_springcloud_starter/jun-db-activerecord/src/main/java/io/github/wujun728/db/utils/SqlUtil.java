@@ -3,6 +3,7 @@ package io.github.wujun728.db.utils;
 
 import cn.hutool.core.annotation.AnnotationUtil;
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -55,7 +56,13 @@ public class SqlUtil {
 
 
 	public static String getTableName(Object bean) {
-		String tableName = FieldUtils.getUnderlineName(bean.getClass().getSimpleName());
+		String tableName = "";
+		if(bean instanceof Class){
+			tableName = ((Class)bean).getSimpleName();
+			tableName = FieldUtils.getUnderlineName(tableName);
+		}else{
+			tableName = FieldUtils.getUnderlineName(bean.getClass().getSimpleName());
+		}
 		if(AnnotationUtil.hasAnnotation(bean.getClass(),Table.class)){
 			tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),Table.class,"name");
 		}else if(AnnotationUtil.hasAnnotation(bean.getClass(),TableName.class)){
