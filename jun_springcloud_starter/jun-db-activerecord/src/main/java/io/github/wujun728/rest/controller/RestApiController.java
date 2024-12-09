@@ -85,7 +85,7 @@ public class RestApiController {
                 from = from + " where 1=1 "+ where;
             }
             sql.append(from);
-            List<Record> datas1 = Db.use(main).findBySql(sql.toString());
+            List<Record> datas1 = Db.use(main).find(sql.toString());
             List<Map> datas = RecordUtil.recordToMaps(datas1,isUnderLine);
             return Result.success(datas);
         } catch (Exception e) {
@@ -157,7 +157,7 @@ public class RestApiController {
                 from = from + " where 1=1 "+ where;
             }
             Boolean isTree = url.contains("tree") ?true:false;
-            List<Record> datas1 = Db.use(main).findBySql(sql.toString());
+            List<Record> datas1 = Db.use(main).find(sql.toString());
             List<Map> datas = RecordUtil.recordToMaps(datas1,isUnderLine);
             //是否构建树 begin
             if(isTree){

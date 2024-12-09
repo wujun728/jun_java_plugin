@@ -137,7 +137,7 @@ public class DbPro {
         String sql = null;
         try {
             sql = sqlContext.getSql();
-            return queryForList(sql, clazz, sqlContext.getParams());
+            return queryList(sql, clazz, sqlContext.getParams());
         } catch (Exception e) {
             throw new SqlException(e, sql);
         }
@@ -213,22 +213,14 @@ public class DbPro {
         List<T> datas = RecordUtil.recordToListBean(lists, clazz);
         return datas;
     }
+    /*public <T> List findBySql(Class clazz, String sql) {
+        List<Map<String, Object>> results = jdbcTemplate.queryForList(sql);
+        return RecordUtil.mapToBeans(results, clazz);
+    }*/
 
     public <T> List findList(Class clazz, String sql, Object... params) {
         List datas = queryList(sql, params);
         return RecordUtil.mapToBeans(datas, clazz);
-    }
-
-    public <T> List findBySql(Class clazz, String sql) {
-        List<Map<String, Object>> results = jdbcTemplate.queryForList(sql);
-        return RecordUtil.mapToBeans(results, clazz);
-    }
-
-
-    @Deprecated
-    public <T> List findListAll(Class beanClass) {
-        List<Map<String, Object>> list = findList(SqlUtil.getSelect(beanClass));
-        return RecordUtil.mapToBeans(list, beanClass);
     }
 
 
@@ -274,40 +266,23 @@ public class DbPro {
         return update(SqlUtil.getDelete(bean));
     }
 
-    public Object findById(Class beanClass, Object... id) {
+    /*public Object findById(Class beanClass, Object... id) {
         SqlContext sqlContext = SqlUtil.getByKey(beanClass, id);
         return findObject(beanClass, sqlContext.getSql(), sqlContext.getParams());
-    }
+    }*/
 
-    public Object findByParams(Class beanClass, String[] fields, Object... parmas) {
+    /*public Object findByParams(Class beanClass, String[] fields, Object... parmas) {
         SqlContext sqlContext = SqlUtil.getByParams(beanClass, fields, parmas);
         Object obj = findObject(beanClass, sqlContext.getSql(), sqlContext.getParams());
         return obj;
-    }
+    }*/
 
 
-    public Object findObjectById(Class beanClass, Object... id) {
+    /*public Object findById(Class beanClass, Object[] id) {
         SqlContext sqlContext = SqlUtil.getByKey(beanClass, id);
         return findObject(beanClass, sqlContext.getSql(), sqlContext.getParams());
-    }
-
-    public Object findEntityByParams(Class beanClass, String[] fields, Object... parmas) {
-        SqlContext sqlContext = SqlUtil.getByParams(beanClass, fields, parmas);
-        Object obj = findObject(beanClass, sqlContext.getSql(), sqlContext.getParams());
-        return obj;
-    }
-
-    public <T> T findEntityById(Class beanClass, String[] primaryKeys, Object... idValue){
-        String tableName = SqlUtil.getTableName(beanClass);
-        String primaryKeyStr = getPkNames(tableName);
-        Record record = findById(tableName, primaryKeyStr, idValue);
-        if (record == null) {
-            return null;
-        }
-        T datas = (T) RecordUtil.recordToBean(record, beanClass);
-        return datas;
-    }
-    public <T> T findEntityById(Class<T> clazz, Object idValue) {
+    }*/
+    public <T> T findById(Class<T> clazz, Object... idValue) {
         String tableName = SqlUtil.getTableName(clazz);
         String primaryKeyStr = getPkNames(tableName);
         Record record = findById(tableName, primaryKeyStr, idValue);
@@ -317,6 +292,24 @@ public class DbPro {
         T datas = RecordUtil.recordToBean(record, clazz);
         return datas;
     }
+
+    /*public Object findEntityByParams(Class beanClass, String[] fields, Object... parmas) {
+        SqlContext sqlContext = SqlUtil.getByParams(beanClass, fields, parmas);
+        Object obj = findObject(beanClass, sqlContext.getSql(), sqlContext.getParams());
+        return obj;
+    }*/
+
+    public <T> T findById(Class beanClass, String[] primaryKeys, Object... idValue){
+        String tableName = SqlUtil.getTableName(beanClass);
+        String primaryKeyStr = getPkNames(tableName);
+        Record record = findById(tableName, primaryKeyStr, idValue);
+        if (record == null) {
+            return null;
+        }
+        T datas = (T) RecordUtil.recordToBean(record, beanClass);
+        return datas;
+    }
+
 
 
     public Object findObject(Class clazz, String sql, Object... params) {
@@ -359,23 +352,23 @@ public class DbPro {
 			return null;
 		}
 	}*/
-    public <T> List findEntityAll(Class beanClass) {
+    /*public <T> List findEntityAll(Class beanClass) {
         List<Map<String, Object>> list = queryList(SqlUtil.getSelect(beanClass));
         return RecordUtil.mapToBeans(list, beanClass);
-    }
+    }*/
 
 
-    public List<Map<String, Object>> queryMapList(Class beanClass, Map<String, Object> params) {
+    public List<Map<String, Object>> queryList(Class beanClass, Map<String, Object> params) {
         return queryList(SqlUtil.getSelect(beanClass, params));
     }
 
 
-    public List<Map<String, Object>> queryMapList(Class beanClass, String field, Object parmas) {
-        return queryMapList(beanClass, new String[]{field}, parmas);
+    public List<Map<String, Object>> queryList(Class beanClass, String field, Object parmas) {
+        return queryList(beanClass, new String[]{field}, parmas);
     }
 
 
-    public List<Map<String, Object>> queryMapList(Class beanClass, String[] fields, Object... parmas) {
+    public List<Map<String, Object>> queryList(Class beanClass, String[] fields, Object... parmas) {
         return queryList(SqlUtil.getByParams(beanClass, fields, parmas));
     }
 
@@ -404,15 +397,15 @@ public class DbPro {
      * 业务层 禁止写sql语句，以下方法仅供子类调用
      *************************************************************************************************************************************************/
 
-    public List<Map<String, Object>> queryForList(String sql, Object... params) {
+    public List<Map<String, Object>> queryList(String sql, Object... params) {
         return jdbcTemplate.queryForList(sql, params);
     }
 
-    public List<Map<String, Object>> queryForList(String sql) {
+    public List<Map<String, Object>> queryList(String sql) {
         return jdbcTemplate.queryForList(sql);
     }
 
-    public List<Map<String, Object>> queryMaps(String sql) {
+    /*public List<Map<String, Object>> queryMaps(String sql) {
         List<Map<String, Object>> results = jdbcTemplate.queryForList(sql);
         return results;
     }
@@ -420,7 +413,7 @@ public class DbPro {
     public List<Map<String, Object>> queryMaps(String sql, Object... paras) {
         List results = jdbcTemplate.queryForList(sql, paras);
         return results;
-    }
+    }*/
 
 	/*public  List<Map<String, Object>> query(String sql, Object... paras) {
 		List results = jdbcTemplate.queryForList(sql, paras);
@@ -432,17 +425,17 @@ public class DbPro {
 		return results;
 	}*/
 
-    public int updateBySql(String sql) {
+    public int update(String sql) {
         return jdbcTemplate.update(sql);
     }
 
-    public List<Map<String, Object>> queryList(String sql) {
+    /*public List<Map<String, Object>> queryList(String sql) {
         return jdbcTemplate.queryForList(sql);
-    }
+    }*/
 
-    public List<Map<String, Object>> queryList(String sql, Object... params) {
+    /*public List<Map<String, Object>> queryList(String sql, Object... params) {
         return jdbcTemplate.queryForList(sql, params);
-    }
+    }*/
 
     public String queryForString(String sql, Object... params) {
         try {
@@ -481,10 +474,6 @@ public class DbPro {
     }
 
 
-    public int update(String sql) {
-        return jdbcTemplate.update(sql);
-    }
-
 
     public Boolean deleteById(String tableName, Object idValues) {
         String primaryKeyStr = getPkNames(tableName);
@@ -513,7 +502,7 @@ public class DbPro {
     }
 
     public Boolean deleteBySql(String sql) {
-        return deleteBySql(sql, null);
+        return deleteBySql(sql, new Object[]{});
     }
 
 
@@ -545,7 +534,7 @@ public class DbPro {
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
-        return mapping(resultMap);
+        return RecordUtil.mapping(resultMap);
     }
 
 
@@ -561,24 +550,23 @@ public class DbPro {
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
-        return mapping(resultMap);
+        return RecordUtil.mapping(resultMap);
     }
 
 
-    public List<Record> findBySql(String sql) {
+    /*public List<Record> findBySql(String sql) {
         return find(sql);
-
-    }
+    }*/
 
     public List<Record> find(String sql) {
         List<Map<String, Object>> results = jdbcTemplate.queryForList(sql);
-        return mappingList(results);
+        return RecordUtil.mappingList(results);
     }
 
 
     public List<Record> find(String sql, Object... param) {
         List<Map<String, Object>> results = jdbcTemplate.queryForList(sql, param);
-        return mappingList(results);
+        return RecordUtil.mappingList(results);
     }
 
     public Page<Record> paginate(Integer pageNumber, Integer limit, String select, String from) {
@@ -590,7 +578,7 @@ public class DbPro {
         SqlContext sqlContext = SqlUtil.getSelect(new StringBuilder(sqlStr), params);
         Page pageVo = new Page();
         List<Map<String, Object>> results = queryList(sqlContext);
-        List<Record> records = mappingList(results);
+        List<Record> records = RecordUtil.mappingList(results);
         int totalpage = queryInt(SqlUtil.getCount(sqlContext));
         pageVo.setList(records);
         pageVo.setTotalRow(totalpage);
@@ -666,33 +654,6 @@ public class DbPro {
         return false;
     }
 
-    public Record mapping(Map<String, Object> map) {
-        return toRecord(map);
-    }
-
-    private Record toRecord(Map<String, Object> map) {
-        Record record = new Record();
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-            record.set(entry.getKey(), entry.getValue());
-        }
-        return record;
-    }
-
-    public List<Record> mappingList(List<Map<String, Object>> maps) {
-        return toRecords(maps);
-    }
-
-    private List<Record> toRecords(List<Map<String, Object>> maps) {
-        List<Record> records = new ArrayList<>();
-        if (null != maps && !maps.isEmpty()) {
-            for (Map<String, Object> map : maps) {
-                records.add(mapping(map));
-            }
-            return records;
-        } else {
-            return null;
-        }
-    }
 
 
     //************************************************************************************************************************************************

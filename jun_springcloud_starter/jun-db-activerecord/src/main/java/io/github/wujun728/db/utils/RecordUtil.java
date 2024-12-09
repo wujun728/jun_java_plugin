@@ -281,4 +281,32 @@ public class RecordUtil {
 //        return RecordUtil.recordToMaps(recordList);
 //    }
 
+    public static Record mapping(Map<String, Object> map) {
+        return toRecord(map);
+    }
+
+    private static Record toRecord(Map<String, Object> map) {
+        Record record = new Record();
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            record.set(entry.getKey(), entry.getValue());
+        }
+        return record;
+    }
+
+    public static List<Record> mappingList(List<Map<String, Object>> maps) {
+        return toRecords(maps);
+    }
+
+    private static List<Record> toRecords(List<Map<String, Object>> maps) {
+        List<Record> records = new ArrayList<>();
+        if (null != maps && !maps.isEmpty()) {
+            for (Map<String, Object> map : maps) {
+                records.add(mapping(map));
+            }
+            return records;
+        } else {
+            return null;
+        }
+    }
+
 }

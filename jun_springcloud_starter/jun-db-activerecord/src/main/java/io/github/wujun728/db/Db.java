@@ -7,6 +7,7 @@ import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
 import io.github.wujun728.db.utils.DataSourcePool;
+import io.github.wujun728.db.utils.SqlUtil;
 import io.github.wujun728.rest.entity.ApiSql;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -103,9 +104,8 @@ public class Db<T> {
         //查询数据并返回单条Record
         Record record = Db.findById("biz_mail", 1);
         StaticLog.info(JSONUtil.toJsonPrettyStr(record));
-
-        List data1 = Db.use(main).findEntityAll(ApiSql.class);
-        List data12 = Db.findEntityAll(ApiSql.class);
+        List data1 = Db.use(main).find(SqlUtil.getSelect(ApiSql.class).getSql());
+        List data12 = Db.find(SqlUtil.getSelect(ApiSql.class).getSql());
 
         //查询数据并转为Bean清单
         //List<ApiSql> data2 = Db.queryForBeanList(" SELECT * FROM api_sql ", ApiSql.class, null);
@@ -145,16 +145,6 @@ public class Db<T> {
         return MAIN.findList(clazz, sql, params);
     }
 
-    public static <T> List findBySql(Class clazz, String sql) {
-        return MAIN.findBySql(clazz, sql);
-    }
-
-
-    @Deprecated
-    public static <T> List findListAll(Class beanClass) {
-        return MAIN.findListAll(beanClass);
-    }
-
 
     public static List<Map<String, Object>> findList(Class beanClass, Map<String, Object> params) {
         return MAIN.findList(beanClass, params);
@@ -169,16 +159,6 @@ public class Db<T> {
     public static List<Map<String, Object>> findList(Class beanClass, String[] fields, Object... parmas) {
         return MAIN.findList(beanClass, fields, parmas);
     }
-
-	/*public static  Integer saveEntity(Object bean) {
-		return updateSqlContext(SqlUtil.getInsert(bean));
-	}
-	public static  Integer updateEntity(Object bean) {
-		return updateSqlContext(SqlUtil.getUpdate(bean));
-	}
-	public static  Integer deleteEntity(Object bean) {
-		return updateSqlContext(SqlUtil.getDelete(bean));
-	}*/
 
     public static Integer saveBackPrimaryKey(Object bean) {
         return MAIN.saveBackPrimaryKey(bean);
@@ -196,34 +176,22 @@ public class Db<T> {
         return MAIN.delete(bean);
     }
 
+    public static Object findById(String tableName, Object... id) {
+        return MAIN.findById(tableName,id);
+    }
     public static Object findById(Class beanClass, Object... id) {
         return MAIN.findById(beanClass, id);
     }
 
-    public static Object findByParams(Class beanClass, String[] fields, Object... parmas) {
-        return MAIN.findByParams(beanClass, fields, parmas);
+    public static Object findById(Class beanClass, String[] primaryKeys, Object... id) {
+        return MAIN.findById(beanClass,primaryKeys, id);
+    }
+
+    public static <T> T findById(Class<T> clazz, Object idValue) {
+        return MAIN.findById(clazz, idValue);
     }
 
 
-    public static Object findEntityById(Class beanClass, String[] primaryKeys, Object... id) {
-        return MAIN.findEntityById(beanClass,primaryKeys, id);
-    }
-    /*public static Object findEntityById(Class beanClass, Object... id) {
-        return MAIN.findEntityById(beanClass, id);
-    }*/
-
-    public static Object findEntityByParams(Class beanClass, String[] fields, Object... parmas) {
-        return MAIN.findEntityByParams(beanClass, fields, parmas);
-    }
-
-    public static <T> T findEntityById(Class<T> clazz, Object idValue) {
-        return MAIN.findEntityById(clazz, idValue);
-    }
-
-
-    public static Object findObjectById(Class clazz, String sql, Object... params) {
-        return MAIN.findObjectById(clazz, sql, params);
-    }
 
     public static <T> Page findPages(Class beanClass, int page, int rows) {
         return MAIN.findPages(beanClass, page, rows);
@@ -244,23 +212,23 @@ public class Db<T> {
 			return null;
 		}
 	}*/
-    public static <T> List findEntityAll(Class beanClass) {
+    /*public static <T> List findEntityAll(Class beanClass) {
         return MAIN.findEntityAll(beanClass);
+    }*/
+
+
+    public static List<Map<String, Object>> queryList(Class beanClass, Map<String, Object> params) {
+        return MAIN.queryList(beanClass, params);
     }
 
 
-    public static List<Map<String, Object>> queryMapList(Class beanClass, Map<String, Object> params) {
-        return MAIN.queryMapList(beanClass, params);
+    public static List<Map<String, Object>> queryList(Class beanClass, String field, Object parmas) {
+        return MAIN.queryList(beanClass, field, parmas);
     }
 
 
-    public static List<Map<String, Object>> queryMapList(Class beanClass, String field, Object parmas) {
-        return MAIN.queryMapList(beanClass, field, parmas);
-    }
-
-
-    public static List<Map<String, Object>> queryMapList(Class beanClass, String[] fields, Object... parmas) {
-        return MAIN.queryMapList(beanClass, fields, parmas);
+    public static List<Map<String, Object>> queryList(Class beanClass, String[] fields, Object... parmas) {
+        return MAIN.queryList(beanClass, fields, parmas);
     }
 
     public static Page queryPage(Class beanClass, int page, int rows) {
@@ -282,21 +250,14 @@ public class Db<T> {
      * 业务层 禁止写sql语句，以下方法仅供子类调用
      *************************************************************************************************************************************************/
 
-    public static List<Map<String, Object>> queryForList(String sql, Object... params) {
-        return MAIN.queryForList(sql, params);
+    public static List<Map<String, Object>> queryList(String sql, Object... params) {
+        return MAIN.queryList(sql, params);
     }
 
-    public static List<Map<String, Object>> queryForList(String sql) {
-        return MAIN.queryForList(sql);
+    public static List<Map<String, Object>> queryList(String sql) {
+        return MAIN.queryList(sql);
     }
 
-    public static List<Map<String, Object>> queryMaps(String sql) {
-        return MAIN.queryForList(sql);
-    }
-
-    public static List<Map<String, Object>> queryMaps(String sql, Object... paras) {
-        return MAIN.queryMaps(sql, paras);
-    }
 
 	/*public static   List<Map<String, Object>> query(String sql, Object... paras) {
 		List results = jdbcTemplate.queryForList(sql, paras);
@@ -308,17 +269,6 @@ public class Db<T> {
 		return results;
 	}*/
 
-    public static int updateBySql(String sql) {
-        return MAIN.updateBySql(sql);
-    }
-
-    public static List<Map<String, Object>> queryList(String sql) {
-        return MAIN.queryList(sql);
-    }
-
-    public static List<Map<String, Object>> queryList(String sql, Object... params) {
-        return MAIN.queryList(sql, params);
-    }
 
     public static String queryForString(String sql, Object... params) {
         return MAIN.queryForString(sql, params);
@@ -364,7 +314,6 @@ public class Db<T> {
         return MAIN.deleteBySql(sql);
     }
 
-
     /*************************************************************************************************************************************************
      SQL 111111111111111111  end   ***************************************************************************************************************
      *************************************************************************************************************************************************/
@@ -388,12 +337,6 @@ public class Db<T> {
 
     public static Record findById(String tableName, String primaryKey, Object... idValues) {
         return MAIN.findById(tableName, primaryKey, idValues);
-    }
-
-
-    public static List<Record> findBySql(String sql) {
-        return MAIN.findBySql(sql);
-
     }
 
     public static List<Record> find(String sql) {

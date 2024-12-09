@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
-public class SqlUtil {
+public class SqlEngine {
 	
 	static DynamicSqlEngine engine = new DynamicSqlEngine();
 
@@ -27,7 +27,6 @@ public class SqlUtil {
 	 * 3、连接没有关闭，需要在调用方关闭
 	 * @param connection
 	 * @param sql
-	 * @param jdbcParamValues
 	 * @return
 	 */
 	public static Object executeSql(Connection connection, String sql, Map<String, Object> sqlParam,Boolean closeConn) throws SQLException {
@@ -38,8 +37,8 @@ public class SqlUtil {
 		return obj;
 	}
 	public static Object executeSql(Connection connection, String sql, Map<String, Object> sqlParam) throws SQLException {
-		SqlMeta sqlMeta = SqlUtil.getEngine().parse(sql, sqlParam);
-		return SqlUtil.executeSql(connection, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
+		SqlMeta sqlMeta = SqlEngine.getEngine().parse(sql, sqlParam);
+		return SqlEngine.executeSql(connection, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
 	}
 	public static Object executeSql(Connection connection, String sql, List<Object> jdbcParamValues)
 			throws SQLException {

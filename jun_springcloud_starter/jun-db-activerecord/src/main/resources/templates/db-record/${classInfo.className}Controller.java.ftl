@@ -26,7 +26,7 @@ public class ${classInfo.className}Controller {
     */
     @PostMapping("/save")
     public Object save(${classInfo.className} ${classInfo.className?uncap_first}){
-        ${classInfo.className} ${classInfo.className?uncap_first}One= Db.findById(${classInfo.className}.class,${classInfo.className?uncap_first}.getId());
+        ${classInfo.className} ${classInfo.className?uncap_first}One= Db.findObjById(${classInfo.className}.class,${classInfo.className?uncap_first}.getId());
         if(${classInfo.className?uncap_first}One!=null){
             Db.updateEntity(${classInfo.className?uncap_first});
             return ("编辑成功");
@@ -41,7 +41,7 @@ public class ${classInfo.className}Controller {
     */
     @PostMapping("/delete")
     public Object delete(int id){
-        ${classInfo.className} ${classInfo.className?uncap_first}One= Db.findById(${classInfo.className}.class,id);
+        ${classInfo.className} ${classInfo.className?uncap_first}One= Db.findObjById(${classInfo.className}.class,id);
         if(${classInfo.className?uncap_first}One!=null){
             Db.deleteById("${classInfo.tableName}",id);
             return ("删除成功");
@@ -55,7 +55,7 @@ public class ${classInfo.className}Controller {
     */
     @PostMapping("/find")
     public Object find(int id){
-        ${classInfo.className} ${classInfo.className?uncap_first}One= Db.findById(${classInfo.className}.class,id);
+        ${classInfo.className} ${classInfo.className?uncap_first}One= Db.findObjById(${classInfo.className}.class,id);
         if(${classInfo.className?uncap_first}One!=null){
             return (${classInfo.className?uncap_first}One);
         }else{
@@ -68,7 +68,7 @@ public class ${classInfo.className}Controller {
     */
     @PostMapping("/list")
     public Object list(${classInfo.className} ${classInfo.className?uncap_first}) {
-        List<${classInfo.className}> datas = Db.findEntityList(${classInfo.className}.class,"select * from ${classInfo.tableName}");
+        List<${classInfo.className}> datas = Db.findObjectList(${classInfo.className}.class,"select * from ${classInfo.tableName}");
         return datas;
     }
 

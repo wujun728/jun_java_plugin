@@ -5,6 +5,7 @@ import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
 import com.google.common.collect.Maps;
 import io.github.wujun728.db.utils.DataSourcePool;
+import io.github.wujun728.db.utils.SqlUtil;
 import io.github.wujun728.rest.entity.ApiSql;
 import io.github.wujun728.rest.entity.ApiSqlMybatis;
 import org.junit.BeforeClass;
@@ -38,7 +39,7 @@ public class DbTest {
 
     @Test
     public void testFindBySql() throws Exception {
-        List<Record> result = Db.findBySql(" select * from biz_mail ");
+        List<Record> result = Db.find(" select * from biz_mail ");
         StaticLog.info(JSONUtil.toJsonPrettyStr(result));
     }
     @Test
@@ -206,13 +207,13 @@ public class DbTest {
     }
     @Test
     public void testGetByParams() throws Exception {
-        ApiSql result = (ApiSql) Db.findEntityById(ApiSql.class,new String[]{"id","sql_id"},1243333563,"test1622823114");
+        ApiSql result = (ApiSql) Db.findById(ApiSql.class,new String[]{"id","sql_id"},1243333563,"test1622823114");
         StaticLog.info(JSONUtil.toJsonPrettyStr(result));
     }
 
     @Test
     public void testQueryAll() throws Exception {
-        List result = Db.findListAll(ApiSql.class);
+        List result = Db.find(SqlUtil.getSelect(ApiSql.class).getSql());
         StaticLog.info(JSONUtil.toJsonPrettyStr(result));
     }
 
@@ -223,7 +224,7 @@ public class DbTest {
     }
     @Test
     public void testCoun11t() throws Exception {
-        List<ApiSql> apiSqls = Db.use(main).findBySql(ApiSql.class," select * from api_sql ");
+        List<ApiSql> apiSqls = Db.use(main).findList(ApiSql.class," select * from api_sql ");
         System.out.println(JSONUtil.toJsonPrettyStr(apiSqls));
     }
 

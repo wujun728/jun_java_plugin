@@ -530,11 +530,6 @@ public class SqlUtil {
 
 	/**
 	 * 构建select语句
-	 * 
-	 *            类对象
-	 *            当前页码
-	 *            每页条数
-	 * @return sql上下文
 	 */
 	public static SqlContext getByParams(Class<?> cls, String[] fields, Object... parmas) {
 		SqlContext sqlContext = getSelect(cls);
