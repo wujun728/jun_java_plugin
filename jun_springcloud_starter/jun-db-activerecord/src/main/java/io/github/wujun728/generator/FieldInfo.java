@@ -20,6 +20,7 @@ public class FieldInfo {
     private Boolean nullable;
     private Boolean comment;
     private String defaultValue;
+    private String swaggerClass;
 
 
 

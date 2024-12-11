@@ -12,6 +12,7 @@ import java.util.List;
 public class ClassInfo {
 	private Long id;
     private String tableName;
+    private String originTableName;
     private String className;
 	private String classComment;
 	private int pkSize;
