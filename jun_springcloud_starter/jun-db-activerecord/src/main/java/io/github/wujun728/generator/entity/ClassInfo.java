@@ -1,4 +1,4 @@
-package io.github.wujun728.generator;
+package io.github.wujun728.generator.entity;
 
 import lombok.Data;
 
@@ -6,7 +6,6 @@ import java.util.List;
 
 /**
  * class info
- *
  */
 @Data
 public class ClassInfo {

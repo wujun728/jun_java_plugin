@@ -2,7 +2,7 @@
 //
 //import freemarker.template.TemplateException;
 //import io.github.wujun728.common.base.Result;
-//import io.github.wujun728.generator.ClassInfo;
+//import io.github.wujun728.generator.entity.ClassInfo;
 //import io.github.wujun728.generator.util.FreemarkerTool;
 //import io.github.wujun728.generator.util.StringUtils;
 //import io.github.wujun728.generator.util.TableParseUtil;

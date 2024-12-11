@@ -10,6 +10,8 @@ import cn.hutool.log.StaticLog;
 import com.google.common.collect.Lists;
 import freemarker.template.TemplateException;
 import io.github.wujun728.db.utils.DataSourcePool;
+import io.github.wujun728.generator.entity.ClassInfo;
+import io.github.wujun728.generator.entity.FieldInfo;
 import io.github.wujun728.generator.util.FreemarkerUtil;
 import io.github.wujun728.generator.util.StringUtils;
 import io.github.wujun728.generator.utils.GeneratorUtil;

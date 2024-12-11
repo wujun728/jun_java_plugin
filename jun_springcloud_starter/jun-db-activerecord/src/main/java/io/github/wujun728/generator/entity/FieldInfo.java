@@ -1,10 +1,9 @@
-package io.github.wujun728.generator;
+package io.github.wujun728.generator.entity;
 
 import lombok.Data;
 
 /**
  * field info
- *
  */
 @Data
 public class FieldInfo {
