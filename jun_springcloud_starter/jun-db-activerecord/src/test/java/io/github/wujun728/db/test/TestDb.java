@@ -20,7 +20,7 @@ public class TestDb {
         DataSource ds = DataSourcePool.init("main",url,username,password,driver);
         Db.init(main,ds);
         Record record = Db.use().findById("biz_mail",2);
-        Record record2 = Db.use().findById("api_sql","id,sql_id","getBizTests");
+        Record record2 = Db.use().findByIds("api_sql","id,sql_id","getBizTests");
     }
 
 

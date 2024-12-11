@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -82,7 +83,10 @@ public class SqlXmlUtil {
 		}
 	}
 
-
+	public static int update(Connection connection, String sql, Map<String, Object> sqlParam) throws SQLException {
+		SqlMeta sqlMeta = SqlXmlUtil.getEngine().parse(sql, sqlParam);
+		return SqlXmlUtil.update(connection, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
+	}
 	public static int update(Connection connection, String sql, List<Object> jdbcParamValues) throws SQLException {
 //		log.debug(JSON.toJSONString(jdbcParamValues));
 		PreparedStatement statement = connection.prepareStatement(sql);
@@ -101,7 +105,11 @@ public class SqlXmlUtil {
 		}
 	}
 
-	public static List<JSONObject> query(Connection connection, String sql, List<Object> jdbcParamValues)
+	public static List<Map<String,Object>> query(Connection connection, String sql, Map<String, Object> sqlParam) throws SQLException {
+		SqlMeta sqlMeta = SqlXmlUtil.getEngine().parse(sql, sqlParam);
+		return SqlXmlUtil.query(connection, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
+	}
+	public static List<Map<String,Object>> query(Connection connection, String sql, List<Object> jdbcParamValues)
 			throws SQLException {
 //		log.debug(JSON.toJSONString(jdbcParamValues));
 		PreparedStatement statement = connection.prepareStatement(sql);
@@ -120,15 +128,16 @@ public class SqlXmlUtil {
 				String columnName = rs.getMetaData().getColumnLabel(i);
 				columns.add(columnName);
 			}
-			List<JSONObject> list = new ArrayList<>();
+			List<Map<String,Object>> list = new ArrayList<>();
 			while (rs.next()) {
-				JSONObject jo = new JSONObject();
+				//JSONObject jo = new JSONObject();
+				Map<String,Object> jo = new HashMap<>();
 				columns.stream().forEach(t -> {
 					try {
 						Object value = rs.getObject(t);
 						jo.put(t, value);
 						if(value==null) {
-							jo.put(t, "");
+							jo.put(t, null);
 						}
 					} catch (SQLException throwables) {
 						throwables.printStackTrace();

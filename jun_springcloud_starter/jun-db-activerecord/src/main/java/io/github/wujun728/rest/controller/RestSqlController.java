@@ -60,8 +60,8 @@ public class RestSqlController {
         main = MapUtil.getStr(parameters, "ds");
 //        List<Record> records  = Db.use(main).findBySql(ApiSql.class," select * from api_sql ");
 //        List<ApiSql> apiSqls = RecordUtil.recordToListBean(records, ApiSql.class);
-        List<ApiSql> apiSqls = Db.use(main).findList(ApiSql.class," select * from api_sql ");
-        Db.use().findList(ApiSql.class," select * from api_sql ");
+        List<ApiSql> apiSqls = Db.use(main).findBeanList(ApiSql.class," select * from api_sql ");
+        Db.use().findBeanList(ApiSql.class," select * from api_sql ");
         Map<String, ApiSql> apiSqlMap = apiSqls.stream().collect(Collectors.toMap(i->i.getPath(),i->i));
         if(apiSqlMap.containsKey(path)){
             Object obj = restApiService.doSQLProcess(apiSqlMap.get(path), parameters);

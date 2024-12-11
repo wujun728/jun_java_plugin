@@ -18,7 +18,6 @@ import com.google.common.collect.Maps;
 import io.github.wujun728.common.base.Result;
 import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.common.utils.IdGenerator15;
-import io.github.wujun728.db.*;
 //import io.github.wujun728.db.record.Db;
 //import io.github.wujun728.db.record.Page;
 //import io.github.wujun728.db.record.Record;
@@ -192,7 +191,7 @@ public class RestApiController {
             Table table = getTableMeta(tableName,main);
             String primaryKey = RestUtil.getTablePrimaryKes(table);
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
-            Record record = Db.use(main).findById(tableName, primaryKey, args.toArray());
+            Record record = Db.use(main).findByIds(tableName, primaryKey, args.toArray());
 //            Record record = Db.use(main).findById(tableName,primaryKey, (Number) args.get(0));
             if (ObjectUtil.isNotNull(record)) {
                 Map data = RecordUtil.recordToMap(record,isUnderLine);
@@ -331,7 +330,7 @@ public class RestApiController {
             String primaryValue = RestUtil.getParamValue(parameters, primaryKey);
             Record record = new Record();
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
-            record = Db.use(main).findById(tableName, primaryKey, args.toArray());
+            record = Db.use(main).findByIds(tableName, primaryKey, args.toArray());
             if (ObjectUtil.isNull(record)) {
                 return Result.fail("修改失败，无此ID对应的记录！");
             }
@@ -446,7 +445,7 @@ public class RestApiController {
         Record record = new Record();
         if (!isSave) {
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
-            record = Db.use(main).findById(tableName, primaryKey, args.toArray());
+            record = Db.use(main).findByIds(tableName, primaryKey, args.toArray());
             if (ObjectUtil.isNull(record)) {
                 return Result.fail("修改失败，无此ID对应的记录！");
             }

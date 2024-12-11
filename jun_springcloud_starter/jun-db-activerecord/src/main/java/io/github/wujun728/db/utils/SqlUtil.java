@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import static io.github.wujun728.db.Db.getPkNames;
+import static io.github.wujun728.db.DbPro.getPkNames;
 
 
 public class SqlUtil {
