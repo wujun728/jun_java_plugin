@@ -2,13 +2,13 @@ package io.github.wujun728.db.test;
 
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
-import io.github.wujun728.db.Db;
-import io.github.wujun728.db.Record;
+import io.github.wujun728.db.record.Db;
+import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
 
 import javax.sql.DataSource;
 
-import static io.github.wujun728.db.Db.main;
+import static io.github.wujun728.db.record.Db.main;
 
 public class TestDb {
 

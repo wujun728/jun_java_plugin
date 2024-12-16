@@ -5,6 +5,9 @@ import cn.hutool.core.util.RandomUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
 import com.google.common.collect.Maps;
+import io.github.wujun728.db.record.Db;
+import io.github.wujun728.db.record.Page;
+import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.db.utils.RecordUtil;
 import io.github.wujun728.db.utils.SqlUtil;
@@ -17,7 +20,7 @@ import javax.sql.DataSource;
 import java.util.List;
 import java.util.Map;
 
-import static io.github.wujun728.db.Db.main;
+import static io.github.wujun728.db.record.Db.main;
 
 
 public class DbTest {
@@ -94,7 +97,7 @@ public class DbTest {
 
     @Test
     public void testDeleteByIds() throws Exception {
-        Boolean result = Db.deleteById("api_sql", "2","getBizTests111");
+        Boolean result = Db.deleteById("api_sql", "sql_id","getBizTests111");
         StaticLog.info(String.valueOf(result));
     }
 
@@ -269,5 +272,9 @@ public class DbTest {
     public void testQueryPage2() throws Exception {
         Page result = Db.findBeanPages(ApiSql.class, 1, 10, Maps.newHashMap());
         StaticLog.info(JSONUtil.toJsonPrettyStr(result));
+    }
+    @Test
+    public void testQueryPage2111() throws Exception {
+//        Db.findBeanPages()
     }
 }
