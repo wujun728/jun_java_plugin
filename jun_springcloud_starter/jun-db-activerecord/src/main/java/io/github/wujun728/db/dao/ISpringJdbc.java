@@ -3,8 +3,8 @@ package io.github.wujun728.db.dao;
 import java.util.List;
 import java.util.Map;
 
-import io.github.wujun728.db.Page;
 import io.github.wujun728.db.bean.PageResult;
+import io.github.wujun728.db.record.Page;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;

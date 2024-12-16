@@ -2,8 +2,8 @@ package io.github.wujun728.db.utils;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import io.github.wujun728.db.Page;
-import io.github.wujun728.db.Record;
+import io.github.wujun728.db.record.Page;
+import io.github.wujun728.db.record.Record;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;

@@ -12,10 +12,9 @@ import cn.hutool.db.meta.Table;
 import cn.hutool.log.StaticLog;
 import com.google.common.collect.Lists;
 import io.github.wujun728.common.exception.BusinessException;
-//import io.github.wujun728.common.interfaces.IRecordHandler;
 import io.github.wujun728.common.interfaces.IRecordHandler;
 import io.github.wujun728.common.utils.ClassUtil;
-import io.github.wujun728.db.Record;
+import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.FieldUtils;
 import org.springframework.util.CollectionUtils;
 

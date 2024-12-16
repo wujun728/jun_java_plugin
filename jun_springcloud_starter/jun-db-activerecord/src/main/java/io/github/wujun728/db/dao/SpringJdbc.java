@@ -5,8 +5,8 @@ import java.sql.*;
 import java.util.*;
 import java.util.Date;
 
-import io.github.wujun728.db.Page;
 import io.github.wujun728.db.bean.PageResult;
+import io.github.wujun728.db.record.Page;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

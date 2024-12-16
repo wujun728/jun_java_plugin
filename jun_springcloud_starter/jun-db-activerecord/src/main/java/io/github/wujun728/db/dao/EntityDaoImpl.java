@@ -1,8 +1,8 @@
 package io.github.wujun728.db.dao;
 
 
-import io.github.wujun728.db.bean.Page;
 import io.github.wujun728.db.bean.PageResult;
+import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.util.CollectionUtil;
 import io.github.wujun728.db.util.EntityTools;
 import io.github.wujun728.db.util.SqlMakeTools;
@@ -250,7 +250,7 @@ public class EntityDaoImpl<T, Id extends Serializable> implements EntityDao<T, I
         String pageSql = "SELECT SQL_CALC_FOUND_ROWS * FROM (" + sql + ") temp ";
         if (page != null) {
             pageSql = pageSql + " LIMIT ?,?";
-            params = ArrayUtils.add(params, page.getOffset());
+            params = ArrayUtils.add(params, page.getPageNumber());
             params = ArrayUtils.add(params, page.getPageSize());
         }
         List<T> paged = jdbcTemplate.query(pageSql, params, tRowMapper);

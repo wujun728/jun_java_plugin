@@ -1,15 +1,11 @@
 package io.github.wujun728.db.dao;
 
-import io.github.wujun728.common.base.Result;
-import io.github.wujun728.db.bean.Page;
 import io.github.wujun728.db.bean.PageResult;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import io.github.wujun728.db.record.Page;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
-
-import org.springframework.jdbc.core.RowMapper;
 
 /**
  * @author 周宁

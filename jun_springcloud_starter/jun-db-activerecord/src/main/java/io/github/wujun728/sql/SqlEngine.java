@@ -21,14 +21,6 @@ public class SqlEngine {
 
 
 
-	/**
-	 * 1、查询返回List<JSONObject>
-	 * 2、新增、修改、删除返回int，成功条数。
-	 * 3、连接没有关闭，需要在调用方关闭
-	 * @param connection
-	 * @param sql
-	 * @return
-	 */
 	public static Object executeSql(Connection connection, String sql, Map<String, Object> sqlParam,Boolean closeConn) throws SQLException {
 		Object obj = executeSql(connection,sql,sqlParam);
 		if(closeConn){
@@ -49,7 +41,6 @@ public class SqlEngine {
 			statement.setObject(i, jdbcParamValues.get(i - 1));
 		}
 		boolean hasResultSet = statement.execute();
-
 		if (hasResultSet) {
 			ResultSet rs = statement.getResultSet();
 			int columnCount = rs.getMetaData().getColumnCount();
@@ -67,7 +58,7 @@ public class SqlEngine {
 						Object value = rs.getObject(t);
 						jo.put(t, value);
 						if(value==null) {
-							jo.put(t, "");
+							jo.put(t, null);
 						}
 					} catch (SQLException throwables) {
 						throwables.printStackTrace();
@@ -81,7 +72,6 @@ public class SqlEngine {
 			System.out.println("["+updateCount + "] rows affected");
 			return updateCount;
 		}
-
 	}
 
 

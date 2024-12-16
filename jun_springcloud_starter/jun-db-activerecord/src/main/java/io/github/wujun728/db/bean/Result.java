@@ -1,5 +1,6 @@
 package io.github.wujun728.db.bean;
 
+import io.github.wujun728.db.record.Page;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -58,7 +59,7 @@ public class Result<E> {
         Object pageParams[] = {};
         String pageSql = "SELECT SQL_CALC_FOUND_ROWS * FROM (" + sql + ") temp ";
         pageSql = pageSql + " LIMIT ?,?";
-        pageParams = ArrayUtils.addAll(params, new Object[]{page.getOffset(), page.getPageSize()});
+        pageParams = ArrayUtils.addAll(params, new Object[]{page.getPageNumber(), page.getPageSize()});
         consumer.accept(pageSql,pageParams);
         List<E> paged = jdbcTemplate.query(pageSql, pageParams, BeanPropertyRowMapper.newInstance(type));
         String countSql = "SELECT FOUND_ROWS() ";
