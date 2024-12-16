@@ -120,7 +120,7 @@ public class AnsiSqlDialect extends Dialect {
 	public Page<Record> takeOverDbPaginate(Connection conn, int pageNumber, int pageSize, Boolean isGroupBySql, String totalRowSql, StringBuilder findSql, Object... paras) throws SQLException {
 		// String totalRowSql = "select count(*) " + replaceOrderBy(sqlExceptSelect);
 //		List result = CPI.query(conn, totalRowSql, paras);
-		List result = Db.queryList(totalRowSql, paras);
+		List result = Db.use().queryList(totalRowSql, paras);
 		int size = result.size();
 		if (isGroupBySql == null) {
 			isGroupBySql = size > 1;
