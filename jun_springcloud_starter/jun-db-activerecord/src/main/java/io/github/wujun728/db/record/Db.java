@@ -37,7 +37,6 @@ public class Db<T> {
         try {
             DataSource dataSource = SpringUtil.getBean(DataSource.class);
             if (dataSource != null) {
-//				dataSourceMap.put(main, dataSource);
                 Db.init(Db.main, dataSource);
 				try {
                     JdbcTemplate jdbcTemplate = SpringUtil.getBean(JdbcTemplate.class);
@@ -57,21 +56,21 @@ public class Db<T> {
         return MAIN;
     }
 
-    public static DbPro use(String configName) {
-        DbPro result = DbPro.cache.get(configName);
-        if (result == null || dataSourceMap.get(configName) == null /*|| jdbcTemplateMap.get(configName) == null*/) {
-            System.err.println("error : 当前Db.use(" + configName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的configName数据源。");
-            throw new RuntimeException("error : 当前Db.use(" + configName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的configName数据源。");
+    public static DbPro use(String dsName) {
+        DbPro result = DbPro.cache.get(dsName);
+        if (result == null || dataSourceMap.get(dsName) == null || jdbcTemplateMap.get(dsName) == null) {
+            System.err.println("error : 当前Db.use(" + dsName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的dsName数据源。");
+            throw new RuntimeException("error : 当前Db.use(" + dsName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的dsName数据源。");
         }
-        result.setDataSource(dataSourceMap.get(configName));
-        result.setJdbcTemplate(jdbcTemplateMap.get(configName));
+        result.setDataSource(dataSourceMap.get(dsName));
+        result.setJdbcTemplate(jdbcTemplateMap.get(dsName));
         return result;
     }
 
-    public static void init(String configName, DataSource dataSource) {
+    public static void init(String dsName, DataSource dataSource) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        jdbcTemplateMap.put(configName, jdbcTemplate);
-        dataSourceMap.put(configName, dataSource);
+        jdbcTemplateMap.put(dsName, jdbcTemplate);
+        dataSourceMap.put(dsName, dataSource);
         MAIN = DbPro.use(main);
     }
 
@@ -82,18 +81,17 @@ public class Db<T> {
         } catch (Exception e) {
             System.err.println("warning : ExceptionInInitializerError 当前非Spring容器运行，请首次初始化Db.init的数据源。" + e.getMessage());
         }
-        /*try {
+        try {
             JdbcTemplate jdbcTemplate = SpringUtil.getBean(JdbcTemplate.class);
             jdbcTemplateMap.put(main, jdbcTemplate);
         } catch (Exception e) {
             System.err.println("warning : ExceptionInInitializerError 当前非Spring容器运行，请添加spring jdbc支持。" + e.getMessage());
-        }*/
+        }
     }
 
 
     /**
      * main方法，测试使用
-     *
      * @param args
      */
     public static void main(String[] args) {
@@ -123,10 +121,9 @@ public class Db<T> {
 //	************************************************************************************************************************************************
 
 
-    /*public static JdbcTemplate getJdbcTemplate() {
+    public static JdbcTemplate getJdbcTemplate() {
         return MAIN.getJdbcTemplate();
-    }*/
-
+    }
 
     public static  List<Map<String, Object>> queryList(String sql, Object... params) {
         return MAIN.queryList( sql,params );
@@ -174,16 +171,12 @@ public class Db<T> {
     }
 
 
-
-
     // Update ***********************************************************************************************************
     // Update ***********************************************************************************************************
 
     public static  Integer updateBean(Object bean) {
         return MAIN.updateBean( bean );
     }
-
-
 
 
     // Delete ***********************************************************************************************************
@@ -199,8 +192,6 @@ public class Db<T> {
     }
 
 
-
-
     public static  Boolean deleteBySql(String sql, Object... paras) {
         return MAIN.deleteBySql( sql,paras );
     }
@@ -211,13 +202,8 @@ public class Db<T> {
     }
 
 
-
-
-
     // Query ***********************************************************************************************************
     // Query ***********************************************************************************************************
-
-
 
     public  static <T> List<T> findBeanList(Class<T> clazz, String sql) {
         return MAIN.findBeanList( clazz,sql );
@@ -235,8 +221,6 @@ public class Db<T> {
     public static   <T> List  findBeanList(Class beanClass, Map<String, Object> params) {
         return MAIN.findBeanList( beanClass,params );
     }
-
-
 
     public static  <T> List findRecordList(String sql, Object... params) {
         return MAIN.findRecordList( sql,params );
@@ -256,7 +240,6 @@ public class Db<T> {
         return MAIN.findBeanPages( beanClass, page,rows );
     }
 
-
     public static <T> Page findBeanPages(Class beanClass, int page, int rows, Map<String, Object> params) {
         return MAIN.findBeanPages( beanClass, page,rows,params );
     }
@@ -265,7 +248,6 @@ public class Db<T> {
     public static  Page queryBeanPage(Class beanClass, int page, int rows) {
         return MAIN.queryBeanPage( beanClass, page,rows );
     }
-
 
     public static  Page queryBeanPage(Class beanClass, int page, int rows, Map<String, Object> params) {
         return MAIN.queryBeanPage( beanClass, page,rows,params );
@@ -292,11 +274,9 @@ public class Db<T> {
         return MAIN.findByColumnValueRecords( tableName, columnNames, columnValues);
     }
 
-
     public static <T> List findByColumnValueBeans(Class clazz, String columnNames, Object... columnValues) {
         return MAIN.findByColumnValueBeans( clazz, columnNames, columnValues);
     }
-
 
     public static <T> List findByWhereSqlForBean(Class clazz, String whereSql, Object... columnValues) {
         return MAIN.findByWhereSqlForBean( clazz, whereSql, columnValues);
@@ -307,21 +287,17 @@ public class Db<T> {
         return MAIN.paginate( pageNumber, limit, select, from);
     }
 
-
     public static Page<Record> paginate(Integer pageNumber, Integer limit, String select, String from, Map<String, Object> params) {
         return MAIN.paginate( pageNumber, limit, select, from, params);
     }
-
 
     //************************************************************************************************************************************************
     //Record end  **************************************************************************************************************************************
     //************************************************************************************************************************************************
 
-
     //************************************************************************************************************************************************
     //Mybatis  XML  SQL 111111111111111111  end   SqlXmlUtil *************************************************************************
     //************************************************************************************************************************************************
-
 
     public static Object executeSqlXml(String sqlXml, Map params) throws SQLException {
         return MAIN.executeSqlXml( sqlXml, params);
@@ -340,21 +316,10 @@ public class Db<T> {
     //************************************************************************************************************************************************
 
 
-
-
-
-
     //	************************************************************************************************************************************************
 //	  111111111111111111  begin   **************************************************************************************************************
 //	************************************************************************************************************************************************
 
-
-    /*static <T> List<T> query( String sql, Object... paras) throws SQLException {
-        return MAIN.query( sql, paras);
-    }*/
-
-    /**
-     */
     public static <T> List<T> query(String sql, Object... paras) {
         return MAIN.query(sql, paras);
     }
