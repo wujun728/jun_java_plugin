@@ -1,15 +1,9 @@
-package io.github.wujun728.db.util;
+package io.github.wujun728.db.dao.util;
 
-
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.sql.Types;
-import java.util.*;
-import java.util.stream.Collectors;
 
 import static io.github.wujun728.db.dao.EntityDao.*;
 

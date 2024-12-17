@@ -1,4 +1,4 @@
-package io.github.wujun728.db.bean;
+package io.github.wujun728.db.dao.bean;
 
 import io.github.wujun728.db.record.Page;
 import org.apache.commons.lang.ArrayUtils;

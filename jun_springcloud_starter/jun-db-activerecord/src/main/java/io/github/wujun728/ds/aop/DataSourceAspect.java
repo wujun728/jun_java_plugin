@@ -19,7 +19,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 @Aspect
 public class DataSourceAspect {
 
-    @Pointcut(value = "@annotation(com.tanghd.spring.dbutil.aop.DataSourceChange)")
+    @Pointcut(value = "@annotation(io.github.wujun728.ds.aop.DataSourceChange)")
     private void changeDS() {
     }
 
@@ -33,10 +33,10 @@ public class DataSourceAspect {
         try {
             if (null != annotation) {
                 selectedDataSource = true;
-                if (annotation.slave()) {
-                    DynamicDataSource.useSlave();
+                if (annotation.dsname().equalsIgnoreCase(DynamicDataSource.DEFAULT)) {
+                    DynamicDataSource.useMain();
                 } else {
-                    DynamicDataSource.useMaster();
+                    DynamicDataSource.useSlave();
                 }
             }
             retVal = pjp.proceed();

@@ -1,4 +1,4 @@
-package io.github.wujun728.db.util;
+package io.github.wujun728.db.dao.util;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;

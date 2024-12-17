@@ -1,11 +1,11 @@
 package io.github.wujun728.db.dao;
 
 
-import io.github.wujun728.db.bean.PageResult;
+import io.github.wujun728.db.dao.bean.PageResult;
 import io.github.wujun728.db.record.Page;
-import io.github.wujun728.db.util.CollectionUtil;
-import io.github.wujun728.db.util.EntityTools;
-import io.github.wujun728.db.util.SqlMakeTools;
+import io.github.wujun728.db.dao.util.CollectionUtil;
+import io.github.wujun728.db.dao.util.EntityTools;
+import io.github.wujun728.db.dao.util.SqlMakeTools;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;

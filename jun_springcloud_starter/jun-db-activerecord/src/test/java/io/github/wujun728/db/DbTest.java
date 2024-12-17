@@ -84,7 +84,7 @@ public class DbTest {
 
     @Test
     public void testFindByIds() throws Exception {
-        Record result1 = Db.findByIds("api_sql", "id,sql_id","1",1);
+        Record result1 = Db.use().findByIds("api_sql", "id,sql_id","1",1);
         Record result = Db.findByIds("api_sql", "id,sql_id", "2","getBizTests");
         StaticLog.info(JSONUtil.toJsonPrettyStr(result));
     }
@@ -186,7 +186,7 @@ public class DbTest {
 
     @Test
     public void findEntityList() throws Exception {
-        List<ApiSql> result = Db.findBeanList(ApiSql.class," select * from api_sql ",  null);
+        List<ApiSql> result = Db.findBeanList(ApiSql.class," select * from api_sql ");
         StaticLog.info(JSONUtil.toJsonPrettyStr(result));
     }
 

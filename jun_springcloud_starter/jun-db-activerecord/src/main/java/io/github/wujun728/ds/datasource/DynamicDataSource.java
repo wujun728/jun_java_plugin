@@ -17,14 +17,13 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * 继承{@link AbstractRoutingDataSource}
  * 配置主从数据源后，根据选择，返回对应的数据源。多个从库的情况下，会平均的分配从库，用于负载均衡。
- * 
- * @author tanghd
+ * @author wujun
  *
  */
 public class DynamicDataSource extends AbstractRoutingDataSource {
 
     private static final Logger LOG = LoggerFactory.getLogger(DynamicDataSource.class);
-    private static final String DEFAULT = "master";
+    public static final String DEFAULT = "main";
     private static final String SLAVE = "slave";
 
     private static final ThreadLocal<LinkedList<String>> datasourceHolder = new ThreadLocal<LinkedList<String>>() {
@@ -38,17 +37,13 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 
     private ScheduledExecutorService scheduleService = Executors.newSingleThreadScheduledExecutor();
 
-    private DataSource master; // 主库，只允许有一个
+    private DataSource main; // 主库，只允许有一个
 
     private List<DataSource> slaves; // 从库，允许有多个
     private CopyOnWriteArrayList<String> slaveKeys;
 
     private AtomicLong slaveCount = new AtomicLong();
 
-    private boolean slaveHealthCheck;
-    private int healthCheckPeriod;
-//    private JdbcConnectionChecker healthChecker;
-//    private SlaveDataSourceHealthChecker slaveChecker;
     private Map<Object, Object> dataSources = new HashMap<Object, Object>();
 
     /**
@@ -56,10 +51,10 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
      */
     @Override
     public void afterPropertiesSet() {
-        if (null == master) {
-            throw new IllegalArgumentException("Property 'master' is required");
+        if (null == main) {
+            throw new IllegalArgumentException("Property 'main' is required");
         }
-        dataSources.put(DEFAULT, master);
+        dataSources.put(DEFAULT, main);
         if (null != slaves && slaves.size() > 0) {
             slaveKeys = new CopyOnWriteArrayList<String>();
             for (int i = 0; i < slaves.size(); i++) {
@@ -67,28 +62,18 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
                 dataSources.put(key, slaves.get(i));
                 slaveKeys.add(key);
             }
-            //startHealthChecker();
         }
-        this.setDefaultTargetDataSource(master);
+        this.setDefaultTargetDataSource(main);
         this.setTargetDataSources(dataSources);
         super.afterPropertiesSet();
     }
 
-    /*private void startHealthChecker() {
-        if (slaveHealthCheck *//*&& null != healthChecker*//*) {
-            if (healthCheckPeriod <= 1) {
-                healthCheckPeriod = 1;
-            }
-            *//*slaveChecker = new SlaveDataSourceHealthChecker(slaveKeys, dataSources, healthChecker);
-            scheduleService.scheduleAtFixedRate(slaveChecker, this.healthCheckPeriod, this.healthCheckPeriod,
-                    TimeUnit.MINUTES);*//*
-        }
-    }*/
+
 
     /**
      * 选择使用主库，并把选择放到当前ThreadLocal的栈顶
      */
-    public static void useMaster() {
+    public static void useMain() {
         if (LOG.isDebugEnabled()) {
             LOG.debug("use datasource :" + datasourceHolder.get());
         }
@@ -158,44 +143,21 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
         }
     }
 
-    public DataSource getMaster() {
-        return master;
+    public DataSource getmain() {
+        return main;
     }
 
     public List<DataSource> getSlaves() {
         return slaves;
     }
 
-    public void setMaster(DataSource master) {
-        this.master = master;
+    public void setMain(DataSource main) {
+        this.main = main;
     }
 
     public void setSlaves(List<DataSource> slaves) {
         this.slaves = slaves;
     }
 
-    public int getHealthCheckPeriod() {
-        return healthCheckPeriod;
-    }
-
-    public void setHealthCheckPeriod(int healthCheckPeriod) {
-        this.healthCheckPeriod = healthCheckPeriod;
-    }
-
-    public boolean isSlaveHealthCheck() {
-        return slaveHealthCheck;
-    }
-
-    public void setSlaveHealthCheck(boolean slaveHealthCheck) {
-        this.slaveHealthCheck = slaveHealthCheck;
-    }
-
-    /*public JdbcConnectionChecker getHealthChecker() {
-        return healthChecker;
-    }*/
-
-//    public void setHealthChecker(JdbcConnectionChecker healthChecker) {
-//        this.healthChecker = healthChecker;
-//    }
 
 }

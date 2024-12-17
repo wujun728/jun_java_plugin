@@ -31,7 +31,22 @@ public class DataSourcePool {
     public volatile static ConcurrentHashMap<String, DataSource> dataSourceMap = new ConcurrentHashMap<>();
 
     public static DataSource init(String dsname,String url,String username,String password) {
-        return init(dsname,url,username,password,mysqlDriver5);
+        String driverName = mysqlDriver5;
+        driverName = identifyDatabaseTypeFromJdbcUrl(url);
+        return init(dsname,url,username,password,driverName);
+    }
+    public static String identifyDatabaseTypeFromJdbcUrl(String jdbcUrl) {
+        if (jdbcUrl.startsWith("jdbc:mysql:")) {
+            return mysqlDriver5;//            return "MySQL";
+        } else if (jdbcUrl.startsWith("jdbc:postgresql:")) {
+            return postgresqlDriver6;//            return "PostgreSQL";
+        } else if (jdbcUrl.startsWith("jdbc:oracle:")) {
+            return oracleDriver6;//            return "Oracle";
+        } else if (jdbcUrl.startsWith("jdbc:sqlserver:")) {
+            return sqlserverDriver6;//            return "SQL Server";
+        } else {
+            return "Unknown";
+        }
     }
     public static DataSource init(String dsname,String url,String username,String password,String driver) {
         if (dataSourceMap.containsKey(dsname)) {

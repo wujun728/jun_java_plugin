@@ -10,5 +10,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DataSourceChange {
-    boolean slave() default false;
+//    boolean slave() default false;
+    String dsname() default "main";
 }

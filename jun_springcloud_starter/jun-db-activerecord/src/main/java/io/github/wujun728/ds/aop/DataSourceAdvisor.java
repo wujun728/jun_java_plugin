@@ -34,10 +34,10 @@ public class DataSourceAdvisor implements MethodBeforeAdvice, AfterReturningAdvi
     public void before(Method method, Object[] args, Object target) throws Throwable {
         DataSourceChange annotation = method.getAnnotation(DataSourceChange.class);
         if (null != annotation) {
-            if (annotation.slave()) {
-                DynamicDataSource.useSlave();
+            if (annotation.dsname().equalsIgnoreCase(DynamicDataSource.DEFAULT)) {
+                DynamicDataSource.useMain();
             } else {
-                DynamicDataSource.useMaster();
+                DynamicDataSource.useSlave();
             }
         }
     }

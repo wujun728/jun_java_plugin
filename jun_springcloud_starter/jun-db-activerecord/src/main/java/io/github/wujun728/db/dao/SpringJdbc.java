@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.*;
 import java.util.Date;
 
-import io.github.wujun728.db.bean.PageResult;
+import io.github.wujun728.db.dao.bean.PageResult;
 import io.github.wujun728.db.record.Page;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.dao.support.DataAccessUtils;
@@ -16,7 +16,6 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterUtils;
-import org.springframework.stereotype.Component;
 
 public class SpringJdbc implements ISpringJdbc {
 

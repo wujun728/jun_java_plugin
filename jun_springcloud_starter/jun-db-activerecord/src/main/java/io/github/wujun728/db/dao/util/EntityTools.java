@@ -1,4 +1,4 @@
-package io.github.wujun728.db.util;
+package io.github.wujun728.db.dao.util;
 
 import com.gysoft.jdbc.annotation.Column;
 import com.gysoft.jdbc.annotation.Table;

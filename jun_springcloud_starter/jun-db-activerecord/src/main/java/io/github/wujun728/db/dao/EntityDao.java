@@ -1,6 +1,6 @@
 package io.github.wujun728.db.dao;
 
-import io.github.wujun728.db.bean.PageResult;
+import io.github.wujun728.db.dao.bean.PageResult;
 import io.github.wujun728.db.record.Page;
 import org.springframework.jdbc.core.RowMapper;
 

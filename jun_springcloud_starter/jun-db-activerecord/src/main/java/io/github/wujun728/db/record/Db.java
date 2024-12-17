@@ -1,35 +1,25 @@
 
 package io.github.wujun728.db.record;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.db.meta.MetaUtil;
-import cn.hutool.db.meta.Table;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
-import com.google.common.collect.Maps;
 import io.github.wujun728.db.record.dialect.IAtom;
 import io.github.wujun728.db.record.dialect.ICallback;
-import io.github.wujun728.db.record.exception.SqlException;
 import io.github.wujun728.db.utils.DataSourcePool;
-import io.github.wujun728.db.utils.RecordUtil;
-import io.github.wujun728.db.utils.SqlContext;
 import io.github.wujun728.db.utils.SqlUtil;
 import io.github.wujun728.rest.entity.ApiSql;
-import io.github.wujun728.sql.SqlXmlUtil;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Future;
-import java.util.function.Function;
 
 import static io.github.wujun728.db.record.DbPro.dataSourceMap;
 import static io.github.wujun728.db.record.DbPro.jdbcTemplateMap;
@@ -43,19 +33,18 @@ public class Db<T> {
     private static DbPro MAIN = null;
 
     public final static String main = "main";
-//    private static final Map<String, DbPro> cache = new HashMap<>(32, 0.25F);
     static {
         try {
             DataSource dataSource = SpringUtil.getBean(DataSource.class);
             if (dataSource != null) {
 //				dataSourceMap.put(main, dataSource);
                 Db.init(Db.main, dataSource);
-				/*try {
-					jdbcTemplate = SpringUtil.getBean(JdbcTemplate.class);
+				try {
+                    JdbcTemplate jdbcTemplate = SpringUtil.getBean(JdbcTemplate.class);
 					jdbcTemplateMap.put(main, jdbcTemplate);
 				} catch (Exception e) {
 					System.out.println("warning : ExceptionInInitializerError 当前非Spring容器运行，请添加spring jdbc支持。" + e.getMessage());
-				}*/
+				}
             }
         } catch (Exception e) {
             System.out.println("warning : ExceptionInInitializerError 当前非Spring容器运行，请首次初始化DbTemplate.init的数据源。" + e.getMessage());
@@ -70,7 +59,7 @@ public class Db<T> {
 
     public static DbPro use(String configName) {
         DbPro result = DbPro.cache.get(configName);
-        if (result == null || dataSourceMap.get(configName) == null || jdbcTemplateMap.get(configName) == null) {
+        if (result == null || dataSourceMap.get(configName) == null /*|| jdbcTemplateMap.get(configName) == null*/) {
             System.err.println("error : 当前Db.use(" + configName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的configName数据源。");
             throw new RuntimeException("error : 当前Db.use(" + configName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的configName数据源。");
         }
@@ -93,12 +82,12 @@ public class Db<T> {
         } catch (Exception e) {
             System.err.println("warning : ExceptionInInitializerError 当前非Spring容器运行，请首次初始化Db.init的数据源。" + e.getMessage());
         }
-        try {
+        /*try {
             JdbcTemplate jdbcTemplate = SpringUtil.getBean(JdbcTemplate.class);
             jdbcTemplateMap.put(main, jdbcTemplate);
         } catch (Exception e) {
             System.err.println("warning : ExceptionInInitializerError 当前非Spring容器运行，请添加spring jdbc支持。" + e.getMessage());
-        }
+        }*/
     }
 
 
@@ -134,10 +123,9 @@ public class Db<T> {
 //	************************************************************************************************************************************************
 
 
-    public static JdbcTemplate getJdbcTemplate() {
+    /*public static JdbcTemplate getJdbcTemplate() {
         return MAIN.getJdbcTemplate();
-    }
-
+    }*/
 
 
     public static  List<Map<String, Object>> queryList(String sql, Object... params) {
@@ -361,9 +349,9 @@ public class Db<T> {
 //	************************************************************************************************************************************************
 
 
-    static <T> List<T> query(Connection conn, String sql, Object... paras) throws SQLException {
-        return MAIN.query(conn, sql, paras);
-    }
+    /*static <T> List<T> query( String sql, Object... paras) throws SQLException {
+        return MAIN.query( sql, paras);
+    }*/
 
     /**
      */
@@ -546,9 +534,9 @@ public class Db<T> {
     /**
      * Execute sql update
      */
-    static int update(Connection conn, String sql, Object... paras) throws SQLException {
+    /*static int update(Connection conn, String sql, Object... paras) throws SQLException {
         return MAIN.update(conn, sql, paras);
-    }
+    }*/
 
     /**
      * Execute update, insert or delete sql statement.
@@ -570,9 +558,9 @@ public class Db<T> {
         return MAIN.update(sql);
     }
 
-    static List<Record> find(Connection conn, String sql, Object... paras) throws SQLException {
-        return MAIN.find(conn, sql, paras);
-    }
+    /*static List<Record> find( String sql, Object... paras) throws SQLException {
+        return MAIN.find( sql, paras);
+    }*/
 
     /**
      */
@@ -720,9 +708,9 @@ public class Db<T> {
         return MAIN.delete(sql);
     }
 
-    static Page<Record> paginate(Connection conn, int pageNumber, int pageSize, String select, String sqlExceptSelect, Object... paras) throws SQLException {
-        return MAIN.paginate(conn, pageNumber, pageSize, select, sqlExceptSelect, paras);
-    }
+    /*static Page<Record> paginate( int pageNumber, int pageSize, String select, String sqlExceptSelect, Object... paras) throws SQLException {
+        return MAIN.paginate( pageNumber, pageSize, select, sqlExceptSelect, paras);
+    }*/
 
     /**
      * Paginate.
@@ -755,9 +743,9 @@ public class Db<T> {
         return MAIN.paginateByFullSql(pageNumber, pageSize, isGroupBySql, totalRowSql, findSql, paras);
     }
 
-    static boolean save(Connection conn, String tableName, String primaryKey, Record record) throws SQLException {
+    /*static boolean save(Connection conn, String tableName, String primaryKey, Record record) throws SQLException {
         return MAIN.save(conn, tableName, primaryKey, record);
-    }
+    }*/
 
     /**
      * Save record.
@@ -781,9 +769,9 @@ public class Db<T> {
         return MAIN.save(tableName, record);
     }
 
-    static boolean update(Connection conn, String tableName, String primaryKey, Record record) throws SQLException {
-        return MAIN.update(conn, tableName, primaryKey, record);
-    }
+    /*static boolean update(String tableName, String primaryKey, Record record) throws SQLException {
+        return MAIN.update(tableName, primaryKey, record);
+    }*/
 
     /**
      * Update Record.
@@ -858,246 +846,6 @@ public class Db<T> {
         return MAIN.txInNewThread(transactionLevel, atom);
     }
 
-    /**
-     * Find Record by cache.
-     * @see #find(String, Object...)
-     * @param cacheName the cache name
-     * @param key the key used to get date from cache
-     * @return the list of Record
-     */
-//	public static List<Record> findByCache(String cacheName, Object key, String sql, Object... paras) {
-//		return MAIN.findByCache(cacheName, key, sql, paras);
-//	}
-
-    /**
-     * @see #findByCache(String, Object, String, Object...)
-     */
-//	public static List<Record> findByCache(String cacheName, Object key, String sql) {
-//		return MAIN.findByCache(cacheName, key, sql);
-//	}
-
-    /**
-     * Find first record by cache. I recommend add "limit 1" in your sql.
-     * @see #findFirst(String, Object...)
-     * @param cacheName the cache name
-     * @param key the key used to get date from cache
-     * @param sql an SQL statement that may contain one or more '?' IN parameter placeholders
-     * @param paras the parameters of sql
-     * @return the Record object
-     */
-//	public static Record findFirstByCache(String cacheName, Object key, String sql, Object... paras) {
-//		return MAIN.findFirstByCache(cacheName, key, sql, paras);
-//	}
-
-    /**
-     * @see #findFirstByCache(String, Object, String, Object...)
-     */
-//	public static Record findFirstByCache(String cacheName, Object key, String sql) {
-//		return MAIN.findFirstByCache(cacheName, key, sql);
-//	}
-
-    /**
-     * Paginate by cache.
-     * @see #paginate(int, int, String, String, Object...)
-     * @return Page
-     */
-//	public static Page<Record> paginateByCache(String cacheName, Object key, int pageNumber, int pageSize, String select, String sqlExceptSelect, Object... paras) {
-//		return MAIN.paginateByCache(cacheName, key, pageNumber, pageSize, select, sqlExceptSelect, paras);
-//	}
-//
-//	public static Page<Record> paginateByCache(String cacheName, Object key, int pageNumber, int pageSize, boolean isGroupBySql, String select, String sqlExceptSelect, Object... paras) {
-//		return MAIN.paginateByCache(cacheName, key, pageNumber, pageSize, isGroupBySql, select, sqlExceptSelect, paras);
-//	}
-
-    /**
-     * @see #paginateByCache(String, Object, int, int, String, String, Object...)
-     */
-//	public static Page<Record> paginateByCache(String cacheName, Object key, int pageNumber, int pageSize, String select, String sqlExceptSelect) {
-//		return MAIN.paginateByCache(cacheName, key, pageNumber, pageSize, select, sqlExceptSelect);
-//	}
-
-    /**
-     * @see DbPro#batch(String, Object[][], int)
-     */
-    public static int[] batch(String sql, Object[][] paras, int batchSize) {
-        return MAIN.batch(sql, paras, batchSize);
-    }
-
-    /**
-     * @see DbPro#batch(String, String, List, int)
-     */
-    public static int[] batch(String sql, String columns, List modelOrRecordList, int batchSize) {
-        return MAIN.batch(sql, columns, modelOrRecordList, batchSize);
-    }
-
-    /**
-     * @see DbPro#batch(List, int)
-     */
-    public static int[] batch(List<String> sqlList, int batchSize) {
-        return MAIN.batch(sqlList, batchSize);
-    }
-
-    /**
-     * @see DbPro#batchSave(List, int)
-     */
-//    public static int[] batchSave(List<? extends Model> modelList, int batchSize) {
-//    	return MAIN.batchSave(modelList, batchSize);
-//    }
-
-    /**
-     * @see DbPro#batchSave(String, List, int)
-     */
-    public static int[] batchSave(String tableName, List<? extends Record> recordList, int batchSize) {
-        return MAIN.batchSave(tableName, recordList, batchSize);
-    }
-
-    /**
-     * @see DbPro#batchUpdate(List, int)
-     */
-//    public static int[] batchUpdate(List<? extends Model> modelList, int batchSize) {
-//    	return MAIN.batchUpdate(modelList, batchSize);
-//    }
-
-    /**
-     * @see DbPro#batchUpdate(String, String, List, int)
-     */
-    public static int[] batchUpdate(String tableName, String primaryKey, List<? extends Record> recordList, int batchSize) {
-        return MAIN.batchUpdate(tableName, primaryKey, recordList, batchSize);
-    }
-
-    /**
-     * @see DbPro#batchUpdate(String, List, int)
-     */
-    public static int[] batchUpdate(String tableName, List<? extends Record> recordList, int batchSize) {
-        return MAIN.batchUpdate(tableName, recordList, batchSize);
-    }
-
-//    public static String getSql(String key) {
-//    	return MAIN.getSql(key);
-//    }
-
-    // 支持传入变量用于 sql 生成。为了避免用户将参数拼接在 sql 中引起 sql 注入风险，只在 SqlKit 中开放该功能
-    // public static String getSql(String key, Map data) {
-    //     return MAIN.getSql(key, data);
-    // }
-
-//    public static SqlPara getSqlPara(String key, Record record) {
-//    	return MAIN.getSqlPara(key, record);
-//    }
-//
-//    public static SqlPara getSqlPara(String key, Model model) {
-//    	return MAIN.getSqlPara(key, model);
-//    }
-//
-//    public static SqlPara getSqlPara(String key, Map data) {
-//    	return MAIN.getSqlPara(key, data);
-//    }
-//
-//    public static SqlPara getSqlPara(String key, Object... paras) {
-//    	return MAIN.getSqlPara(key, paras);
-//    }
-//
-//	public static SqlPara getSqlParaByString(String content, Map data) {
-//		return MAIN.getSqlParaByString(content, data);
-//	}
-//
-//	public static SqlPara getSqlParaByString(String content, Object... paras) {
-//		return MAIN.getSqlParaByString(content, paras);
-//	}
-//
-//    public static List<Record> find(SqlPara sqlPara) {
-//    	return MAIN.find(sqlPara);
-//    }
-//
-//    public static Record findFirst(SqlPara sqlPara) {
-//    	return MAIN.findFirst(sqlPara);
-//    }
-//
-//    public static int update(SqlPara sqlPara) {
-//    	return MAIN.update(sqlPara);
-//    }
-//
-//    public static Page<Record> paginate(int pageNumber, int pageSize, SqlPara sqlPara) {
-//    	return MAIN.paginate(pageNumber, pageSize, sqlPara);
-//    }
-//
-//	public static Page<Record> paginate(int pageNumber, int pageSize, boolean isGroupBySql, SqlPara sqlPara) {
-//		return MAIN.paginate(pageNumber, pageSize, isGroupBySql, sqlPara);
-//	}
-
-    // ---------
-
-    /**
-     * 迭代处理每一个查询出来的 Record 对象
-     * <pre>
-     * 例子：
-     * Db.each(record -> {
-     *    // 处理 record 的代码在此
-     *
-     *    // 返回 true 继续循环处理下一条数据，返回 false 立即终止循环
-     *    return true;
-     * }, sql, paras);
-     * </pre>
-     */
-    public static void each(Function<Record, Boolean> func, String sql, Object... paras) {
-        MAIN.each(func, sql, paras);
-    }
-
-    // ---------
-
-    /**
-     * 使用 sql 模板进行查询，可以省去 Db.getSqlPara(...) 调用
-     *
-     * <pre>
-     * 例子：
-     * Db.template("blog.find", Kv.by("id", 123).find();
-     * </pre>
-     */
-//	public static DbTemplate template(String key, Map data) {
-//		return MAIN.template(key, data);
-//	}
-
-    /**
-     * 使用 sql 模板进行查询，可以省去 Db.getSqlPara(...) 调用
-     *
-     * <pre>
-     * 例子：
-     * Db.template("blog.find", 123).find();
-     * </pre>
-     */
-//	public static DbTemplate template(String key, Object... paras) {
-//		return MAIN.template(key, paras);
-//	}
-
-    // ---------
-
-    /**
-     * 使用字符串变量作为 sql 模板进行查询，可省去外部 sql 文件来使用
-     * sql 模板功能
-     *
-     * <pre>
-     * 例子：
-     * String sql = "select * from blog where id = #para(id)";
-     * Db.templateByString(sql, Kv.by("id", 123).find();
-     * </pre>
-     */
-//	public static DbTemplate templateByString(String content, Map data) {
-//		return MAIN.templateByString(content, data);
-//	}
-
-    /**
-     * 使用字符串变量作为 sql 模板进行查询，可省去外部 sql 文件来使用
-     * sql 模板功能
-     *
-     * <pre>
-     * 例子：
-     * String sql = "select * from blog where id = #para(0)";
-     * Db.templateByString(sql, 123).find();
-     * </pre>
-     */
-//	public static DbTemplate templateByString(String content, Object... paras) {
-//		return MAIN.templateByString(content, paras);
-//	}
 }
 
 
