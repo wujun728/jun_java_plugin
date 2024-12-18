@@ -46,16 +46,16 @@ public class DbPro{
     private JdbcTemplate jdbcTemplate = null;
     private Dialect dialect = new MysqlDialect();
 
-    public static final Map<String, DbPro> cache = new HashMap<>(32, 0.25F);
-    public static final Map<String, JdbcTemplate> jdbcTemplateMap = new ConcurrentHashMap<>(24);
-    public static final Map<String, DataSource> dataSourceMap = new ConcurrentHashMap<>(24);
+    public volatile static ConcurrentHashMap<String, DbPro> cache = new ConcurrentHashMap<>(32, 0.25F);
+    public volatile static ConcurrentHashMap<String, JdbcTemplate> jdbcTemplateMap = new ConcurrentHashMap<>(32);
+    public volatile static ConcurrentHashMap<String, DataSource> dataSourceMap = new ConcurrentHashMap<>(32);
 
-    public static final int DB_BATCH_COUNT = 1024;
+    //public static final int DB_BATCH_COUNT = 1024;
     static final Object[] NULL_PARA_ARRAY = new Object[0];
-    public static final String MAIN_CONFIG_NAME = "main";
-    public static final int DEFAULT_TRANSACTION_LEVEL = Connection.TRANSACTION_REPEATABLE_READ;
+    private static final Map<String, String> TABLE_PK_MAP = new HashMap<>();
 
-    private static Map<String, String> TABLE_PK_MAP = new HashMap<>();
+    private final ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
+    int transactionLevel = Connection.TRANSACTION_REPEATABLE_READ;
 
     public DbPro() {
     }
@@ -63,9 +63,9 @@ public class DbPro{
         use(dsName);
     }
 
-    static DbPro use() {
+    /*static DbPro use() {
         return use(main);
-    }
+    }*/
 
     static DbPro use(String dsName) {
         DbPro result = DbPro.cache.get(dsName);
@@ -79,8 +79,6 @@ public class DbPro{
         }
         return result;
     }
-
-
 
     private static void registerRecord(DataSource dataSource) {
         List<String> tables = MetaUtil.getTables(dataSource);
@@ -639,10 +637,8 @@ public class DbPro{
         }
     }*/
 
-    /**
-     */
     public <T> List<T> query(String sql, Object... paras) {
-        List list = jdbcTemplate.queryForList(sql, paras);
+        //List list = jdbcTemplate.queryForList(sql, paras);
         return (List<T>) jdbcTemplate.query(sql, new RowMapper<Object[]>() {
             public Object[] mapRow(ResultSet rs, int rowNum) throws SQLException {
                 int colAmount = rs.getMetaData().getColumnCount();
@@ -915,7 +911,6 @@ public class DbPro{
     }
     // 26 queryXxx method under -----------------------------------------------
 
-    private final ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
 
     public void setThreadLocalConnection(Connection connection) {
         threadLocal.set(connection);
@@ -1118,6 +1113,10 @@ public class DbPro{
     public boolean deleteById(String tableName, Object idValue) {
         return deleteByIds(tableName, dialect.getDefaultPrimaryKey(), idValue);
     }
+    public boolean deleteByPrimaryKey(String tableName, Object idValue) {
+        String primaryKey = getPkNames(tableName);
+        return deleteByIds(tableName,primaryKey , idValue);
+    }
 
     public boolean deleteById(String tableName, String primaryKey, Object idValue) {
         return deleteByIds(tableName, primaryKey, idValue);
@@ -1181,7 +1180,8 @@ public class DbPro{
      * @see #delete(String, String, Record)
      */
     public boolean delete(String tableName, Record record) {
-        String defaultPrimaryKey = dialect.getDefaultPrimaryKey();
+        //String defaultPrimaryKey = dialect.getDefaultPrimaryKey();
+        String defaultPrimaryKey = getPkNames(tableName);
         Object t = record.get(defaultPrimaryKey);	// 引入中间变量避免 JDK 8 传参有误
         return deleteByIds(tableName, defaultPrimaryKey, t);
     }
@@ -1380,8 +1380,8 @@ public class DbPro{
      * @see #save(String, String, Record)
      */
     public boolean save(String tableName, Record record) {
-        //String primaryKey = getPkNames(tableName);
-        return save(tableName, dialect.getDefaultPrimaryKey(), record);
+        String primaryKey = getPkNames(tableName);
+        return save(tableName,primaryKey/*dialect.getDefaultPrimaryKey()*/, record);
     }
 
     /*protected boolean update( Connection conn, String tableName, String primaryKey, Record record) throws SQLException {
@@ -1455,7 +1455,8 @@ public class DbPro{
      * @see #update(String, String, Record)
      */
     public boolean update(String tableName, Record record) {
-        return update(tableName, dialect.getDefaultPrimaryKey(), record);
+        String primaryKey = getPkNames(tableName);
+        return update(tableName, primaryKey/*dialect.getDefaultPrimaryKey()*/, record);
     }
 
 
@@ -1534,7 +1535,7 @@ public class DbPro{
         }
     }
 
-    int transactionLevel = DEFAULT_TRANSACTION_LEVEL;
+
     void setTransactionLevel(int transactionLevel) {
         int t = transactionLevel;
         if (t != 0 && t != 1  && t != 2  && t != 4  && t != 8) {

@@ -1,11 +1,14 @@
 package io.github.wujun728.db.utils;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.spring.SpringUtil;
 import com.alibaba.druid.pool.DruidDataSource;
 //import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Db;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,8 +16,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-
 @Slf4j
+@Component
 public class DataSourcePool {
 
     public static final String main = "main";
@@ -54,7 +57,7 @@ public class DataSourcePool {
         } else {
             lock.lock();
             try {
-                log.info(Thread.currentThread().getName() + "获取锁");
+                //log.info(Thread.currentThread().getName() + "获取锁");
                 if (!dataSourceMap.containsKey(dsname)) {
                     DruidDataSource druidDataSource = new DruidDataSource();
                     druidDataSource.setName(dsname);
@@ -83,19 +86,19 @@ public class DataSourcePool {
         }
     }
     public static void add(String dsname,DataSource dataSource) {
-            lock.lock();
-            try {
-                log.info(Thread.currentThread().getName() + "获取锁");
-                dataSourceMap.put(dsname, dataSource);
-                if(main.equalsIgnoreCase(dsname)){
-                    Db.init(dsname,dataSource);
-                }
-                log.info("添加连接池成功：{}", dsname);
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                lock.unlock();
+        lock.lock();
+        try {
+            log.info(Thread.currentThread().getName() + "获取锁");
+            dataSourceMap.put(dsname, dataSource);
+            if(main.equalsIgnoreCase(dsname)){
+                Db.init(dsname,dataSource);
             }
+            log.info("添加连接池成功：{}", dsname);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
     }
     public static DataSource get(String dsname) {
         if(StrUtil.isEmpty(dsname)){

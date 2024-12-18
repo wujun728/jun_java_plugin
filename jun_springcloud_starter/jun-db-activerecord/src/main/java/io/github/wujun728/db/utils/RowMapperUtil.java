@@ -27,6 +27,20 @@ public class RowMapperUtil {
             return obj;
         };
     }
+    public static <T> RowMapper<T> newRowMapperObjs(){
+        //Map<String, Field> fieldMap = ReflectUtil.getFieldMap(clz);
+        return (rs, rowNum) -> {
+            int colAmount = rs.getMetaData().getColumnCount();
+            if (colAmount > 1) {
+                Object[] temp = new Object[colAmount];
+                for (int i=0; i<colAmount; i++) {
+                    temp[i] = rs.getObject(i + 1);
+                }
+                return (T) temp;
+            }
+            return null;
+        };
+    }
     public static RowMapper<Map<String,Object>> newMapMapper(){
         return (rs, rowNum) -> {
             Map<String,Object> obj = new HashMap<>();

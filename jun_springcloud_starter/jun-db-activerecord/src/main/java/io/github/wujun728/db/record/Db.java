@@ -10,7 +10,9 @@ import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.db.utils.SqlUtil;
 import io.github.wujun728.rest.entity.ApiSql;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -27,27 +29,27 @@ import static io.github.wujun728.db.record.DbPro.jdbcTemplateMap;
 /**
  * Db 操作类，支持SQL模式、Record模式，Bean模式（JPA Bean模式、Mybatis Entity模式）
  */
-@SuppressWarnings("rawtypes")
+@Component
 public class Db<T> {
 
     private static DbPro MAIN = null;
 
     public final static String main = "main";
-    static {
+
+    @PostConstruct
+    public void init(){
         try {
             DataSource dataSource = SpringUtil.getBean(DataSource.class);
             if (dataSource != null) {
                 Db.init(Db.main, dataSource);
-				try {
-                    JdbcTemplate jdbcTemplate = SpringUtil.getBean(JdbcTemplate.class);
-					jdbcTemplateMap.put(main, jdbcTemplate);
-				} catch (Exception e) {
-					System.out.println("warning : ExceptionInInitializerError 当前非Spring容器运行，请添加spring jdbc支持。" + e.getMessage());
-				}
+                DataSourcePool.add(main, dataSource);
+                StaticLog.info("main数据源，当前main默认注入容器DataSource数据源。");
+                StaticLog.info("jdbcTemplateMap.main，当前main数据源默认注入JdbcTemplate。");
             }
         } catch (Exception e) {
-            System.out.println("warning : ExceptionInInitializerError 当前非Spring容器运行，请首次初始化DbTemplate.init的数据源。" + e.getMessage());
+            StaticLog.error("warning : ExceptionInInitializerError 当前非Spring容器运行，请手动初始化Db.init的数据源。" + e.getMessage());
         }
+
     }
 
     public static DbPro use() {
@@ -67,28 +69,15 @@ public class Db<T> {
         return result;
     }
 
+    public static void init(DataSource dataSource) {
+        init(main,dataSource);
+    }
     public static void init(String dsName, DataSource dataSource) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplateMap.put(dsName, jdbcTemplate);
         dataSourceMap.put(dsName, dataSource);
         MAIN = DbPro.use(main);
     }
-
-    static {
-        try {
-            DataSource dataSource = SpringUtil.getBean(DataSource.class);
-            dataSourceMap.put(main, dataSource);
-        } catch (Exception e) {
-            System.err.println("warning : ExceptionInInitializerError 当前非Spring容器运行，请首次初始化Db.init的数据源。" + e.getMessage());
-        }
-        try {
-            JdbcTemplate jdbcTemplate = SpringUtil.getBean(JdbcTemplate.class);
-            jdbcTemplateMap.put(main, jdbcTemplate);
-        } catch (Exception e) {
-            System.err.println("warning : ExceptionInInitializerError 当前非Spring容器运行，请添加spring jdbc支持。" + e.getMessage());
-        }
-    }
-
 
     /**
      * main方法，测试使用
@@ -604,8 +593,12 @@ public class Db<T> {
      * @param idValue the id value of the record
      * @return true if delete succeed otherwise false
      */
+
     public static boolean deleteById(String tableName, Object idValue) {
         return MAIN.deleteById(tableName, idValue);
+    }
+    public static boolean deleteByPrimaryKey(String tableName, Object idValue) {
+        return MAIN.deleteByPrimaryKey(tableName, idValue);
     }
 
     public static boolean deleteById(String tableName, String primaryKey, Object idValue) {

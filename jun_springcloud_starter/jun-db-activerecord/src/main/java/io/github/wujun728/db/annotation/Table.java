@@ -1,4 +1,4 @@
-package com.gysoft.jdbc.annotation;
+package io.github.wujun728.db.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

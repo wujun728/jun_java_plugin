@@ -13,16 +13,15 @@ import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.generator.utils.GeneratorUtil;
-import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.rest.entity.ApiSql;
 import io.github.wujun728.rest.service.IRestApiService;
-import io.github.wujun728.sql.SqlXmlUtil;
+import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.sql.SqlMeta;
+import io.github.wujun728.sql.SqlXmlUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,11 +45,6 @@ public class RestSqlController {
 
     private static String main = "main";
 
-    @PostConstruct
-    public void init(){
-        DataSourcePool.add(main, SpringUtil.getBean(DataSource.class));
-        //ActiveRecordUtil.initActiveRecordPlugin(main,SpringUtil.getBean(DataSource.class));
-    }
     @Resource
     IRestApiService restApiService;
 

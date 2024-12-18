@@ -2,8 +2,8 @@ package ${packageName};
 <#if isAutoImport?exists && isAutoImport==true>
 import cn.hutool.core.bean.BeanUtil;
 import com.google.common.collect.Maps;
-import io.github.wujun728.db.Db;
-import io.github.wujun728.db.Page;
+import io.github.wujun728.db.record.Db;
+import io.github.wujun728.db.record.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +24,14 @@ public class ${classInfo.className}Controller {
     /**
     * 新增或编辑
     */
-    @PostMapping("/save")
+    @RequestMapping("/save")
     public Object save(${classInfo.className} ${classInfo.className?uncap_first}){
-        ${classInfo.className} ${classInfo.className?uncap_first}One= Db.findById(${classInfo.className}.class,${classInfo.className?uncap_first}.getId());
+        ${classInfo.className} ${classInfo.className?uncap_first}One= Db.findBeanById(${classInfo.className}.class,${classInfo.className?uncap_first}.getId());
         if(${classInfo.className?uncap_first}One!=null){
-            Db.update(${classInfo.className?uncap_first});
+            Db.updateBean(${classInfo.className?uncap_first});
             return ("编辑成功");
         }else{
-            Db.save(${classInfo.className?uncap_first});
+            Db.saveBean(${classInfo.className?uncap_first});
             return ("保存成功");
         }
     }
@@ -39,9 +39,9 @@ public class ${classInfo.className}Controller {
     /**
     * 删除
     */
-    @PostMapping("/delete")
+    @RequestMapping("/delete")
     public Object delete(int id){
-        ${classInfo.className} ${classInfo.className?uncap_first}One= Db.findById(${classInfo.className}.class,id);
+        ${classInfo.className} ${classInfo.className?uncap_first}One= Db.findBeanById(${classInfo.className}.class,id);
         if(${classInfo.className?uncap_first}One!=null){
             Db.deleteById("${classInfo.tableName}",id);
             return ("删除成功");
@@ -53,9 +53,9 @@ public class ${classInfo.className}Controller {
     /**
     * 查询
     */
-    @PostMapping("/find")
-    public Object find(int id){
-        ${classInfo.className} ${classInfo.className?uncap_first}One= Db.findById(${classInfo.className}.class,id);
+    @RequestMapping("/find/{id}")
+    public Object find(@PathVariable(value = "id") int id){
+        ${classInfo.className} ${classInfo.className?uncap_first}One= Db.findBeanById(${classInfo.className}.class,id);
         if(${classInfo.className?uncap_first}One!=null){
             return (${classInfo.className?uncap_first}One);
         }else{
@@ -66,21 +66,21 @@ public class ${classInfo.className}Controller {
     /**
     * 分页查询
     */
-    @PostMapping("/list")
+    @RequestMapping("/list")
     public Object list(${classInfo.className} ${classInfo.className?uncap_first}) {
-        List<${classInfo.className}> datas = Db.findList(${classInfo.className}.class,"select * from ${classInfo.tableName}");
+        List<${classInfo.className}> datas = Db.findBeanList(${classInfo.className}.class,"select * from ${classInfo.tableName}");
         return datas;
     }
 
     /**
      * 分页查询
      */
-    @PostMapping("/page")
+    @RequestMapping("/page")
     public Object page(${classInfo.className} ${classInfo.className?uncap_first},
                        @RequestParam(required = false, defaultValue = "0") int pageNumber,
                        @RequestParam(required = false, defaultValue = "10") int pageSize) {
         Map params = BeanUtil.beanToMap(${classInfo.className?uncap_first},true,true);
-        Page<${classInfo.className}> page= Db.findPages(${classInfo.className}.class,pageNumber,pageSize, params);
+        Page<${classInfo.className}> page= Db.findBeanPages(${classInfo.className}.class,pageNumber,pageSize, params);
         return (page);
     }
 

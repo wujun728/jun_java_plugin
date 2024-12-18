@@ -1,20 +1,11 @@
 package io.github.wujun728.code;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.collection.ListUtil;
-import cn.hutool.core.io.file.PathUtil;
 import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.StrUtil;
 import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.generator.CodeUtil;
-import io.github.wujun728.sql.util.RegexUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.RegExUtils;
 
 import javax.sql.DataSource;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Map;
 
 @Slf4j
 public class CodeUtilTest {
@@ -23,7 +14,6 @@ public class CodeUtilTest {
         //testAllGroup();
         testDbRecordGroup();
     }
-
 
     private static void testDbRecordGroup() {
         String url = "jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC&useInformationSchema=true";

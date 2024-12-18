@@ -1,4 +1,4 @@
-package com.gysoft.jdbc.annotation;
+package io.github.wujun728.db.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -21,4 +21,6 @@ public @interface Column {
      * @return String
      */
     String name() default "";
+    boolean ignore() default false;
+    boolean parimryKey() default false;
 }

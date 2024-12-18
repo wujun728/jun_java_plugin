@@ -9,7 +9,6 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Column;
 import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
-import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.json.JSONUtil;
@@ -32,10 +31,8 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.*;
 import java.util.Collection;
 import java.util.List;
@@ -53,11 +50,7 @@ public class RestApiController {
 
     private String main = "main";
 
-    @PostConstruct
-    public void init(){
-        DataSourcePool.add(main, SpringUtil.getBean(DataSource.class));
-        //ActiveRecordUtil.initActiveRecordPlugin(main,SpringUtil.getBean(DataSource.class));
-    }
+
 
     @GetMapping(path = {"/{entityName}/list"}, produces = "application/json")
     //@ApiOperation(value = "返回实体数据列表", notes = "page与size同时大于零时返回分页实体数据列表,否则返回全部数据列表;
