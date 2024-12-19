@@ -15,7 +15,6 @@
 	</properties>
 
 	<modules>
-		<module>jun_activerecord</module>
 		<module>jun_activiti</module>
 		<module>jun_algorithm</module>
 		<module>jun_aliyun_sms</module>
