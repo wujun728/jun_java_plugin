@@ -39,6 +39,7 @@ public class BaseEntity {
 	@TableField(exist = false)
 	private Integer isOwner;
 
+
 //	public Page getQueryPage(){
 //        Page page = new Page(getPage(), getLimit());
 //        return page;
