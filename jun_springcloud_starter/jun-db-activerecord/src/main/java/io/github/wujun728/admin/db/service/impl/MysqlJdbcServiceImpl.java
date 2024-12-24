@@ -2,6 +2,7 @@ package io.github.wujun728.admin.db.service.impl;
 
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.spring.SpringUtil;
 import io.github.wujun728.admin.common.BaseData;
 import io.github.wujun728.admin.common.Result;
 import io.github.wujun728.admin.common.config.UserSession;
@@ -26,14 +27,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service("jdbcService")
-@ConditionalOnProperty(value="db.type",havingValue = "mysql")
+//@ConditionalOnProperty(value="db.type",havingValue = "mysql")
 @Slf4j
 public class MysqlJdbcServiceImpl extends MysqlJdbcDaoImpl implements JdbcService {
     @Resource
     private TableService tableService;
 
-    @Resource
-    private LogService logService;
+//    @Resource
+//    private LogService logService;
 
     UserSession getSession(){
         UserSession userSession = new UserSession();
@@ -88,7 +89,14 @@ public class MysqlJdbcServiceImpl extends MysqlJdbcDaoImpl implements JdbcServic
         Long id = this.insert("执行" + tableName + "insert ", sql, values.toArray());
         obj.setId(id);
 
-        logService.log(null,obj);
+        log(obj);
+    }
+
+    private static void log(BaseData obj) {
+        LogService logService = SpringUtil.getBean(LogService.class);
+        if (logService != null) {
+            logService.log(null, obj);
+        }
     }
 
     @Override
@@ -127,7 +135,10 @@ public class MysqlJdbcServiceImpl extends MysqlJdbcDaoImpl implements JdbcServic
 
         Long id = this.insert("执行" + tableName + "insert ", sql, values.toArray());
         obj.put("id",id);
-        logService.log(null,obj,tableName);
+        LogService logService = SpringUtil.getBean(LogService.class);
+        if(logService!=null){
+            logService.log(null,obj,tableName);
+        }
     }
 
     @Override
@@ -165,7 +176,11 @@ public class MysqlJdbcServiceImpl extends MysqlJdbcDaoImpl implements JdbcServic
 
         BaseData beforeObj = getById(obj.getClass(), obj.getId());
         this.update(StrUtil.format("更新{},{}",tableName,obj.getId()),sql,values.toArray());
-        logService.log(beforeObj,obj);
+        LogService logService = SpringUtil.getBean(LogService.class);
+        if(logService!=null){
+            logService.log(beforeObj,obj);
+        }
+
     }
 
     @Override
@@ -202,7 +217,10 @@ public class MysqlJdbcServiceImpl extends MysqlJdbcDaoImpl implements JdbcServic
         values.add(id);
         Map<String, Object> beforeObj = getById(tableName, id);
         this.update(StrUtil.format("更新{},{}",tableName,id),sql,values.toArray());
-        logService.log(beforeObj,obj,tableName);
+        LogService logService = SpringUtil.getBean(LogService.class);
+        if(logService!=null){
+            logService.log(beforeObj,obj,tableName);
+        }
     }
 
     @Override
@@ -276,7 +294,10 @@ public class MysqlJdbcServiceImpl extends MysqlJdbcDaoImpl implements JdbcServic
         }
         Map<String, Object> beforeObj = getById(tableName, id);
         super.update("删除",StrUtil.format("delete from {} where id = ? ",tableName),id);
-        logService.log(beforeObj,null,tableName);
+        LogService logService = SpringUtil.getBean(LogService.class);
+        if(logService!=null){
+            logService.log(beforeObj,null,tableName);
+        }
     }
 
     @Override

@@ -31,7 +31,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service("jdbcDao")
-@ConditionalOnProperty(value="db.type",havingValue = "mysql")
+//@ConditionalOnProperty(value="db.type",havingValue = "mysql")
 @Slf4j
 public class MysqlJdbcDaoImpl implements JdbcDao {
     @Resource

@@ -26,7 +26,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service("tableService")
-@ConditionalOnProperty(value="db.type",havingValue = "mysql")
+//@ConditionalOnProperty(value="db.type",havingValue = "mysql")
 @Slf4j
 public class MysqlTableServiceImpl extends AbstractCacheService<Result<TableInfo>> implements TableService {
     @Resource

@@ -60,14 +60,20 @@ public class DbPro{
     public DbPro() {
     }
     public DbPro(String dsName) {
-        use(dsName);
+        init(dsName);
     }
+    /*public DbPro(String dsName,DataSource dataSource,JdbcTemplate jdbcTemplate,Dialect dialect) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.dataSource = dataSource;
+        this.dialect = dialect;
+        init(dsName);
+    }*/
 
     /*static DbPro use() {
         return use(main);
     }*/
 
-    static DbPro use(String dsName) {
+    static DbPro init(String dsName) {
         DbPro result = DbPro.cache.get(dsName);
         if (result == null) {
             result = new DbPro();
@@ -977,7 +983,7 @@ public class DbPro{
         return update(sql, NULL_PARA_ARRAY);
     }
 
-    protected List<Record> find(String sql, Object... paras)  {
+    public List<Record> find(String sql, Object... paras)  {
         List<Map<String, Object>> results = queryList(sql,paras);
         return RecordUtil.mappingList(results);
     }

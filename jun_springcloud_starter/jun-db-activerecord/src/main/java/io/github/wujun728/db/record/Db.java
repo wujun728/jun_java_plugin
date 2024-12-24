@@ -76,7 +76,8 @@ public class Db<T> {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplateMap.put(dsName, jdbcTemplate);
         dataSourceMap.put(dsName, dataSource);
-        MAIN = DbPro.use(main);
+        DbPro.init(dsName);
+        MAIN = DbPro.init(main);
     }
 
     /**

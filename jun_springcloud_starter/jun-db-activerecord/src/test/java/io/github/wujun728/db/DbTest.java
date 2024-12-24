@@ -4,7 +4,6 @@ import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
-import cn.hutool.system.SystemUtil;
 import com.google.common.collect.Maps;
 import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Page;
@@ -32,14 +31,13 @@ public class DbTest {
         String url = "jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC&useInformationSchema=true";
         String username = "root";
         String password = "";
-        String driver = "com.mysql.cj.jdbc.Driver";
         DataSource dataSource = DataSourcePool.init("main",url,username,password);
         Db.init(main,dataSource);
     }
 
     @Test
     public void testqueryStr() throws Exception {
-        String sqlId = Db.queryStr("select sql_text from api_sql  limit 1 ");
+        String sqlId = Db.use(main).queryStr("select sql_text from api_sql  limit 1 ");
         StaticLog.info(JSONUtil.toJsonStr(sqlId));
 
     }
@@ -50,7 +48,7 @@ public class DbTest {
                 "\t\tFROM gen_table t\n" +
                 "\t\t\t LEFT JOIN gen_table_column c ON t.table_id = c.table_id\n" +
                 "\t\twhere t.table_name = #{tableName} order by c.sort ";
-        List<Map<String, Object>> result = Db.querySqlXml(sql,MapUtil.of("tableName","biz_test"));
+        List<Map<String, Object>> result = Db.use(main).querySqlXml(sql,MapUtil.of("tableName","biz_test"));
         StaticLog.info(JSONUtil.toJsonStr(result));
         List<Record> records  = RecordUtil.mappingList(result);
         StaticLog.info(JSONUtil.toJsonStr(records));
@@ -58,69 +56,69 @@ public class DbTest {
 
     @Test
     public void testfindByColumnValueRecords() throws Exception {
-        List<Record> result = Db.findByColumnValueRecords("api_sql","group","default");
+        List<Record> result = Db.use(main).findByColumnValueRecords("api_sql","group","default");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
     @Test
     public void testfindByColumnValueBeans() throws Exception {
-        List<ApiSql> result = Db.findByColumnValueBeans(ApiSql.class,"group,sql_id","default","queryTest45765727");
+        List<ApiSql> result = Db.use(main).findByColumnValueBeans(ApiSql.class,"group,sql_id","default","queryTest45765727");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
     @Test
     public void testfindByWhereSqlForBean() throws Exception {
-        List<ApiSql> result = Db.findByWhereSqlForBean(ApiSql.class,"`group`=? and `sql_id`=? ","default","queryTest45765727");
+        List<ApiSql> result = Db.use(main).findByWhereSqlForBean(ApiSql.class,"`group`=? and `sql_id`=? ","default","queryTest45765727");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
     @Test
     public void testFindById() throws Exception {
-        Record result = Db.findById("biz_test", "11");
+        Record result = Db.use(main).findById("biz_test", "11");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
     @Test
     public void testFindBySql() throws Exception {
-        List<Record> result = Db.find(" select * from api_sql ");
+        List<Record> result = Db.use(main).find(" select * from api_sql ");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
     @Test
     public void testFindBySql2() throws Exception {
-        List<Record> result = Db.find(" select * from api_sql where id = ? ",new Object[]{1});
+        List<Record> result = Db.use(main).find(" select * from api_sql where id = ? ",new Object[]{1});
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
     @Test
     public void testFindByIds() throws Exception {
-        Record result1 = Db.use().findByIds("api_sql", "id,sql_id","1",1);
-        Record result = Db.findByIds("api_sql", "id,sql_id", "2","getBizTests");
+        Record result1 = Db.use(main).findByIds("api_sql", "id,sql_id","1",1);
+        Record result = Db.use(main).findByIds("api_sql", "id,sql_id", "2","getBizTests");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
     @Test
     public void testDeleteById() throws Exception {
-        Boolean result = Db.deleteById("biz_test", "1111");
+        Boolean result = Db.use(main).deleteById("biz_test", "1111");
         StaticLog.info(String.valueOf(result));
     }
 
     @Test
     public void testDeleteByIds() throws Exception {
-        Boolean result = Db.deleteById("api_sql", "sql_id","getBizTests111");
+        Boolean result = Db.use(main).deleteById("api_sql", "sql_id","getBizTests111");
         StaticLog.info(String.valueOf(result));
     }
 
     @Test
     public void testFind2() throws Exception {
-        List<Record> result = Db.find(" select * from api_sql where 1=1 and sql_id = ?", "getBizTests");
+        List<Record> result = Db.use(main).find(" select * from api_sql where 1=1 and sql_id = ?", "getBizTests");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
     @Test
     public void testPaginate() throws Exception {
-        Page<Record> result = Db.paginate(Integer.valueOf(1), Integer.valueOf(10), " select * ", " from api_sql where 1=1 ");
+        Page<Record> result = Db.use(main).paginate(Integer.valueOf(1), Integer.valueOf(10), " select * ", " from api_sql where 1=1 ");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
     @Test
     public void testPaginate2() throws Exception {
-        Page<Record> result = Db.paginate(Integer.valueOf(1), Integer.valueOf(10), " select * ", " from api_sql where 1=1  ");
+        Page<Record> result = Db.use(main).paginate(Integer.valueOf(1), Integer.valueOf(10), " select * ", " from api_sql where 1=1  ");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
@@ -132,7 +130,7 @@ public class DbTest {
         record.set("id", RandomUtil.randomInt());
         record.set("sql_text", "select * from biz_test");
         record.set("group", "default");
-        boolean result = Db.save("api_sql", record);
+        boolean result = Db.use(main).save("api_sql", record);
         StaticLog.info(String.valueOf(result));
     }
 
@@ -143,56 +141,56 @@ public class DbTest {
         record.set("id", 1243333560);
         record.set("sql_text", "select * from biz_test");
         record.set("group", "default");
-        boolean result = Db.update("api_sql", record);
+        boolean result = Db.use(main).update("api_sql", record);
         StaticLog.info(String.valueOf(result));
     }
 
 
     @Test
     public void testQuery() throws Exception {
-        List result = Db.find(" select * from api_sql where sql_id = ?", "queryTest");
+        List result = Db.use(main).find(" select * from api_sql where sql_id = ?", "queryTest");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
     @Test
     public void testQuery2() throws Exception {
-        List result = Db.queryList(" select * from api_sql where sql_id ='queryTest' ");
+        List result = Db.use(main).queryList(" select * from api_sql where sql_id ='queryTest' ");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
     @Test
     public void testUpdate2() throws Exception {
-        int result = Db.updateSql("  update api_sql set datasource_id=datasource_id||'1' where sql_id ='queryTest'  ");
+        int result = Db.use(main).updateSql("  update api_sql set datasource_id=datasource_id||'1' where sql_id ='queryTest'  ");
         StaticLog.info(String.valueOf(result));
     }
 
     @Test
     public void testDeleteById2() throws Exception {
-        boolean result = Db.deleteById("api_sql", "sql_id","queryTest-1242227800");
+        boolean result = Db.use(main).deleteById("api_sql", "sql_id","queryTest-1242227800");
         StaticLog.info(String.valueOf(result));
     }
 
     @Test
     public void testDeleteById3() throws Exception {
-        boolean result = Db.deleteByIds("api_sql", "id,sql_id", "-1946801918","queryTest-1242227800");
+        boolean result = Db.use(main).deleteByIds("api_sql", "id,sql_id", "-1946801918","queryTest-1242227800");
         StaticLog.info(String.valueOf(result));
     }
 
     @Test
     public void testDelete() throws Exception {
-        Boolean result = Db.deleteBySql("delete from api_sql where sql_id = ? ", "paras");
+        Boolean result = Db.use(main).deleteBySql("delete from api_sql where sql_id = ? ", "paras");
         StaticLog.info(String.valueOf(result));
     }
 
     @Test
     public void testDelete2() throws Exception {
-        boolean result = Db.deleteBySql("delete from api_sql where sql_id = 'paras' ");
+        boolean result = Db.use(main).deleteBySql("delete from api_sql where sql_id = 'paras' ");
         StaticLog.info(String.valueOf(result));
     }
 
     @Test
     public void findEntityList() throws Exception {
-        List<ApiSql> result = Db.findBeanList(ApiSql.class," select * from api_sql ");
+        List<ApiSql> result = Db.use(main).findBeanList(ApiSql.class," select * from api_sql ");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
@@ -202,7 +200,7 @@ public class DbTest {
         sql.setSqlId("test1"+RandomUtil.randomNumbers(9));
         sql.setSqlText("select * from test1");
         sql.setGroup("test11");
-        Integer result = Db.saveBeanBackPrimaryKey(sql);
+        Integer result = Db.use(main).saveBeanBackPrimaryKey(sql);
         StaticLog.info(String.valueOf(result));
     }
 
@@ -212,7 +210,7 @@ public class DbTest {
         sql.setSqlId("test1"+RandomUtil.randomNumbers(9));
         sql.setSqlTextq("select * from test1");
         sql.setGroup("test11");
-        Integer result = Db.saveBean(sql);
+        Integer result = Db.use(main).saveBean(sql);
         StaticLog.info(String.valueOf(result));
     }
 
@@ -223,7 +221,7 @@ public class DbTest {
         sql.setSqlTextq("select * from test1");
         sql.setGroup("test11");
         sql.setId(1243333565);
-        Integer result = Db.updateBean(sql);
+        Integer result = Db.use(main).updateBean(sql);
         StaticLog.info(String.valueOf(result));
     }
 
@@ -235,31 +233,31 @@ public class DbTest {
 //        sql.setSqlText("select * from test1");
 //        sql.setGroup("test11");
         sql.setId(1243333565);
-        Integer result = Db.deleteBean(sql);
+        Integer result = Db.use(main).deleteBean(sql);
         StaticLog.info(String.valueOf(result));
     }
 
 
     @Test
     public void testGetById() throws Exception {
-        ApiSql result = (ApiSql) Db.findBeanByIds(ApiSql.class,"id,sql_id",1243333563,"test1622823114");
+        ApiSql result = (ApiSql) Db.use(main).findBeanByIds(ApiSql.class,"id,sql_id",1243333563,"test1622823114");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
     @Test
     public void testGetByParams() throws Exception {
-        ApiSql result = (ApiSql) Db.findBeanById(ApiSql.class,1243333563,"test1622823114");
+        ApiSql result = (ApiSql) Db.use(main).findBeanById(ApiSql.class,1243333563,"test1622823114");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
     @Test
     public void testQueryAll() throws Exception {
-        List result = Db.find(SqlUtil.getSelect(ApiSql.class).getSql());
+        List result = Db.use(main).find(SqlUtil.getSelect(ApiSql.class).getSql());
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
     @Test
     public void testCount() throws Exception {
-        Integer result = Db.count(" select count(1) from api_sql ");
+        Integer result = Db.use(main).count(" select count(1) from api_sql ");
         StaticLog.info(String.valueOf(result));
     }
     @Test
@@ -271,16 +269,16 @@ public class DbTest {
 
     @Test
     public void testQueryPage() throws Exception {
-        Page result = Db.use().findBeanPages(ApiSql.class, 1, 10);
+        Page result = Db.use(main).findBeanPages(ApiSql.class, 1, 10);
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
     @Test
     public void testQueryPage2() throws Exception {
-        Page result = Db.findBeanPages(ApiSql.class, 1, 10, Maps.newHashMap());
+        Page result = Db.use(main).findBeanPages(ApiSql.class, 1, 10, Maps.newHashMap());
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
     @Test
     public void testQueryPage2111() throws Exception {
-//        Db.findBeanPages()
+//        Db.use(main).findBeanPages()
     }
 }
