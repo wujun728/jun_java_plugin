@@ -15,7 +15,7 @@
         <module>jun-db-activerecord</module>
         <module>jun-common-base</module>
         <module>jun-common-core</module>
-        <module>jun-groovyApi-spring-boot-starter</module>
+        <module>jun-groovy-api-spring-boot-starter</module>
         <module>jun-uidgenerator-spring-boot-starter</module>
         <module>jun-codegen-spring-boot-starter</module>
         <module>jun-onlineForm-spring-boot-starter</module>
