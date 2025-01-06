@@ -4,10 +4,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
-import cn.hutool.log.StaticLog;
 import com.google.common.collect.Maps;
-//import io.github.wujun728.db.record.bean.IAtom;
-//import io.github.wujun728.db.record.bean.ICallback;
 import io.github.wujun728.db.record.dialect.*;
 import io.github.wujun728.db.record.exception.ActiveRecordException;
 import io.github.wujun728.db.record.exception.SqlException;
@@ -34,8 +31,6 @@ import java.time.LocalTime;
 import java.time.temporal.Temporal;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
 
 import static io.github.wujun728.db.record.Db.main;
 
@@ -49,10 +44,8 @@ public class DbPro{
     private Dialect dialect = new MysqlDialect();
 
     public volatile static ConcurrentHashMap<String, DbPro> cache = new ConcurrentHashMap<>(32, 0.25F);
-    public volatile static ConcurrentHashMap<String, JdbcTemplate> jdbcTemplateMap = new ConcurrentHashMap<>(32);
     public volatile static ConcurrentHashMap<String, DataSource> dataSourceMap = new ConcurrentHashMap<>(32);
 
-    //public static final int DB_BATCH_COUNT = 1024;
     static final Object[] NULL_PARA_ARRAY = new Object[0];
     private static final Map<String, String> TABLE_PK_MAP = new HashMap<>();
 
@@ -61,27 +54,15 @@ public class DbPro{
 
     public DbPro() {
     }
-    public DbPro(String dsName) {
-        init(dsName);
-    }
-    /*public DbPro(String dsName,DataSource dataSource,JdbcTemplate jdbcTemplate,Dialect dialect) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.dataSource = dataSource;
-        this.dialect = dialect;
-        init(dsName);
-    }*/
 
-    /*static DbPro use() {
-        return use(main);
-    }*/
-
-    static DbPro init(String dsName) {
+    static DbPro init(String dsName,DataSource dataSource,JdbcTemplate jdbcTemplate) {
         DbPro result = DbPro.cache.get(dsName);
         if (result == null) {
             result = new DbPro();
-            result.setJdbcTemplate(DbPro.jdbcTemplateMap.get(dsName));
-            result.setDataSource(DbPro.dataSourceMap.get(dsName));
+            result.setJdbcTemplate(jdbcTemplate);
+            result.setDataSource(dataSource);
             result.setDialect(DbPro.getDialect(result.getDataSource()));
+            dataSourceMap.put(dsName,dataSource);
             DbPro.registerRecord(result.getDataSource());
             DbPro.cache.put(dsName, result);
         }
@@ -101,7 +82,6 @@ public class DbPro{
         return this.jdbcTemplate;
     }
 
-
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -111,16 +91,13 @@ public class DbPro{
         return this.dataSource;
     }
 
-
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-
     public Dialect getDialect() {
         return dialect;
     }
-
 
     public void setDialect(Dialect dialect) {
         this.dialect = dialect;
@@ -162,7 +139,6 @@ public class DbPro{
      * 私有方法   66666666666666666666
      ********************************************************************************/
 
-
     private int updateSql(SqlContext sqlContext) {
         int result;
         String sql = null;
@@ -189,7 +165,7 @@ public class DbPro{
         String sql = null;
         try {
             sql = sqlContext.getSql();
-            return jdbcTemplate.queryForObject(sql, Integer.class, sqlContext.getParams());
+            return getJdbcTemplate().queryForObject(sql, Integer.class, sqlContext.getParams());
             //return queryInt(sql,sqlContext.getParams());
         } catch (Exception e) {
             throw new SqlException(e, sql);
@@ -198,7 +174,7 @@ public class DbPro{
 
 
     public List<Map<String, Object>> queryList(String sql, Object... params) {
-        return jdbcTemplate.queryForList(sql,params);
+        return getJdbcTemplate().queryForList(sql,params);
     }
 
 
@@ -214,11 +190,11 @@ public class DbPro{
      * Execute sql update
      */
     public int update(String sql, Object... params) {
-        return jdbcTemplate.update(sql,params);
+        return getJdbcTemplate().update(sql,params);
     }
     public String queryForString(String sql, Object[] params) {
         try {
-            return jdbcTemplate.queryForObject(sql, String.class, params);
+            return getJdbcTemplate().queryForObject(sql, String.class, params);
         } catch (Exception e) {
             throw new SqlException(e, sql);
         }
@@ -226,7 +202,7 @@ public class DbPro{
 
     public Date queryForDate(String sql, Object[] params) {
         try {
-            return jdbcTemplate.queryForObject(sql, Date.class, params);
+            return getJdbcTemplate().queryForObject(sql, Date.class, params);
             //return queryDate(sql,params);
         } catch (Exception e) {
             throw new SqlException(e, sql);
@@ -236,7 +212,7 @@ public class DbPro{
     public Map<String, Object> queryMap(String sql, Object... idValues) {
         Map<String, Object> resultMap;
         try {
-            resultMap = jdbcTemplate.queryForMap(sql, idValues);
+            resultMap = getJdbcTemplate().queryForMap(sql, idValues);
             return resultMap;
             //return queryFirstMap(sql,idValues);
         } catch (EmptyResultDataAccessException e) {
@@ -267,7 +243,7 @@ public class DbPro{
 
     public Integer saveBeanBackPrimaryKey(Object bean) {
         saveBean(bean);
-        return jdbcTemplate.queryForObject("SELECT last_insert_id() as id", Integer.class);
+        return getJdbcTemplate().queryForObject("SELECT last_insert_id() as id", Integer.class);
         //return queryInt("SELECT last_insert_id() as id");
     }
 
@@ -435,7 +411,7 @@ public class DbPro{
 
     public int count(String sql, Object... params) {
         try {
-            return jdbcTemplate.queryForObject(sql, Integer.class, params);
+            return getJdbcTemplate().queryForObject(sql, Integer.class, params);
             //return queryInt(sql,params);
         } catch (Exception e) {
             throw new SqlException(e, sql);
@@ -564,15 +540,15 @@ public class DbPro{
 
 
     public Object executeSqlXml(String sqlXml, Map params) throws SQLException {
-        return SqlXmlUtil.executeSql(dataSource.getConnection(), sqlXml, params, true);
+        return SqlXmlUtil.executeSql(getDataSource().getConnection(), sqlXml, params, true);
     }
 
     public int updateSqlXml(String sqlXml, Map params) throws SQLException {
-        return SqlXmlUtil.update(dataSource.getConnection(), sqlXml, params);
+        return SqlXmlUtil.update(getDataSource().getConnection(), sqlXml, params);
     }
 
     public List<Map<String, Object>> querySqlXml(String sqlXml, Map params) throws SQLException {
-        return SqlXmlUtil.query(dataSource.getConnection(), sqlXml, params);
+        return SqlXmlUtil.query(getDataSource().getConnection(), sqlXml, params);
     }
 
     //************************************************************************************************************************************************
@@ -582,12 +558,12 @@ public class DbPro{
 
     public  <T> List<Map<String, Object>> queryMaps(String sql, Object... paras) {
         List result = new ArrayList();
-        return jdbcTemplate.queryForList(sql,paras);
+        return getJdbcTemplate().queryForList(sql,paras);
     }
 
     public <T> List<T> query(String sql, Object... paras) {
         //List list = jdbcTemplate.queryForList(sql, paras);
-        return (List<T>) jdbcTemplate.query(sql, new RowMapper<Object[]>() {
+        return (List<T>) getJdbcTemplate().query(sql, new RowMapper<Object[]>() {
             public Object[] mapRow(ResultSet rs, int rowNum) throws SQLException {
                 int colAmount = rs.getMetaData().getColumnCount();
                 if (colAmount > 1) {

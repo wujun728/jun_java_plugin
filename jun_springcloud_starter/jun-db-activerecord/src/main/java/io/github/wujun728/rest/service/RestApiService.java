@@ -32,10 +32,9 @@ import static io.github.wujun728.db.utils.DataSourcePool.main;
 
 @Slf4j
 @Service
-public class RestApiServiceImpl implements IRestApiService {
+public class RestApiService {
 
 
-    @Override
     public Object doSQLProcess(ApiSql apiSql1, Map<String, Object> parameters) throws SQLException {
         try {
 

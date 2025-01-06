@@ -74,7 +74,7 @@ public class RestApiController {
                 from = from + " where 1=1 "+ where;
             }
             sql.append(from);
-            List<Record> datas1 = Db.use(main).find(sql.toString());
+            List<Record> datas1 = Db.find(sql.toString());
             List<Map> datas = RecordUtil.recordToMaps(datas1,isUnderLine);
             return Result.success(datas);
         } catch (Exception e) {
@@ -114,7 +114,7 @@ public class RestApiController {
             if ( (limit == null || limit == 0)) {
                 limit = 10;
             }
-            Page<Record> pages = Db.use(main).paginate(page, limit, select, from);
+            Page<Record> pages = Db.paginate(page, limit, select, from);
             List<Map> datas = RecordUtil.recordToMaps(pages.getList(),isUnderLine);
             return Result.success(datas).put("count", pages.getTotalRow()).put("pageSize", pages.getPageSize()).put("totalPage", pages.getTotalPage()).put("pageNumber", pages.getPageNumber());
         } catch (Exception e) {
@@ -148,7 +148,7 @@ public class RestApiController {
                 from = from + " where 1=1 "+ where;
             }
             Boolean isTree = url.contains("tree") ?true:false;
-            List<Record> datas1 = Db.use(main).find(sql.toString());
+            List<Record> datas1 = Db.find(sql.toString());
             List<Map> datas = RecordUtil.recordToMaps(datas1,isUnderLine);
             //是否构建树 begin
             if(isTree){
@@ -183,8 +183,8 @@ public class RestApiController {
             Table table = getTableMeta(tableName,main);
             String primaryKey = RestUtil.getTablePrimaryKes(table);
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
-            Record record = Db.use(main).findByIds(tableName, primaryKey, args.toArray());
-//            Record record = Db.use(main).findById(tableName,primaryKey, (Number) args.get(0));
+            Record record = Db.findByIds(tableName, primaryKey, args.toArray());
+//            Record record = Db.findById(tableName,primaryKey, (Number) args.get(0));
             if (ObjectUtil.isNotNull(record)) {
                 Map data = RecordUtil.recordToMap(record,isUnderLine);
                 return Result.success(data);
@@ -226,9 +226,9 @@ public class RestApiController {
                 List args = RestUtil.getPrimaryKeyArgs(parameters, table);
                 argsDelete = args.toArray();
             }
-            //Boolean flag = Db.use(main).tx(() -> Db.use(main).deleteByIds(tableName, primaryKey, args.toArray()));
-            Boolean flag =   Db.use(main).deleteById(tableName, primaryKey, argsDelete);
-//            Boolean flag = Db.use(main).deleteByIds(tableName, primaryKey, args.toArray());
+            //Boolean flag = Db.tx(() -> Db.deleteByIds(tableName, primaryKey, args.toArray()));
+            Boolean flag =   Db.deleteById(tableName, primaryKey, argsDelete);
+//            Boolean flag = Db.deleteByIds(tableName, primaryKey, args.toArray());
             if (flag) {
                 return Result.success("删除成功！",flag);
             } else {
@@ -275,7 +275,7 @@ public class RestApiController {
             Boolean isSucess;
             RestUtil.fillRecord(record,tableName,true);
             Record finalRecord = record;
-            isSucess = Db.use(main).save(tableName, finalRecord);
+            isSucess = Db.save(tableName, finalRecord);
             System.out.println("返回数据为：" + JSONUtil.toJsonStr(isSucess));
             if (isSucess) {
                     return Result.success("保存成功！",isSucess);
@@ -322,7 +322,7 @@ public class RestApiController {
             String primaryValue = RestUtil.getParamValue(parameters, primaryKey);
             Record record = new Record();
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
-            record = Db.use(main).findByIds(tableName, primaryKey, args.toArray());
+            record = Db.findByIds(tableName, primaryKey, args.toArray());
             if (ObjectUtil.isNull(record)) {
                 return Result.fail("修改失败，无此ID对应的记录！");
             }
@@ -331,8 +331,8 @@ public class RestApiController {
             Boolean isSucess;
             RestUtil.fillRecord(record,tableName,false);
             Record finalRecord1 = record;
-            //isSucess = Db.use(main).tx(() -> Db.use(main).update(tableName, finalRecord1));
-            isSucess = Db.use(main).update(tableName, finalRecord1);
+            //isSucess = Db.tx(() -> Db.update(tableName, finalRecord1));
+            isSucess = Db.update(tableName, finalRecord1);
             System.out.println("返回数据为：" + JSONUtil.toJsonStr(isSucess));
             if (isSucess) {
                     return Result.success("修改成功！",isSucess);
@@ -437,7 +437,7 @@ public class RestApiController {
         Record record = new Record();
         if (!isSave) {
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
-            record = Db.use(main).findByIds(tableName, primaryKey, args.toArray());
+            record = Db.findByIds(tableName, primaryKey, args.toArray());
             if (ObjectUtil.isNull(record)) {
                 return Result.fail("修改失败，无此ID对应的记录！");
             }
@@ -478,13 +478,13 @@ public class RestApiController {
         if (isSave) {
             RestUtil.fillRecord(record,tableName,true);
             Record finalRecord = record;
-            //isSucess = Db.use(main).tx(() -> Db.use(main).save(tableName, finalRecord));
-            isSucess = Db.use(main).save(tableName, finalRecord);
+            //isSucess = Db.tx(() -> Db.save(tableName, finalRecord));
+            isSucess = Db.save(tableName, finalRecord);
         } else {
             RestUtil.fillRecord(record,tableName,false);
             Record finalRecord1 = record;
-            //isSucess = Db.use(main).tx(() -> Db.use(main).update(tableName, finalRecord1));
-            isSucess = Db.use(main).update(tableName, finalRecord1);
+            //isSucess = Db.tx(() -> Db.update(tableName, finalRecord1));
+            isSucess = Db.update(tableName, finalRecord1);
         }
         System.out.println("返回数据为：" + JSONUtil.toJsonStr(isSucess));
         if (isSucess) {

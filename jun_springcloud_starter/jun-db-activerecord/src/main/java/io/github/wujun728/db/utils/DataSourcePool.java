@@ -85,7 +85,7 @@ public class DataSourcePool {
             Db.init(dsname,dataSource);
         }
     }
-    public static void add(String dsname,DataSource dataSource) {
+    private static void add(String dsname, DataSource dataSource) {
         lock.lock();
         try {
             log.info(Thread.currentThread().getName() + "获取锁");

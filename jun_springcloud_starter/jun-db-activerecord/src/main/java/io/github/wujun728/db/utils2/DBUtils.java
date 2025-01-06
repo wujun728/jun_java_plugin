@@ -1,8 +1,6 @@
 package io.github.wujun728.db.utils2;
 
 import cn.hutool.core.map.MapUtil;
-//import com.ruoyi.common.utils.RequestUtil;
-//import com.ruoyi.common.utils.sql.SqlUtil;
 import io.github.wujun728.db.utils2.sql.SqlUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +17,6 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import javax.servlet.http.HttpServletRequest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

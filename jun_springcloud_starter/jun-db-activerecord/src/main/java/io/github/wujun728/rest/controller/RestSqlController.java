@@ -13,9 +13,8 @@ import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.generator.util.FreemarkerUtil;
-import io.github.wujun728.generator.utils.GeneratorUtil;
 import io.github.wujun728.rest.entity.ApiSql;
-import io.github.wujun728.rest.service.IRestApiService;
+import io.github.wujun728.rest.service.RestApiService;
 import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.sql.SqlMeta;
 import io.github.wujun728.sql.SqlXmlUtil;
@@ -47,15 +46,15 @@ public class RestSqlController {
     private static String main = "main";
 
     @Resource
-    IRestApiService restApiService;
+    RestApiService restApiService;
 
     @RequestMapping(path = {"/run/{path}"}, produces = "application/json")
     public Result apiExecute(@PathVariable String path ,HttpServletRequest request, HttpServletResponse response) throws SQLException {
         Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
         main = MapUtil.getStr(parameters, "ds");
-//        List<Record> records  = Db.use(main).findBySql(ApiSql.class," select * from api_sql ");
+//        List<Record> records  = Db.findBySql(ApiSql.class," select * from api_sql ");
 //        List<ApiSql> apiSqls = RecordUtil.recordToListBean(records, ApiSql.class);
-        List<ApiSql> apiSqls = Db.use(main).findBeanList(ApiSql.class," select * from api_sql ");
+        List<ApiSql> apiSqls = Db.findBeanList(ApiSql.class," select * from api_sql ");
         Db.use().findBeanList(ApiSql.class," select * from api_sql ");
         Map<String, ApiSql> apiSqlMap = apiSqls.stream().collect(Collectors.toMap(i->i.getPath(),i->i));
         if(apiSqlMap.containsKey(path)){
@@ -77,8 +76,7 @@ public class RestSqlController {
     }
 
     public static void initDb(String configName, String url, String username, String password) {
-        DataSourcePool.add(main, SpringUtil.getBean(DataSource.class));
-        //ActiveRecordUtil.initActiveRecordPlugin(configName,url,username,password);
+        DataSourcePool.init(main, SpringUtil.getBean(DataSource.class));
     }
 
     public static String updateSQL(HashMap<String, Object> data) throws IOException, TemplateException {

@@ -19,10 +19,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Future;
 
-import static io.github.wujun728.db.record.DbPro.dataSourceMap;
-import static io.github.wujun728.db.record.DbPro.jdbcTemplateMap;
 
 /**
  * Db 操作类，支持SQL模式、Record模式，Bean模式（JPA Bean模式、Mybatis Entity模式）
@@ -40,30 +37,25 @@ public class Db<T> {
             DataSource dataSource = SpringUtil.getBean(DataSource.class);
             if (dataSource != null) {
                 Db.init(Db.main, dataSource);
-                DataSourcePool.add(main, dataSource);
+                DataSourcePool.init(main, dataSource);
                 StaticLog.info("main数据源，当前main默认注入容器DataSource数据源。");
                 StaticLog.info("jdbcTemplateMap.main，当前main数据源默认注入JdbcTemplate。");
             }
         } catch (Exception e) {
             StaticLog.error("warning : ExceptionInInitializerError 当前非Spring容器运行，请手动初始化Db.init的数据源。" + e.getMessage());
         }
-
     }
 
     public static DbPro use() {
-        MAIN.setDataSource(dataSourceMap.get(main));
-        MAIN.setJdbcTemplate(jdbcTemplateMap.get(main));
         return MAIN;
     }
 
     public static DbPro use(String dsName) {
         DbPro result = DbPro.cache.get(dsName);
-        if (result == null || dataSourceMap.get(dsName) == null || jdbcTemplateMap.get(dsName) == null) {
+        if (result == null || result.getDataSource() == null || result.getJdbcTemplate() == null) {
             System.err.println("error : 当前Db.use(" + dsName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的dsName数据源。");
             throw new RuntimeException("error : 当前Db.use(" + dsName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的dsName数据源。");
         }
-        result.setDataSource(dataSourceMap.get(dsName));
-        result.setJdbcTemplate(jdbcTemplateMap.get(dsName));
         return result;
     }
 
@@ -72,10 +64,10 @@ public class Db<T> {
     }
     public static void init(String dsName, DataSource dataSource) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        jdbcTemplateMap.put(dsName, jdbcTemplate);
-        dataSourceMap.put(dsName, dataSource);
-        DbPro.init(dsName);
-        MAIN = DbPro.init(main);
+        DbPro dbPro = DbPro.init(dsName,dataSource,jdbcTemplate);
+        if(dsName.equalsIgnoreCase(main)){
+            MAIN = dbPro;
+        }
     }
 
     /**

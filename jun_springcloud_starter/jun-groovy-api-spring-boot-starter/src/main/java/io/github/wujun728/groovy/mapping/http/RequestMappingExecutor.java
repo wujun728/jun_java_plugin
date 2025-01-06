@@ -31,7 +31,6 @@ import io.github.wujun728.common.base.interfaces.IExecutor;
 //import io.github.wujun728.groovy.cache.IApiConfigCache;
 import io.github.wujun728.groovy.service.ApiService;
 import io.github.wujun728.common.exception.BusinessException;
-import io.github.wujun728.rest.service.IRestApiService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
