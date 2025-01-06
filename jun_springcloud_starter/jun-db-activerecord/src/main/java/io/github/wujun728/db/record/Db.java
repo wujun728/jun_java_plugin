@@ -4,8 +4,6 @@ package io.github.wujun728.db.record;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
-import io.github.wujun728.db.record.bean.IAtom;
-import io.github.wujun728.db.record.bean.ICallback;
 import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.db.utils.SqlUtil;
 import io.github.wujun728.rest.entity.ApiSql;
@@ -752,52 +750,6 @@ public class Db<T> {
         return MAIN.update(tableName, record);
     }
 
-
-    /**
-     * Execute callback. It is useful when all the API can not satisfy your requirement.
-     * @param callback the ICallback interface
-     */
-    static Object execute(ICallback callback) {
-        return MAIN.execute(callback);
-    }
-
-    /**
-     * Execute transaction.
-     * @param transactionLevel the transaction level
-     * @param atom the atom operation
-     * @return true if transaction executing succeed otherwise false
-     */
-    static boolean tx(int transactionLevel, IAtom atom) {
-        return MAIN.tx(transactionLevel, atom);
-    }
-
-    /**
-     * Execute transaction with default transaction level.
-     * @see #tx(int, IAtom)
-     */
-    public static boolean tx(IAtom atom) {
-        return MAIN.tx(atom);
-    }
-
-    /**
-     * 主要用于嵌套事务场景
-     *
-     * 实例：https://jfinal.com/feedback/4008
-     *
-     * 默认情况下嵌套事务会被合并成为一个事务，那么内层与外层任何地方回滚事务
-     * 所有嵌套层都将回滚事务，也就是说嵌套事务无法独立提交与回滚
-     *
-     * 使用 txInNewThread(...) 方法可以实现层之间的事务控制的独立性
-     * 由于事务处理是将 Connection 绑定到线程上的，所以 txInNewThread(...)
-     * 通过建立新线程来实现嵌套事务的独立控制
-     */
-    public static Future<Boolean> txInNewThread(IAtom atom) {
-        return MAIN.txInNewThread(atom);
-    }
-
-    public static Future<Boolean> txInNewThread(int transactionLevel, IAtom atom) {
-        return MAIN.txInNewThread(transactionLevel, atom);
-    }
 
 }
 

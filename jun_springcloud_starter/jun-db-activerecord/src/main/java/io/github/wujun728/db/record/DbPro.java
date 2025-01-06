@@ -6,8 +6,8 @@ import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.log.StaticLog;
 import com.google.common.collect.Maps;
-import io.github.wujun728.db.record.bean.IAtom;
-import io.github.wujun728.db.record.bean.ICallback;
+//import io.github.wujun728.db.record.bean.IAtom;
+//import io.github.wujun728.db.record.bean.ICallback;
 import io.github.wujun728.db.record.dialect.*;
 import io.github.wujun728.db.record.exception.ActiveRecordException;
 import io.github.wujun728.db.record.exception.SqlException;
@@ -199,13 +199,8 @@ public class DbPro{
 
     public List<Map<String, Object>> queryList(String sql, Object... params) {
         return jdbcTemplate.queryForList(sql,params);
-        //return queryMaps(getConnection(),sql,params );
     }
 
-
- /*   public int update( String sql, Object... paras) {
-        return updateSql(sql,paras);
-    }*/
 
 
     /**
@@ -214,21 +209,16 @@ public class DbPro{
      */
     public int update(String sql) {
         return update(sql, NULL_PARA_ARRAY);
-        //return jdbcTemplate.update(sql);
-        //int flag =  update(getConnection(),sql);
-        //return flag;
     }
     /**
      * Execute sql update
      */
     public int update(String sql, Object... params) {
         return jdbcTemplate.update(sql,params);
-        //return update(getConnection(),sql,params);
     }
     public String queryForString(String sql, Object[] params) {
         try {
             return jdbcTemplate.queryForObject(sql, String.class, params);
-            // return queryStr(sql,params);
         } catch (Exception e) {
             throw new SqlException(e, sql);
         }
@@ -574,15 +564,15 @@ public class DbPro{
 
 
     public Object executeSqlXml(String sqlXml, Map params) throws SQLException {
-        return SqlXmlUtil.executeSql(getConnection(), sqlXml, params, true);
+        return SqlXmlUtil.executeSql(dataSource.getConnection(), sqlXml, params, true);
     }
 
     public int updateSqlXml(String sqlXml, Map params) throws SQLException {
-        return SqlXmlUtil.update(getConnection(), sqlXml, params);
+        return SqlXmlUtil.update(dataSource.getConnection(), sqlXml, params);
     }
 
     public List<Map<String, Object>> querySqlXml(String sqlXml, Map params) throws SQLException {
-        return SqlXmlUtil.query(getConnection(), sqlXml, params);
+        return SqlXmlUtil.query(dataSource.getConnection(), sqlXml, params);
     }
 
     //************************************************************************************************************************************************
@@ -594,70 +584,6 @@ public class DbPro{
         List result = new ArrayList();
         return jdbcTemplate.queryForList(sql,paras);
     }
-    /*protected <T> List<T> queryMaps( Connection conn, String sql, Object... paras) {
-        List result = new ArrayList();
-        try (PreparedStatement pst = conn.prepareStatement(sql)) {
-            dialect.fillStatement(pst, paras);
-            ResultSet rs = pst.executeQuery();
-            int colAmount = rs.getMetaData().getColumnCount();
-
-            List<String> columns = new ArrayList<>();
-            for (int i = 1; i <= colAmount; i++) {
-                String columnName = rs.getMetaData().getColumnLabel(i);
-                columns.add(columnName);
-            }
-            if (colAmount > 1) {
-                while (rs.next()) {
-                    Map map = new HashMap();
-                    columns.stream().forEach(t -> {
-                        try {
-                            Object value = rs.getObject(t);
-                            map.put(t, value);
-                        } catch (SQLException throwables) {
-                            throwables.printStackTrace();
-                        }
-                    });
-                    result.add(map);
-                }
-            }
-            else if(colAmount == 1) {
-                while (rs.next()) {
-                    result.add(rs.getObject(1));
-                }
-            }
-            DbKit.close(rs);
-            return result;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }finally {
-            close(conn);
-        }
-    }*/
-
-    /*protected <T> List<T> query( Connection conn, String sql, Object... paras) throws SQLException {
-        List result = new ArrayList();
-        try (PreparedStatement pst = conn.prepareStatement(sql)) {
-            dialect.fillStatement(pst, paras);
-            ResultSet rs = pst.executeQuery();
-            int colAmount = rs.getMetaData().getColumnCount();
-            if (colAmount > 1) {
-                while (rs.next()) {
-                    Object[] temp = new Object[colAmount];
-                    for (int i=0; i<colAmount; i++) {
-                        temp[i] = rs.getObject(i + 1);
-                    }
-                    result.add(temp);
-                }
-            }
-            else if(colAmount == 1) {
-                while (rs.next()) {
-                    result.add(rs.getObject(1));
-                }
-            }
-            DbKit.close(rs);
-            return result;
-        }
-    }*/
 
     public <T> List<T> query(String sql, Object... paras) {
         //List list = jdbcTemplate.queryForList(sql, paras);
@@ -677,17 +603,6 @@ public class DbPro{
             }
         });
     }
-    /*public <T> List<T> query(String sql, Object... paras) {
-        Connection conn = null;
-        try {
-            conn = getConnection();
-            return query(conn, sql, paras);
-        } catch (Exception e) {
-            throw new ActiveRecordException(e);
-        } finally {
-            close(conn);
-        }
-    }*/
 
 
     /**
@@ -933,79 +848,10 @@ public class DbPro{
     }
     // 26 queryXxx method under -----------------------------------------------
 
-
-    public void setThreadLocalConnection(Connection connection) {
-        threadLocal.set(connection);
-    }
-
-    public void removeThreadLocalConnection() {
-        threadLocal.remove();
-    }
-
-    /**
-     * Get Connection. Support transaction if Connection in ThreadLocal
-     */
-    public Connection getConnection(){
-        try {
-            return dataSource.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
-
-    public Connection getThreadLocalConnection() {
-        try {
-            Connection conn = threadLocal.get();
-            if (conn != null)
-                return conn;
-            conn =  dataSource.getConnection();
-            threadLocal.set(conn);
-            return threadLocal.get();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * Return true if current thread in transaction.
-     */
-    public boolean isInTransaction() {
-        return threadLocal.get() != null;
-    }
-
-
-    public void close(Connection conn) {
-        if (threadLocal.get() == null)		// in transaction if conn in threadlocal
-            if (conn != null)
-                try {conn.close();} catch (SQLException e) {throw new ActiveRecordException(e);}
-    }
-
-
-
     public List<Record> find(String sql, Object... paras)  {
         List<Map<String, Object>> results = queryList(sql,paras);
         return RecordUtil.mappingList(results);
     }
-
-    /**
-     */
-    /*public List<Record> find(String sql, Object... paras) {
-        Connection conn = null;
-        try {
-            conn = getConnection();
-            return find( conn, sql, paras);
-        } catch (Exception e) {
-            throw new ActiveRecordException(e);
-        } finally {
-            close(conn);
-        }
-    }*/
-    /*public List<Record> find(String sql, Object... param) {
-        List<Map<String, Object>> results = queryList(sql, param);
-        return RecordUtil.mappingList(results);
-    }*/
 
     /**
      * @param sql the sql statement
@@ -1013,10 +859,7 @@ public class DbPro{
     public List<Record> find(String sql) {
         return find(sql, NULL_PARA_ARRAY);
     }
-    /*public List<Record> find(String sql) {
-        List<Map<String, Object>> results = queryList(sql);
-        return RecordUtil.mappingList(results);
-    }*/
+
     public List<Map> findMaps(String sql) {
         List<Record> lists =  find(sql, NULL_PARA_ARRAY);
         List<Map> datas = RecordUtil.recordToMaps(lists,true);
@@ -1064,9 +907,6 @@ public class DbPro{
     public Record findById(String tableName, Object idValue) {
         return findByIds(tableName, dialect.getDefaultPrimaryKey(), idValue);
     }
-   /* public Record findById(String tableName, Object id) {
-        return findRecordById(tableName,id);
-    }*/
 
     public Record findById(String tableName, String primaryKey, Object idValue) {
         return findByIds(tableName, primaryKey, idValue);
@@ -1084,6 +924,13 @@ public class DbPro{
      * @param idValues the id value of the record, it can be composite id values
      */
     public Record findByIds(String tableName, String primaryKey, Object... idValues) {
+        /*String[] pKeys = primaryKey.split(",");
+        if (pKeys.length != idValues.length)
+            throw new IllegalArgumentException("primary key number must equals id value number");
+        String sql = dialect.forDbFindById(tableName, pKeys);
+        Map<String, Object> resultMap = queryMap(sql, idValues);
+        if (resultMap == null) return null;
+        return RecordUtil.mapping(resultMap);*/
         String[] pKeys = primaryKey.split(",");
         if (pKeys.length != idValues.length)
             throw new IllegalArgumentException("primary key number must equals id value number");
@@ -1096,16 +943,6 @@ public class DbPro{
         return result.size() > 0 ? result.get(0) : null;
     }
 
-    /*public Record findByIds(String tableName, String primaryKey, Object... idValues) {
-        String[] pKeys = primaryKey.split(",");
-        if (pKeys.length != idValues.length)
-            throw new IllegalArgumentException("primary key number must equals id value number");
-
-        String sql = dialect.forDbFindById(tableName, pKeys);
-        Map<String, Object> resultMap = queryMap(sql, idValues);
-        if (resultMap == null) return null;
-        return RecordUtil.mapping(resultMap);
-    }*/
 
     /**
      * Delete record by id with default primary key.
@@ -1168,7 +1005,6 @@ public class DbPro{
             Object t = record.get(primaryKey);	// 引入中间变量避免 JDK 8 传参有误
             return deleteByIds(tableName, primaryKey, t);
         }
-
         dialect.trimPrimaryKeys(pKeys);
         Object[] idValue = new Object[pKeys.length];
         for (int i=0; i<pKeys.length; i++) {
@@ -1187,12 +1023,10 @@ public class DbPro{
      * @see #delete(String, String, Record)
      */
     public boolean delete(String tableName, Record record) {
-        //String defaultPrimaryKey = dialect.getDefaultPrimaryKey();
+        /*String defaultPrimaryKey = dialect.getDefaultPrimaryKey();
         String defaultPrimaryKey = getPkNames(tableName);
         Object t = record.get(defaultPrimaryKey);	// 引入中间变量避免 JDK 8 传参有误
-        return deleteByIds(tableName, defaultPrimaryKey, t);
-    }
-    /*public boolean delete(String tableName, Record record) {
+        return deleteByIds(tableName, defaultPrimaryKey, t);*/
         String primaryKey = getPkNames(tableName);
         String[] pKeys = primaryKey.split(",");
         Object[] ids = new Object[pKeys.length];
@@ -1202,12 +1036,12 @@ public class DbPro{
                 throw new RuntimeException("You can't update record without Primary Key, " + pKeys[i] + " can not be null.");
         }
         String deleteSql = dialect.forDbDeleteById(tableName, pKeys);
-        int result = updateSql(deleteSql, ids);
+        int result = update(deleteSql, ids);
         if (result >= 1) {
             return true;
         }
         return false;
-    }*/
+    }
 
     /**
      * Execute delete sql statement.
@@ -1234,14 +1068,7 @@ public class DbPro{
      * @param pageSize the page size
      * @param select the select part of the sql statement
      * @param sqlExceptSelect the sql statement excluded select part
-     * @param paras the parameters of sql
      * @return the Page object
-     */
-    /*public Page<Record> paginate(int pageNumber, int pageSize, String select, String sqlExceptSelect, Object... paras) {
-        return doPaginate(pageNumber, pageSize, null, select, sqlExceptSelect, paras);
-    }*/
-
-    /**
      */
     public Page<Record> paginate(int pageNumber, int pageSize, String select, String sqlExceptSelect) {
         return doPaginate(pageNumber, pageSize, null, select, sqlExceptSelect, NULL_PARA_ARRAY);
@@ -1324,23 +1151,6 @@ public class DbPro{
         return doPaginateByFullSql(pageNumber, pageSize, isGroupBySql, totalRowSql, findSql, paras);
     }
 
-    /*protected boolean save( Connection conn, String tableName, String primaryKey, Record record) throws SQLException {
-        String[] pKeys = primaryKey.split(",");
-        List<Object> paras = new ArrayList<Object>();
-        StringBuilder sql = new StringBuilder();
-        dialect.forDbSave(tableName, pKeys, record, sql, paras);
-        try (PreparedStatement pst =
-                     dialect.isOracle() ?
-                             conn.prepareStatement(sql.toString(), pKeys) :
-                             conn.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS)) {
-            dialect.fillStatement(pst, paras);
-            int result = pst.executeUpdate();
-            dialect.getRecordGeneratedKey(pst, record, pKeys);
-            //record.clearModifyFlag();
-            return result >= 1;
-        }
-    }*/
-
     /**
      * Save record.
      * <pre>
@@ -1352,17 +1162,6 @@ public class DbPro{
      * @param primaryKey the primary key of the table, composite primary key is separated by comma character: ","
      * @param record the record will be saved
      */
-    /*public boolean save(String tableName, String primaryKey, Record record) {
-        Connection conn = null;
-        try {
-            conn = getConnection();
-            return save( conn, tableName, primaryKey, record);
-        } catch (Exception e) {
-            throw new ActiveRecordException(e);
-        } finally {
-            close(conn);
-        }
-    }*/
     public boolean save(String tableName,String primaryKey, Record record) {
         //String primaryKey = getPkNames(tableName);
         String[] pKeys = primaryKey.split(",");
@@ -1391,34 +1190,6 @@ public class DbPro{
         return save(tableName,primaryKey/*dialect.getDefaultPrimaryKey()*/, record);
     }
 
-    /*protected boolean update( Connection conn, String tableName, String primaryKey, Record record) throws SQLException {
-        *//*if (record.modifyFlag == null || record.modifyFlag.isEmpty()) {
-            return false;
-        }*//*
-        String[] pKeys = primaryKey.split(",");
-        Object[] ids = new Object[pKeys.length];
-
-        for (int i=0; i<pKeys.length; i++) {
-            ids[i] = record.get(pKeys[i].trim());	// .trim() is important!
-            if (ids[i] == null)
-                throw new SqlException("You can't update record without Primary Key, " + pKeys[i] + " can not be null.");
-        }
-
-        StringBuilder sql = new StringBuilder();
-        List<Object> paras = new ArrayList<Object>();
-        dialect.forDbUpdate(tableName, pKeys, ids, record, sql, paras);
-
-        if (paras.size() <= 1) {	// 参数个数为 1 的情况表明只有主键，也无需更新
-            return false;
-        }
-
-        int result = update( conn, sql.toString(), paras.toArray());
-        if (result >= 1) {
-            //record.clearModifyFlag();
-            return true;
-        }
-        return false;
-    }*/
 
     /**
      * Update Record.
@@ -1468,128 +1239,6 @@ public class DbPro{
 
 
 
-    /**
-     * Execute callback. It is useful when all the API can not satisfy your requirement.
-     * @param callback the ICallback interface
-     */
-    protected Object execute( ICallback callback) {
-        Connection conn = null;
-        try {
-            conn = getConnection();
-            return callback.call(conn);
-        } catch (Exception e) {
-            throw new ActiveRecordException(e);
-        } finally {
-            close(conn);
-        }
-    }
-
-    /**
-     * Execute transaction.
-     * @param transactionLevel the transaction level
-     * @param atom the atom operation
-     * @return true if transaction executing succeed otherwise false
-     */
-    protected boolean tx( int transactionLevel, IAtom atom) {
-        Connection conn = getThreadLocalConnection();
-        if (conn != null) {	// Nested transaction support
-            try {
-                if (conn.getTransactionIsolation() < transactionLevel)
-                    conn.setTransactionIsolation(transactionLevel);
-                boolean result = atom.run();
-                if (result)
-                    return true;
-                throw new SqlException("Notice the outer transaction that the nested transaction return false");	// important:can not return false
-            }
-            catch (SQLException e) {
-                throw new ActiveRecordException(e);
-            }
-        }
-
-        Boolean autoCommit = null;
-        try {
-            conn = getConnection();
-            autoCommit = conn.getAutoCommit();
-            setThreadLocalConnection(conn);
-            conn.setTransactionIsolation(transactionLevel);
-            conn.setAutoCommit(false);
-            boolean result = atom.run();
-            if (result)
-                conn.commit();
-            else
-                conn.rollback();
-            return result;
-        } catch (SqlException e) {
-            if (conn != null) try {conn.rollback();} catch (Exception e1) {
-                StaticLog.error(e1.getMessage(), e1);}
-                //StaticLog.log(e.getMessage());
-            return false;
-        } catch (Throwable t) {
-            if (conn != null) try {conn.rollback();} catch (Exception e1) {StaticLog.error(e1.getMessage(), e1);}
-            throw t instanceof RuntimeException ? (RuntimeException)t : new ActiveRecordException(t);
-        } finally {
-            try {
-                if (conn != null) {
-                    if (autoCommit != null)
-                        conn.setAutoCommit(autoCommit);
-                    conn.close();
-                }
-            } catch (Throwable t) {
-                StaticLog.error(t.getMessage(), t);	// can not throw exception here, otherwise the more important exception in previous catch block can not be thrown
-            } finally {
-                removeThreadLocalConnection();	// prevent memory leak
-            }
-        }
-    }
-
-
-    void setTransactionLevel(int transactionLevel) {
-        int t = transactionLevel;
-        if (t != 0 && t != 1  && t != 2  && t != 4  && t != 8) {
-            throw new IllegalArgumentException("The transactionLevel only be 0, 1, 2, 4, 8");
-        }
-        this.transactionLevel = transactionLevel;
-    }
-    public int getTransactionLevel() {
-        return transactionLevel;
-    }
-
-    /**
-     * Execute transaction with default transaction level.
-     * @see #tx(int, IAtom)
-     */
-    public boolean tx(IAtom atom) {
-        return tx(getTransactionLevel(), atom);
-    }
-
-
-    /**
-     * 主要用于嵌套事务场景
-     *
-     * 实例：https://jfinal.com/feedback/4008
-     *
-     * 默认情况下嵌套事务会被合并成为一个事务，那么内层与外层任何地方回滚事务
-     * 所有嵌套层都将回滚事务，也就是说嵌套事务无法独立提交与回滚
-     *
-     * 使用 txInNewThread(...) 方法可以实现层之间的事务控制的独立性
-     * 由于事务处理是将 Connection 绑定到线程上的，所以 txInNewThread(...)
-     * 通过建立新线程来实现嵌套事务的独立控制
-     */
-    public Future<Boolean> txInNewThread(IAtom atom) {
-        FutureTask<Boolean> task = new FutureTask<>(() -> tx(getTransactionLevel(), atom));
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
-        return task;
-    }
-
-    public Future<Boolean> txInNewThread(int transactionLevel, IAtom atom) {
-        FutureTask<Boolean> task = new FutureTask<>(() -> tx(transactionLevel, atom));
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
-        return task;
-    }
 
 }
 

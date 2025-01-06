@@ -145,10 +145,13 @@ public class SqlXmlUtil {
 				});
 				list.add(jo);
 			}
+			connection.close();
 			return list;
 		} else {
+			connection.close();
 			throw new RuntimeException("修改脚本调用update方法");
 		}
+
 	}
 
 

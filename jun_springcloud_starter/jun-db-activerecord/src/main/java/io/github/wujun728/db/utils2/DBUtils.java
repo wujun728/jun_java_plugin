@@ -478,12 +478,11 @@ public class DBUtils {
 	 * 数据库分页查询
 	 * @param sql 传入的sql语句
 	 * @param list 参数集合
-	 * @param request HttpServletRequest对象
 	 * @return Map对象的list集合
 	 */
-	public List<Map<String, Object>> getForList(String sql, List<String> list, HttpServletRequest request) {
-		int pageSize = RequestUtil.getIntValue(request, "pageSize");
-		int pageNum = RequestUtil.getIntValue(request, "pageNum");
+	public List<Map<String, Object>> getForList(String sql, List<String> list, int pageSize,int pageNum) {
+		//int pageSize = RequestUtil.getIntValue(request, "pageSize");
+		//int pageNum = RequestUtil.getIntValue(request, "pageNum");
 
 		//替换sql语句中的order by，并将查询字段替换成count(1)
 		List<String> cntSqlList = new ArrayList<String>();
