@@ -8,10 +8,7 @@ import freemarker.template.TemplateExceptionHandler;
 import lombok.extern.slf4j.Slf4j;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -117,6 +114,29 @@ public class FreemarkerUtil {
 
     }
 
+
+    @Deprecated
+    public static String genTemplateStr(Map<String, Object> params,String templateContent)
+            throws IOException, TemplateException {
+        return genTemplateStr(params,"temp",templateContent);
+    }
+    /**
+     *  解析模板
+     * @param params 内容
+     * @param templateName 参数
+     * @param templateContent 参数
+     * @return
+     */
+    public static String genTemplateStr(Map<String, Object> params,String templateName,String templateContent)
+            throws IOException, TemplateException {
+        StringTemplateLoader stringLoader = new StringTemplateLoader();
+        Template template = new Template(templateName, new StringReader(templateContent));
+        StringWriter result = new StringWriter();
+        template.process(params, result);
+        String htmlText = result.toString();
+        return htmlText;
+    }
+
     public static String processStringTemplate(String templateStr, Map<String, Object> root) throws IOException, TemplateException {
         return processStringTemplate("temp",templateStr,root);
     }
@@ -146,5 +166,7 @@ public class FreemarkerUtil {
         configuration.setDefaultEncoding("UTF-8");
         return configuration;
     }
+
+
 
 }

@@ -107,9 +107,11 @@ public class RestApiController {
             }
             sql.append(from);
             Integer page = MapUtil.getInt(parameters, "page");
-            Integer limit = MapUtil.getInt(parameters, "limit");
-            if ((page == null || page == 0) || (limit == null || limit == 0)) {
+            if ((page == null || page == 0)  ) {
                 page = 1;
+            }
+            Integer limit = MapUtil.getInt(parameters, "limit");
+            if ( (limit == null || limit == 0)) {
                 limit = 10;
             }
             Page<Record> pages = Db.use(main).paginate(page, limit, select, from);

@@ -12,6 +12,7 @@ import io.github.wujun728.common.base.Result;
 import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
+import io.github.wujun728.generator.util.FreemarkerUtil;
 import io.github.wujun728.generator.utils.GeneratorUtil;
 import io.github.wujun728.rest.entity.ApiSql;
 import io.github.wujun728.rest.service.IRestApiService;
@@ -97,7 +98,7 @@ public class RestSqlController {
                 + "                    <if test=\"null != ${fieldItem.fieldName} and '' != ${fieldItem.fieldName}\">  ${fieldItem.columnName} = ${r\"#{\"}${fieldItem.fieldName}${r\"}\"} <#if fieldItem_has_next>AND</#if>  ${r\"</if>\"} "
                 + "                </#if> "
                 + "            </#list>\r\n";
-        return GeneratorUtil.genTemplateStr(data, "update", updateSQL);
+        return FreemarkerUtil.genTemplateStr(data, "update", updateSQL);
     }
     public static String updateSQLParams(HashMap<String, Object> data) throws IOException, TemplateException {
         String paramsSQLTemplate = " [ \r\n"
@@ -109,7 +110,7 @@ public class RestSqlController {
                 + "                </#list>\r\n"
                 + "            </#if>\r\n"
                 + " ] ";
-        String params = GeneratorUtil.genTemplateStr(data,  paramsSQLTemplate);
+        String params = FreemarkerUtil.genTemplateStr(data,  paramsSQLTemplate);
         return params;
     }
 
@@ -117,8 +118,8 @@ public class RestSqlController {
     public static Map<String, Object> buildSqlParams(HashMap<String, Object> data, String sql,
                                                      String params, String cuudFlag) throws IOException, TemplateException {
         Map<String, Object> sqlParam = new HashMap<String, Object>();
-        String className = GeneratorUtil.genTemplateStr(data, "${classInfo.className?uncap_first}");
-        String path = "/api/"+GeneratorUtil.genTemplateStr(data, "${classInfo.className?uncap_first}")+"/"+cuudFlag;
+        String className = FreemarkerUtil.genTemplateStr(data, "${classInfo.className?uncap_first}");
+        String path = "/api/"+FreemarkerUtil.genTemplateStr(data, "${classInfo.className?uncap_first}")+"/"+cuudFlag;
         sqlParam.put("id", IdUtil.fastSimpleUUID());
         sqlParam.put("refs", main);
         sqlParam.put("path", path);
@@ -175,7 +176,7 @@ public class RestSqlController {
                 + "                </#list>\r\n"
                 + "            </#if>\r\n"
                 + "        </trim> ";
-        return GeneratorUtil.genTemplateStr(data, "insert", insertSQL);
+        return FreemarkerUtil.genTemplateStr(data, "insert", insertSQL);
     }
 
     public static String insertSQLParams(HashMap<String, Object> data) throws IOException, TemplateException {
@@ -188,7 +189,7 @@ public class RestSqlController {
                 + "                </#list>\r\n"
                 + "            </#if>\r\n"
                 + " ] ";
-        String params = GeneratorUtil.genTemplateStr(data,  paramsSQLTemplate);
+        String params = FreemarkerUtil.genTemplateStr(data,  paramsSQLTemplate);
         return params;
     }
 
@@ -199,14 +200,14 @@ public class RestSqlController {
                 + "            </#list>\r\n" + "        </#if>    \r\n"
                 + "        FROM ${classInfo.tableName}   \r\n"
                 + "        LIMIT ${r\"#{pageNumber}\"}, ${r\"#{pageSize}\"} ";
-        return GeneratorUtil.genTemplateStr(data, "pageListSQL", pageListSQL);
+        return FreemarkerUtil.genTemplateStr(data, "pageListSQL", pageListSQL);
     }
 
 
     public static String pageListCountSQL(HashMap<String, Object> data) throws IOException, TemplateException {
         String pageListCountSQL = " SELECT count(1)\r\n"
                 + "        FROM ${classInfo.tableName} ";
-        return GeneratorUtil.genTemplateStr(data, "pageListCountSQL", pageListCountSQL);
+        return FreemarkerUtil.genTemplateStr(data, "pageListCountSQL", pageListCountSQL);
     }
 
 
@@ -227,7 +228,7 @@ public class RestSqlController {
                 + "                    <if test=\"null != ${fieldItem.fieldName} and '' != ${fieldItem.fieldName}\">  ${fieldItem.columnName} = ${r\"#{\"}${fieldItem.fieldName}${r\"}\"} <#if fieldItem_has_next>AND</#if>  ${r\"</if>\"} "
                 + "                </#if> "
                 + "            </#list>\r\n";
-        return GeneratorUtil.genTemplateStr(data, "load", loadSQL);
+        return FreemarkerUtil.genTemplateStr(data, "load", loadSQL);
     }
     public static String loadSQLParams(HashMap<String, Object> data) throws IOException, TemplateException {
         String paramsSQLTemplate = " [ \r\n"
@@ -237,7 +238,7 @@ public class RestSqlController {
                 + "</#if>"
                 + "</#list>"
                 + " ] ";
-        String params = GeneratorUtil.genTemplateStr(data,  paramsSQLTemplate);
+        String params = FreemarkerUtil.genTemplateStr(data,  paramsSQLTemplate);
         return params;
     }
 
@@ -253,7 +254,7 @@ public class RestSqlController {
                 + "                    <if test=\"null != ${fieldItem.fieldName} and '' != ${fieldItem.fieldName}\">  ${fieldItem.columnName} = ${r\"#{\"}${fieldItem.fieldName}${r\"}\"} <#if fieldItem_has_next>AND</#if>  ${r\"</if>\"} "
                 + "                </#if> "
                 + "            </#list>\r\n";
-        String deleteSQL = GeneratorUtil.genTemplateStr(data, deleteSQLTemplate);
+        String deleteSQL = FreemarkerUtil.genTemplateStr(data, deleteSQLTemplate);
         return deleteSQL;
     }
 
@@ -265,7 +266,7 @@ public class RestSqlController {
                 + "</#if>"
                 + "</#list>"
                 + " ] ";
-        String params = GeneratorUtil.genTemplateStr(data,  paramsSQLTemplate);
+        String params = FreemarkerUtil.genTemplateStr(data,  paramsSQLTemplate);
         return params;
     }
 
@@ -276,12 +277,12 @@ public class RestSqlController {
                 + "<#list classInfo.pkfieldList as fieldItem >" + "<#if fieldItem.isPrimaryKey != false  >"
                 + "  sqlParam.put(\"${fieldItem.fieldName}\", \"${fieldItem.fieldName}-value\");\r\n" + "</#if>"
                 + "</#list>";
-        GeneratorUtil.genTemplateStr(data, "delete", deleteSQLTemplate);
+        FreemarkerUtil.genTemplateStr(data, "delete", deleteSQLTemplate);
         deleteSQLTemplate = " Map<String, Object> sqlParam = new HashMap<String, Object>();\r\n"
                 + "<#list classInfo.fieldList as fieldItem >" + "<#if fieldItem.isPrimaryKey == false  >"
                 + "  sqlParam.put(\"${fieldItem.fieldName}\", \"${fieldItem.fieldName}-value\");\r\n" + "</#if>"
                 + "</#list>";
-        GeneratorUtil.genTemplateStr(data, "delete", deleteSQLTemplate);
+        FreemarkerUtil.genTemplateStr(data, "delete", deleteSQLTemplate);
         return null;
     }
 

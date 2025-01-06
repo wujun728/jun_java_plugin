@@ -4,8 +4,8 @@ package io.github.wujun728.db.record;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
-import io.github.wujun728.db.record.dialect.IAtom;
-import io.github.wujun728.db.record.dialect.ICallback;
+import io.github.wujun728.db.record.bean.IAtom;
+import io.github.wujun728.db.record.bean.ICallback;
 import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.db.utils.SqlUtil;
 import io.github.wujun728.rest.entity.ApiSql;
@@ -119,12 +119,6 @@ public class Db<T> {
         return MAIN.queryList( sql,params );
     }
 
-    public static  int updateSql(String sql) {
-        return MAIN.updateSql( sql );
-    }
-    public static  int updateSql(String sql, Object... params) {
-        return MAIN.updateSql( sql,params );
-    }
     public static  String queryForString(String sql, Object[] params) {
         return MAIN.queryForString( sql,params );
     }

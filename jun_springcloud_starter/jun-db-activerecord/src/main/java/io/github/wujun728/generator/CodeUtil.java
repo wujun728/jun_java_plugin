@@ -8,18 +8,22 @@ import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.log.StaticLog;
 import com.google.common.collect.Lists;
+import freemarker.cache.StringTemplateLoader;
+import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.generator.entity.ClassInfo;
 import io.github.wujun728.generator.entity.FieldInfo;
 import io.github.wujun728.generator.util.FreemarkerUtil;
 import io.github.wujun728.generator.util.StringUtils;
-import io.github.wujun728.generator.utils.GeneratorUtil;
+//import io.github.wujun728.generator.utils.GeneratorUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -201,7 +205,7 @@ public class CodeUtil {
             // V1 初始化数据及对象
             String remarks = column.getComment();// cloumnsSet.getString("REMARKS");// 列的描述
             String columnName = column.getName();// cloumnsSet.getString("COLUMN_NAME"); // 获取列名
-            String javaType = GeneratorUtil.getType(column.getType()/*cloumnsSet.getInt("DATA_TYPE")*/);// 获取类型，并转成JavaType
+            String javaType = getType(column.getType()/*cloumnsSet.getInt("DATA_TYPE")*/);// 获取类型，并转成JavaType
             String columnType = column.getTypeName();// 获取类型，并转成JavaType
             long COLUMN_SIZE = column.getSize();// cloumnsSet.getInt("COLUMN_SIZE");// 获取
             String COLUMN_DEF = column.getColumnDef();// cloumnsSet.getString("COLUMN_DEF");// 获取
@@ -283,6 +287,42 @@ public class CodeUtil {
         }
         return strPath;
     }
+
+
+    public static String getType(int value) {
+        switch (value) {
+            case -6:
+                return "java.lang.Integer";
+            case 5:
+                return "java.lang.Integer";
+            case 4:
+                return "java.lang.Integer";
+            case -5:
+                return "java.lang.Long";
+            case 6:
+                return "java.lang.Float";
+            case 8:
+                return "java.lang.Double";
+            case 1:
+                return "java.lang.String";
+            case 12:
+                return "java.lang.String";
+            case -1:
+                return "java.lang.String";
+            case 91:
+                return "java.util.Date";
+            case 92:
+                return "java.util.Date";
+            case 93:
+                return "java.util.Date";
+            case 16:
+                return "java.lang.Boolean";
+            default:
+                return "java.lang.String";
+        }
+    }
+
+
 
 
 }

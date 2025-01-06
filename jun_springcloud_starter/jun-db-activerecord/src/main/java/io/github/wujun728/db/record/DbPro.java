@@ -6,6 +6,8 @@ import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.log.StaticLog;
 import com.google.common.collect.Maps;
+import io.github.wujun728.db.record.bean.IAtom;
+import io.github.wujun728.db.record.bean.ICallback;
 import io.github.wujun728.db.record.dialect.*;
 import io.github.wujun728.db.record.exception.ActiveRecordException;
 import io.github.wujun728.db.record.exception.SqlException;
@@ -166,7 +168,7 @@ public class DbPro{
         String sql = null;
         try {
             sql = sqlContext.getSql();
-            result = updateSql(sql, sqlContext.getParams());
+            result = update(sql, sqlContext.getParams());
         } catch (Exception e) {
             throw new SqlException(e, sql);
         }
@@ -200,12 +202,26 @@ public class DbPro{
         //return queryMaps(getConnection(),sql,params );
     }
 
-    public int updateSql(String sql) {
-        return jdbcTemplate.update(sql);
+
+ /*   public int update( String sql, Object... paras) {
+        return updateSql(sql,paras);
+    }*/
+
+
+    /**
+     * @see #update(String, Object...)
+     * @param sql an SQL statement
+     */
+    public int update(String sql) {
+        return update(sql, NULL_PARA_ARRAY);
+        //return jdbcTemplate.update(sql);
         //int flag =  update(getConnection(),sql);
         //return flag;
     }
-    public int updateSql(String sql, Object... params) {
+    /**
+     * Execute sql update
+     */
+    public int update(String sql, Object... params) {
         return jdbcTemplate.update(sql,params);
         //return update(getConnection(),sql,params);
     }
@@ -270,7 +286,7 @@ public class DbPro{
     }
 
     public boolean insert(String sql, Object... params) {
-        return updateSql(sql,params)>0;
+        return update(sql,params)>0;
     }
 
 
@@ -300,7 +316,7 @@ public class DbPro{
             return deleteByIds(tableName, primaryKeyStr, idValues);
         }
         String sql = " DELETE FROM " + tableName + " WHERE " + primaryKeyStr + " = ?";
-        int flag = updateSql(sql, idValues);
+        int flag = update(sql, idValues);
         return flag > 0;
     }
 
@@ -308,7 +324,7 @@ public class DbPro{
 
 
     public Boolean deleteBySql(String sql, Object... paras) {
-        int flag = updateSql(sql, paras);
+        int flag = update(sql, paras);
         return flag > 0;
     }
 
@@ -574,7 +590,7 @@ public class DbPro{
     //************************************************************************************************************************************************
 
 
-    protected <T> List<Map<String, Object>> queryMaps(String sql, Object... paras) {
+    public  <T> List<Map<String, Object>> queryMaps(String sql, Object... paras) {
         List result = new ArrayList();
         return jdbcTemplate.queryForList(sql,paras);
     }
@@ -967,21 +983,6 @@ public class DbPro{
     }
 
 
-    /**
-     * Execute sql update
-     */
-    protected int update( String sql, Object... paras) {
-         return updateSql(sql,paras);
-    }
-
-
-    /**
-     * @see #update(String, Object...)
-     * @param sql an SQL statement
-     */
-    public int update(String sql) {
-        return update(sql, NULL_PARA_ARRAY);
-    }
 
     public List<Record> find(String sql, Object... paras)  {
         List<Map<String, Object>> results = queryList(sql,paras);
@@ -1370,7 +1371,7 @@ public class DbPro{
         dialect.forDbSave(tableName, pKeys, record, sql, paras);
         int flag = 0;
         try {
-            flag = updateSql(sql.toString(), paras.toArray());
+            flag = update(sql.toString(), paras.toArray());
         } catch (DuplicateKeyException e) {
             throw new RuntimeException("主键冲突，保存失败！");
         } catch (DataAccessException e) {
@@ -1444,7 +1445,7 @@ public class DbPro{
         if (paras.size() <= 1) {    // 参数个数为 1 的情况表明只有主键，也无需更新
             return false;
         }
-        int result = updateSql(sql.toString(), paras.toArray());
+        int result = update(sql.toString(), paras.toArray());
         if (result >= 1) {
             return true;
         }

@@ -160,7 +160,7 @@ public class DbTest {
 
     @Test
     public void testUpdate2() throws Exception {
-        int result = Db.use(main).updateSql("  update api_sql set datasource_id=datasource_id||'1' where sql_id ='queryTest'  ");
+        int result = Db.use(main).update("  update api_sql set datasource_id=datasource_id||'1' where sql_id ='queryTest'  ");
         StaticLog.info(String.valueOf(result));
     }
 

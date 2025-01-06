@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.wujun728.db.record.dialect;
+package io.github.wujun728.db.record.bean;
 
 import java.sql.Connection;
 import java.sql.SQLException;

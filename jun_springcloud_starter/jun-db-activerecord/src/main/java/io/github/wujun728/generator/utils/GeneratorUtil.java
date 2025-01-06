@@ -256,27 +256,6 @@ public class GeneratorUtil {
 		return htmlText;
 	}
 
-	@Deprecated
-	public static String genTemplateStr(Map<String, Object> params,String templateContent)
-			throws IOException, TemplateException {
-		return genTemplateStr(params,"temp",templateContent);
-	}
-	/**
-	 *  解析模板
-	 * @param params 内容
-	 * @param templateName 参数
-	 * @param templateContent 参数
-	 * @return
-	 */
-	public static String genTemplateStr(Map<String, Object> params,String templateName,String templateContent)
-			throws IOException, TemplateException {
-		StringTemplateLoader stringLoader = new StringTemplateLoader();
-		Template template = new Template(templateName, new StringReader(templateContent));
-		StringWriter result = new StringWriter();
-		template.process(params, result);
-		String htmlText = result.toString();
-		return htmlText;
-	}
 
 	private static freemarker.template.Configuration getConfiguration() throws IOException {
 		freemarker.template.Configuration cfg = new freemarker.template.Configuration(
