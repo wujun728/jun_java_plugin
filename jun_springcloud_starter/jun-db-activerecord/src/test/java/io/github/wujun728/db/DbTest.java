@@ -1,5 +1,7 @@
 package io.github.wujun728.db;
 
+import cn.hutool.aop.ProxyUtil;
+import cn.hutool.aop.aspects.Aspect;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.json.JSONUtil;
@@ -17,6 +19,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.sql.DataSource;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +27,16 @@ import static io.github.wujun728.db.record.Db.main;
 
 
 public class DbTest {
+
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC&useInformationSchema=true";
+        String username = "root";
+        String password = "";
+        DataSource dataSource = DataSourcePool.init("main",url,username,password);
+        //Db.init(main,dataSource);
+        Db.getDbTemplate();
+
+    }
 
     //@Before
     @BeforeClass

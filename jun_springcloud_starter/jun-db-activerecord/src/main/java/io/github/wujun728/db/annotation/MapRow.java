@@ -1,6 +1,8 @@
-package io.github.wujun728.db.utils2;
+package io.github.wujun728.db.annotation;
 
 //import com.ruoyi.framework.aspectj.lang.enums.RowType;
+
+import io.github.wujun728.db.rowmap.RowType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

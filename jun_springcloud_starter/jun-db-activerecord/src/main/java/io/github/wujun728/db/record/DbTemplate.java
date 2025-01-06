@@ -1,7 +1,11 @@
-package io.github.wujun728.db.utils2;
+package io.github.wujun728.db.record;
 
 import cn.hutool.core.map.MapUtil;
-import io.github.wujun728.db.utils2.sql.SqlUtil;
+import io.github.wujun728.db.rowmap.BaseRowMapper;
+import io.github.wujun728.db.rowmap.BatchSql;
+import io.github.wujun728.db.rowmap.SqlUtil;
+import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -17,37 +21,45 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * 数据库操作类
  */
-public class DBUtils {
-	public static final Logger logger = LoggerFactory.getLogger(DBUtils.class);
+@Setter
+@Getter
+public class DbTemplate {
+	public static final Logger logger = LoggerFactory.getLogger(DbTemplate.class);
 	private JdbcTemplate jdbcTemplate;
 	private TransactionTemplate transactionTemplate;
     public final static int DEFAULT_FETCHSIZE = 32; //默认的fetchsize
 
-    public DBUtils() {}
+    public DbTemplate() {}
 
-    public DBUtils(JdbcTemplate jdbcTemplate) {
+    public DbTemplate(DataSource dataSource) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
     	TransactionTemplate transactionTemplate = new TransactionTemplate();
     	DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
-        transactionManager.setDataSource(jdbcTemplate.getDataSource());
+        transactionManager.setDataSource(dataSource);
         transactionTemplate.setTransactionManager(transactionManager);
-
     	this.jdbcTemplate = jdbcTemplate;
         this.transactionTemplate = transactionTemplate;
     }
+
+	public JdbcTemplate getJdbcTemplate() {
+		return this.jdbcTemplate;
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
     /**
      * 返回一条记录
@@ -182,6 +194,25 @@ public class DBUtils {
 		}
 	}
 
+	public Date queryForDate(String sql, Object[] objects) {
+		Date date = null;
+		try {
+			if(objects != null && objects.length > 0) {
+				date = jdbcTemplate.queryForObject(sql, objects, Date.class);
+			}
+			else {
+				date = jdbcTemplate.queryForObject(sql, Date.class);
+			}
+			return date;
+		} catch (EmptyResultDataAccessException e) {
+//			logger.error("查询无记录："+SqlUtil.getSql(sql, objects));
+            return null;
+        } catch (Exception e) {
+			logger.error(e.getMessage()+"\n"+SqlUtil.getSql(sql, objects));
+			return null;
+		}
+	}
+
 	/**
 	 * 返回数据集
 	 * @param sql 传入的sql语句
@@ -192,7 +223,7 @@ public class DBUtils {
 	public List<String> queryForList(String sql, Object[] objects, String keyName) {
 		List<String> resList = new ArrayList<String>();
 
-		List<Map<String, Object>> dataList = this.queryForList(sql, objects, DBUtils.DEFAULT_FETCHSIZE);
+		List<Map<String, Object>> dataList = this.queryForList(sql, objects, DbTemplate.DEFAULT_FETCHSIZE);
 		for(Map<String, Object> map : dataList) {
 			resList.add(MapUtil.getStr(map, keyName));
 		}
@@ -207,7 +238,7 @@ public class DBUtils {
 	 * @return map对象的集合
 	 */
 	public List<Map<String, Object>> queryForList(String sql, Object[] objects) {
-		return this.queryForList(sql, objects, DBUtils.DEFAULT_FETCHSIZE);
+		return this.queryForList(sql, objects, DbTemplate.DEFAULT_FETCHSIZE);
 	}
 
 	/**

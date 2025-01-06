@@ -1,6 +1,8 @@
 package io.github.wujun728.db.utils;
 
 
+import cn.hutool.core.text.StrBuilder;
+import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.StrUtil;
 
 import java.lang.reflect.Field;
@@ -17,43 +19,79 @@ public class FieldUtils {
     public static final char UNDERLINE = '_';
 
     public static String getUnderlineName(String param) {
-        /*if (param == null || "".equals(param.trim())) {
-            return "";
-        }
-        int len = param.length();
-        StringBuilder sb = new StringBuilder(len);
-        for (int i = 0; i < len; i++) {
-            char c = param.charAt(i);
-            if (Character.isUpperCase(c)) {
-                sb.append(UNDERLINE);
-                sb.append(Character.toLowerCase(c));
-            } else {
+        //return toSymbolCase(param, '_');
+        return StrUtil.toUnderlineCase(param);
+    }
+    public static String toSymbolCase(CharSequence str, char symbol) {
+        if (str == null) {
+            return null;
+        } else {
+            int length = str.length();
+            StrBuilder sb = new StrBuilder();
+            for(int i = 0; i < length; ++i) {
+                char c = str.charAt(i);
+                if (Character.isUpperCase(c)) {
+                    Character preChar = i > 0 ? str.charAt(i - 1) : null;
+                    Character nextChar = i < str.length() - 1 ? str.charAt(i + 1) : null;
+                    if (null != preChar) {
+                        if (symbol == preChar) {
+                            if (null == nextChar || Character.isLowerCase(nextChar)) {
+                                c = Character.toLowerCase(c);
+                            }
+                        } else if (Character.isLowerCase(preChar)) {
+                            sb.append(symbol);
+                            if (null == nextChar || Character.isLowerCase(nextChar) || CharUtil.isNumber(nextChar)) {
+                                c = Character.toLowerCase(c);
+                            }
+                        } else if (null != nextChar && Character.isLowerCase(nextChar)) {
+                            sb.append(symbol);
+                            c = Character.toLowerCase(c);
+                        }
+                    } else if (null == nextChar || Character.isLowerCase(nextChar)) {
+                        c = Character.toLowerCase(c);
+                    }
+                }
+
                 sb.append(c);
             }
+            return sb.toString();
         }
-        return sb.toString().substring(1);*/
-        return StrUtil.toUnderlineCase(param);
     }
 
     public static String getCamelName(String param) {
-        /*if (param == null || "".equals(param.trim())) {
-            return "";
-        }
-        int len = param.length();
-        StringBuilder sb = new StringBuilder(len);
-        for (int i = 0; i < len; i++) {
-            char c = param.charAt(i);
-            if (c == UNDERLINE) {
-                if (++i < len) {
-                    sb.append(Character.toUpperCase(param.charAt(i)));
-                }
-            } else {
-                sb.append(c);
-            }
-        }
-        return sb.toString();*/
+        //return toCamelCase(param, '_');
         return StrUtil.toCamelCase(param);
     }
+
+    public static String toCamelCase(CharSequence name, char symbol) {
+        if (null == name) {
+            return null;
+        } else {
+            String name2 = name.toString();
+            if (StrUtil.contains(name2, symbol)) {
+                int length = name2.length();
+                StringBuilder sb = new StringBuilder(length);
+                boolean upperCase = false;
+                for(int i = 0; i < length; ++i) {
+                    char c = name2.charAt(i);
+                    if (c == symbol) {
+                        upperCase = true;
+                    } else if (upperCase) {
+                        sb.append(Character.toUpperCase(c));
+                        upperCase = false;
+                    } else {
+                        sb.append(Character.toLowerCase(c));
+                    }
+                }
+                return sb.toString();
+            } else {
+                return name2;
+            }
+        }
+    }
+
+
+
 
     public static void main(String[] args) {
 //        System.out.println(getUnderlineName("AbcDeft"));
@@ -65,16 +103,6 @@ public class FieldUtils {
     }
 
 
-
-//    private static Pattern humpPattern = Pattern.compile("[A-Z]");
-
-    /*public static List<String> allTableFields(Class clazz){
-        return FieldUtils.allFields(clazz).stream().map(item->humpToLine2(item.getName())).collect(Collectors.toList());
-    }
-
-    public static List<String> allNameParamsFields(Class clazz){
-        return FieldUtils.allFields(clazz).stream().map(item->":"+item.getName()).collect(Collectors.toList());
-    }*/
 
     public static List<Field> allFields(Class clazz){
         ArrayList<Field> fields = new ArrayList<>();
@@ -90,56 +118,4 @@ public class FieldUtils {
     	return getUnderlineName(name);
     }
 
-    /**
-     * 所有字母大写时toLower(),
-     * 所有字母小写时启用驼峰转换，
-     * 大小写字母都有，不转换
-     * 下划线转驼峰
-     */
-	/*public static String underlineToCamel(String name){
-        boolean allUpper = true;
-        boolean allLower = true;
-        for (int i = 0; i < name.length(); i++) {
-            char c = name.charAt(i);
-            if(Character.isLowerCase(c)){
-                allUpper = false;
-            }else if (Character.isUpperCase(c)){
-                allLower = false;
-            }
-        }
-
-        if (allUpper){
-            name = name.toLowerCase();
-            allLower = true;
-        }
-        if (!allLower){
-            return name;
-        }
-
-        StringBuilder sb = new StringBuilder(name.length());
-        for (int i = 0; i < name.length(); i++) {
-            char c = name.charAt(i);
-            if ('_' == c) {
-                if (++i < name.length()){
-                    sb.append(Character.toUpperCase(name.charAt(i)));
-                }
-            }else {
-                sb.append(c);
-            }
-        }
-        return sb.toString();
-    }*/
-
-    /**
-     * 驼峰转下划线
-     */
-    /*public static String humpToLine2(String str) {
-        Matcher matcher = humpPattern.matcher(str);
-        StringBuffer sb = new StringBuffer();
-        while (matcher.find()) {
-            matcher.appendReplacement(sb, "_" + matcher.group(0).toLowerCase());
-        }
-        matcher.appendTail(sb);
-        return sb.toString();
-    }*/
 }

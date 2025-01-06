@@ -1,4 +1,4 @@
-package io.github.wujun728.db.utils;
+package io.github.wujun728.db.rowmap;
 
 import cn.hutool.core.util.ReflectUtil;
 import org.springframework.jdbc.core.RowMapper;

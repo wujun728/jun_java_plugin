@@ -1,10 +1,9 @@
-package io.github.wujun728.db.utils2;
+package io.github.wujun728.db.rowmap;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
-//import com.ruoyi.framework.aspectj.lang.annotation.MapRow;
-//import com.ruoyi.framework.aspectj.lang.enums.RowType;
+import io.github.wujun728.db.annotation.MapRow;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.lang.reflect.Field;

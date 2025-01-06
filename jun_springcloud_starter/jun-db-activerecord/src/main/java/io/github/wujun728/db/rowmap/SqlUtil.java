@@ -1,4 +1,4 @@
-package io.github.wujun728.db.utils2.sql;
+package io.github.wujun728.db.rowmap;
 
 import cn.hutool.core.util.StrUtil;
 import io.github.wujun728.common.exception.BusinessException;
@@ -9,7 +9,6 @@ import java.util.StringTokenizer;
 
 /**
  * sql操作工具类
- * @author ruoyi
  */
 public class SqlUtil extends cn.hutool.db.sql.SqlUtil {
 	/**

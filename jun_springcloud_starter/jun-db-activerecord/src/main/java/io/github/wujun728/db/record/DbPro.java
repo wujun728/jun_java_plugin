@@ -6,17 +6,18 @@ import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
 import com.google.common.collect.Maps;
 import io.github.wujun728.db.record.dialect.*;
-import io.github.wujun728.db.record.exception.ActiveRecordException;
-import io.github.wujun728.db.record.exception.SqlException;
+import io.github.wujun728.db.record.exception.DbException;
 import io.github.wujun728.db.record.kit.TimeKit;
 import io.github.wujun728.db.utils.RecordUtil;
 import io.github.wujun728.db.utils.SqlContext;
 import io.github.wujun728.db.utils.SqlUtil;
 import io.github.wujun728.sql.SqlXmlUtil;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
+//import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
@@ -37,34 +38,36 @@ import static io.github.wujun728.db.record.Db.main;
 /**
  * Db 操作类，支持SQL模式、Record模式，Bean模式（JPA Bean模式、Mybatis Entity模式）
  */
+@Setter
+@Getter
 public class DbPro{
 
     private DataSource dataSource = null;
-    private JdbcTemplate jdbcTemplate = null;
+    private DbTemplate dbTemplate = null;
+//    private JdbcTemplate jdbcTemplate = null;
     private Dialect dialect = new MysqlDialect();
 
     public volatile static ConcurrentHashMap<String, DbPro> cache = new ConcurrentHashMap<>(32, 0.25F);
     public volatile static ConcurrentHashMap<String, DataSource> dataSourceMap = new ConcurrentHashMap<>(32);
+    public volatile static ConcurrentHashMap<String, DbTemplate> dbTemplateMap = new ConcurrentHashMap<>(32);
 
     static final Object[] NULL_PARA_ARRAY = new Object[0];
     private static final Map<String, String> TABLE_PK_MAP = new HashMap<>();
 
-    private final ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
-    int transactionLevel = Connection.TRANSACTION_REPEATABLE_READ;
-
     public DbPro() {
     }
 
-    static DbPro init(String dsName,DataSource dataSource,JdbcTemplate jdbcTemplate) {
-        DbPro result = DbPro.cache.get(dsName);
+    static DbPro init(String configName,DataSource dataSource) {
+        DbPro result = DbPro.cache.get(configName);
         if (result == null) {
             result = new DbPro();
-            result.setJdbcTemplate(jdbcTemplate);
+            DbTemplate dbTemplate = new DbTemplate(dataSource);
+            result.setDbTemplate(dbTemplate);
             result.setDataSource(dataSource);
             result.setDialect(DbPro.getDialect(result.getDataSource()));
-            dataSourceMap.put(dsName,dataSource);
+            dataSourceMap.put(configName,dataSource);
             DbPro.registerRecord(result.getDataSource());
-            DbPro.cache.put(dsName, result);
+            DbPro.cache.put(configName, result);
         }
         return result;
     }
@@ -77,31 +80,23 @@ public class DbPro{
             TABLE_PK_MAP.put(tableName, pkStr);// map不清，只做替换
         });
     }
-
-    public JdbcTemplate getJdbcTemplate() {
-        return this.jdbcTemplate;
-    }
-
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-
-    public DataSource getDataSource() {
-        return this.dataSource;
-    }
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
-    public Dialect getDialect() {
-        return dialect;
-    }
-
-    public void setDialect(Dialect dialect) {
-        this.dialect = dialect;
-    }
+//
+//    public DataSource getDataSource() {
+//        return this.dataSource;
+//    }
+//
+//    public void setDataSource(DataSource dataSource) {
+//        this.dataSource = dataSource;
+//    }
+//
+//
+//    public Dialect getDialect() {
+//        return dialect;
+//    }
+//
+//    public void setDialect(Dialect dialect) {
+//        this.dialect = dialect;
+//    }
 
     private static Dialect getDialect(DataSource dataSource) {
         Connection connection  = null;
@@ -146,7 +141,7 @@ public class DbPro{
             sql = sqlContext.getSql();
             result = update(sql, sqlContext.getParams());
         } catch (Exception e) {
-            throw new SqlException(e, sql);
+            throw new DbException(e, sql);
         }
         return result;
     }
@@ -157,7 +152,7 @@ public class DbPro{
             sql = sqlContext.getSql();
             return queryList(sql, sqlContext.getParams());
         } catch (Exception e) {
-            throw new SqlException(e, sql);
+            throw new DbException(e, sql);
         }
     }
 
@@ -165,16 +160,16 @@ public class DbPro{
         String sql = null;
         try {
             sql = sqlContext.getSql();
-            return getJdbcTemplate().queryForObject(sql, Integer.class, sqlContext.getParams());
+            return getDbTemplate().queryForInt(sql, sqlContext.getParams());
             //return queryInt(sql,sqlContext.getParams());
         } catch (Exception e) {
-            throw new SqlException(e, sql);
+            throw new DbException(e, sql);
         }
     }
 
 
     public List<Map<String, Object>> queryList(String sql, Object... params) {
-        return getJdbcTemplate().queryForList(sql,params);
+        return getDbTemplate().queryForList(sql,params);
     }
 
 
@@ -190,29 +185,29 @@ public class DbPro{
      * Execute sql update
      */
     public int update(String sql, Object... params) {
-        return getJdbcTemplate().update(sql,params);
+        return getDbTemplate().execute(sql,params);
     }
     public String queryForString(String sql, Object[] params) {
         try {
-            return getJdbcTemplate().queryForObject(sql, String.class, params);
+            return getDbTemplate().queryForString(sql,   params);
         } catch (Exception e) {
-            throw new SqlException(e, sql);
+            throw new DbException(e, sql);
         }
     }
 
     public Date queryForDate(String sql, Object[] params) {
         try {
-            return getJdbcTemplate().queryForObject(sql, Date.class, params);
+            return getDbTemplate().queryForDate(sql, params);
             //return queryDate(sql,params);
         } catch (Exception e) {
-            throw new SqlException(e, sql);
+            throw new DbException(e, sql);
         }
     }
 
     public Map<String, Object> queryMap(String sql, Object... idValues) {
         Map<String, Object> resultMap;
         try {
-            resultMap = getJdbcTemplate().queryForMap(sql, idValues);
+            resultMap = getDbTemplate().queryForMap(sql, idValues);
             return resultMap;
             //return queryFirstMap(sql,idValues);
         } catch (EmptyResultDataAccessException e) {
@@ -243,7 +238,7 @@ public class DbPro{
 
     public Integer saveBeanBackPrimaryKey(Object bean) {
         saveBean(bean);
-        return getJdbcTemplate().queryForObject("SELECT last_insert_id() as id", Integer.class);
+        return getDbTemplate().queryForInt("SELECT last_insert_id() as id", null);
         //return queryInt("SELECT last_insert_id() as id");
     }
 
@@ -254,7 +249,6 @@ public class DbPro{
     public boolean insert(String sql, Object... params) {
         return update(sql,params)>0;
     }
-
 
 
 
@@ -411,10 +405,10 @@ public class DbPro{
 
     public int count(String sql, Object... params) {
         try {
-            return getJdbcTemplate().queryForObject(sql, Integer.class, params);
+            return getDbTemplate().queryForInt(sql, params);
             //return queryInt(sql,params);
         } catch (Exception e) {
-            throw new SqlException(e, sql);
+            throw new DbException(e, sql);
         }
     }
 
@@ -499,15 +493,6 @@ public class DbPro{
         return RecordUtil.mapToBeans(resultMap, clazz);
     }
 
-
-
-
-
-
-
-
-
-
     public Page<Record> paginate(Integer pageNumber, Integer limit, String select, String from) {
         return paginate(pageNumber, limit, select, from, Maps.newHashMap());
     }
@@ -555,15 +540,14 @@ public class DbPro{
     //Mybatis  XML  SQL 111111111111111111  end   SqlXmlUtil *************************************************************************
     //************************************************************************************************************************************************
 
-
     public  <T> List<Map<String, Object>> queryMaps(String sql, Object... paras) {
         List result = new ArrayList();
-        return getJdbcTemplate().queryForList(sql,paras);
+        return getDbTemplate().queryForList(sql,paras);
     }
 
     public <T> List<T> query(String sql, Object... paras) {
         //List list = jdbcTemplate.queryForList(sql, paras);
-        return (List<T>) getJdbcTemplate().query(sql, new RowMapper<Object[]>() {
+        return (List<T>) getDbTemplate().getJdbcTemplate().query(sql, new RowMapper<Object[]>() {
             public Object[] mapRow(ResultSet rs, int rowNum) throws SQLException {
                 int colAmount = rs.getMetaData().getColumnCount();
                 if (colAmount > 1) {
@@ -632,7 +616,7 @@ public class DbPro{
         if (result.size() > 0) {
             T temp = result.get(0);
             if (temp instanceof Object[] && ((Object[]) temp).length>1){
-                throw new SqlException("Only ONE COLUMN can be queried.");
+                throw new DbException("Only ONE COLUMN can be queried.");
             }else if (temp instanceof Object[] && ((Object[]) temp).length == 1){
                 return (T) ((Object[]) temp)[0];
             }
@@ -1061,13 +1045,13 @@ public class DbPro{
             findSql.append(select).append(' ').append(sqlExceptSelect);
             return doPaginateByFullSql( pageNumber, pageSize, isGroupBySql, totalRowSql, findSql, paras);
         } catch (Exception e) {
-            throw new ActiveRecordException(e);
+            throw new DbException(e);
         }
     }
 
     protected Page<Record> doPaginateByFullSql(int pageNumber, int pageSize, Boolean isGroupBySql, String totalRowSql, StringBuilder findSql, Object... paras) {
         if (pageNumber < 1 || pageSize < 1) {
-            throw new SqlException("pageNumber and pageSize must more than 0");
+            throw new DbException("pageNumber and pageSize must more than 0");
         }
         /*if (dialect.isTakeOverDbPaginate()) {
             return dialect.takeOverDbPaginate(conn, pageNumber, pageSize, isGroupBySql, totalRowSql, findSql, paras);
@@ -1115,7 +1099,7 @@ public class DbPro{
             StringBuilder findSqlBuf = new StringBuilder().append(findSql);
             return doPaginateByFullSql(  pageNumber, pageSize, isGroupBySql, totalRowSql, findSqlBuf, paras);
         } catch (Exception e) {
-            throw new ActiveRecordException(e);
+            throw new DbException(e);
         }
     }
 
