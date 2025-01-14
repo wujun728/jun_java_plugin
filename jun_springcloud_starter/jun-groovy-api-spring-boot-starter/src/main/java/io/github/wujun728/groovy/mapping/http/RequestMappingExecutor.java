@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import cn.hutool.core.util.CharsetUtil;
 import com.alibaba.fastjson2.JSON;
 import io.github.wujun728.common.base.Result;
+import io.github.wujun728.rest.service.RestApiService;
 import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.groovy.cache.ApiConfigCache;
 import io.github.wujun728.groovy.cache.IApiConfigCache;
@@ -199,7 +200,7 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 
 
 	@Resource
-	IRestApiService restApiService;
+	RestApiService restApiService;
 	/**
 	 * 执行脚本逻辑
 	 */

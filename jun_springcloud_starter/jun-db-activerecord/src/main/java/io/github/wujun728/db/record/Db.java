@@ -144,15 +144,15 @@ public class Db<T> {
 
     // Save ***********************************************************************************************************
     // Save ***********************************************************************************************************
-    public static Integer saveBeanBackPrimaryKey(Object bean) {
-        checkDbProNull();
-        return MAIN.saveBeanBackPrimaryKey(bean);
-    }
-
-    public static Integer saveBean(Object bean) {
-        checkDbProNull();
-        return MAIN.saveBean(bean);
-    }
+//    public static Integer saveBeanBackPrimaryKey(Object bean) {
+//        checkDbProNull();
+//        return MAIN.saveBeanBackPrimaryKey(bean);
+//    }
+//
+//    public static Integer saveBean(Object bean) {
+//        checkDbProNull();
+//        return MAIN.saveBean(bean);
+//    }
 
     public static boolean insert(String sql, Object... params) {
         checkDbProNull();
@@ -163,19 +163,19 @@ public class Db<T> {
     // Update ***********************************************************************************************************
     // Update ***********************************************************************************************************
 
-    public static Integer updateBean(Object bean) {
-        checkDbProNull();
-        return MAIN.updateBean(bean);
-    }
+//    public static Integer updateBean(Object bean) {
+//        checkDbProNull();
+//        return MAIN.updateBean(bean);
+//    }
 
 
     // Delete ***********************************************************************************************************
     // Delete ***********************************************************************************************************
 
-    public static Integer deleteBean(Object bean) {
-        checkDbProNull();
-        return MAIN.deleteBean(bean);
-    }
+//    public static Integer deleteBean(Object bean) {
+//        checkDbProNull();
+//        return MAIN.deleteBean(bean);
+//    }
 
 
     public static Boolean deleteById(String tableName, Object... idValues) {
@@ -215,10 +215,10 @@ public class Db<T> {
         return MAIN.findMapList(clazz, sql, params);
     }
 
-    public static <T> List findBeanList(Class beanClass, Map<String, Object> params) {
-        checkDbProNull();
-        return MAIN.findBeanList(beanClass, params);
-    }
+//    public static <T> List findBeanList(Class beanClass, Map<String, Object> params) {
+//        checkDbProNull();
+//        return MAIN.findBeanList(beanClass, params);
+//    }
 
     public static <T> List findRecordList(String sql, Object... params) {
         checkDbProNull();

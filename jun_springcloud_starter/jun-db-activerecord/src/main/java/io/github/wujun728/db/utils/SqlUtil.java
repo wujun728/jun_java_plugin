@@ -308,6 +308,18 @@ public class SqlUtil {
 		//sql.append(FieldUtils.getUnderlineName(cls.getSimpleName()));
 		return new SqlContext(sql);
 	}
+	public static String getSelectSQl(Class<?> cls) {
+		StringBuilder sql = new StringBuilder(SELECT);
+		String tableName = FieldUtils.getUnderlineName(cls.getSimpleName());
+		if(AnnotationUtil.hasAnnotation(cls,Table.class)){
+			tableName = AnnotationUtil.getAnnotationValue(cls,Table.class,"name");
+		}else if(AnnotationUtil.hasAnnotation(cls,TableName.class)){
+			tableName = AnnotationUtil.getAnnotationValue(cls,TableName.class,"value");
+		}
+		sql.append(tableName);
+		//sql.append(FieldUtils.getUnderlineName(cls.getSimpleName()));
+		return sql.toString();
+	}
 
 	/**
 	 * 构建单个对象查询语条件为带有@key的字段

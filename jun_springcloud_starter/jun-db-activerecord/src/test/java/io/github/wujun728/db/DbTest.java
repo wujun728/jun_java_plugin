@@ -207,48 +207,48 @@ public class DbTest {
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
-    @Test
-    public void testSaveBackId() throws Exception {
-        ApiSql sql = new ApiSql();
-        sql.setSqlId("test1"+RandomUtil.randomNumbers(9));
-        sql.setSqlText("select * from test1");
-        sql.setGroup("test11");
-        Integer result = Db.use(main).saveBeanBackPrimaryKey(sql);
-        StaticLog.info(String.valueOf(result));
-    }
-
-    @Test
-    public void testSave2() throws Exception {
-        ApiSqlMybatis sql = new ApiSqlMybatis();
-        sql.setSqlId("test1"+RandomUtil.randomNumbers(9));
-        sql.setSqlTextq("select * from test1");
-        sql.setGroup("test11");
-        Integer result = Db.use(main).saveBean(sql);
-        StaticLog.info(String.valueOf(result));
-    }
-
-    @Test
-    public void testUpdate3() throws Exception {
-        ApiSqlMybatis sql = new ApiSqlMybatis();
-        sql.setSqlId("test1449740241");
-        sql.setSqlTextq("select * from test1");
-        sql.setGroup("test11");
-        sql.setId(1243333565);
-        Integer result = Db.use(main).updateBean(sql);
-        StaticLog.info(String.valueOf(result));
-    }
-
-
-    @Test
-    public void testDelete3() throws Exception {
-        ApiSqlMybatis sql = new ApiSqlMybatis();
-        sql.setSqlId("test1449740241");
+//    @Test
+//    public void testSaveBackId() throws Exception {
+//        ApiSql sql = new ApiSql();
+//        sql.setSqlId("test1"+RandomUtil.randomNumbers(9));
 //        sql.setSqlText("select * from test1");
 //        sql.setGroup("test11");
-        sql.setId(1243333565);
-        Integer result = Db.use(main).deleteBean(sql);
-        StaticLog.info(String.valueOf(result));
-    }
+//        Integer result = Db.use(main).saveBeanBackPrimaryKey(sql);
+//        StaticLog.info(String.valueOf(result));
+//    }
+
+//    @Test
+//    public void testSave2() throws Exception {
+//        ApiSqlMybatis sql = new ApiSqlMybatis();
+//        sql.setSqlId("test1"+RandomUtil.randomNumbers(9));
+//        sql.setSqlTextq("select * from test1");
+//        sql.setGroup("test11");
+//        Integer result = Db.use(main).saveBean(sql);
+//        StaticLog.info(String.valueOf(result));
+//    }
+
+//    @Test
+//    public void testUpdate3() throws Exception {
+//        ApiSqlMybatis sql = new ApiSqlMybatis();
+//        sql.setSqlId("test1449740241");
+//        sql.setSqlTextq("select * from test1");
+//        sql.setGroup("test11");
+//        sql.setId(1243333565);
+//        Integer result = Db.use(main).updateBean(sql);
+//        StaticLog.info(String.valueOf(result));
+//    }
+
+
+//    @Test
+//    public void testDelete3() throws Exception {
+//        ApiSqlMybatis sql = new ApiSqlMybatis();
+//        sql.setSqlId("test1449740241");
+////        sql.setSqlText("select * from test1");
+////        sql.setGroup("test11");
+//        sql.setId(1243333565);
+//        Integer result = Db.use(main).deleteBean(sql);
+//        StaticLog.info(String.valueOf(result));
+//    }
 
 
     @Test

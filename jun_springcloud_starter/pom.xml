@@ -13,6 +13,7 @@
     <modules>
         <module>jun-mybatis-sql-engine</module>
         <module>jun-db-activerecord</module>
+        <module>jun-db-jdbctemplate</module>
         <module>jun-common-base</module>
         <module>jun-common-core</module>
         <module>jun-groovy-api-spring-boot-starter</module>

@@ -9,7 +9,8 @@ import io.github.wujun728.db.record.dialect.*;
 import io.github.wujun728.db.record.exception.DbException;
 import io.github.wujun728.db.record.kit.TimeKit;
 import io.github.wujun728.db.utils.RecordUtil;
-import io.github.wujun728.db.utils.SqlContext;
+//import io.github.wujun728.db.utils.SqlContext;
+//import io.github.wujun728.db.utils.SqlContext;
 import io.github.wujun728.db.utils.SqlUtil;
 import io.github.wujun728.sql.SqlXmlUtil;
 import lombok.Getter;
@@ -44,7 +45,6 @@ public class DbPro{
 
     private DataSource dataSource = null;
     private DbTemplate dbTemplate = null;
-//    private JdbcTemplate jdbcTemplate = null;
     private Dialect dialect = new MysqlDialect();
 
     public volatile static ConcurrentHashMap<String, DbPro> cache = new ConcurrentHashMap<>(32, 0.25F);
@@ -134,38 +134,38 @@ public class DbPro{
      * 私有方法   66666666666666666666
      ********************************************************************************/
 
-    private int updateSql(SqlContext sqlContext) {
-        int result;
-        String sql = null;
-        try {
-            sql = sqlContext.getSql();
-            result = update(sql, sqlContext.getParams());
-        } catch (Exception e) {
-            throw new DbException(e, sql);
-        }
-        return result;
-    }
+//    private int updateSql(SqlContext sqlContext) {
+//        int result;
+//        String sql = null;
+//        try {
+//            sql = sqlContext.getSql();
+//            result = update(sql, sqlContext.getParams());
+//        } catch (Exception e) {
+//            throw new DbException(e, sql);
+//        }
+//        return result;
+//    }
 
-    private List<Map<String, Object>> queryList(SqlContext sqlContext) {
-        String sql = null;
-        try {
-            sql = sqlContext.getSql();
-            return queryList(sql, sqlContext.getParams());
-        } catch (Exception e) {
-            throw new DbException(e, sql);
-        }
-    }
-
-    private int queryInt(SqlContext sqlContext) {
-        String sql = null;
-        try {
-            sql = sqlContext.getSql();
-            return getDbTemplate().queryForInt(sql, sqlContext.getParams());
-            //return queryInt(sql,sqlContext.getParams());
-        } catch (Exception e) {
-            throw new DbException(e, sql);
-        }
-    }
+//    private List<Map<String, Object>> queryList(SqlContext sqlContext) {
+//        String sql = null;
+//        try {
+//            sql = sqlContext.getSql();
+//            return queryList(sql, sqlContext.getParams());
+//        } catch (Exception e) {
+//            throw new DbException(e, sql);
+//        }
+//    }
+//
+//    private int queryInt(SqlContext sqlContext) {
+//        String sql = null;
+//        try {
+//            sql = sqlContext.getSql();
+//            return getDbTemplate().queryForInt(sql, sqlContext.getParams());
+//            //return queryInt(sql,sqlContext.getParams());
+//        } catch (Exception e) {
+//            throw new DbException(e, sql);
+//        }
+//    }
 
 
     public List<Map<String, Object>> queryList(String sql, Object... params) {
@@ -236,15 +236,15 @@ public class DbPro{
 
 
 
-    public Integer saveBeanBackPrimaryKey(Object bean) {
-        saveBean(bean);
-        return getDbTemplate().queryForInt("SELECT last_insert_id() as id", null);
-        //return queryInt("SELECT last_insert_id() as id");
-    }
+//    public Integer saveBeanBackPrimaryKey(Object bean) {
+//        saveBean(bean);
+//        return getDbTemplate().queryForInt("SELECT last_insert_id() as id", null);
+//        //return queryInt("SELECT last_insert_id() as id");
+//    }
 
-    public Integer saveBean(Object bean) {
-        return updateSql(SqlUtil.getInsert(bean));
-    }
+//    public Integer saveBean(Object bean) {
+//        return updateSql(SqlUtil.getInsert(bean));
+//    }
 
     public boolean insert(String sql, Object... params) {
         return update(sql,params)>0;
@@ -255,9 +255,9 @@ public class DbPro{
     // Update ***********************************************************************************************************
     // Update ***********************************************************************************************************
 
-    public Integer updateBean(Object bean) {
-        return updateSql(SqlUtil.getUpdate(bean));
-    }
+//    public Integer updateBean(Object bean) {
+//        return updateSql(SqlUtil.getUpdate(bean));
+//    }
 
 
 
@@ -265,9 +265,9 @@ public class DbPro{
     // Delete ***********************************************************************************************************
     // Delete ***********************************************************************************************************
 
-    public Integer deleteBean(Object bean) {
-        return updateSql(SqlUtil.getDelete(bean));
-    }
+//    public Integer deleteBean(Object bean) {
+//        return updateSql(SqlUtil.getDelete(bean));
+//    }
 
 
     public Boolean deleteById(String tableName, Object... idValues) {
@@ -318,10 +318,10 @@ public class DbPro{
         return queryList(sql, params);
     }
 
-    public  <T> List  findBeanList(Class beanClass, Map<String, Object> params) {
-        List<Map<String, Object>> datas =  queryList(SqlUtil.getSelect(beanClass, params));
-        return RecordUtil.mapToBeans(datas, beanClass);
-    }
+//    public  <T> List  findBeanList(Class beanClass, Map<String, Object> params) {
+//        List<Map<String, Object>> datas =  queryList(SqlUtil.getSelect(beanClass, params));
+//        return RecordUtil.mapToBeans(datas, beanClass);
+//    }
 
 
 
@@ -363,11 +363,13 @@ public class DbPro{
 
 
     public <T> Page findBeanPages(Class beanClass, int page, int rows, Map<String, Object> params) {
-        SqlContext sqlContext = SqlUtil.getSelect(beanClass, page, rows, params);
+        //SqlContext sqlContext = SqlUtil.getSelect(beanClass, page, rows, params);
         Page pageVo = new Page();
-        List<Map<String, Object>> listData = queryList(sqlContext);
+        String sql = SqlUtil.getSelectSQl(beanClass);
+        List<Map<String, Object>> listData = queryList(SqlUtil.getSelect(sql, page, rows), params);
+        //List<Map<String, Object>> listData = queryList(sqlContext);
         pageVo.setList(RecordUtil.mapToBeans(listData, beanClass));
-        int totalRow = queryInt(SqlUtil.getCount(sqlContext));
+        int totalRow = queryInt(SqlUtil.getCount(sql));
         pageVo.setTotalRow(totalRow);
         pageVo.setPageSize(rows);
         pageVo.setPageNumber(page);
@@ -386,11 +388,12 @@ public class DbPro{
 
 
     public Page queryBeanPage(Class beanClass, int page, int rows, Map<String, Object> params) {
-        SqlContext sqlContext = SqlUtil.getSelect(beanClass, page, rows, params);
+        //SqlContext sqlContext = SqlUtil.getSelect(beanClass, page, rows, params);
         Page pageVo = new Page();
-        List<Map<String, Object>> listData = queryList(sqlContext);
+        String sql = SqlUtil.getSelectSQl(beanClass);
+        List<Map<String, Object>> listData = queryList(SqlUtil.getSelect(sql, page, rows), params);
         pageVo.setList(RecordUtil.mapToBeans(listData, beanClass));
-        pageVo.setTotalRow(queryInt(SqlUtil.getCount(sqlContext)));
+        pageVo.setTotalRow(queryInt(SqlUtil.getCount(sql)));
         return pageVo;
     }
 
@@ -500,11 +503,12 @@ public class DbPro{
 
     public Page<Record> paginate(Integer pageNumber, Integer limit, String select, String from, Map<String, Object> params) {
         String sqlStr = select + " " + from;
-        SqlContext sqlContext = SqlUtil.getSelect(new StringBuilder(sqlStr), params);
+        //SqlContext sqlContext = SqlUtil.getSelect(new StringBuilder(sqlStr), params);
         Page pageVo = new Page();
-        List<Map<String, Object>> results = queryList(sqlContext);
+        List<Map<String, Object>> results = queryList(SqlUtil.getSelect(sqlStr, pageNumber, limit), params);
+//        List<Map<String, Object>> results = queryList(sqlContext);
         List<Record> records = RecordUtil.mappingList(results);
-        int totalpage = queryInt(SqlUtil.getCount(sqlContext));
+        int totalpage = queryInt(SqlUtil.getCount(sqlStr));
         pageVo.setList(records);
         pageVo.setTotalRow(totalpage);
         pageVo.setPageNumber(pageNumber);
