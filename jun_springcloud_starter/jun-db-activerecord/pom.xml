@@ -210,6 +210,10 @@
             <groupId>com.jfinal</groupId>
             <artifactId>enjoy</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.github.wujun728</groupId>
+            <artifactId>jun-mybatis-sql-engine</artifactId>
+        </dependency>
         <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>

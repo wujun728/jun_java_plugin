@@ -8,7 +8,8 @@ import io.github.wujun728.db.utils.DataSourcePool;
 
 import javax.sql.DataSource;
 
-import static io.github.wujun728.db.record.Db.main;
+import static io.github.wujun728.db.utils.DataSourcePool.main;
+
 
 public class TestDb {
 

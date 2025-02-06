@@ -1,30 +1,28 @@
 package io.github.wujun728.rest.util;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.ReflectUtil;
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.util.*;
 import cn.hutool.db.meta.Column;
+import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.log.StaticLog;
 import com.google.common.collect.Lists;
 import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.common.interfaces.IRecordHandler;
 import io.github.wujun728.common.utils.ClassUtil;
+import io.github.wujun728.common.utils.IdGenerator15;
 import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.FieldUtils;
 import org.springframework.util.CollectionUtils;
 
+import javax.sql.DataSource;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import static io.github.wujun728.rest.controller.RestApiController.checkDataFormat;
-import static io.github.wujun728.rest.controller.RestApiController.setPkValue;
 
 
 public class RestUtil {
@@ -59,8 +57,59 @@ public class RestUtil {
                 }
             }
         }
+    }
+
+    public static void checkDataFormat(Column column, String val) {
+        if ("DATE".equalsIgnoreCase(column.getTypeName()) ||
+                "datetime".equalsIgnoreCase(column.getTypeName()) ||
+                "DATE".equalsIgnoreCase(column.getTypeName())) {
+            try {
+                DateTime date = DateUtil.parse(val);
+                //log.info("是日期类型字符串：[{}]", val);
+            } catch (Exception e) {
+                //log.info("不是日期类型字符串：[{}]", val);
+                throw new BusinessException("参数["+ column.getName()+"]日期格式字符串不合法");
+            }
+        }
+    }
 
 
+    public static void setPkValue(Record record, Column column) {
+        if ("VARCHAR".equalsIgnoreCase(column.getTypeName()) ||
+                "TEXT".equalsIgnoreCase(column.getTypeName()) ||
+                "LONGTEXT".equalsIgnoreCase(column.getTypeName()) ||
+                "CLOB".equalsIgnoreCase(column.getTypeName())) {
+            String idStr = IdGenerator15.generateIdStr();
+            if (column.getSize() > idStr.length()) {
+                record.set(column.getName(), idStr);
+            } else {
+                int start = idStr.length() - Integer.valueOf((int) column.getSize());
+                record.set(column.getName(), idStr.substring(start, idStr.length()));
+            }
+        } else if ("DATE".equalsIgnoreCase(column.getTypeName()) ||
+                "datetime".equalsIgnoreCase(column.getTypeName()) ||
+                "DATE".equalsIgnoreCase(column.getTypeName())) {
+            record.set(column.getName(), DateUtil.now());
+        } else if ("bigint".equalsIgnoreCase(column.getTypeName()) ||
+                "int".equalsIgnoreCase(column.getTypeName()) ||
+                "float".equalsIgnoreCase(column.getTypeName()) ||
+                "decimal".equalsIgnoreCase(column.getTypeName()) ||
+                "bit".equalsIgnoreCase(column.getTypeName()) ||
+                "integer".equalsIgnoreCase(column.getTypeName()) ||
+                "tinyint".equalsIgnoreCase(column.getTypeName())) {
+
+            long idStr = IdGenerator15.generateId();
+            long currentSeconds = DateUtil.currentSeconds();
+            if (column.getSize() >= String.valueOf(idStr).length()) {//十六位，雪花ID，毫秒级别
+                record.set(column.getName(), idStr);
+            } else if (column.getSize() >= String.valueOf(currentSeconds).length()) { //十位，时间戳，秒级别
+                record.set(column.getName(), currentSeconds);
+            } else {
+                int size = Integer.valueOf((int) column.getSize());
+                String numberkey = RandomUtil.randomNumbers(size);  //随机数，字段长度的随机数字，字段不能设置太短
+                record.set(column.getName(), numberkey);
+            }
+        }
     }
 
 
@@ -90,6 +139,20 @@ public class RestUtil {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static Record getTableRecord(DataSource ds, String tableName, Map params){
+        Record record = new Record();
+        Table table = MetaUtil.getTableMeta(ds,tableName);
+        table.getColumns().forEach(c->{
+            record.set(c.getName(), MapUtil.getStr(params,c.getName()));
+        });
+        return record;
+    }
+
+    public static String getPkNames(DataSource ds, String tableName){
+        Table table = MetaUtil.getTableMeta(ds,tableName);
+        return String.join(",",table.getPkNames());
     }
 
 

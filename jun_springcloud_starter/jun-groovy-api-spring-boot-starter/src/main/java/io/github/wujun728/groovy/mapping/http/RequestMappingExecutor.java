@@ -20,16 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 import cn.hutool.core.util.CharsetUtil;
 import com.alibaba.fastjson2.JSON;
 import io.github.wujun728.common.base.Result;
+import io.github.wujun728.groovy.interfaces.IRun;
 import io.github.wujun728.rest.service.RestApiService;
 import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.groovy.cache.ApiConfigCache;
 import io.github.wujun728.groovy.cache.IApiConfigCache;
 import io.github.wujun728.groovy.common.model.ApiConfig;
 import io.github.wujun728.rest.entity.ApiSql;
-import io.github.wujun728.common.base.interfaces.AbstractExecutor;
-import io.github.wujun728.common.base.interfaces.IExecutor;
-//import io.github.wujun728.groovy.cache.ApiConfigCache;
-//import io.github.wujun728.groovy.cache.IApiConfigCache;
 import io.github.wujun728.groovy.service.ApiService;
 import io.github.wujun728.common.exception.BusinessException;
 import org.apache.commons.lang3.StringUtils;
@@ -47,8 +44,6 @@ import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 
 import cn.hutool.extra.spring.SpringUtil;
-//import cn.hutool.core.bean.BeanUtil;
-//import cn.hutool.core.lang.Console;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -302,14 +297,14 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 		Map<String, Object> params =HttpRequestUtil.getAllParameters(request);
 		Object beanObj = SpringUtil.getBean(beanName);
 		try {
-			if(beanObj instanceof IExecutor){
-				IExecutor bean = (IExecutor) beanObj;
-				return bean.execute(params);
-			}else if(beanObj instanceof AbstractExecutor){
+			if(beanObj instanceof IRun){
+				IRun bean = (IRun) beanObj;
+				return bean.run(params);
+			}/*else if(beanObj instanceof AbstractExecutor){
 				AbstractExecutor bean = (AbstractExecutor) beanObj;
 				bean.init(request,response);
 				return bean.execute(params);
-			}
+			}*/
 		} catch (BusinessException e) {
 			return Result.fail(e.getMessage());
 		} catch (Exception e) {

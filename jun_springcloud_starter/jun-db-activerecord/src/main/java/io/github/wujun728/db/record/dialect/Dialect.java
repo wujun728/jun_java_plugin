@@ -16,10 +16,6 @@
 
 package io.github.wujun728.db.record.dialect;
 
-import io.github.wujun728.db.record.Page;
-import io.github.wujun728.db.record.Record;
-import io.github.wujun728.db.utils.RecordUtil;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,6 +23,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Pattern;
+
+import io.github.wujun728.db.record.Config;
+import io.github.wujun728.db.record.Page;
+import io.github.wujun728.db.record.Record;
+import io.github.wujun728.db.record.RecordBuilder;
 
 /**
  * Dialect.
@@ -36,7 +37,7 @@ public abstract class Dialect {
 	// 指示 Generator、ModelBuilder、RecordBuilder 是否保持住 Byte、Short 类型
 	protected boolean keepByteAndShort = false;
 //	protected ModelBuilder modelBuilder = ModelBuilder.me;
-//	protected RecordBuilder recordBuilder = RecordBuilder.me;
+	protected RecordBuilder recordBuilder = RecordBuilder.me;
 	
 	// Methods for common
 	public abstract String forTableBuilderDoBuild(String tableName);
@@ -117,27 +118,27 @@ public abstract class Dialect {
 	 * 此外，还可以通过改变 RecordBuilder.buildLabelNamesAndTypes()
 	 * 方法逻辑，实现下划线字段名转驼峰变量名的功能
 	 */
-	/*public Dialect setRecordBuilder(RecordBuilder recordBuilder) {
+	public Dialect setRecordBuilder(RecordBuilder recordBuilder) {
 		this.recordBuilder = recordBuilder;
 		return this;
-	}*/
-	
-	/*@SuppressWarnings("rawtypes")
-	public <T> List<T> buildModelList(ResultSet rs, Class<? extends Model> modelClass) throws SQLException, ReflectiveOperationException {
-		return modelBuilder.build(rs, modelClass);
-	}
-
-	@SuppressWarnings("rawtypes")
-	public <T> void eachModel(ResultSet rs, Class<? extends Model> modelClass, Function<T, Boolean> func) throws SQLException, ReflectiveOperationException {
-		modelBuilder.build(rs, modelClass, func);
-	}*/
-	
-	public List<Record> buildRecordList(ResultSet rs) throws SQLException {
-		return RecordUtil.me.build(rs);
 	}
 	
-	public void eachRecord(ResultSet rs, Function<Record, Boolean> func) throws SQLException {
-		RecordUtil.me.build(rs, func);
+//	@SuppressWarnings("rawtypes")
+//	public <T> List<T> buildModelList(ResultSet rs, Class<? extends Model> modelClass) throws SQLException, ReflectiveOperationException {
+//		return modelBuilder.build(rs, modelClass);
+//	}
+//
+//	@SuppressWarnings("rawtypes")
+//	public <T> void eachModel(ResultSet rs, Class<? extends Model> modelClass, Function<T, Boolean> func) throws SQLException, ReflectiveOperationException {
+//		modelBuilder.build(rs, modelClass, func);
+//	}
+	
+	public List<Record> buildRecordList(Config config, ResultSet rs) throws SQLException {
+		return recordBuilder.build(config, rs);
+	}
+	
+	public void eachRecord(Config config, ResultSet rs, Function<Record, Boolean> func) throws SQLException {
+		recordBuilder.build(config, rs, func);
 	}
 	
 	/**
@@ -204,13 +205,13 @@ public abstract class Dialect {
 		return false;
 	}
 	
-//	public boolean isTakeOverDbPaginate() {
-//		return false;
-//	}
+	public boolean isTakeOverDbPaginate() {
+		return false;
+	}
 	
-	/*public Page<Record> takeOverDbPaginate(Connection conn, int pageNumber, int pageSize, Boolean isGroupBySql, String totalRowSql, StringBuilder findSql, Object... paras) throws SQLException {
+	public Page<Record> takeOverDbPaginate(Connection conn, int pageNumber, int pageSize, Boolean isGroupBySql, String totalRowSql, StringBuilder findSql, Object... paras) throws SQLException {
 		throw new RuntimeException("You should implements this method in " + getClass().getName());
-	}*/
+	}
 	
 	public boolean isTakeOverModelPaginate() {
 		return false;
@@ -228,8 +229,10 @@ public abstract class Dialect {
 	}
 	
 	public void fillStatement(PreparedStatement pst, Object... paras) throws SQLException {
-		for (int i=0; i<paras.length; i++) {
-			pst.setObject(i + 1, paras[i]);
+		if(paras!=null){
+			for (int i=0; i<paras.length; i++) {
+				pst.setObject(i + 1, paras[i]);
+			}
 		}
 	}
 	

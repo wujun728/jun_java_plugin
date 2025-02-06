@@ -16,6 +16,7 @@ public class ClassInfo {
 	private String classComment;
 	private int pkSize;
 	private List<FieldInfo> fieldList;
+	private List<FieldInfo> pkfieldList;
 
 	/**
 	 * 作者姓名

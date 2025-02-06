@@ -3,7 +3,6 @@ package io.github.wujun728.db.utils;
 
 import cn.hutool.core.annotation.AnnotationUtil;
 import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -20,7 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import static io.github.wujun728.db.record.DbPro.getPkNames;
+import static io.github.wujun728.db.utils.DataSourcePool.getPkNames;
+
+//import static io.github.wujun728.db.record.DbPro.getPkNames;
 
 
 public class SqlUtil {

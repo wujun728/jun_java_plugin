@@ -22,6 +22,7 @@ classes
 .settings
 .factorypath
 doc2
+doc1
 *bak
 log
 logs
@@ -33,6 +34,7 @@ node_modules
 # Idea
 .idea
 *.iml
+.mvn
 
 # git
 *.orig

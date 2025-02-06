@@ -1,7 +1,6 @@
 package io.github.wujun728.groovy.util;
 
 
-import io.github.wujun728.common.utils.SpringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;

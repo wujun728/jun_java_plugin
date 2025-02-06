@@ -201,6 +201,7 @@ public class CodeUtil {
         Table table = MetaUtil.getTableMeta(dataSource, tableName);
         // V1 初始化数据及对象 模板V1 field List
         List<FieldInfo> fieldList = new ArrayList<FieldInfo>();
+        List<FieldInfo> pkfieldList = new ArrayList<FieldInfo>();
         for (Column column : table.getColumns()) {
             // V1 初始化数据及对象
             String remarks = column.getComment();// cloumnsSet.getString("REMARKS");// 列的描述
@@ -224,6 +225,9 @@ public class CodeUtil {
             fieldInfo.setFieldType(javaType);
             fieldInfo.setIsPrimaryKey(isPk);
             fieldList.add(fieldInfo);
+            if(isPk){
+                pkfieldList.add(fieldInfo);
+            }
         }
         if (fieldList != null && fieldList.size() > 0) {
             ClassInfo classInfo = new ClassInfo();
@@ -237,6 +241,7 @@ public class CodeUtil {
                 classInfo.setClassComment(table.getComment());
             }
             classInfo.setFieldList(fieldList);
+            classInfo.setPkfieldList(pkfieldList);
             classInfo.setPkSize(table.getPkNames().size());
             return classInfo;
         }

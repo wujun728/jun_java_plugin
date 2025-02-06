@@ -4,4 +4,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 io.github.wujun728.common.feign.fallback.UserServiceFallbackFactory,\
 io.github.wujun728.common.lock.LockAspect,\
-io.github.wujun728.common.utils.SpringUtils
+io.github.wujun728.groovy.util.SpringUtils

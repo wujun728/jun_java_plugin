@@ -12,8 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
-//import cn.hutool.core.util.IdUtil;
-//import cn.hutool.core.util.StrUtil;
 
 /**
  * API信息缓存
@@ -64,9 +62,6 @@ public class ApiConfigCache implements IApiConfigCache {
     }
 
     private String buildApiConfigKey(ApiConfig apiInfo) {
-//    	if(StrUtil.isNotEmpty(apiInfo.getMethod())) {
-//    		return apiInfo.getMethod() +" "+ apiInfo.getPath();
-//    	}
     	return apiInfo.getPath();
     }
 

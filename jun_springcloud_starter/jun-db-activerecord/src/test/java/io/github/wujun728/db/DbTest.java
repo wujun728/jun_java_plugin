@@ -1,7 +1,5 @@
 package io.github.wujun728.db;
 
-import cn.hutool.aop.ProxyUtil;
-import cn.hutool.aop.aspects.Aspect;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.json.JSONUtil;
@@ -14,16 +12,14 @@ import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.db.utils.RecordUtil;
 import io.github.wujun728.db.utils.SqlUtil;
 import io.github.wujun728.rest.entity.ApiSql;
-import io.github.wujun728.rest.entity.ApiSqlMybatis;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.sql.DataSource;
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
-import static io.github.wujun728.db.record.Db.main;
+import static io.github.wujun728.db.utils.DataSourcePool.main;
 
 
 public class DbTest {
@@ -34,7 +30,6 @@ public class DbTest {
         String password = "";
         DataSource dataSource = DataSourcePool.init("main",url,username,password);
         //Db.init(main,dataSource);
-        Db.getDbTemplate();
 
     }
 
@@ -45,7 +40,7 @@ public class DbTest {
         String username = "root";
         String password = "";
         DataSource dataSource = DataSourcePool.init("main",url,username,password);
-        Db.init(main,dataSource);
+        Db.init(dataSource);
     }
 
     @Test
@@ -191,13 +186,13 @@ public class DbTest {
 
     @Test
     public void testDelete() throws Exception {
-        Boolean result = Db.use(main).deleteBySql("delete from api_sql where sql_id = ? ", "paras");
+        int result = Db.use(main).delete("delete from api_sql where sql_id = ? ", "paras");
         StaticLog.info(String.valueOf(result));
     }
 
     @Test
     public void testDelete2() throws Exception {
-        boolean result = Db.use(main).deleteBySql("delete from api_sql where sql_id = 'paras' ");
+        int result = Db.use(main).delete("delete from api_sql where sql_id = 'paras' ");
         StaticLog.info(String.valueOf(result));
     }
 
@@ -258,7 +253,7 @@ public class DbTest {
     }
     @Test
     public void testGetByParams() throws Exception {
-        ApiSql result = (ApiSql) Db.use(main).findBeanById(ApiSql.class,1243333563,"test1622823114");
+        ApiSql result = (ApiSql) Db.use(main).findBeanById(ApiSql.class,1243333563/*,"test1622823114"*/);
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
@@ -270,7 +265,7 @@ public class DbTest {
 
     @Test
     public void testCount() throws Exception {
-        Integer result = Db.use(main).count(" select count(1) from api_sql ");
+        Integer result = Db.use(main).queryInt(" select count(1) from api_sql ");
         StaticLog.info(String.valueOf(result));
     }
     @Test
@@ -280,18 +275,18 @@ public class DbTest {
     }
 
 
-    @Test
-    public void testQueryPage() throws Exception {
-        Page result = Db.use(main).findBeanPages(ApiSql.class, 1, 10);
-        StaticLog.info(JSONUtil.toJsonStr(result));
-    }
-    @Test
-    public void testQueryPage2() throws Exception {
-        Page result = Db.use(main).findBeanPages(ApiSql.class, 1, 10, Maps.newHashMap());
-        StaticLog.info(JSONUtil.toJsonStr(result));
-    }
-    @Test
-    public void testQueryPage2111() throws Exception {
-//        Db.use(main).findBeanPages()
-    }
+//    @Test
+//    public void testQueryPage() throws Exception {
+//        Page result = Db.use(main).findBeanPages(ApiSql.class, 1, 10);
+//        StaticLog.info(JSONUtil.toJsonStr(result));
+//    }
+//    @Test
+//    public void testQueryPage2() throws Exception {
+//        Page result = Db.use(main).findBeanPages(ApiSql.class, 1, 10, Maps.newHashMap());
+//        StaticLog.info(JSONUtil.toJsonStr(result));
+//    }
+//    @Test
+//    public void testQueryPage2111() throws Exception {
+////        Db.use(main).findBeanPages()
+//    }
 }

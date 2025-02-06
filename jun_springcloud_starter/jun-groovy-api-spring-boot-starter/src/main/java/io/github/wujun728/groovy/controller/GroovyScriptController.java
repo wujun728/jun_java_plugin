@@ -2,7 +2,7 @@ package io.github.wujun728.groovy.controller;
 
 import groovy.lang.GroovyClassLoader;
 import io.github.wujun728.common.base.Result;
-import io.github.wujun728.common.utils.SpringUtils;
+import io.github.wujun728.groovy.util.SpringUtils;
 import io.github.wujun728.groovy.groovy.GroovyDynamicLoader;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
