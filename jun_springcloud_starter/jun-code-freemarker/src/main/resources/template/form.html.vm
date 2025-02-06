@@ -1,0 +1,167 @@
+<form id="addOrUpdateForm" lay-filter="addOrUpdateForm" class="layui-form model-form">
+
+#foreach ($column in $tableField)
+#if(${column.columnKey} == "PRI")
+    <input name="${column.javaName}" type="hidden"/>
+#else
+#if (${column.whetherAddUpdate} == "Y")
+    <div class="layui-form-item">
+        <label class="layui-form-label layui-form-required">${column.columnComment}</label>
+        <div class="layui-input-block">
+#if (${column.effectType} == "input")
+#if (${column.whetherRequired} == "Y")
+            <input name="${column.javaName}" class="layui-input" placeholder="请输入${column.columnComment}" lay-verType="tips" lay-verify="required" required/>
+#else
+            <input name="${column.javaName}" class="layui-input" placeholder="请输入${column.columnComment}" lay-verType="tips"/>
+#end
+#elseif(${column.effectType} == "textarea")
+#if (${column.whetherRequired} == "Y")
+            <textarea placeholder="请输入${column.columnComment}" class="layui-textarea" name="${column.javaName}" lay-verify="required" required></textarea>
+#else
+            <textarea placeholder="请输入${column.columnComment}" class="layui-textarea" name="${column.javaName}"></textarea>
+#end
+#elseif(${column.effectType} == "inputnumber")
+#if (${column.whetherRequired} == "Y")
+            <input name="${column.javaName}" type="number" class="layui-input" placeholder="请输入${column.columnComment}" lay-verType="tips" lay-verify="required" required/>
+#else
+            <input name="${column.javaName}" type="number" class="layui-input" placeholder="请输入${column.columnComment}" lay-verType="tips"/>
+#end
+#elseif(${column.effectType} == "select")
+            <div id="${column.javaName}Id"></div>
+#elseif(${column.effectType} == "radio")
+            <div id="${column.javaName}Id"></div>
+#elseif(${column.effectType} == "checkbox")
+            <div id="${column.javaName}Id"></div>
+#elseif(${column.effectType} == "datepicker")
+            <input type="text" name="${column.javaName}" id="${column.javaName}Id" placeholder="请选择${column.columnComment}" autocomplete="off" class="layui-input">
+#end
+        </div>
+    </div>
+
+#end
+#end
+#end
+    <div class="layui-form-item text-right">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        <button class="layui-btn" lay-filter="formSubmitBtn" lay-submit>保存</button>
+    </div>
+</form>
+
+<script>
+    layui.use(['layer', 'form', 'admin', 'xnUtil', 'xmSelect', 'laydate'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var admin = layui.admin;
+        var xnUtil = layui.xnUtil;
+        var xmSelect = layui.xmSelect;
+        var laydate = layui.laydate;
+
+#foreach ($column in $tableField)
+#if (${column.whetherAddUpdate} == "Y")
+#if(${column.effectType} == "select")
+        var ${column.javaName}RenderIns = xmSelect.render({
+            el: '#${column.javaName}Id',
+            name: '${column.javaName}',
+            data: xnUtil.getDictDataByDictTypeCode('${column.dictTypeCode}', null),
+#if(${column.whetherRequired} == "Y")
+            layVerify: 'required',
+#end
+            layVerType: 'tips',
+            radio: true,
+            clickClose: true,
+            model: { icon:'hidden', label: { type: 'text' }},
+            prop: {
+                name: 'name',
+                value: 'code'
+            },
+            tips: '请选择${column.columnComment}'
+        }, {async: false});
+
+#elseif(${column.effectType} == "radio")
+        var ${column.javaName}Radio = '';
+        var ${column.javaName}RadioData = xnUtil.getDictDataByDictTypeCode('${column.dictTypeCode}', null);
+        ${column.javaName}RadioData.forEach(function (item) {
+            ${column.javaName}Radio = ${column.javaName}Radio + '<input type="radio" name="${column.javaName}" value="'+item.code+'" title="'+item.name+'">'
+        })
+        $("#${column.javaName}Id").html(${column.javaName}Radio)
+        form.render('radio');
+
+#elseif(${column.effectType} == "checkbox")
+        var ${column.javaName}Checkbox = '';
+        var ${column.javaName}CheckboxData = xnUtil.getDictDataByDictTypeCode('${column.dictTypeCode}', null);
+            ${column.javaName}CheckboxData.forEach(function (item) {
+                ${column.javaName}Checkbox = ${column.javaName}Checkbox + '<input type="checkbox" name="${column.javaName}" value="'+item.code+'" title="'+item.name+'">'
+        })
+        $("#${column.javaName}Id").html(${column.javaName}Checkbox)
+        form.render('checkbox');
+#elseif(${column.effectType} == "datepicker")
+        laydate.render({
+            elem: '#${column.javaName}Id'
+        });
+#end
+#end
+#end
+
+        var editData = admin.getLayerData('#addOrUpdateForm').data;
+        if(editData !== null && editData !== undefined) {
+            form.val('addOrUpdateForm', editData);
+#foreach ($column in $tableField)
+#if (${column.whetherAddUpdate} == "Y")
+#if(${column.effectType} == "select")
+            // 下拉赋值
+            ${column.javaName}RenderIns.setValue([editData.${column.javaName}]);
+
+#end
+#if(${column.effectType} == "checkbox")
+            // 复选赋值
+            var ${column.javaName}Checkbox = '';
+            var ${column.javaName}CheckboxData = xnUtil.getDictDataByDictTypeCode('${column.dictTypeCode}', null);
+                ${column.javaName}CheckboxData.forEach(function (item) {
+                    ${column.javaName}Checkbox = ${column.javaName}Checkbox + '<input type="checkbox" name="${column.javaName}" value="'+item.code+'" title="'+item.name+'"'
+                    JSON.parse(editData.${column.javaName}).forEach(function (items) {
+                        if (item.code == items) {
+                            ${column.javaName}Checkbox = ${column.javaName}Checkbox + 'checked=""';
+                        }
+                    })
+                    ${column.javaName}Checkbox = ${column.javaName}Checkbox + '>'
+            })
+            $("#${column.javaName}Id").html(${column.javaName}Checkbox)
+            form.render('checkbox');
+
+#end
+#end
+#end
+        }
+
+        /**
+         * 表单提交事件
+         */
+        form.on('submit(formSubmitBtn)', function (data) {
+            layer.load(2);
+
+#foreach ($column in $tableField)
+#if (${column.whetherAddUpdate} == "Y")
+#if(${column.effectType} == "checkbox")
+            var ${column.javaName}Banks =[];
+            $('input[name="${column.javaName}"]:checked').each(function(index, domEle){
+                ${column.javaName}Banks.push($(this).val());
+            });
+            data.field.${column.javaName} = JSON.stringify(${column.javaName}Banks);
+
+#end
+#end
+#end
+            var url = editData ? getProjectUrl() + '${className}/edit' : getProjectUrl() + '${className}/add';
+            admin.req(url, JSON.stringify(data.field), function(res){
+                layer.msg(res.message, {icon: 1, time: 1000}, function () {
+                    admin.putLayerData('formOk', true, '#addOrUpdateForm');
+                    admin.closeDialog('#addOrUpdateForm');
+                });
+            }, 'post');
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

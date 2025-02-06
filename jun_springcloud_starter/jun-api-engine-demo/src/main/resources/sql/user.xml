@@ -1,0 +1,28 @@
+<sqls>
+    <defaultDB>test_mysql</defaultDB>
+
+    <sql id="getAllUser">
+        select * from student
+    </sql>
+
+    <sql id="getUserIn" db="test_mysql">
+        select * from user where id in
+        <foreach collection="ids" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+
+    </sql>
+
+    <sql id="getUserById">
+        select * from student where id = #{id}
+    </sql>
+
+    <sql id="createStudent">
+        insert into student (name,age) values (#{name},#{age})
+    </sql>
+
+    <sql id="deleteAll">
+        delete from student
+    </sql>
+
+</sqls>
