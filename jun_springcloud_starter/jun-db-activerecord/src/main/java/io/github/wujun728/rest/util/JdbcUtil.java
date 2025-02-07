@@ -2,7 +2,7 @@ package io.github.wujun728.rest.util;
 
 import com.alibaba.fastjson2.JSONObject;
 import io.github.wujun728.common.base.Result;
-import io.github.wujun728.rest.entity.ApiDataSource;
+import io.github.wujun728.sql.entity.ApiDataSource;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;

@@ -11,7 +11,7 @@ import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.db.utils.RecordUtil;
 import io.github.wujun728.db.utils.SqlUtil;
-import io.github.wujun728.rest.entity.ApiSql;
+import io.github.wujun728.sql.entity.ApiSql;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

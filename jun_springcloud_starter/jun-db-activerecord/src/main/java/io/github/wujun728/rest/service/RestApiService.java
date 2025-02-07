@@ -7,11 +7,9 @@ import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.db.utils.RecordUtil;
-import io.github.wujun728.rest.entity.ApiDataSource;
-import io.github.wujun728.rest.entity.ApiSql;
-import io.github.wujun728.rest.plugin.PluginManager;
-import io.github.wujun728.rest.plugin.TransformPlugin;
 import io.github.wujun728.sql.SqlXmlUtil;
+import io.github.wujun728.sql.entity.ApiDataSource;
+import io.github.wujun728.sql.entity.ApiSql;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -63,13 +61,13 @@ public class RestApiService {
                 ApiSql apiSql = sqlList.get(i);
                 Object data = dataList.get(i);
                 // 如果此单条sql是查询类sql，并且配置了数据转换插件
-                if (data instanceof Iterable && StringUtils.isNotBlank(apiSql.getTransformPlugin())) {
+                /*if (data instanceof Iterable && StringUtils.isNotBlank(apiSql.getTransformPlugin())) {
                     log.info("transform plugin execute");
                     List<JSONObject> sourceData = (List<JSONObject>) (data); // 查询类sql的返回结果才可以这样强制转换，只有查询类sql才可以配置转换插件
                     TransformPlugin transformPlugin = (TransformPlugin) PluginManager.getPlugin(apiSql.getTransformPlugin());
                     Object resData = transformPlugin.transform(sourceData, apiSql.getTransformPluginParams());
                     dataList.set(i, resData);// 重新设置值
-                }
+                }*/
             }
             Object res = dataList;
             // 如果只有单条sql,返回结果不是数组格式
@@ -107,7 +105,7 @@ public class RestApiService {
             for (ApiSql apiSql : sqlList) {
 //				SqlMeta sqlMeta = JdbcUtil.getEngine().parse(apiSql.getSqlText(), sqlParam);
 //				Object data = JdbcUtil.executeSql(connection, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
-                Object data = SqlXmlUtil.executeSql(connection, apiSql.getSqlText(), sqlParam);
+                Object data = SqlXmlUtil.executeSql(connection, apiSql.getText(), sqlParam);
                 dataList.add(data);
             }
             if (flag)

@@ -214,6 +214,12 @@
             <groupId>io.github.wujun728</groupId>
             <artifactId>jun-mybatis-sql-engine</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>2.0.47</version>
+            <scope>compile</scope>
+        </dependency>
         <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
