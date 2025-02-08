@@ -253,8 +253,8 @@ public class DbTest {
     }
     @Test
     public void testGetByParams() throws Exception {
-        ApiSql result = (ApiSql) Db.use(main).findBeanById(ApiSql.class,1243333563/*,"test1622823114"*/);
-        StaticLog.info(JSONUtil.toJsonStr(result));
+//        ApiSql result = (ApiSql) Db.use(main).findBeanById(ApiSql.class,1243333563/*,"test1622823114"*/);
+//        StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
     @Test

@@ -19,9 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import static io.github.wujun728.db.utils.DataSourcePool.getPkNames;
-
-//import static io.github.wujun728.db.record.DbPro.getPkNames;
+import static io.github.wujun728.db.record.DbPro.getPkNames;
 
 
 public class SqlUtil {

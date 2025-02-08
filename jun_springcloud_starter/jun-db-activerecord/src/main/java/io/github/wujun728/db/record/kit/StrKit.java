@@ -201,11 +201,11 @@ public class StrKit {
 		return sb.toString();
 	}
 	
-	public static boolean slowEquals(String a, String b) {
+	/*public static boolean slowEquals(String a, String b) {
 		byte[] aBytes = (a != null ? a.getBytes() : null);
 		byte[] bBytes = (b != null ? b.getBytes() : null);
 		return HashKit.slowEquals(aBytes, bBytes);
-	}
+	}*/
 	
 	public static boolean equals(String a, String b) {
 		return a == null ? b == null : a.equals(b);

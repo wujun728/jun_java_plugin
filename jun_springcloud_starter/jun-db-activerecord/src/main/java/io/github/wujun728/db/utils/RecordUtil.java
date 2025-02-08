@@ -2,7 +2,6 @@ package io.github.wujun728.db.utils;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import com.google.common.collect.Lists;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
 
@@ -77,7 +76,7 @@ public class RecordUtil {
         return obj;
     }
 
-    public static List<Map> recordToMaps(List<Record> recordList){
+    public static List<Map> recordListToMapList(List<Record> recordList){
         return recordToMaps(recordList,false);
     }
     public static List<Map> recordToMaps(List<Record> recordList,Boolean isUnderLine){
@@ -217,13 +216,9 @@ public class RecordUtil {
 //    public static Map<String, Object> recordToMap(Record record) {
 //        return RecordUtil.recordToMap(record);
 //    }
-    public static <T> List<T> recordToListBean(List<Record> recordList, Class<T> clazz){
-        List datas  = Lists.newArrayList()  ;
-        recordList.forEach(item->{
-            datas.add(RecordUtil.recordToBean(item,clazz));
-        });
-        return datas;
-    }
+//    public static <T> List<T> recordToListBean(List<Record> recordList, Class<T> clazz){
+//        return RecordUtil.recordToListBean(recordList,clazz);
+//    }
 //    public static Page pageRecordToPage(Page<Record> pageList){
 //        return RecordUtil.pageRecordToPage(pageList);
 //    }

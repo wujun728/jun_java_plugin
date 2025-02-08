@@ -1,30 +1,16 @@
-/**
- * Copyright (c) 2011-2015, James Zhan 詹波 (jfinal@126.com).
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 package io.github.wujun728.db.record.dialect;
 
-import io.github.wujun728.db.record.*;
-import io.github.wujun728.db.record.builder.TimestampProcessedRecordBuilder;
+import io.github.wujun728.db.record.Db;
+import io.github.wujun728.db.record.Page;
+import io.github.wujun728.db.record.Record;
+import io.github.wujun728.sql.SqlEngine;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 /**
  * AnsiSqlDialect. Try to use ANSI SQL dialect with ActiveRecordPlugin.
@@ -34,7 +20,7 @@ import java.util.Set;
 public class AnsiSqlDialect extends Dialect {
 	
 	public AnsiSqlDialect() {
-		this.recordBuilder = TimestampProcessedRecordBuilder.me;
+//		this.recordBuilder = TimestampProcessedRecordBuilder.me;
 	}
 	
 	public String forTableBuilderDoBuild(String tableName) {
@@ -96,18 +82,18 @@ public class AnsiSqlDialect extends Dialect {
 		
 		// Record 新增支持 modifyFlag
 //		Set<String> modifyFlag = CPI.getModifyFlag(record);
-		Set<String> modifyFlag = record._getModifyFlag();
+//		Set<String> modifyFlag = record._getModifyFlag();
 
 		sql.append("update ").append(tableName).append(" set ");
 		for (Entry<String, Object> e: record.getColumns().entrySet()) {
 			String colName = e.getKey();
-			if (modifyFlag.contains(colName) && !isPrimaryKey(colName, pKeys)) {
+//			if (modifyFlag.contains(colName) && !isPrimaryKey(colName, pKeys)) {
 				if (paras.size() > 0) {
 					sql.append(", ");
 				}
 				sql.append(colName).append(" = ? ");
 				paras.add(e.getValue());
-			}
+//			}
 		}
 		sql.append(" where ");
 		for (int i=0; i<pKeys.length; i++) {
@@ -123,7 +109,7 @@ public class AnsiSqlDialect extends Dialect {
 	 * SELECT * FROM subject t1 WHERE (SELECT count(*) FROM subject t2 WHERE t2.id < t1.id AND t2.key = '123') > = 10 AND (SELECT count(*) FROM subject t2 WHERE t2.id < t1.id AND t2.key = '123') < 20 AND t1.key = '123'
 	 */
 	public String forPaginate(int pageNumber, int pageSize, StringBuilder findSql) {
-		throw new ActiveRecordException("Your should not invoke this method because takeOverDbPaginate(...) will take over it.");
+		throw new RuntimeException("Your should not invoke this method because takeOverDbPaginate(...) will take over it.");
 	}
 	
 	public boolean isTakeOverDbPaginate() {
@@ -134,7 +120,7 @@ public class AnsiSqlDialect extends Dialect {
 	public Page<Record> takeOverDbPaginate(Connection conn, int pageNumber, int pageSize, Boolean isGroupBySql, String totalRowSql, StringBuilder findSql, Object... paras) throws SQLException {
 		// String totalRowSql = "select count(*) " + replaceOrderBy(sqlExceptSelect);
 //		List result = CPI.query(conn, totalRowSql, paras);
-		List result = Db.query(totalRowSql, paras);
+		List result = Db.use().queryList(totalRowSql, paras);
 		int size = result.size();
 		if (isGroupBySql == null) {
 			isGroupBySql = size > 1;
@@ -195,11 +181,14 @@ public class AnsiSqlDialect extends Dialect {
 				if (types[i] < Types.BLOB) {
 					value = rs.getObject(i);
 				} else if (types[i] == Types.CLOB) {
-					value = RecordBuilder.me.handleClob(rs.getClob(i));
+					value = rs.getClob(i);
+					//value = RecordBuilder.me.handleClob(rs.getClob(i));
 				} else if (types[i] == Types.NCLOB) {
-					value = RecordBuilder.me.handleClob(rs.getNClob(i));
+					value = rs.getNClob(i);
+					//value = RecordBuilder.me.handleClob(rs.getNClob(i));
 				} else if (types[i] == Types.BLOB) {
-					value = RecordBuilder.me.handleBlob(rs.getBlob(i));
+					value = rs.getBlob(i);
+					//value = RecordBuilder.me.handleBlob(rs.getBlob(i));
 				} else {
 					value = rs.getObject(i);
 				}

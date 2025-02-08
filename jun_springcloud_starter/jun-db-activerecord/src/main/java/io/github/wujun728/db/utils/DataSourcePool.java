@@ -1,20 +1,17 @@
 package io.github.wujun728.db.utils;
 
-import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.db.meta.MetaUtil;
-import cn.hutool.db.meta.Table;
+import cn.hutool.extra.spring.SpringUtil;
 import com.alibaba.druid.pool.DruidDataSource;
 //import io.github.wujun728.db.record.Db;
+import io.github.wujun728.db.record.Db;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -25,6 +22,7 @@ public class DataSourcePool {
 
     public static final String main = "main";
     private static Lock lock = new ReentrantLock();
+    private static Lock deleteLock = new ReentrantLock();
 
     public static final String mysqlDriver5 = "com.mysql.jdbc.Driver";
     public static final String mysqlDriver6 = "com.mysql.cj.jdbc.Driver";
@@ -71,6 +69,7 @@ public class DataSourcePool {
                     druidDataSource.setBreakAfterAcquireFailure(true);
                     dataSourceMap.put(dsname, druidDataSource);
                     log.info("创建Druid连接池成功：{}", dsname);
+
                 }
                 return dataSourceMap.get(dsname);
             } catch (Exception e) {
@@ -82,14 +81,18 @@ public class DataSourcePool {
     }
     public static void init(String dsname,DataSource dataSource) {
         add(dsname,dataSource);
+        if(main.equalsIgnoreCase(dsname)){
+            //Db.init(dsname,dataSource);
+        }
     }
-
     private static void add(String dsname, DataSource dataSource) {
         lock.lock();
         try {
             log.info(Thread.currentThread().getName() + "获取锁");
             dataSourceMap.put(dsname, dataSource);
-            registerRecord(dataSource);
+            if(main.equalsIgnoreCase(dsname)){
+                //Db.init(dsname,dataSource);
+            }
             log.info("添加连接池成功：{}", dsname);
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,7 +113,7 @@ public class DataSourcePool {
 
     //删除数据库连接池
     public static void remove(String dsname) {
-        lock.lock();
+        deleteLock.lock();
         try {
             DataSource druidDataSource = dataSourceMap.get(dsname);
             if (druidDataSource != null) {
@@ -123,7 +126,7 @@ public class DataSourcePool {
         } catch (Exception e) {
             log.error(e.toString());
         } finally {
-            lock.unlock();
+            deleteLock.unlock();
         }
     }
 
@@ -135,26 +138,8 @@ public class DataSourcePool {
     //*****************************************************************************************************************
     //*****************************************************************************************************************
     //*****************************************************************************************************************
-
-    private static final Map<String, String> TABLE_PK_MAP = new HashMap<>();
-    private static void registerRecord(DataSource dataSource) {
-        List<String> tables = MetaUtil.getTables(dataSource);
-        tables.forEach(tableName -> {
-            Table table = MetaUtil.getTableMeta(dataSource, tableName);
-            String pkStr = String.join(",", table.getPkNames());
-            TABLE_PK_MAP.put(tableName, pkStr);// map不清，只做替换
-        });
-    }
-    public static String getPkNames(String tableName) {
-        if(CollectionUtil.isEmpty(TABLE_PK_MAP)){
-            registerRecord(DataSourcePool.get(main));
-        }
-        String primaryKey = TABLE_PK_MAP.get(tableName);
-        if(StrUtil.isEmpty(primaryKey)){
-            throw new RuntimeException("当前操作的表没有主键或表不存在，tableName="+tableName);
-        }
-        return primaryKey;
-    }
+    //*****************************************************************************************************************
+    //*****************************************************************************************************************
 
 
 }

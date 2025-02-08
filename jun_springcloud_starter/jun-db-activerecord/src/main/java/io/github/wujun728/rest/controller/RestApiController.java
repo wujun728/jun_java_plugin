@@ -361,7 +361,7 @@ public class RestApiController {
         Map<String, ApiSql> apiSqlMap = apiSqls.stream().collect(Collectors.toMap(i->i.getPath(), i->i));
         if(apiSqlMap.containsKey(path)){
             //Object obj = restApiService.doSQLProcess(apiSqlMap.get(path), parameters);
-            Connection connection = Db.use(main).getConfig().getConnection();
+            Connection connection = Db.use(main).getDataSource().getConnection();
             Object obj = SqlXmlUtil.executeSql(connection, String.valueOf(apiSqlMap.get(path)), parameters);
             return Result.success(obj);
         }else{
