@@ -2,8 +2,8 @@ package io.github.wujun728.rest.plugin.impl;
 
 import java.util.Map;
 
-import io.github.wujun728.rest.entity.Api;
 import io.github.wujun728.rest.plugin.CachePlugin;
+import io.swagger.annotations.Api;
 
 public class DemoCachePlugin extends CachePlugin {
     @Override

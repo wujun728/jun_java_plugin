@@ -21,13 +21,12 @@ import cn.hutool.core.util.CharsetUtil;
 import com.alibaba.fastjson2.JSON;
 import io.github.wujun728.common.base.Result;
 import io.github.wujun728.groovy.interfaces.IRun;
-import io.github.wujun728.rest.service.RestApiService;
+import io.github.wujun728.rest.service.ApiService;
 import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.groovy.cache.ApiConfigCache;
 import io.github.wujun728.groovy.cache.IApiConfigCache;
 import io.github.wujun728.groovy.common.model.ApiConfig;
 import io.github.wujun728.rest.entity.ApiSql;
-import io.github.wujun728.groovy.service.ApiService;
 import io.github.wujun728.common.exception.BusinessException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -52,7 +51,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RequestMappingExecutor implements IMappingExecutor,ApplicationListener<ContextRefreshedEvent> {
 
 	@Autowired
-	private ApiService apiService;
+	private io.github.wujun728.groovy.service.ApiService apiService;
 
 	@Autowired
 	private IApiConfigCache apiInfoCache;
@@ -195,7 +194,7 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 
 
 	@Resource
-	RestApiService restApiService;
+	ApiService restApiService;
 	/**
 	 * 执行脚本逻辑
 	 */

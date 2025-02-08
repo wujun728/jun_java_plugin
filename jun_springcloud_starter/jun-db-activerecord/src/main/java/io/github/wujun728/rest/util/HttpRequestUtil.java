@@ -5,6 +5,7 @@ import cn.hutool.core.io.IORuntimeException;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
@@ -91,8 +92,8 @@ public class HttpRequestUtil {
 			params = getHttpJsonParams(request);
 		}
 		String uri = request.getRequestURI();
-		Map<String,String> parameterMap = HttpRequestUtil.getParameterMap(request);
-		Map<String, String> header = HttpRequestUtil.buildHeaderParams(request);
+		Map<String,Object> parameterMap = HttpRequestUtil.getParameterMap(request);
+		Map<String, Object> header = HttpRequestUtil.buildHeaderParams(request);
 		Map<String, Object> session = HttpRequestUtil.buildSessionParams(request);
 		Map<String, Object> urivar = HttpRequestUtil.getQueryString(request);
 		String ip = HttpRequestUtil.getIp(request);
@@ -102,26 +103,43 @@ public class HttpRequestUtil {
 		if (!CollectionUtils.isEmpty(urivar)) params.putAll(urivar);
 		params.put("root.path", uri);
 		params.put("root.ip", ip);
+		for(String key : params.keySet()){
+			params.put(key,convertNumber(params.get(key)));
+		}
 		return params;
 	}
 
 
-	public static Map<String, String> getParameterMap(HttpServletRequest request) {
-		Map<String, String> map = new HashMap<>();
+	public static Map<String, Object> getParameterMap(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<>();
 		Enumeration<String> paramNames = request.getParameterNames();
 		while (paramNames.hasMoreElements()) {
 			String paramName = paramNames.nextElement();
-			String[] paramValues = request.getParameterValues(paramName);
+			Object[] paramValues = request.getParameterValues(paramName);
 			if (paramValues.length == 1) {
-				String paramValue = paramValues[0];
-				if (paramValue.length() != 0) {
-					map.put(paramName, paramValue);
+				Object paramValue = paramValues[0];
+				if (String.valueOf(paramValue).length() != 0) {
+					map.put(paramName, convertNumber(paramValue));
 				}
 			}
 		}
 		return map;
 	}
-	@Deprecated
+
+	public static Object convertNumber(Object paramValue){
+		if(NumberUtil.isInteger(String.valueOf(paramValue))){
+			return Integer.parseInt(String.valueOf(paramValue));
+		}else
+		if(NumberUtil.isLong(String.valueOf(paramValue))){
+			return Long.parseLong(String.valueOf(paramValue));
+		}else
+		if(NumberUtil.isDouble(String.valueOf(paramValue))){
+			return Double.parseDouble(String.valueOf(paramValue));
+		}else{
+			return paramValue;
+		}
+	}
+	/*@Deprecated
 	public static Map<String, Object> getParameters(HttpServletRequest req) {
 		Map<String, Object> params = new HashMap<>();
 		Map<String, String[]> parameterMap = req.getParameterMap();
@@ -138,7 +156,7 @@ public class HttpRequestUtil {
 			}
 		}
 		return params;
-	}
+	}*/
 
 	public static String getBody(ServletRequest request) {
 		try {
@@ -207,8 +225,8 @@ public class HttpRequestUtil {
 			}else{
 				json = URLDecoder.decode(json, "UTF-8");
 				params = HttpRequestUtil.getUrlParams2(request,json);
-				if(CollectionUtil.isEmpty(params)){
-					StaticLog.error("非JSON格式数据，无法解析："+jsonContent);
+				if(CollectionUtil.isNotEmpty(params)){
+					StaticLog.info("非JSON格式数据，无法解析："+jsonContent);
 				}
 			}
 			return params;
@@ -229,11 +247,11 @@ public class HttpRequestUtil {
 		urlMvp.forEach((key, value) -> {
 			String firstValue = CollectionUtils.isEmpty(value) ? null : value.get(0);
 			NumberUtil.isNumber(firstValue);
-			result.put(key, firstValue);
+			result.put(key, convertNumber(firstValue));
 		});
 		return result;
 	}
-	public static Map getUrlParams(String param) {
+	/*public static Map getUrlParams(String param) {
 		Map map = new HashMap(0);
 		if (StrUtil.isBlank(param)) {
 			return map;
@@ -246,7 +264,7 @@ public class HttpRequestUtil {
 			}
 		}
 		return map;
-	}
+	}*/
 
 
 //	@Deprecated
@@ -295,13 +313,13 @@ public class HttpRequestUtil {
 //		}
 //	}
 
-	public static Map<String, String> buildHeaderParams(HttpServletRequest request) {
+	public static Map<String, Object> buildHeaderParams(HttpServletRequest request) {
 		Enumeration<String> headerKeys = request.getHeaderNames();
-		Map<String, String> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
 		while (headerKeys.hasMoreElements()) {
 			String key = headerKeys.nextElement();
-			String value = request.getHeader(key);
-			result.put("header."+key, value);
+			Object value = request.getHeader(key);
+			result.put("header."+key, convertNumber(value));
 		}
 		return result;
 	}
@@ -326,7 +344,7 @@ public class HttpRequestUtil {
 		MultiValueMap<String, String> urlMvp = UriComponentsBuilder.fromHttpUrl(url.toString()).build().getQueryParams();
 		urlMvp.forEach((key, value) -> {
 			String firstValue = CollectionUtils.isEmpty(value) ? null : value.get(0);
-			result.put(key, firstValue);
+			result.put(key, convertNumber(firstValue));
 		});
 		return result;
 	}

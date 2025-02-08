@@ -17,7 +17,6 @@
         <module>jun-code-freemarker</module>
         <module>jun-common-base</module>
         <module>jun-common-core</module>
-        <module>jun-api-engine-spring-boot-starter</module>
         <module>jun-groovy-api-spring-boot-starter</module>
         <module>jun-uidgenerator-spring-boot-starter</module>
         <module>jun-codegen-spring-boot-starter</module>

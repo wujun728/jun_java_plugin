@@ -7,9 +7,10 @@ import lombok.Data;
 public class ApiSql {
 
     String id;
+    String group;
+    String path;
     String text;
     String type;
-    String group;
     @JSONField(name = "datasourceId")
     String datasourceId;
     String before;
