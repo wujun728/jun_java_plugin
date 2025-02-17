@@ -18,7 +18,7 @@ import io.github.wujun728.db.utils.TreeBuildUtil;
 import io.github.wujun728.generator.util.MapUtil;
 import io.github.wujun728.rest.util.RestUtil;
 import io.github.wujun728.sql.SqlMeta;
-import io.github.wujun728.sql.SqlXmlUtil;
+import io.github.wujun728.sql.utils.JdbcUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -138,8 +138,8 @@ public class ApiService {
 
     public static Object executeSQL(DataSource ds, Map<String, Object> sqlParam, String deleteSQL)
             throws SQLException {
-        SqlMeta sqlMeta = SqlXmlUtil.getEngine().parse(deleteSQL, sqlParam);
-        Object datas = SqlXmlUtil.executeSql(ds.getConnection(), sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
+        SqlMeta sqlMeta = JdbcUtil.getEngine().parse(deleteSQL, sqlParam);
+        Object datas = JdbcUtil.executeSql(ds.getConnection(), sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
         System.err.println(JSON.toJSONString(datas));
         return datas;
     }

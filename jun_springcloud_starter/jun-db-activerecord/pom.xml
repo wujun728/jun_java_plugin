@@ -210,10 +210,10 @@
             <groupId>com.jfinal</groupId>
             <artifactId>enjoy</artifactId>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>io.github.wujun728</groupId>
             <artifactId>jun-mybatis-sql-engine</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>

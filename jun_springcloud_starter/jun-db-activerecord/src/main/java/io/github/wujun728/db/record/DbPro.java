@@ -13,7 +13,7 @@ import io.github.wujun728.db.utils.RecordUtil;
 //import io.github.wujun728.db.utils.SqlContext;
 import io.github.wujun728.db.utils.SqlContext;
 import io.github.wujun728.db.utils.SqlUtil;
-import io.github.wujun728.sql.SqlXmlUtil;
+import io.github.wujun728.sql.utils.JdbcUtil;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.dao.DataAccessException;
@@ -531,15 +531,15 @@ public class DbPro{
 
 
     public Object executeSqlXml(String sqlXml, Map params) throws SQLException {
-        return SqlXmlUtil.executeSql(getDataSource().getConnection(), sqlXml, params, true);
+        return JdbcUtil.executeSql(getDataSource().getConnection(), sqlXml, params, true);
     }
 
     public int updateSqlXml(String sqlXml, Map params) throws SQLException {
-        return SqlXmlUtil.update(getDataSource().getConnection(), sqlXml, params);
+        return JdbcUtil.update(getDataSource().getConnection(), sqlXml, params);
     }
 
     public List<Map<String, Object>> querySqlXml(String sqlXml, Map params) throws SQLException {
-        return SqlXmlUtil.query(getDataSource().getConnection(), sqlXml, params);
+        return JdbcUtil.query(getDataSource().getConnection(), sqlXml, params);
     }
 
     //************************************************************************************************************************************************

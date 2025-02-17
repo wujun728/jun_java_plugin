@@ -1,33 +1,24 @@
 package io.github.wujun728.rest.controller;
 
-import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.db.meta.Column;
 import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
-import cn.hutool.http.HttpRequest;
-import cn.hutool.http.HttpResponse;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
-import com.alibaba.fastjson2.JSON;
-import com.google.common.collect.Maps;
 import io.github.wujun728.common.base.Result;
 import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
-import io.github.wujun728.db.utils.FieldUtils;
 import io.github.wujun728.db.utils.RecordUtil;
-import io.github.wujun728.db.utils.TreeBuildUtil;
 import io.github.wujun728.rest.service.ApiService;
 import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.rest.util.RestUtil;
-import io.github.wujun728.sql.SqlMeta;
-import io.github.wujun728.sql.SqlXmlUtil;
 import io.github.wujun728.sql.entity.ApiSql;
+import io.github.wujun728.sql.utils.JdbcUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.util.CollectionUtils;
@@ -36,17 +27,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
-import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import static io.github.wujun728.rest.util.RestUtil.checkDataFormat;
-import static io.github.wujun728.rest.util.RestUtil.setPkValue;
 
 /**
  * @author Wujun
@@ -362,7 +347,7 @@ public class RestApiController {
         if(apiSqlMap.containsKey(path)){
             //Object obj = restApiService.doSQLProcess(apiSqlMap.get(path), parameters);
             Connection connection = Db.use(main).getDataSource().getConnection();
-            Object obj = SqlXmlUtil.executeSql(connection, String.valueOf(apiSqlMap.get(path)), parameters);
+            Object obj = JdbcUtil.executeSql(connection, String.valueOf(apiSqlMap.get(path)), parameters);
             return Result.success(obj);
         }else{
             return Result.error("执行的接口不存在" );

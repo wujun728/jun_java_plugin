@@ -4,6 +4,7 @@ import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
 import com.alibaba.druid.pool.DruidDataSource;
 import io.github.wujun728.sql.engine.DynamicSqlEngine;
+import io.github.wujun728.sql.utils.JdbcUtil;
 //import org.junit.Test;
 
 import javax.sql.DataSource;
@@ -20,7 +21,7 @@ public class TestSqlUser {
 
         Map params = new HashMap();
         //params.put("id",10);
-        Object obj = SqlXmlUtil.executeSql(ds.getConnection(),"select * from biz_test" +
+        Object obj = JdbcUtil.executeSql(ds.getConnection(),"select * from biz_test" +
                 "  <if test='id!=null'>  where id = #{id}  </if> ",params,true);
         StaticLog.info(JSONUtil.toJsonStr(obj));
         StaticLog.info("");

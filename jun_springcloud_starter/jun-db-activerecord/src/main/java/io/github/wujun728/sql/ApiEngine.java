@@ -3,21 +3,20 @@ package io.github.wujun728.sql;
 import com.alibaba.druid.pool.DruidPooledConnection;
 import com.alibaba.fastjson.JSONObject;
 import io.github.wujun728.db.record.Page;
+import io.github.wujun728.sql.engine.DynamicSqlEngine;
 import io.github.wujun728.sql.entity.ApiDataSource;
 import io.github.wujun728.sql.entity.ApiSql;
 import io.github.wujun728.sql.entity.DBConfig;
 import io.github.wujun728.sql.entity.SqlWithParam;
+import io.github.wujun728.sql.utils.JdbcUtil;
 import io.github.wujun728.sql.utils.PoolManager;
 import io.github.wujun728.sql.utils.XmlParser;
-import io.github.wujun728.util.JdbcUtil;
-import io.github.wujun728.sql.engine.DynamicSqlEngine;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -62,14 +61,14 @@ public class ApiEngine {
                 logger.info("APISQL register sql xml: {}", filename);
             }
             Resource dsResource = resolver.getResource(this.dbConfig.getDatasource());
-
             String filename = dsResource.getFilename();
             InputStream inputStream = dsResource.getInputStream();
             String content = IOUtils.toString(inputStream, Charsets.toCharset(StandardCharsets.UTF_8));
             this.dataSourceMap = XmlParser.parseDatasource(content);
             logger.info("APISQL register datasource xml: {}", filename);
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            //logger.error(e.getMessage(), e);
+            logger.warn(e.getMessage());
         }
     }
 
@@ -120,12 +119,12 @@ public class ApiEngine {
         ApiDataSource dataSource = dataSourceMap.get(sql.getDatasourceId());
         String pageSql = sql.getText()+ " LIMIT #{start}, #{end} ";
         SqlMeta sqlMeta = dynamicSqlEngine.parse(pageSql, data);
-        List<JSONObject> results = JdbcUtil.executeQuery(dataSource, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());//executeQuery(namespace, sqlId, data);
+        List<JSONObject> results = ApiEngine.executeQuery(dataSource, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());//executeQuery(namespace, sqlId, data);
 
         String totalSql = "  select count(1) as count FROM ( "+sql.getText()+" ) AS subquery ";
         SqlMeta sqlMeta2 = dynamicSqlEngine.parse(totalSql, data);
 
-        Long totalpage = JdbcUtil.executeQueryInt(dataSource, sqlMeta2.getSql(), sqlMeta2.getJdbcParamValues());
+        Long totalpage = ApiEngine.executeQueryInt(dataSource, sqlMeta2.getSql(), sqlMeta2.getJdbcParamValues());
         pageVo.setList(results);
         pageVo.setTotalRow(Math.toIntExact(totalpage));
         pageVo.setPageNumber(pageNumber);
@@ -172,7 +171,7 @@ public class ApiEngine {
                     ApiDataSource dataSource = dataSourceMap.get(sql.getDatasourceId());
                     SqlMeta sqlMeta = dynamicSqlEngine.parse(sql.getText(), data);
 
-                    return JdbcUtil.executeQuery(dataSource, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
+                    return ApiEngine.executeQuery(dataSource, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
                 }
             }
         } catch (Exception e) {
@@ -193,7 +192,7 @@ public class ApiEngine {
                     }
                     ApiDataSource dataSource = dataSourceMap.get(sql.getDatasourceId());
                     SqlMeta sqlMeta = dynamicSqlEngine.parse(sql.getText(), data);
-                    return JdbcUtil.executeQueryById(dataSource, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
+                    return ApiEngine.executeQueryById(dataSource, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
                 }
             }
         } catch (Exception e) {
@@ -214,7 +213,7 @@ public class ApiEngine {
                     }
                     ApiDataSource dataSource = dataSourceMap.get(sql.getDatasourceId());
                     SqlMeta sqlMeta = dynamicSqlEngine.parse(sql.getText(), data);
-                    Object obj =  JdbcUtil.executeQueryOneColumn(dataSource, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
+                    Object obj =  ApiEngine.executeQueryOneColumn(dataSource, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
                     if(obj instanceof Integer){
                         return (int) obj;
                     }else {
@@ -273,7 +272,7 @@ public class ApiEngine {
                     ApiDataSource dataSource = dataSourceMap.get(sql.getDatasourceId());
                     SqlMeta sqlMeta = dynamicSqlEngine.parse(sql.getText(), data);
 
-                    return JdbcUtil.executeUpdate(dataSource, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
+                    return ApiEngine.executeUpdate(dataSource, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
                 }
             }
         } catch (Exception e) {
@@ -315,7 +314,7 @@ public class ApiEngine {
                     ApiDataSource dataSource = dataSourceMap.get(sql.getDatasourceId());
                     SqlMeta sqlMeta = dynamicSqlEngine.parse(sql.getText(), data);
 
-                    return JdbcUtil.execute(dataSource, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
+                    return ApiEngine.execute(dataSource, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
                 }
             }
         } catch (Exception e) {
@@ -398,4 +397,73 @@ public class ApiEngine {
         }
 
     }
+
+    // --------------------------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------------------
+
+    public static List<JSONObject> executeQuery(ApiDataSource datasource, String sql, List<Object> jdbcParamValues) {
+        DruidPooledConnection connection = null;
+        try {
+            connection = PoolManager.getPooledConnection(datasource);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return JdbcUtil.executeQuery(connection,sql,jdbcParamValues);
+    }
+
+    public static JSONObject executeQueryById(ApiDataSource datasource, String sql, List<Object> jdbcParamValues) {
+        DruidPooledConnection connection = null;
+        try {
+            connection = PoolManager.getPooledConnection(datasource);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return JdbcUtil.executeQueryById(connection,sql,jdbcParamValues);
+    }
+    public static Long executeQueryInt(ApiDataSource datasource, String sql, List<Object> jdbcParamValues) {
+        Object obj = executeQueryOneColumn(datasource, sql, jdbcParamValues);
+        if(obj instanceof Long){
+            return (Long) obj;
+        }else{
+            return Long.valueOf(String.valueOf(obj));
+        }
+    }
+
+    public static String executeQueryString(ApiDataSource datasource, String sql, List<Object> jdbcParamValues) {
+        Object obj = executeQueryOneColumn(datasource, sql, jdbcParamValues);
+        return (String) obj;
+    }
+
+    public static Object executeQueryOneColumn(ApiDataSource datasource, String sql, List<Object> jdbcParamValues) {
+        DruidPooledConnection connection = null;
+        try {
+            connection = PoolManager.getPooledConnection(datasource);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return JdbcUtil.executeQueryOneColumn(connection,sql,jdbcParamValues);
+    }
+
+    public static int executeUpdate(ApiDataSource datasource, String sql, List<Object> jdbcParamValues) {
+        DruidPooledConnection connection = null;
+        try {
+            connection = PoolManager.getPooledConnection(datasource);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return JdbcUtil.executeUpdate(connection,sql,jdbcParamValues);
+    }
+
+    public static Object execute(ApiDataSource datasource, String sql, List<Object> jdbcParamValues) {
+        DruidPooledConnection connection = null;
+        try {
+            connection = PoolManager.getPooledConnection(datasource);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return JdbcUtil.execute(connection,sql,jdbcParamValues);
+    }
+
+
 }

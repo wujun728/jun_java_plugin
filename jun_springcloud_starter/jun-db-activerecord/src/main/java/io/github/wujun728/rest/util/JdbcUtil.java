@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
+@Deprecated
 public class JdbcUtil {
 
     public static Connection getConnection(ApiDataSource ds) throws Exception {
