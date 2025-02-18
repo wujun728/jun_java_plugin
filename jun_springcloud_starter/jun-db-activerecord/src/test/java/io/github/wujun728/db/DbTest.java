@@ -11,7 +11,6 @@ import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.db.utils.RecordUtil;
 import io.github.wujun728.db.utils.SqlUtil;
-import io.github.wujun728.sql.entity.ApiSql;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -49,34 +48,34 @@ public class DbTest {
         StaticLog.info(JSONUtil.toJsonStr(sqlId));
 
     }
-    @Test
-    public void testquerySqlXml() throws Exception {
-        String sql = " SELECT t.update_time, t.table_id, t.table_name, t.table_comment, t.sub_table_name, t.sub_table_fk_name, t.class_name, t.tpl_category, t.package_name, t.module_name, t.business_name, t.function_name, t.function_author, t.gen_type, t.gen_path, t.options, t.remark,\n" +
-                "\t\t\t   c.column_id, c.column_name, c.column_comment, c.column_type, c.java_type, c.java_field, c.is_pk, c.is_increment, c.is_required, c.is_insert, c.is_edit, c.is_list, c.is_query, c.query_type, c.html_type, c.dict_type, c.sort\n" +
-                "\t\tFROM gen_table t\n" +
-                "\t\t\t LEFT JOIN gen_table_column c ON t.table_id = c.table_id\n" +
-                "\t\twhere t.table_name = #{tableName} order by c.sort ";
-        List<Map<String, Object>> result = Db.use(main).querySqlXml(sql,MapUtil.of("tableName","biz_test"));
-        StaticLog.info(JSONUtil.toJsonStr(result));
-        List<Record> records  = RecordUtil.mappingList(result);
-        StaticLog.info(JSONUtil.toJsonStr(records));
-    }
+//    @Test
+//    public void testquerySqlXml() throws Exception {
+//        String sql = " SELECT t.update_time, t.table_id, t.table_name, t.table_comment, t.sub_table_name, t.sub_table_fk_name, t.class_name, t.tpl_category, t.package_name, t.module_name, t.business_name, t.function_name, t.function_author, t.gen_type, t.gen_path, t.options, t.remark,\n" +
+//                "\t\t\t   c.column_id, c.column_name, c.column_comment, c.column_type, c.java_type, c.java_field, c.is_pk, c.is_increment, c.is_required, c.is_insert, c.is_edit, c.is_list, c.is_query, c.query_type, c.html_type, c.dict_type, c.sort\n" +
+//                "\t\tFROM gen_table t\n" +
+//                "\t\t\t LEFT JOIN gen_table_column c ON t.table_id = c.table_id\n" +
+//                "\t\twhere t.table_name = #{tableName} order by c.sort ";
+//        List<Map<String, Object>> result = Db.use(main).querySqlXml(sql,MapUtil.of("tableName","biz_test"));
+//        StaticLog.info(JSONUtil.toJsonStr(result));
+//        List<Record> records  = RecordUtil.mappingList(result);
+//        StaticLog.info(JSONUtil.toJsonStr(records));
+//    }
 
     @Test
     public void testfindByColumnValueRecords() throws Exception {
         List<Record> result = Db.use(main).findByColumnValueRecords("api_sql","group","default");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
-    @Test
-    public void testfindByColumnValueBeans() throws Exception {
-        List<ApiSql> result = Db.use(main).findByColumnValueBeans(ApiSql.class,"group,sql_id","default","queryTest45765727");
-        StaticLog.info(JSONUtil.toJsonStr(result));
-    }
-    @Test
-    public void testfindByWhereSqlForBean() throws Exception {
-        List<ApiSql> result = Db.use(main).findByWhereSqlForBean(ApiSql.class,"`group`=? and `sql_id`=? ","default","queryTest45765727");
-        StaticLog.info(JSONUtil.toJsonStr(result));
-    }
+//    @Test
+//    public void testfindByColumnValueBeans() throws Exception {
+//        List<ApiSql> result = Db.use(main).findByColumnValueBeans(ApiSql.class,"group,sql_id","default","queryTest45765727");
+//        StaticLog.info(JSONUtil.toJsonStr(result));
+//    }
+//    @Test
+//    public void testfindByWhereSqlForBean() throws Exception {
+//        List<ApiSql> result = Db.use(main).findByWhereSqlForBean(ApiSql.class,"`group`=? and `sql_id`=? ","default","queryTest45765727");
+//        StaticLog.info(JSONUtil.toJsonStr(result));
+//    }
     @Test
     public void testFindById() throws Exception {
         Record result = Db.use(main).findById("biz_test", "11");
@@ -196,11 +195,11 @@ public class DbTest {
         StaticLog.info(String.valueOf(result));
     }
 
-    @Test
-    public void findEntityList() throws Exception {
-        List<ApiSql> result = Db.use(main).findBeanList(ApiSql.class," select * from api_sql ");
-        StaticLog.info(JSONUtil.toJsonStr(result));
-    }
+//    @Test
+//    public void findEntityList() throws Exception {
+//        List<ApiSql> result = Db.use(main).findBeanList(ApiSql.class," select * from api_sql ");
+//        StaticLog.info(JSONUtil.toJsonStr(result));
+//    }
 
 //    @Test
 //    public void testSaveBackId() throws Exception {
@@ -246,33 +245,33 @@ public class DbTest {
 //    }
 
 
-    @Test
-    public void testGetById() throws Exception {
-        ApiSql result = (ApiSql) Db.use(main).findBeanByIds(ApiSql.class,"id,sql_id",1243333563,"test1622823114");
-        StaticLog.info(JSONUtil.toJsonStr(result));
-    }
+//    @Test
+//    public void testGetById() throws Exception {
+//        ApiSql result = (ApiSql) Db.use(main).findBeanByIds(ApiSql.class,"id,sql_id",1243333563,"test1622823114");
+//        StaticLog.info(JSONUtil.toJsonStr(result));
+//    }
     @Test
     public void testGetByParams() throws Exception {
 //        ApiSql result = (ApiSql) Db.use(main).findBeanById(ApiSql.class,1243333563/*,"test1622823114"*/);
 //        StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
-    @Test
-    public void testQueryAll() throws Exception {
-        List result = Db.use(main).find(SqlUtil.getSelect(ApiSql.class).getSql());
-        StaticLog.info(JSONUtil.toJsonStr(result));
-    }
+//    @Test
+//    public void testQueryAll() throws Exception {
+//        List result = Db.use(main).find(SqlUtil.getSelect(ApiSql.class).getSql());
+//        StaticLog.info(JSONUtil.toJsonStr(result));
+//    }
 
     @Test
     public void testCount() throws Exception {
         Integer result = Db.use(main).queryInt(" select count(1) from api_sql ");
         StaticLog.info(String.valueOf(result));
     }
-    @Test
-    public void testCoun11t() throws Exception {
-        List<ApiSql> apiSqls = Db.use(main).findBeanList(ApiSql.class," select * from api_sql ");
-        System.out.println(JSONUtil.toJsonStr(apiSqls));
-    }
+//    @Test
+//    public void testCoun11t() throws Exception {
+//        List<ApiSql> apiSqls = Db.use(main).findBeanList(ApiSql.class," select * from api_sql ");
+//        System.out.println(JSONUtil.toJsonStr(apiSqls));
+//    }
 
 
 //    @Test

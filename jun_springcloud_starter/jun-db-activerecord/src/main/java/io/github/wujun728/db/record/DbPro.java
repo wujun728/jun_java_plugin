@@ -13,7 +13,7 @@ import io.github.wujun728.db.utils.RecordUtil;
 //import io.github.wujun728.db.utils.SqlContext;
 import io.github.wujun728.db.utils.SqlContext;
 import io.github.wujun728.db.utils.SqlUtil;
-import io.github.wujun728.sql.utils.JdbcUtil;
+//import io.github.wujun728.sql.utils.JdbcUtil;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.dao.DataAccessException;
@@ -530,17 +530,17 @@ public class DbPro{
     //************************************************************************************************************************************************
 
 
-    public Object executeSqlXml(String sqlXml, Map params) throws SQLException {
-        return JdbcUtil.executeSql(getDataSource().getConnection(), sqlXml, params, true);
-    }
-
-    public int updateSqlXml(String sqlXml, Map params) throws SQLException {
-        return JdbcUtil.update(getDataSource().getConnection(), sqlXml, params);
-    }
-
-    public List<Map<String, Object>> querySqlXml(String sqlXml, Map params) throws SQLException {
-        return JdbcUtil.query(getDataSource().getConnection(), sqlXml, params);
-    }
+//    public Object executeSqlXml(String sqlXml, Map params) throws SQLException {
+//        return JdbcUtil.executeSql(getDataSource().getConnection(), sqlXml, params, true);
+//    }
+//
+//    public int updateSqlXml(String sqlXml, Map params) throws SQLException {
+//        return JdbcUtil.update(getDataSource().getConnection(), sqlXml, params);
+//    }
+//
+//    public List<Map<String, Object>> querySqlXml(String sqlXml, Map params) throws SQLException {
+//        return JdbcUtil.query(getDataSource().getConnection(), sqlXml, params);
+//    }
 
     //************************************************************************************************************************************************
     //Mybatis  XML  SQL 111111111111111111  end   SqlXmlUtil *************************************************************************

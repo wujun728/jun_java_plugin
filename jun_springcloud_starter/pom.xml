@@ -14,6 +14,7 @@
         <module>jun-api-engine-demo</module>
         <module>jun-mybatis-sql-engine</module>
         <module>jun-db-activerecord</module>
+        <module>jun-api-engine</module>
         <module>jun-code-freemarker</module>
         <module>jun-common-base</module>
         <module>jun-common-core</module>

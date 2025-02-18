@@ -7,16 +7,12 @@ import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
 import io.github.wujun728.db.record.exception.DbException;
 import io.github.wujun728.db.utils.DataSourcePool;
-import io.github.wujun728.db.utils.SqlUtil;
-//import org.springframework.jdbc.core.JdbcTemplate;
-import io.github.wujun728.sql.entity.ApiSql;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -89,14 +85,14 @@ public class Db<T> {
         //查询数据并返回单条Record
         Record record = Db.use().findById("biz_mail", 1);
         StaticLog.info(JSONUtil.toJsonPrettyStr(record));
-        List data1 = Db.use(main).find(SqlUtil.getSelect(ApiSql.class).getSql());
-        List data12 = Db.find(SqlUtil.getSelect(ApiSql.class).getSql());
+//        List data1 = Db.use(main).find(SqlUtil.getSelect(ApiSql.class).getSql());
+//        List data12 = Db.find(SqlUtil.getSelect(ApiSql.class).getSql());
 
         //查询数据并转为Bean清单
         //List<ApiSql> data2 = Db.queryForBeanList(" SELECT * FROM api_sql ", ApiSql.class, null);
         //Page<Record> data3 = Db.paginate(1, 10, " SELECT * ", " FROM api_sql ");
-        StaticLog.info(JSONUtil.toJsonPrettyStr(data1));
-        StaticLog.info(JSONUtil.toJsonPrettyStr(data12));
+//        StaticLog.info(JSONUtil.toJsonPrettyStr(data1));
+//        StaticLog.info(JSONUtil.toJsonPrettyStr(data12));
     }
 
 
@@ -312,20 +308,20 @@ public class Db<T> {
     //Mybatis  XML  SQL 111111111111111111  end   SqlXmlUtil *************************************************************************
     //************************************************************************************************************************************************
 
-    public static Object executeSqlXml(String sqlXml, Map params) throws SQLException {
-        checkDbProNull();
-        return MAIN.executeSqlXml(sqlXml, params);
-    }
-
-    public static int updateSqlXml(String sqlXml, Map params) throws SQLException {
-        checkDbProNull();
-        return MAIN.updateSqlXml(sqlXml, params);
-    }
-
-    public static List<Map<String, Object>> querySqlXml(String sqlXml, Map params) throws SQLException {
-        checkDbProNull();
-        return MAIN.querySqlXml(sqlXml, params);
-    }
+//    public static Object executeSqlXml(String sqlXml, Map params) throws SQLException {
+//        checkDbProNull();
+//        return MAIN.executeSqlXml(sqlXml, params);
+//    }
+//
+//    public static int updateSqlXml(String sqlXml, Map params) throws SQLException {
+//        checkDbProNull();
+//        return MAIN.updateSqlXml(sqlXml, params);
+//    }
+//
+//    public static List<Map<String, Object>> querySqlXml(String sqlXml, Map params) throws SQLException {
+//        checkDbProNull();
+//        return MAIN.querySqlXml(sqlXml, params);
+//    }
 
     //************************************************************************************************************************************************
     //Mybatis  XML  SQL 111111111111111111  end   SqlXmlUtil *************************************************************************
