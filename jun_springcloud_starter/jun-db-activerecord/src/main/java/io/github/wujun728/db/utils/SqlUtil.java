@@ -7,7 +7,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.github.wujun728.db.annotation.Key;
+import io.github.wujun728.db.record.annotation.Key;
 
 import javax.persistence.Column;
 import javax.persistence.Id;

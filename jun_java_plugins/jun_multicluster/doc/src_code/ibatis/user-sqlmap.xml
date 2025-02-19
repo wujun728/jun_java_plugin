@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
-<sqlMap namespace="User">
+<sqlMap namespace="model.User">
 	<!-- Alias Map Defined -->
 	<typeAlias alias="UserQuery" type="com.caland.core.query.UserQuery" />
-	<typeAlias alias="User" type="com.caland.core.bean.User" />
-	<resultMap id="user" class="User">
+	<typeAlias alias="model.User" type="com.caland.core.bean.model.User" />
+	<resultMap id="user" class="model.User">
 		<result property="id" column="id" />
 		<result property="username" column="username" />
 		<result property="age" column="age" />
@@ -75,12 +75,12 @@
 	</sql>
 
 	<!-- 根据主键查询 -->
-	<select id="User.getUserByKey" resultMap="user" parameterClass="hashMap">
+	<select id="model.User.getUserByKey" resultMap="user" parameterClass="hashMap">
 		SELECT id,username,age,phone,email FROM user
 		WHERE
 		id=#id#
 	</select>
-	<select id="User.getUsersByKeys" resultMap="user"
+	<select id="model.User.getUsersByKeys" resultMap="user"
 		parameterClass="hashMap">
 		SELECT id,username,age,phone,email FROM user
 		WHERE
@@ -91,13 +91,13 @@
 	</select>
 
 	<!-- 根据主键删除 -->
-	<delete id="User.deleteByKey" parameterClass="hashMap">
+	<delete id="model.User.deleteByKey" parameterClass="hashMap">
 		DELETE FROM user
 		WHERE
 		id=#id#
 	</delete>
 
-	<delete id="User.deleteByKeys">
+	<delete id="model.User.deleteByKeys">
 		DELETE FROM user
 		WHERE
 		id in
@@ -107,7 +107,7 @@
 	</delete>
 
 	<!-- 根据主键更新 -->
-	<update id="User.updateUserByKey" parameterClass="User">
+	<update id="model.User.updateUserByKey" parameterClass="model.User">
 		UPDATE user
 		<dynamic prepend="SET">
 			<isNotNull prepend="," property="id">
@@ -130,19 +130,19 @@
 		id=#id#
 	</update>
 	<!-- 分页 -->
-	<select id="User.getUserListWithPage" parameterClass="UserQuery"
+	<select id="model.User.getUserListWithPage" parameterClass="UserQuery"
 		resultMap="user">
 		<include refid="user.selector" />
 		<include refid="userList.where" />
 		<include refid="userList.order" />
 		<include refid="userList.limit" />
 	</select>
-	<select id="User.getUserListCount" parameterClass="UserQuery"
+	<select id="model.User.getUserListCount" parameterClass="UserQuery"
 		resultClass="int">
 		SELECT count(1) FROM user
 		<include refid="userList.where" />
 	</select>
-	<select id="User.getUserList" parameterClass="UserQuery"
+	<select id="model.User.getUserList" parameterClass="UserQuery"
 		resultMap="user">
 		<include refid="user.selector" />
 		<include refid="userList.where" />
@@ -150,20 +150,20 @@
 	</select>
 
 	<!-- 如果使用自定义字段查询,则要使用resultClass否则会出现异常 -->
-	<select id="User.getUserListWithPageFields" parameterClass="UserQuery"
-		resultClass="User">
+	<select id="model.User.getUserListWithPageFields" parameterClass="UserQuery"
+		resultClass="model.User">
 		<include refid="user.selector" />
 		<include refid="userList.where" />
 		<include refid="userList.order" />
 		<include refid="userList.limit" />
 	</select>
-	<select id="User.getUserListFields" parameterClass="UserQuery"
-		resultClass="User">
+	<select id="model.User.getUserListFields" parameterClass="UserQuery"
+		resultClass="model.User">
 		<include refid="user.selector" />
 		<include refid="userList.where" />
 		<include refid="userList.order" />
 	</select>
-	<insert id="User.insertUser" parameterClass="User">
+	<insert id="model.User.insertUser" parameterClass="model.User">
 		INSERT INTO user
 		<dynamic prepend="(" close=")">
 			<isNotEmpty prepend="," property="id">

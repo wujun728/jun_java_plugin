@@ -15,7 +15,7 @@ public class BinaryController {
      */
     @RequestMapping("/binary1")
     @ResponseBody
-    public String binary1(User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String binary1(model.User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
         redissonBinary.setValue("binary",new FileInputStream(new File("f:/1.png")));
         return "11";
     }
@@ -28,7 +28,7 @@ public class BinaryController {
      * @throws Exception
      */
     @RequestMapping("/binary2")
-    public void binary2(User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void binary2(model.User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
         redissonBinary.getValue("binary",response.getOutputStream());
 
     }

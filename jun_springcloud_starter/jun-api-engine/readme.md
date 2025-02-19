@@ -66,9 +66,9 @@ public void testForeachIF() {
 	String sql = ("select * from user where name in <foreach collection='list' index='idx' open='(' separator=',' close=')'>#{item.name}== #{idx}<if test='id!=null'>  and id = #{id}</if></foreach>");
 	Map<String, Object> map = new HashMap<>();
 
-	ArrayList<User> arrayList = new ArrayList<>();
-	arrayList.add(new User(10, "zhangsan"));
-	arrayList.add(new User(11, "lisi"));
+	ArrayList<model.User> arrayList = new ArrayList<>();
+	arrayList.add(new model.User(10, "zhangsan"));
+	arrayList.add(new model.User(11, "lisi"));
 	map.put("list", arrayList.toArray());
 	map.put("id", 100);
 
@@ -191,7 +191,7 @@ public class CodeGeneratorTest {
 		generator.addExcludedTable("adv");
 		// 设置是否在 Model 中生成 dao 对象
 		generator.setGenerateDaoInModel(true);
-		// 设置需要被移除的表名前缀用于生成modelName。例如表名 "osc_user"，移除前缀 "osc_"后生成的model名为 "User"而非 OscUser
+		// 设置需要被移除的表名前缀用于生成modelName。例如表名 "osc_user"，移除前缀 "osc_"后生成的model名为 "model.User"而非 OscUser
 		generator.setRemovedTableNamePrefixes("t_");
 		// 生成
 		generator.generate();

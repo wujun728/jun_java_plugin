@@ -2,7 +2,7 @@
 * GCP - dataflow job jjs for [${classInfo.classComment} - ${classInfo.tableName}]
 * AUTHOR ${authorName}
 *
-* User-defined function (UDF) to transform events as part of a Dataflow template job.
+* model.User-defined function (UDF) to transform events as part of a Dataflow template job.
 * upload to GCS and create dataflow job with this js file and method as 'process'
 * @param {string} inJson input Pub/Sub JSON message (stringified)
 * @return {string} outJson output JSON message (stringified)

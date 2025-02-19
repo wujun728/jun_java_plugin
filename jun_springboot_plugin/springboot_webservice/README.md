@@ -89,7 +89,7 @@ public interface CommonService {
 public class CommonServiceImpl implements CommonService {
 @Override
     public String getUser(String param) {
-        User user = new User("1", "吹比龙", "18");
+        model.User user = new model.User("1", "吹比龙", "18");
         return user.toString();
     }
 }
@@ -143,7 +143,7 @@ public class CxfClient {
 ```
 注意事项：如果在同一个工程中，上面的 localhost 需要修改成本机的 ip 地址，否则会创建 cxf client 失败。运行一下 client，如果控制台打印出如下信息表示 webservice 服务启动成功：
 ```
-User{userId='1', username='吹比龙', age='18'}
+model.User{userId='1', username='吹比龙', age='18'}
 ```
 至此，Spring Boot 集成 Werbservice 完成。如果你觉得对你有帮助，不妨请作者喝杯咖啡~
 

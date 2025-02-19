@@ -302,7 +302,7 @@ public class NestValidateController {
 
 ```java
 @Data
-public class User {
+public class model.User {
 
     @NotNull(groups = OnUpdate.class)
     @Null(groups = OnCreate.class)
@@ -332,7 +332,7 @@ public class User {
 public class GroupValidateController {
     
     @PostMapping("/user")
-    public ResponseEntity<String> save(@Validated(value = {User.OnCreate.class}) @RequestBody User user) {
+    public ResponseEntity<String> save(@Validated(value = {model.User.OnCreate.class}) @RequestBody model.User user) {
         return ResponseEntity.ok("valid");
     }
 }

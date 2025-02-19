@@ -14,7 +14,7 @@ import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.common.utils.ClassUtil;
 import io.github.wujun728.common.utils.IdGenerator15;
 import io.github.wujun728.db.record.Record;
-import io.github.wujun728.db.record.interfaces.IRecordHandler;
+//import io.github.wujun728.db.record.interfaces.IRecordHandler;
 import io.github.wujun728.db.utils.FieldUtils;
 import org.springframework.util.CollectionUtils;
 
@@ -123,7 +123,7 @@ public class RestUtil {
     }
 
     public static void fillRecord(Record record, String tableName, Boolean isSave) {
-        List<Class> allSuperclasses = ClassUtil.getAllClassByInterface(IRecordHandler.class);
+        /*List<Class> allSuperclasses = ClassUtil.getAllClassByInterface(IRecordHandler.class);
         for (Class clazz : allSuperclasses) {
             try {
                 Object obj = clazz.newInstance();
@@ -138,7 +138,7 @@ public class RestUtil {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
     public static Record getTableRecord(DataSource ds, String tableName, Map params){

@@ -2,9 +2,9 @@ package io.github.wujun728.db.record;
 
 import cn.hutool.core.map.MapUtil;
 import io.github.wujun728.common.exception.BusinessException;
-import io.github.wujun728.db.rowmap.BaseRowMapper;
-import io.github.wujun728.db.rowmap.BatchSql;
-import io.github.wujun728.db.rowmap.SqlUtil;
+import io.github.wujun728.db.record.mapper.BaseRowMapper;
+import io.github.wujun728.db.record.mapper.BatchSql;
+import io.github.wujun728.db.record.mapper.SqlUtil;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;

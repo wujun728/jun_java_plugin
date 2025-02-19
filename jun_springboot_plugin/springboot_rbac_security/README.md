@@ -753,7 +753,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String usernameOrEmailOrPhone) throws UsernameNotFoundException {
-        User user = userDao.findByUsernameOrEmailOrPhone(usernameOrEmailOrPhone, usernameOrEmailOrPhone, usernameOrEmailOrPhone)
+        model.User user = userDao.findByUsernameOrEmailOrPhone(usernameOrEmailOrPhone, usernameOrEmailOrPhone, usernameOrEmailOrPhone)
                 .orElseThrow(() -> new UsernameNotFoundException("未找到用户信息 : " + usernameOrEmailOrPhone));
         List<Role> roles = roleDao.selectByUserId(user.getId());
         List<Long> roleIds = roles.stream()
@@ -841,7 +841,7 @@ import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.Lists;
 import com.jun.plugin.rbac.security.common.Consts;
 import com.jun.plugin.rbac.security.common.PageResult;
-import com.jun.plugin.rbac.security.model.User;
+import com.jun.plugin.rbac.security.model.model.User;
 import com.jun.plugin.rbac.security.repository.UserDao;
 import com.jun.plugin.rbac.security.util.RedisUtil;
 import com.jun.plugin.rbac.security.vo.OnlineUser;
@@ -882,7 +882,7 @@ public class MonitorService {
                 .map(s -> StrUtil.subAfter(s, Consts.REDIS_JWT_KEY_PREFIX, true))
                 .collect(Collectors.toList());
         // 根据用户名查询用户信息
-        List<User> userList = userDao.findByUsernameIn(usernameList);
+        List<model.User> userList = userDao.findByUsernameIn(usernameList);
 
         // 封装在线用户信息
         List<OnlineUser> onlineUserList = Lists.newArrayList();

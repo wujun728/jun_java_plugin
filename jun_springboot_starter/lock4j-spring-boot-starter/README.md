@@ -96,7 +96,7 @@ public class DemoService {
 
     //完全配置，支持spel
     @Lock4j(keys = {"#user.id", "#user.name"}, expire = 60000, acquireTimeout = 1000)
-    public User customMethod(User user) {
+    public model.User customMethod(model.User user) {
         return user;
     }
 

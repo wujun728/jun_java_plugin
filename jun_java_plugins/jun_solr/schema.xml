@@ -926,7 +926,7 @@
            model with your own entries for segmentation, part-of-speech tags and readings without a need
            to specify weights.  Notice that user dictionaries have not been subject to extensive testing.
 
-           User dictionary attributes are:
+           model.User dictionary attributes are:
                      userDictionary: user dictionary filename
              userDictionaryEncoding: user dictionary encoding (default is UTF-8)
 

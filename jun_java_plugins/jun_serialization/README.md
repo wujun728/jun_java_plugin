@@ -46,7 +46,7 @@
 
 @Data
 @Builder
-public class User implements Serializable {
+public class model.User implements Serializable {
 
     private  String  name;
     private  int age;
@@ -55,10 +55,10 @@ public class User implements Serializable {
 ```
 
 ```java
-User user = User.builder().name("用户"+i).age(i).build();
+model.User user = model.User.builder().name("用户"+i).age(i).build();
 private AbstractSerialize  serialize = new ProtostuffSerializeUtil();
 byte[] body = serialize.serialize(msg);
-User user1 = serialize.deserialize(body,User.class);
+model.User user1 = serialize.deserialize(body,model.User.class);
 
 
 

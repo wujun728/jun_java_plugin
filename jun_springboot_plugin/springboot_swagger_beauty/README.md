@@ -164,7 +164,7 @@ public class ApiResponse<T> implements Serializable {
 }
 ```
 
-## User.java
+## model.User.java
 
 ```java
 /**
@@ -183,8 +183,8 @@ public class ApiResponse<T> implements Serializable {
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "用户实体", description = "User Entity")
-public class User implements Serializable {
+@ApiModel(value = "用户实体", description = "model.User Entity")
+public class model.User implements Serializable {
     private static final long serialVersionUID = 5057954049311281252L;
     /**
      * 主键id
@@ -209,11 +209,11 @@ public class User implements Serializable {
 ```java
 /**
  * <p>
- * User Controller
+ * model.User Controller
  * </p>
  *
  * @package: com.jun.plugin.swagger.beauty.controller
- * @description: User Controller
+ * @description: model.User Controller
  * @author: yangkai.shen
  * @date: Created in 2018-11-28 14:25
  * @copyright: Copyright (c) 2018
@@ -228,17 +228,17 @@ public class UserController {
     @GetMapping
     @ApiOperation(value = "条件查询（DONE）", notes = "备注")
     @ApiImplicitParams({@ApiImplicitParam(name = "username", value = "用户名", dataType = DataType.STRING, paramType = ParamType.QUERY, defaultValue = "xxx")})
-    public ApiResponse<User> getByUserName(String username) {
+    public ApiResponse<model.User> getByUserName(String username) {
         log.info("多个参数用  @ApiImplicitParams");
-        return ApiResponse.<User>builder().code(200).message("操作成功").data(new User(1, username, "JAVA")).build();
+        return ApiResponse.<model.User>builder().code(200).message("操作成功").data(new model.User(1, username, "JAVA")).build();
     }
 
     @GetMapping("/{id}")
     @ApiOperation(value = "主键查询（DONE）", notes = "备注")
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "用户编号", dataType = DataType.INT, paramType = ParamType.PATH)})
-    public ApiResponse<User> get(@PathVariable Integer id) {
+    public ApiResponse<model.User> get(@PathVariable Integer id) {
         log.info("单个参数用  @ApiImplicitParam");
-        return ApiResponse.<User>builder().code(200).message("操作成功").data(new User(id, "u1", "p1")).build();
+        return ApiResponse.<model.User>builder().code(200).message("操作成功").data(new model.User(id, "u1", "p1")).build();
     }
 
     @DeleteMapping("/{id}")
@@ -250,14 +250,14 @@ public class UserController {
 
     @PostMapping
     @ApiOperation(value = "添加用户（DONE）")
-    public User post(@RequestBody User user) {
+    public model.User post(@RequestBody model.User user) {
         log.info("如果是 POST PUT 这种带 @RequestBody 的可以不用写 @ApiImplicitParam");
         return user;
     }
 
     @PostMapping("/multipar")
     @ApiOperation(value = "添加用户（DONE）")
-    public List<User> multipar(@RequestBody List<User> user) {
+    public List<model.User> multipar(@RequestBody List<model.User> user) {
         log.info("如果是 POST PUT 这种带 @RequestBody 的可以不用写 @ApiImplicitParam");
 
         return user;
@@ -265,14 +265,14 @@ public class UserController {
 
     @PostMapping("/array")
     @ApiOperation(value = "添加用户（DONE）")
-    public User[] array(@RequestBody User[] user) {
+    public model.User[] array(@RequestBody model.User[] user) {
         log.info("如果是 POST PUT 这种带 @RequestBody 的可以不用写 @ApiImplicitParam");
         return user;
     }
 
     @PutMapping("/{id}")
     @ApiOperation(value = "修改用户（DONE）")
-    public void put(@PathVariable Long id, @RequestBody User user) {
+    public void put(@PathVariable Long id, @RequestBody model.User user) {
         log.info("如果你不想写 @ApiImplicitParam 那么 swagger 也会使用默认的参数名作为描述信息 ");
     }
 

@@ -89,7 +89,7 @@ nb-configuration.xml
 .idea/
 # if you remove the above rule, at least ignore the following:
 
-# User-specific stuff:
+# model.User-specific stuff:
 # .idea/workspace.xml
 # .idea/tasks.xml
 # .idea/dictionaries

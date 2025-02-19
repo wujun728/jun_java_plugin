@@ -5,8 +5,8 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
 import com.google.common.collect.Maps;
+import io.github.wujun728.db.orm.core.Register;
 import io.github.wujun728.db.record.dialect.*;
-import io.github.wujun728.db.record.exception.DbException;
 import io.github.wujun728.db.record.kit.TimeKit;
 import io.github.wujun728.db.utils.RecordUtil;
 //import io.github.wujun728.db.utils.SqlContext;
@@ -68,6 +68,10 @@ public class DbPro{
             result.setDialect(DbPro.getDialect(result.getDataSource()));
             dataSourceMap.put(configName,dataSource);
             DbPro.registerRecord(result.getDataSource());
+            if("main".equalsIgnoreCase(configName)){
+                Register.initReadWrite(dataSource,dataSource);
+                Register.initThreadPool(100, 100, 1000); //初始化线程池 0为使用默认值
+            }
             DbPro.cache.put(configName, result);
         }
         return result;

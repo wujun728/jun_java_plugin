@@ -3,7 +3,7 @@
 <mapper namespace="com.company.project.dao.UserMapper">
 
         <!-- 通用查询映射结果 -->
-        <resultMap id="BaseResultMap" type="com.company.project.model.User">
+        <resultMap id="BaseResultMap" type="com.company.project.model.model.User">
                     <id column="id" property="id"/>
                     <result column="username" property="username"/>
                     <result column="password" property="password"/>

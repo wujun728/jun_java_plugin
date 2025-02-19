@@ -42,7 +42,7 @@ wsimport -encoding utf-8 -p com.xncoding.webservice.client -keep http://xxx?wsdl
 
 ``` java
 CommonService_Service c = new CommonService_Service();
-com.xncoding.webservice.client.User user = c.getCommonServiceImplPort().getUser("Tom");
+com.xncoding.webservice.client.model.User user = c.getCommonServiceImplPort().getUser("Tom");
 assertThat(user.getName(), is("Tom"));
 ```
 

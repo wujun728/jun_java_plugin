@@ -107,7 +107,7 @@ CREATE TABLE `multi_user`(
 
 ## 准备实体类
 
-`User.java`
+`model.User.java`
 
 > 1. @Data / @NoArgsConstructor / @AllArgsConstructor / @Builder 都是 lombok 注解
 > 2. @TableName("multi_user") 是 Mybatis-Plus 注解，主要是当实体类名字和表名不满足 **驼峰和下划线互转** 的格式时，用于表示数据库表名
@@ -132,7 +132,7 @@ CREATE TABLE `multi_user`(
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User implements Serializable {
+public class model.User implements Serializable {
     private static final long serialVersionUID = -1923859222295750467L;
 
     /**
@@ -173,7 +173,7 @@ public class User implements Serializable {
  * @version: V1.0
  * @modified: yangkai.shen
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper extends BaseMapper<model.User> {
 }
 ```
 
@@ -197,14 +197,14 @@ public interface UserMapper extends BaseMapper<User> {
  * @version: V1.0
  * @modified: yangkai.shen
  */
-public interface UserService extends IService<User> {
+public interface UserService extends IService<model.User> {
 
     /**
-     * 添加 User
+     * 添加 model.User
      *
      * @param user 用户
      */
-    void addUser(User user);
+    void addUser(model.User user);
 }
 ```
 
@@ -232,7 +232,7 @@ public interface UserService extends IService<User> {
  */
 @Service
 @DS("slave")
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, model.User> implements UserService {
 
     /**
      * 类上 {@code @DS("slave")} 代表默认从库，在方法上写 {@code @DS("master")} 代表默认主库
@@ -241,7 +241,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @DS("master")
     @Override
-    public void addUser(User user) {
+    public void addUser(model.User user) {
         baseMapper.insert(user);
     }
 }
@@ -329,10 +329,10 @@ public class UserServiceImplTest extends SpringBootDemoMultiDatasourceMybatisApp
      */
     @Test
     public void addUser() {
-        User userMaster = User.builder().name("主库添加").age(20).build();
+        model.User userMaster = model.User.builder().name("主库添加").age(20).build();
         userService.addUser(userMaster);
 
-        User userSlave = User.builder().name("从库添加").age(20).build();
+        model.User userSlave = model.User.builder().name("从库添加").age(20).build();
         userService.save(userSlave);
     }
 
@@ -341,7 +341,7 @@ public class UserServiceImplTest extends SpringBootDemoMultiDatasourceMybatisApp
      */
     @Test
     public void testListUser() {
-        List<User> list = userService.list(new QueryWrapper<>());
+        List<model.User> list = userService.list(new QueryWrapper<>());
         log.info("【list】= {}", JSONUtil.toJsonStr(list));
     }
 }

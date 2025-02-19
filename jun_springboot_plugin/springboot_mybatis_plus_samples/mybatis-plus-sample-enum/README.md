@@ -25,7 +25,7 @@ public enum GenderEnum {
 
 2. 定义用户实体时，使用枚举类型
 ```java
-public class User {
+public class model.User {
     
     private String name;
     /**

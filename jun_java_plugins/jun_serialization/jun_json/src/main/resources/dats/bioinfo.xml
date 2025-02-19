@@ -377,7 +377,7 @@ alignment program for DNA or proteins.</value>
          </par>
          <par>
           <id>5</id>
-          <label>User Defined</label>
+          <label>model.User Defined</label>
           <value type="boolean">false</value>
           <runSwitch>-matrix=$USERDEF</runSwitch>
          </par>
@@ -457,7 +457,7 @@ alignment program for DNA or proteins.</value>
          </par>
          <par>
           <id>9</id>
-          <label>User Defined</label>
+          <label>model.User Defined</label>
           <value type="boolean">false</value>
           <runSwitch>-matrix=$210</runSwitch>
          </par>

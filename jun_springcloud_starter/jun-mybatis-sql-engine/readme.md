@@ -28,9 +28,9 @@ public void testForeachIF() {
 	String sql = ("select * from user where name in <foreach collection='list' index='idx' open='(' separator=',' close=')'>#{item.name}== #{idx}<if test='id!=null'>  and id = #{id}</if></foreach>");
 	Map<String, Object> map = new HashMap<>();
 
-	ArrayList<User> arrayList = new ArrayList<>();
-	arrayList.add(new User(10, "tom"));
-	arrayList.add(new User(11, "jerry"));
+	ArrayList<model.User> arrayList = new ArrayList<>();
+	arrayList.add(new model.User(10, "tom"));
+	arrayList.add(new model.User(11, "jerry"));
 	map.put("list", arrayList.toArray());
 	map.put("id", 100);
 

@@ -83,8 +83,8 @@ json:
  
  ...
  json = "[{"id": 1,"username": "yidasanqian"},{"id": 2,"username": "yidasanqian2"}]"
- TypeReference<List<User>> typeReference = new TypeReference<List<User>>() {};
- List<User> result = JsonUtil.toList(json, typeReference.getType());
+ TypeReference<List<model.User>> typeReference = new TypeReference<List<model.User>>() {};
+ List<model.User> result = JsonUtil.toList(json, typeReference.getType());
 ```
 
 **解析到`Map`**
@@ -102,7 +102,7 @@ Map result = JsonUtil.toMap(json);
 
 **解析到`String`**
 ```
-User user = new User();
+model.User user = new model.User();
 user.setId(1);
 user.setUsername("yidasanqian");
 String result = JsonUtil.toJsonString(user);
@@ -114,7 +114,7 @@ String json = "{
                  "id": 1,
                  "username": "yidasanqian"
                }";
-User user = JsonUtil.toPojo(json, User.class);
+model.User user = JsonUtil.toPojo(json, model.User.class);
 ```
 
 更多API请查看[JavaDoc-1.0.0.zip](https://github.com/yidasanqian/json-util/releases/download/v1.0.0/JavaDoc.zip)

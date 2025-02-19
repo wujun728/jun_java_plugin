@@ -510,7 +510,7 @@ public class MyRealm extends AuthorizingRealm {
 
         UserBean userBean = userService.getUser(username);
         if (userBean == null) {
-            throw new AuthenticationException("User didn't existed!");
+            throw new AuthenticationException("model.User didn't existed!");
         }
 
         if (! JWTUtil.verify(token, username, userBean.getPassword())) {

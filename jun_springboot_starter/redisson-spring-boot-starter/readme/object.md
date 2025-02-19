@@ -16,8 +16,8 @@ public class ObjectController {
      */
     @RequestMapping("/object1")
     @ResponseBody
-    public String object1(User user, HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
-        User user1 = new User();
+    public String object1(model.User user, HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
+        model.User user1 = new model.User();
         user1.setName("test");
         user1.setAge("123");
         redissonObject.setValue("object1", user1,-1L);
@@ -34,7 +34,7 @@ public class ObjectController {
      */
     @RequestMapping("/object2")
     @ResponseBody
-    public Object object2(User user, HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
+    public Object object2(model.User user, HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
         return redissonObject.getValue("object1");
     }
 
@@ -48,7 +48,7 @@ public class ObjectController {
      */
     @RequestMapping("/object3")
     @ResponseBody
-    public String object3(User user, HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
+    public String object3(model.User user, HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
         return redissonObject.trySetValue("object1","object1-2")+"";
     }
 }

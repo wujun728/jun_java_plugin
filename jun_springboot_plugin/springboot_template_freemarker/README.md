@@ -95,7 +95,7 @@ public class IndexController {
 	public ModelAndView index(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 
-		User user = (User) request.getSession().getAttribute("user");
+		model.User user = (model.User) request.getSession().getAttribute("user");
 		if (ObjectUtil.isNull(user)) {
 			mv.setViewName("redirect:/user/login");
 		} else {
@@ -129,7 +129,7 @@ public class IndexController {
 @Slf4j
 public class UserController {
 	@PostMapping("/login")
-	public ModelAndView login(User user, HttpServletRequest request) {
+	public ModelAndView login(model.User user, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 
 		mv.addObject(user);

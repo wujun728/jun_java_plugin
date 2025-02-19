@@ -16,7 +16,7 @@ public class CollectionController {
      */
     @RequestMapping("/collection1")
     @ResponseBody
-    public String collection1(User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String collection1(model.User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Map<String,String> map=new HashMap<>();
         map.put("test1","test11");
         map.put("test2","test22");
@@ -41,7 +41,7 @@ public class CollectionController {
      */
     @RequestMapping("/collection2")
     @ResponseBody
-    public String collection2(User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String collection2(model.User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<String> list=new ArrayList<>();
         list.add("test1");
         list.add("test2");
@@ -66,7 +66,7 @@ public class CollectionController {
      */
     @RequestMapping("/collection3")
     @ResponseBody
-    public String collection3(User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String collection3(model.User user, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Set<String> set=new HashSet<>();
         set.add("test1");
         set.add("test2");

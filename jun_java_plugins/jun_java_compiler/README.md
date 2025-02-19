@@ -32,12 +32,12 @@ public class Main {
         Map<String, byte[]> results = compiler.compile("UserProxy.java", JAVA_SOURCE_CODE);
         Class<?> clazz = compiler.loadClass("on.the.fly.UserProxy", results);
         // try instance:
-        User user = (User) clazz.newInstance();
+        model.User user = (model.User) clazz.newInstance();
     }
 
     static final String JAVA_SOURCE_CODE = "/* a single java source file */   "
             + "package on.the.fly;                                            "
-            + "public class UserProxy extends test.User {                     "
+            + "public class UserProxy extends test.model.User {                     "
             + "    boolean _dirty = false;                                    "
             + "    public void setId(String id) {                             "
             + "        super.setId(id);                                       "

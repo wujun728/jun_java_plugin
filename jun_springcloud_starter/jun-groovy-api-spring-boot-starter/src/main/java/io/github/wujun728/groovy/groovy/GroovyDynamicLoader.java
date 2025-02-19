@@ -4,7 +4,7 @@ import cn.hutool.core.lang.Console;
 import cn.hutool.extra.spring.SpringUtil;
 //import com.jfinal.plugin.activerecord.ActiveRecordException;
 //import io.github.wujun728.db.record.Db;
-//import io.github.wujun728.db.record.DbKit;
+//import io.github.wujun728.db.record.kit.DbKit;
 import cn.hutool.log.StaticLog;
 import io.github.wujun728.db.record.Db;
 import io.github.wujun728.groovy.common.model.ApiConfig;

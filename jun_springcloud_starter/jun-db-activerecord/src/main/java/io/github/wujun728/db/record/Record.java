@@ -1,5 +1,7 @@
 package io.github.wujun728.db.record;
 
+import io.github.wujun728.db.orm.core.Model;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -14,6 +16,16 @@ public class Record implements Serializable{
     private static final long serialVersionUID = -6199525976049616932L;
 
     private Map<String, Object> columns = new HashMap<>();
+
+    public Model toModel(Class<? extends Model> modelClass) {
+        try {
+            Model model = modelClass.newInstance();
+            return (Model)model.mapping(this.getColumns());
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public Record clear() {
         this.getColumns().clear();

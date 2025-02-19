@@ -3,7 +3,7 @@
 
 ```java
 import com.zengtengpeng.annotation.MQPublish;
-import com.zengtengpeng.test.bean.User;
+import com.zengtengpeng.test.bean.model.User;
 import org.redisson.api.RTopic;
 import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,7 @@ public class MQController {
     @ResponseBody
     public void testMq(){
         RTopic testMq = redissonClient.getTopic("testMq");
-        User message = new User();
+        model.User message = new model.User();
         message.setAge("12");
         message.setName("的身份为");
         testMq.publish(message);
@@ -39,8 +39,8 @@ public class MQController {
     @RequestMapping("testMq1")
     @ResponseBody
     @MQPublish(name = "test")
-    public User testMq1(){
-        User user=new User();
+    public model.User testMq1(){
+        model.User user=new model.User();
         user.setName("garegarg");
         user.setAge("123");
         return user;
@@ -55,7 +55,7 @@ package com.zengtengpeng.test.listener;
 
 import com.zengtengpeng.annotation.MQListener;
 import com.zengtengpeng.enums.MQModel;
-import com.zengtengpeng.test.bean.User;
+import com.zengtengpeng.test.bean.model.User;
 import org.springframework.stereotype.Component;
 
 //注入到spring容器中
@@ -68,7 +68,7 @@ public class MQListeners {
      * @param o
      */
     @MQListener(name = "testMq")
-    public void test1(CharSequence charSequence,User o,Object object){
+    public void test1(CharSequence charSequence,model.User o,Object object){
         System.out.println("charSequence="+charSequence);
         System.out.println("收到消息2"+o);
     }
@@ -81,7 +81,7 @@ public class MQListeners {
      * @param o
      */
     @MQListener(name = "test*",model = MQModel.PATTERN)
-    public void test1(CharSequence patten,CharSequence charSequence,User o){
+    public void test1(CharSequence patten,CharSequence charSequence,model.User o){
         System.out.println("patten="+patten);
         System.out.println("charSequence="+charSequence);
         System.out.println("test*="+o);

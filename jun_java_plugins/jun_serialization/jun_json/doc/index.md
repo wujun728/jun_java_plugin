@@ -170,7 +170,7 @@ jackson-jr是一个更轻量级的工具包，它仅仅依赖jackson-streaming�
 The easiest ways to participate beyond using Jackson is to join one of Jackson mailing lists (Jackson google groups):
 
 * [Jackson Announce](https://groups.google.com/forum/#!forum/jackson-announce): Announcement-only list for new Jackson releases, meetups and other events related to Jackson
-* [Jackson User](https://groups.google.com/forum/#!forum/jackson-user): List dedicated for discussion on Jackson usage
+* [Jackson model.User](https://groups.google.com/forum/#!forum/jackson-user): List dedicated for discussion on Jackson usage
 * [Jackson Dev](https://groups.google.com/forum/#!forum/jackson-dev): List for developers of Jackson core components and modules, discussing implementation details, API changes.
 
 There are other related lists and forums as well:

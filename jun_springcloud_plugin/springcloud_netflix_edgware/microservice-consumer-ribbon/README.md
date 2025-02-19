@@ -51,13 +51,13 @@
         private RestTemplate restTemplate;
         private static final Logger LOGGER = LoggerFactory.getLogger(RibbonService.class);
         @HystrixCommand(fallbackMethod = "findByIdFallback")
-        public User findById(Long id) {
-            return this.restTemplate.getForObject("http://microservice-provider-user/" + id, User.class);
+        public model.User findById(Long id) {
+            return this.restTemplate.getForObject("http://microservice-provider-user/" + id, model.User.class);
         }
     
-        public User findByIdFallback(Long id){
+        public model.User findByIdFallback(Long id){
             RibbonService.LOGGER.info("异常发⽣，进⼊fallback⽅法，接收的参数：id = {}", id);
-            User user = new User();
+            model.User user = new model.User();
             user.setId(-1L);
             user.setUsername("default username");
             user.setAge(0);
@@ -74,7 +74,7 @@
         @Autowired
         private RibbonService ribbonService;
         @GetMapping("/ribbon/{id}")
-        public User findById(@PathVariable Long id) {
+        public model.User findById(@PathVariable Long id) {
             return this.ribbonService.findById(id);
         }
     }

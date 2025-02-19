@@ -5,7 +5,6 @@ import cn.hutool.core.util.ObjUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
-import io.github.wujun728.db.record.exception.DbException;
 import io.github.wujun728.db.utils.DataSourcePool;
 import org.springframework.stereotype.Component;
 

@@ -53,7 +53,7 @@ redisson.singleServerConfig.address=127.0.0.1:6379
 ```
 //1.支持spel表达式,keyConstant是常量(可选)
 @Lock(keys = "#user.name",keyConstant = "常量"))
-public String test(User user) {
+public String test(model.User user) {
     System.out.println("进来了test");
     return "test";
 }
@@ -116,7 +116,7 @@ public String test(User user) {
 1.`代码模式`
 ```
 RTopic testMq = redissonClient.getTopic("testMq");
-User message = new User();
+model.User message = new model.User();
 message.setAge("12");
 message.setName("的身份为");
 testMq.publish(message);
@@ -127,8 +127,8 @@ testMq.publish(message);
 @RequestMapping("testMq1")
 @ResponseBody
 @MQPublish(name = "test")
-public User testMq1(){
-    User user=new User();
+public model.User testMq1(){
+    model.User user=new model.User();
     user.setName("garegarg");
     user.setAge("123");
     return user;
@@ -142,7 +142,7 @@ public User testMq1(){
 2.使用注解`@MQListener(name = "testMq")`配置消费者
 ```
 @MQListener(name = "testMq")
-public void test1(CharSequence charSequence,User o,Object object){
+public void test1(CharSequence charSequence,model.User o,Object object){
     System.out.println("charSequence="+charSequence);
     System.out.println("收到消息2"+o);
 }

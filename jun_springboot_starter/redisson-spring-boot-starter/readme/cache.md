@@ -1,6 +1,6 @@
 package com.zengtengpeng.test.controller;
 
-import com.zengtengpeng.test.bean.User;
+import com.zengtengpeng.test.bean.model.User;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +19,8 @@ public class CacheController {
     @RequestMapping("/cache2")
     @ResponseBody
     @Cacheable(value = "cache2",key = "'test2'")
-    public User cache2(){
-        User user=new User();
+    public model.User cache2(){
+        model.User user=new model.User();
         user.setName("name");
         user.setAge("123");
         return user;

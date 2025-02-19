@@ -27,7 +27,7 @@ public class SinkReceiver {
     private static Logger logger = LoggerFactory.getLogger(SinkReceiver.class);
 
     @StreamListener(Sink.INPUT)
-    public void receive(User user) {
+    public void receive(model.User user) {
         logger.info("Received: " + user);
     }
 }

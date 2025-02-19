@@ -155,7 +155,7 @@ public class IndexController {
 }
 ```
 login方法参数说明：
-- loginId  登录的账号id，建议的数据类型：long | int | String，建议为用户id，不可以传入复杂类型，如：User、Admin 等等
+- loginId  登录的账号id，建议的数据类型：long | int | String，建议为用户id，不可以传入复杂类型，如：model.User、Admin 等等
 
 ---
 

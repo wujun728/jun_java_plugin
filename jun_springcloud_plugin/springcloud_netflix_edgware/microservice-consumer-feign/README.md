@@ -44,7 +44,7 @@
     public interface UserFeignService {
     
         @RequestMapping("/{id}")
-        public User findByIdFeign(@RequestParam("id") Long id);
+        public model.User findByIdFeign(@RequestParam("id") Long id);
     }
 
 五、熔断器的实现
@@ -59,9 +59,9 @@
          * @return 默认的⽤户
          */
         @Override
-        public User findByIdFeign(Long id) {
+        public model.User findByIdFeign(Long id) {
             FeignServiceFallback.logger.info("异常发⽣，进⼊fallback⽅法，接收的参数：id = {}", id);
-            User user = new User();
+            model.User user = new model.User();
             user.setId(-1L);
             user.setUsername("default username");
             user.setAge(0);
@@ -76,8 +76,8 @@
         @Autowired
         private UserFeignService userFeignService;
         @GetMapping("/feign/{id}")
-        public User findByIdFeign(@PathVariable Long id) {
-            User user = this.userFeignService.findByIdFeign(id);
+        public model.User findByIdFeign(@PathVariable Long id) {
+            model.User user = this.userFeignService.findByIdFeign(id);
             return user;
         }
     }

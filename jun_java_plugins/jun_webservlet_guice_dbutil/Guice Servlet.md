@@ -131,7 +131,7 @@ guice servlet简化了传统servlet的开发。
 11 
 12 import com.google.inject.Inject;
 13 import com.google.inject.Singleton;
-14 import com.ming.user.entity.User;
+14 import com.ming.user.entity.model.User;
 15 import com.ming.user.service.UserService;
 16 
 17 /**
@@ -153,10 +153,10 @@ guice servlet简化了传统servlet的开发。
 33 
 34         String account = request.getParameter("account");
 35         int userId = Integer.valueOf(request.getParameter("userid"));
-36         User u = new User();
+36         model.User u = new model.User();
 37         u.setAccount(account);
 38         u.setUser_id(userId);
-39         List<User> ulist=new ArrayList<>();
+39         List<model.User> ulist=new ArrayList<>();
 40         ulist.add(u);
 41         try {
 42             userService.add(u);
