@@ -1,11 +1,12 @@
 package io.github.wujun728.generate.controller;
 
-import io.github.wujun728.common.Result;
-import io.github.wujun728.common.generator.ClassInfo;
-import io.github.wujun728.common.generator.util.FreemarkerTool;
-import io.github.wujun728.common.generator.util.StringUtils;
-import io.github.wujun728.common.generator.util.TableParseUtil;
 import freemarker.template.TemplateException;
+import io.github.wujun728.common.base.Result;
+import io.github.wujun728.generator.entity.ClassInfo;
+import io.github.wujun728.generator.entity.ParamInfo;
+import io.github.wujun728.generator.util.FreemarkerUtil;
+import io.github.wujun728.generator.util.StringUtils;
+import io.github.wujun728.generator.util.TableParseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class CodeGeneratorController {
     private static final Logger logger = LoggerFactory.getLogger(CodeGeneratorController.class);
 
     @Resource
-    private FreemarkerTool freemarkerTool;
+    private FreemarkerUtil freemarkerTool;
 
     @RequestMapping("/")
     public String index() {
@@ -43,8 +44,10 @@ public class CodeGeneratorController {
                 return new Result(500, "表结构信息不可为空");
             }
 
+            ParamInfo paramInfo = new ParamInfo();
+            paramInfo.setTableSql(tableSql);
             // parse table
-            ClassInfo classInfo = TableParseUtil.processTableIntoClassInfo(tableSql);
+            ClassInfo classInfo = TableParseUtil.processTableIntoClassInfo(paramInfo);
 
             // code genarete
             Map<String, Object> params = new HashMap<String, Object>();

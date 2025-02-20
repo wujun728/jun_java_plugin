@@ -128,7 +128,7 @@ public class RestApiController {
             Table table = getTableMeta(tableName,main);
             String primaryKey = RestUtil.getTablePrimaryKes(table);
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
-            Record record = Db.findByIds(tableName, primaryKey, args.toArray());
+            Record record = Db.findById(tableName, primaryKey, args.toArray());
             if (ObjectUtil.isNotNull(record)) {
                 Map data = RecordUtil.recordToMap(record,isUnderLine);
                 return Result.success(data);
@@ -262,7 +262,7 @@ public class RestApiController {
             String primaryValue = RestUtil.getParamValue(parameters, primaryKey);
             Record record = new Record();
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
-            record = Db.findByIds(tableName, primaryKey, args.toArray());
+            record = Db.findById(tableName, primaryKey, args.toArray());
             if (ObjectUtil.isNull(record)) {
                 return Result.fail("修改失败，无此ID对应的记录！");
             }
@@ -346,7 +346,7 @@ public class RestApiController {
         Map<String, ApiSql> apiSqlMap = apiSqls.stream().collect(Collectors.toMap(i->i.getPath(), i->i));
         if(apiSqlMap.containsKey(path)){
             //Object obj = restApiService.doSQLProcess(apiSqlMap.get(path), parameters);
-            Connection connection = Db.use(main).getConfig().getDataSource().getConnection();
+            Connection connection = Db.use(main).getDataSource().getConnection();
             Object obj = JdbcUtil.executeSql(connection, String.valueOf(apiSqlMap.get(path)), parameters);
             return Result.success(obj);
         }else{

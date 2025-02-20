@@ -33,12 +33,6 @@ import io.github.wujun728.generate.modular.service.SysCodeGenerateConfigService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-//import vip.xiaonuo.core.annotion.BusinessLog;
-//import vip.xiaonuo.core.annotion.Permission;
-//import vip.xiaonuo.core.enums.LogAnnotionOpTypeEnum;
-//import vip.xiaonuo.core.pojo.page.PageResult;
-//import vip.xiaonuo.core.pojo.response.ResponseData;
-//import vip.xiaonuo.core.pojo.response.SuccessResponseData;
 
 import javax.annotation.Resource;
 

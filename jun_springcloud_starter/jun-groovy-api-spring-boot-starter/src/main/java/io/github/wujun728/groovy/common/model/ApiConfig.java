@@ -1,6 +1,6 @@
 package io.github.wujun728.groovy.common.model;
 
-import io.github.wujun728.rest.entity.ApiSql;
+import io.github.wujun728.sql.entity.ApiSql;
 import lombok.Data;
 
 import java.util.List;

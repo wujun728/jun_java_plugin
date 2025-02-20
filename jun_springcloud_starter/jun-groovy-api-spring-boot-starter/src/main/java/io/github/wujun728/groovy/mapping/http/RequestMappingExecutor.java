@@ -21,13 +21,13 @@ import cn.hutool.core.util.CharsetUtil;
 import com.alibaba.fastjson2.JSON;
 import io.github.wujun728.common.base.Result;
 import io.github.wujun728.groovy.interfaces.IRun;
-import io.github.wujun728.rest.service.ApiService;
+import io.github.wujun728.rest.service.SqlService;
 import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.groovy.cache.ApiConfigCache;
 import io.github.wujun728.groovy.cache.IApiConfigCache;
 import io.github.wujun728.groovy.common.model.ApiConfig;
-import io.github.wujun728.rest.entity.ApiSql;
 import io.github.wujun728.common.exception.BusinessException;
+import io.github.wujun728.sql.entity.ApiSql;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -194,7 +194,7 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 
 
 	@Resource
-	ApiService restApiService;
+	SqlService sqlService;
 	/**
 	 * 执行脚本逻辑
 	 */
@@ -223,9 +223,9 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 				case "SQL":
 					ApiSql apiSql = new ApiSql();
 					apiSql.setPath(config.getPath());
-					apiSql.setSqlText(config.getScriptContent());
+					apiSql.setText(config.getScriptContent());
 					Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
-					data = restApiService.doSQLProcess(apiSql, parameters);
+					data = sqlService.doSQLProcess(apiSql, parameters);
 					break;
 				case "Class":
 					data = doGroovyProcess(config, request, response);

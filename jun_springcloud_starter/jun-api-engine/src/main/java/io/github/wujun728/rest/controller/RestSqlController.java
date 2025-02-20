@@ -75,7 +75,7 @@ public class RestSqlController {
 
             String sqlType = action;
             String path = "/"+entityName+"/"+sqlType;
-            ApiSql apiSql = Db.use(main).findBeanByIds(ApiSql.class,"path",path);
+            ApiSql apiSql = Db.use(main).findBeanById(ApiSql.class,"path",path);
             if(ObjectUtil.isNotEmpty(apiSql)){
                 if("one".equalsIgnoreCase(action)  || "list".equalsIgnoreCase(action)  || "query".equalsIgnoreCase(action) ){
                     List<Map<String, Object>> datas = JdbcUtil.query(DataSourcePool.getConnection(main),apiSql.getText(),parameters);

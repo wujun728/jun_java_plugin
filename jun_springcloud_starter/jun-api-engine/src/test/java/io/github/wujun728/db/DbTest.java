@@ -41,7 +41,7 @@ public class DbTest {
 
     @Test
     public void testqueryStr() throws Exception {
-        String sqlId = Db.use(main).queryStr("select sql_text from api_sql  limit 1 ");
+        String sqlId = Db.use(main).queryForString("select sql_text from api_sql  limit 1 ",null);
         StaticLog.info(JSONUtil.toJsonStr(sqlId));
 
     }
@@ -63,16 +63,7 @@ public class DbTest {
         List<Record> result = Db.use(main).findByColumnValueRecords("api_sql","group","default");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
-    @Test
-    public void testfindByColumnValueBeans() throws Exception {
-        List<ApiSql> result = Db.use(main).findByColumnValueBeans(ApiSql.class,"group,sql_id","default","queryTest45765727");
-        StaticLog.info(JSONUtil.toJsonStr(result));
-    }
-    @Test
-    public void testfindByWhereSqlForBean() throws Exception {
-        List<ApiSql> result = Db.use(main).findByWhereSqlForBean(ApiSql.class,"`group`=? and `sql_id`=? ","default","queryTest45765727");
-        StaticLog.info(JSONUtil.toJsonStr(result));
-    }
+     
     @Test
     public void testFindById() throws Exception {
         Record result = Db.use(main).findById("biz_test", "11");
@@ -91,9 +82,9 @@ public class DbTest {
     }
 
     @Test
-    public void testFindByIds() throws Exception {
-        Record result1 = Db.use(main).findByIds("api_sql", "id,sql_id","1",1);
-        Record result = Db.use(main).findByIds("api_sql", "id,sql_id", "2","getBizTests");
+    public void testfindById() throws Exception {
+        Record result1 = Db.use(main).findById("api_sql", "id,sql_id","1",1);
+        Record result = Db.use(main).findById("api_sql", "id,sql_id", "2","getBizTests");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
@@ -164,7 +155,7 @@ public class DbTest {
 
     @Test
     public void testUpdate2() throws Exception {
-        int result = Db.use(main).update("  update api_sql set datasource_id=datasource_id||'1' where sql_id ='queryTest'  ");
+        int result = Db.use(main).execute("  update api_sql set datasource_id=datasource_id||'1' where sql_id ='queryTest'  ");
         StaticLog.info(String.valueOf(result));
     }
 
@@ -176,19 +167,19 @@ public class DbTest {
 
     @Test
     public void testDeleteById3() throws Exception {
-        boolean result = Db.use(main).deleteByIds("api_sql", "id,sql_id", "-1946801918","queryTest-1242227800");
+        boolean result = Db.use(main).deleteById("api_sql", "id,sql_id", "-1946801918","queryTest-1242227800");
         StaticLog.info(String.valueOf(result));
     }
 
     @Test
     public void testDelete() throws Exception {
-        int result = Db.use(main).delete("delete from api_sql where sql_id = ? ", "paras");
+        int result = Db.use(main).execute("delete from api_sql where sql_id = ? ", new Object[]{"paras"});
         StaticLog.info(String.valueOf(result));
     }
 
     @Test
     public void testDelete2() throws Exception {
-        int result = Db.use(main).delete("delete from api_sql where sql_id = 'paras' ");
+        int result = Db.use(main).execute("delete from api_sql where sql_id = 'paras' ");
         StaticLog.info(String.valueOf(result));
     }
 
@@ -244,7 +235,7 @@ public class DbTest {
 
     @Test
     public void testGetById() throws Exception {
-        ApiSql result = (ApiSql) Db.use(main).findBeanByIds(ApiSql.class,"id,sql_id",1243333563,"test1622823114");
+        ApiSql result = (ApiSql) Db.use(main).findBeanById(ApiSql.class,"id,sql_id",1243333563,"test1622823114");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
     @Test
@@ -261,7 +252,7 @@ public class DbTest {
 
     @Test
     public void testCount() throws Exception {
-        Integer result = Db.use(main).queryInt(" select count(1) from api_sql ");
+        Integer result = Db.use(main).count(" select count(1) from api_sql ");
         StaticLog.info(String.valueOf(result));
     }
     @Test

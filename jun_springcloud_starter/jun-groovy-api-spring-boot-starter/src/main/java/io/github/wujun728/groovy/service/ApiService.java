@@ -8,9 +8,9 @@ import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.utils.RecordUtil;
 import io.github.wujun728.groovy.common.model.ApiConfig;
-import io.github.wujun728.rest.entity.ApiDataSource;
-import io.github.wujun728.rest.entity.ApiSql;
 import com.google.common.collect.Lists;
+import io.github.wujun728.sql.entity.ApiDataSource;
+import io.github.wujun728.sql.entity.ApiSql;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -98,8 +98,8 @@ public class ApiService {
 									continue;
 								}
 								ApiSql apisql = new ApiSql();
-								apisql.setId(item.getId());
-								apisql.setSqlText(sql);
+								apisql.setId(String.valueOf(item.getId()));
+								apisql.setText(sql);
 								sqlList.add(apisql);
 							}
 						}

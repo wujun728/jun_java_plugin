@@ -28,6 +28,11 @@
 			<artifactId>jun-db-activerecord</artifactId>
 			<version>1.0.22</version>
 		</dependency>
+		<dependency>
+			<groupId>io.github.wujun728</groupId>
+			<artifactId>jun-api-engine</artifactId>
+			<version>1.0.22</version>
+		</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -65,6 +70,15 @@
 		<dependency>
 			<groupId>net.dreamlu</groupId>
 			<artifactId>mica-auto</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.github.wujun728</groupId>
+			<artifactId>jun-api-engine</artifactId>
+			<version>1.0.22</version>
 		</dependency>
 	</dependencies>
 	

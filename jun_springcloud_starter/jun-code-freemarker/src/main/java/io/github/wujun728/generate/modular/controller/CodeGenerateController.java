@@ -2,7 +2,7 @@ package io.github.wujun728.generate.modular.controller;
 
 import com.baomidou.mybatisplus.extension.toolkit.SqlRunner;
 //import io.github.wujun728.common.util.ConstantContextHolder;
-import io.github.wujun728.common.utils.TreeUtil;
+import io.github.wujun728.db.utils.TreeBuildUtil;
 import io.github.wujun728.generate.core.ref.PageResult;
 import io.github.wujun728.generate.core.ref.ResponseData;
 import io.github.wujun728.generate.core.ref.SuccessResponseData;
@@ -171,7 +171,7 @@ public class CodeGenerateController {
         List list = SqlRunner.db().selectList(" SELECT id,dict_id as pid,value as code ,label as name from sys_dict_detail\n" +
                 "union\n" +
                 "SELECT  id,0 as pid,code,name from sys_dict ");
-        TreeUtil.buildTree(list,"id","pid","children");
+        TreeBuildUtil.buildTree(list,"id","pid","children");
 //        TreeUtil.buildTreeByMap(list, "id", "pid", "children", "0");
         return new SuccessResponseData(list);
     }

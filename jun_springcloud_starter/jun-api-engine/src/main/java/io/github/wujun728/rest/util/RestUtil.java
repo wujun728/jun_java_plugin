@@ -14,7 +14,7 @@ import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.common.utils.IdGenerator15;
 import io.github.wujun728.db.record.Record;
 //import io.github.wujun728.db.record.interfaces.IRecordHandler;
-import io.github.wujun728.db.record.kit.FieldUtils;
+import io.github.wujun728.db.utils.FieldUtils;
 import org.springframework.util.CollectionUtils;
 
 import javax.sql.DataSource;

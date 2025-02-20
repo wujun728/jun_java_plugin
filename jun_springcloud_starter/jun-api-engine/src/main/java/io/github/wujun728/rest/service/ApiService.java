@@ -12,7 +12,7 @@ import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
-import io.github.wujun728.db.record.kit.FieldUtils;
+import io.github.wujun728.db.utils.FieldUtils;
 import io.github.wujun728.db.utils.RecordUtil;
 import io.github.wujun728.db.utils.TreeBuildUtil;
 import io.github.wujun728.generator.util.MapUtil;
@@ -161,7 +161,7 @@ public class ApiService {
         Record record = new Record();
         if (!isSave) {
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
-            record = Db.findByIds(tableName, primaryKey, args.toArray());
+            record = Db.findById(tableName, primaryKey, args.toArray());
             if (ObjectUtil.isNull(record)) {
                 return Result.fail("修改失败，无此ID对应的记录！");
             }
