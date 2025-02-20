@@ -181,7 +181,7 @@ public class DbPro{
      * 私有方法   66666666666666666666   begin
      ********************************************************************************/
 
-    private int updateSql(SqlContext sqlContext) {
+    private int updateSqlContext(SqlContext sqlContext) {
         int result;
         String sql = null;
         try {
@@ -193,6 +193,23 @@ public class DbPro{
         return result;
     }
 
+    public Integer saveBean(Object bean) {
+        return updateSqlContext(SqlUtils.getInsert(bean));
+    }
+
+    public Integer updateBean(Object bean) {
+        return updateSqlContext(SqlUtils.getUpdate(bean));
+    }
+
+    public Integer deleteBean(Object bean) {
+        return updateSqlContext(SqlUtils.getDelete(bean));
+    }
+    public Integer saveBeanBackPrimaryKey(Object bean) {
+        saveBean(bean);
+        return queryForInt("SELECT last_insert_id() as id", null);
+        //return queryInt("SELECT last_insert_id() as id");
+    }
+
 
     public List<Map<String, Object>> queryList(String sql) {
         return queryList(sql,null);
@@ -200,9 +217,6 @@ public class DbPro{
     public List<Map<String, Object>> queryList(String sql, Object[] params) {
         return getJdbcTemplate().queryForList(sql,params);
     }
-
-
-
 
     /**
      * @see #update(String, Object...)
@@ -218,7 +232,7 @@ public class DbPro{
         return execute(sql,params);
     }
 
-    public Map<String, Object> queryMap(String sql, Object... idValues) {
+    /*public Map<String, Object> queryMap(String sql, Object... idValues) {
         Map<String, Object> resultMap;
         try {
             resultMap = getJdbcTemplate().queryForMap(sql, idValues);
@@ -227,7 +241,7 @@ public class DbPro{
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
-    }
+    }*/
 
 
     /**
@@ -777,37 +791,6 @@ public class DbPro{
     // Save ***********************************************************************************************************
 
 
-
-    public Integer saveBeanBackPrimaryKey(Object bean) {
-        saveBean(bean);
-        return queryForInt("SELECT last_insert_id() as id", null);
-        //return queryInt("SELECT last_insert_id() as id");
-    }
-
-    public Integer saveBean(Object bean) {
-        return updateSql(SqlUtils.getInsert(bean));
-    }
-
-
-
-    // Update ***********************************************************************************************************
-    // Update ***********************************************************************************************************
-
-    public Integer updateBean(Object bean) {
-        return updateSql(SqlUtils.getUpdate(bean));
-    }
-
-
-
-
-    // Delete ***********************************************************************************************************
-    // Delete ***********************************************************************************************************
-
-    public Integer deleteBean(Object bean) {
-        return updateSql(SqlUtils.getDelete(bean));
-    }
-
-
     public Boolean deleteById(String tableName, Object... idValues) {
         String primaryKeyStr = getPkNames(tableName);
         if (primaryKeyStr.contains(",")) {
@@ -958,7 +941,7 @@ public class DbPro{
         String sql = "SELECT * FROM " + tableName + " WHERE " + primaryKeyStr + " = ?";
         Map<String, Object> resultMap = null;
         try {
-            resultMap = queryMap(sql, id);
+            resultMap = queryForMap(sql, new Object[]{id});
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
