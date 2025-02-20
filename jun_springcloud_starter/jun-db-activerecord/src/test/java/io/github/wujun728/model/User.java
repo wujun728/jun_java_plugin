@@ -4,12 +4,13 @@ import io.github.wujun728.db.orm.annotation.Column;
 import io.github.wujun728.db.orm.annotation.Entity;
 import io.github.wujun728.db.orm.annotation.PK;
 import io.github.wujun728.db.orm.core.Model;
+import io.github.wujun728.db.record.mapper.RowType;
 
 @Entity(table = "c_user")
 public class User extends Model<User> {
 
     @PK
-    @Column(name = "id_")
+    @Column(name = "id_",type = RowType.LONG)
     private long id;
 
     @Column(name = "mobile_")

@@ -7,12 +7,14 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.github.wujun728.db.orm.annotation.Entity;
 import io.github.wujun728.db.orm.annotation.PK;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,14 +61,25 @@ public class SqlUtils {
 		if(bean instanceof Class){
 			tableName = ((Class)bean).getSimpleName();
 			tableName = FieldUtils.getUnderlineName(tableName);
+			Class clazz = (Class) bean;
+			if(AnnotationUtil.hasAnnotation(clazz,Table.class)){
+				tableName = AnnotationUtil.getAnnotationValue(clazz,Table.class,"name");
+			}else if(AnnotationUtil.hasAnnotation(clazz,TableName.class)){
+				tableName = AnnotationUtil.getAnnotationValue(clazz,TableName.class,"value");
+			}else if(AnnotationUtil.hasAnnotation(clazz,Entity.class)){
+				tableName = AnnotationUtil.getAnnotationValue(clazz, Entity.class,"table");
+			}
 		}else{
 			tableName = FieldUtils.getUnderlineName(bean.getClass().getSimpleName());
+			if(AnnotationUtil.hasAnnotation(bean.getClass(),Table.class)){
+				tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),Table.class,"name");
+			}else if(AnnotationUtil.hasAnnotation(bean.getClass(),TableName.class)){
+				tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),TableName.class,"value");
+			}else if(AnnotationUtil.hasAnnotation(bean.getClass(),Entity.class)){
+				tableName = AnnotationUtil.getAnnotationValue(bean.getClass(), Entity.class,"table");
+			}
 		}
-		if(AnnotationUtil.hasAnnotation(bean.getClass(),Table.class)){
-			tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),Table.class,"name");
-		}else if(AnnotationUtil.hasAnnotation(bean.getClass(),TableName.class)){
-			tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),TableName.class,"value");
-		}
+
 		return tableName;
 	}
 	/**
@@ -103,6 +116,9 @@ public class SqlUtils {
 					}else if(AnnotationUtil.hasAnnotation(field, Column.class)){
 						columndName = AnnotationUtil.getAnnotationValue(field,Column.class,"name");
 						columndNameNew = '`'+columndName+'`';
+					}else if(AnnotationUtil.hasAnnotation(field, io.github.wujun728.db.orm.annotation.Column.class)){
+						columndName = AnnotationUtil.getAnnotationValue(field, io.github.wujun728.db.orm.annotation.Column.class,"name");
+						columndNameNew = '`'+columndName+'`';
 					}
 					cols.append(columndNameNew).append(LINK);
 					placeholder.append(OCCUPY);
@@ -116,12 +132,7 @@ public class SqlUtils {
 				placeholder.deleteCharAt(placeholder.length() - 1);
 			}
 			sql.append(INSERT);
-			String tableName = FieldUtils.getUnderlineName(bean.getClass().getSimpleName());
-			if(AnnotationUtil.hasAnnotation(bean.getClass(),Table.class)){
-				tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),Table.class,"name");
-			}else if(AnnotationUtil.hasAnnotation(bean.getClass(),TableName.class)){
-				tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),TableName.class,"value");
-			}
+			String tableName = getTableName(bean);
 			sql.append(tableName);
 			sql.append(LEFT);
 			sql.append(cols);
@@ -147,12 +158,7 @@ public class SqlUtils {
 		StringBuilder sql = new StringBuilder();
 		StringBuilder cols = new StringBuilder();
 		StringBuilder where = new StringBuilder();
-		String tableName = FieldUtils.getUnderlineName(bean.getClass().getSimpleName());
-		if(AnnotationUtil.hasAnnotation(bean.getClass(),Table.class)){
-			tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),Table.class,"name");
-		}else if(AnnotationUtil.hasAnnotation(bean.getClass(),TableName.class)){
-			tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),TableName.class,"value");
-		}
+		String tableName = getTableName(bean);
 		String primaryKeyStr = getPkNames(tableName);
 		try {
 			Class<?> cls = bean.getClass();
@@ -165,6 +171,10 @@ public class SqlUtils {
 					String columndNameNew = '`'+columndName+'`';
 					if (field.isAnnotationPresent(PK.class)  || /*field.isAnnotationPresent(Id.class)*/ AnnotationUtil.hasAnnotation(field,Id.class)
 							|| /*field.isAnnotationPresent(TableId.class)*/  AnnotationUtil.hasAnnotation(field,TableId.class)  || primaryKeyStr.contains(columndName)) {
+						if(AnnotationUtil.hasAnnotation(field, io.github.wujun728.db.orm.annotation.Column.class)){
+							columndName = AnnotationUtil.getAnnotationValue(field, io.github.wujun728.db.orm.annotation.Column.class,"name");
+							columndNameNew = '`'+columndName+'`';
+						}
 						where.append(columndNameNew).append(EQUAL_AND);
 						wheresValue.add(val);
 					} else {
@@ -182,6 +192,11 @@ public class SqlUtils {
 							values.add(val);
 						}else if(AnnotationUtil.hasAnnotation(field, Column.class)){
 							columndName = AnnotationUtil.getAnnotationValue(field,Column.class,"name");
+							columndNameNew = '`'+columndName+'`';
+							cols.append(columndNameNew).append(EQUAL_LINK);
+							values.add(val);
+						}else if(AnnotationUtil.hasAnnotation(field, io.github.wujun728.db.orm.annotation.Column.class)){
+							columndName = AnnotationUtil.getAnnotationValue(field, io.github.wujun728.db.orm.annotation.Column.class,"name");
 							columndNameNew = '`'+columndName+'`';
 							cols.append(columndNameNew).append(EQUAL_LINK);
 							values.add(val);
@@ -225,12 +240,7 @@ public class SqlUtils {
 		List<Object> wheresValue = new ArrayList<Object>();
 		StringBuilder sql = new StringBuilder();
 		StringBuilder where = new StringBuilder();
-		String tableName = FieldUtils.getUnderlineName(bean.getClass().getSimpleName());
-		if(AnnotationUtil.hasAnnotation(bean.getClass(),Table.class)){
-			tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),Table.class,"name");
-		}else if(AnnotationUtil.hasAnnotation(bean.getClass(),TableName.class)){
-			tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),TableName.class,"value");
-		}
+		String tableName = getTableName(bean);
 		String primaryKeyStr = getPkNames(tableName);
 		try {
 			Class<?> cls = bean.getClass();
@@ -253,6 +263,9 @@ public class SqlUtils {
 					columndNameNew = '`'+columndName+'`';
 				}else if(AnnotationUtil.hasAnnotation(field, Column.class)){
 					columndName = AnnotationUtil.getAnnotationValue(field,Column.class,"name");
+					columndNameNew = '`'+columndName+'`';
+				}else if(AnnotationUtil.hasAnnotation(field, io.github.wujun728.db.orm.annotation.Column.class)){
+					columndName = AnnotationUtil.getAnnotationValue(field, io.github.wujun728.db.orm.annotation.Column.class,"name");
 					columndNameNew = '`'+columndName+'`';
 				}
 
@@ -297,24 +310,14 @@ public class SqlUtils {
 	 */
 	public static SqlContext getSelect(Class<?> cls) {
 		StringBuilder sql = new StringBuilder(SELECT);
-		String tableName = FieldUtils.getUnderlineName(cls.getSimpleName());
-		if(AnnotationUtil.hasAnnotation(cls,Table.class)){
-			tableName = AnnotationUtil.getAnnotationValue(cls,Table.class,"name");
-		}else if(AnnotationUtil.hasAnnotation(cls,TableName.class)){
-			tableName = AnnotationUtil.getAnnotationValue(cls,TableName.class,"value");
-		}
+		String tableName = getTableName(cls);
 		sql.append(tableName);
 		//sql.append(FieldUtils.getUnderlineName(cls.getSimpleName()));
 		return new SqlContext(sql);
 	}
 	public static String getSelectSQl(Class<?> cls) {
 		StringBuilder sql = new StringBuilder(SELECT);
-		String tableName = FieldUtils.getUnderlineName(cls.getSimpleName());
-		if(AnnotationUtil.hasAnnotation(cls,Table.class)){
-			tableName = AnnotationUtil.getAnnotationValue(cls,Table.class,"name");
-		}else if(AnnotationUtil.hasAnnotation(cls,TableName.class)){
-			tableName = AnnotationUtil.getAnnotationValue(cls,TableName.class,"value");
-		}
+		String tableName = getTableName(cls);
 		sql.append(tableName);
 		//sql.append(FieldUtils.getUnderlineName(cls.getSimpleName()));
 		return sql.toString();
@@ -334,12 +337,7 @@ public class SqlUtils {
 		StringBuilder sql = sqlContext.getSqlBuilder();
 		StringBuilder where = new StringBuilder();
 		sql.append(WHERE);
-		String tableName = FieldUtils.getUnderlineName(cls.getSimpleName());
-		if(AnnotationUtil.hasAnnotation(cls,Table.class)){
-			tableName = AnnotationUtil.getAnnotationValue(cls,Table.class,"name");
-		}else if(AnnotationUtil.hasAnnotation(cls,TableName.class)){
-			tableName = AnnotationUtil.getAnnotationValue(cls,TableName.class,"value");
-		}
+		String tableName = getTableName(cls);
 		String primaryKeyStr = getPkNames(tableName);
 		for (Field field : cls.getDeclaredFields()) {
 			field.setAccessible(true);
@@ -413,7 +411,8 @@ public class SqlUtils {
 	 * @return sql上下文
 	 */
 	public static SqlContext getSelect(StringBuilder sql, Map<String, Object> params) {
-		if(sql!=null && !StrUtil.containsAnyIgnoreCase(sql,"where")){
+		if(sql!=null && !StrUtil.containsAnyIgnoreCase(sql,"where") && !StrUtil.containsAnyIgnoreCase(sql,"limit")
+				&& !StrUtil.containsAnyIgnoreCase(sql,"order")){
 			sql.append(WHEREOK);
 		}
 		List<Object> values = new ArrayList<Object>();

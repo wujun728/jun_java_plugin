@@ -54,8 +54,6 @@ import static io.github.wujun728.db.record.Db.main;
 /**
  * Db 操作类，支持SQL模式、Record模式，Bean模式（JPA Bean模式、Mybatis Entity模式）
  */
-@Setter
-@Getter
 public class DbPro{
 
     private String configName;
@@ -114,14 +112,14 @@ public class DbPro{
         return this.dataSource;
     }
 
-    public void setDataSource(DataSource dataSource) {
+    private void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-    public Dialect getDialect() {
+    private Dialect getDialect() {
         return dialect;
     }
 
-    public void setDialect(Dialect dialect) {
+    private void setDialect(Dialect dialect) {
         this.dialect = dialect;
     }
 
@@ -129,8 +127,24 @@ public class DbPro{
         return jdbcTemplate;
     }
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+    private void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    private String getConfigName() {
+        return configName;
+    }
+
+    private void setConfigName(String configName) {
+        this.configName = configName;
+    }
+
+    private TransactionTemplate getTransactionTemplate() {
+        return transactionTemplate;
+    }
+
+    private void setTransactionTemplate(TransactionTemplate transactionTemplate) {
+        this.transactionTemplate = transactionTemplate;
     }
 
     private static Dialect getDialect(DataSource dataSource) {
@@ -170,7 +184,8 @@ public class DbPro{
         }
         String primaryKey = DbPro.TABLE_PK_MAP.get(tableName);
         if(StrUtil.isEmpty(primaryKey)){
-            throw new RuntimeException("当前操作的表没有主键或表不存在，tableName="+tableName);
+            primaryKey = "id";
+            //throw new RuntimeException("当前操作的表没有主键或表不存在，tableName="+tableName);
         }
         return primaryKey;
     }
@@ -186,15 +201,26 @@ public class DbPro{
         String sql = null;
         try {
             sql = sqlContext.getSql();
-            result = update(sql, sqlContext.getParams());
+            result = execute(sql, sqlContext.getParams());
+        } catch (Exception e) {
+            throw new DbException(e, sql);
+        }
+        return result;
+    }
+    private long insertSqlContext(SqlContext sqlContext) {
+        long result;
+        String sql = null;
+        try {
+            sql = sqlContext.getSql();
+            result = insert(sql, sqlContext.getParams());
         } catch (Exception e) {
             throw new DbException(e, sql);
         }
         return result;
     }
 
-    public Integer saveBean(Object bean) {
-        return updateSqlContext(SqlUtils.getInsert(bean));
+    public long saveBean(Object bean) {
+        return insertSqlContext(SqlUtils.getInsert(bean));
     }
 
     public Integer updateBean(Object bean) {
@@ -203,11 +229,6 @@ public class DbPro{
 
     public Integer deleteBean(Object bean) {
         return updateSqlContext(SqlUtils.getDelete(bean));
-    }
-    public Integer saveBeanBackPrimaryKey(Object bean) {
-        saveBean(bean);
-        return queryForInt("SELECT last_insert_id() as id", null);
-        //return queryInt("SELECT last_insert_id() as id");
     }
 
 
@@ -218,31 +239,6 @@ public class DbPro{
         return getJdbcTemplate().queryForList(sql,params);
     }
 
-    /**
-     * @see #update(String, Object...)
-     * @param sql an SQL statement
-     */
-    public int update(String sql) {
-        return update(sql, NULL_PARA_ARRAY);
-    }
-    /**
-     * Execute sql update
-     */
-    public int update(String sql, Object... params) {
-        return execute(sql,params);
-    }
-
-    /*public Map<String, Object> queryMap(String sql, Object... idValues) {
-        Map<String, Object> resultMap;
-        try {
-            resultMap = getJdbcTemplate().queryForMap(sql, idValues);
-            return resultMap;
-            //return queryFirstMap(sql,idValues);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
-    }*/
-
 
     /**
      * 返回一条记录
@@ -251,6 +247,7 @@ public class DbPro{
      * @return map对象
      */
     public Map<String, Object> queryForMap(String sql, Object[] objects) {
+        StaticLog.info(sql);
         Map<String, Object> map = null;
         try {
             if(objects != null && objects.length > 0) {
@@ -279,6 +276,7 @@ public class DbPro{
      * @return -1:数据库异常
      */
     public int queryForInt(String sql, Object[] objects) {
+        StaticLog.info(sql);
         int exc = -1;
         try {
             if(objects != null && objects.length > 0) {
@@ -303,6 +301,7 @@ public class DbPro{
      * @return -1:数据库异常
      */
     public long queryForLong(String sql, Object[] objects) {
+        StaticLog.info(sql);
         long exc = -1;
         try {
             if(objects != null && objects.length > 0) {
@@ -328,6 +327,7 @@ public class DbPro{
      * @return 实体类对象
      */
     public <T> T queryForObject(String sql, Object[] objects, RowMapper<T> rowMapper) {
+        StaticLog.info(sql);
         try {
             return jdbcTemplate.queryForObject(sql, objects, rowMapper);
         } catch (EmptyResultDataAccessException e) {
@@ -349,6 +349,7 @@ public class DbPro{
      * @return 实体类对象
      */
     public <T> T queryForObject(String sql, Object[] objects, Class<T> clazz) {
+        StaticLog.info(sql);
         try {
             return jdbcTemplate.queryForObject(sql, objects, new BaseRowMapper<T>(clazz));
         } catch (EmptyResultDataAccessException e) {
@@ -369,6 +370,7 @@ public class DbPro{
      * @return 字符串，异常情况下为空串
      */
     public String queryForString(String sql, Object[] objects) {
+        StaticLog.info(sql);
         String str = "";
         try {
             if(objects != null && objects.length > 0) {
@@ -390,6 +392,7 @@ public class DbPro{
     }
 
     public Date queryForDate(String sql, Object[] objects) {
+        StaticLog.info(sql);
         Date date = null;
         try {
             if(objects != null && objects.length > 0) {
@@ -419,7 +422,6 @@ public class DbPro{
      */
     public List<String> queryForList(String sql, Object[] objects, String keyName) {
         List<String> resList = new ArrayList<String>();
-
         List<Map<String, Object>> dataList = this.queryForList(sql, objects, DEFAULT_FETCHSIZE);
         for(Map<String, Object> map : dataList) {
             resList.add(MapUtil.getStr(map, keyName));
@@ -445,9 +447,9 @@ public class DbPro{
      * @param fetchSize 一次读取到缓存的记录数
      * @return map对象的集合
      */
-    public List<Map<String, Object>> queryForList(String sql, Object[] objects, int fetchSize) {
+    private List<Map<String, Object>> queryForList(String sql, Object[] objects, int fetchSize) {
+        StaticLog.info(sql);
         jdbcTemplate.setFetchSize(fetchSize);
-
         List<Map<String, Object>> list = null;
         try {
             if(objects != null && objects.length > 0) {
@@ -475,8 +477,8 @@ public class DbPro{
      * @return 实体类对象list集合
      */
     public <T> List<T> queryForList(String sql, Object[] objects, RowMapper<T> rowMapper) {
+        StaticLog.info(sql);
         List<T> list = null;
-
         try {
             jdbcTemplate.setFetchSize(DEFAULT_FETCHSIZE);
             if(objects != null && objects.length > 0) {
@@ -505,8 +507,8 @@ public class DbPro{
      * @return 实体类对象list集合
      */
     public <T> List<T> queryForList(String sql, Object[] objects, Class<T> clazz) {
+        StaticLog.info(sql);
         List<T> list = null;
-
         try {
             jdbcTemplate.setFetchSize(DEFAULT_FETCHSIZE);
             if(objects != null && objects.length > 0) {
@@ -527,13 +529,18 @@ public class DbPro{
         return list;
     }
 
+    public int execute(String sql) {
+        return execute(sql,null);
+    }
     /**
      * insert,update,delete 操作
      * @param sql 传入的语句 sql="insert into tables values(?,?)";
      * @param objects  参数数组
      * @return 0:失败 1:成功
      */
+
     public int execute(String sql, Object[] objects) {
+        StaticLog.info(sql);
         int exc = 1;
         try {
             if(objects != null && objects.length > 0) {
@@ -542,7 +549,6 @@ public class DbPro{
             else {
                 jdbcTemplate.update(sql);
             }
-
         } catch (Exception e) {
             exc = 0;
             StaticLog.error(e.getMessage()+"\n"+SqlUtil.getSql(sql, objects));
@@ -559,12 +565,12 @@ public class DbPro{
      * @return 返回自动增加的id号
      */
     public long insert(final String sql, final Object[] objects) {
+        StaticLog.info(sql);
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                 PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
                 if(objects != null && objects.length > 0) {
                     for(int i=1;i<=objects.length;i++) {
                         ps.setObject(i, objects[i-1]);
@@ -573,7 +579,6 @@ public class DbPro{
                 return ps;
             }
         }, keyHolder);
-
         return keyHolder.getKey().longValue();
     }
 
@@ -584,6 +589,7 @@ public class DbPro{
      * @return 1：成功 0：失败
      */
     public int batchExecute(String sql, final List<Object[]> objectsList) {
+        StaticLog.info(sql);
         int exc = 1;
         try {
             jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter(){
@@ -791,28 +797,7 @@ public class DbPro{
     // Save ***********************************************************************************************************
 
 
-    public Boolean deleteById(String tableName, Object... idValues) {
-        String primaryKeyStr = getPkNames(tableName);
-        if (primaryKeyStr.contains(",")) {
-            return deleteByIds(tableName, primaryKeyStr, idValues);
-        }
-        String sql = " DELETE FROM " + tableName + " WHERE " + primaryKeyStr + " = ?";
-        int flag = update(sql, idValues);
-        return flag > 0;
-    }
 
-
-
-
-    public Boolean deleteBySql(String sql, Object... paras) {
-        int flag = update(sql, paras);
-        return flag > 0;
-    }
-
-
-    public Boolean deleteBySql(String sql) {
-        return deleteBySql(sql, new Object[]{});
-    }
 
 
 
@@ -824,31 +809,22 @@ public class DbPro{
 
 
     public <T> List<T> findBeanList(Class<T> clazz, String sql) {
-        List<Record> lists = find(sql);
-        List<T> datas = RecordUtil.recordToBeanList(lists, clazz);
-        return datas;
+        return findBeanList(clazz, sql,null);
     }
 
 
-    public <T> List findBeanList(Class clazz, String sql, Object... params) {
+    public <T> List<T> findBeanList(Class clazz, String sql, Object... params) {
         List datas = queryList(sql, params);
         return RecordUtil.mapToBeans(datas, clazz);
     }
 
-    public <T> List findMapList(Class clazz, String sql, Object... params) {
-        return queryList(sql, params);
-    }
 
 
-    public <T> List findRecordList(String sql, Object... params) {
-        List datas = queryList(sql, params);
-        return RecordUtil.mappingList(datas);
-    }
 
-    public <T> T findBeanById(Class<T> clazz, Object... idValue) {
+    public <T> T findBeanById(Class<T> clazz, Object idValue) {
         String tableName = SqlUtils.getTableName(clazz);
         String primaryKeyStr = getPkNames(tableName);
-        Record record = findByIds(tableName, primaryKeyStr, idValue);
+        Record record = findById(tableName, primaryKeyStr, idValue);
         if (record == null) {
             return null;
         }
@@ -857,13 +833,13 @@ public class DbPro{
     }
 
 
-    public <T> T findBeanByIds(Class beanClass, String primaryKeys, Object... idValue) {
+    public <T> T findBeanById(Class beanClass, String primaryKeys, Object... idValue) {
         String tableName = SqlUtils.getTableName(beanClass);
         String primaryKeyStr = StrUtil.join(",", primaryKeys);
         if (primaryKeys == null || StrUtil.isEmpty(primaryKeyStr)) {
             primaryKeyStr = getPkNames(tableName);
         }
-        Record record = findByIds(tableName, primaryKeyStr, idValue);
+        Record record = findById(tableName, primaryKeyStr, idValue);
         if (record == null) {
             return null;
         }
@@ -873,19 +849,21 @@ public class DbPro{
 
 
     public <T> Page findBeanPages(Class beanClass, int page, int rows) {
-        return findBeanPages(beanClass, page, rows, Maps.newHashMap());
+        return findBeanPages(beanClass, page, rows, null);
     }
 
 
-    public <T> Page findBeanPages(Class beanClass, int page, int rows, Map<String, Object> params) {
+    public <T> Page findBeanPages(Class beanClass, int page, int rows, String sql) {
         //SqlContext sqlContext = SqlUtil.getSelect(beanClass, page, rows, params);
         Page pageVo = new Page();
-        String sql = SqlUtils.getSelectSQl(beanClass);
-        SqlContext sqlContext = SqlUtils.getSelect(new StringBuilder(SqlUtils.getSelect(sql, page, rows)), params);
+        if(StrUtil.isEmpty(sql)){
+            sql = SqlUtils.getSelectSQl(beanClass);
+        }
+        String sql1 = SqlUtils.getSelect(sql, page, rows);
+        SqlContext sqlContext = SqlUtils.getSelect(new StringBuilder(sql1), Maps.newHashMap());
         List<Map<String, Object>> listData = queryList(sqlContext.getSql(), sqlContext.getParams());
-        //List<Map<String, Object>> listData = queryList(sqlContext);
         pageVo.setList(RecordUtil.mapToBeans(listData, beanClass));
-        int totalRow = queryInt(SqlUtils.getCount(sql));
+        int totalRow = count(SqlUtils.getCount(sql));
         pageVo.setTotalRow(totalRow);
         pageVo.setPageSize(rows);
         pageVo.setPageNumber(page);
@@ -899,26 +877,44 @@ public class DbPro{
 
 
     public Page queryBeanPage(Class beanClass, int page, int rows) {
-        return queryBeanPage(beanClass, page, rows, Maps.newHashMap());
+        return queryBeanPage(beanClass, page, rows, null);
     }
 
 
-    public Page queryBeanPage(Class beanClass, int page, int rows, Map<String, Object> params) {
+    public Page queryBeanPage(Class beanClass, int page, int limit, String sql) {
         //SqlContext sqlContext = SqlUtil.getSelect(beanClass, page, rows, params);
         Page pageVo = new Page();
-        String sql = SqlUtils.getSelectSQl(beanClass);
-        SqlContext sqlContext = SqlUtils.getSelect(new StringBuilder(SqlUtils.getSelect(sql, page, rows)), params);
+        if(StrUtil.isEmpty(sql)){
+            sql = SqlUtils.getSelectSQl(beanClass);
+        }
+        SqlContext sqlContext = SqlUtils.getSelect(new StringBuilder(SqlUtils.getSelect(sql, page, limit)), Maps.newHashMap());
         List<Map<String, Object>> listData = queryList(sqlContext.getSql(), sqlContext.getParams());
         pageVo.setList(RecordUtil.mapToBeans(listData, beanClass));
-        pageVo.setTotalRow(queryInt(SqlUtils.getCount(sql)));
+        int totalRow = count(SqlUtils.getCount(sql));
+        pageVo.setTotalRow(totalRow);
+        pageVo.setPageNumber(page);
+        pageVo.setPageSize(limit);
+        if (totalRow % limit == 0) {
+            pageVo.setTotalPage(totalRow / limit);
+        } else {
+            pageVo.setTotalPage(totalRow / limit + 1);
+        }
         return pageVo;
     }
 
 
-    public Page<Map> queryMapPages(String sql, int page, int rows, Object[] params) {
+    public Page<Map> queryMapPages(String sql, int page, int limit, Object[] params) {
         Page pageVo = new Page();
-        pageVo.setList(queryList(SqlUtils.getSelect(sql, page, rows), params));
-        pageVo.setTotalRow(count(SqlUtils.getCount(sql), params));
+        pageVo.setList(queryList(SqlUtils.getSelect(sql, page, limit), params));
+        int totalRow = count(SqlUtils.getCount(sql), params);
+        pageVo.setTotalRow(totalRow);
+        pageVo.setPageNumber(page);
+        pageVo.setPageSize(limit);
+        if (totalRow % limit == 0) {
+            pageVo.setTotalPage(totalRow / limit);
+        } else {
+            pageVo.setTotalPage(totalRow / limit + 1);
+        }
         return pageVo;
     }
 
@@ -931,26 +927,6 @@ public class DbPro{
             throw new DbException(e, sql);
         }
     }
-
-
-    public Record findRecordById(String tableName, Object id) {
-        String primaryKeyStr = getPkNames(tableName);
-        if (primaryKeyStr.contains(",")) {
-            return findByIds(tableName, primaryKeyStr, new Object[]{id});
-        }
-        String sql = "SELECT * FROM " + tableName + " WHERE " + primaryKeyStr + " = ?";
-        Map<String, Object> resultMap = null;
-        try {
-            resultMap = queryForMap(sql, new Object[]{id});
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
-        return RecordUtil.mapping(resultMap);
-    }
-
-
-
-
 
 
     public List<Record> findByColumnValueRecords(String tableName, String columnNames, Object... columnValues) {
@@ -969,42 +945,6 @@ public class DbPro{
     }
 
 
-    public <T> List findByColumnValueBeans(Class clazz, String columnNames, Object... columnValues) {
-        String tableName = SqlUtils.getTableName(clazz);
-        String[] pKeys = columnNames.split(",");
-        if (pKeys.length != columnValues.length)
-            throw new IllegalArgumentException("primary key number must equals id value number");
-
-        String sql = dialect.forDbFindById(tableName, pKeys);
-        List<Map<String, Object>> resultMap;
-        try {
-            resultMap = queryList(sql, columnValues);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
-        return RecordUtil.mapToBeans(resultMap, clazz);
-    }
-
-
-    public <T> List findByWhereSqlForBean(Class clazz, String whereSql, Object... columnValues) {
-        String tableName = SqlUtils.getTableName(clazz);
-        String[] pKeys = {};
-        String sql = dialect.forDbFindById(tableName, pKeys);
-        if (StrUtil.isEmpty(whereSql)) {
-            sql = sql + " 1=1 ";
-        } else {
-            sql = sql + whereSql;
-        }
-        List<Map<String, Object>> resultMap;
-        try {
-            resultMap = queryList(sql, columnValues);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
-        return RecordUtil.mapToBeans(resultMap, clazz);
-    }
-
-
     public Page<Record> paginate(Integer pageNumber, Integer limit, String select, String from/*, Map<String, Object> params*/) {
         String sqlStr = select + " " + from;
         //SqlContext sqlContext = SqlUtil.getSelect(new StringBuilder(sqlStr), params);
@@ -1012,7 +952,7 @@ public class DbPro{
         List<Map<String, Object>> results = queryList(SqlUtils.getSelect(sqlStr, pageNumber, limit), null);
 //        List<Map<String, Object>> results = queryList(sqlContext);
         List<Record> records = RecordUtil.mappingList(results);
-        int totalpage = queryInt(SqlUtils.getCount(sqlStr));
+        int totalpage = count(SqlUtils.getCount(sqlStr));
         pageVo.setList(records);
         pageVo.setTotalRow(totalpage);
         pageVo.setPageNumber(pageNumber);
@@ -1048,12 +988,8 @@ public class DbPro{
     //Mybatis  XML  SQL 111111111111111111  end   SqlXmlUtil *************************************************************************
     //************************************************************************************************************************************************
 
-    public  <T> List<Map<String, Object>> queryMaps(String sql, Object... paras) {
-        List result = new ArrayList();
-        return getJdbcTemplate().queryForList(sql,paras);
-    }
 
-    public <T> List<T> query(String sql, Object... paras) {
+    private  <T> List<T> query(String sql, Object... paras) {
         //List list = jdbcTemplate.queryForList(sql, paras);
         return (List<T>) getJdbcTemplate().query(sql, new RowMapper<Object[]>() {
             public Object[] mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -1077,7 +1013,7 @@ public class DbPro{
      * @see #query(String, Object...)
      * @param sql an SQL statement
      */
-    public <T> List<T> query(String sql) {		// return  List<object[]> or List<object>
+    private  <T> List<T> query(String sql) {		// return  List<object[]> or List<object>
         return query(sql, NULL_PARA_ARRAY);
     }
 
@@ -1092,10 +1028,7 @@ public class DbPro{
         List<T> result = query(sql, paras);
         return (result.size() > 0 ? result.get(0) : null);
     }
-    public <T> T queryFirstMap(String sql, Object... paras) {
-        List<T> result = (List<T>) queryMaps( sql, paras);
-        return (result.size() > 0 ? result.get(0) : null);
-    }
+
 
     /**
      * @see #queryFirst(String, Object...)
@@ -1106,20 +1039,17 @@ public class DbPro{
         List<T> result = query(sql, NULL_PARA_ARRAY);
         return (result.size() > 0 ? result.get(0) : null);
     }
-    public <T> T queryFirstMap(String sql) {
-        List<T> result = (List<T>) queryMaps( sql, NULL_PARA_ARRAY);
-        return (result.size() > 0 ? result.get(0) : null);
-    }
+
 
     // 26 queryXxx method below -----------------------------------------------
     /**
      * Execute sql query just return one column.
-     * @param <T> the type of the column that in your sql's select statement
+     *  <T> the type of the column that in your sql's select statement
      * @param sql an SQL statement that may contain one or more '?' IN parameter placeholders
      * @param paras the parameters of sql
      * @return <T> T
      */
-    public <T> T queryColumn(String sql, Object... paras) {
+    /*public <T> T queryColumn(String sql, Object... paras) {
         List<T> result = query(sql, paras);
         if (result.size() > 0) {
             T temp = result.get(0);
@@ -1309,7 +1239,7 @@ public class DbPro{
 
     public Number queryNumber(String sql) {
         return (Number)queryColumn(sql, NULL_PARA_ARRAY);
-    }
+    }*/
     // 26 queryXxx method under -----------------------------------------------
 
     public List<Record> find(String sql, Object... paras)  {
@@ -1322,17 +1252,6 @@ public class DbPro{
      */
     public List<Record> find(String sql) {
         return find(sql, NULL_PARA_ARRAY);
-    }
-
-    public List<Map> findMaps(String sql) {
-        List<Record> lists =  find(sql, NULL_PARA_ARRAY);
-        List<Map> datas = RecordUtil.recordToMaps(lists,true);
-        return datas;
-    }
-    public <T> List<T> findObjs(Class<T> clazz,String sql) {
-        List<Record> lists =  find(sql, NULL_PARA_ARRAY);
-        List<T> datas = RecordUtil.recordToBeanList(lists,clazz);
-        return datas;
     }
 
     public List<Record> findAll(String tableName) {
@@ -1369,11 +1288,8 @@ public class DbPro{
      * @param idValue the id value of the record
      */
     public Record findById(String tableName, Object idValue) {
-        return findByIds(tableName, dialect.getDefaultPrimaryKey(), idValue);
-    }
-
-    public Record findById(String tableName, String primaryKey, Object idValue) {
-        return findByIds(tableName, primaryKey, idValue);
+        String defaultPrimaryKey = getPkNames(tableName);
+        return findById(tableName, defaultPrimaryKey, idValue);
     }
 
     /**
@@ -1387,14 +1303,7 @@ public class DbPro{
      * @param primaryKey the primary key of the table, composite primary key is separated by comma character: ","
      * @param idValues the id value of the record, it can be composite id values
      */
-    public Record findByIds(String tableName, String primaryKey, Object... idValues) {
-        /*String[] pKeys = primaryKey.split(",");
-        if (pKeys.length != idValues.length)
-            throw new IllegalArgumentException("primary key number must equals id value number");
-        String sql = dialect.forDbFindById(tableName, pKeys);
-        Map<String, Object> resultMap = queryMap(sql, idValues);
-        if (resultMap == null) return null;
-        return RecordUtil.mapping(resultMap);*/
+    public Record findById(String tableName, String primaryKey, Object... idValues) {
         String[] pKeys = primaryKey.split(",");
         if (pKeys.length != idValues.length)
             throw new IllegalArgumentException("primary key number must equals id value number");
@@ -1408,6 +1317,7 @@ public class DbPro{
     }
 
 
+
     /**
      * Delete record by id with default primary key.
      * <pre>
@@ -1419,15 +1329,8 @@ public class DbPro{
      * @return true if delete succeed otherwise false
      */
     public boolean deleteById(String tableName, Object idValue) {
-        return deleteByIds(tableName, dialect.getDefaultPrimaryKey(), idValue);
-    }
-    public boolean deleteByPrimaryKey(String tableName, Object idValue) {
         String primaryKey = getPkNames(tableName);
-        return deleteByIds(tableName,primaryKey , idValue);
-    }
-
-    public boolean deleteById(String tableName, String primaryKey, Object idValue) {
-        return deleteByIds(tableName, primaryKey, idValue);
+        return deleteById(tableName, primaryKey, idValue);
     }
 
     /**
@@ -1442,13 +1345,13 @@ public class DbPro{
      * @param idValues the id value of the record, it can be composite id values
      * @return true if delete succeed otherwise false
      */
-    public boolean deleteByIds(String tableName, String primaryKey, Object... idValues) {
+    public boolean deleteById(String tableName, String primaryKey, Object... idValues) {
         String[] pKeys = primaryKey.split(",");
         if (pKeys.length != idValues.length)
             throw new IllegalArgumentException("primary key number must equals id value number");
 
         String sql = dialect.forDbDeleteById(tableName, pKeys);
-        return update(sql, idValues) >= 1;
+        return execute(sql, idValues) >= 1;
     }
 
 
@@ -1467,7 +1370,7 @@ public class DbPro{
         String[] pKeys = primaryKey.split(",");
         if (pKeys.length <= 1) {
             Object t = record.get(primaryKey);	// 引入中间变量避免 JDK 8 传参有误
-            return deleteByIds(tableName, primaryKey, t);
+            return deleteById(tableName, primaryKey, t);
         }
         dialect.trimPrimaryKeys(pKeys);
         Object[] idValue = new Object[pKeys.length];
@@ -1476,7 +1379,7 @@ public class DbPro{
             if (idValue[i] == null)
                 throw new IllegalArgumentException("The value of primary key \"" + pKeys[i] + "\" can not be null in record object");
         }
-        return deleteByIds(tableName, primaryKey, idValue);
+        return deleteById(tableName, primaryKey, idValue);
     }
 
     /**
@@ -1500,31 +1403,13 @@ public class DbPro{
                 throw new RuntimeException("You can't update record without Primary Key, " + pKeys[i] + " can not be null.");
         }
         String deleteSql = dialect.forDbDeleteById(tableName, pKeys);
-        int result = update(deleteSql, ids);
+        int result = execute(deleteSql, ids);
         if (result >= 1) {
             return true;
         }
         return false;
     }
 
-    /**
-     * Execute delete sql statement.
-     * @param sql an SQL statement that may contain one or more '?' IN parameter placeholders
-     * @param paras the parameters of sql
-     * @return the row count for <code>DELETE</code> statements, or 0 for SQL statements
-     *         that return nothing
-     */
-    public int delete(String sql, Object... paras) {
-        return update(sql, paras);
-    }
-
-    /**
-     * @see #delete(String, Object...)
-     * @param sql an SQL statement
-     */
-    public int delete(String sql) {
-        return update(sql);
-    }
 
     /**
      * Paginate.
@@ -1634,7 +1519,7 @@ public class DbPro{
         dialect.forDbSave(tableName, pKeys, record, sql, paras);
         int flag = 0;
         try {
-            flag = update(sql.toString(), paras.toArray());
+            flag = execute(sql.toString(), paras.toArray());
         } catch (DuplicateKeyException e) {
             throw new RuntimeException("主键冲突，保存失败！");
         } catch (DataAccessException e) {
@@ -1651,7 +1536,7 @@ public class DbPro{
      */
     public boolean save(String tableName, Record record) {
         String primaryKey = getPkNames(tableName);
-        return save(tableName,primaryKey/*dialect.getDefaultPrimaryKey()*/, record);
+        return save(tableName,primaryKey , record);
     }
 
 
@@ -1680,7 +1565,7 @@ public class DbPro{
         if (paras.size() <= 1) {    // 参数个数为 1 的情况表明只有主键，也无需更新
             return false;
         }
-        int result = update(sql.toString(), paras.toArray());
+        int result = execute(sql.toString(), paras.toArray());
         if (result >= 1) {
             return true;
         }
@@ -1698,7 +1583,7 @@ public class DbPro{
      */
     public boolean update(String tableName, Record record) {
         String primaryKey = getPkNames(tableName);
-        return update(tableName, primaryKey/*dialect.getDefaultPrimaryKey()*/, record);
+        return update(tableName, primaryKey , record);
     }
 
 

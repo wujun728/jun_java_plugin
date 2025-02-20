@@ -5,6 +5,7 @@ import cn.hutool.core.util.ObjUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
+import io.github.wujun728.db.record.mapper.BatchSql;
 import io.github.wujun728.db.utils.DataSourcePool;
 import org.springframework.stereotype.Component;
 
@@ -127,7 +128,7 @@ public class Db<T> {
     }
 
     public static Map<String, Object> queryMap(String sql, Object... idValues) {
-        return getMAIN().queryMap(sql, idValues);
+        return getMAIN().queryForMap(sql, idValues);
     }
 
 
@@ -177,12 +178,12 @@ public class Db<T> {
 
 
     public static Boolean deleteBySql(String sql, Object... paras) {
-        return getMAIN().deleteBySql(sql, paras);
+        return getMAIN().execute(sql, paras)>0;
     }
 
 
     public static Boolean deleteBySql(String sql) {
-        return getMAIN().deleteBySql(sql);
+        return getMAIN().execute(sql)>0;
     }
 
 
@@ -198,18 +199,13 @@ public class Db<T> {
         return getMAIN().findBeanList(clazz, sql, params);
     }
 
-    public static <T> List findMapList(Class clazz, String sql, Object... params) {
-        return getMAIN().findMapList(clazz, sql, params);
-    }
+
 
 //    public static <T> List findBeanList(Class beanClass, Map<String, Object> params) {
 //        checkDbProNull();
 //        return MAIN.findBeanList(beanClass, params);
 //    }
 
-    public static <T> List findRecordList(String sql, Object... params) {
-        return getMAIN().findRecordList(sql, params);
-    }
 
     public static <T> T findBeanById(Class<T> clazz, Object... idValue) {
         return getMAIN().findBeanById(clazz, idValue);
@@ -217,7 +213,7 @@ public class Db<T> {
 
 
     public static <T> T findBeanByIds(Class beanClass, String primaryKeys, Object... idValue) {
-        return getMAIN().findBeanByIds(beanClass, primaryKeys, idValue);
+        return getMAIN().findBeanById(beanClass, primaryKeys, idValue);
     }
 
 
@@ -225,8 +221,8 @@ public class Db<T> {
         return getMAIN().findBeanPages(beanClass, page, rows);
     }
 
-    public static <T> Page findBeanPages(Class beanClass, int page, int rows, Map<String, Object> params) {
-        return getMAIN().findBeanPages(beanClass, page, rows, params);
+    public static <T> Page findBeanPages(Class beanClass, int page, int rows, String sql) {
+        return getMAIN().findBeanPages(beanClass, page, rows, sql);
     }
 
 
@@ -234,8 +230,8 @@ public class Db<T> {
         return getMAIN().queryBeanPage(beanClass, page, rows);
     }
 
-    public static Page queryBeanPage(Class beanClass, int page, int rows, Map<String, Object> params) {
-        return getMAIN().queryBeanPage(beanClass, page, rows, params);
+    public static Page queryBeanPage(Class beanClass, int page, int rows, String sql) {
+        return getMAIN().queryBeanPage(beanClass, page, rows, sql);
     }
 
 
@@ -251,20 +247,9 @@ public class Db<T> {
     //Record begin  **************************************************************************************************************************************
     //************************************************************************************************************************************************
 
-    public static Record findRecordById(String tableName, Object id) {
-        return getMAIN().findRecordById(tableName, id);
-    }
 
     public static List<Record> findByColumnValueRecords(String tableName, String columnNames, Object... columnValues) {
         return getMAIN().findByColumnValueRecords(tableName, columnNames, columnValues);
-    }
-
-    public static <T> List findByColumnValueBeans(Class clazz, String columnNames, Object... columnValues) {
-        return getMAIN().findByColumnValueBeans(clazz, columnNames, columnValues);
-    }
-
-    public static <T> List findByWhereSqlForBean(Class clazz, String whereSql, Object... columnValues) {
-        return getMAIN().findByWhereSqlForBean(clazz, whereSql, columnValues);
     }
 
 
@@ -285,17 +270,6 @@ public class Db<T> {
 //	  111111111111111111  begin   **************************************************************************************************************
 //	************************************************************************************************************************************************
 
-    public static <T> List<T> query(String sql, Object... paras) {
-        return getMAIN().query(sql, paras);
-    }
-
-    /**
-     * @param sql an SQL statement
-     * @see #query(String, Object...)
-     */
-    public static <T> List<T> query(String sql) {
-        return getMAIN().query(sql);
-    }
 
     /**
      * Execute sql query and return the first result. I recommend add "limit 1" in your sql.
@@ -327,141 +301,141 @@ public class Db<T> {
      * @param paras the parameters of sql
      * @return <T> T
      */
-    public static <T> T queryColumn(String sql, Object... paras) {
-        return getMAIN().queryColumn(sql, paras);
-    }
-
-    public static <T> T queryColumn(String sql) {
-        return getMAIN().queryColumn(sql);
-    }
-
-    public static String queryStr(String sql, Object... paras) {
-        return getMAIN().queryStr(sql, paras);
-    }
-
-    public static String queryStr(String sql) {
-        return getMAIN().queryStr(sql);
-    }
-
-    public static Integer queryInt(String sql, Object... paras) {
-        return getMAIN().queryInt(sql, paras);
-    }
-
-    public static Integer queryInt(String sql) {
-        return getMAIN().queryInt(sql);
-    }
-
-    public static Long queryLong(String sql, Object... paras) {
-        return getMAIN().queryLong(sql, paras);
-    }
-
-    public static Long queryLong(String sql) {
-        return getMAIN().queryLong(sql);
-    }
-
-    public static Double queryDouble(String sql, Object... paras) {
-        return getMAIN().queryDouble(sql, paras);
-    }
-
-    public static Double queryDouble(String sql) {
-        return getMAIN().queryDouble(sql);
-    }
-
-    public static Float queryFloat(String sql, Object... paras) {
-        return getMAIN().queryFloat(sql, paras);
-    }
-
-    public static Float queryFloat(String sql) {
-        return getMAIN().queryFloat(sql);
-    }
-
-    public static BigDecimal queryBigDecimal(String sql, Object... paras) {
-        return getMAIN().queryBigDecimal(sql, paras);
-    }
-
-    public static BigDecimal queryBigDecimal(String sql) {
-        return getMAIN().queryBigDecimal(sql);
-    }
-
-    public static BigInteger queryBigInteger(String sql, Object... paras) {
-        return getMAIN().queryBigInteger(sql, paras);
-    }
-
-    public static BigInteger queryBigInteger(String sql) {
-        return getMAIN().queryBigInteger(sql);
-    }
-
-    public static byte[] queryBytes(String sql, Object... paras) {
-        return getMAIN().queryBytes(sql, paras);
-    }
-
-    public static byte[] queryBytes(String sql) {
-        return getMAIN().queryBytes(sql);
-    }
-
-    public static java.util.Date queryDate(String sql, Object... paras) {
-        return getMAIN().queryDate(sql, paras);
-    }
-
-    public static java.util.Date queryDate(String sql) {
-        return getMAIN().queryDate(sql);
-    }
-
-    public static LocalDateTime queryLocalDateTime(String sql, Object... paras) {
-        return getMAIN().queryLocalDateTime(sql, paras);
-    }
-
-    public static LocalDateTime queryLocalDateTime(String sql) {
-        return getMAIN().queryLocalDateTime(sql);
-    }
-
-    public static java.sql.Time queryTime(String sql, Object... paras) {
-        return getMAIN().queryTime(sql, paras);
-    }
-
-    public static java.sql.Time queryTime(String sql) {
-        return getMAIN().queryTime(sql);
-    }
-
-    public static java.sql.Timestamp queryTimestamp(String sql, Object... paras) {
-        return getMAIN().queryTimestamp(sql, paras);
-    }
-
-    public static java.sql.Timestamp queryTimestamp(String sql) {
-        return getMAIN().queryTimestamp(sql);
-    }
-
-    public static Boolean queryBoolean(String sql, Object... paras) {
-        return getMAIN().queryBoolean(sql, paras);
-    }
-
-    public static Boolean queryBoolean(String sql) {
-        return getMAIN().queryBoolean(sql);
-    }
-
-    public static Short queryShort(String sql, Object... paras) {
-        return getMAIN().queryShort(sql, paras);
-    }
-
-    public static Short queryShort(String sql) {
-        return getMAIN().queryShort(sql);
-    }
-
-    public static Byte queryByte(String sql, Object... paras) {
-        return getMAIN().queryByte(sql, paras);
-    }
-
-    public static Byte queryByte(String sql) {
-        return getMAIN().queryByte(sql);
-    }
-
-    public static Number queryNumber(String sql, Object... paras) {
-        return getMAIN().queryNumber(sql, paras);
-    }
-
-    public static Number queryNumber(String sql) {
-        return getMAIN().queryNumber(sql);
-    }
+//    public static <T> T queryColumn(String sql, Object... paras) {
+//        return getMAIN().queryColumn(sql, paras);
+//    }
+//
+//    public static <T> T queryColumn(String sql) {
+//        return getMAIN().queryColumn(sql);
+//    }
+//
+//    public static String queryStr(String sql, Object... paras) {
+//        return getMAIN().queryStr(sql, paras);
+//    }
+//
+//    public static String queryStr(String sql) {
+//        return getMAIN().queryStr(sql);
+//    }
+//
+//    public static Integer queryInt(String sql, Object... paras) {
+//        return getMAIN().queryInt(sql, paras);
+//    }
+//
+//    public static Integer queryInt(String sql) {
+//        return getMAIN().queryInt(sql);
+//    }
+//
+//    public static Long queryLong(String sql, Object... paras) {
+//        return getMAIN().queryLong(sql, paras);
+//    }
+//
+//    public static Long queryLong(String sql) {
+//        return getMAIN().queryLong(sql);
+//    }
+//
+//    public static Double queryDouble(String sql, Object... paras) {
+//        return getMAIN().queryDouble(sql, paras);
+//    }
+//
+//    public static Double queryDouble(String sql) {
+//        return getMAIN().queryDouble(sql);
+//    }
+//
+//    public static Float queryFloat(String sql, Object... paras) {
+//        return getMAIN().queryFloat(sql, paras);
+//    }
+//
+//    public static Float queryFloat(String sql) {
+//        return getMAIN().queryFloat(sql);
+//    }
+//
+//    public static BigDecimal queryBigDecimal(String sql, Object... paras) {
+//        return getMAIN().queryBigDecimal(sql, paras);
+//    }
+//
+//    public static BigDecimal queryBigDecimal(String sql) {
+//        return getMAIN().queryBigDecimal(sql);
+//    }
+//
+//    public static BigInteger queryBigInteger(String sql, Object... paras) {
+//        return getMAIN().queryBigInteger(sql, paras);
+//    }
+//
+//    public static BigInteger queryBigInteger(String sql) {
+//        return getMAIN().queryBigInteger(sql);
+//    }
+//
+//    public static byte[] queryBytes(String sql, Object... paras) {
+//        return getMAIN().queryBytes(sql, paras);
+//    }
+//
+//    public static byte[] queryBytes(String sql) {
+//        return getMAIN().queryBytes(sql);
+//    }
+//
+//    public static java.util.Date queryDate(String sql, Object... paras) {
+//        return getMAIN().queryDate(sql, paras);
+//    }
+//
+//    public static java.util.Date queryDate(String sql) {
+//        return getMAIN().queryDate(sql);
+//    }
+//
+//    public static LocalDateTime queryLocalDateTime(String sql, Object... paras) {
+//        return getMAIN().queryLocalDateTime(sql, paras);
+//    }
+//
+//    public static LocalDateTime queryLocalDateTime(String sql) {
+//        return getMAIN().queryLocalDateTime(sql);
+//    }
+//
+//    public static java.sql.Time queryTime(String sql, Object... paras) {
+//        return getMAIN().queryTime(sql, paras);
+//    }
+//
+//    public static java.sql.Time queryTime(String sql) {
+//        return getMAIN().queryTime(sql);
+//    }
+//
+//    public static java.sql.Timestamp queryTimestamp(String sql, Object... paras) {
+//        return getMAIN().queryTimestamp(sql, paras);
+//    }
+//
+//    public static java.sql.Timestamp queryTimestamp(String sql) {
+//        return getMAIN().queryTimestamp(sql);
+//    }
+//
+//    public static Boolean queryBoolean(String sql, Object... paras) {
+//        return getMAIN().queryBoolean(sql, paras);
+//    }
+//
+//    public static Boolean queryBoolean(String sql) {
+//        return getMAIN().queryBoolean(sql);
+//    }
+//
+//    public static Short queryShort(String sql, Object... paras) {
+//        return getMAIN().queryShort(sql, paras);
+//    }
+//
+//    public static Short queryShort(String sql) {
+//        return getMAIN().queryShort(sql);
+//    }
+//
+//    public static Byte queryByte(String sql, Object... paras) {
+//        return getMAIN().queryByte(sql, paras);
+//    }
+//
+//    public static Byte queryByte(String sql) {
+//        return getMAIN().queryByte(sql);
+//    }
+//
+//    public static Number queryNumber(String sql, Object... paras) {
+//        return getMAIN().queryNumber(sql, paras);
+//    }
+//
+//    public static Number queryNumber(String sql) {
+//        return getMAIN().queryNumber(sql);
+//    }
     // 26 queryXxx method under -----------------------------------------------
 
 
@@ -475,7 +449,7 @@ public class Db<T> {
      * that return nothing
      */
     public static int update(String sql, Object... paras) {
-        return getMAIN().update(sql, paras);
+        return getMAIN().execute(sql, paras);
     }
 
     /**
@@ -483,7 +457,7 @@ public class Db<T> {
      * @see #update(String, Object...)
      */
     public static int update(String sql) {
-        return getMAIN().update(sql);
+        return getMAIN().execute(sql);
     }
 
 
@@ -551,8 +525,8 @@ public class Db<T> {
      * @param primaryKey the primary key of the table, composite primary key is separated by comma character: ","
      * @param idValues   the id value of the record, it can be composite id values
      */
-    public static Record findByIds(String tableName, String primaryKey, Object... idValues) {
-        return getMAIN().findByIds(tableName, primaryKey, idValues);
+    public static Record findById(String tableName, String primaryKey, Object... idValues) {
+        return getMAIN().findById(tableName, primaryKey, idValues);
     }
 
     /**
@@ -571,9 +545,6 @@ public class Db<T> {
         return getMAIN().deleteById(tableName, idValue);
     }
 
-    public static boolean deleteByPrimaryKey(String tableName, Object idValue) {
-        return getMAIN().deleteByPrimaryKey(tableName, idValue);
-    }
 
     public static boolean deleteById(String tableName, String primaryKey, Object idValue) {
         return getMAIN().deleteById(tableName, primaryKey, idValue);
@@ -592,8 +563,8 @@ public class Db<T> {
      * @param idValues   the id value of the record, it can be composite id values
      * @return true if delete succeed otherwise false
      */
-    public static boolean deleteByIds(String tableName, String primaryKey, Object... idValues) {
-        return getMAIN().deleteByIds(tableName, primaryKey, idValues);
+    public static boolean deleteById(String tableName, String primaryKey, Object... idValues) {
+        return getMAIN().deleteById(tableName, primaryKey, idValues);
     }
 
     /**
@@ -633,7 +604,7 @@ public class Db<T> {
      * that return nothing
      */
     public static int delete(String sql, Object... paras) {
-        return getMAIN().delete(sql, paras);
+        return getMAIN().execute(sql, paras);
     }
 
     /**
@@ -641,7 +612,7 @@ public class Db<T> {
      * @see #delete(String, Object...)
      */
     public static int delete(String sql) {
-        return getMAIN().delete(sql);
+        return getMAIN().execute(sql);
     }
 
     /*static Page<Record> paginate( int pageNumber, int pageSize, String select, String sqlExceptSelect, Object... paras) throws SQLException {
@@ -741,6 +712,9 @@ return MAIN.update(tableName, primaryKey, record);
      */
     public static boolean update(String tableName, Record record) {
         return getMAIN().update(tableName, record);
+    }
+    public static int doInTransaction(BatchSql batchSql) {
+        return getMAIN().doInTransaction(batchSql);
     }
 
 

@@ -39,7 +39,7 @@ public class DbTest {
 
     @Test
     public void testqueryStr() throws Exception {
-        String sqlId = Db.use(main).queryStr("select sql_text from api_sql  limit 1 ");
+        String sqlId = Db.use(main).queryForString("select sql_text from api_sql  limit 1 ",null);
         StaticLog.info(JSONUtil.toJsonStr(sqlId));
 
     }
@@ -90,8 +90,8 @@ public class DbTest {
 
     @Test
     public void testFindByIds() throws Exception {
-        Record result1 = Db.use(main).findByIds("api_sql", "id,sql_id","1",1);
-        Record result = Db.use(main).findByIds("api_sql", "id,sql_id", "2","getBizTests");
+        Record result1 = Db.use(main).findById("api_sql", "id,sql_id","1",1);
+        Record result = Db.use(main).findById("api_sql", "id,sql_id", "2","getBizTests");
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
@@ -160,11 +160,6 @@ public class DbTest {
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 
-    @Test
-    public void testUpdate2() throws Exception {
-        int result = Db.use(main).update("  update api_sql set datasource_id=datasource_id||'1' where sql_id ='queryTest'  ");
-        StaticLog.info(String.valueOf(result));
-    }
 
     @Test
     public void testDeleteById2() throws Exception {
@@ -172,23 +167,9 @@ public class DbTest {
         StaticLog.info(String.valueOf(result));
     }
 
-    @Test
-    public void testDeleteById3() throws Exception {
-        boolean result = Db.use(main).deleteByIds("api_sql", "id,sql_id", "-1946801918","queryTest-1242227800");
-        StaticLog.info(String.valueOf(result));
-    }
 
-    @Test
-    public void testDelete() throws Exception {
-        int result = Db.use(main).delete("delete from api_sql where sql_id = ? ", "paras");
-        StaticLog.info(String.valueOf(result));
-    }
 
-    @Test
-    public void testDelete2() throws Exception {
-        int result = Db.use(main).delete("delete from api_sql where sql_id = 'paras' ");
-        StaticLog.info(String.valueOf(result));
-    }
+
 
 //    @Test
 //    public void findEntityList() throws Exception {
@@ -259,7 +240,7 @@ public class DbTest {
 
     @Test
     public void testCount() throws Exception {
-        Integer result = Db.use(main).queryInt(" select count(1) from api_sql ");
+        Integer result = Db.use(main).count(" select count(1) from api_sql ");
         StaticLog.info(String.valueOf(result));
     }
 //    @Test
