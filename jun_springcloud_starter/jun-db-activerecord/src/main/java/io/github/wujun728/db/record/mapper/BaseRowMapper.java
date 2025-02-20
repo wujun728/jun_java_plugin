@@ -3,7 +3,7 @@ package io.github.wujun728.db.record.mapper;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
-import io.github.wujun728.db.record.annotation.MapRow;
+import io.github.wujun728.db.orm.annotation.Column;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.lang.reflect.Field;
@@ -46,9 +46,9 @@ public class BaseRowMapper<T> implements RowMapper<T> {
 		String str = null;
 		RowType type = null;
 		for(Field field : fields) {
-			if(field.isAnnotationPresent(MapRow.class)) {
-				column = field.getAnnotation(MapRow.class).column();
-				type = field.getAnnotation(MapRow.class).type();
+			if(field.isAnnotationPresent(Column.class)) {
+				column = field.getAnnotation(Column.class).name();
+				type = field.getAnnotation(Column.class).type();
 
 				try {
 					field.setAccessible(true);

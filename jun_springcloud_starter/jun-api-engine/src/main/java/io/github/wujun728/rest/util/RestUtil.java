@@ -11,11 +11,10 @@ import cn.hutool.db.meta.Table;
 import cn.hutool.log.StaticLog;
 import com.google.common.collect.Lists;
 import io.github.wujun728.common.exception.BusinessException;
-import io.github.wujun728.common.utils.ClassUtil;
 import io.github.wujun728.common.utils.IdGenerator15;
 import io.github.wujun728.db.record.Record;
 //import io.github.wujun728.db.record.interfaces.IRecordHandler;
-import io.github.wujun728.db.utils.FieldUtils;
+import io.github.wujun728.db.record.kit.FieldUtils;
 import org.springframework.util.CollectionUtils;
 
 import javax.sql.DataSource;

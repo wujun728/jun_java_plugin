@@ -53,7 +53,7 @@ public class ModelTest {
         user.asyncSave();
     }
     public static void jdbcTest() {
-        JdbcTemplate jdbcTemplate = Db.use("main").getDbTemplate().getJdbcTemplate();
+        JdbcTemplate jdbcTemplate = Db.use("main").getJdbcTemplate();
         //直接使用JdbcTemplate增加自定义查询 并转换成Model
         Map<String, Object> resultMap = jdbcTemplate.queryForMap("SELECT * FROM c_user WHERE id_ = ?", 1);
         User user = new User().mapping(resultMap);

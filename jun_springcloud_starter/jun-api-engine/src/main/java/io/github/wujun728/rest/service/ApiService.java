@@ -12,7 +12,7 @@ import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
-import io.github.wujun728.db.utils.FieldUtils;
+import io.github.wujun728.db.record.kit.FieldUtils;
 import io.github.wujun728.db.utils.RecordUtil;
 import io.github.wujun728.db.utils.TreeBuildUtil;
 import io.github.wujun728.generator.util.MapUtil;

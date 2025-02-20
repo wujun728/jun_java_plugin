@@ -7,7 +7,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.github.wujun728.db.record.annotation.Key;
+import io.github.wujun728.db.orm.annotation.PK;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -22,7 +22,7 @@ import java.util.Map.Entry;
 import static io.github.wujun728.db.record.DbPro.getPkNames;
 
 
-public class SqlUtil {
+public class SqlUtils {
 
 	private static final String SELECT = "SELECT * FROM ";
 	private static final String SELECTCOUNT = "SELECT COUNT(*) ";
@@ -163,7 +163,7 @@ public class SqlUtil {
 					//Mark Mysql
 					String columndName = FieldUtils.getUnderlineName(field.getName());
 					String columndNameNew = '`'+columndName+'`';
-					if (field.isAnnotationPresent(Key.class)  || /*field.isAnnotationPresent(Id.class)*/ AnnotationUtil.hasAnnotation(field,Id.class)
+					if (field.isAnnotationPresent(PK.class)  || /*field.isAnnotationPresent(Id.class)*/ AnnotationUtil.hasAnnotation(field,Id.class)
 							|| /*field.isAnnotationPresent(TableId.class)*/  AnnotationUtil.hasAnnotation(field,TableId.class)  || primaryKeyStr.contains(columndName)) {
 						where.append(columndNameNew).append(EQUAL_AND);
 						wheresValue.add(val);
@@ -256,7 +256,7 @@ public class SqlUtil {
 					columndNameNew = '`'+columndName+'`';
 				}
 
-				if (val != null && (field.isAnnotationPresent(Key.class)  || field.isAnnotationPresent(Id.class)
+				if (val != null && (field.isAnnotationPresent(PK.class)  || field.isAnnotationPresent(Id.class)
 						|| field.isAnnotationPresent(TableId.class)  ||  primaryKeyStr.contains(columndName))) {
 					where.append(columndNameNew).append(EQUAL_AND);
 					wheresValue.add(val);
@@ -361,7 +361,7 @@ public class SqlUtil {
 				columndNameNew = '`'+columndName+'`';
 			}
 
-			if (field.isAnnotationPresent(Key.class) || field.isAnnotationPresent(Id.class)
+			if (field.isAnnotationPresent(PK.class) || field.isAnnotationPresent(Id.class)
 					|| field.isAnnotationPresent(TableId.class)   ||  primaryKeyStr.contains(columndName)) {
 				//sql.append(columndNameNew).append(EQUAL);
 				where.append(columndNameNew).append(EQUAL_AND);

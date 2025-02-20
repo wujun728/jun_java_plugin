@@ -1,23 +1,19 @@
 package io.github.wujun728.db;
 
-import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
-import com.google.common.collect.Maps;
 import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
-import io.github.wujun728.db.utils.RecordUtil;
-import io.github.wujun728.db.utils.SqlUtil;
+import io.github.wujun728.db.utils.SqlUtils;
 import io.github.wujun728.sql.entity.ApiSql;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.sql.DataSource;
 import java.util.List;
-import java.util.Map;
 
 import static io.github.wujun728.db.utils.DataSourcePool.main;
 
@@ -259,7 +255,7 @@ public class DbTest {
 
     @Test
     public void testQueryAll() throws Exception {
-        List result = Db.use(main).find(SqlUtil.getSelect(ApiSql.class).getSql());
+        List result = Db.use(main).find(SqlUtils.getSelect(ApiSql.class).getSql());
         StaticLog.info(JSONUtil.toJsonStr(result));
     }
 

@@ -44,13 +44,16 @@ public class Db<T> {
     }
 
     public static DbPro use() {
-        checkDbProNull();
-        return MAIN;
+        return getMAIN();
+    }
+
+    private static DbPro getMAIN() {
+        return getMAIN();
     }
 
     public static DbPro use(String configName) {
         DbPro result = DbPro.cache.get(configName);
-        if (result == null || result.getDataSource() == null || result.getDbTemplate().getJdbcTemplate() == null) {
+        if (result == null || result.getDataSource() == null || result.getJdbcTemplate() == null) {
             System.err.println("error : 当前Db.use(" + configName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的configName数据源。");
             throw new RuntimeException("error : 当前Db.use(" + configName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的configName数据源。");
         }
@@ -100,10 +103,10 @@ public class Db<T> {
 //	************************************************************************************************************************************************
 
 
-    public static DbTemplate getDbTemplate() {
-        checkDbProNull();
-        return MAIN.getDbTemplate();
-    }
+//    public static DbTemplate getDbTemplate() {
+//        checkDbProNull();
+//        return MAIN.getDbTemplate();
+//    }
 
     private static void checkDbProNull() {
         if (ObjUtil.isEmpty(MAIN)) {
@@ -112,23 +115,19 @@ public class Db<T> {
     }
 
     public static List<Map<String, Object>> queryList(String sql, Object... params) {
-        checkDbProNull();
-        return MAIN.queryList(sql, params);
+        return getMAIN().queryList(sql, params);
     }
 
     public static String queryForString(String sql, Object[] params) {
-        checkDbProNull();
-        return MAIN.queryForString(sql, params);
+        return getMAIN().queryForString(sql, params);
     }
 
     public static Date queryForDate(String sql, Object[] params) {
-        checkDbProNull();
-        return MAIN.queryForDate(sql, params);
+        return getMAIN().queryForDate(sql, params);
     }
 
     public static Map<String, Object> queryMap(String sql, Object... idValues) {
-        checkDbProNull();
-        return MAIN.queryMap(sql, idValues);
+        return getMAIN().queryMap(sql, idValues);
     }
 
 
@@ -150,8 +149,7 @@ public class Db<T> {
 //    }
 
     public static boolean insert(String sql, Object... params) {
-        checkDbProNull();
-        return MAIN.insert(sql, params);
+        return getMAIN().insert(sql, params) > 0;
     }
 
 
@@ -174,20 +172,17 @@ public class Db<T> {
 
 
     public static Boolean deleteById(String tableName, Object... idValues) {
-        checkDbProNull();
-        return MAIN.deleteById(tableName, idValues);
+        return getMAIN().deleteById(tableName, idValues);
     }
 
 
     public static Boolean deleteBySql(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.deleteBySql(sql, paras);
+        return getMAIN().deleteBySql(sql, paras);
     }
 
 
     public static Boolean deleteBySql(String sql) {
-        checkDbProNull();
-        return MAIN.deleteBySql(sql);
+        return getMAIN().deleteBySql(sql);
     }
 
 
@@ -195,19 +190,16 @@ public class Db<T> {
     // Query ***********************************************************************************************************
 
     public static <T> List<T> findBeanList(Class<T> clazz, String sql) {
-        checkDbProNull();
-        return MAIN.findBeanList(clazz, sql);
+        return getMAIN().findBeanList(clazz, sql);
     }
 
 
     public static <T> List findBeanList(Class clazz, String sql, Object... params) {
-        checkDbProNull();
-        return MAIN.findBeanList(clazz, sql, params);
+        return getMAIN().findBeanList(clazz, sql, params);
     }
 
     public static <T> List findMapList(Class clazz, String sql, Object... params) {
-        checkDbProNull();
-        return MAIN.findMapList(clazz, sql, params);
+        return getMAIN().findMapList(clazz, sql, params);
     }
 
 //    public static <T> List findBeanList(Class beanClass, Map<String, Object> params) {
@@ -216,52 +208,43 @@ public class Db<T> {
 //    }
 
     public static <T> List findRecordList(String sql, Object... params) {
-        checkDbProNull();
-        return MAIN.findRecordList(sql, params);
+        return getMAIN().findRecordList(sql, params);
     }
 
     public static <T> T findBeanById(Class<T> clazz, Object... idValue) {
-        checkDbProNull();
-        return MAIN.findBeanById(clazz, idValue);
+        return getMAIN().findBeanById(clazz, idValue);
     }
 
 
     public static <T> T findBeanByIds(Class beanClass, String primaryKeys, Object... idValue) {
-        checkDbProNull();
-        return MAIN.findBeanByIds(beanClass, primaryKeys, idValue);
+        return getMAIN().findBeanByIds(beanClass, primaryKeys, idValue);
     }
 
 
     public static <T> Page findBeanPages(Class beanClass, int page, int rows) {
-        checkDbProNull();
-        return MAIN.findBeanPages(beanClass, page, rows);
+        return getMAIN().findBeanPages(beanClass, page, rows);
     }
 
     public static <T> Page findBeanPages(Class beanClass, int page, int rows, Map<String, Object> params) {
-        checkDbProNull();
-        return MAIN.findBeanPages(beanClass, page, rows, params);
+        return getMAIN().findBeanPages(beanClass, page, rows, params);
     }
 
 
     public static Page queryBeanPage(Class beanClass, int page, int rows) {
-        checkDbProNull();
-        return MAIN.queryBeanPage(beanClass, page, rows);
+        return getMAIN().queryBeanPage(beanClass, page, rows);
     }
 
     public static Page queryBeanPage(Class beanClass, int page, int rows, Map<String, Object> params) {
-        checkDbProNull();
-        return MAIN.queryBeanPage(beanClass, page, rows, params);
+        return getMAIN().queryBeanPage(beanClass, page, rows, params);
     }
 
 
     public static Page<Map> queryMapPages(String sql, int page, int rows, Object[] params) {
-        checkDbProNull();
-        return MAIN.queryMapPages(sql, page, rows, params);
+        return getMAIN().queryMapPages(sql, page, rows, params);
     }
 
     public static int count(String sql, Object... params) {
-        checkDbProNull();
-        return MAIN.count(sql, params);
+        return getMAIN().count(sql, params);
     }
 
     //************************************************************************************************************************************************
@@ -269,71 +252,41 @@ public class Db<T> {
     //************************************************************************************************************************************************
 
     public static Record findRecordById(String tableName, Object id) {
-        checkDbProNull();
-        return MAIN.findRecordById(tableName, id);
+        return getMAIN().findRecordById(tableName, id);
     }
 
     public static List<Record> findByColumnValueRecords(String tableName, String columnNames, Object... columnValues) {
-        checkDbProNull();
-        return MAIN.findByColumnValueRecords(tableName, columnNames, columnValues);
+        return getMAIN().findByColumnValueRecords(tableName, columnNames, columnValues);
     }
 
     public static <T> List findByColumnValueBeans(Class clazz, String columnNames, Object... columnValues) {
-        checkDbProNull();
-        return MAIN.findByColumnValueBeans(clazz, columnNames, columnValues);
+        return getMAIN().findByColumnValueBeans(clazz, columnNames, columnValues);
     }
 
     public static <T> List findByWhereSqlForBean(Class clazz, String whereSql, Object... columnValues) {
-        checkDbProNull();
-        return MAIN.findByWhereSqlForBean(clazz, whereSql, columnValues);
+        return getMAIN().findByWhereSqlForBean(clazz, whereSql, columnValues);
     }
 
 
     public static Page<Record> paginate(Integer pageNumber, Integer limit, String select, String from) {
-        checkDbProNull();
-        return MAIN.paginate(pageNumber, limit, select, from);
+        return getMAIN().paginate(pageNumber, limit, select, from);
     }
 
     public static Page<Record> paginate(Integer pageNumber, Integer limit, String select, String from, Map<String, Object> params) {
-        checkDbProNull();
-        return MAIN.paginate(pageNumber, limit, select, from, params);
+        return getMAIN().paginate(pageNumber, limit, select, from, params);
     }
 
     //************************************************************************************************************************************************
     //Record end  **************************************************************************************************************************************
     //************************************************************************************************************************************************
 
-    //************************************************************************************************************************************************
-    //Mybatis  XML  SQL 111111111111111111  end   SqlXmlUtil *************************************************************************
-    //************************************************************************************************************************************************
 
-//    public static Object executeSqlXml(String sqlXml, Map params) throws SQLException {
-//        checkDbProNull();
-//        return MAIN.executeSqlXml(sqlXml, params);
-//    }
-//
-//    public static int updateSqlXml(String sqlXml, Map params) throws SQLException {
-//        checkDbProNull();
-//        return MAIN.updateSqlXml(sqlXml, params);
-//    }
-//
-//    public static List<Map<String, Object>> querySqlXml(String sqlXml, Map params) throws SQLException {
-//        checkDbProNull();
-//        return MAIN.querySqlXml(sqlXml, params);
-//    }
-
-    //************************************************************************************************************************************************
-    //Mybatis  XML  SQL 111111111111111111  end   SqlXmlUtil *************************************************************************
-    //************************************************************************************************************************************************
-
-
-    //	************************************************************************************************************************************************
+//	************************************************************************************************************************************************
 //	  111111111111111111  begin   **************************************************************************************************************
 //	************************************************************************************************************************************************
 
     public static <T> List<T> query(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.query(sql, paras);
+        return getMAIN().query(sql, paras);
     }
 
     /**
@@ -341,8 +294,7 @@ public class Db<T> {
      * @see #query(String, Object...)
      */
     public static <T> List<T> query(String sql) {
-        checkDbProNull();
-        return MAIN.query(sql);
+        return getMAIN().query(sql);
     }
 
     /**
@@ -354,8 +306,7 @@ public class Db<T> {
      * and it return Object if your sql has select only one column.
      */
     public static <T> T queryFirst(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryFirst(sql, paras);
+        return getMAIN().queryFirst(sql, paras);
     }
 
     /**
@@ -363,8 +314,7 @@ public class Db<T> {
      * @see #queryFirst(String, Object...)
      */
     public static <T> T queryFirst(String sql) {
-        checkDbProNull();
-        return MAIN.queryFirst(sql);
+        return getMAIN().queryFirst(sql);
     }
 
     // 26 queryXxx method below -----------------------------------------------
@@ -378,183 +328,142 @@ public class Db<T> {
      * @return <T> T
      */
     public static <T> T queryColumn(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryColumn(sql, paras);
+        return getMAIN().queryColumn(sql, paras);
     }
 
     public static <T> T queryColumn(String sql) {
-        checkDbProNull();
-        return MAIN.queryColumn(sql);
+        return getMAIN().queryColumn(sql);
     }
 
     public static String queryStr(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryStr(sql, paras);
+        return getMAIN().queryStr(sql, paras);
     }
 
     public static String queryStr(String sql) {
-        checkDbProNull();
-        return MAIN.queryStr(sql);
+        return getMAIN().queryStr(sql);
     }
 
     public static Integer queryInt(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryInt(sql, paras);
+        return getMAIN().queryInt(sql, paras);
     }
 
     public static Integer queryInt(String sql) {
-        checkDbProNull();
-        return MAIN.queryInt(sql);
+        return getMAIN().queryInt(sql);
     }
 
     public static Long queryLong(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryLong(sql, paras);
+        return getMAIN().queryLong(sql, paras);
     }
 
     public static Long queryLong(String sql) {
-        checkDbProNull();
-        return MAIN.queryLong(sql);
+        return getMAIN().queryLong(sql);
     }
 
     public static Double queryDouble(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryDouble(sql, paras);
+        return getMAIN().queryDouble(sql, paras);
     }
 
     public static Double queryDouble(String sql) {
-        checkDbProNull();
-        return MAIN.queryDouble(sql);
+        return getMAIN().queryDouble(sql);
     }
 
     public static Float queryFloat(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryFloat(sql, paras);
+        return getMAIN().queryFloat(sql, paras);
     }
 
     public static Float queryFloat(String sql) {
-        checkDbProNull();
-        return MAIN.queryFloat(sql);
+        return getMAIN().queryFloat(sql);
     }
 
     public static BigDecimal queryBigDecimal(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryBigDecimal(sql, paras);
+        return getMAIN().queryBigDecimal(sql, paras);
     }
 
     public static BigDecimal queryBigDecimal(String sql) {
-        checkDbProNull();
-        return MAIN.queryBigDecimal(sql);
+        return getMAIN().queryBigDecimal(sql);
     }
 
     public static BigInteger queryBigInteger(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryBigInteger(sql, paras);
+        return getMAIN().queryBigInteger(sql, paras);
     }
 
     public static BigInteger queryBigInteger(String sql) {
-        checkDbProNull();
-        return MAIN.queryBigInteger(sql);
+        return getMAIN().queryBigInteger(sql);
     }
 
     public static byte[] queryBytes(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryBytes(sql, paras);
+        return getMAIN().queryBytes(sql, paras);
     }
 
     public static byte[] queryBytes(String sql) {
-        checkDbProNull();
-        return MAIN.queryBytes(sql);
+        return getMAIN().queryBytes(sql);
     }
 
     public static java.util.Date queryDate(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryDate(sql, paras);
+        return getMAIN().queryDate(sql, paras);
     }
 
     public static java.util.Date queryDate(String sql) {
-        checkDbProNull();
-        return MAIN.queryDate(sql);
+        return getMAIN().queryDate(sql);
     }
 
     public static LocalDateTime queryLocalDateTime(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryLocalDateTime(sql, paras);
+        return getMAIN().queryLocalDateTime(sql, paras);
     }
 
     public static LocalDateTime queryLocalDateTime(String sql) {
-        checkDbProNull();
-        return MAIN.queryLocalDateTime(sql);
+        return getMAIN().queryLocalDateTime(sql);
     }
 
     public static java.sql.Time queryTime(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryTime(sql, paras);
+        return getMAIN().queryTime(sql, paras);
     }
 
     public static java.sql.Time queryTime(String sql) {
-        checkDbProNull();
-        return MAIN.queryTime(sql);
+        return getMAIN().queryTime(sql);
     }
 
     public static java.sql.Timestamp queryTimestamp(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryTimestamp(sql, paras);
+        return getMAIN().queryTimestamp(sql, paras);
     }
 
     public static java.sql.Timestamp queryTimestamp(String sql) {
-        checkDbProNull();
-        return MAIN.queryTimestamp(sql);
+        return getMAIN().queryTimestamp(sql);
     }
 
     public static Boolean queryBoolean(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryBoolean(sql, paras);
+        return getMAIN().queryBoolean(sql, paras);
     }
 
     public static Boolean queryBoolean(String sql) {
-        checkDbProNull();
-        return MAIN.queryBoolean(sql);
+        return getMAIN().queryBoolean(sql);
     }
 
     public static Short queryShort(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryShort(sql, paras);
+        return getMAIN().queryShort(sql, paras);
     }
 
     public static Short queryShort(String sql) {
-        checkDbProNull();
-        return MAIN.queryShort(sql);
+        return getMAIN().queryShort(sql);
     }
 
     public static Byte queryByte(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryByte(sql, paras);
+        return getMAIN().queryByte(sql, paras);
     }
 
     public static Byte queryByte(String sql) {
-        checkDbProNull();
-        return MAIN.queryByte(sql);
+        return getMAIN().queryByte(sql);
     }
 
     public static Number queryNumber(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.queryNumber(sql, paras);
+        return getMAIN().queryNumber(sql, paras);
     }
 
     public static Number queryNumber(String sql) {
-        checkDbProNull();
-        return MAIN.queryNumber(sql);
+        return getMAIN().queryNumber(sql);
     }
     // 26 queryXxx method under -----------------------------------------------
 
-    /**
-     * Execute sql update
-     */
-    /*static int update(Connection conn, String sql, Object... paras) throws SQLException {
-        checkDbProNull();
-return MAIN.update(conn, sql, paras);
-    }*/
 
     /**
      * Execute update, insert or delete sql statement.
@@ -566,8 +475,7 @@ return MAIN.update(conn, sql, paras);
      * that return nothing
      */
     public static int update(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.update(sql, paras);
+        return getMAIN().update(sql, paras);
     }
 
     /**
@@ -575,34 +483,23 @@ return MAIN.update(conn, sql, paras);
      * @see #update(String, Object...)
      */
     public static int update(String sql) {
-        checkDbProNull();
-        return MAIN.update(sql);
+        return getMAIN().update(sql);
     }
 
-    /*static List<Record> find( String sql, Object... paras) throws SQLException {
-        checkDbProNull();
-return MAIN.find( sql, paras);
-    }*/
 
-    /**
-     *
-     */
     public static List<Record> find(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.find(sql, paras);
+        return getMAIN().find(sql, paras);
     }
 
     /**
      * @param sql the sql statement
      */
     public static List<Record> find(String sql) {
-        checkDbProNull();
-        return MAIN.find(sql);
+        return getMAIN().find(sql);
     }
 
     public static List<Record> findAll(String tableName) {
-        checkDbProNull();
-        return MAIN.findAll(tableName);
+        return getMAIN().findAll(tableName);
     }
 
     /**
@@ -613,8 +510,7 @@ return MAIN.find( sql, paras);
      * @return the Record object
      */
     public static Record findFirst(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.findFirst(sql, paras);
+        return getMAIN().findFirst(sql, paras);
     }
 
     /**
@@ -622,8 +518,7 @@ return MAIN.find( sql, paras);
      * @see #findFirst(String, Object...)
      */
     public static Record findFirst(String sql) {
-        checkDbProNull();
-        return MAIN.findFirst(sql);
+        return getMAIN().findFirst(sql);
     }
 
     /**
@@ -637,13 +532,11 @@ return MAIN.find( sql, paras);
      * @param idValue   the id value of the record
      */
     public static Record findById(String tableName, Object idValue) {
-        checkDbProNull();
-        return MAIN.findById(tableName, idValue);
+        return getMAIN().findById(tableName, idValue);
     }
 
     public static Record findById(String tableName, String primaryKey, Object idValue) {
-        checkDbProNull();
-        return MAIN.findById(tableName, primaryKey, idValue);
+        return getMAIN().findById(tableName, primaryKey, idValue);
     }
 
     /**
@@ -659,8 +552,7 @@ return MAIN.find( sql, paras);
      * @param idValues   the id value of the record, it can be composite id values
      */
     public static Record findByIds(String tableName, String primaryKey, Object... idValues) {
-        checkDbProNull();
-        return MAIN.findByIds(tableName, primaryKey, idValues);
+        return getMAIN().findByIds(tableName, primaryKey, idValues);
     }
 
     /**
@@ -676,18 +568,15 @@ return MAIN.find( sql, paras);
      */
 
     public static boolean deleteById(String tableName, Object idValue) {
-        checkDbProNull();
-        return MAIN.deleteById(tableName, idValue);
+        return getMAIN().deleteById(tableName, idValue);
     }
 
     public static boolean deleteByPrimaryKey(String tableName, Object idValue) {
-        checkDbProNull();
-        return MAIN.deleteByPrimaryKey(tableName, idValue);
+        return getMAIN().deleteByPrimaryKey(tableName, idValue);
     }
 
     public static boolean deleteById(String tableName, String primaryKey, Object idValue) {
-        checkDbProNull();
-        return MAIN.deleteById(tableName, primaryKey, idValue);
+        return getMAIN().deleteById(tableName, primaryKey, idValue);
     }
 
     /**
@@ -704,8 +593,7 @@ return MAIN.find( sql, paras);
      * @return true if delete succeed otherwise false
      */
     public static boolean deleteByIds(String tableName, String primaryKey, Object... idValues) {
-        checkDbProNull();
-        return MAIN.deleteByIds(tableName, primaryKey, idValues);
+        return getMAIN().deleteByIds(tableName, primaryKey, idValues);
     }
 
     /**
@@ -721,8 +609,7 @@ return MAIN.find( sql, paras);
      * @return true if delete succeed otherwise false
      */
     public static boolean delete(String tableName, String primaryKey, Record record) {
-        checkDbProNull();
-        return MAIN.delete(tableName, primaryKey, record);
+        return getMAIN().delete(tableName, primaryKey, record);
     }
 
     /**
@@ -734,8 +621,7 @@ return MAIN.find( sql, paras);
      * @see #delete(String, String, Record)
      */
     public static boolean delete(String tableName, Record record) {
-        checkDbProNull();
-        return MAIN.delete(tableName, record);
+        return getMAIN().delete(tableName, record);
     }
 
     /**
@@ -747,8 +633,7 @@ return MAIN.find( sql, paras);
      * that return nothing
      */
     public static int delete(String sql, Object... paras) {
-        checkDbProNull();
-        return MAIN.delete(sql, paras);
+        return getMAIN().delete(sql, paras);
     }
 
     /**
@@ -756,8 +641,7 @@ return MAIN.find( sql, paras);
      * @see #delete(String, Object...)
      */
     public static int delete(String sql) {
-        checkDbProNull();
-        return MAIN.delete(sql);
+        return getMAIN().delete(sql);
     }
 
     /*static Page<Record> paginate( int pageNumber, int pageSize, String select, String sqlExceptSelect, Object... paras) throws SQLException {
@@ -776,31 +660,26 @@ return MAIN.paginate( pageNumber, pageSize, select, sqlExceptSelect, paras);
      * @return the Page object
      */
     public static Page<Record> paginate(int pageNumber, int pageSize, String select, String sqlExceptSelect, Object... paras) {
-        checkDbProNull();
-        return MAIN.paginate(pageNumber, pageSize, select, sqlExceptSelect, paras);
+        return getMAIN().paginate(pageNumber, pageSize, select, sqlExceptSelect, paras);
     }
 
     public static Page<Record> paginate(int pageNumber, int pageSize, boolean isGroupBySql, String select, String sqlExceptSelect, Object... paras) {
-        checkDbProNull();
-        return MAIN.paginate(pageNumber, pageSize, isGroupBySql, select, sqlExceptSelect, paras);
+        return getMAIN().paginate(pageNumber, pageSize, isGroupBySql, select, sqlExceptSelect, paras);
     }
 
     /**
      *
      */
     public static Page<Record> paginate(int pageNumber, int pageSize, String select, String sqlExceptSelect) {
-        checkDbProNull();
-        return MAIN.paginate(pageNumber, pageSize, select, sqlExceptSelect);
+        return getMAIN().paginate(pageNumber, pageSize, select, sqlExceptSelect);
     }
 
     public static Page<Record> paginateByFullSql(int pageNumber, int pageSize, String totalRowSql, String findSql, Object... paras) {
-        checkDbProNull();
-        return MAIN.paginateByFullSql(pageNumber, pageSize, totalRowSql, findSql, paras);
+        return getMAIN().paginateByFullSql(pageNumber, pageSize, totalRowSql, findSql, paras);
     }
 
     public static Page<Record> paginateByFullSql(int pageNumber, int pageSize, boolean isGroupBySql, String totalRowSql, String findSql, Object... paras) {
-        checkDbProNull();
-        return MAIN.paginateByFullSql(pageNumber, pageSize, isGroupBySql, totalRowSql, findSql, paras);
+        return getMAIN().paginateByFullSql(pageNumber, pageSize, isGroupBySql, totalRowSql, findSql, paras);
     }
 
     /*static boolean save(Connection conn, String tableName, String primaryKey, Record record) throws SQLException {
@@ -821,16 +700,14 @@ return MAIN.save(conn, tableName, primaryKey, record);
      * @param record     the record will be saved
      */
     public static boolean save(String tableName, String primaryKey, Record record) {
-        checkDbProNull();
-        return MAIN.save(tableName, primaryKey, record);
+        return getMAIN().save(tableName, primaryKey, record);
     }
 
     /**
      * @see #save(String, String, Record)
      */
     public static boolean save(String tableName, Record record) {
-        checkDbProNull();
-        return MAIN.save(tableName, record);
+        return getMAIN().save(tableName, record);
     }
 
     /*static boolean update(String tableName, String primaryKey, Record record) throws SQLException {
@@ -850,8 +727,7 @@ return MAIN.update(tableName, primaryKey, record);
      * @param record     the Record object
      */
     public static boolean update(String tableName, String primaryKey, Record record) {
-        checkDbProNull();
-        return MAIN.update(tableName, primaryKey, record);
+        return getMAIN().update(tableName, primaryKey, record);
     }
 
     /**
@@ -864,8 +740,7 @@ return MAIN.update(tableName, primaryKey, record);
      * @see #update(String, String, Record)
      */
     public static boolean update(String tableName, Record record) {
-        checkDbProNull();
-        return MAIN.update(tableName, record);
+        return getMAIN().update(tableName, record);
     }
 
 

@@ -37,7 +37,6 @@
 		<module>jun_gzip</module>
 		<module>jun_hibernate</module>
 		<module>jun_httpclient</module>
-		<module>jun_image</module>
 		<module>jun_j2cache</module>
 		<module>jun_jar2maven</module>
 		<module>jun_java_compiler</module>
