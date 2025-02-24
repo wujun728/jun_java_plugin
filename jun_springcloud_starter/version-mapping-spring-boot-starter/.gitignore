@@ -1,0 +1,46 @@
+# common ignore
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar
+*.tar.gz
+
+# plugin ignore
+rebel.xml
+
+# maven ignore
+target/
+
+# myeclipse ignore
+.mymetadata
+
+# eclipse ignore
+.settings/
+.tomcatplugin
+.project
+.classpath
+
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws
+
+# temp ignore
+classes/
+logs/
+work/
+log/
+*.doc
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+*.bak
+
+# system ignore
+.DS_Store
+Thumbs.db
