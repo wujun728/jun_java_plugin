@@ -22,12 +22,6 @@
 			<artifactId>jun_datasource</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<dependency>
-			<groupId>io.github.wujun728</groupId>
-			<artifactId>jun_util</artifactId>
-			<scope>compile</scope>
-			<version>1.0</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/commons-dbutils/commons-dbutils -->
 		<dependency>
 			<groupId>commons-dbutils</groupId>

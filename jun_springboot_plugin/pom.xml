@@ -16,7 +16,6 @@
     </properties>
 
     <modules>
-        <module>springboot_a_test</module>
         <module>springboot_actuator</module>
         <module>springboot_aop</module>
         <module>springboot_async</module>

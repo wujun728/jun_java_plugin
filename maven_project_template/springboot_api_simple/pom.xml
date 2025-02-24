@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.company.project</groupId>
-    <artifactId>jun_springboot_api_simple</artifactId>
+    <artifactId>springboot_api_simple</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 

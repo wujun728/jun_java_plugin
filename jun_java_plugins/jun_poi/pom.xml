@@ -36,9 +36,6 @@
 			<artifactId>jun_datasource</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<!-- <dependency> <groupId>io.github.wujun728</groupId> <artifactId>jun_utils</artifactId> 
-			<version>1.0</version> </dependency> -->
-
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
