@@ -1,6 +1,0 @@
-xxl-job:
-  admin:
-    admin-addresses: http://localhost:8080/xxl-job-admin
-
-server:
-  port: 8081

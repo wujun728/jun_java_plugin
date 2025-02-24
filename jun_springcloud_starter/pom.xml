@@ -21,7 +21,7 @@
         <module>jun-groovy-api-spring-boot-starter</module>
         <module>jun-uidgenerator-spring-boot-starter</module>
         <module>jun-codegen-spring-boot-starter</module>
-        <module>jun-onlineForm-spring-boot-starter</module>
+<!--        <module>jun-onlineForm-spring-boot-starter</module>-->
         <module>jun-snakerflow-spring-boot-starter</module>
         <module>jun-db-spring-boot-starter</module>
         <module>jun-log-spring-boot-starter</module>

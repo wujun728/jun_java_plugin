@@ -20,9 +20,9 @@
 		<!--近期准备一模块一个模块更新重构-->
 		<module>jun_springboot_plugin</module>
 		<module>jun_springcloud_plugin</module>
+		<module>maven_project_template</module>
 		<!--
 		<module>jun_springboot_simple</module>
-		<module>maven_project_template</module>
 		-->
 	</modules>
 
