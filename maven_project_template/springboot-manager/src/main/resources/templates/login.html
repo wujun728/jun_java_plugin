@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理-登陆</title>
+    <!--公共模块-->
+    <div th:replace="~{layout}"></div>
+    <link rel="stylesheet" th:href="@{/static/css/login.css}">
+    <script th:src="@{/static/js/jquery.js}"></script>
+    <script th:src="@{/static/js/jq-module/jquery.particleground.min.js}"></script>
+</head>
+<body>
+<div class="layui-container">
+    <div class="admin-login-background">
+        <div class="layui-form login-form">
+            <form class="layui-form" action="">
+                <div class="layui-form-item logo-title">
+                    <h1>后台登录</h1>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-icon layui-icon-username" name="username" ></label>
+                    <input type="text" name="username" lay-verify="required|account" placeholder="用户名" autocomplete="off" class="layui-input" value="admin">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-icon layui-icon-password" name="password"></label>
+                    <input type="password" name="password" lay-verify="required|password" placeholder="密码" autocomplete="off" class="layui-input" value="123456">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-icon layui-icon-vercode" name="captcha"></label>
+                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" value="">
+                    <div class="captcha-img">
+                        <img  onClick="this.src=this.src+'?'+Math.random();" id="img" class="admin-captcha" width="90" height="40" th:src="@{/sys/getVerify}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="login">登 入</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    console.log("test");
+    layui.use(function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.jquery;
+
+        // 粒子线条背景
+        $(document).ready(function(){
+            $('.layui-container').particleground({
+                dotColor:'#7ec7fd',
+                lineColor:'#7ec7fd'
+            });
+        });
+
+        // 进行登录操作
+        form.on('submit(login)', function (data) {
+            data = data.field;
+            if (data.captcha == '') {
+                layer.msg('请输入验证码');
+                return false;
+            }
+            if (data.username == '') {
+                layer.msg('用户名不能为空');
+                return false;
+            }
+            if (data.password == '') {
+                layer.msg('密码不能为空');
+                return false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: ctx + 'sys/user/login',
+                dataType: "JSON",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function (res) {
+                    if (res.code == 0) {
+                        layer.msg('登录成功', {time: 1000}, function () {
+                            window.location = ctx + 'index/home';
+                        });
+                    } else {
+                        layer.msg(res.msg);
+                        $("#img").click();
+                    }
+                }
+            })
+
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

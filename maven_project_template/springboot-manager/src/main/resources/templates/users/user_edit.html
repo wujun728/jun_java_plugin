@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--公共模块-->
+    <div th:replace="~{layout}"></div>
+</head>
+<body>
+<div class="layui-container" style="width:600px;">
+    <form class="layui-form layui-form-pane" action="" lay-filter="info">
+        <input name="id" hidden>
+        <div class="layui-form-item">
+            <label class="layui-form-label">账号</label>
+            <div class="layui-input-block">
+                <input  type="text" name="username" lay-verify="title" disabled="disabled"
+                       style="background:#eeeeee!important" autocomplete="off" placeholder="请输入账号"
+                       class="layui-input layui-disabled ">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">真实姓名</label>
+            <div class="layui-input-block">
+                <input type="text" name="realName" placeholder="请输入真实姓名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机号</label>
+            <div class="layui-input-block">
+                <input type="tel" name="phone" placeholder="请输入手机号" lay-verify="required|phone" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" lay-verify="email" placeholder="请输入邮箱" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="status" value="1" lay-skin="switch" title="启用|禁止"
+                       lay-filter="switch" checked="checked" disabled="disabled">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">单选框</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="1" title="男">
+                <input type="radio" name="sex" value="2" title="女">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="submit">保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    var form = layui.form,
+        layer = layui.layer;
+    layui.use(function () {
+        // 初始化表单数据
+        function initForm(data) {
+            form.val('info', {
+                "id": data.id,
+                "username": data.username,
+                "realName": data.realName,
+                "phone": data.phone,
+                "email": data.email,
+                "sex": data.sex.toString(), // 性别需要转换为字符串
+                "status": data.status === 1 // 开关状态
+            });
+            form.render(); // 更新全部
+        }
+
+        // 获取数据并初始化表单
+        $(function () {
+            CoreUtil.sendGet(ctx + "sys/user", null, function (res) {
+                if (res.data != null) {
+                    initForm(res.data);
+                }
+            });
+
+            // 监听提交
+            form.on('submit(submit)', function (data) {
+                //checkbox值 没有选中默认0
+                data.field.status = CoreUtil.isEmptyGet(data.field.status, 0) ;
+
+                CoreUtil.sendPut(ctx + "sys/user/info", data.field, function (res) {
+                    layer.msg(res.msg);
+                });
+                return false;
+            });
+        });
+    });
+</script>
+</html>

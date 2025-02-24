@@ -1,0 +1,30 @@
+# 生产环境配置
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      datasource:
+        master:
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/company_project?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2b8
+        oracle:
+          username: root
+          password: 123456
+          driver-class-name: oracle.jdbc.driver.OracleDriver
+          url: jdbc:oracle:thin:@localhost:1521/company_project
+        sqlServer:
+          username: sa
+          password: 123456
+          driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+          url: jdbc:sqlserver://localhost:1433;databaseName=company_project
+
+file:
+  #文件上传目录 绝对路径 末尾请加 /
+  path: F:/files/ #windows
+  #path: /data/files/ #linux
+knife4j:
+  production: true #生成环境禁用查看文档

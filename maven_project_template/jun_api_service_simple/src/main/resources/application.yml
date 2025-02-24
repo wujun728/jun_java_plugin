@@ -1,0 +1,206 @@
+# 端口
+server:
+  port: 9081
+  compression:
+    enabled: true
+    min-response-size: 1KB
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css
+  max-http-header-size: 102400
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  
+spring:
+  profiles:
+    active: dev
+#    active: prod
+  mvc:
+    throw-exception-if-no-handler-found: true
+#    static-path-pattern: /static/**
+  resources:
+    add-mappings: false
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+  application:
+    name: jun-springboot-admin-layui
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  # 文件大小限制
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  # redis token信息
+  redis:
+    key:
+      prefix:
+        userToken: "user:token:"
+        passwordError: "user:password:error:"
+        permissionRefresh: "user:token:permissionRefresh:"
+      expire:
+        #userToken: 604800 # 7天 1*24*3600
+        userToken: 86400 # 1天 1*24*3600
+        passwordError: 3600 # 一个小时
+        #permissionRefresh: 604800 # 7天 7*24*3600
+        permissionRefresh: 86400 # 1天 1*24*3600
+    allowMultipleLogin: true # 允许多处登陆
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: false
+  mapper-locations: classpath:mapper/${project.database}/**/*.xml,classpath:mapper/*.xml
+  type-aliases-package: org.snaker.engine.entity
+  global-config:
+    db-config:
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      logic-delete-field: deleted
+
+#使用代码生成模块时 指定要生成的表存在于哪种数据库，可选值有【mysql、oracle、sqlServer】
+project:
+  database: mysql
+  datasource:
+    url: ${spring.datasource.url}
+    driver: ${spring.datasource.driver-class-name}
+    username: ${spring.datasource.username}
+    password:
+  groovy-api:
+    enable: true
+    servicename: jun-engine-api
+    context: /api
+    datasource:
+      dbtype: ${project.database}
+      url: ${spring.datasource.url}
+      username: ${spring.datasource.username}
+      driver: ${spring.datasource.driver-class-name}
+      password:
+      api_config: api_config
+
+jasypt:
+  algorithm: PBEWithMD5AndDES
+  encryptor:
+    password: 123456@@
+
+shiro:
+  enable: true
+
+# 防止XSS攻击
+xss: 
+  # 过滤开关
+  enabled: true
+  # 排除链接（多个用逗号分隔）
+  excludes: 
+  # 匹配链接
+  urlPatterns: /system/*,/tool/*
+# 工作流参数定义
+workflows:
+  list:
+    - processName: leave
+      flowName: 请假流程
+      pageURl: oapomsworkmarksleave/list
+      tname: oa_poms_workmarks_leave
+      taskName: 的请假流程
+    - processName: project
+      flowName: 立项流程
+      pageURl: pjProject/list
+      tname: pj_project
+      taskName: 的立项流程
+    - processName: contract
+      flowName: 业务约定书流程
+      pageURl: pjContract/list
+      tname: pj_contract
+      taskName: 的合同审批流程
+    - processName: plan
+      flowName: 项目计划流程
+      pageURl: pjProjectPlan/list
+      tname: pj_project_plan
+      taskName: 的项目计划流程
+    - processName: daily
+      flowName: 日报审批流程
+      pageURl: pjProjectDaily/list
+      tname: pj_project_daily
+      taskName: 的日报流程
+    - processName: draft
+      flowName: 底稿审批流程
+      pageURl: pjProjectDraft/list
+      tname: pj_project_draft
+      taskName: 的底稿
+    - processName: recheck
+      flowName: 复核审批流程
+      pageURl: pjProjectReport/list
+      tname: pj_project_report
+      taskName: 的复核
+    - processName: member
+      flowName: 成员结算审批流程
+      pageURl: pjProjectMember/list
+      tname: pj_project_member
+      taskName: 的成员结算
+    - processName: invoice
+      flowName: 开票审批流程
+      pageURl: pjProjectInvoice/list
+      tname: pj_project_invoice
+      taskName: 的开票申请
+    - processName: borrow
+      flowName: 项目借阅审批流程
+      pageURl: pjProjectBorrow/list
+      tname: pj_project_borrow
+      taskName: 的项目借阅
+    - processName: office
+      flowName: 办公用品领用审批流程
+      pageURl: oaOfficeCount/list
+      tname: oa_office_count
+      taskName: 的领用申购
+    - processName: office2
+      flowName: 办公用品申购审批流程
+      pageURl: oaOfficeCount2/list
+      tname: oa_office_count2
+      taskName: 的领用申购
+    - processName: outsite
+      flowName: 外出审批流程
+      pageURl: oaPomsWorkmarksOutsite/list
+      tname: oa_poms_workmarks_outsite
+      taskName: 的外出申请
+    - processName: expense
+      flowName: 报销审批流程
+      pageURl: oaPomsWorkmarksClaimExpense/list
+      tname: oa_poms_workmarks_claim_expense
+      taskName: 的报销申请
+    - processName: hire
+      flowName: 录用审批流程
+      pageURl: hrUserHire/list
+      tname: hr_user_hire
+      taskName: 的录用申请电子流
+    - processName: hire
+      flowName: 录用审批流程
+      pageURl: hrUserHire/list
+      tname: hr_user_hire
+      taskName: 的录用申请电子流
+    - processName: becomemember
+      flowName: 转正审批流程
+      pageURl: hrUserBecomeMember/list
+      tname: hr_user_become_member
+      taskName: 的转正申请电子流
+    - processName: dimission
+      flowName: 离职审批流程
+      pageURl: hrUserDimission/list
+      tname: hr_user_dimission
+      taskName: 的离职申请电子流
+    - processName: assessment
+      flowName: 考核电子流
+      pageURl: hrAssessmentUserRecord/list
+      tname: hr_assessment_user_record
+      taskName: 的考核电子流
+    - processName: customer
+      flowName: 客户审批电子流
+      pageURl: pjCustomer/list
+      tname: pj_customer
+      taskName: 的客户审批电子流
+    - processName: your_name
+      pageURl: your_id

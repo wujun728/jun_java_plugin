@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sa="http://www.thymeleaf.org/extras/sa-token"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .custom-tree-item-clicked {
+            color: #FC9003
+        }
+    </style>
+    <!--公共模块-->
+    <div th:replace="~{layout}"></div>
+</head>
+<body>
+<div class="panel panel-default operation_user" hidden>
+    <div class="panel-heading title"></div>
+    <div class="layui-card-body">
+        <form class="layui-form " action="" lay-filter="info" style="width: 700px;margin-top: 10px">
+            <input name="id" hidden/>
+            <input name="deptId" hidden/>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">账号</label>
+                <div class="layui-input-block">
+                    <input type="username" name="username" placeholder="请输入账号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-form-label ">密码</div>
+                <div class="layui-input-block">
+                    <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-form-label ">所属部门</div>
+                <div class="layui-input-block">
+                    <input type="deptName" name="deptName" placeholder="请选择所属部门" autocomplete="off" class="layui-input"
+                           readonly="readonly" style="background:#eeeeee!important">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">真实姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="realName" placeholder="请输入真实姓名" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-form-label ">手机号</div>
+                <div class="layui-input-block">
+                    <input type="phone" name="phone" placeholder="请输入手机号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="email" lay-verify="email" placeholder="请输入邮箱" autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="status" value="1" lay-skin="switch" title="启用|禁止"
+                           lay-filter="switch" checked="checked">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">单选框</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="sex" value="1" title="男">
+                    <input type="radio" name="sex" value="2" title="女">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="submit">保存</button>
+                    <button class="layui-btn layui-btn-primary" id="btn_cancel">返回</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- 左树 -->
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md4 layui-col-lg2">
+            <div class="layui-card">
+                <div class="layui-card-body mini-bar" id="leftTree">
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-sm12 layui-col-md8 layui-col-lg10">
+            <div class="user_table_div">
+                <div id="searchParam" sa:hasPermission="sys:user:list">
+                    <form class="layui-form layui-form-pane" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <input type="text" name="username" class="layui-input" autocomplete="off"
+                                       placeholder="请输入账号">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="nickName" class="layui-input" autocomplete="off"
+                                       placeholder="请输用户昵称">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" readonly class="layui-input" name="createTimeBegin" id="createTimeBegin" placeholder="开始时间">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" readonly class="layui-input" name="createTimeEnd" id="createTimeEnd" placeholder="结束时间">
+                            </div>
+                            <div class="layui-input-inline layui-form">
+                                <select id="status">
+                                    <option value="">请选择账号状态</option>
+                                    <option value="1">正常</option>
+                                    <option value="0">禁用</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline ">
+                                <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <table class="layui-hide" id="user_table" lay-filter="user_table"></table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="deptTree" style="display: none"></div>
+<div id="roles" class="demo-transfer" style="display: none"></div>
+</body>
+<script type="text/html" id="toolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="addNewUser" sa:hasPermission="sys:user:add">添加</button>
+        <button class="layui-btn layui-btn-sm" lay-event="batchDeleted" sa:hasPermission="sys:user:deleted">删除
+        </button>
+    </div>
+</script>
+<script type="text/html" id="tool">
+    <a class="layui-btn  layui-btn-xs" lay-event="operationRole" sa:hasPermission="sys:user:role:update">赋予角色</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit" sa:hasPermission="sys:user:update">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" sa:hasPermission="sys:user:deleted">删除</a>
+</script>
+<script>
+
+    layui.use(function () {
+        var table = layui.table;
+        var form = layui.form;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+        var tree = layui.tree;
+        var transfer = layui.transfer;
+
+        var deptNo = null;
+
+
+        initLeftTree();
+        //加载table
+        var tableIns1 = table.render({
+            elem: '#user_table'
+            , contentType: 'application/json'
+            , page: true //开启分页
+            , url: ctx + 'sys/users' //数据接口
+            , method: 'POST'
+            , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": CoreUtil.isEmpty(res.data) ? 0 : res.data.total, //解析数据长度
+                    "data": CoreUtil.isEmpty(res.data) ? null : res.data.records //解析数据列表
+                }
+            }
+            , cols: [
+                [
+                    {type: 'checkbox', fixed: 'left'},
+                    {field: 'username', title: '账号', width: 130},
+                    {field: 'phone', title: '手机号', width: 130},
+                    {field: 'deptName', title: '所属公司', width: 120},
+                    {field: 'realName', title: '真实名称', width: 120},
+                    {field: 'nickName', title: '昵称', width: 130},
+                    {field: 'email', title: '邮箱', width: 150},
+                    {
+                        field: 'sex', title: '性别', width: 100, templet: function (item) {
+                            if (item.sex === 1) {
+                                return "男";
+                            } else if (item.sex === 2) {
+                                return "女";
+                            } else return "";
+                        }
+                    },
+                    {field: 'createTime', title: '创建时间', minWidth: 120},
+                    {field: 'updateTime', title: '更新时间', minWidth: 120},
+                    {field: 'status', title: '状态', width: 100, templet: '#checkbox_status'},
+                    {
+                        field: 'createWhere', title: '注册涞源', width: 100, templet: function (item) {
+                            if (item.createWhere === 1) {
+                                return "Web";
+                            }
+                            if (item.createWhere === 2) {
+                                return "Android";
+                            }
+                            if (item.createWhere === 3) {
+                                return "Ios";
+                            }
+                        }
+                    },
+                    {width: 300, toolbar: "#tool", title: '操作'}
+                ]
+            ]
+            , toolbar: '#toolbar'
+        });
+
+        //日期范围
+        laydate.render({
+            elem: '#createTimeBegin'
+            , type: 'datetime'
+        });
+        //日期范围
+        laydate.render({
+            elem: '#createTimeEnd'
+            , type: 'datetime'
+        });
+
+        table.on('toolbar(user_table)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'batchDeleted':
+                    var checkStatus = table.checkStatus(obj.config.id);
+                    var data = checkStatus.data;
+                    if (data.length == 0) {
+                        layer.msg("请选择要批量删除的用户");
+                    } else {
+                        var userIds = [];
+                        $(data).each(function (index, item) {
+                            userIds.push(item.id);
+                        });
+                        tipDialog(userIds, "选中的");
+                    }
+                    break;
+                case 'addNewUser':
+                    $(".title").html("新增用户");
+                    $(".user_table_div").hide();
+                    $("#leftTree").hide();
+                    $(".operation_user").show();
+                    resetForm(); // 重置表单内容
+                    break;
+            }
+            ;
+        });
+        table.on('tool(user_table)', function (obj) {
+            var data = obj.data;
+            switch (obj.event) {
+                case 'del':
+                    var userIds = [];
+                    userIds.push(data.id);
+                    tipDialog(userIds, data.username);
+                    break;
+                case 'edit':
+                    $(".user_table_div").hide();
+                    $("#leftTree").hide();
+                    $(".operation_user").show();
+                    $(".title").html("编辑用户");
+                    fillForm(data); // 填充表单内容
+                    break;
+                case 'operationRole':
+                    CoreUtil.sendGet(ctx + "sys/user/roles/" + data.id, null, function (res) {
+                        initTransfer(res.data);
+                        layer.open({
+                            type: 1,
+                            offset: '50px',
+                            skin: 'layui-layer-molv',
+                            title: "赋予角色",
+                            area: ['500px', '400px'],
+                            shade: 0,
+                            shadeClose: false,
+                            content: $("#roles"),
+                            btn: ['确定', '取消'],
+                            yes: function (index) {
+                                //获得右侧数据
+                                var roleIds = [];
+                                var getData = transfer.getData('ownData');
+                                if (getData.length == 0) {
+                                    layer.msg("请选择要赋予用户的角色");
+                                } else {
+
+                                    $(getData).each(function (index, item) {
+                                        roleIds.push(item.value);
+                                    });
+                                }
+                                CoreUtil.sendPut(ctx + "sys/user/roles/" + data.id, roleIds, function (res) {
+                                    layer.msg(res.msg);
+                                    tableIns1.reload();
+                                });
+
+                                layer.close(index);
+                            }
+                        });
+                    });
+
+                    break;
+            }
+        });
+        $("#btn_cancel").click(function () {
+            $(".user_table_div").show();
+            $("#leftTree").show();
+            $(".operation_user").hide();
+            return false;
+        });
+        var tipDialog = function (userIds, username) {
+            layer.open({
+                content: '确定要删除' + username + "用户么?",
+                yes: function (index, layero) {
+                    layer.close(index); //如果设定了yes回调，需进行手工关闭
+                    CoreUtil.sendDelete(ctx + "sys/user", userIds, function (res) {
+                        layer.msg(res.msg);
+                        tableIns1.reload();
+                    });
+                }
+            });
+        };
+
+        form.on('submit(submit)', function (data) {
+            //checkbox值 没有选中默认0
+            data.field.status = CoreUtil.isEmptyGet(data.field.status, 0);
+
+            if (data.field.id === undefined || data.field.id === null || data.field.id === "") {
+                CoreUtil.sendPost(ctx + "sys/user", data.field, function (res) {
+                    $(".user_table_div").show();
+                    $("#leftTree").show();
+                    $(".operation_user").hide();
+                    tableIns1.reload()
+                });
+            } else {
+                CoreUtil.sendPut(ctx + "sys/user", data.field, function (res) {
+                    $(".user_table_div").show();
+                    $("#leftTree").show();
+                    $(".operation_user").hide();
+                    tableIns1.reload()
+                });
+            }
+            return false;
+        });
+        var loadDeptTree = function (data) {
+            tree.render({
+                elem: '#deptTree'
+                , data: data
+                , onlyIconControl: true  //是否仅允许节点左侧图标控制展开收缩
+                , click: function (obj) {
+                    selectNode = obj;
+                    layer.msg(JSON.stringify(selectNode.data.title));
+                }
+            });
+        };
+
+        var loadLeftTree = function (data) {
+            tree.render({
+                elem: '#leftTree'
+                , data: data
+                , onlyIconControl: true  //是否仅允许节点左侧图标控制展开收缩
+                , click: function (obj) {
+                    console.log(obj)
+                    deptNo = obj.data.deptNo;
+                    $("#leftTree span").removeClass('custom-tree-item-clicked');     //清除旧的样式
+                    $("#leftTree span:contains(" + obj.data.title + ")").addClass('custom-tree-item-clicked');
+                    tableIns1.reload()
+
+                }
+            });
+        };
+        $(".operation_user input[name=deptName]").click(function () {
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-molv',
+                title: "选择部门",
+                area: ['400px', '450px'],
+                shade: 0,
+                shadeClose: false,
+                content: $("#deptTree"),
+                btn: ['确定', '取消'],
+                yes: function (index) {
+                    if (selectNode.data != null) {
+                        //选中回显
+                        $(".operation_user input[name=deptId]").val(selectNode.data.id);
+                        $(".operation_user input[name=deptName]").val(selectNode.data.title);
+                    }
+
+                    layer.close(index);
+                }
+            });
+        });
+
+        // 定义一个函数来重置表单内容
+        function resetForm() {
+            form.val('info', {
+                'id': '',
+                'deptId': '',
+                'username': '',
+                'password': '',
+                'phone': '',
+                'deptName': '',
+                'realName': '',
+                'email': '',
+                'status': true, // 开关状态
+                'sex': null
+            });
+            form.render(); // 更新全部
+        }
+
+        // 定义一个函数来填充表单内容
+        function fillForm(data) {
+            form.val('info', {
+                'id': data.id,
+                'deptId': data.deptId,
+                'username': data.username,
+                'password': '', // 密码字段不填充，保持为空
+                'phone': data.phone,
+                'deptName': data.deptName,
+                'realName': data.realName,
+                'email': data.email,
+                'status': data.status === 1, // 开关状态
+                'sex': data.sex // 假设 data.sex 包含性别值
+            });
+            form.render(); // 更新全部
+        }
+
+        function initLeftTree() {
+            CoreUtil.sendGet(ctx + "sys/dept/tree", null, function (res) {
+                loadLeftTree(res.data);
+                loadDeptTree(res.data);
+            });
+        }
+
+        var initTransfer = function (data) {
+            transfer.render({
+                elem: '#roles'
+                , data: data.allRole
+                , title: ['赋予角色', '拥有角色']
+                , showSearch: true
+                , value: data.ownRoles
+                , id: 'ownData'
+                , parseData: function (res) {
+                    return {
+                        "value": res.id //数据值
+                        , "title": res.name //数据标题
+                    }
+                }
+            })
+        }
+
+        // 监听搜索操作
+        form.on('submit(data-search-btn)', function (data) {
+            //执行搜索重载
+            tableIns1.reload({
+                page: {
+                    curr: 1
+                }
+                , where: data.field
+            });
+            return false;
+        });
+    });
+</script>
+</html>
