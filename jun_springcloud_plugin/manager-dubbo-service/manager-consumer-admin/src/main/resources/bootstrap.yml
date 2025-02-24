@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: admin-consumer
-  profiles:
-    active: @activeProfile@
-server:
-  servlet:
-    context-path: /admin-api
-  port: 8080
