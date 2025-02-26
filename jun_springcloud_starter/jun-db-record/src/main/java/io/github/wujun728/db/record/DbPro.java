@@ -182,39 +182,45 @@ public class DbPro{
      * 私有方法   66666666666666666666   begin
      ********************************************************************************/
 
-    private int updateSqlContext(SqlContext sqlContext) {
-        int result;
-        String sql = null;
-        try {
-            sql = sqlContext.getSql();
-            result = execute(sql, sqlContext.getParams());
-        } catch (Exception e) {
-            throw new DbException(e, sql);
-        }
-        return result;
-    }
-    private long insertSqlContext(SqlContext sqlContext) {
-        long result;
-        String sql = null;
-        try {
-            sql = sqlContext.getSql();
-            result = insert(sql, sqlContext.getParams());
-        } catch (Exception e) {
-            throw new DbException(e, sql);
-        }
-        return result;
+//    private int updateSqlContext(SqlContext sqlContext) {
+//        int result;
+//        String sql = null;
+//        try {
+//            sql = sqlContext.getSql();
+//            result = execute(sql, sqlContext.getParams());
+//        } catch (Exception e) {
+//            throw new DbException(e, sql);
+//        }
+//        return result;
+//    }
+//    private long insertSqlContext(SqlContext sqlContext) {
+//        long result;
+//        String sql = null;
+//        try {
+//            sql = sqlContext.getSql();
+//            result = insert(sql, sqlContext.getParams());
+//        } catch (Exception e) {
+//            throw new DbException(e, sql);
+//        }
+//        return result;
+//    }
+
+    public boolean saveBean(Object bean) {
+        Record  record = RecordUtil.beanToRecord(bean);
+        String tableName = RecordUtil.getTableName(bean);
+        return save(tableName,record);
     }
 
-    public long saveBean(Object bean) {
-        return insertSqlContext(SqlUtils.getInsert(bean));
+    public boolean updateBean(Object bean) {
+        Record  record = RecordUtil.beanToRecord(bean);
+        String tableName = RecordUtil.getTableName(bean);
+        return update(tableName,record);
     }
 
-    public Integer updateBean(Object bean) {
-        return updateSqlContext(SqlUtils.getUpdate(bean));
-    }
-
-    public Integer deleteBean(Object bean) {
-        return updateSqlContext(SqlUtils.getDelete(bean));
+    public boolean deleteBean(Object bean) {
+        Record  record = RecordUtil.beanToRecord(bean);
+        String tableName = RecordUtil.getTableName(bean);
+        return delete(tableName,record);
     }
 
 
@@ -261,6 +267,9 @@ public class DbPro{
      * @param objects 参数数组
      * @return -1:数据库异常
      */
+    public int queryInt(String sql, Object... objects) {
+        return queryForInt(sql,objects);
+    }
     public int queryForInt(String sql, Object[] objects) {
         StaticLog.info(sql);
         int exc = -1;
@@ -355,6 +364,9 @@ public class DbPro{
      * @param objects  参数数组，可以为null
      * @return 字符串，异常情况下为空串
      */
+    public String queryStr(String sql, Object... objects) {
+        return queryForString(sql,objects);
+    }
     public String queryForString(String sql, Object[] objects) {
         StaticLog.info(sql);
         String str = "";
@@ -525,6 +537,9 @@ public class DbPro{
      * @return 0:失败 1:成功
      */
 
+    public int update(String sql, Object[] objects) {
+        return execute(sql,objects);
+    }
     public int execute(String sql, Object[] objects) {
         StaticLog.info(sql);
         int exc = 1;
@@ -808,9 +823,9 @@ public class DbPro{
 
 
     public <T> T findBeanById(Class<T> clazz, Object idValue) {
-        String tableName = SqlUtils.getTableName(clazz);
+        String tableName = RecordUtil.getTableName(clazz);
         String primaryKeyStr = getPkNames(tableName);
-        Record record = findById(tableName, primaryKeyStr, idValue);
+        Record record = findByIds(tableName, primaryKeyStr, idValue);
         if (record == null) {
             return null;
         }
@@ -820,12 +835,12 @@ public class DbPro{
 
 
     public <T> T findBeanById(Class beanClass, String primaryKeys, Object... idValue) {
-        String tableName = SqlUtils.getTableName(beanClass);
+        String tableName = RecordUtil.getTableName(beanClass);
         String primaryKeyStr = StrUtil.join(",", primaryKeys);
         if (primaryKeys == null || StrUtil.isEmpty(primaryKeyStr)) {
             primaryKeyStr = getPkNames(tableName);
         }
-        Record record = findById(tableName, primaryKeyStr, idValue);
+        Record record = findByIds(tableName, primaryKeyStr, idValue);
         if (record == null) {
             return null;
         }
@@ -890,6 +905,7 @@ public class DbPro{
 
 
     public Page<Map> queryMapPages(String sql, int page, int limit, Object[] params) {
+
         Page pageVo = new Page();
         pageVo.setList(queryList(SqlUtils.getSelect(sql, page, limit), params));
         int totalRow = count(SqlUtils.getCount(sql), params);
@@ -931,14 +947,16 @@ public class DbPro{
     }
 
 
-    public Page<Record> paginate(Integer pageNumber, Integer limit, String select, String from/*, Map<String, Object> params*/) {
-        String sqlStr = select + " " + from;
-        //SqlContext sqlContext = SqlUtil.getSelect(new StringBuilder(sqlStr), params);
+    public Page<Record> paginate(Integer pageNumber, Integer limit, String select, String sqlExceptSelect/*, Map<String, Object> params*/) {
+        String totalRowSql = dialect.forPaginateTotalRow(select, sqlExceptSelect, null);
+        StringBuilder findSql = new StringBuilder();
+        findSql.append(select).append(' ').append(sqlExceptSelect);
+        String pageSql = dialect.forPaginate(pageNumber,limit,findSql);
+
         Page pageVo = new Page();
-        List<Map<String, Object>> results = queryList(SqlUtils.getSelect(sqlStr, pageNumber, limit), null);
-//        List<Map<String, Object>> results = queryList(sqlContext);
+        List<Map<String, Object>> results = queryList(pageSql, null);
         List<Record> records = RecordUtil.mappingList(results);
-        int totalpage = count(SqlUtils.getCount(sqlStr));
+        int totalpage = count(totalRowSql);
         pageVo.setList(records);
         pageVo.setTotalRow(totalpage);
         pageVo.setPageNumber(pageNumber);
@@ -975,7 +993,7 @@ public class DbPro{
     //************************************************************************************************************************************************
 
 
-    private  <T> List<T> query(String sql, Object... paras) {
+    public <T> List<T> query(String sql, Object... paras) {
         //List list = jdbcTemplate.queryForList(sql, paras);
         return (List<T>) getJdbcTemplate().query(sql, new RowMapper<Object[]>() {
             public Object[] mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -1275,7 +1293,7 @@ public class DbPro{
      */
     public Record findById(String tableName, Object idValue) {
         String defaultPrimaryKey = getPkNames(tableName);
-        return findById(tableName, defaultPrimaryKey, idValue);
+        return findByIds(tableName, defaultPrimaryKey, idValue);
     }
 
     /**
@@ -1289,7 +1307,7 @@ public class DbPro{
      * @param primaryKey the primary key of the table, composite primary key is separated by comma character: ","
      * @param idValues the id value of the record, it can be composite id values
      */
-    public Record findById(String tableName, String primaryKey, Object... idValues) {
+    public Record findByIds(String tableName, String primaryKey, Object... idValues) {
         String[] pKeys = primaryKey.split(",");
         if (pKeys.length != idValues.length)
             throw new IllegalArgumentException("primary key number must equals id value number");

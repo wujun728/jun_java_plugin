@@ -26,6 +26,16 @@ public class Record implements Serializable{
         return null;
     }*/
 
+    public Record put(Map<String, Object> map) {
+        getColumns().putAll(map);
+        return this;
+    }
+
+    public Record put(String key, Object value) {
+        getColumns().put(key, value);
+        return this;
+    }
+
     public Record clear() {
         this.getColumns().clear();
         return this;

@@ -18,6 +18,7 @@ package io.github.wujun728.db.record.dialect;
 
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
+import io.github.wujun728.db.record.RecordBuilder;
 import io.github.wujun728.db.utils.RecordUtil;
 
 import java.sql.Connection;
@@ -133,11 +134,11 @@ public abstract class Dialect {
 	}*/
 	
 	public List<Record> buildRecordList(ResultSet rs) throws SQLException {
-		return RecordUtil.me.build(rs);
+		return RecordBuilder.me.build(rs);
 	}
 	
 	public void eachRecord(ResultSet rs, Function<Record, Boolean> func) throws SQLException {
-		RecordUtil.me.build(rs, func);
+		RecordBuilder.me.build(rs, func);
 	}
 	
 	/**

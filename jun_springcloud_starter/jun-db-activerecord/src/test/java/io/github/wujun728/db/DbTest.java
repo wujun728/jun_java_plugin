@@ -36,12 +36,14 @@ public class DbTest {
         Db.tx(() -> {
             try {
                 Record r = new Record();
-                r.set("id", "ddddd");
-                Db.save("base_basket", r);
+                int key = RandomUtil.randomInt();
+                r.set("id", key);
+                Db.save("user", r);
 
-                r.set("id", "ddddd");
-                r.set("remarks", "remarks");
-                Db.update("base_basket", "id", r);
+                r.set("id", key);
+                r.set("name", "remarks11");
+                r.set("age", 121);
+                Db.update("user", "id", r);
             } catch (Exception e) {
                 e.printStackTrace();
                 return false;
