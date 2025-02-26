@@ -1,14 +1,12 @@
 package io.github.wujun728.db.utils;
 
 import cn.hutool.core.annotation.AnnotationUtil;
-import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.json.JSONConfig;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.github.wujun728.db.User;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
 
