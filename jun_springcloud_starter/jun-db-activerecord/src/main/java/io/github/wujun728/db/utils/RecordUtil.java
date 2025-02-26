@@ -16,6 +16,7 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 /**
@@ -301,6 +302,9 @@ public class RecordUtil {
     }
 
     private static String getColumnName(Field field) {
+        if(Modifier.isTransient(field.getModifiers())){
+            return null;
+        }
         String DYH = "";// ""`";  //'`';
         String columndName = FieldUtils.getUnderlineName(field.getName());
         String columndNameNew = DYH + columndName + DYH;
