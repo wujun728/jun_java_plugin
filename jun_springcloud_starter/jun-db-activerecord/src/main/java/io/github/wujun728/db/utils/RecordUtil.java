@@ -148,7 +148,7 @@ public class RecordUtil {
         return mapToRecord(map);
     }
 
-    private static Record mapToRecord(Map<String, Object> map) {
+    public static Record mapToRecord(Map<String, Object> map) {
         return mapToRecord(map, false);
     }
 
@@ -215,7 +215,7 @@ public class RecordUtil {
         return tableName;
     }
 
-    private static <T> List<Map<String,Object>> beanToMaps(List<T> lists) {
+    public static <T> List<Map<String,Object>> beanToMaps(List<T> lists) {
         return beanToMaps(lists,true);
     }
     private static <T>  List<Map<String,Object>> beanToMaps(List<T> lists, boolean isToCamelCase) {
@@ -227,7 +227,7 @@ public class RecordUtil {
         }
         return datas;
     }
-    private static Map beanToMap(Object bean) {
+    public static Map beanToMap(Object bean) {
         return beanToMap(bean, true);
     }
 
@@ -256,7 +256,7 @@ public class RecordUtil {
         return map;
     }
 
-    private static <T> List<Record> beanToRecords(List<T> lists) {
+    public static <T> List<Record> beanToRecords(List<T> lists) {
         return beanToRecords(lists,true);
     }
     private static <T>  List<Record> beanToRecords(List<T> lists, boolean isToCamelCase) {
@@ -270,7 +270,7 @@ public class RecordUtil {
     }
 
 
-    private static Record beanToRecord(Object bean) {
+    public static Record beanToRecord(Object bean) {
         return beanToRecord(bean, false);
     }
 
@@ -324,70 +324,6 @@ public class RecordUtil {
             columndNameNew = DYH+columndName+DYH;
         }*/
         return columndNameNew;
-    }
-
-
-    public static void main(String[] args) {
-        testSingle();
-//        testList();
-    }
-    public static void testList() {
-        Map map = new HashMap<>();
-        map.put("id", 1);
-        map.put("userName", "zhangsan");
-        map.put("firstAdress", "fdafdsa111");
-        map.put("age", 111);
-        map.put("createData", new Date());
-        List<Map<String, Object>> mapList = new ArrayList<>();
-        mapList.add(map);
-
-        List<Record> record1ss = RecordUtil.mapToRecords(mapList);
-        printLog("mapToRecords record1ss = ", record1ss);
-
-        List<Map<String, Object>> map1ss = RecordUtil.recordToMaps(record1ss);
-        printLog("recordToMaps map1ss = ", map1ss);
-
-        List<User> user1ss = RecordUtil.mapToBeans(map1ss, User.class);
-        printLog("mapToBeans user1ss = ", user1ss);
-
-        List<User> user22ss = RecordUtil.recordToBeans(record1ss, User.class);
-        printLog("recordToBeans user22ss  = ", user22ss);
-
-        List<Map<String, Object>> map22ss = RecordUtil.beanToMaps(user1ss);
-        printLog("beanToMaps map22ss = ", map22ss);
-
-        List<Record> record33 = RecordUtil.beanToRecords(user1ss);
-        printLog("beanToRecords record33 = ", record33);
-    }
-    public static void testSingle() {
-        Map map = new HashMap<>();
-        map.put("id", 1);
-        map.put("userName", "zhangsan");
-        map.put("firstAdress", "fdafdsa111");
-        map.put("age", 111);
-        map.put("createData", new Date());
-        Record record1 = RecordUtil.mapToRecord(map);
-        printLog("mapToRecord record1 = ", record1);
-
-        Map map1 = RecordUtil.recordToMap(record1);
-        printLog("recordToMap map1 = ", map1);
-
-        User user1 = RecordUtil.mapToBean(map1, User.class);
-        printLog("mapToBean user1 = ", user1);
-
-        User user22 = RecordUtil.recordToBean(record1, User.class);
-        printLog("recordToBean user22  = ", user22);
-
-        Map map22 = RecordUtil.beanToMap(user1);
-        printLog("beanToMap user1 = ", map22);
-
-        Record record33 = RecordUtil.beanToRecord(user1);
-        printLog("beanToRecord user1 = ", record33);
-    }
-
-    static void printLog(String info, Object obj) {
-        StaticLog.info(info + JSONUtil.toJsonPrettyStr(JSONUtil.toJsonStr(obj,
-                JSONConfig.create().setDateFormat("yyyy-MM-dd HH:mm:ss").setIgnoreNullValue(false))));
     }
 
 

@@ -1,4 +1,4 @@
-package io.github.wujun728.db.utils;
+package io.github.wujun728.db.test;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
