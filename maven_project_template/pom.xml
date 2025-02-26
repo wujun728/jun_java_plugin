@@ -32,7 +32,6 @@
 
 		<module>springboot-api-jpa</module>
 		<module>springboot-api-jwt</module>
-		<module>springboot-api-project</module>
 		<module>springboot-api-session</module>
 		<module>springboot-api-v2</module>
 		<module>springboot_api_simple</module>

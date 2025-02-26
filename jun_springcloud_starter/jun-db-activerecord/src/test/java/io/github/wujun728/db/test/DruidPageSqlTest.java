@@ -22,7 +22,7 @@ import com.alibaba.druid.sql.PagerUtils;
 /**
  * druid 测试
  */
-public class DruidTest {
+public class DruidPageSqlTest {
 
 	public static void main(String[] args) {
 		String sql = "select * from xxx where 1=2 order by xx";

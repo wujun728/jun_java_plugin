@@ -19,6 +19,7 @@ public class TestDb {
         String password = "";
         String driver = "com.mysql.cj.jdbc.Driver";
         DataSource ds = DataSourcePool.init("main",url,username,password,driver);
+        //Db.init(main,ds);
         Db.init(main,ds);
         Record record = Db.use().findById("biz_mail",2);
         Record record2 = Db.use().findById("api_sql","id,sql_id","getBizTests");

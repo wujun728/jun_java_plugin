@@ -15,7 +15,6 @@ public class FieldUtils {
     }
     public static String getUnderlineName(String param) {
         return toSymbolCase(param, UNDERLINE);
-        //return StrUtil.toUnderlineCase(param);
     }
     public static String toSymbolCase(CharSequence str, char symbol) {
         if (str == null) {
@@ -59,7 +58,6 @@ public class FieldUtils {
 
     public static String getCamelName(String param) {
         return toCamelCase(param, UNDERLINE);
-        //return StrUtil.toCamelCase(param);
     }
 
     public static String toCamelCase(CharSequence name) {

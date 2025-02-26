@@ -128,16 +128,37 @@ public class JdbcUtil {
     }
 
     public static Long executeQueryInt(Connection connection, String sql, List<Object> jdbcParamValues) {
-        Object obj = executeQueryOneColumn(connection, sql, jdbcParamValues);
-        if(obj instanceof Long){
-            return (Long) obj;
-        }else{
-            return Long.valueOf(String.valueOf(obj));
+        try {
+            Object obj = executeQueryOneColumn(connection, sql, jdbcParamValues);
+            if(obj instanceof Long){
+                return (Long) obj;
+            }else{
+                return Long.valueOf(String.valueOf(obj));
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }  finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 
     public static String executeQueryString(Connection connection, String sql, List<Object> jdbcParamValues) {
-        Object obj = executeQueryOneColumn(connection, sql, jdbcParamValues);
+        Object obj = null;
+        try {
+            obj = executeQueryOneColumn(connection, sql, jdbcParamValues);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }  finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return (String) obj;
     }
 
@@ -270,44 +291,6 @@ public class JdbcUtil {
     }
 
 
-    /*public static Object execute(Connection connection, String sql, List<Object> jdbcParamValues) throws SQLException {
-        logger.debug(sql);
-        PreparedStatement statement = connection.prepareStatement(sql);
-        //参数注入
-        for (int i = 1; i <= jdbcParamValues.size(); i++) {
-            statement.setObject(i, jdbcParamValues.get(i - 1));
-        }
-        boolean hasResultSet = statement.execute();
-        if (hasResultSet) {
-            ResultSet rs = statement.getResultSet();
-            int columnCount = rs.getMetaData().getColumnCount();
-
-            List<String> columns = new ArrayList<>();
-            for (int i = 1; i <= columnCount; i++) {
-                String columnName = rs.getMetaData().getColumnLabel(i);
-                columns.add(columnName);
-            }
-            List<JSONObject> list = new ArrayList<>();
-            while (rs.next()) {
-                JSONObject jo = new JSONObject();
-                columns.stream().forEach(t -> {
-                    try {
-                        Object value = rs.getObject(t);
-                        jo.put(t, value);
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                });
-                list.add(jo);
-            }
-            return list;
-        } else {
-            int updateCount = statement.getUpdateCount();
-            return updateCount;
-        }
-    }*/
-
-
     public static Page<JSONObject> executeQueryPage(Connection connection,String sqlStr, Map<String, Object> data, int pageNumber, int limit) {
         logger.debug(sqlStr);
         Page pageVo = new Page();
@@ -315,24 +298,34 @@ public class JdbcUtil {
 //        if (!dataSourceMap.containsKey(sql.getDatasourceId())) {
 //            throw new RuntimeException("datasource not found : " + sql.getDatasourceId());
 //        }
-        data.put("start",(pageNumber-1)*(limit));
-        data.put("end",pageNumber*limit);
+        try {
+            data.put("start",(pageNumber-1)*(limit));
+            data.put("end",pageNumber*limit);
 //        ApiDataSource dataSource = dataSourceMap.get(sql.getDatasourceId());
-        String pageSql = sqlStr+ " LIMIT #{start}, #{end} ";
-        logger.debug(pageSql);
-        SqlMeta sqlMeta = engine.parse(pageSql, data);
-        List<JSONObject> results = JdbcUtil.executeQuery(connection, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());//executeQuery(namespace, sqlId, data);
+            String pageSql = sqlStr+ " LIMIT #{start}, #{end} ";
+            logger.debug(pageSql);
+            SqlMeta sqlMeta = engine.parse(pageSql, data);
+            List<JSONObject> results = JdbcUtil.executeQuery(connection, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());//executeQuery(namespace, sqlId, data);
 
-        String totalSql = "  select count(1) as count FROM ( "+sqlStr+" ) AS subquery ";
-        logger.debug(totalSql);
-        SqlMeta sqlMeta2 = engine.parse(totalSql, data);
+            String totalSql = "  select count(1) as count FROM ( "+sqlStr+" ) AS subquery ";
+            logger.debug(totalSql);
+            SqlMeta sqlMeta2 = engine.parse(totalSql, data);
 
-        Long totalpage = JdbcUtil.executeQueryInt(connection, sqlMeta2.getSql(), sqlMeta2.getJdbcParamValues());
-        pageVo.setList(results);
-        pageVo.setTotalRow(Math.toIntExact(totalpage));
-        pageVo.setPageNumber(pageNumber);
-        pageVo.setPageSize(limit);
-        pageVo.setTotalPage(Math.toIntExact(totalpage) / limit);
+            Long totalpage = JdbcUtil.executeQueryInt(connection, sqlMeta2.getSql(), sqlMeta2.getJdbcParamValues());
+            pageVo.setList(results);
+            pageVo.setTotalRow(Math.toIntExact(totalpage));
+            pageVo.setPageNumber(pageNumber);
+            pageVo.setPageSize(limit);
+            pageVo.setTotalPage(Math.toIntExact(totalpage) / limit);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }  finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return pageVo;
     }
 
@@ -349,9 +342,17 @@ public class JdbcUtil {
      * @return
      */
     public static Object executeSql(Connection connection, String sql, Map<String, Object> sqlParam,Boolean closeConn) throws SQLException {
-        Object obj = executeSql(connection,sql,sqlParam);
-        if(closeConn){
-            connection.close();
+        Object obj = null;
+        try {
+            obj = executeSql(connection,sql,sqlParam);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }  finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
         return obj;
     }
@@ -405,7 +406,11 @@ public class JdbcUtil {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            connection.close();
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 
@@ -441,21 +446,33 @@ public class JdbcUtil {
     }
 
     public static Long count(Connection connection, String sql, Map<String, Object> sqlParam) throws SQLException {
-        SqlMeta sqlMeta = JdbcUtil.getEngine().parse(sql, sqlParam);
-        List<Map<String,Object>> datas =  JdbcUtil.query(connection, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
-        if(datas.size()==1){
-            try {
-                Map<String,Object> data = datas.get(0);
-                for(String key: data.keySet()){
-                    Object val = data.get(key);
-                    return (Long) val;
+        try {
+            SqlMeta sqlMeta = JdbcUtil.getEngine().parse(sql, sqlParam);
+            List<Map<String,Object>> datas =  JdbcUtil.query(connection, sqlMeta.getSql(), sqlMeta.getJdbcParamValues());
+            if(datas.size()==1){
+                try {
+                    Map<String,Object> data = datas.get(0);
+                    for(String key: data.keySet()){
+                        Object val = data.get(key);
+                        return (Long) val;
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException("count脚本执行返回有误");
                 }
-            } catch (Exception e) {
-                throw new RuntimeException("count脚本执行返回有误");
             }
-        }
-        if(datas.size()>1){
-            throw new RuntimeException("count脚本执行返回多条");
+            if(datas.size()>1){
+                throw new RuntimeException("count脚本执行返回多条");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }  finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
         return 0L;
     }
@@ -473,7 +490,6 @@ public class JdbcUtil {
             statement.setObject(i, jdbcParamValues.get(i - 1));
         }
         boolean hasResultSet = statement.execute();
-
         if (hasResultSet) {
             ResultSet rs = statement.getResultSet();
             int columnCount = rs.getMetaData().getColumnCount();

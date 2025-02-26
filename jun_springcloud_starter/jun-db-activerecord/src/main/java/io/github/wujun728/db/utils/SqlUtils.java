@@ -7,8 +7,6 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.github.wujun728.db.orm.annotation.Entity;
-import io.github.wujun728.db.orm.annotation.PK;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -21,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import static io.github.wujun728.db.record.DbPro.getPkNames;
+//import static io.github.wujun728.db.record.DbPro.getPkNames;
 
 
 public class SqlUtils {
@@ -66,20 +64,19 @@ public class SqlUtils {
 				tableName = AnnotationUtil.getAnnotationValue(clazz,Table.class,"name");
 			}else if(AnnotationUtil.hasAnnotation(clazz,TableName.class)){
 				tableName = AnnotationUtil.getAnnotationValue(clazz,TableName.class,"value");
-			}else if(AnnotationUtil.hasAnnotation(clazz,Entity.class)){
+			}/*else if(AnnotationUtil.hasAnnotation(clazz,Entity.class)){
 				tableName = AnnotationUtil.getAnnotationValue(clazz, Entity.class,"table");
-			}
+			}*/
 		}else{
 			tableName = FieldUtils.getUnderlineName(bean.getClass().getSimpleName());
 			if(AnnotationUtil.hasAnnotation(bean.getClass(),Table.class)){
 				tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),Table.class,"name");
 			}else if(AnnotationUtil.hasAnnotation(bean.getClass(),TableName.class)){
 				tableName = AnnotationUtil.getAnnotationValue(bean.getClass(),TableName.class,"value");
-			}else if(AnnotationUtil.hasAnnotation(bean.getClass(),Entity.class)){
+			}/*else if(AnnotationUtil.hasAnnotation(bean.getClass(),Entity.class)){
 				tableName = AnnotationUtil.getAnnotationValue(bean.getClass(), Entity.class,"table");
-			}
+			}*/
 		}
-
 		return tableName;
 	}
 	/**
@@ -116,10 +113,10 @@ public class SqlUtils {
 					}else if(AnnotationUtil.hasAnnotation(field, Column.class)){
 						columndName = AnnotationUtil.getAnnotationValue(field,Column.class,"name");
 						columndNameNew = '`'+columndName+'`';
-					}else if(AnnotationUtil.hasAnnotation(field, io.github.wujun728.db.orm.annotation.Column.class)){
+					}/*else if(AnnotationUtil.hasAnnotation(field, io.github.wujun728.db.orm.annotation.Column.class)){
 						columndName = AnnotationUtil.getAnnotationValue(field, io.github.wujun728.db.orm.annotation.Column.class,"name");
 						columndNameNew = '`'+columndName+'`';
-					}
+					}*/
 					cols.append(columndNameNew).append(LINK);
 					placeholder.append(OCCUPY);
 					values.add(val);
@@ -169,12 +166,12 @@ public class SqlUtils {
 					//Mark Mysql
 					String columndName = FieldUtils.getUnderlineName(field.getName());
 					String columndNameNew = '`'+columndName+'`';
-					if (field.isAnnotationPresent(PK.class)  || /*field.isAnnotationPresent(Id.class)*/ AnnotationUtil.hasAnnotation(field,Id.class)
+					if (/*field.isAnnotationPresent(PK.class)  ||*/ /*field.isAnnotationPresent(Id.class)*/ AnnotationUtil.hasAnnotation(field,Id.class)
 							|| /*field.isAnnotationPresent(TableId.class)*/  AnnotationUtil.hasAnnotation(field,TableId.class)  || primaryKeyStr.contains(columndName)) {
-						if(AnnotationUtil.hasAnnotation(field, io.github.wujun728.db.orm.annotation.Column.class)){
+						/*if(AnnotationUtil.hasAnnotation(field, io.github.wujun728.db.orm.annotation.Column.class)){
 							columndName = AnnotationUtil.getAnnotationValue(field, io.github.wujun728.db.orm.annotation.Column.class,"name");
 							columndNameNew = '`'+columndName+'`';
-						}
+						}*/
 						where.append(columndNameNew).append(EQUAL_AND);
 						wheresValue.add(val);
 					} else {
@@ -195,12 +192,12 @@ public class SqlUtils {
 							columndNameNew = '`'+columndName+'`';
 							cols.append(columndNameNew).append(EQUAL_LINK);
 							values.add(val);
-						}else if(AnnotationUtil.hasAnnotation(field, io.github.wujun728.db.orm.annotation.Column.class)){
+						}/*else if(AnnotationUtil.hasAnnotation(field, io.github.wujun728.db.orm.annotation.Column.class)){
 							columndName = AnnotationUtil.getAnnotationValue(field, io.github.wujun728.db.orm.annotation.Column.class,"name");
 							columndNameNew = '`'+columndName+'`';
 							cols.append(columndNameNew).append(EQUAL_LINK);
 							values.add(val);
-						}else{
+						}*/else{
 							cols.append(columndNameNew).append(EQUAL_LINK);
 							values.add(val);
 						}
@@ -226,6 +223,10 @@ public class SqlUtils {
 			e.printStackTrace();
 		}
 		return new SqlContext(sql, values.toArray());
+	}
+
+	private static String getPkNames(String tableName) {
+		return "id";
 	}
 
 
@@ -264,12 +265,12 @@ public class SqlUtils {
 				}else if(AnnotationUtil.hasAnnotation(field, Column.class)){
 					columndName = AnnotationUtil.getAnnotationValue(field,Column.class,"name");
 					columndNameNew = '`'+columndName+'`';
-				}else if(AnnotationUtil.hasAnnotation(field, io.github.wujun728.db.orm.annotation.Column.class)){
+				}/*else if(AnnotationUtil.hasAnnotation(field, io.github.wujun728.db.orm.annotation.Column.class)){
 					columndName = AnnotationUtil.getAnnotationValue(field, io.github.wujun728.db.orm.annotation.Column.class,"name");
 					columndNameNew = '`'+columndName+'`';
-				}
+				}*/
 
-				if (val != null && (field.isAnnotationPresent(PK.class)  || field.isAnnotationPresent(Id.class)
+				if (val != null && (/*field.isAnnotationPresent(PK.class)  ||*/ field.isAnnotationPresent(Id.class)
 						|| field.isAnnotationPresent(TableId.class)  ||  primaryKeyStr.contains(columndName))) {
 					where.append(columndNameNew).append(EQUAL_AND);
 					wheresValue.add(val);
@@ -359,7 +360,7 @@ public class SqlUtils {
 				columndNameNew = '`'+columndName+'`';
 			}
 
-			if (field.isAnnotationPresent(PK.class) || field.isAnnotationPresent(Id.class)
+			if (/*field.isAnnotationPresent(PK.class) ||*/ field.isAnnotationPresent(Id.class)
 					|| field.isAnnotationPresent(TableId.class)   ||  primaryKeyStr.contains(columndName)) {
 				//sql.append(columndNameNew).append(EQUAL);
 				where.append(columndNameNew).append(EQUAL_AND);
