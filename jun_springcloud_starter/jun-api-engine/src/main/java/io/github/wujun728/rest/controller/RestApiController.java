@@ -60,7 +60,7 @@ public class RestApiController {
             StaticLog.info("url = "+ url);
             parameters.put("entityName" , entityName);
             parameters.put("tableName" , tableName);
-            List<Map> datas = apiService.getList(tableName,parameters);
+            List<Map<String, Object>> datas = apiService.getList(tableName,parameters);
             return Result.success(datas);
         } catch (Exception e) {
             String message = ExceptionUtils.getMessage(e);
@@ -82,7 +82,7 @@ public class RestApiController {
             parameters.put("entityName" , entityName);
             parameters.put("tableName" , tableName);
             Page<Record> pages = apiService.getPage(tableName,parameters);
-            List<Map> datas = RecordUtil.recordToMaps(pages.getList(),isUnderLine);
+            List<Map<String, Object>> datas = RecordUtil.recordToMaps(pages.getList(),isUnderLine);
             return Result.success(datas).put("count", pages.getTotalRow()).put("pageSize", pages.getPageSize()).put("totalPage", pages.getTotalPage()).put("pageNumber", pages.getPageNumber());
         } catch (Exception e) {
             String message = ExceptionUtils.getMessage(e);
@@ -105,7 +105,7 @@ public class RestApiController {
             parameters.put("entityName" , entityName);
             parameters.put("tableName" , tableName);
             parameters.put("url" , url);
-            List<Map> datas = apiService.getTree(tableName,parameters);
+            List<Map<String, Object>> datas = apiService.getTree(tableName,parameters);
             return Result.success(datas);
             //是否构建树 end
         } catch (Exception e) {
@@ -341,12 +341,13 @@ public class RestApiController {
         main = MapUtil.getStr(parameters, "ds");
 //        List<Record> records  = Db.findBySql(ApiSql.class," select * from api_sql ");
 //        List<ApiSql> apiSqls = RecordUtil.recordToListBean(records, ApiSql.class);
-        List<ApiSql> apiSqls = Db.use(main).findBeanList(ApiSql.class," select * from api_sql ");
-        Db.use().findBeanList(ApiSql.class," select * from api_sql ");
+        List<Record> apiSqls1 = Db.use(main).find(" select * from api_sql ");
+        List<ApiSql> apiSqls = RecordUtil.recordToBeans(apiSqls1,ApiSql.class);
+        //Db.use().findBeanList(ApiSql.class," select * from api_sql ");
         Map<String, ApiSql> apiSqlMap = apiSqls.stream().collect(Collectors.toMap(i->i.getPath(), i->i));
         if(apiSqlMap.containsKey(path)){
             //Object obj = restApiService.doSQLProcess(apiSqlMap.get(path), parameters);
-            Connection connection = Db.use(main).getDataSource().getConnection();
+            Connection connection = Db.use(main).getConfig().getDataSource().getConnection();
             Object obj = JdbcUtil.executeSql(connection, String.valueOf(apiSqlMap.get(path)), parameters);
             return Result.success(obj);
         }else{

@@ -11,9 +11,9 @@
     <url>https://github.com/wujun728/jun_java_plugin/jjun_springcloud_starter</url>
     <description>SpringBoot-SpirngCloud通用组件、工具、stater</description>
     <modules>
+<!--        <module>jun-activerecord</module>-->
         <module>jun-api-engine-demo</module>
         <module>jun-mybatis-sql-engine</module>
-        <module>jun-activerecord</module>
         <module>jun-db-activerecord</module>
         <module>jun-db-record</module>
         <module>jun-api-engine</module>

@@ -28,18 +28,41 @@ import java.util.function.Function;
 
 import javax.sql.DataSource;
 
+import cn.hutool.extra.spring.SpringUtil;
+import cn.hutool.log.StaticLog;
 import com.alibaba.druid.pool.DruidDataSource;
 import io.github.wujun728.db.record.dialect.*;
 import io.github.wujun728.db.record.kit.SyncWriteMap;
+import io.github.wujun728.db.utils.DataSourcePool;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Db. Powerful database query and update tool box.
  */
+@Slf4j
 @SuppressWarnings("rawtypes")
 public class Db<T> {
 	
 	
 	private static DbPro MAIN = null;
+
+	public static final String main = "main";
+
+	private static final Map<String, DbPro> cache = new SyncWriteMap<String, DbPro>(32, 0.25F);
+
+	static {
+		try {
+			DataSource dataSource = SpringUtil.getBean(DataSource.class);
+			if (dataSource != null) {
+				Db.init(Db.main, dataSource);
+				DataSourcePool.init(main, dataSource);
+				log.info("main数据源，当前默认注入容器DataSource数据源到DbPro。");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("warning : Db.init 初始化失败， 当前非Spring容器运行，请手动初始化Db.init的数据源。" + e.getMessage());
+		}
+	}
 	
 	public static void init(String jdbcURL, String jdbcUser, String jdbcPassword) {
 		init(DbKit.MAIN_CONFIG_NAME,"com.mysql.cj.jdbc.Driver",jdbcURL,jdbcUser,jdbcPassword,null,null,false);
@@ -83,8 +106,10 @@ public class Db<T> {
 	}
 
 	private static Dialect getDialect(Dialect dialect, DataSource dataSource) {
+		Connection conn = null;
 		try {
-			String dbName = dataSource.getConnection().getMetaData().getDatabaseProductName();
+			conn = dataSource.getConnection();
+			String dbName = conn.getMetaData().getDatabaseProductName();
 			if(dbName.equalsIgnoreCase("Oracle")){
 				return new OracleDialect();
 			}else if(dbName.equalsIgnoreCase("mysql")){
@@ -98,6 +123,10 @@ public class Db<T> {
 			}
 		} catch (SQLException e){
 			throw new ActiveRecordException("获取数据库连接失败");
+		}finally {
+			if (conn != null){
+				try {conn.close();} catch (SQLException e) {throw new ActiveRecordException(e);}
+			}
 		}
 	}
 
@@ -122,8 +151,6 @@ public class Db<T> {
 		DbKit.addConfig(config);
 		MAIN = DbPro.use(configName);
 	}
-	
-	private static final Map<String, DbPro> cache = new SyncWriteMap<String, DbPro>(32, 0.25F);
 	
 		/**
 	 * for DbKit.addConfig(configName)

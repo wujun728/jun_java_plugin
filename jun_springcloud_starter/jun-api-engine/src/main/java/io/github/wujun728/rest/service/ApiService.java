@@ -42,7 +42,7 @@ import static io.github.wujun728.rest.util.RestUtil.setPkValue;
 @Service
 public class ApiService {
 
-    public List<Map> getList(String tableName,Map<String, Object> parameters){
+    public List<Map<String, Object>> getList(String tableName, Map<String, Object> parameters){
         String entityName = MapUtil.getString(parameters,"entityName");
         //String tableName = StrUtil.toUnderlineCase(entityName);
         Boolean isUnderLine = entityName.equals(tableName);
@@ -57,7 +57,7 @@ public class ApiService {
         }
         sql.append(from);
         List<Record> datas1 = Db.find(sql.toString());
-        List<Map> datas = RecordUtil.recordToMaps(datas1,isUnderLine);
+        List<Map<String, Object>> datas = RecordUtil.recordToMaps(datas1,isUnderLine);
         return datas;
     }
     public Page<Record> getPage(String tableName, Map<String, Object> parameters){
@@ -83,7 +83,7 @@ public class ApiService {
         return datas;
     }
 
-    public List<Map> getTree(String tableName,Map<String, Object> parameters){
+    public List<Map<String, Object>> getTree(String tableName, Map<String, Object> parameters){
         String entityName = MapUtil.getString(parameters,"entityName");
         String url = MapUtil.getString(parameters,"url");
         //String tableName = StrUtil.toUnderlineCase(entityName);
@@ -100,7 +100,7 @@ public class ApiService {
         }
         Boolean isTree = url.contains("tree") ?true:false;
         List<Record> datas1 = Db.find(sql.toString());
-        List<Map> datas = RecordUtil.recordToMaps(datas1,isUnderLine);
+        List<Map<String, Object>> datas = RecordUtil.recordToMaps(datas1,isUnderLine);
         //是否构建树 begin
         if(isTree){
             String treeId = cn.hutool.core.map.MapUtil.getStr(parameters, "id") == null ? "id" : cn.hutool.core.map.MapUtil.getStr(parameters, "id");

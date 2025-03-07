@@ -42,7 +42,8 @@ public class SqlService {
         String entityName = MapUtil.getStr(parameters,"entityName");
         Boolean isUnderLine = entityName.equals(tableName);
         Table table =  MetaUtil.getTableMeta(dataSource,tableName);
-        List<ApiSql> sqlList = Db.use(main).findBeanList(ApiSql.class,"select * from api_sql ");
+        List<Record> sqlList1 = Db.use(main).find("select * from api_sql ");
+        List<ApiSql> sqlList = RecordUtil.recordToBeans(sqlList1,ApiSql.class);// Db.use(main).findBeanList(ApiSql.class,"select * from api_sql ");
         ApiSql apiSql = new ApiSql();
         String sqlType = "insert";
         String path = "/"+entityName+"/"+sqlType;
@@ -52,7 +53,8 @@ public class SqlService {
         apiSql.setType("gen");
         apiSql.setGroup(entityName);
         apiSql.setText(getSQLText(dataSource,tableName,sqlType));
-        Db.use(main).saveBean(apiSql);
+        //Db.use(main).saveBean(apiSql);
+        Db.use(main).save("api_sql",RecordUtil.beanToRecord(apiSql));
 
         sqlType = "update";
         path = "/"+entityName+"/"+sqlType;
@@ -61,7 +63,8 @@ public class SqlService {
         apiSql.setPath(path);
         apiSql.setType("gen");
         apiSql.setText(getSQLText(dataSource,tableName,sqlType));
-        Db.use(main).saveBean(apiSql);
+        //Db.use(main).saveBean(apiSql);
+        Db.use(main).save("api_sql",RecordUtil.beanToRecord(apiSql));
 
         sqlType = "delete";
         path = "/"+entityName+"/"+sqlType;
@@ -70,7 +73,8 @@ public class SqlService {
         apiSql.setPath(path);
         apiSql.setType("gen");
         apiSql.setText(getSQLText(dataSource,tableName,sqlType));
-        Db.use(main).saveBean(apiSql);
+        //Db.use(main).saveBean(apiSql);
+        Db.use(main).save("api_sql",RecordUtil.beanToRecord(apiSql));
 
         sqlType = "page";
         path = "/"+entityName+"/"+sqlType;
@@ -79,7 +83,8 @@ public class SqlService {
         apiSql.setPath(path);
         apiSql.setType("gen");
         apiSql.setText(getSQLText(dataSource,tableName,sqlType));
-        Db.use(main).saveBean(apiSql);
+        //Db.use(main).saveBean(apiSql);
+        Db.use(main).save("api_sql",RecordUtil.beanToRecord(apiSql));
 
         sqlType = "count";
         path = "/"+entityName+"/"+sqlType;
@@ -88,7 +93,8 @@ public class SqlService {
         apiSql.setPath(path);
         apiSql.setType("gen");
         apiSql.setText(getSQLText(dataSource,tableName,sqlType));
-        Db.use(main).saveBean(apiSql);
+        //Db.use(main).saveBean(apiSql);
+        Db.use(main).save("api_sql",RecordUtil.beanToRecord(apiSql));
 
         sqlType = "one";
         path = "/"+entityName+"/"+sqlType;
@@ -97,7 +103,8 @@ public class SqlService {
         apiSql.setPath(path);
         apiSql.setType("gen");
         apiSql.setText(getSQLText(dataSource,tableName,sqlType));
-        Db.use(main).saveBean(apiSql);
+        //Db.use(main).saveBean(apiSql);
+        Db.use(main).save("api_sql",RecordUtil.beanToRecord(apiSql));
     }
 
     String getSQLText(DataSource dataSource,String tableName,String sqlType){

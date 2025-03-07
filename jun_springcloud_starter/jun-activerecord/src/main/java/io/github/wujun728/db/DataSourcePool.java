@@ -3,8 +3,6 @@ package io.github.wujun728.db.utils;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import com.alibaba.druid.pool.DruidDataSource;
-//import io.github.wujun728.db.record.Db;
-import io.github.wujun728.db.record.Db;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

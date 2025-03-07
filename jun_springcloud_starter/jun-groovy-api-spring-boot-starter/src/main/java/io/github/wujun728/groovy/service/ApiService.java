@@ -31,7 +31,7 @@ public class ApiService {
 	public List<ApiConfig> queryApiConfigList() {
 		List<Record> lists = Db.use("main").find("select * from "+"api_config"+" where status = 'ENABLE' ");
 		// List<Map<String, Object>> lists = jdbcTemplate.queryForList("select * from  "+tablename+"  where status = 'ENABLE' ");
-		List<ApiConfig> datas = RecordUtil.recordToBeanList(lists,ApiConfig.class);
+		List<ApiConfig> datas = RecordUtil.recordToBeans(lists,ApiConfig.class);
 		if(!CollectionUtils.isEmpty(datas)) {
 			buildApiConifgSubApiSql(datas);
 		}
@@ -48,7 +48,7 @@ public class ApiService {
 
 	public Integer queryCountSql() {
 		//Long aLong = jdbcTemplate.queryForObject("select count(*) from test ", Long.class);
-		Integer count = Db.use("main").count("select count(*) from  "+"api_config"+"  ");
+		Integer count = Db.use("main").queryInt("select count(*) from  "+"api_config"+"  ");
 		return count;
 	}
 
@@ -68,11 +68,11 @@ public class ApiService {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Map> querySQLList(String apiId) {
+	public List<Map<String, Object>> querySQLList(String apiId) {
 		List<Record> lists = Db.use("main").find("select * from  "+"api_config"+"  ");
 		// List<Map<String, Object>> lists = jdbcTemplate.queryForList("select * from api_sql where api_id = "+apiId);
-		List<ApiSql> datas = RecordUtil.recordToBeanList(lists,ApiSql.class);
-		List<Map>  datas2 = RecordUtil.recordToMaps(lists,false);
+		List<ApiSql> datas = RecordUtil.recordToBeans(lists,ApiSql.class);
+		List<Map<String, Object>> datas2 = RecordUtil.recordToMaps(lists,false);
 //		List<ApiSql> datas = RecordUtil.mapToBeans(lists,ApiSql.class);
 		//log.info(JSON.toJSONString(datas));
 		return datas2;

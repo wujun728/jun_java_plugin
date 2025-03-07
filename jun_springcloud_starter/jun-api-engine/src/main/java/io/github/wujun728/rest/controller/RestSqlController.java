@@ -3,25 +3,27 @@ package io.github.wujun728.rest.controller;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.log.StaticLog;
 import com.alibaba.fastjson.JSONObject;
 import io.github.wujun728.common.base.Result;
 import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Page;
+import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
+import io.github.wujun728.db.utils.RecordUtil;
 import io.github.wujun728.rest.service.SqlService;
 import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.sql.entity.ApiSql;
 import io.github.wujun728.sql.utils.JdbcUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.sql.DataSource;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +41,14 @@ public class RestSqlController {
     SqlService sqlService;
 
     private String main = "main";
+
+     @PostConstruct
+     void init(){
+         DataSource dataSource = SpringUtil.getBean(DataSource.class);
+         if(ObjectUtil.isNotEmpty(dataSource)){
+             Db.init(main,dataSource);
+         }
+     }
 
     @GetMapping(path = {"/{entityName}/init"}, produces = "application/json")
     //@ApiOperation(value = "返回实体数据列表", notes = "page与size同时大于零时返回分页实体数据列表,否则返回全部数据列表;
@@ -75,7 +85,8 @@ public class RestSqlController {
 
             String sqlType = action;
             String path = "/"+entityName+"/"+sqlType;
-            ApiSql apiSql = Db.use(main).findBeanById(ApiSql.class,"path",path);
+            Record apiSql1 = Db.use(main).findById("api_sql","path",path);
+            ApiSql apiSql = RecordUtil.recordToBean(apiSql1,ApiSql.class);// Db.use(main).findBeanById(ApiSql.class,"path",path);
             if(ObjectUtil.isNotEmpty(apiSql)){
                 if("one".equalsIgnoreCase(action)  || "list".equalsIgnoreCase(action)  || "query".equalsIgnoreCase(action) ){
                     List<Map<String, Object>> datas = JdbcUtil.query(DataSourcePool.getConnection(main),apiSql.getText(),parameters);

@@ -17,10 +17,10 @@ public class TreeBuildUtil {
      * @param parentIdField  parentId,父级字段名称
      * @return
      */
-    public static List<Map<String, Object>> buildTree(List<Map> entityList, String rootValue, String idField, String parentIdField) {
+    public static List<Map<String, Object>> buildTree(List<Map<String, Object>> entityList, String rootValue, String idField, String parentIdField) {
         return listToTree(entityList, rootValue, idField, parentIdField);
     }
-    public static List<Map<String, Object>> listToTree(List<Map> entityList, String rootValue, String idField, String parentIdField) {
+    public static List<Map<String, Object>> listToTree(List<Map<String, Object>> entityList, String rootValue, String idField, String parentIdField) {
 //        StopWatch stopWatch = new StopWatch();
 //        stopWatch.start();
         List<Map<String, Object>> treeMap = new ArrayList<>();
