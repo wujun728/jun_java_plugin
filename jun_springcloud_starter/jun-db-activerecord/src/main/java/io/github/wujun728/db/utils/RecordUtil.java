@@ -1,9 +1,6 @@
 package io.github.wujun728.db.utils;
 
 import cn.hutool.core.annotation.AnnotationUtil;
-import cn.hutool.json.JSONConfig;
-import cn.hutool.json.JSONUtil;
-import cn.hutool.log.StaticLog;
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -13,9 +10,17 @@ import io.github.wujun728.db.record.Record;
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.*;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 /**
  * @ClassName: RecordUtils
@@ -189,31 +194,6 @@ public class RecordUtil {
     //****************************************************************************************************
     //****************************************************************************************************
 
-    public static String getTableName(Object bean) {
-        String tableName = "";
-        if (bean instanceof Class) {
-            tableName = ((Class) bean).getSimpleName();
-            tableName = FieldUtils.getUnderlineName(tableName);
-            Class clazz = (Class) bean;
-            if (AnnotationUtil.hasAnnotation(clazz, Table.class)) {
-                tableName = AnnotationUtil.getAnnotationValue(clazz, Table.class, "name");
-            } else if (AnnotationUtil.hasAnnotation(clazz, TableName.class)) {
-                tableName = AnnotationUtil.getAnnotationValue(clazz, TableName.class, "value");
-            }/*else if(AnnotationUtil.hasAnnotation(clazz,Entity.class)){
-				tableName = AnnotationUtil.getAnnotationValue(clazz, Entity.class,"table");
-			}*/
-        } else {
-            tableName = FieldUtils.getUnderlineName(bean.getClass().getSimpleName());
-            if (AnnotationUtil.hasAnnotation(bean.getClass(), Table.class)) {
-                tableName = AnnotationUtil.getAnnotationValue(bean.getClass(), Table.class, "name");
-            } else if (AnnotationUtil.hasAnnotation(bean.getClass(), TableName.class)) {
-                tableName = AnnotationUtil.getAnnotationValue(bean.getClass(), TableName.class, "value");
-            }/*else if(AnnotationUtil.hasAnnotation(bean.getClass(),Entity.class)){
-				tableName = AnnotationUtil.getAnnotationValue(bean.getClass(), Entity.class,"table");
-			}*/
-        }
-        return tableName;
-    }
 
     public static <T> List<Map<String,Object>> beanToMaps(List<T> lists) {
         return beanToMaps(lists,true);
@@ -324,6 +304,131 @@ public class RecordUtil {
             columndNameNew = DYH+columndName+DYH;
         }*/
         return columndNameNew;
+    }
+
+    public static String getTableName(Object bean) {
+        String tableName = "";
+        if (bean instanceof Class) {
+            tableName = ((Class) bean).getSimpleName();
+            tableName = FieldUtils.getUnderlineName(tableName);
+            Class clazz = (Class) bean;
+            if (AnnotationUtil.hasAnnotation(clazz, Table.class)) {
+                tableName = AnnotationUtil.getAnnotationValue(clazz, Table.class, "name");
+            } else if (AnnotationUtil.hasAnnotation(clazz, TableName.class)) {
+                tableName = AnnotationUtil.getAnnotationValue(clazz, TableName.class, "value");
+            }/*else if(AnnotationUtil.hasAnnotation(clazz,Entity.class)){
+				tableName = AnnotationUtil.getAnnotationValue(clazz, Entity.class,"table");
+			}*/
+        } else {
+            tableName = FieldUtils.getUnderlineName(bean.getClass().getSimpleName());
+            if (AnnotationUtil.hasAnnotation(bean.getClass(), Table.class)) {
+                tableName = AnnotationUtil.getAnnotationValue(bean.getClass(), Table.class, "name");
+            } else if (AnnotationUtil.hasAnnotation(bean.getClass(), TableName.class)) {
+                tableName = AnnotationUtil.getAnnotationValue(bean.getClass(), TableName.class, "value");
+            }/*else if(AnnotationUtil.hasAnnotation(bean.getClass(),Entity.class)){
+				tableName = AnnotationUtil.getAnnotationValue(bean.getClass(), Entity.class,"table");
+			}*/
+        }
+        return tableName;
+    }
+
+
+    public static List<Record> build(ResultSet rs) throws SQLException {
+        return build(rs, null);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static List<Record> build(ResultSet rs, Function<Record, Boolean> func) throws SQLException {
+        List<Record> result = new ArrayList<Record>();
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int columnCount = rsmd.getColumnCount();
+        String[] labelNames = new String[columnCount + 1];
+        int[] types = new int[columnCount + 1];
+        buildLabelNamesAndTypes(rsmd, labelNames, types);
+        while (rs.next()) {
+            Record record = new Record();
+            //record.setColumnsMap(config.containerFactory.getColumnsMap());
+            Map<String, Object> columns = record.getColumns();
+            for (int i=1; i<=columnCount; i++) {
+                Object value;
+                if (types[i] < Types.BLOB) {
+                    value = rs.getObject(i);
+                } else {
+                    if (types[i] == Types.CLOB) {
+                        value = handleClob(rs.getClob(i));
+                    } else if (types[i] == Types.NCLOB) {
+                        value = handleClob(rs.getNClob(i));
+                    } else if (types[i] == Types.BLOB) {
+                        value = handleBlob(rs.getBlob(i));
+                    } else {
+                        value = rs.getObject(i);
+                    }
+                }
+                columns.put(labelNames[i], value);
+            }
+            if (func == null) {
+                result.add(record);
+            } else {
+                if ( ! func.apply(record) ) {
+                    break ;
+                }
+            }
+        }
+        return result;
+    }
+
+    public static void buildLabelNamesAndTypes(ResultSetMetaData rsmd, String[] labelNames, int[] types) throws SQLException {
+        for (int i=1; i<labelNames.length; i++) {
+            // 备忘：getColumnLabel 获取 sql as 子句指定的名称而非字段真实名称
+            labelNames[i] = rsmd.getColumnLabel(i);
+            types[i] = rsmd.getColumnType(i);
+        }
+    }
+
+    public static byte[] handleBlob(Blob blob) throws SQLException {
+        if (blob == null)
+            return null;
+
+        InputStream is = null;
+        try {
+            is = blob.getBinaryStream();
+            if (is == null)
+                return null;
+            byte[] data = new byte[(int)blob.length()];		// byte[] data = new byte[is.available()];
+            if (data.length == 0)
+                return null;
+            is.read(data);
+            return data;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        finally {
+            if (is != null)
+                try {is.close();} catch (IOException e) {throw new RuntimeException(e);}
+        }
+    }
+
+    public static String handleClob(Clob clob) throws SQLException {
+        if (clob == null)
+            return null;
+
+        Reader reader = null;
+        try {
+            reader = clob.getCharacterStream();
+            if (reader == null)
+                return null;
+            char[] buffer = new char[(int)clob.length()];
+            if (buffer.length == 0)
+                return null;
+            reader.read(buffer);
+            return new String(buffer);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        finally {
+            if (reader != null)
+                try {reader.close();} catch (IOException e) {throw new RuntimeException(e);}
+        }
     }
 
 

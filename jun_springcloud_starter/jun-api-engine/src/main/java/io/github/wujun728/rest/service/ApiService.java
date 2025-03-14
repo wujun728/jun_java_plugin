@@ -107,7 +107,7 @@ public class ApiService {
             String treePid = cn.hutool.core.map.MapUtil.getStr(parameters, "pid") == null ? "pid" : cn.hutool.core.map.MapUtil.getStr(parameters, "pid");
             Object rootId = parameters.get("rootId") == null ? 0L : parameters.get("rootId");
             if (StrUtil.isNotEmpty(treePid)) {
-                List treeList = TreeBuildUtil.listToTree(datas,String.valueOf(rootId),treeId,treePid);
+                List<Map<String, Object>> treeList = TreeBuildUtil.listToTree(datas,String.valueOf(rootId),treeId,treePid);
                 StaticLog.info(JSONUtil.toJsonPrettyStr(treeList));
                 return treeList;
             }

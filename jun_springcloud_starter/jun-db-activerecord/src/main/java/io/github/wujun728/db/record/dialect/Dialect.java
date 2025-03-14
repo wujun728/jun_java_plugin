@@ -16,6 +16,10 @@
 
 package io.github.wujun728.db.record.dialect;
 
+import io.github.wujun728.db.record.Page;
+import io.github.wujun728.db.record.Record;
+import io.github.wujun728.db.utils.RecordUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,11 +27,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Pattern;
-
-import io.github.wujun728.db.record.Config;
-import io.github.wujun728.db.record.Page;
-import io.github.wujun728.db.record.Record;
-import io.github.wujun728.db.record.RecordBuilder;
 
 /**
  * Dialect.
@@ -37,7 +36,7 @@ public abstract class Dialect {
 	// 指示 Generator、ModelBuilder、RecordBuilder 是否保持住 Byte、Short 类型
 	protected boolean keepByteAndShort = false;
 //	protected ModelBuilder modelBuilder = ModelBuilder.me;
-	protected RecordBuilder recordBuilder = RecordBuilder.me;
+//	protected RecordBuilder recordBuilder = RecordBuilder.me;
 	
 	// Methods for common
 	public abstract String forTableBuilderDoBuild(String tableName);
@@ -118,27 +117,27 @@ public abstract class Dialect {
 	 * 此外，还可以通过改变 RecordBuilder.buildLabelNamesAndTypes()
 	 * 方法逻辑，实现下划线字段名转驼峰变量名的功能
 	 */
-	public Dialect setRecordBuilder(RecordBuilder recordBuilder) {
+	/*public Dialect setRecordBuilder(RecordBuilder recordBuilder) {
 		this.recordBuilder = recordBuilder;
 		return this;
+	}*/
+	
+	/*@SuppressWarnings("rawtypes")
+	public <T> List<T> buildModelList(ResultSet rs, Class<? extends Model> modelClass) throws SQLException, ReflectiveOperationException {
+		return modelBuilder.build(rs, modelClass);
+	}
+
+	@SuppressWarnings("rawtypes")
+	public <T> void eachModel(ResultSet rs, Class<? extends Model> modelClass, Function<T, Boolean> func) throws SQLException, ReflectiveOperationException {
+		modelBuilder.build(rs, modelClass, func);
+	}*/
+	
+	public List<Record> buildRecordList(ResultSet rs) throws SQLException {
+		return RecordUtil.build(rs);
 	}
 	
-//	@SuppressWarnings("rawtypes")
-//	public <T> List<T> buildModelList(ResultSet rs, Class<? extends Model> modelClass) throws SQLException, ReflectiveOperationException {
-//		return modelBuilder.build(rs, modelClass);
-//	}
-//
-//	@SuppressWarnings("rawtypes")
-//	public <T> void eachModel(ResultSet rs, Class<? extends Model> modelClass, Function<T, Boolean> func) throws SQLException, ReflectiveOperationException {
-//		modelBuilder.build(rs, modelClass, func);
-//	}
-	
-	public List<Record> buildRecordList(Config config, ResultSet rs) throws SQLException {
-		return recordBuilder.build(config, rs);
-	}
-	
-	public void eachRecord(Config config, ResultSet rs, Function<Record, Boolean> func) throws SQLException {
-		recordBuilder.build(config, rs, func);
+	public void eachRecord(ResultSet rs, Function<Record, Boolean> func) throws SQLException {
+		RecordUtil.build(rs, func);
 	}
 	
 	/**
@@ -205,13 +204,13 @@ public abstract class Dialect {
 		return false;
 	}
 	
-	public boolean isTakeOverDbPaginate() {
-		return false;
-	}
+//	public boolean isTakeOverDbPaginate() {
+//		return false;
+//	}
 	
-	public Page<Record> takeOverDbPaginate(Connection conn, int pageNumber, int pageSize, Boolean isGroupBySql, String totalRowSql, StringBuilder findSql, Object... paras) throws SQLException {
+	/*public Page<Record> takeOverDbPaginate(Connection conn, int pageNumber, int pageSize, Boolean isGroupBySql, String totalRowSql, StringBuilder findSql, Object... paras) throws SQLException {
 		throw new RuntimeException("You should implements this method in " + getClass().getName());
-	}
+	}*/
 	
 	public boolean isTakeOverModelPaginate() {
 		return false;
@@ -326,6 +325,77 @@ public abstract class Dialect {
 	public String forPaginateTotalRow(String select, String sqlExceptSelect, Object ext) {
 		return "select count(*) " + replaceOrderBy(sqlExceptSelect);
 	}
+
+	private static final String SELECT = "SELECT * FROM ";
+	private static final String SELECTCOUNT = "SELECT COUNT(*) ";
+	private static final String INSERT = "INSERT INTO ";
+	private static final String UPDATE = "UPDATE ";
+	private static final String SET = " SET ";
+	private static final String WHERE = " WHERE ";
+	private static final String WHEREOK = " WHERE 1=1";
+	private static final String WHERENO = " WHERE 1=2";
+	private static final String DELETE = "DELETE FROM ";
+	private static final String LEFT = "(";
+	private static final String VALUES = ") VALUES (";
+	private static final String RIGHT = ")";
+	private static final String AND = " AND ";
+	private static final String OR = " OR ";
+	private static final String LINK = ",";
+	private static final String OCCUPY = "?,";
+	private static final String EQUAL = "=?";
+	private static final String EQUAL_LINK = "=?,";
+	private static final String EQUAL_AND = "=? AND ";
+	private static final String FROM = "FROM";
+	private static final String ORDER = "ORDER BY";
+	private static final String LIMIT = " LIMIT ";
+	private static final String order = "order by";
+	private static final String limit = " limit ";
+	private static final String from = "from";
+	private static final String EMPTY = "";
+	private static final String R_ORDER = "ORDER.*";
+	private static final String R_LIMIT = "LIMIT.*";
+
+	public static String getCount(String sql) {
+		int num = 0;
+		String xing = "*";
+		StringBuilder sb = new StringBuilder();
+		for (char cr : sql.toCharArray()) {
+			if (')' == cr) {
+				num++;
+			}
+			if (num == 0) {
+				sb.append(cr);
+			} else {
+				sb.append(xing);
+			}
+			if ('(' == cr) {
+				num--;
+			}
+		}
+		int i = sb.toString().replace(from, FROM).indexOf(FROM);
+		sql = sql.substring(i);
+		sql = sql.replace(order, ORDER).replace(limit, LIMIT).replaceAll(R_ORDER, EMPTY).replaceAll(R_LIMIT, EMPTY);
+		return SELECTCOUNT.concat(sql);
+	}
+
+	public static String getSelect(String sql, int page, int rows) {
+		StringBuilder pageSql = new StringBuilder(sql);
+		pageSql.append(LIMIT);
+		pageSql.append((page - 1) * rows);
+		pageSql.append(LINK);
+		pageSql.append(rows);
+		return pageSql.toString();
+	}
+
+	public static String getMySQlPageSQL(String sqlStr, int page, int rows) {
+		StringBuilder sql = new StringBuilder(sqlStr);
+		sql.append(LIMIT);
+		sql.append((page - 1) * rows);
+		sql.append(LINK);
+		sql.append(rows);
+		return sql.toString();
+	}
+
 }
 
 

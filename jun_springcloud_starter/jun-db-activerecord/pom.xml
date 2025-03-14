@@ -32,11 +32,6 @@
             <version>2.7.3</version>
         </dependency>
         <dependency>
-            <groupId>com.jfinal</groupId>
-            <artifactId>enjoy</artifactId>
-            <version>5.1.2</version>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
             <version>2.0.37</version>
@@ -115,10 +110,6 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
         <dependency>
-            <groupId>net.dreamlu</groupId>
-            <artifactId>mica-auto</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
@@ -136,7 +127,14 @@
             <artifactId>mybatis-plus-core</artifactId>
             <version>3.5.9</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.dreamlu</groupId>
+            <artifactId>mica-auto</artifactId>
+        </dependency>
     </dependencies>
 
     <developers>

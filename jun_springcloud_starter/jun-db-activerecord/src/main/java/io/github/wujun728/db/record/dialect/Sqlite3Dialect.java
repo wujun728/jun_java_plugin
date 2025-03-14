@@ -16,14 +16,14 @@
 
 package io.github.wujun728.db.record.dialect;
 
+import io.github.wujun728.db.record.Record;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import io.github.wujun728.db.record.Record;
-import io.github.wujun728.db.record.builder.TimestampProcessedRecordBuilder;
 
 /**
  * SqliteDialect.
@@ -31,7 +31,6 @@ import io.github.wujun728.db.record.builder.TimestampProcessedRecordBuilder;
 public class Sqlite3Dialect extends Dialect {
 	
 	public Sqlite3Dialect() {
-		this.recordBuilder = TimestampProcessedRecordBuilder.me;
 	}
 	
 	public String forTableBuilderDoBuild(String tableName) {
@@ -93,18 +92,18 @@ public class Sqlite3Dialect extends Dialect {
 		
 		// Record 新增支持 modifyFlag
 //		Set<String> modifyFlag = CPI.getModifyFlag(record);
-		Set<String> modifyFlag = record._getModifyFlag();
+//		Set<String> modifyFlag = record._getModifyFlag();
 		
 		sql.append("update ").append(tableName).append(" set ");
 		for (Entry<String, Object> e: record.getColumns().entrySet()) {
 			String colName = e.getKey();
-			if (modifyFlag.contains(colName) && !isPrimaryKey(colName, pKeys)) {
+//			if (modifyFlag.contains(colName) && !isPrimaryKey(colName, pKeys)) {
 				if (paras.size() > 0) {
 					sql.append(", ");
 				}
 				sql.append(colName).append(" = ? ");
 				paras.add(e.getValue());
-			}
+//			}
 		}
 		sql.append(" where ");
 		for (int i=0; i<pKeys.length; i++) {

@@ -46,7 +46,6 @@
 		<module>jun_jgit</module>
 		<module>jun_json</module>
 		<module>jun_jsoup</module>
-		<module>jun_leetcode</module>
 		<module>jun_memcached</module>
 		<module>jun_mongodb</module>
 		<module>jun_multicluster</module>
