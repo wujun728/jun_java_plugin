@@ -67,6 +67,17 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.wujun728</groupId>
+            <artifactId>jun-api-engine</artifactId>
+            <version>1.0.22</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <!-- 依赖声明 -->

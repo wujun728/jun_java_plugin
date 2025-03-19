@@ -11,19 +11,21 @@
     <url>https://github.com/wujun728/jun_java_plugin/jjun_springcloud_starter</url>
     <description>SpringBoot-SpirngCloud通用组件、工具、stater</description>
     <modules>
-<!--        <module>jun-activerecord</module>-->
+        <!-- -->
+        <module>jun-activerecord</module>
+        <module>jun-api-engine</module>
+        <module>jun-api-engine-spring-boot-starter</module>
         <module>jun-api-engine-demo</module>
         <module>jun-mybatis-sql-engine</module>
         <module>jun-db-activerecord</module>
         <module>jun-db-record</module>
-        <module>jun-api-engine</module>
         <module>jun-code-freemarker</module>
         <module>jun-common-base</module>
         <module>jun-common-core</module>
         <module>jun-groovy-api-spring-boot-starter</module>
         <module>jun-uidgenerator-spring-boot-starter</module>
         <module>jun-codegen-spring-boot-starter</module>
-<!--        <module>jun-onlineForm-spring-boot-starter</module>-->
+        <module>jun-onlineForm-spring-boot-starter</module>
         <module>jun-snakerflow-spring-boot-starter</module>
         <module>jun-db-spring-boot-starter</module>
         <module>jun-log-spring-boot-starter</module>
@@ -31,6 +33,8 @@
         <module>jun-swagger2-spring-boot-starter</module>
         <module>jun-sentinel-spring-boot-starter</module>
         <module>jun-job-spring-boot-starter</module>
+        <module>jun-encrypt-body-spring-boot-starter</module>
+        <module>jun-minio-spring-boot-starter</module>
     </modules>
 
     <properties>
@@ -623,7 +627,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--
+            <!--   -->
             <plugin>
                  <groupId>org.apache.maven.plugins</groupId>
                  <artifactId>maven-gpg-plugin</artifactId>
@@ -638,7 +642,7 @@
                      </execution>
                  </executions>
              </plugin>
-  -->
+
         </plugins>
     </build>
 

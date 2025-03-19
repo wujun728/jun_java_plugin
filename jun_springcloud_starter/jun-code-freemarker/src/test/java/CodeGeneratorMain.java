@@ -1,6 +1,6 @@
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import io.github.wujun728.common.generator.GeneratorUtil;
+import io.github.wujun728.generator.utils.GeneratorUtil;
 
 import java.util.List;
 import java.util.Map;

@@ -43,7 +43,9 @@ public class DbPro{
     private String configName;
     private DataSource dataSource = null;
 
-    private JdbcTemplate jdbcTemplate;
+//    private JdbcTemplate jdbcTemplate;
+
+    private final ThreadLocal<JdbcTemplate> threadLocal = new ThreadLocal<>();
     private TransactionTemplate transactionTemplate;
     public final static int DEFAULT_FETCHSIZE = 32; //默认的fetchsize
     private Dialect dialect;
@@ -108,12 +110,22 @@ public class DbPro{
     }
 
     public JdbcTemplate getJdbcTemplate() {
-        return jdbcTemplate;
+        JdbcTemplate conn = threadLocal.get();
+        if (conn != null){
+            return conn;
+        }
+        return new JdbcTemplate(getDataSource());
     }
 
     private void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+        //this.jdbcTemplate = jdbcTemplate;
+        threadLocal.set(jdbcTemplate);
     }
+
+    public void removeThreadLocalJdbcTemplate() {
+        threadLocal.remove();
+    }
+
 
     private String getConfigName() {
         return configName;
@@ -218,10 +230,10 @@ public class DbPro{
         Map<String, Object> map = null;
         try {
             if(objects != null && objects.length > 0) {
-                map = jdbcTemplate.queryForMap(sql, objects);
+                map = getJdbcTemplate().queryForMap(sql, objects);
             }
             else {
-                map = jdbcTemplate.queryForMap(sql);
+                map = getJdbcTemplate().queryForMap(sql);
             }
         } catch (EmptyResultDataAccessException e) {
 //			StaticLog.error("查询无记录："+SqlUtil.getSql(sql, objects));
@@ -250,10 +262,10 @@ public class DbPro{
         int exc = -1;
         try {
             if(objects != null && objects.length > 0) {
-                exc = jdbcTemplate.queryForObject(sql, objects, Integer.class);
+                exc = getJdbcTemplate().queryForObject(sql, objects, Integer.class);
             }
             else {
-                exc = jdbcTemplate.queryForObject(sql, Integer.class);
+                exc = getJdbcTemplate().queryForObject(sql, Integer.class);
             }
         } catch (Exception e) {
             exc = -1;
@@ -275,10 +287,10 @@ public class DbPro{
         long exc = -1;
         try {
             if(objects != null && objects.length > 0) {
-                exc = jdbcTemplate.queryForObject(sql, objects, Long.class);
+                exc = getJdbcTemplate().queryForObject(sql, objects, Long.class);
             }
             else {
-                exc = jdbcTemplate.queryForObject(sql, Long.class);
+                exc = getJdbcTemplate().queryForObject(sql, Long.class);
             }
         } catch (Exception e) {
             exc = -1;
@@ -299,7 +311,7 @@ public class DbPro{
     public <T> T queryForObject(String sql, Object[] objects, RowMapper<T> rowMapper) {
         StaticLog.info(sql);
         try {
-            return jdbcTemplate.queryForObject(sql, objects, rowMapper);
+            return getJdbcTemplate().queryForObject(sql, objects, rowMapper);
         } catch (EmptyResultDataAccessException e) {
 //			StaticLog.error("查询无记录："+SqlUtil.getSql(sql, objects));
             return null;
@@ -321,7 +333,7 @@ public class DbPro{
     public <T> T queryForObject(String sql, Object[] objects, Class<T> clazz) {
         StaticLog.info(sql);
         try {
-            return jdbcTemplate.queryForObject(sql, objects, new BaseRowMapper<T>(clazz));
+            return getJdbcTemplate().queryForObject(sql, objects, new BaseRowMapper<T>(clazz));
         } catch (EmptyResultDataAccessException e) {
 //			StaticLog.error("查询无记录："+SqlUtil.getSql(sql, objects));
             return null;
@@ -347,10 +359,10 @@ public class DbPro{
         String str = "";
         try {
             if(objects != null && objects.length > 0) {
-                str = jdbcTemplate.queryForObject(sql, objects, String.class);
+                str = getJdbcTemplate().queryForObject(sql, objects, String.class);
             }
             else {
-                str = jdbcTemplate.queryForObject(sql, String.class);
+                str = getJdbcTemplate().queryForObject(sql, String.class);
             }
             return str;
         } catch (EmptyResultDataAccessException e) {
@@ -369,10 +381,10 @@ public class DbPro{
         Date date = null;
         try {
             if(objects != null && objects.length > 0) {
-                date = jdbcTemplate.queryForObject(sql, objects, Date.class);
+                date = getJdbcTemplate().queryForObject(sql, objects, Date.class);
             }
             else {
-                date = jdbcTemplate.queryForObject(sql, Date.class);
+                date = getJdbcTemplate().queryForObject(sql, Date.class);
             }
             return date;
         } catch (EmptyResultDataAccessException e) {
@@ -422,14 +434,14 @@ public class DbPro{
      */
     private List<Map<String, Object>> queryForList(String sql, Object[] objects, int fetchSize) {
         StaticLog.info(sql);
-        jdbcTemplate.setFetchSize(fetchSize);
+        getJdbcTemplate().setFetchSize(fetchSize);
         List<Map<String, Object>> list = null;
         try {
             if(objects != null && objects.length > 0) {
-                list = jdbcTemplate.queryForList(sql, objects);
+                list = getJdbcTemplate().queryForList(sql, objects);
             }
             else {
-                list = jdbcTemplate.queryForList(sql);
+                list = getJdbcTemplate().queryForList(sql);
             }
         } catch (Exception e) {
             StaticLog.error(e.getMessage()+"\n"+SqlUtil.getSql(sql, objects));
@@ -453,12 +465,12 @@ public class DbPro{
         StaticLog.info(sql);
         List<T> list = null;
         try {
-            jdbcTemplate.setFetchSize(DEFAULT_FETCHSIZE);
+            getJdbcTemplate().setFetchSize(DEFAULT_FETCHSIZE);
             if(objects != null && objects.length > 0) {
-                list = jdbcTemplate.query(sql, objects, rowMapper);
+                list = getJdbcTemplate().query(sql, objects, rowMapper);
             }
             else {
-                list = jdbcTemplate.query(sql, rowMapper);
+                list = getJdbcTemplate().query(sql, rowMapper);
             }
         } catch (Exception e) {
             StaticLog.error(e.getMessage()+"\n"+SqlUtil.getSql(sql, objects));
@@ -483,12 +495,12 @@ public class DbPro{
         StaticLog.info(sql);
         List<T> list = null;
         try {
-            jdbcTemplate.setFetchSize(DEFAULT_FETCHSIZE);
+            getJdbcTemplate().setFetchSize(DEFAULT_FETCHSIZE);
             if(objects != null && objects.length > 0) {
-                list = jdbcTemplate.query(sql, objects, new BaseRowMapper<T>(clazz));
+                list = getJdbcTemplate().query(sql, objects, new BaseRowMapper<T>(clazz));
             }
             else {
-                list = jdbcTemplate.query(sql, new BaseRowMapper<T>(clazz));
+                list = getJdbcTemplate().query(sql, new BaseRowMapper<T>(clazz));
             }
         } catch (Exception e) {
             StaticLog.error(e.getMessage()+"\n"+SqlUtil.getSql(sql, objects));
@@ -520,10 +532,10 @@ public class DbPro{
         int exc = 1;
         try {
             if(objects != null && objects.length > 0) {
-                jdbcTemplate.update(sql, objects);
+                getJdbcTemplate().update(sql, objects);
             }
             else {
-                jdbcTemplate.update(sql);
+                getJdbcTemplate().update(sql);
             }
         } catch (Exception e) {
             exc = 0;
@@ -543,7 +555,7 @@ public class DbPro{
     public long insert(final String sql, final Object[] objects) {
         StaticLog.info(sql);
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(new PreparedStatementCreator() {
+        getJdbcTemplate().update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                 PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -568,7 +580,7 @@ public class DbPro{
         StaticLog.info(sql);
         int exc = 1;
         try {
-            jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter(){
+            getJdbcTemplate().batchUpdate(sql, new BatchPreparedStatementSetter(){
                 @Override
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Object[] objects = objectsList.get(i);
@@ -608,7 +620,7 @@ public class DbPro{
                         Map<String, Object> sqlMap = sqlList.get(i);
                         String sql = (String) sqlMap.get("sql");
                         Object[] objects = (Object[]) sqlMap.get("objects");
-                        jdbcTemplate.update(sql, objects);
+                        getJdbcTemplate().update(sql, objects);
                     }
                 }
             });
@@ -643,8 +655,9 @@ public class DbPro{
             Boolean isSucess = (Boolean) res;
             if(isSucess){
                 exc = 1;
+            }else{
+                exc = 0;
             }
-            exc = 0;
             return exc;
         }else{
             exc = 0;
@@ -978,7 +991,7 @@ public class DbPro{
 
 
     public <T> List<T> query(String sql, Object... paras) {
-        //List list = jdbcTemplate.queryForList(sql, paras);
+        //List list = getJdbcTemplate().queryForList(sql, paras);
         return (List<T>) getJdbcTemplate().query(sql, new RowMapper<Object[]>() {
             public Object[] mapRow(ResultSet rs, int rowNum) throws SQLException {
                 int colAmount = rs.getMetaData().getColumnCount();
@@ -1644,7 +1657,7 @@ public class DbPro{
      * @see #tx(IAtom)
      */
     public boolean tx(IAtom atom) {
-        return false;//tx(config, config.getTransactionLevel(), atom);
+        return doInTransaction(atom)>0;
     }
 
 

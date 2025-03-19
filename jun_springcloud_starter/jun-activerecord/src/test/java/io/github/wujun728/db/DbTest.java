@@ -6,6 +6,8 @@ import cn.hutool.log.StaticLog;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
+import io.github.wujun728.db.utils.DataSourcePool;
+import io.github.wujun728.db.utils.RecordUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -13,7 +15,7 @@ import javax.sql.DataSource;
 import java.util.List;
 import java.util.Map;
 
-import static io.github.wujun728.db.DataSourcePool.main;
+import static io.github.wujun728.db.utils.DataSourcePool.main;
 
 
 public class DbTest {
@@ -24,8 +26,8 @@ public class DbTest {
         String password = "";
         //String sqlId = Db.queryStr("select sql_text from api_sql  limit 1 ");
         DataSource dataSource = DataSourcePool.init("main",url,username,password);
-        ActiveRecordUtil.init(main,dataSource);
-        ActiveRecordUtil.init(main,dataSource);
+        RecordUtil.init(main,dataSource);
+        RecordUtil.init(main,dataSource);
 
     }
 
@@ -36,7 +38,7 @@ public class DbTest {
         String username = "root";
         String password = "";
         DataSource dataSource = DataSourcePool.init("main",url,username,password);
-        ActiveRecordUtil.init(dataSource);
+        RecordUtil.init(dataSource);
     }
 
     @Test

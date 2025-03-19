@@ -4,12 +4,12 @@ import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
-import io.github.wujun728.db.ActiveRecordUtil;
-import io.github.wujun728.db.DataSourcePool;
+import io.github.wujun728.db.utils.DataSourcePool;
+import io.github.wujun728.db.utils.RecordUtil;
 
 import javax.sql.DataSource;
 
-import static io.github.wujun728.db.DataSourcePool.main;
+import static io.github.wujun728.db.utils.DataSourcePool.main;
 
 
 public class TestDb {
@@ -21,7 +21,7 @@ public class TestDb {
         String driver = "com.mysql.cj.jdbc.Driver";
         DataSource ds = DataSourcePool.init("main",url,username,password,driver);
         //Db.init(main,ds);
-        ActiveRecordUtil.init(main,ds);
+        RecordUtil.init(main,ds);
         Record record = Db.use().findById("biz_mail",2);
         Record record2 = Db.use().findById("api_sql","id,sql_id","getBizTests");
     }
@@ -34,7 +34,7 @@ public class TestDb {
         String driver = "com.mysql.cj.jdbc.Driver";
         DataSource dataSource = DataSourcePool.init("main",url,username,password);
         //registerRecord("db_qixing_bk");
-        ActiveRecordUtil.init(main,dataSource);
+        RecordUtil.init(main,dataSource);
         //查询数据并返回单条Record
         Record record = Db.use().findById("biz_mail",new Object[]{2,"getBizTests"});
 //        record.set()
