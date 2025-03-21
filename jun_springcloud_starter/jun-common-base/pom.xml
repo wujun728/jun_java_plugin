@@ -165,27 +165,16 @@
 		</license>
 	</licenses>
 
-	<!--  -->
     <distributionManagement>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>release</id>
-			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
-    <!--<distributionManagement>
         <snapshotRepository>
-            <id>nexus-releases</id>
-            <url>https://nexus.billjc.com/repository/maven-releases/</url>
+            <id>oss</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
-            <id>nexus-releases</id>
-            <url>https://nexus.billjc.com/repository/maven-releases/</url>
+            <id>oss</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
-    </distributionManagement>-->
+    </distributionManagement>
 
 	<build>
 		<plugins>

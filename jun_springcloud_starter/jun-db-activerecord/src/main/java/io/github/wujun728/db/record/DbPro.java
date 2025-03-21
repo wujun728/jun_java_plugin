@@ -110,11 +110,14 @@ public class DbPro{
     }
 
     public JdbcTemplate getJdbcTemplate() {
-        JdbcTemplate conn = threadLocal.get();
-        if (conn != null){
-            return conn;
+        JdbcTemplate template = threadLocal.get();
+        if (template != null){
+            return template;
+        }else{
+            template = new JdbcTemplate(getDataSource());
+            threadLocal.set(template);
         }
-        return new JdbcTemplate(getDataSource());
+        return template;
     }
 
     private void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
