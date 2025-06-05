@@ -162,8 +162,10 @@ public class SQLUtil {
                 + "            <#list classInfo.fieldList as fieldItem >   \r\n"
                 + "                `${fieldItem.columnName}` as `${fieldItem.fieldName}` <#if fieldItem_has_next>,</#if>  \r\n"
                 + "            </#list>\r\n" + "        </#if>    \r\n"
-                + "        FROM ${classInfo.tableName}   \r\n"
-                + "        LIMIT ${r\"#{pageNumber}\"}, ${r\"#{pageSize}\"} ";
+                + "        FROM ${classInfo.tableName}  wheree 1=1  \r\n"
+                + "        <if test=\"dataScope != null\"> ${dataScope} </if>   \r\n"
+                + "         <if test=\"pageNumber != null and pageSize != null \"> "
+                + "        LIMIT ${r\"#{pageNumber}\"}, ${r\"#{pageSize}\"}  </if> ";
         return FreemarkerUtil.genTemplateStr(data, "pageListSQL", pageListSQL);
     }
 

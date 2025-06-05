@@ -111,6 +111,7 @@ public class RestSqlController {
             if ( (limit == null || limit == 0)) {
                 limit = 10;
             }
+            parameters.put("dataScope","");
             Page<JSONObject> pages = JdbcUtil.executeQueryPage(DataSourcePool.getConnection(main),apiSql.getText(),parameters,page,limit);
             return Result.success(pages.getList()).put("count", pages.getTotalRow()).put("pageSize", pages.getPageSize()).put("totalPage", pages.getTotalPage()).put("pageNumber", pages.getPageNumber());
             // *********************************************************************
