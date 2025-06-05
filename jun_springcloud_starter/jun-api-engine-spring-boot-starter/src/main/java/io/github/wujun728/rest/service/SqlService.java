@@ -216,8 +216,11 @@ public class SqlService {
                 Object data = JdbcUtil.executeSql(connection, apiSql.getText(), sqlParam);
                 dataList.add(data);
             }
-            if (flag)
-                connection.commit();
+            if (flag){
+                if(!connection.isClosed()){
+                    connection.commit();
+                }
+            }
             return dataList;
         } catch (Exception e) {
             try {

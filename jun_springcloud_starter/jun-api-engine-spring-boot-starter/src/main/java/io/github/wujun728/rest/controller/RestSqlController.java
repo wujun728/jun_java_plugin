@@ -78,37 +78,89 @@ public class RestSqlController {
         }
     }
 
-    @RequestMapping(path = {"/run/{path}"}, produces = "application/json")
-    public Result apiExecuteNew(@PathVariable String path ,HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    @RequestMapping(path = {"/run/{id}"}, produces = "application/json")
+    public Result apiExecuteNew(@PathVariable String id ,HttpServletRequest request, HttpServletResponse response) throws SQLException {
         Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
         main = MapUtil.getStr(parameters, "ds","main");
-//        List<Record> records  = Db.findBySql(ApiSql.class," select * from api_sql ");
-//        List<ApiSql> apiSqls = RecordUtil.recordToListBean(records, ApiSql.class);
-        List<Record> apiSqls1 = Db.use(main).find(" select * from api_sql ");
-        List<ApiSql> apiSqls = RecordUtil.recordToBeans(apiSqls1,ApiSql.class);
-
-        //Db.use().findBeanList(ApiSql.class," select * from api_sql ");
-        List<Map<String, Object>> mapDatas = RecordUtil.recordToMaps(apiSqls1);
-        //Map<String, Map> apiSqlMap = new HashMap<>();
-
-        Map<String, ApiSql> apiSqlMap = apiSqls.stream().collect(Collectors.toMap(i->i.getPath(), i->i));
-
-        String pathNew = "/"+ path;
+        Map<String, ApiSql> apiSqlMap = getApiSqlMap();
+        String pathNew = id;
         if(apiSqlMap.containsKey(pathNew)){
-            /*Connection connection = Db.use(main).getDataSource().getConnection();
-            Object obj = JdbcUtil.executeSql(connection, String.valueOf(apiSqlMap.get(path)), parameters);
-            return Result.success(obj);*/
-
-            Object data = null;
-            ApiSql apiSql = new ApiSql();
-            String content = String.valueOf(apiSqlMap.get(pathNew));
-            apiSql.setPath(pathNew);
-            apiSql.setText(content);
-            data = sqlService.doSQLProcess(apiSql, parameters);
+            ApiSql apiSql = apiSqlMap.get(pathNew);
+            // *********************************************************************
+            Object data = sqlService.doSQLProcess(apiSql, parameters);
             return Result.success(data);
+            // *********************************************************************
         }else{
             return Result.error("执行的接口不存在" );
         }
+    }
+    @RequestMapping(path = {"/page/{id}"}, produces = "application/json")
+    public Result apiExecutepage(@PathVariable String id ,HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
+        main = MapUtil.getStr(parameters, "ds","main");
+        Map<String, ApiSql> apiSqlMap = getApiSqlMap();
+        String pathNew = id;
+        if(apiSqlMap.containsKey(pathNew)){
+            ApiSql apiSql = apiSqlMap.get(pathNew);
+            // *********************************************************************
+            Integer page = MapUtil.getInt(parameters, "page");
+            if ((page == null || page == 0)  ) {
+                page = 1;
+            }
+            Integer limit = MapUtil.getInt(parameters, "limit");
+            if ( (limit == null || limit == 0)) {
+                limit = 10;
+            }
+            Page<JSONObject> pages = JdbcUtil.executeQueryPage(DataSourcePool.getConnection(main),apiSql.getText(),parameters,page,limit);
+            return Result.success(pages.getList()).put("count", pages.getTotalRow()).put("pageSize", pages.getPageSize()).put("totalPage", pages.getTotalPage()).put("pageNumber", pages.getPageNumber());
+            // *********************************************************************
+        }else{
+            return Result.error("执行的接口不存在" );
+        }
+    }
+    @RequestMapping(path = {"/list/{id}"}, produces = "application/json")
+    public Result apiExecutelist(@PathVariable String id ,HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
+        main = MapUtil.getStr(parameters, "ds","main");
+        Map<String, ApiSql> apiSqlMap = getApiSqlMap();
+        String pathNew = id;
+        if(apiSqlMap.containsKey(pathNew)){
+            ApiSql apiSql = apiSqlMap.get(pathNew);
+            // *********************************************************************
+            List<Map<String, Object>> datas = JdbcUtil.query(DataSourcePool.getConnection(main),apiSql.getText(),parameters);
+            return Result.success(datas);
+            // *********************************************************************
+        }else{
+            return Result.error("执行的接口不存在" );
+        }
+    }
+    @RequestMapping(path = {"/execute/{id}"}, produces = "application/json")
+    public Result apiExecuteexecute(@PathVariable String id ,HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
+        main = MapUtil.getStr(parameters, "ds","main");
+        Map<String, ApiSql> apiSqlMap = getApiSqlMap();
+        String pathNew = id;
+        if(apiSqlMap.containsKey(pathNew)){
+            ApiSql apiSql = apiSqlMap.get(pathNew);
+            // *********************************************************************
+            int flag = JdbcUtil.update(DataSourcePool.getConnection(main),apiSql.getText(),parameters);
+            if(flag>0){
+                return Result.success(true);
+            }else{
+                return Result.fail();
+            }
+            // *********************************************************************
+        }else{
+            return Result.error("执行的接口不存在" );
+        }
+    }
+
+    private Map<String, ApiSql> getApiSqlMap() {
+        List<Record> apiSqls1 = Db.use(main).find(" select * from api_sql ");
+        List<ApiSql> apiSqls = RecordUtil.recordToBeans(apiSqls1,ApiSql.class);
+        List<Map<String, Object>> mapDatas = RecordUtil.recordToMaps(apiSqls1);
+        Map<String, ApiSql> apiSqlMap = apiSqls.stream().collect(Collectors.toMap(i->i.getId(), i->i));
+        return apiSqlMap;
     }
 
 
