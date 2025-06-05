@@ -28,7 +28,6 @@ public class DbTest {
         //String sqlId = Db.queryStr("select sql_text from api_sql  limit 1 ");
         DataSource dataSource = DataSourcePool.init("main",url,username,password);
         Db.init(main,dataSource);
-        Db.init(main,dataSource);
     }
 
     @Test

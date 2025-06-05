@@ -4,8 +4,8 @@ import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
-import cn.hutool.json.JSONObject;
 import cn.hutool.log.StaticLog;
+import com.alibaba.fastjson.JSONObject;
 import io.github.wujun728.common.base.Result;
 import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Page;
@@ -43,7 +43,7 @@ public class RestSqlController {
 
     private String main = "main";
 
-     @PostConstruct
+     //@PostConstruct
      void init(){
          DataSource dataSource = SpringUtil.getBean(DataSource.class);
          if(ObjectUtil.isNotEmpty(dataSource)){

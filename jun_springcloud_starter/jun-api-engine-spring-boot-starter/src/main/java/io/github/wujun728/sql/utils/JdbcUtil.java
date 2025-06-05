@@ -1,7 +1,7 @@
 package io.github.wujun728.sql.utils;
 
-import cn.hutool.json.JSONObject;
 import cn.hutool.log.StaticLog;
+import com.alibaba.fastjson.JSONObject;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.sql.SqlMeta;
 import io.github.wujun728.sql.engine.DynamicSqlEngine;

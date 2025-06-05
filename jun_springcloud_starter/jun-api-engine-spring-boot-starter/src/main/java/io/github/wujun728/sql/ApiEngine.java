@@ -1,8 +1,8 @@
 package io.github.wujun728.sql;
 
-import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.druid.pool.DruidPooledConnection;
+import com.alibaba.fastjson.JSONObject;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.sql.engine.DynamicSqlEngine;
 import io.github.wujun728.sql.entity.ApiDataSource;
@@ -145,7 +145,7 @@ public class ApiEngine {
     public <T> List<T> executeQueryEntity(String namespace, String sqlId, Map<String, Object> data, Class<T> clazz) {
         List<JSONObject> list = executeQuery(namespace, sqlId, data);
 
-        List<T> collect = list.stream().map(t -> JSONUtil.toBean(t,clazz)).collect(Collectors.toList());
+        List<T> collect = list.stream().map(t -> t.toJavaObject(clazz)).collect(Collectors.toList());
         return collect;
     }
 
