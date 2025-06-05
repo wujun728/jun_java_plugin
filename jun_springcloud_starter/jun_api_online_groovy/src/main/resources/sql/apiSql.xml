@@ -1,0 +1,131 @@
+<sqls>
+    <defaultDB>main</defaultDB>
+
+    <sql id="getAll">
+        select * from api_sql
+    </sql>
+    <sql id="list">
+        select * from api_sql
+    </sql>
+
+    <sql id="update">>
+        UPDATE api_sql
+        <set>
+            <if test="group!=null and  group!='' ">group = #{group},</if>
+            <if test="text!=null and  text!='' ">text = #{text},</if>
+            <if test="datasourceId!=null and  datasourceId!='' ">datasource_id = #{datasourceId},</if>
+            <if test="before!=null and  before!='' ">before = #{before},</if>
+            <if test="after!=null and  after!='' ">after = #{after},</if>
+            <if test="createTime!=null and  createTime!='' ">create_time = #{createTime},</if>
+            <if test="updateTime!=null and  updateTime!='' ">update_time = #{updateTime}</if>
+        </set>
+        WHERE
+        id = #{id}
+    </sql>
+    <sql id="insert" db="main">
+        INSERT INTO api_sql
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != group and '' != group">
+                group,
+            </if>
+            <if test="null != text and '' != text">
+                text,
+            </if>
+            <if test="null != datasourceId and '' != datasourceId">
+                datasource_id,
+            </if>
+            <if test="null != before and '' != before">
+                before,
+            </if>
+            <if test="null != after and '' != after">
+                after,
+            </if>
+            <if test="null != createTime and '' != createTime">
+                create_time,
+            </if>
+            <if test="null != updateTime and '' != updateTime">
+                update_time
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != group and '' != group">
+                #{group},
+            </if>
+            <if test="null != text and '' != text">
+                #{text},
+            </if>
+            <if test="null != datasourceId and '' != datasourceId">
+                #{datasourceId},
+            </if>
+            <if test="null != before and '' != before">
+                #{before},
+            </if>
+            <if test="null != after and '' != after">
+                #{after},
+            </if>
+            <if test="null != createTime and '' != createTime">
+                #{createTime},
+            </if>
+            <if test="null != updateTime and '' != updateTime">
+                #{updateTime}
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="page">
+        SELECT
+        `group` as `group` ,
+        id as id ,
+        text as text ,
+        datasource_id as datasourceId ,
+        `before` as `before` ,
+        after as after ,
+        create_time as createTime ,
+        update_time as updateTime
+        FROM api_sql
+
+    </sql>
+
+    <sql id="count">
+        SELECT count(1)
+        FROM api_sql
+    </sql>
+
+    <sql id="one">
+        SELECT
+            `group` as `group` ,
+            id as id ,
+            text as text ,
+            datasource_id as datasourceId ,
+            `before` as `before` ,
+            after as after ,
+            create_time as createTime ,
+            update_time as updateTime
+        FROM api_sql
+        WHERE
+            id = #{id}
+
+    </sql>
+    <sql id="getById">
+        SELECT
+            group as group ,
+            id as id ,
+            text as text ,
+            datasource_id as datasourceId ,
+            before as before ,
+            after as after ,
+            create_time as createTime ,
+            update_time as updateTime
+        FROM api_sql
+        WHERE
+            id = #{id}
+
+    </sql>
+
+    <sql id="deleteById">
+        DELETE FROM api_sql
+        WHERE
+        id = #{id}
+    </sql>
+
+</sqls>

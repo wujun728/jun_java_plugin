@@ -1,4 +1,4 @@
-package com.demo.threadpool;
+package io.github.wujun728.threadpool;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

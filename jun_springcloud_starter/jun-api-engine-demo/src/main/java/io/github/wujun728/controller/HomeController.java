@@ -1,8 +1,8 @@
-package com.demo.controller;
+package io.github.wujun728.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.demo.entity.Student;
+import io.github.wujun728.entity.Student;
 import io.github.wujun728.sql.ApiEngine;
 import io.github.wujun728.sql.entity.SqlWithParam;
 import lombok.extern.slf4j.Slf4j;

@@ -30,7 +30,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>com.demo.threadpool.ThreadPoolDemoTest</mainClass>
+                  <mainClass>threadpool.io.github.wujun728.ThreadPoolDemoTest</mainClass>
                 </transformer>
               </transformers>
             </configuration>

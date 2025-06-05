@@ -2,6 +2,7 @@
 package io.github.wujun728.db.record;
 
 import cn.hutool.core.util.ObjUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
@@ -48,6 +49,9 @@ public class Db<T> {
 
 
     public static DbPro use(String configName) {
+        if(StrUtil.isEmpty(configName)){
+            throw new RuntimeException("error : 当前[" + configName + "]的configName不存在。");
+        }
         DbPro result = DbPro.cache.get(configName);
         if (result == null || result.getDataSource() == null || result.getJdbcTemplate() == null) {
             System.err.println("error : 当前Db.use(" + configName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的configName数据源。");

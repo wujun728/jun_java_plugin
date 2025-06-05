@@ -37,7 +37,8 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @RestController
-@RequestMapping({"${platform.path:}/apis"})
+@RequestMapping({"/apis"})
+//@RequestMapping({"${platform.path:}/apis"})
 //@Api(value = "实体公共增删改查接口")
 public class RestSqlController {
 
@@ -79,7 +80,7 @@ public class RestSqlController {
     @RequestMapping(path = {"/run/{path}"}, produces = "application/json")
     public Result apiExecuteNew(@PathVariable String path ,HttpServletRequest request, HttpServletResponse response) throws SQLException {
         Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
-        main = MapUtil.getStr(parameters, "ds");
+        main = MapUtil.getStr(parameters, "ds","main");
 //        List<Record> records  = Db.findBySql(ApiSql.class," select * from api_sql ");
 //        List<ApiSql> apiSqls = RecordUtil.recordToListBean(records, ApiSql.class);
         List<Record> apiSqls1 = Db.use(main).find(" select * from api_sql ");
@@ -166,7 +167,7 @@ public class RestSqlController {
     @RequestMapping(path = {"/run1/{path}"}, produces = "application/json")
     public Result apiExecute(@PathVariable String path ,HttpServletRequest request, HttpServletResponse response) throws SQLException {
         Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
-        main = MapUtil.getStr(parameters, "ds");
+        main = MapUtil.getStr(parameters, "ds","main");
 //        List<Record> records  = Db.findBySql(ApiSql.class," select * from api_sql ");
 //        List<ApiSql> apiSqls = RecordUtil.recordToListBean(records, ApiSql.class);
         List<Record> apiSqls1 = Db.use(main).find(" select * from api_sql ");

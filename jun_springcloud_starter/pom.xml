@@ -13,8 +13,9 @@
     <modules>
         <!-- -->
         <module>jun-activerecord</module>
-
         <module>jun-api-engine-demo</module>
+        <module>jun_api_online_groovy</module>
+
         <module>jun-mybatis-sql-engine</module>
         <module>jun-db-activerecord</module>
         <module>jun-db-record</module>

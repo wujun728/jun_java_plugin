@@ -1,4 +1,4 @@
-package com.demo;
+package io.github.wujun728;
 
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,7 @@ public class DataSourceConfig {
 
     @Bean
     public DataSource dataSource() {
-        String url = "jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC&useInformationSchema=true";
+        String url = "jdbc:mysql://localhost:3306/db_lowcode?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC&useInformationSchema=true";
         String username = "root";
         String password = "";
         return DataSourceBuilder.create()

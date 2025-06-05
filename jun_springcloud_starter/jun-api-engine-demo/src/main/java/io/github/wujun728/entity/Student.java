@@ -1,4 +1,4 @@
-package com.demo.entity;
+package io.github.wujun728.entity;
 
 import lombok.Data;
 

@@ -2,7 +2,7 @@
     <defaultDB>test_mysql</defaultDB>
 
     <sql id="getAllUser">
-        select * from biz_test
+        select * from student
     </sql>
 
     <sql id="getUserIn" db="test_mysql">
@@ -14,15 +14,15 @@
     </sql>
 
     <sql id="getUserById">
-        select * from biz_test where id = #{id}
+        select * from student where id = #{id}
     </sql>
 
-    <sql id="createbiz_test">
-        insert into biz_test (name,age) values (#{name},#{age})
+    <sql id="createStudent">
+        insert into student (name,age) values (#{name},#{age})
     </sql>
 
     <sql id="deleteAll">
-        delete from biz_test
+        delete from student
     </sql>
 
 </sqls>
