@@ -101,8 +101,8 @@ public class HttpRequestUtil {
 		if (!CollectionUtils.isEmpty(session)) params.putAll(session);
 		if (!CollectionUtils.isEmpty(header)) params.putAll(header);
 		if (!CollectionUtils.isEmpty(urivar)) params.putAll(urivar);
-		params.put("root.path", uri);
-		params.put("root.ip", ip);
+		params.put("uri", uri);
+		params.put("ip", ip);
 		for(String key : params.keySet()){
 			params.put(key,convertNumber(params.get(key)));
 		}
@@ -319,7 +319,8 @@ public class HttpRequestUtil {
 		while (headerKeys.hasMoreElements()) {
 			String key = headerKeys.nextElement();
 			Object value = request.getHeader(key);
-			result.put("header."+key, convertNumber(value));
+//			result.put("header."+key, convertNumber(value));
+			result.put(""+key, convertNumber(value));
 		}
 		return result;
 	}
@@ -329,7 +330,8 @@ public class HttpRequestUtil {
 		Map<String, Object> result = new HashMap<>();
 		while (keys.hasMoreElements()) {
 			String key = keys.nextElement();
-			result.put("session."+key, request.getSession().getAttribute(key));
+//			result.put("session."+key, request.getSession().getAttribute(key));
+			result.put(""+key, request.getSession().getAttribute(key));
 		}
 		return result;
 	}

@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -85,17 +86,23 @@ public class RestSqlController {
 //        List<ApiSql> apiSqls = RecordUtil.recordToListBean(records, ApiSql.class);
         List<Record> apiSqls1 = Db.use(main).find(" select * from api_sql ");
         List<ApiSql> apiSqls = RecordUtil.recordToBeans(apiSqls1,ApiSql.class);
+
         //Db.use().findBeanList(ApiSql.class," select * from api_sql ");
+        List<Map<String, Object>> mapDatas = RecordUtil.recordToMaps(apiSqls1);
+        //Map<String, Map> apiSqlMap = new HashMap<>();
+
         Map<String, ApiSql> apiSqlMap = apiSqls.stream().collect(Collectors.toMap(i->i.getPath(), i->i));
-        if(apiSqlMap.containsKey(path)){
+
+        String pathNew = "/"+ path;
+        if(apiSqlMap.containsKey(pathNew)){
             /*Connection connection = Db.use(main).getDataSource().getConnection();
             Object obj = JdbcUtil.executeSql(connection, String.valueOf(apiSqlMap.get(path)), parameters);
             return Result.success(obj);*/
 
             Object data = null;
             ApiSql apiSql = new ApiSql();
-            String content = String.valueOf(apiSqlMap.get(path));
-            apiSql.setPath(path);
+            String content = String.valueOf(apiSqlMap.get(pathNew));
+            apiSql.setPath(pathNew);
             apiSql.setText(content);
             data = sqlService.doSQLProcess(apiSql, parameters);
             return Result.success(data);
