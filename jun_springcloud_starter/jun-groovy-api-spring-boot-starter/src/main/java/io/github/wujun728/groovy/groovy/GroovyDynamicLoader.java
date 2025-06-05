@@ -1,14 +1,12 @@
 package io.github.wujun728.groovy.groovy;
 
 import cn.hutool.core.lang.Console;
-import cn.hutool.extra.spring.SpringUtil;
 //import com.jfinal.plugin.activerecord.ActiveRecordException;
 //import io.github.wujun728.db.record.Db;
 //import io.github.wujun728.db.record.kit.DbKit;
 import cn.hutool.log.StaticLog;
-import io.github.wujun728.db.record.Db;
-import io.github.wujun728.groovy.common.model.ApiConfig;
 import io.github.wujun728.groovy.cache.IApiConfigCache;
+import io.github.wujun728.sql.entity.ApiConfig;
 import io.github.wujun728.groovy.service.ApiService;
 import io.github.wujun728.groovy.cache.ApiConfigCache;
 import io.github.wujun728.groovy.mapping.http.RequestMappingService;
@@ -33,7 +31,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

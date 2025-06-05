@@ -1,7 +1,7 @@
 package io.github.wujun728.groovy.mapping.http;
 
 import cn.hutool.extra.spring.SpringUtil;
-import io.github.wujun728.groovy.common.model.ApiConfig;
+import io.github.wujun728.sql.entity.ApiConfig;
 import io.github.wujun728.groovy.util.MappingRegisterUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;

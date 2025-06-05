@@ -1,9 +1,10 @@
 package io.github.wujun728.groovy.cache;
 
+import io.github.wujun728.sql.entity.ApiConfig;
+
 import java.util.Collection;
 import java.util.List;
 
-import io.github.wujun728.groovy.common.model.ApiConfig;
 
 /**
  * API信息缓存
