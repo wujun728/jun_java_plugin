@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.github.wujun728</groupId>
         <artifactId>jun_springcloud_starter</artifactId>
-        <version>1.0.22</version>
+        <version>1.0.23</version>
     </parent>
     <packaging>jar</packaging>
     <artifactId>jun-encrypt-body-spring-boot-starter</artifactId>
@@ -109,6 +109,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>

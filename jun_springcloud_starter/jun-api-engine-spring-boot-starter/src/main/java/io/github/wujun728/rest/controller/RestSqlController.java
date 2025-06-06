@@ -12,7 +12,7 @@ import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.db.utils.RecordUtil;
-import io.github.wujun728.rest.service.SqlService;
+import io.github.wujun728.rest.service.RestSqlService;
 import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.sql.entity.ApiSql;
 import io.github.wujun728.sql.utils.JdbcUtil;
@@ -20,14 +20,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -54,7 +52,7 @@ public class RestSqlController {
      }
 
     @Resource
-    SqlService sqlService;
+    RestSqlService restSqlService;
 
 
     @GetMapping(path = {"/{entityName}/init"}, produces = "application/json")
@@ -69,7 +67,7 @@ public class RestSqlController {
             StaticLog.info("url = "+ url);
             parameters.put("entityName" , entityName);
             parameters.put("tableName" , tableName);
-            sqlService.init(tableName,parameters);
+            restSqlService.init(tableName,parameters);
             return Result.success("接口初始化成功");
         } catch (Exception e) {
             String message = ExceptionUtils.getMessage(e);
@@ -87,7 +85,7 @@ public class RestSqlController {
         if(apiSqlMap.containsKey(pathNew)){
             ApiSql apiSql = apiSqlMap.get(pathNew);
             // *********************************************************************
-            Object data = sqlService.doSQLProcess(apiSql, parameters);
+            Object data = restSqlService.doSQLProcess(apiSql, parameters);
             return Result.success(data);
             // *********************************************************************
         }else{

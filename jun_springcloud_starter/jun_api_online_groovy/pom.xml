@@ -33,22 +33,19 @@
         <!--<dependency>
             <groupId>io.github.wujun728</groupId>
             <artifactId>jun-db-jdbctemplate</artifactId>
-            <version>1.0.22</version>
         </dependency>-->
         <dependency>
             <groupId>io.github.wujun728</groupId>
             <artifactId>jun-api-engine-spring-boot-starter</artifactId>
-            <version>1.0.22</version>
+            <version>1.0.23</version>
         </dependency>
         <!--<dependency>
             <groupId>io.github.wujun728</groupId>
             <artifactId>jun-groovy-api-spring-boot-starter</artifactId>
-            <version>1.0.22</version>
         </dependency>
         <dependency>
             <groupId>io.github.wujun728</groupId>
             <artifactId>jun-api-engine-spring-boot-starter</artifactId>
-            <version>1.0.22</version>
         </dependency>-->
         <!--thymeleaf默认使用html5规则标签必须闭合等 使用次此包正常解析-->
         <dependency>

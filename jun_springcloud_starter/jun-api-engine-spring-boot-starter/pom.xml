@@ -6,10 +6,9 @@
     <parent>
         <groupId>io.github.wujun728</groupId>
         <artifactId>jun_springcloud_starter</artifactId>
-        <version>1.0.22</version>
+        <version>1.0.23</version>
     </parent>
     <artifactId>jun-api-engine-spring-boot-starter</artifactId>
-    <version>1.0.22</version>
     <description>jun-api-engine-spring-boot-starter</description>
     <url>https://gitee.com/wujun728/jun-api-engine-spring-boot-starter</url>
 
@@ -53,7 +52,6 @@
         <dependency>
             <groupId>io.github.wujun728</groupId>
             <artifactId>jun-mybatis-sql-engine</artifactId>
-            <version>1.0.22</version>
         </dependency>
         <!--<dependency>
             <groupId>com.alibaba</groupId>
@@ -106,6 +104,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>

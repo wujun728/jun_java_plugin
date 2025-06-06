@@ -23,7 +23,7 @@ import io.github.wujun728.common.base.Result;
 import io.github.wujun728.sql.entity.ApiConfig;
 import io.github.wujun728.sql.entity.ApiSql;
 import io.github.wujun728.groovy.interfaces.IRun;
-import io.github.wujun728.rest.service.SqlService;
+import io.github.wujun728.rest.service.RestSqlService;
 import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.groovy.cache.ApiConfigCache;
 import io.github.wujun728.groovy.cache.IApiConfigCache;
@@ -194,7 +194,7 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 
 
 	@Resource
-	SqlService sqlService;
+	RestSqlService restSqlService;
 	/**
 	 * 执行脚本逻辑
 	 */
@@ -225,7 +225,7 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 					apiSql.setPath(config.getPath());
 					apiSql.setText(config.getScriptContent());
 					Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
-					data = sqlService.doSQLProcess(apiSql, parameters);
+					data = restSqlService.doSQLProcess(apiSql, parameters);
 					break;
 				case "Class":
 					data = doGroovyProcess(config, request, response);

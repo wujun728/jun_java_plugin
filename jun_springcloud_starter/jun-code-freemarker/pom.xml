@@ -6,12 +6,11 @@
     <parent>
         <groupId>io.github.wujun728</groupId>
         <artifactId>jun_springcloud_starter</artifactId>
-        <version>1.0.22</version>
+        <version>1.0.23</version>
     </parent>
 
     <groupId>io.github.wujun728</groupId>
     <artifactId>jun-code-freemarker</artifactId>
-    <version>1.0.22</version>
     <packaging>jar</packaging>
     <name>jun-code-freemarker</name>
 
@@ -89,8 +88,7 @@
         </dependency>
         <dependency>
             <groupId>io.github.wujun728</groupId>
-            <artifactId>jun-api-engine</artifactId>
-            <version>1.0.22</version>
+            <artifactId>jun-api-engine-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.freemarker</groupId>

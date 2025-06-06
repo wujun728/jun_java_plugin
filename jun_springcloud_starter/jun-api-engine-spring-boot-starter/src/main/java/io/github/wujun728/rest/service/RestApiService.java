@@ -40,7 +40,7 @@ import static io.github.wujun728.rest.util.RestUtil.setPkValue;
 
 @Slf4j
 @Service
-public class ApiService {
+public class RestApiService {
 
     public List<Map<String, Object>> getList(String tableName, Map<String, Object> parameters){
         String entityName = MapUtil.getString(parameters,"entityName");

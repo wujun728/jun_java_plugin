@@ -14,7 +14,7 @@ import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.db.utils.RecordUtil;
-import io.github.wujun728.rest.service.ApiService;
+import io.github.wujun728.rest.service.RestApiService;
 import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.rest.util.RestUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +39,7 @@ import java.util.Map;
 public class RestApiController {
 
     @Resource
-    ApiService apiService;
+    RestApiService restApiService;
 
     private String main = "main";
 
@@ -55,7 +55,7 @@ public class RestApiController {
             StaticLog.info("url = "+ url);
             parameters.put("entityName" , entityName);
             parameters.put("tableName" , tableName);
-            List<Map<String, Object>> datas = apiService.getList(tableName,parameters);
+            List<Map<String, Object>> datas = restApiService.getList(tableName,parameters);
             return Result.success(datas);
         } catch (Exception e) {
             String message = ExceptionUtils.getMessage(e);
@@ -76,7 +76,7 @@ public class RestApiController {
             StaticLog.info("url = "+ url);
             parameters.put("entityName" , entityName);
             parameters.put("tableName" , tableName);
-            Page<Record> pages = apiService.getPage(tableName,parameters);
+            Page<Record> pages = restApiService.getPage(tableName,parameters);
             List<Map<String, Object>> datas = RecordUtil.recordToMaps(pages.getList(),isUnderLine);
             return Result.success(datas).put("count", pages.getTotalRow()).put("pageSize", pages.getPageSize()).put("totalPage", pages.getTotalPage()).put("pageNumber", pages.getPageNumber());
         } catch (Exception e) {
@@ -100,7 +100,7 @@ public class RestApiController {
             parameters.put("entityName" , entityName);
             parameters.put("tableName" , tableName);
             parameters.put("url" , url);
-            List<Map<String, Object>> datas = apiService.getTree(tableName,parameters);
+            List<Map<String, Object>> datas = restApiService.getTree(tableName,parameters);
             return Result.success(datas);
             //是否构建树 end
         } catch (Exception e) {

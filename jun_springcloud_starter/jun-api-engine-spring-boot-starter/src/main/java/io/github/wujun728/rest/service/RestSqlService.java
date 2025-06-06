@@ -30,7 +30,7 @@ import java.util.*;
 import static io.github.wujun728.db.utils.DataSourcePool.main;
 
 @Service
-public class SqlService {
+public class RestSqlService {
 
     public void init(String tableName, Map<String, Object> parameters) throws SQLException, TemplateException, IOException {
         /*String url = "jdbc:mysql://localhost:3306/db_qixing_bk?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC&useInformationSchema=true";

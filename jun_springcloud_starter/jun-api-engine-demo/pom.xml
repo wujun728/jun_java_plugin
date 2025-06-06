@@ -6,11 +6,10 @@
     <parent>
         <groupId>io.github.wujun728</groupId>
         <artifactId>jun_springcloud_starter</artifactId>
-        <version>1.0.22</version>
+        <version>1.0.23</version>
     </parent>
     <groupId>io.github.wujun728</groupId>
     <artifactId>jun-api-engine-demo</artifactId>
-    <version>1.0.22</version>
 
     <!--<parent>
         <groupId>org.springframework.boot</groupId>
@@ -40,7 +39,6 @@
         <dependency>
             <groupId>io.github.wujun728</groupId>
             <artifactId>jun-api-engine-spring-boot-starter</artifactId>
-            <version>1.0.22</version>
         </dependency>
 
 
@@ -51,6 +49,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
