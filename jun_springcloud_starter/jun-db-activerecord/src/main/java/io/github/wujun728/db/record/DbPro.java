@@ -9,6 +9,7 @@ import cn.hutool.log.StaticLog;
 import io.github.wujun728.db.record.dialect.*;
 import io.github.wujun728.db.record.mapper.BaseRowMapper;
 import io.github.wujun728.db.record.mapper.BatchSql;
+import io.github.wujun728.db.utils.MapKit;
 import io.github.wujun728.db.utils.RecordUtil;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
@@ -197,19 +198,19 @@ public class DbPro{
 
     public boolean saveBean(Object bean) {
         Record record = RecordUtil.beanToRecord(bean);
-        String tableName = RecordUtil.getTableName(bean);
+        String tableName = MapKit.getTableName(bean);
         return save(tableName,record);
     }
 
     public boolean updateBean(Object bean) {
         Record  record = RecordUtil.beanToRecord(bean);
-        String tableName = RecordUtil.getTableName(bean);
+        String tableName = MapKit.getTableName(bean);
         return update(tableName,record);
     }
 
     public boolean deleteBean(Object bean) {
         Record  record = RecordUtil.beanToRecord(bean);
-        String tableName = RecordUtil.getTableName(bean);
+        String tableName = MapKit.getTableName(bean);
         return delete(tableName,record);
     }
 
@@ -834,14 +835,14 @@ public class DbPro{
 
     public <T> List<T> findBeanList(Class clazz, String sql, Object... params) {
         List datas = queryList(sql, params);
-        return RecordUtil.mapToBeans(datas, clazz);
+        return MapKit.mapToBeans(datas, clazz);
     }
 
 
 
 
     public <T> T findBeanById(Class<T> clazz, Object idValue) {
-        String tableName = RecordUtil.getTableName(clazz);
+        String tableName = MapKit.getTableName(clazz);
         String primaryKeyStr = getPkNames(tableName);
         Record record = findByIds(tableName, primaryKeyStr, idValue);
         if (record == null) {
@@ -853,7 +854,7 @@ public class DbPro{
 
 
     public <T> T findBeanById(Class beanClass, String primaryKeys, Object... idValue) {
-        String tableName = RecordUtil.getTableName(beanClass);
+        String tableName = MapKit.getTableName(beanClass);
         String primaryKeyStr = StrUtil.join(",", primaryKeys);
         if (primaryKeys == null || StrUtil.isEmpty(primaryKeyStr)) {
             primaryKeyStr = getPkNames(tableName);
@@ -879,7 +880,7 @@ public class DbPro{
             sql = dialect.forPaginate(page,rows,new StringBuilder(sql));
         }
         List<Map<String, Object>> listData = queryList(sql);
-        pageVo.setList(RecordUtil.mapToBeans(listData, beanClass));
+        pageVo.setList(MapKit.mapToBeans(listData, beanClass));
         int totalRow = count(sql);
         pageVo.setTotalRow(totalRow);
         pageVo.setPageSize(rows);

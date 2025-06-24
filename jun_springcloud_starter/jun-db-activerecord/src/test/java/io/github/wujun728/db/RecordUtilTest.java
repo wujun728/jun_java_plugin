@@ -5,6 +5,7 @@ import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
 import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.test.User;
+import io.github.wujun728.db.utils.MapKit;
 import io.github.wujun728.db.utils.RecordUtil;
 
 import java.util.*;
@@ -31,13 +32,13 @@ public class RecordUtilTest {
         List<Map<String, Object>> map1ss = RecordUtil.recordToMaps(record1ss);
         printLog("recordToMaps map1ss = ", map1ss);
 
-        List<User> user1ss = RecordUtil.mapToBeans(map1ss, User.class);
+        List<User> user1ss = MapKit.mapToBeans(map1ss, User.class);
         printLog("mapToBeans user1ss = ", user1ss);
 
         List<User> user22ss = RecordUtil.recordToBeans(record1ss, User.class);
         printLog("recordToBeans user22ss  = ", user22ss);
 
-        List<Map<String, Object>> map22ss = RecordUtil.beanToMaps(user1ss);
+        List<Map<String, Object>> map22ss = MapKit.beanToMaps(user1ss);
         printLog("beanToMaps map22ss = ", map22ss);
 
         List<Record> record33 = RecordUtil.beanToRecords(user1ss);
@@ -56,13 +57,13 @@ public class RecordUtilTest {
         Map map1 = RecordUtil.recordToMap(record1);
         printLog("recordToMap map1 = ", map1);
 
-        User user1 = RecordUtil.mapToBean(map1, User.class);
+        User user1 = MapKit.mapToBean(map1, User.class);
         printLog("mapToBean user1 = ", user1);
 
         User user22 = RecordUtil.recordToBean(record1, User.class);
         printLog("recordToBean user22  = ", user22);
 
-        Map map22 = RecordUtil.beanToMap(user1);
+        Map map22 = MapKit.beanToMap(user1);
         printLog("beanToMap user1 = ", map22);
 
         Record record33 = RecordUtil.beanToRecord(user1);
