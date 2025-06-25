@@ -14,7 +14,6 @@ import io.github.wujun728.db.utils.DataSourcePool;
 import io.github.wujun728.db.utils.RecordUtil;
 import io.github.wujun728.generator.CodeUtil;
 import io.github.wujun728.generator.entity.ClassInfo;
-import io.github.wujun728.rest.util.SQLUtil;
 import io.github.wujun728.sql.entity.ApiDataSource;
 import io.github.wujun728.sql.entity.ApiSql;
 import io.github.wujun728.sql.utils.JdbcUtil;

@@ -16,13 +16,11 @@
         <module>jun-mybatis-sql-engine</module>
         <module>jun-db-activerecord</module>
         <module>jun-db-record</module>
-        <module>jun-code-freemarker</module>
         <module>jun-common-base</module>
         <module>jun-common-core</module>
         <module>jun-api-engine-spring-boot-starter</module>
         <module>jun-groovy-api-spring-boot-starter</module>
         <module>jun-uidgenerator-spring-boot-starter</module>
-        <module>jun-codegen-spring-boot-starter</module>
         <module>jun-onlineForm-spring-boot-starter</module>
         <module>jun-snakerflow-spring-boot-starter</module>
         <module>jun-db-spring-boot-starter</module>
