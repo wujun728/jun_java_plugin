@@ -18,7 +18,6 @@
         <module>jun-db-record</module>
         <module>jun-common-base</module>
         <module>jun-common-core</module>
-        <module>jun-api-engine-spring-boot-starter</module>
         <module>jun-groovy-api-spring-boot-starter</module>
         <module>jun-uidgenerator-spring-boot-starter</module>
         <module>jun-onlineForm-spring-boot-starter</module>
@@ -32,8 +31,6 @@
         <module>jun-encrypt-body-spring-boot-starter</module>
         <module>jun-minio-spring-boot-starter</module>
 
-        <module>jun-api-engine-demo</module>
-        <module>jun_api_online_groovy</module>
     </modules>
 
     <properties>
@@ -130,11 +127,6 @@
             </dependency>
             <dependency>
                 <groupId>io.github.wujun728</groupId>
-                <artifactId>jun-api-engine-spring-boot-starter</artifactId>
-                <version>${jun.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-uidgenerator-spring-boot-starter</artifactId>
                 <version>${jun.version}</version>
             </dependency>
@@ -148,11 +140,6 @@
                 <artifactId>jun-groovy-api-spring-boot-starter</artifactId>
                 <version>${jun.version}</version>
             </dependency>
-            <!--<dependency>
-                <groupId>io.github.wujun728</groupId>
-                <artifactId>jun-common-spring-boot-starter</artifactId>
-                <version>${jun.version}</version>
-            </dependency>-->
             <dependency>
                 <groupId>io.github.wujun728</groupId>
                 <artifactId>jun-common-core</artifactId>

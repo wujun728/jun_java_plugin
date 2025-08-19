@@ -1,8 +1,0 @@
-<sqls>
-    <defaultDB>main</defaultDB>
-
-    <sql id="getAllLog" db="main">
-        select * from sys_log
-    </sql>
-
-</sqls>

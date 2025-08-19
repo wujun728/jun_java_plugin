@@ -117,16 +117,16 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-context</artifactId>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-annotation</artifactId>
             <version>3.5.9</version>
-        </dependency>-->
-        <dependency>
+        </dependency>
+        <!--<dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-core</artifactId>
             <version>3.5.9</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
