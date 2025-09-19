@@ -1,18 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.maku.framework.common.utils.PageResult
- */
 package io.github.wujun728.online.service;
 
-import java.rmi.ServerException;
 import java.util.List;
 import java.util.Map;
 
 import io.github.wujun728.online.common.PageResult;
 import io.github.wujun728.online.query.OnlineFormQuery;
 import io.github.wujun728.online.vo.form.OnlineFormVO;
+import net.maku.framework.common.exception.ServerException;
 
 public interface OnlineFormService {
     public OnlineFormVO getJSON(String var1) throws ServerException;

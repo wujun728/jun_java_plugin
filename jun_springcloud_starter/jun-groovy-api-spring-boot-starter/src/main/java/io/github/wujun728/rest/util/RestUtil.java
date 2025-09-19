@@ -16,16 +16,13 @@ import io.github.wujun728.db.record.Record;
 //import io.github.wujun728.db.record.interfaces.IRecordHandler;
 import io.github.wujun728.db.utils.FieldUtils;
 import org.springframework.util.CollectionUtils;
-
 import javax.sql.DataSource;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
 public class RestUtil {
-
 
 
     public static void buildRecord(Map<String, Object> parameters, Table table, Record record) {

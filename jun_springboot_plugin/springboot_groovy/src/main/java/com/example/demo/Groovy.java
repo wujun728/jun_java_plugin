@@ -11,6 +11,11 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineFactory;
 import javax.script.ScriptEngineManager;
 
+import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import groovy.lang.GroovyClassLoader;
+import groovy.lang.GroovyObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -153,6 +158,15 @@ public class Groovy {
     }
 
     public static void main(String[] args) {
+        test1();
+//        test2();
+
+     /*   Object res3 = groovy.runGroovyScriptByFile(null, "hello.groovy", "hello", new String[] { "param3", "param4" });
+        System.out.println(res3);
+*/
+    }
+
+    private static void test2() {
         Groovy groovy = new Groovy();
         groovy.getScriptEngineFactoryList();
         Map<String, Object> params = new HashMap<String, Object>();
@@ -162,9 +176,49 @@ public class Groovy {
         Object res1 = groovy.runGroovyScript(script, "hello", new String[] { "param1", "param2" });
         System.out.println(res);
         System.out.println(res1);
+    }
+    private static void test3() {
+        Groovy groovy = new Groovy();
+        groovy.getScriptEngineFactoryList();
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("language", "groovy test");
+        Object res = groovy.runGroovyScript(" class GroovyClass {\n" +
+                "    String name\n" +
+                "        def message = \"Hello from Groovy\"\n" +
+                "        def abc(a,b){\n" +
+                "                return a+b;\n" +
+                "        }\n" +
+                "    void greet() {\n" +
+                "        println(\"Hello 111 , ${name}\")\n" +
+                "    }\n" +
+                "}\n" +
+                "def obj = new GroovyClass(name: \"World\")\n" +
+                "obj.greet()", params);
+        System.out.println(res);
+    }
 
-     /*   Object res3 = groovy.runGroovyScriptByFile(null, "hello.groovy", "hello", new String[] { "param3", "param4" });
-        System.out.println(res3);
-*/
+    private static void test1() {
+        String script = "package groovy;\n" +
+                "\n" +
+                "import com.alibaba.fastjson.JSON;\n" +
+                "import com.alibaba.fastjson.JSONObject;\n" +
+                "public class Test001 {\n" +
+                "    public JSONObject run (String map) {\n" +
+                "       return  JSON.parseObject(map);\n" +
+                "    }\n" +
+                "}\n";
+        String param = "        {\"1\":2,\"3\":\"4\"}";
+
+        ClassLoader parent = Thread.currentThread().getContextClassLoader();
+        GroovyClassLoader loader = new GroovyClassLoader(parent);
+        Class groovyClass = loader.parseClass(script);
+        GroovyObject groovyObject = null;
+        try {
+            groovyObject = (GroovyObject) groovyClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Object res = groovyObject.invokeMethod("run", param);
+        System.out.println(JSONUtil.toJsonPrettyStr(res));
     }
 }

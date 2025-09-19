@@ -1,52 +1,53 @@
 package io.github.wujun728.online.vo;
 
-
 import lombok.Data;
 
+/**
+ * 在线表字段VO类
+ * 用于表示在线表单中的表字段信息
+ */
+//@Schema(description="Online表单字段")
 @Data
-//@Schema(description="Online\u8868\u5355\u5b57\u6bb5")
 public class OnlineTableColumnVO {
-    //@Schema(description="\u8868\u5355\u9879")
-    private /* synthetic */ boolean formItem;
-    //@Schema(description="\u5b57\u6bb5\u63cf\u8ff0")
-    private /* synthetic */ String comments;
-    //@Schema(description="\u8868\u5355\u5b57\u5178")
-    private /* synthetic */ String formDict;
-    //@Schema(description="\u8868\u5355\u63a7\u4ef6\u9ed8\u8ba4\u503c")
-    private /* synthetic */ String formDefault;
-    //@Schema(description="\u5217\u8868\u6392\u5e8f")
-    private /* synthetic */ boolean gridSort;
-    //@Schema(description="\u5b57\u6bb5\u540d\u79f0")
-    private /* synthetic */ String name;
-    //@Schema(description="\u5c0f\u6570\u70b9")
-    private /* synthetic */ Integer pointLength;
-    private static /* synthetic */ int[] RC;
+    //@Schema(description="表单项")
+    private boolean formItem;
+    //@Schema(description="字段描述")
+    private String comments;
+    //@Schema(description="表单字典")
+    private String formDict;
+    //@Schema(description="表单控件默认值")
+    private String formDefault;
+    //@Schema(description="列表排序")
+    private boolean gridSort;
+    //@Schema(description="字段名称")
+    private String name;
+    //@Schema(description="小数点")
+    private Integer pointLength;
     //@Schema(description="id")
-    private /* synthetic */ Long id;
-    //@Schema(description="\u5217\u8868\u9879")
-    private /* synthetic */ boolean gridItem;
-    //@Schema(description="\u5b57\u6bb5\u4e3a\u7a7a")
-    private /* synthetic */ boolean columnNull;
-    //@Schema(description="\u5b57\u6bb5\u4e3b\u952e")
-    private /* synthetic */ boolean columnPk;
-    //@Schema(description="\u67e5\u8be2\u65b9\u5f0f")
-    private /* synthetic */ String queryType;
-    //@Schema(description="\u5b57\u6bb5\u957f\u5ea6")
-    private /* synthetic */ Integer length;
-    //@Schema(description="\u8868\u5355\u63a7\u4ef6")
-    private /* synthetic */ String formInput;
-    //@Schema(description="\u67e5\u8be2\u63a7\u4ef6")
-    private /* synthetic */ String queryInput;
-    //@Schema(description="\u67e5\u8be2\u9879")
-    private /* synthetic */ boolean queryItem;
-    //@Schema(description="\u6392\u5e8f")
-    private /* synthetic */ Integer sort;
-    //@Schema(description="\u5b57\u6bb5\u7c7b\u578b")
-    private /* synthetic */ String columnType;
-    //@Schema(description="\u8868\u5355\u5fc5\u586b")
-    private /* synthetic */ boolean formRequired;
-    //@Schema(description="\u9ed8\u8ba4\u503c")
-    private /* synthetic */ String defaultValue;
-
+    private Long id;
+    //@Schema(description="列表项")
+    private boolean gridItem;
+    //@Schema(description="字段为空")
+    private boolean columnNull;
+    //@Schema(description="字段主键")
+    private boolean columnPk;
+    //@Schema(description="查询方式")
+    private String queryType;
+    //@Schema(description="字段长度")
+    private Integer length;
+    //@Schema(description="表单控件")
+    private String formInput;
+    //@Schema(description="查询控件")
+    private String queryInput;
+    //@Schema(description="查询项")
+    private boolean queryItem;
+    //@Schema(description="排序")
+    private Integer sort;
+    //@Schema(description="字段类型")
+    private String columnType;
+    //@Schema(description="表单必填")
+    private boolean formRequired;
+    //@Schema(description="默认值")
+    private String defaultValue;
 }
 

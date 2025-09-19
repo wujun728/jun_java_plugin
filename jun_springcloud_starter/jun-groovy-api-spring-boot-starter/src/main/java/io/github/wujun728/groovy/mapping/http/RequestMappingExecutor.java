@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import cn.hutool.core.util.CharsetUtil;
 import com.alibaba.fastjson2.JSON;
 import io.github.wujun728.common.base.Result;
+import io.github.wujun728.groovy.service.GroovyApiService;
 import io.github.wujun728.sql.entity.ApiConfig;
 import io.github.wujun728.sql.entity.ApiSql;
 import io.github.wujun728.groovy.interfaces.IRun;
@@ -51,7 +52,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RequestMappingExecutor implements IMappingExecutor,ApplicationListener<ContextRefreshedEvent> {
 
 	@Autowired
-	private io.github.wujun728.groovy.service.ApiService apiService;
+	private GroovyApiService groovyApiService;
 
 	@Autowired
 	private IApiConfigCache apiInfoCache;

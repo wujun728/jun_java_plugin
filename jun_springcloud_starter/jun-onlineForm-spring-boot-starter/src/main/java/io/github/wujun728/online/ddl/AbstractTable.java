@@ -1,68 +1,50 @@
 package io.github.wujun728.online.ddl;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.util.Base64;
-import java.util.List;
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 import io.github.wujun728.online.vo.OnlineTableColumnVO;
 import io.github.wujun728.online.vo.OnlineTableVO;
 
+import java.util.List;
+
+/**
+ * 数据库表操作抽象类
+ */
 public abstract class AbstractTable {
-    private static /* synthetic */ int[] TC;
-    private static /* synthetic */ String[] oC;
 
-    private static String ZE(String sfXb, String TfXb) {
-        try {
-            SecretKeySpec XfXb = new SecretKeySpec(MessageDigest.getInstance("MD5").digest(TfXb.getBytes(StandardCharsets.UTF_8)), "Blowfish");
-            Cipher wfXb = Cipher.getInstance("Blowfish");
-            wfXb.init(TC[2], XfXb);
-            return new String(wfXb.doFinal(Base64.getDecoder().decode(sfXb.getBytes(StandardCharsets.UTF_8))), StandardCharsets.UTF_8);
-        }
-        catch (Exception VfXb) {
-            VfXb.printStackTrace();
-            return null;
-        }
+    /**
+     * 获取删除表的SQL语句
+     */
+    public String getDropTableSQL(String tableName) {
+        return String.format("DROP TABLE IF EXISTS `%s`", tableName);
     }
 
-    public String getDropTableSQL(String yGXb) {
-        Object[] objectArray = new Object[TC[1]];
-        objectArray[AbstractTable.TC[0]] = yGXb;
-        return String.format(oC[TC[0]], objectArray);
-    }
+    /**
+     * 获取添加列的SQL语句
+     */
+    public abstract List<String> getInsertColumnSQL(String tableName, OnlineTableColumnVO column);
 
-    public abstract List<String> getInsertColumnSQL(String var1, OnlineTableColumnVO var2);
+    /**
+     * 获取更新列的SQL语句
+     */
+    public abstract List<String> getUpdateColumnSQL(String tableName, OnlineTableColumnVO newColumn, OnlineTableColumnVO oldColumn);
 
-    public abstract List<String> getUpdateColumnSQL(String var1, OnlineTableColumnVO var2, OnlineTableColumnVO var3);
+    /**
+     * 获取重命名表的SQL语句
+     */
+    public abstract String getRenameTableSQL(String tableName);
 
-    public abstract String getRenameTableSQL(String var1);
+    /**
+     * 获取更新表的SQL语句
+     */
+    public abstract String getUpdateTableSQL(String tableName, String comments);
 
-    private static void Vf() {
-        TC = new int[3];
-        AbstractTable.TC[0] = "   ".length() & ~"   ".length();
-        AbstractTable.TC[1] = " ".length();
-        AbstractTable.TC[2] = "  ".length();
-    }
+    /**
+     * 获取创建表的SQL语句
+     */
+    public abstract String getTableSQL(OnlineTableVO tableVO);
 
-    public abstract String getUpdateTableSQL(String var1, String var2);
-
-    static {
-        AbstractTable.Vf();
-        AbstractTable.hf();
-    }
-
-    public abstract String getTableSQL(OnlineTableVO var1);
-
-    public abstract String getDropColumnSQL(String var1, String var2);
-
-    private static void hf() {
-        oC = new String[TC[1]];
-        AbstractTable.oC[AbstractTable.TC[0]] = AbstractTable.ZE("i/JDPuJ6Ri46WgII5mHUYrXUjDf9hCai", "UAblt");
-    }
-
-    public AbstractTable() {
-        AbstractTable JhXb;
-    }
+    /**
+     * 获取删除列的SQL语句
+     */
+    public abstract String getDropColumnSQL(String tableName, String columnName);
 }
 

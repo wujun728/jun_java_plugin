@@ -1,49 +1,39 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.annotation.JsonFormat
- *  io.swagger.v3.oas.annotations.media.Schema
- */
 package io.github.wujun728.online.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import java.util.Date;
 import java.util.List;
 
-import lombok.Data;
-
-//@Schema(description="Online\u8868\u5355\u5f00\u53d1")
+/**
+ * 在线表VO类
+ * 用于表示在线表单的完整表结构信息
+ */
+//@Schema(description="Online表单开发")
 @Data
 public class OnlineTableVO {
-    private static /* synthetic */ int[] Nd;
-    //@Schema(description="\u521b\u5efa\u65f6\u95f4")
+    //@Schema(description="创建时间")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private /* synthetic */ Date createTime;
+    private Date createTime;
     //@Schema(description="id")
-    private /* synthetic */ String id;
-    //@Schema(description="\u662f\u5426\u6811  0\uff1a\u5426   1\uff1a\u662f")
-    private /* synthetic */ Integer tree;
-    //@Schema(description="\u8868\u7c7b\u578b  0\uff1a\u5355\u8868")
-    private /* synthetic */ Integer tableType;
-    //@Schema(description="\u8868\u5355\u5e03\u5c40  1\uff1a\u4e00\u5217   2\uff1a\u4e24\u5217   3\uff1a\u4e09\u5217    4\uff1a\u56db\u5217")
-    private /* synthetic */ Integer formLayout;
-    //@Schema(description="\u6811\u7236id")
-    private /* synthetic */ String treePid;
-    //@Schema(description="\u6811\u5c55\u793a\u5217")
-    private /* synthetic */ String treeLabel;
-    //@Schema(description="\u7248\u672c\u53f7")
-    private /* synthetic */ Integer version;
-    //@Schema(description="\u8868\u540d")
-    private /* synthetic */ String name;
-    //@Schema(description="\u8868\u5b57\u6bb5")
-    private /* synthetic */ List<OnlineTableColumnVO> columnList;
-    //@Schema(description="\u8868\u63cf\u8ff0")
-    private /* synthetic */ String comments;
-
-//    public List<OnlineTableColumnVO> getColumnList() {
-//        return fZub.columnList;
-//    }
-
+    private String id;
+    //@Schema(description="是否树  0：否   1：是")
+    private Integer tree;
+    //@Schema(description="表类型  0：单表")
+    private Integer tableType;
+    //@Schema(description="表单布局  1：一列   2：两列   3：三列    4：四列")
+    private Integer formLayout;
+    //@Schema(description="树父id")
+    private String treePid;
+    //@Schema(description="树展示列")
+    private String treeLabel;
+    //@Schema(description="版本号")
+    private Integer version;
+    //@Schema(description="表名")
+    private String name;
+    //@Schema(description="表字段")
+    private List<OnlineTableColumnVO> columnList;
+    //@Schema(description="表描述")
+    private String comments;
 }
 

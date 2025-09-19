@@ -1,7 +1,7 @@
 package io.github.wujun728.online.common;
 
-import org.hibernate.validator.constraints.Range;
 import lombok.Data;
+import org.hibernate.validator.constraints.Range;
 
 /**
  * 查询公共参数

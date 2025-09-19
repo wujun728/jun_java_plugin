@@ -1,7 +1,7 @@
 
 package io.github.wujun728.db.record;
 
-import cn.hutool.core.util.ObjUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
@@ -30,15 +30,37 @@ public class Db<T> {
     @PostConstruct
     public void init() {
         try {
-            DataSource dataSource = SpringUtil.getBean(DataSource.class);
-            if (dataSource != null) {
-                Db.init(Db.main, dataSource);
-                DataSourcePool.init(main, dataSource);
-                StaticLog.info("main数据源，当前main默认注入容器DataSource数据源。");
-                StaticLog.info("jdbcTemplateMap.main，当前main数据源默认注入JdbcTemplate。");
+            String enable = SpringUtil.getProperty("db.main.enable");
+            enable = DbPool.TRUE.equals(enable)?DbPool.TRUE:DbPool.FALSE;
+            String ds = SpringUtil.getProperty("db.main.ds");
+            if(Boolean.valueOf(enable)){
+                DataSource dataSource = SpringUtil.getBean(ds);
+                if(ObjectUtil.isEmpty(dataSource)){
+                    dataSource = SpringUtil.getBean(DataSource.class);
+                }
+                if(ObjectUtil.isNotEmpty(dataSource)){
+                    Db.init(main,dataSource,true);
+                    DataSourcePool.init(main, dataSource);
+                    StaticLog.info("main数据源，当前main默认注入容器DataSource数据源。");
+                    StaticLog.info("jdbcTemplateMap.main，当前main数据源默认注入JdbcTemplate。");
+                }
             }
         } catch (Exception e) {
             StaticLog.error("warning : ExceptionInInitializerError 当前非Spring容器运行，请手动初始化Db.init的数据源。" + e.getMessage());
+        }
+    }
+
+    public static void init(DataSource dataSource) {
+        init(main, dataSource);
+    }
+
+    public static void init(String configName, DataSource dataSource) {
+        init(configName, dataSource,false);
+    }
+    public static void init(String configName, DataSource dataSource,Boolean force) {
+        DbPro dbPro = DbPro.init(configName, dataSource,force);
+        if (configName.equalsIgnoreCase(main)) {
+            MAIN = dbPro;
         }
     }
 
@@ -50,26 +72,17 @@ public class Db<T> {
 
     public static DbPro use(String configName) {
         if(StrUtil.isEmpty(configName)){
-            throw new RuntimeException("error : 当前[" + configName + "]的configName不存在。");
+            throw new RuntimeException("error :  [" + configName + "] configName不能为空。");
         }
         DbPro result = DbPro.cache.get(configName);
         if (result == null || result.getDataSource() == null || result.getJdbcTemplate() == null) {
             System.err.println("error : 当前Db.use(" + configName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的configName数据源。");
-            throw new RuntimeException("error : 当前Db.use(" + configName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的configName数据源。");
+            StaticLog.error("error : 当前Db.use(" + configName + ")的数据源,不存在。请使用[main]数据源,或者使用初始化的configName数据源。");
         }
         return result;
     }
 
-    public static void init(DataSource dataSource) {
-        init(main, dataSource);
-    }
 
-    public static void init(String configName, DataSource dataSource) {
-        DbPro dbPro = DbPro.init(configName, dataSource);
-        if (configName.equalsIgnoreCase(main)) {
-            MAIN = dbPro;
-        }
-    }
 
     /**
      * main方法，测试使用
@@ -109,7 +122,7 @@ public class Db<T> {
 //    }
 
     private static void checkDbProNull() {
-        if (ObjUtil.isEmpty(MAIN)) {
+        if (ObjectUtil.isEmpty(MAIN)) {
             throw new DbException("请调用Db.init初始化数据源(仅需初始化一次即可)");
         }
     }

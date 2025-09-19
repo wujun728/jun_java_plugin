@@ -7,7 +7,7 @@ import cn.hutool.core.lang.Console;
 import cn.hutool.log.StaticLog;
 import io.github.wujun728.groovy.cache.IApiConfigCache;
 import io.github.wujun728.sql.entity.ApiConfig;
-import io.github.wujun728.groovy.service.ApiService;
+import io.github.wujun728.groovy.service.GroovyApiService;
 import io.github.wujun728.groovy.cache.ApiConfigCache;
 import io.github.wujun728.groovy.mapping.http.RequestMappingService;
 //import com.jfinal.plugin.activerecord.ActiveRecordException;
@@ -55,7 +55,7 @@ public class GroovyDynamicLoader implements ApplicationContextAware, Initializin
 			GroovyDynamicLoader.class.getClassLoader());
 
 	@Resource
-	private ApiService apiService;
+	private GroovyApiService groovyApiService;
 
 	@Resource
 	private IApiConfigCache apiInfoCache;
@@ -67,19 +67,20 @@ public class GroovyDynamicLoader implements ApplicationContextAware, Initializin
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-
-		long start = System.currentTimeMillis();
+		/*long start = System.currentTimeMillis();
 		System.out.println("开始解析groovy脚本...");
 		initNew();
 		long cost = System.currentTimeMillis() - start;
-		System.out.println("结束解析groovy脚本...，耗时：" + cost);
+		System.out.println("结束解析groovy脚本...，耗时：" + cost);*/
 	}
 
-	private void initNew() {
+	public void initNew() {
+        long start = System.currentTimeMillis();
+        System.out.println("开始解析groovy脚本...");
 		try {
-			apiService.init();
+			groovyApiService.init();
 
-			List<ApiConfig> groovyScripts = apiService.queryApiConfigList();
+			List<ApiConfig> groovyScripts = groovyApiService.queryApiConfigList();
 
 			apiInfoCache.putAll(groovyScripts);
 
@@ -101,6 +102,8 @@ public class GroovyDynamicLoader implements ApplicationContextAware, Initializin
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+        long cost = System.currentTimeMillis() - start;
+        System.out.println("结束解析groovy脚本...，耗时：" + cost);
 	}
 
 	private void initNew(List<ApiConfig> groovyInfos) {
@@ -148,7 +151,7 @@ public class GroovyDynamicLoader implements ApplicationContextAware, Initializin
 
 	public void refreshNew() {
 
-		List<ApiConfig> groovyInfos = apiService.queryApiConfigList();
+		List<ApiConfig> groovyInfos = groovyApiService.queryApiConfigList();
 
 		apiInfoCache.putAll(groovyInfos);
 

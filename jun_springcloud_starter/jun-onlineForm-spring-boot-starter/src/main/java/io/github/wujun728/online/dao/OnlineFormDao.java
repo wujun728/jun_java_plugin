@@ -1,11 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.baomidou.mybatisplus.core.metadata.IPage
- *  org.apache.ibatis.annotations.Mapper
- *  org.apache.ibatis.annotations.Param
- */
 package io.github.wujun728.online.dao;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -14,6 +6,10 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ * 在线表单数据访问接口
+ * 提供对表单数据的增删改查操作
+ */
 @Mapper
 public interface OnlineFormDao {
     public void delete(@Param(value="tableName") String var1, @Param(value="list") List<Long> var2);

@@ -62,8 +62,11 @@ public class DbPro{
     }
 
     static DbPro init(String configName,DataSource dataSource) {
+        return init(configName,dataSource,false);
+    }
+    static DbPro init(String configName,DataSource dataSource,Boolean force) {
         DbPro dbPro = DbPro.cache.get(configName);
-        if (dbPro == null) {
+        if (dbPro == null || force) {
             dbPro = new DbPro();
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             TransactionTemplate transactionTemplate = new TransactionTemplate();

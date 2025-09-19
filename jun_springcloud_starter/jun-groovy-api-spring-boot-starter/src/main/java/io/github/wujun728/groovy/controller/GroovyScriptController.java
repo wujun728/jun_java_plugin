@@ -1,8 +1,8 @@
 package io.github.wujun728.groovy.controller;
 
+import cn.hutool.extra.spring.SpringUtil;
 import groovy.lang.GroovyClassLoader;
 import io.github.wujun728.common.base.Result;
-import io.github.wujun728.groovy.util.SpringUtils;
 import io.github.wujun728.groovy.groovy.GroovyDynamicLoader;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,7 +55,7 @@ public class GroovyScriptController {
         ScriptEngine engine = scriptEngineManager.getEngineByName("groovy");
         ScriptContext context = new SimpleScriptContext();
         context.setBindings(new SimpleBindings(new HashMap<String, Object>(1) {{
-            put("spring", SpringUtils.getApplicationContext());
+            put("spring", SpringUtil.getApplicationContext());
         }}), ScriptContext.ENGINE_SCOPE);
         return engine.eval(script, context).toString();
     }
@@ -67,9 +67,9 @@ public class GroovyScriptController {
             // 最精华的地方就是SpringContextUtils.autowireBean，可以实现自动注入bean，
             Class clazz = new GroovyClassLoader().parseClass(script);
             Method run = clazz.getMethod("run");
-            Object o = clazz.newInstance();
-            SpringUtils.autowireBean(o);
-            Object ret = run.invoke(o);
+            Object bean = clazz.newInstance();
+            SpringUtil.getApplicationContext().getAutowireCapableBeanFactory().autowireBean(bean);
+            Object ret = run.invoke(bean);
             return ret;
         } else {
             return "no script";

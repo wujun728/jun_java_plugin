@@ -11,14 +11,6 @@ import org.springframework.util.ObjectUtils;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created on 2019-12-10.
- * Description:
- * Copyright (c) 2018, 成都冰鉴信息科技有限公司
- * All rights reserved.
- *
- * @author zhangbo
- */
 public class GroovyScriptUtil {
     private GroovyScriptUtil() {}
     private static Logger logger = LoggerFactory.getLogger(GroovyScriptUtil.class);

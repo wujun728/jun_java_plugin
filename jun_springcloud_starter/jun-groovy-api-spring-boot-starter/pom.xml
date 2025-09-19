@@ -77,6 +77,10 @@
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.github.wujun728</groupId>
+            <artifactId>jun-common-core</artifactId>
+        </dependency>
     </dependencies>
 	
 	<!-- 依赖声明 -->

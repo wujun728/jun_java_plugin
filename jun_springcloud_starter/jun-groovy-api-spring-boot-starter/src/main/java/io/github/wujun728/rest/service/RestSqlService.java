@@ -27,7 +27,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.*;
 
-import static io.github.wujun728.db.utils.DataSourcePool.main;
+import static io.github.wujun728.db.record.Db.main;
+
 
 @Service
 public class RestSqlService {

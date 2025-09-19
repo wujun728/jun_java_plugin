@@ -30,7 +30,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import static io.github.wujun728.db.utils.DataSourcePool.main;
+import static io.github.wujun728.db.record.Db.main;
 import static io.github.wujun728.rest.controller.RestApiController.getTableMeta;
 import static io.github.wujun728.rest.util.RestUtil.checkDataFormat;
 import static io.github.wujun728.rest.util.RestUtil.setPkValue;
@@ -46,7 +46,7 @@ public class RestApiService {
         String entityName = MapUtil.getString(parameters,"entityName");
         //String tableName = StrUtil.toUnderlineCase(entityName);
         Boolean isUnderLine = entityName.equals(tableName);
-        Table table = getTableMeta(tableName,main);
+        Table table = getTableMeta(tableName, main);
         StringBuffer sql = new StringBuffer();
         String select = "select *";
         sql.append(select);
@@ -61,7 +61,7 @@ public class RestApiService {
         return datas;
     }
     public Page<Record> getPage(String tableName, Map<String, Object> parameters){
-        Table table = getTableMeta(tableName,main);
+        Table table = getTableMeta(tableName, main);
         StringBuffer sql = new StringBuffer();
         String select = "select *";
         sql.append(select);
@@ -88,7 +88,7 @@ public class RestApiService {
         String url = MapUtil.getString(parameters,"url");
         //String tableName = StrUtil.toUnderlineCase(entityName);
         Boolean isUnderLine = entityName.equals(tableName);
-        Table table = getTableMeta(tableName,main);
+        Table table = getTableMeta(tableName, main);
         StringBuffer sql = new StringBuffer();
         String select = "select *";
         sql.append(select);
@@ -150,7 +150,7 @@ public class RestApiService {
         String tableName = StrUtil.toUnderlineCase(entityName);
         parameters.put("entityName" , entityName);
         parameters.put("tableName" , tableName);
-        Table table = getTableMeta(tableName,main);
+        Table table = getTableMeta(tableName, main);
         //Step2,根据表定义，获取表主键，并根据新增及修改，生成主键或者判断主键数据是否存在
         //Step3,根据表定义，新增必填字段信息校验，并将默认或者内置字段生成默认值
         String primaryKey = RestUtil.getTablePrimaryKes(table);

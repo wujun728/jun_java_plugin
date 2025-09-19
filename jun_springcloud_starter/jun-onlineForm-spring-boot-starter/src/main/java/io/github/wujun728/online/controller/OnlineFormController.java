@@ -5,62 +5,77 @@ import io.github.wujun728.online.common.PageResult;
 import io.github.wujun728.online.query.OnlineFormQuery;
 import io.github.wujun728.online.service.OnlineFormService;
 import io.github.wujun728.online.vo.form.OnlineFormVO;
+import net.maku.framework.common.exception.ServerException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.rmi.ServerException;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping(value={"sys/online/form/{tableId}"})
+/**
+ * 在线表单控制器
+ */
 @RestController
+@RequestMapping("sys/online/form/{tableId}")
 public class OnlineFormController {
-    private   /* synthetic */ OnlineFormService onlineFormService;
 
-    @GetMapping(value={"{id}"})
-    public Result get(@PathVariable(value="tableId") String hVTb, @PathVariable(value="id") Long LVTb) throws ServerException {
-        OnlineFormController NVTb = this;
-        Map<String, Object> kVTb = NVTb.onlineFormService.get(hVTb, LVTb);
-        return Result.ok(kVTb);
+    private final OnlineFormService onlineFormService;
+
+    public OnlineFormController(OnlineFormService onlineFormService) {
+        this.onlineFormService = onlineFormService;
     }
 
+    /**
+     * 获取表单数据
+     */
+    @GetMapping("{id}")
+    public Result get(@PathVariable("tableId") String tableId, @PathVariable("id") Long id) throws ServerException {
+        Map<String, Object> data = onlineFormService.get(tableId, id);
+        return Result.ok(data);
+    }
+
+    /**
+     * 保存表单数据
+     */
     @PostMapping
-    public Result  save(@PathVariable(value="tableId") String VuTb, @RequestBody Map<String, String> XuTb) throws ServerException {
-        OnlineFormController wuTb = this;
-        wuTb.onlineFormService.save(VuTb, XuTb);
+    public Result save(@PathVariable("tableId") String tableId, @RequestBody Map<String, String> params) throws ServerException {
+        onlineFormService.save(tableId, params);
         return Result.ok();
     }
 
-    @PostMapping(value={"page"})
-    public Result  page(@PathVariable(value="tableId") String wVTb, @RequestBody @Valid OnlineFormQuery VVTb) throws ServerException {
-        OnlineFormController XVTb = this;
-        PageResult<Map<String, Object>> yVTb = XVTb.onlineFormService.page(wVTb, VVTb);
-        return Result.ok(yVTb);
-    }
-
+    /**
+     * 获取表单配置
+     */
     @GetMapping
-    public Result json(@PathVariable(value="tableId") String kwTb) throws ServerException {
-        OnlineFormController owTb = this;
-        OnlineFormVO mwTb = owTb.onlineFormService.getJSON(kwTb);
-        return Result.ok((Object)mwTb);
+    public Result json(@PathVariable("tableId") String tableId) throws ServerException {
+        OnlineFormVO formVO = onlineFormService.getJSON(tableId);
+        return Result.ok(formVO);
     }
 
-    public OnlineFormController(OnlineFormService qTTb) {
-        OnlineFormController TTTb = this;
-        TTTb.onlineFormService = qTTb;
+    /**
+     * 分页查询表单数据
+     */
+    @PostMapping("page")
+    public Result page(@PathVariable("tableId") String tableId, @RequestBody @Valid OnlineFormQuery query) throws ServerException {
+        PageResult<Map<String, Object>> page = onlineFormService.page(tableId, query);
+        return Result.ok(page);
     }
 
+    /**
+     * 更新表单数据
+     */
     @PutMapping
-    public Result update(@PathVariable(value="tableId") String kuTb, @RequestBody Map<String, String> muTb) throws ServerException {
-        OnlineFormController ouTb = this;
-        ouTb.onlineFormService.update(kuTb, muTb);
+    public Result update(@PathVariable("tableId") String tableId, @RequestBody Map<String, String> params) throws ServerException {
+        onlineFormService.update(tableId, params);
         return Result.ok();
     }
 
+    /**
+     * 删除表单数据
+     */
     @DeleteMapping
-    public Result  delete(@PathVariable(value="tableId") String yTTb, @RequestBody List<Long> XTTb) throws ServerException {
-        OnlineFormController ZTTb = this;
-        ZTTb.onlineFormService.delete(yTTb, XTTb);
+    public Result delete(@PathVariable("tableId") String tableId, @RequestBody List<Long> ids) throws ServerException {
+        onlineFormService.delete(tableId, ids);
         return Result.ok();
     }
 }

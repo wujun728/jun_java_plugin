@@ -1,89 +1,78 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  io.swagger.v3.oas.annotations.Operation
- *  io.swagger.v3.oas.annotations.tags.Tag
- *  jakarta.validation.Valid
- *  net.maku.framework.common.utils.PageResult
- *  net.maku.framework.common.utils.Result
- *  org.springdoc.core.annotations.ParameterObject
- *  org.springframework.security.access.prepost.PreAuthorize
- *  org.springframework.web.bind.annotation.DeleteMapping
- *  org.springframework.web.bind.annotation.GetMapping
- *  org.springframework.web.bind.annotation.PathVariable
- *  org.springframework.web.bind.annotation.PostMapping
- *  org.springframework.web.bind.annotation.PutMapping
- *  org.springframework.web.bind.annotation.RequestBody
- *  org.springframework.web.bind.annotation.RequestMapping
- *  org.springframework.web.bind.annotation.RestController
- */
 package io.github.wujun728.online.controller;
 
 import io.github.wujun728.common.base.Result;
 import io.github.wujun728.online.common.PageResult;
+import io.github.wujun728.online.entity.OnlineTableEntity;
 import io.github.wujun728.online.query.OnlineTableQuery;
 import io.github.wujun728.online.service.OnlineTableService;
 import io.github.wujun728.online.vo.OnlineTableVO;
+import net.maku.framework.common.exception.ServerException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.rmi.ServerException;
+import java.io.Serializable;
 import java.util.List;
 
-@RequestMapping(value={"sys/online/table"})
+/**
+ * 在线表控制器
+ */
 @RestController
+@RequestMapping("sys/online/table")
 public class OnlineTableController {
-    private   /* synthetic */ OnlineTableService onlineTableService;
 
-    @PutMapping
-    //@Operation(summary="\u4fee\u6539")
-    //@PreAuthorize(value="hasAuthority('online:table:all')")
-    public Result update(@RequestBody @Valid OnlineTableVO qEyb) {
-        OnlineTableController REyb = this;
-        REyb.onlineTableService.update(qEyb);
-        return Result.ok();
-    }
-
-    //@Operation(summary="\u4fdd\u5b58")
-    //@PreAuthorize(value="hasAuthority('online:table:all')")
-    @PostMapping
-    public Result save(@RequestBody OnlineTableVO VEyb) throws ServerException {
-        OnlineTableController wEyb = this;
-        wEyb.onlineTableService.save(VEyb);
-        return Result.ok();
-    }
-
-    @GetMapping(value={"{id}"})
-    //@Operation(summary="\u4fe1\u606f")
-    //@PreAuthorize(value="hasAuthority('online:table:all')")
-    public Result get(@PathVariable(value="id") String dfyb) {
-        OnlineTableController Efyb = this;
-        OnlineTableVO ffyb = Efyb.onlineTableService.get(dfyb);
-        return Result.ok((Object)ffyb);
-    }
-
-    @DeleteMapping
-    //@Operation(summary="\u5220\u9664")
-    //@PreAuthorize(value="hasAuthority('online:table:all')")
-    public Result  delete(@RequestBody List<String> JEyb) {
-        OnlineTableController kEyb = this;
-        kEyb.onlineTableService.delete(JEyb);
-        return Result.ok();
-    }
-
-    //@Operation(summary="\u5206\u9875")
-    //@PreAuthorize(value="hasAuthority('online:table:all')")
-    @GetMapping(value={"page"})
-    public Result  page( @Valid OnlineTableQuery ofyb) {
-        OnlineTableController sfyb = this;
-        PageResult<OnlineTableVO> qfyb = sfyb.onlineTableService.page(ofyb);
-        return Result.ok(qfyb);
-    }
+    private final OnlineTableService onlineTableService;
 
     public OnlineTableController(OnlineTableService onlineTableService) {
-        OnlineTableController onlineTableController = this;
-        onlineTableController.onlineTableService = onlineTableService;
+        this.onlineTableService = onlineTableService;
+    }
+
+    /**
+     * 获取表信息
+     */
+    @GetMapping("{id}")
+    public Result get(@PathVariable String id) {
+        OnlineTableVO vo = onlineTableService.get(id);
+        return Result.ok(vo);
+    }
+
+    /**
+     * 保存表信息
+     */
+    @PostMapping
+    public Result save(@RequestBody OnlineTableVO vo) {
+        try {
+            onlineTableService.save(vo);
+            return Result.ok();
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
+    }
+
+    /**
+     * 更新表信息
+     */
+    @PutMapping
+    public Result update(@RequestBody OnlineTableVO vo) {
+        onlineTableService.update(vo);
+        return Result.ok();
+    }
+
+    /**
+     * 删除表信息
+     */
+    @DeleteMapping
+    public Result delete(@RequestBody List<String> ids) {
+        onlineTableService.delete(ids);
+        return Result.ok();
+    }
+
+    /**
+     * 分页查询表信息
+     */
+    @PostMapping("page")
+    public Result page(@RequestBody @Valid OnlineTableQuery query) {
+        PageResult<OnlineTableVO> page = onlineTableService.page(query);
+        return Result.ok(page);
     }
 }
 

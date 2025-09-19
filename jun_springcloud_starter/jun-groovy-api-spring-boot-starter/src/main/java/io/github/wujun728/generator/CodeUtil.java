@@ -42,7 +42,8 @@ public class CodeUtil {
         DataSource ds = DataSourcePool.init("main",url,username,password,driver);
 //        genCode(ds,"pj_customer",CodeUtil.UI_LAYUI_LIST);
 //        genCode(ds,"pj_customer",CodeUtil.UI_LAYUI_EDIT2);
-        genCodeFile(ds,"paas_component_tag","D:/test1122",CodeUtil.GROUP_MYBATIS_PLUG_NO1);
+        genCodeFile(ds,"paas_holiday","D:/test1122",CodeUtil.GROUP_MYBATIS_PLUG_NO1);
+        //genCodeFile(ds,"paas_component_tag","D:/test1122",CodeUtil.GROUP_MYBATIS_PLUG_NO1);
     }
 
     public static String authorName = "authorName";

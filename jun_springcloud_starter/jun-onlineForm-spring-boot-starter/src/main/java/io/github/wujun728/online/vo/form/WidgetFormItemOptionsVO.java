@@ -1,43 +1,42 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package io.github.wujun728.online.vo.form;
 
 import lombok.Data;
 
+/**
+ * 表单组件选项配置VO类
+ * 用于存储表单组件的各种配置选项
+ */
 @Data
 public class WidgetFormItemOptionsVO {
-    private /* synthetic */ String defaultValue;
-    private /* synthetic */ boolean allowHalf;
-    private /* synthetic */ boolean clearable;
-    private /* synthetic */ String options;
-    private /* synthetic */ boolean multiple;
-    private /* synthetic */ String placeholder;
-    private /* synthetic */ boolean isRange;
-    private /* synthetic */ Integer step;
-    private /* synthetic */ boolean readonly;
-    private /* synthetic */ boolean showPassword;
-    private /* synthetic */ boolean filterable;
-    private /* synthetic */ String controlsPosition;
-    private /* synthetic */ Integer maxlength;
-    private /* synthetic */ String startPlaceholder;
-    private /* synthetic */ String endPlaceholder;
-    private /* synthetic */ boolean showWordLimit;
-    private /* synthetic */ String type;
-    private /* synthetic */ Integer gutter;
-    private /* synthetic */ Integer min;
-    private /* synthetic */ String justify;
-    private /* synthetic */ String rules;
-    private /* synthetic */ String width;
-    private /* synthetic */ Integer precision;
-    private /* synthetic */ Integer rows;
-    private /* synthetic */ Integer max;
-    private /* synthetic */ boolean button;
-    private static /* synthetic */ int[] ZC;
-    private /* synthetic */ String format;
-    private /* synthetic */ String align;
-    private /* synthetic */ boolean disabled;
-    private /* synthetic */ boolean labelHide;
-
+    private String defaultValue;
+    private boolean allowHalf;
+    private boolean clearable;
+    private String options;
+    private boolean multiple;
+    private String placeholder;
+    private boolean isRange;
+    private Integer step;
+    private boolean readonly;
+    private boolean showPassword;
+    private boolean filterable;
+    private String controlsPosition;
+    private Integer maxlength;
+    private String startPlaceholder;
+    private String endPlaceholder;
+    private boolean showWordLimit;
+    private String type;
+    private Integer gutter;
+    private Integer min;
+    private String justify;
+    private String rules;
+    private String width;
+    private Integer precision;
+    private Integer rows;
+    private Integer max;
+    private boolean button;
+    private String format;
+    private String align;
+    private boolean disabled;
+    private boolean labelHide;
 }
 

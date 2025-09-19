@@ -15,7 +15,6 @@ import java.util.concurrent.locks.ReentrantLock;
 @Component
 public class DataSourcePool {
 
-    public static final String main = "main";
     private static Lock lock = new ReentrantLock();
     private static Lock deleteLock = new ReentrantLock();
 
@@ -76,7 +75,7 @@ public class DataSourcePool {
     }
     public static void init(String dsname,DataSource dataSource) {
         add(dsname,dataSource);
-        if(main.equalsIgnoreCase(dsname)){
+        if("main".equalsIgnoreCase(dsname)){
             //Db.init(dsname,dataSource);
         }
     }
@@ -85,7 +84,7 @@ public class DataSourcePool {
         try {
             StaticLog.info(Thread.currentThread().getName() + "获取锁");
             dataSourceMap.put(dsname, dataSource);
-            if(main.equalsIgnoreCase(dsname)){
+            if("main".equalsIgnoreCase(dsname)){
                 //Db.init(dsname,dataSource);
             }
             StaticLog.info("添加连接池成功：{}", dsname);

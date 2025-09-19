@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @RestController
-@RequestMapping({"/apis"})
+@RequestMapping({"/bizapis"})
 //@RequestMapping({"${platform.path:}/apis"})
 //@Api(value = "实体公共增删改查接口")
 public class RestSqlController {

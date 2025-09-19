@@ -1,84 +1,65 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package io.github.wujun728.online.convert;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import io.github.wujun728.online.entity.OnlineTableEntity;
 import io.github.wujun728.online.vo.OnlineTableVO;
+import org.mapstruct.factory.Mappers;
 
-public class OnlineTableConvertImpl
-implements OnlineTableConvert {
-    @Override
-    public List<OnlineTableVO> convertList(List<OnlineTableEntity> Cfsb) {
-        if (OnlineTableConvertImpl.wm(Cfsb)) {
-            return null;
-        }
-        ArrayList<OnlineTableVO> bfsb = new ArrayList<OnlineTableVO>(Cfsb.size());
-        Iterator<OnlineTableEntity> XEsb = Cfsb.iterator();
-        while (OnlineTableConvertImpl.Xm(XEsb.hasNext() ? 1 : 0)) {
-            OnlineTableConvertImpl Afsb = this;
-            OnlineTableEntity Efsb = XEsb.next();
-            bfsb.add(Afsb.convert(Efsb));
-            "".length();
-            "".length();
-            if ((0x10 ^ 0x3E ^ (0x19 ^ 0x32)) != 0) continue;
-            return null;
-        }
-        return bfsb;
-    }
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * 在线表对象转换实现类
+ */
+public class OnlineTableConvertImpl implements OnlineTableConvert {
+
+    public static final OnlineTableConvert INSTANCE = Mappers.getMapper(OnlineTableConvert.class);
 
     @Override
-    public OnlineTableVO convert(OnlineTableEntity Nfsb) {
-        if (OnlineTableConvertImpl.wm(Nfsb)) {
+    public List<OnlineTableVO> convertList(List<OnlineTableEntity> entityList) {
+        if (entityList == null || entityList.isEmpty()) {
             return null;
         }
-        OnlineTableVO ofsb = new OnlineTableVO();
-        ofsb.setId(Nfsb.getId());
-        ofsb.setName(Nfsb.getName());
-        ofsb.setComments(Nfsb.getComments());
-        ofsb.setFormLayout(Nfsb.getFormLayout());
-        ofsb.setTree(Nfsb.getTree());
-        ofsb.setTreePid(Nfsb.getTreePid());
-        ofsb.setTreeLabel(Nfsb.getTreeLabel());
-        ofsb.setTableType(Nfsb.getTableType());
-        ofsb.setVersion(Nfsb.getVersion());
-        ofsb.setCreateTime(Nfsb.getCreateTime());
-        return ofsb;
-    }
-
-    public OnlineTableConvertImpl() {
-        OnlineTableConvertImpl dGsb;
-    }
-
-    private static boolean wm(Object object) {
-        return object == null;
+        return entityList.stream()
+                .map(this::convert)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public OnlineTableEntity convert(OnlineTableVO Vfsb) {
-        if (OnlineTableConvertImpl.wm(Vfsb)) {
+    public OnlineTableVO convert(OnlineTableEntity entity) {
+        if (entity == null) {
             return null;
         }
-        OnlineTableEntity wfsb = new OnlineTableEntity();
-        wfsb.setId(Vfsb.getId());
-        wfsb.setName(Vfsb.getName());
-        wfsb.setComments(Vfsb.getComments());
-        wfsb.setFormLayout(Vfsb.getFormLayout());
-        wfsb.setTree(Vfsb.getTree());
-        wfsb.setTreePid(Vfsb.getTreePid());
-        wfsb.setTreeLabel(Vfsb.getTreeLabel());
-        wfsb.setTableType(Vfsb.getTableType());
-        wfsb.setCreateTime(Vfsb.getCreateTime());
-        wfsb.setVersion(Vfsb.getVersion());
-        return wfsb;
+        OnlineTableVO vo = new OnlineTableVO();
+        vo.setId(entity.getId());
+        vo.setName(entity.getName());
+        vo.setComments(entity.getComments());
+        vo.setFormLayout(entity.getFormLayout());
+        vo.setTree(entity.getTree());
+        vo.setTreePid(entity.getTreePid());
+        vo.setTreeLabel(entity.getTreeLabel());
+        vo.setTableType(entity.getTableType());
+        vo.setVersion(entity.getVersion());
+        vo.setCreateTime(entity.getCreateTime());
+        return vo;
     }
 
-    private static boolean Xm(int n) {
-        return n != 0;
+    @Override
+    public OnlineTableEntity convert(OnlineTableVO vo) {
+        if (vo == null) {
+            return null;
+        }
+        OnlineTableEntity entity = new OnlineTableEntity();
+        entity.setId(vo.getId());
+        entity.setName(vo.getName());
+        entity.setComments(vo.getComments());
+        entity.setFormLayout(vo.getFormLayout());
+        entity.setTree(vo.getTree());
+        entity.setTreePid(vo.getTreePid());
+        entity.setTreeLabel(vo.getTreeLabel());
+        entity.setTableType(vo.getTableType());
+        entity.setCreateTime(vo.getCreateTime());
+        entity.setVersion(vo.getVersion());
+        return entity;
     }
 }
 

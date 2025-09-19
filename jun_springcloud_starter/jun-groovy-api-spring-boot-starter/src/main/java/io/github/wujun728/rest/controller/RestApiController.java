@@ -34,7 +34,7 @@ import java.util.Map;
  */
 @Slf4j
 @org.springframework.web.bind.annotation.RestController
-@RequestMapping({"${platform.path:}/rest", "${platform.path:}/public/rest"})
+@RequestMapping({"${platform.path:}/bizrest", "${platform.path:}/public/bizrest"})
 //@Api(value = "实体公共增删改查接口")
 public class RestApiController {
 

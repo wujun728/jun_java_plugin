@@ -1,10 +1,14 @@
 package io.github.wujun728.groovy.util;
 
 
+import cn.hutool.core.exceptions.UtilException;
+import cn.hutool.extra.spring.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.DefaultSingletonBeanRegistry;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.util.ClassUtils;
@@ -26,11 +30,11 @@ public class BeanRegisterUtil {
      */
     public static void registerController(String controllerBeanName) throws Exception {
         final RequestMappingHandlerMapping requestMappingHandlerMapping = (RequestMappingHandlerMapping)
-                SpringUtils.getContext().getBean("requestMappingHandlerMapping");
+                SpringUtil.getApplicationContext().getBean("requestMappingHandlerMapping");
 
         if (requestMappingHandlerMapping != null) {
             String handler = controllerBeanName;
-            Object controller = SpringUtils.getContext().getBean(handler);
+            Object controller = SpringUtil.getApplicationContext().getBean(handler);
             if (controller == null) {
                 return;
             }
@@ -50,10 +54,10 @@ public class BeanRegisterUtil {
      */
     public static void unregisterController(String controllerBeanName) {
         final RequestMappingHandlerMapping requestMappingHandlerMapping = (RequestMappingHandlerMapping)
-                SpringUtils.getContext().getBean("requestMappingHandlerMapping");
+                SpringUtil.getApplicationContext().getBean("requestMappingHandlerMapping");
         if (requestMappingHandlerMapping != null) {
             String handler = controllerBeanName;
-            Object controller = SpringUtils.getContext().getBean(handler);
+            Object controller = SpringUtil.getApplicationContext().getBean(handler);
             if (controller == null) {
                 return;
             }
@@ -118,6 +122,27 @@ public class BeanRegisterUtil {
                 .getBeanFactory();
         beanDefinitonRegistry.registerBeanDefinition(beanName, beanDefinition);
         log.info("==> 动态注册bean:{}",beanName);
+    }
+
+        public static <T> void registerBean(String beanName, T bean) {
+        ConfigurableListableBeanFactory factory = getConfigurableBeanFactory();
+        factory.autowireBean(bean);
+        factory.registerSingleton(beanName, bean);
+    }
+
+    public static void unregisterBean(String beanName) {
+        ConfigurableListableBeanFactory factory = getConfigurableBeanFactory();
+        if (factory instanceof DefaultSingletonBeanRegistry) {
+            DefaultSingletonBeanRegistry registry = (DefaultSingletonBeanRegistry)factory;
+            registry.destroySingleton(beanName);
+        } else {
+            throw new UtilException("Can not unregister bean, the factory is not a DefaultSingletonBeanRegistry!");
+        }
+    }
+
+    public static ConfigurableListableBeanFactory getConfigurableBeanFactory() throws UtilException {
+        ConfigurableListableBeanFactory factory = ((ConfigurableApplicationContext)SpringUtil.getApplicationContext()).getBeanFactory();
+        return factory;
     }
 
 }

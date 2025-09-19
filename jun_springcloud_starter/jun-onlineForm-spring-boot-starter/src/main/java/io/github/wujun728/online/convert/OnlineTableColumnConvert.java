@@ -1,29 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.mapstruct.Mapper
- *  org.mapstruct.factory.Mappers
- */
 package io.github.wujun728.online.convert;
 
 import java.util.List;
-
 import io.github.wujun728.online.entity.OnlineTableColumnEntity;
 import io.github.wujun728.online.vo.OnlineTableColumnVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+/**
+ * 在线表字段对象转换接口
+ */
 @Mapper
 public interface OnlineTableColumnConvert {
-    public static   /* synthetic */ OnlineTableColumnConvert INSTANCE = (OnlineTableColumnConvert)Mappers.getMapper(OnlineTableColumnConvert.class);
+    public static final OnlineTableColumnConvert INSTANCE = Mappers.getMapper(OnlineTableColumnConvert.class);
 
-    public List<OnlineTableColumnEntity> convertList2(List<OnlineTableColumnVO> var1);
+    List<OnlineTableColumnEntity> convertList2(List<OnlineTableColumnVO> voList);
 
-    public List<OnlineTableColumnVO> convertList(List<OnlineTableColumnEntity> var1);
+    List<OnlineTableColumnVO> convertList(List<OnlineTableColumnEntity> entityList);
 
-    public OnlineTableColumnEntity convert(OnlineTableColumnVO var1);
+    OnlineTableColumnEntity convert(OnlineTableColumnVO vo);
 
-    public OnlineTableColumnVO convert(OnlineTableColumnEntity var1);
+    OnlineTableColumnVO convert(OnlineTableColumnEntity entity);
 }
 
