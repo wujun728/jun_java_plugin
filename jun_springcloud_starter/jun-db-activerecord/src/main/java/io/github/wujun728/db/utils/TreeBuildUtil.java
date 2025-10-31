@@ -21,6 +21,9 @@ public class TreeBuildUtil {
         return listToTree(entityList, rootValue, idField, parentIdField);
     }
     public static List<Map<String, Object>> listToTree(List<Map<String, Object>> entityList, String rootValue, String idField, String parentIdField) {
+        return listToTree(entityList, rootValue, idField, parentIdField,"children");
+    }
+    public static List<Map<String, Object>> listToTree(List<Map<String, Object>> entityList, String rootValue, String idField, String parentIdField, String childrenField) {
 //        StopWatch stopWatch = new StopWatch();
 //        stopWatch.start();
         List<Map<String, Object>> treeMap = new ArrayList<>();
@@ -36,10 +39,10 @@ public class TreeBuildUtil {
                 if (parentMap == null) { //如果parentMap为空，则说明当前map没有父级，当前map就是顶级
                     treeMap.add(map);
                 } else {
-                    List<Map<String, Object>> children = (List<Map<String, Object>>) parentMap.get("children");
+                    List<Map<String, Object>> children = (List<Map<String, Object>>) parentMap.get(childrenField);
                     if (children == null) {  //判断子级集合是否为空，为空则新创建List
                         children = new ArrayList<>();
-                        parentMap.put("children", children);
+                        parentMap.put(childrenField, children);
                     }
                     children.add(map);
                 }

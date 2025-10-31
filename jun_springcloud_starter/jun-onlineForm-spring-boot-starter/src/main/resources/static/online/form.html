@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线表单 - 数据管理</title>
+    <!-- 引入layui CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/layui@2.6.8/dist/css/layui.css">
+    <style>
+        body {
+            margin: 20px;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #333;
+            display: inline-block;
+        }
+        .header .back-btn {
+            float: right;
+        }
+        .search-form {
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .form-row {
+            margin-bottom: 15px;
+        }
+        .btn-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        .layui-form-item {
+            margin-bottom: 15px;
+        }
+        .layui-form-item .layui-form-label {
+            width: 120px;
+        }
+        .layui-form-item .layui-input-block {
+            margin-left: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2 id="formTitle">加载表单配置...</h2>
+            <button class="layui-btn layui-btn-primary back-btn" id="backBtn">返回列表</button>
+        </div>
+        
+        <!-- 搜索表单 -->
+        <div class="search-form">
+            <form class="layui-form" id="searchForm">
+                <div class="form-row" id="searchFormContent">
+                    <!-- 动态生成搜索表单内容 -->
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="button" class="layui-btn layui-btn-primary" id="resetSearchBtn">重置</button>
+                        <button type="button" class="layui-btn" id="searchBtn">搜索</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <!-- 操作按钮组 -->
+        <div class="btn-group">
+            <button class="layui-btn layui-btn-normal" id="addBtn">添加</button>
+            <button class="layui-btn layui-btn-danger" id="deleteBtn">删除</button>
+        </div>
+        
+        <!-- 数据表格 -->
+        <table class="layui-hide" id="dataTable" lay-filter="dataTable"></table>
+    </div>
+    
+    <!-- 添加/编辑表单弹窗 -->
+    <div id="editFormDiv" style="display: none;">
+        <form class="layui-form" id="editForm">
+            <!-- 动态生成表单内容 -->
+        </form>
+    </div>
+    
+    <!-- 引入jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <!-- 引入layui JS -->
+    <script src="https://cdn.jsdelivr.net/npm/layui@2.6.8/dist/layui.js"></script>
+    
+    <script>
+        layui.use(['layer', 'table', 'form'], function() {
+            var layer = layui.layer;
+            var table = layui.table;
+            var form = layui.form;
+            var $ = layui.jquery;
+            
+            // 获取URL参数
+            function getUrlParam(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return decodeURIComponent(r[2]);
+                return null;
+            }
+            
+            var tableId = getUrlParam('tableId');
+            var formConfig = null;
+            var dataTable = null;
+            
+            // 如果没有tableId参数，返回列表页
+            if (!tableId) {
+                window.location.href = 'index.html';
+            }
+            
+            // 加载表单配置
+            function loadFormConfig() {
+                $.ajax({
+                    url: '/sys/online/form/' + tableId,
+                    type: 'GET',
+                    success: function(res) {
+                        if (res.code === 0 && res.data) {
+                            formConfig = res.data;
+                            $('#formTitle').text(formConfig.name || '表单管理');
+                            initSearchForm();
+                            initDataTable();
+                        } else {
+                            layer.msg('加载表单配置失败：' + res.msg, {icon: 5});
+                        }
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查接口连接', {icon: 5});
+                    }
+                });
+            }
+            
+            // 初始化搜索表单
+            function initSearchForm() {
+                if (!formConfig || !formConfig.queryFields) return;
+                
+                var html = '';
+                var rowCount = 0;
+                var currentRow = '';
+                
+                $.each(formConfig.queryFields, function(index, field) {
+                    if (rowCount % 3 === 0) {
+                        if (currentRow) {
+                            html += currentRow + '</div>';
+                        }
+                        currentRow = '<div class="layui-form-item">';
+                    }
+                    
+                    var inputHtml = '';
+                    switch (field.queryInput) {
+                        case 'text':
+                            inputHtml = '<input type="text" name="' + field.name + '" placeholder="请输入' + field.comments + '" autocomplete="off" class="layui-input">';
+                            break;
+                        case 'select':
+                            inputHtml = '<select name="' + field.name + '" lay-search><option value="">请选择' + field.comments + '</option>';
+                            if (field.dictOptions) {
+                                $.each(field.dictOptions, function(key, value) {
+                                    inputHtml += '<option value="' + key + '">' + value + '</option>';
+                                });
+                            }
+                            inputHtml += '</select>';
+                            break;
+                        default:
+                            inputHtml = '<input type="text" name="' + field.name + '" placeholder="请输入' + field.comments + '" autocomplete="off" class="layui-input">';
+                    }
+                    
+                    currentRow += '<div class="layui-inline" style="width: 30%; margin-right: 2%;">
+                                    <label class="layui-form-label" style="width: 80px;">' + field.comments + '</label>
+                                    <div class="layui-input-inline" style="width: calc(100% - 80px);">' + inputHtml + '</div>
+                                </div>';
+                    
+                    rowCount++;
+                });
+                
+                if (currentRow) {
+                    html += currentRow + '</div>';
+                }
+                
+                $('#searchFormContent').html(html);
+                form.render();
+            }
+            
+            // 初始化数据表格
+            function initDataTable() {
+                if (!formConfig || !formConfig.gridFields) return;
+                
+                var cols = [[
+                    {type: 'checkbox', fixed: 'left'},
+                    {field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left'}
+                ]];
+                
+                $.each(formConfig.gridFields, function(index, field) {
+                    var col = {
+                        field: field.name,
+                        title: field.comments,
+                        width: field.width || 150
+                    };
+                    
+                    if (field.sortable) {
+                        col.sort = true;
+                    }
+                    
+                    cols[0].push(col);
+                });
+                
+                cols[0].push({
+                    fixed: 'right',
+                    title: '操作',
+                    toolbar: '#dataTableBar',
+                    width: 150
+                });
+                
+                dataTable = table.render({
+                    elem: '#dataTable',
+                    url: '/sys/online/form/' + tableId + '/page',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    where: getSearchParams(),
+                    cols: cols,
+                    page: true,
+                    limit: 10,
+                    limits: [10, 20, 30, 50],
+                    text: {
+                        none: '暂无相关数据'
+                    },
+                    response: {
+                        statusName: 'code',
+                        statusCode: 0,
+                        countName: 'data.total',
+                        dataName: 'data.list'
+                    },
+                    parseData: function(res) {
+                        return {
+                            'code': res.code,
+                            'data': res.data,
+                            'count': res.data ? res.data.total : 0
+                        };
+                    }
+                });
+                
+                // 定义操作列模板
+                var toolbarHtml = '<script type="text/html" id="dataTableBar">\n' +
+                    '  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>\n' +
+                    '  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>\n' +
+                    '</script>';
+                
+                if ($('#dataTableBar').length === 0) {
+                    $('body').append(toolbarHtml);
+                }
+                
+                // 监听行工具事件
+                table.on('tool(dataTable)', function(obj) {
+                    var data = obj.data;
+                    if (obj.event === 'edit') {
+                        openEditForm(data);
+                    } else if (obj.event === 'del') {
+                        deleteData([data.id]);
+                    }
+                });
+            }
+            
+            // 获取搜索参数
+            function getSearchParams() {
+                var params = {page: 1, limit: 10};
+                var formData = $('#searchForm').serializeArray();
+                
+                $.each(formData, function(index, item) {
+                    if (item.value) {
+                        params[item.name] = item.value;
+                    }
+                });
+                
+                return params;
+            }
+            
+            // 搜索按钮事件
+            $('#searchBtn').click(function() {
+                if (dataTable) {
+                    dataTable.reload({
+                        where: getSearchParams(),
+                        page: {curr: 1}
+                    });
+                }
+            });
+            
+            // 重置搜索按钮事件
+            $('#resetSearchBtn').click(function() {
+                $('#searchForm')[0].reset();
+                form.render();
+            });
+            
+            // 添加按钮事件
+            $('#addBtn').click(function() {
+                openEditForm(null);
+            });
+            
+            // 删除按钮事件
+            $('#deleteBtn').click(function() {
+                var checkStatus = table.checkStatus('dataTable');
+                var data = checkStatus.data;
+                
+                if (data.length === 0) {
+                    layer.msg('请选择要删除的数据', {icon: 5});
+                    return;
+                }
+                
+                var ids = [];
+                $.each(data, function(index, item) {
+                    ids.push(item.id);
+                });
+                
+                deleteData(ids);
+            });
+            
+            // 打开编辑表单
+            function openEditForm(data) {
+                if (!formConfig || !formConfig.formFields) return;
+                
+                var html = '';
+                
+                $.each(formConfig.formFields, function(index, field) {
+                    var inputHtml = '';
+                    switch (field.formInput) {
+                        case 'text':
+                        case 'input':
+                            inputHtml = '<input type="text" name="' + field.name + '" value="' + (data ? (data[field.name] || '') : (field.formDefault || '')) + '" placeholder="请输入' + field.comments + '" autocomplete="off" class="layui-input">';
+                            break;
+                        case 'select':
+                            inputHtml = '<select name="' + field.name + '"><option value="">请选择' + field.comments + '</option>';
+                            if (field.dictOptions) {
+                                $.each(field.dictOptions, function(key, value) {
+                                    var selected = data && data[field.name] === key ? 'selected' : '';
+                                    inputHtml += '<option value="' + key + '" ' + selected + '>' + value + '</option>';
+                                });
+                            }
+                            inputHtml += '</select>';
+                            break;
+                        case 'checkbox':
+                            inputHtml = '';
+                            if (field.dictOptions) {
+                                var checkedValues = data && data[field.name] ? (Array.isArray(data[field.name]) ? data[field.name] : [data[field.name]]) : [];
+                                $.each(field.dictOptions, function(key, value) {
+                                    var checked = checkedValues.indexOf(key) !== -1 ? 'checked' : '';
+                                    inputHtml += '<input type="checkbox" name="' + field.name + '" title="' + value + '" value="' + key + '" ' + checked + '>';
+                                });
+                            }
+                            break;
+                        case 'radio':
+                            inputHtml = '';
+                            if (field.dictOptions) {
+                                var checkedValue = data && data[field.name] ? data[field.name] : '';
+                                $.each(field.dictOptions, function(key, value) {
+                                    var checked = checkedValue === key ? 'checked' : '';
+                                    inputHtml += '<input type="radio" name="' + field.name + '" title="' + value + '" value="' + key + '" ' + checked + '>';
+                                });
+                            }
+                            break;
+                        default:
+                            inputHtml = '<input type="text" name="' + field.name + '" value="' + (data ? (data[field.name] || '') : (field.formDefault || '')) + '" placeholder="请输入' + field.comments + '" autocomplete="off" class="layui-input">';
+                    }
+                    
+                    var required = field.formRequired ? 'lay-verify="required"' : '';
+                    
+                    html += '<div class="layui-form-item">\n' +
+                        '    <label class="layui-form-label">' + field.comments + (field.formRequired ? ' <span style="color:red">*</span>' : '') + '</label>\n' +
+                        '    <div class="layui-input-block">\n' +
+                        '        ' + inputHtml + '\n' +
+                        '    </div>\n' +
+                        '</div>';
+                });
+                
+                // 添加隐藏字段存储ID（编辑时）
+                if (data && data.id) {
+                    html += '<input type="hidden" name="id" value="' + data.id + '">';
+                }
+                
+                $('#editForm').html(html);
+                form.render();
+                
+                layer.open({
+                    type: 1,
+                    title: data ? '编辑数据' : '添加数据',
+                    content: $('#editFormDiv'),
+                    area: ['600px', 'auto'],
+                    btn: ['保存', '取消'],
+                    yes: function(index, layero) {
+                        form.on('submit(submitForm)', function(data) {
+                            saveData(data.field, function() {
+                                layer.close(index);
+                                if (dataTable) {
+                                    dataTable.reload();
+                                }
+                            });
+                            return false;
+                        });
+                        $('#editForm').submit();
+                    }
+                });
+            }
+            
+            // 保存数据
+            function saveData(params, callback) {
+                var url = '/sys/online/form/' + tableId;
+                var method = params.id ? 'PUT' : 'POST';
+                
+                $.ajax({
+                    url: url,
+                    type: method,
+                    data: JSON.stringify(params),
+                    contentType: 'application/json',
+                    success: function(res) {
+                        if (res.code === 0) {
+                            layer.msg(params.id ? '更新成功' : '添加成功', {icon: 6});
+                            if (callback) callback();
+                        } else {
+                            layer.msg('操作失败：' + res.msg, {icon: 5});
+                        }
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查接口连接', {icon: 5});
+                    }
+                });
+            }
+            
+            // 删除数据
+            function deleteData(ids) {
+                layer.confirm('确定要删除选中的数据吗？', {
+                    icon: 3,
+                    title: '确认删除'
+                }, function(index) {
+                    $.ajax({
+                        url: '/sys/online/form/' + tableId,
+                        type: 'DELETE',
+                        data: JSON.stringify(ids),
+                        contentType: 'application/json',
+                        success: function(res) {
+                            if (res.code === 0) {
+                                layer.msg('删除成功', {icon: 6});
+                                if (dataTable) {
+                                    dataTable.reload();
+                                }
+                            } else {
+                                layer.msg('删除失败：' + res.msg, {icon: 5});
+                            }
+                        },
+                        error: function() {
+                            layer.msg('网络错误，请检查接口连接', {icon: 5});
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
+            
+            // 返回按钮事件
+            $('#backBtn').click(function() {
+                window.location.href = 'index.html';
+            });
+            
+            // 初始加载
+            loadFormConfig();
+            
+            // 监听表单提交事件
+            form.on('submit(submitForm)', function(data) {
+                saveData(data.field, function() {
+                    layer.closeAll('page');
+                    if (dataTable) {
+                        dataTable.reload();
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>
