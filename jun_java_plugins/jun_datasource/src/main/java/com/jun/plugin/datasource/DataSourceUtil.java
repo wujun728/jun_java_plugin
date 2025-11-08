@@ -17,14 +17,16 @@ public class DataSourceUtil {
 		System.err.println(DataSourceUtil.getDataSource());
 	}
 	
-	private static DataSource dataSource = null;;
+	private static DataSource dataSource = null;
 	private static Connection conn = null;
 	static {
 		try {
 //			dataSource = DataSourceC3p0.getDataSource();
 //			dataSource = DataSourceDBCP.getDataSource();
 			dataSource = DataSourceDruid.getDataSource();
-			conn = dataSource.getConnection();
+			if (dataSource != null) {
+				conn = dataSource.getConnection();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -37,20 +39,29 @@ public class DataSourceUtil {
 	
 	public static final Connection getConn() {
 		try {
-			conn = dataSource.getConnection();
+			if (dataSource != null) {
+				conn = dataSource.getConnection();
+			}
 		} catch (SQLException e) {
 			// log.error("获取数据库连接失败：" + e);
+			e.printStackTrace();
 		}
 		return conn;
 	}
 
 	public static void rollback() throws SQLException {
 		try {
-			conn = dataSource.getConnection();
+			if (dataSource != null) {
+				conn = dataSource.getConnection();
+				if (conn != null) {
+					conn.rollback();
+				}
+			}
 		} catch (SQLException e) {
 			// log.error("获取数据库连接失败：" + e);
+			e.printStackTrace();
+			throw e;
 		}
-		conn.rollback();
 	}
 	 
 	public static void closeConn(Connection conn) {

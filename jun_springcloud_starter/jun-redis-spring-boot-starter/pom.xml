@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>io.github.wujun728</groupId>
-            <artifactId>jun-common-core</artifactId>
+            <artifactId>jun-common-base</artifactId>
         </dependency>
 
         <dependency>

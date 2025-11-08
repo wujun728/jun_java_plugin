@@ -3,6 +3,7 @@ package com.jun.plugin.plugin.email.java_mail;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Base64;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -71,9 +72,9 @@ public class JavaMailWithAttachment {
 				attachmentBodyPart.setDataHandler(new DataHandler(source)); //
 				// 网上流传的解决文件名乱码的方法，其实用MimeUtility.encodeWord就可以很方便的搞定 //
 				// 这里很重要，通过下面的Base64编码的转换可以保证你的中文附件标题名在发送时不会变成乱码 //
-				sun.misc.BASE64Encoder enc = new sun.misc.BASE64Encoder(); //
-//				messageBodyPart.setFileName("=?GBK?B?" + enc.encode(attachment.getName().getBytes()) + "?="); //
-				message.setFileName("=?GBK?B?" + enc.encode(attachment.getName().getBytes()) + "?="); //
+				// 使用Java标准库的Base64编码器替代已废弃的sun.misc.BASE64Encoder
+//				messageBodyPart.setFileName("=?GBK?B?" + Base64.getEncoder().encodeToString(attachment.getName().getBytes()) + "?="); //
+				message.setFileName("=?GBK?B?" + Base64.getEncoder().encodeToString(attachment.getName().getBytes()) + "?="); //
 				// MimeUtility.encodeWord可以避免文件名乱码
 				attachmentBodyPart.setFileName(MimeUtility.encodeWord(attachment.getName()));
 				multipart.addBodyPart(attachmentBodyPart);

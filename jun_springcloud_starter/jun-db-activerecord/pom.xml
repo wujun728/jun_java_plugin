@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.github.wujun728</groupId>
         <artifactId>jun_springcloud_starter</artifactId>
-        <version>1.0.23</version>
+        <version>1.0.25</version>
     </parent>
     <artifactId>jun-db-activerecord</artifactId>
     <name>jun-db-activerecord</name>

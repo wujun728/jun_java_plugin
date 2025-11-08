@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>io.github.wujun728</groupId>
 		<artifactId>jun_springcloud_starter</artifactId>
-		<version>1.0.23</version>
+		<version>1.0.25</version>
 	</parent>
 	<artifactId>jun-groovy-api-spring-boot-starter</artifactId>
 	<name>jun-groovy-api-spring-boot-starter</name>
@@ -21,7 +21,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>io.github.wujun728</groupId>
-			<artifactId>jun-common-core</artifactId>
+			<artifactId>jun-common-base</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.github.wujun728</groupId>
@@ -76,10 +76,6 @@
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.github.wujun728</groupId>
-            <artifactId>jun-common-core</artifactId>
         </dependency>
     </dependencies>
 	

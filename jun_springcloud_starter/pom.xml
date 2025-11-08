@@ -4,7 +4,7 @@
 
     <groupId>io.github.wujun728</groupId>
     <artifactId>jun_springcloud_starter</artifactId>
-	<version>1.0.23</version>
+	<version>1.0.25</version>
     <packaging>pom</packaging>
 
     <name>jun_springcloud_starter</name>
@@ -16,7 +16,7 @@
         <module>jun-mybatis-sql-engine</module>
         <module>jun-db-activerecord</module>
         <module>jun-common-base</module>
-        <module>jun-common-core</module>
+        <module>jun-groovy-api</module>
         <module>jun-groovy-api-spring-boot-starter</module>
         <module>jun-uidgenerator-spring-boot-starter</module>
         <module>jun-onlineForm-spring-boot-starter</module>
@@ -118,7 +118,12 @@
             </dependency>
             <dependency>
                 <groupId>io.github.wujun728</groupId>
-                <artifactId>jun-common-core</artifactId>
+                <artifactId>jun-groovy-api</artifactId>
+                <version>${jun.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.wujun728</groupId>
+                <artifactId>jun-common-base</artifactId>
                 <version>${jun.version}</version>
             </dependency>
             <dependency>
