@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 测试控制器，用于验证应用是否正常启动
  */
 @Controller
-public class TestController {
-    
+public class TestOnlineController {
+
     /**
      * 简单的测试接口
      */
@@ -18,7 +18,7 @@ public class TestController {
     public String test() {
         return "Hello, application is running!";
     }
-    
+
     /**
      * 访问测试页面
      */

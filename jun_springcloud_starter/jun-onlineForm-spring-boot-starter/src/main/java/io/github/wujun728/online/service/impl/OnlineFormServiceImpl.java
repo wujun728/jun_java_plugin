@@ -17,6 +17,7 @@ import io.github.wujun728.online.vo.form.WidgetFormVO;
 import io.github.wujun728.online.vo.form.component.ComponentContext;
 import io.github.wujun728.online.vo.query.QueryContext;
 import net.maku.framework.common.exception.ServerException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -50,7 +51,7 @@ public class OnlineFormServiceImpl implements OnlineFormService {
         Long userId = 1L; // SecurityUser.getUserId();
         Map<String, Object> saveParams = new HashMap<>();
         List<OnlineTableColumnEntity> columnList = onlineTableColumnDao.getByTableId(tableId);
-        
+
         for (OnlineTableColumnEntity column : columnList) {
             // 处理特殊字段
             if ("id".equalsIgnoreCase(column.getName())) {
@@ -72,14 +73,14 @@ public class OnlineFormServiceImpl implements OnlineFormService {
                 saveParams.put("update_time", new Date());
                 continue;
             }
-            
+
             // 处理普通字段
             String value = params.getOrDefault(column.getName(), null);
             if (StrUtil.isNotBlank(value)) {
                 saveParams.put(column.getName(), value);
             }
         }
-        
+
         onlineFormDao.save(tableEntity.getName(), saveParams);
     }
 
@@ -87,12 +88,12 @@ public class OnlineFormServiceImpl implements OnlineFormService {
     public OnlineFormVO getJSON(String tableId) {
         OnlineTableEntity tableEntity = getTableById(tableId);
         List<OnlineTableColumnEntity> columnList = onlineTableColumnDao.getByTableId(tableId);
-        
+
         OnlineFormVO formVO = new OnlineFormVO();
         formVO.setQuery(getQueryJSON(columnList));
         formVO.setTable(getTableJSON(columnList));
         formVO.setForm(getFormJSON(tableEntity, columnList));
-        
+
         return formVO;
     }
 
@@ -100,10 +101,10 @@ public class OnlineFormServiceImpl implements OnlineFormService {
     public PageResult<Map<String, Object>> page(String tableId, OnlineFormQuery query) {
         OnlineTableEntity tableEntity = getTableById(tableId);
         Map<String, Object> queryParams = getQueryParams(tableId, query.getParams());
-        
+
         Page<?> page = new Page<>(query.getPage(), query.getLimit());
         List<Map<String, Object>> list = onlineFormDao.getList(page, tableEntity.getName(), queryParams);
-        
+
         return new PageResult<>(list, page.getTotal());
     }
 
@@ -112,7 +113,7 @@ public class OnlineFormServiceImpl implements OnlineFormService {
         OnlineTableEntity tableEntity = getTableById(tableId);
         Map<String, Object> updateParams = new HashMap<>();
         List<OnlineTableColumnEntity> columnList = onlineTableColumnDao.getByTableId(tableId);
-        
+
         for (OnlineTableColumnEntity column : columnList) {
             // 处理特殊字段
             if ("id".equalsIgnoreCase(column.getName())) {
@@ -126,14 +127,14 @@ public class OnlineFormServiceImpl implements OnlineFormService {
                 updateParams.put("update_time", new Date());
                 continue;
             }
-            
+
             // 处理表单项字段
             if (column.isFormItem()) {
                 String value = params.getOrDefault(column.getName(), null);
                 updateParams.put(column.getName(), value);
             }
         }
-        
+
         Long id = Long.parseLong(params.get("id"));
         onlineFormDao.update(tableEntity.getName(), id, updateParams);
     }
@@ -161,12 +162,12 @@ public class OnlineFormServiceImpl implements OnlineFormService {
     private Map<String, Object> getQueryParams(String tableId, Map<String, Object> params) {
         List<OnlineTableColumnEntity> columnList = onlineTableColumnDao.getByTableId(tableId);
         Map<String, Object> queryParams = new HashMap<>();
-        
+
         for (OnlineTableColumnEntity column : columnList) {
             if (!column.isQueryItem()) {
                 continue;
             }
-            
+
             // 处理日期范围查询
             if ("dateRange".equals(column.getQueryInput()) || "datetimeRange".equals(column.getQueryInput())) {
                 Object value = params.getOrDefault(column.getName(), null);
@@ -177,7 +178,7 @@ public class OnlineFormServiceImpl implements OnlineFormService {
                         queryParams.put(column.getName() + " <= ", dateRange.get(1));
                     }
                 }
-            } 
+            }
             // 处理普通查询
             else {
                 String value = (String) params.getOrDefault(column.getName(), null);
@@ -190,7 +191,7 @@ public class OnlineFormServiceImpl implements OnlineFormService {
                 }
             }
         }
-        
+
         return queryParams;
     }
 
@@ -200,18 +201,18 @@ public class OnlineFormServiceImpl implements OnlineFormService {
     private WidgetFormVO getFormJSON(OnlineTableEntity tableEntity, List<OnlineTableColumnEntity> columnList) {
         WidgetFormVO formVO = new WidgetFormVO();
         WidgetFormConfigVO configVO = new WidgetFormConfigVO();
-        
+
         // 设置表单配置
         configVO.setLabelWidth(100);
         configVO.setSize("small");
         configVO.setLabelPosition(null);
         configVO.setStyle(null);
         formVO.setConfig(configVO);
-        
+
         // 根据布局类型生成表单组件
         int formLayout = tableEntity.getFormLayout();
         List<Map<String, Object>> componentList = new ArrayList<>();
-        
+
         // 单列布局
         if (formLayout == 1) {
             for (OnlineTableColumnEntity column : columnList) {
@@ -220,7 +221,7 @@ public class OnlineFormServiceImpl implements OnlineFormService {
                     componentList.add(componentContext.getComponent());
                 }
             }
-        } 
+        }
         // 多列布局
         else {
             // 布局容器配置
@@ -228,20 +229,20 @@ public class OnlineFormServiceImpl implements OnlineFormService {
             layoutContainer.put("type", "grid");
             layoutContainer.put("direction", "horizontal");
             layoutContainer.put("justify", "start");
-            
+
             // 布局容器样式
             Map<String, Object> layoutStyle = new HashMap<>();
             layoutStyle.put("background", "transparent");
             layoutStyle.put("padding", "0px");
             layoutStyle.put("margin", "0px");
             layoutContainer.put("style", layoutStyle);
-            
+
             // 创建列容器
             List<List<Map<String, Object>>> columns = new ArrayList<>();
             for (int i = 0; i < formLayout; i++) {
                 columns.add(new ArrayList<>());
             }
-            
+
             // 分配组件到列
             int columnIndex = 0;
             for (OnlineTableColumnEntity column : columnList) {
@@ -252,7 +253,7 @@ public class OnlineFormServiceImpl implements OnlineFormService {
                     columnIndex++;
                 }
             }
-            
+
             // 构建列配置
             List<Map<String, Object>> columnConfigs = new ArrayList<>();
             for (int i = 0; i < formLayout; i++) {
@@ -261,11 +262,11 @@ public class OnlineFormServiceImpl implements OnlineFormService {
                 columnConfig.put("list", columns.get(i));
                 columnConfigs.add(columnConfig);
             }
-            
+
             layoutContainer.put("column", columnConfigs);
             componentList.add(layoutContainer);
         }
-        
+
         formVO.setList(componentList);
         return formVO;
     }
@@ -276,14 +277,14 @@ public class OnlineFormServiceImpl implements OnlineFormService {
     private WidgetFormVO getQueryJSON(List<OnlineTableColumnEntity> columnList) {
         WidgetFormVO formVO = new WidgetFormVO();
         WidgetFormConfigVO configVO = new WidgetFormConfigVO();
-        
+
         // 设置查询表单配置
         configVO.setLabelWidth(null);
         configVO.setSize("small");
         configVO.setLabelPosition(null);
         configVO.setStyle(null);
         formVO.setConfig(configVO);
-        
+
         // 生成查询组件
         List<Map<String, Object>> queryComponents = new ArrayList<>();
         for (OnlineTableColumnEntity column : columnList) {
@@ -292,7 +293,7 @@ public class OnlineFormServiceImpl implements OnlineFormService {
                 queryComponents.add(queryContext.getQuery());
             }
         }
-        
+
         formVO.setList(queryComponents);
         return formVO;
     }
@@ -302,23 +303,23 @@ public class OnlineFormServiceImpl implements OnlineFormService {
      */
     private List<Map<String, Object>> getTableJSON(List<OnlineTableColumnEntity> columnList) {
         List<Map<String, Object>> tableColumns = new ArrayList<>();
-        
+
         for (OnlineTableColumnEntity column : columnList) {
             if (column.isGridItem()) {
                 Map<String, Object> tableColumn = new HashMap<>();
                 tableColumn.put("prop", column.getName());
                 tableColumn.put("label", column.getComments());
                 tableColumn.put("sortable", column.isGridSort());
-                
+
                 // 如果有字典配置，添加字典
                 if (StrUtil.isNotBlank(column.getFormDict())) {
                     tableColumn.put("dictCode", column.getFormDict());
                 }
-                
+
                 tableColumns.add(tableColumn);
             }
         }
-        
+
         return tableColumns;
     }
 }
