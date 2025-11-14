@@ -62,8 +62,8 @@ public final class DbKit {
 			throw new IllegalArgumentException("Config can not be null");
 		}
 		if (configNameToConfig.containsKey(config.getName())) {
-			throw new IllegalArgumentException("Config already exists: " + config.getName());
-			//StaticLog.error("Config already exists: " + config.getName());
+			//throw new IllegalArgumentException("Config already exists: " + config.getName());
+			StaticLog.error("Config already exists: " + config.getName());
 		}
 
 		configNameToConfig.put(config.getName(), config);

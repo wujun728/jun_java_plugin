@@ -9,6 +9,7 @@
         <artifactId>jun_springcloud_starter</artifactId>
         <version>1.0.25</version>
     </parent>
+    <packaging>jar</packaging>
     <artifactId>jun-db-activerecord</artifactId>
     <name>jun-db-activerecord</name>
     <description>dynamic sql engine tool</description>

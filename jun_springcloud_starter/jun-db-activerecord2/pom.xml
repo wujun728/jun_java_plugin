@@ -9,6 +9,7 @@
         <artifactId>jun_springcloud_starter</artifactId>
         <version>1.0.25</version>
     </parent>
+    <packaging>jar</packaging>
     <artifactId>jun-db-activerecord</artifactId>
     <name>jun-db-activerecord</name>
     <description>dynamic sql engine tool</description>
@@ -135,6 +136,10 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-core</artifactId>
             <version>3.5.9</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
         </dependency>
 
     </dependencies>
