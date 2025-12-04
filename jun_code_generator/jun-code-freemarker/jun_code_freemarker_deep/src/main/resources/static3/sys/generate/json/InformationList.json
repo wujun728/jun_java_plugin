@@ -1,0 +1,229 @@
+{
+  "success": true,
+  "code": 200,
+  "message": "请求成功",
+  "data": [
+    {
+      "tableName": "sys_app",
+      "createTime": "2023-06-12 15:32:40",
+      "updateTime": null,
+      "tableComment": "系统应用表"
+    },
+    {
+      "tableName": "sys_area",
+      "createTime": "2023-06-12 15:32:40",
+      "updateTime": null,
+      "tableComment": "中国行政地区表"
+    },
+    {
+      "tableName": "sys_code_generate",
+      "createTime": "2023-06-12 15:32:40",
+      "updateTime": null,
+      "tableComment": "代码生成基础配置"
+    },
+    {
+      "tableName": "sys_code_generate_config",
+      "createTime": "2023-06-12 15:32:40",
+      "updateTime": null,
+      "tableComment": "代码生成详细配置"
+    },
+    {
+      "tableName": "sys_config",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "系统参数配置表"
+    },
+    {
+      "tableName": "sys_dict_data",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "系统字典值表"
+    },
+    {
+      "tableName": "sys_dict_type",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "系统字典类型表"
+    },
+    {
+      "tableName": "sys_emp",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "员工表"
+    },
+    {
+      "tableName": "sys_emp_ext_org_pos",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "员工附属机构岗位表"
+    },
+    {
+      "tableName": "sys_emp_pos",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "员工职位关联表"
+    },
+    {
+      "tableName": "sys_file_info",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "文件信息表"
+    },
+    {
+      "tableName": "sys_menu",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "系统菜单表"
+    },
+    {
+      "tableName": "sys_message",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "消息表"
+    },
+    {
+      "tableName": "sys_message_user",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "消息人员关联表"
+    },
+    {
+      "tableName": "sys_notice",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "通知表"
+    },
+    {
+      "tableName": "sys_notice_user",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "系统用户数据范围表"
+    },
+    {
+      "tableName": "sys_oauth_user",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "第三方认证用户信息表"
+    },
+    {
+      "tableName": "sys_op_log",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": "2023-08-29 16:50:44",
+      "tableComment": "系统操作日志表"
+    },
+    {
+      "tableName": "sys_org",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "系统组织机构表"
+    },
+    {
+      "tableName": "sys_pos",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "系统职位表"
+    },
+    {
+      "tableName": "sys_role",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "系统角色表"
+    },
+    {
+      "tableName": "sys_role_data_scope",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "系统角色数据范围表"
+    },
+    {
+      "tableName": "sys_role_menu",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "系统角色菜单表"
+    },
+    {
+      "tableName": "sys_sms",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "短信信息发送表"
+    },
+    {
+      "tableName": "sys_timers",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "定时任务"
+    },
+    {
+      "tableName": "sys_user",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": "2023-08-29 16:50:40",
+      "tableComment": "系统用户表"
+    },
+    {
+      "tableName": "sys_user_data_scope",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "系统用户数据范围表"
+    },
+    {
+      "tableName": "sys_user_role",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": null,
+      "tableComment": "系统用户角色表"
+    },
+    {
+      "tableName": "sys_vis_log",
+      "createTime": "2023-06-12 15:32:41",
+      "updateTime": "2023-08-29 16:50:40",
+      "tableComment": "系统访问日志表"
+    },
+    {
+      "tableName": "test_many_to_many_role",
+      "createTime": "2023-06-12 15:37:08",
+      "updateTime": null,
+      "tableComment": "多对多角色"
+    },
+    {
+      "tableName": "test_many_to_many_user",
+      "createTime": "2023-06-12 15:37:08",
+      "updateTime": null,
+      "tableComment": "多对多用户"
+    },
+    {
+      "tableName": "test_many_to_many_user_role",
+      "createTime": "2023-06-12 15:37:08",
+      "updateTime": null,
+      "tableComment": "多对多用户角色"
+    },
+    {
+      "tableName": "test_one_to_many_addr",
+      "createTime": "2023-06-12 15:37:08",
+      "updateTime": null,
+      "tableComment": "一对多收货地址"
+    },
+    {
+      "tableName": "test_one_to_many_user",
+      "createTime": "2023-06-12 15:37:08",
+      "updateTime": null,
+      "tableComment": "一对多用户"
+    },
+    {
+      "tableName": "test_one_to_one_class",
+      "createTime": "2023-06-12 15:37:08",
+      "updateTime": null,
+      "tableComment": "一对一班级"
+    },
+    {
+      "tableName": "test_one_to_one_user",
+      "createTime": "2023-06-12 15:37:08",
+      "updateTime": null,
+      "tableComment": "一对一用户"
+    },
+    {
+      "tableName": "test_simple_code",
+      "createTime": "2023-06-12 15:37:09",
+      "updateTime": null,
+      "tableComment": "单表代码生成"
+    }
+  ]
+}

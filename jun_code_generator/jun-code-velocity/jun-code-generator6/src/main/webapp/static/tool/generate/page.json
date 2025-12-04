@@ -1,0 +1,26 @@
+{
+    "code": 0,
+    "msg": "请求成功",
+    "page": 1,
+    "limit": 10,
+    "count": 1,
+    "data": [
+        {
+            "createTime": "2022-01-18 16:13:42",
+            "createUser": "1265476890672672808",
+            "updateTime": null,
+            "updateUser": null,
+            "id": "1483351877860040706",
+            "authorName": "xiaonuo",
+            "className": "User",
+            "tablePrefix": "Y",
+            "generateType": "1",
+            "tableName": "sys_user",
+            "packageName": "vip.xiaonuo",
+            "busName": "user",
+            "tableComment": "系统用户表",
+            "appCode": "system",
+            "menuPid": "1264622039642255341"
+        }
+    ]
+}

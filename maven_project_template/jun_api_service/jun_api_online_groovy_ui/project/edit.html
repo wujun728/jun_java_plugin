@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>JFinal-RunApi-极速开发接口文档</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="icon" href="https://jfinal.com/assets/img/favicon.ico">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="/assets/lib/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/assets/css/common/global.css" media="all">
+    <link rel="stylesheet" href="/assets/css/common/theme-default.css" media="all">
+    <link rel="stylesheet" href="/assets/css/common/layui_extend.css" media="all">
+    <link rel="stylesheet" href="/assets/css/runapi/doc-index.css">
+	<link rel="stylesheet" href="/assets/css/runapi/doc-app.css" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/lib/layui_exts/mouseRightMenu/mouseRightMenu.css" />
+	<script src="/assets/lib/jquery/jquery-2.1.4.min.js" type="text/javascript" ></script>
+	<script src="/assets/lib/jquery/jquery.form.js" type="text/javascript" ></script>
+    <script src="/assets/lib/layui/layui.js" type="text/javascript" ></script>
+    <script src="/assets/lib/xm-select/xm-select.js" type="text/javascript" ></script>
+    <!-- jquery 表格移动需要 -->
+	<script src="/assets/lib/jquery/jquery-migrate-1.2.1.js"></script>
+	<script src="/assets/lib/jquery/jquery-ui.min.js" type="text/javascript" ></script>
+	
+</head>
+<body>
+	<div class="layui-container-fluid">
+  <form action="/project/update" class="layui-form layui-form-pane f-form" method="post" autocomplete="off">
+      	<input type="hidden" class="layui-input"  name="project.id" value="1" />
+<input type='hidden' name='_jfinal_token' id='_jfinal_token' value='1866868774309214852' />
+<div class="layui-row layui-col-space1 task-row">
+ 		<div class="layui-col-xs12 layui-col-sm12 layui-col-md12" id="项目名称">
+			<div class="layui-form-item">
+				<label class="layui-form-label" title="项目名称" >项目名称		<font color="red">&nbsp;*</font>
+</label>
+				<div class="layui-input-block" >
+	<input type="text" class="layui-input"  name="project.projectName" value="RunApi" lay-verType='tips'lay-verify="required" maxlength="100"/>
+				</div>
+			</div>
+		</div>
+ 		<div class="layui-col-xs12 layui-col-sm12 layui-col-md12" id="项目地址">
+			<div class="layui-form-item">
+				<label class="layui-form-label" title="项目地址" >项目地址		<font color="red">&nbsp;*</font>
+</label>
+				<div class="layui-input-block" >
+	<input type="text" class="layui-input"  name="project.projectHost" value="http://runapi.qinhaisenlin.com" lay-verType='tips'lay-verify="required" maxlength="100" placeholder="http://localhost:8080"/>
+				</div>
+			</div>
+		</div>
+ 		<div class="layui-col-xs12 layui-col-sm12 layui-col-md12" id="同步接口地址">
+			<div class="layui-form-item">
+				<label class="layui-form-label" title="同步接口地址" >同步接口地址</label>
+				<div class="layui-input-block" >
+	<input type="text" class="layui-input"  name="project.apiSyncUrl" value="/runapi/sync" lay-verType='tips'lay-verify="" maxlength="100" placeholder="默认接口：/runapi/sync"/>
+				</div>
+			</div>
+		</div>
+</div>
+<div class="layui-row layui-col-space1 task-row">
+ 		<div class="layui-col-xs12 layui-col-sm12 layui-col-md12" id="访问类型">
+			<div class="layui-form-item">
+				<label class="layui-form-label" title="访问类型" >访问类型</label>
+				<div class="layui-input-block" >
+	 <select class="layui-select" name="project.visitType" lay-filter="visitType">
+	 	<option value="0">公开访问</option>
+	 	<option value="1" >密码访问</option>
+	 </select>
+				</div>
+			</div>
+		</div>
+ 		<div class="layui-col-xs12 layui-col-sm12 layui-col-md12" id="访问密码">
+			<div class="layui-form-item">
+				<label class="layui-form-label" title="访问密码" >访问密码</label>
+				<div class="layui-input-block" >
+	<input type="password" class="layui-input"  name="project.password" value="123456" lay-verType='tips'lay-verify="" maxlength="100"/>
+				</div>
+			</div>
+		</div>
+</div>
+<div class="layui-row layui-col-space1 task-row">
+ 		<div class="layui-col-xs12 layui-col-sm12 layui-col-md12" id="备注">
+			<div class="layui-form-item">
+				<label class="layui-form-label" title="备注" >备注</label>
+				<div class="layui-input-block" >
+	<input type="text" class="layui-input"  name="project.remark" value="" lay-verType='tips'lay-verify="" maxlength="100"/>
+				</div>
+			</div>
+		</div>
+</div>
+
+
+			<br/><br/>
+ 			<div class="layui-row layui-col-space1 task-row">
+				<div class="layui-col-xs2 layui-col-sm4 layui-col-md4">
+					<div class="layui-input-block"></div>	
+				</div>
+				<div class="layui-col-xs10 layui-col-sm8 layui-col-md8">
+					<div class="layui-input-block">
+							<div class="layui-btn-container" style="margin-top: 10px;margin-left:-25px">
+								<button id='submitBtn' type="submit" lay-submit	 class='layui-btn  layui-btn-normal '  value="Submit">
+									<i class="layui-icon">&#xe605;</i>	提交
+								</button>
+								<button id='closeWinBtn' type="button" 	 class='layui-btn  layui-btn-normal' value="Close">
+									<i class="layui-icon">&#x1006;</i>	关闭
+								</button>
+							</div>
+					</div>
+				</div>
+			</div>
+<!-- 防止重复提交数据 -->
+<script type="text/javascript">
+		var num=0;
+		$('#submitBtn').click(function() {
+			if(num==1){
+				$('#submitBtn').attr("disabled",true);						
+			}
+			num=1;
+			//解决表单验证不通过的情况
+			var timer = window.setInterval(function(){						
+				$('#submitBtn').attr("disabled",false);
+				num=0;window.clearInterval(timer);
+			},3000);
+		});
+		
+		//禁用回车提交事件
+		document.onkeypress = function(){
+			if(event.keyCode == 13) {
+				return false;
+			}
+		}
+</script>
+
+
+
+  </form>
+	</div>
+	<script src="/assets/js/common/alert.js" type="text/javascript" ></script>
+	<script src="/assets/js/common/ui.tool.js" type="text/javascript" ></script>
+	<script src="/assets/js/common/grid-init.js" type="text/javascript" ></script>
+	<script type="text/javascript">
+		var _path='';
+		//执行一个laydate日期选择控件实例
+		lay('.layui-date').each(function(){
+			layui.laydate.render({
+			    elem: this
+			    ,trigger:'click'
+			});		  
+		});
+		
+		//执行一个laydate日期时间控件实例
+		lay('.layui-date-time').each(function(){
+			layui.laydate.render({
+			    elem: this
+			    ,type:'datetime'
+			    ,trigger:'click'
+			});
+		});
+
+		//调取用户选择器,dataType:0单选，1多选
+		function getUser(inputId,dataType){
+	    	sessionStorage.setItem('inputId',inputId);
+	    	var userIds=$('#'+inputId).val();
+	    	var url='/portal/core/sysOrg/getUser?userIds='+userIds+'&dataType='+dataType;
+	    	openDialog('选择用户',url,false,840,460,null);
+	    }
+
+	    //确定按钮回调函数
+	    function getUserData(userDataList,dataType){
+	    	var resultValue=new Array();
+	    	var resultTitle=new Array();
+	    	$.each(userDataList,function(index,value){
+	        		if(dataType=='0'&&index>0){
+						return
+	            	}
+	               resultValue.push(value.id);
+	               resultTitle.push(value.user_name);
+	        });
+	        
+	        var inputId=sessionStorage.getItem('inputId');
+	        $('#'+inputId).val(resultValue.join(',')); 
+	        $('#'+inputId+'_name').val(resultTitle.join(','));        
+	              
+	        if(inputId!=null)
+	        	sessionStorage.removeItem('inputId');
+	    }
+	</script>
+	<script type="text/javascript">
+		passwordFunc("0")
+		
+		layui.form.on('select(visitType)',function(data){
+			passwordFunc(data.value);
+		});
+		
+		function passwordFunc(type){
+			if(type==1){
+				$("#访问密码").removeClass("layui-hide");
+			}else{
+				$('#访问密码').addClass("layui-hide");
+			}
+		}
+	</script>
+</body>
+</html>
+
+

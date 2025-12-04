@@ -1,0 +1,31 @@
+{
+    "code": 0,
+    "endIndex": 0,
+    "intIds": [],
+    "list": [
+        {
+            "create_by": "1",
+            "user_num": 1,
+            "create_time": "2024-04-01 16:00:14",
+            "id": "562218652d5e4f18a9b67a60a2f3486e",
+            "team_name": "jfinal runapi团队",
+            "project_num": 1
+        },
+        {
+            "create_by": "5",
+            "user_num": 0,
+            "create_time": "2024-08-22 14:09:09",
+            "id": "9a17a630529f4040b36aab45f0e62075",
+            "team_name": "11",
+            "project_num": 0
+        }
+    ],
+    "longIds": [],
+    "msg": "获取成功",
+    "pageNumber": 1,
+    "pageSize": 20,
+    "startIndex": 0,
+    "total": 2,
+    "totalCount": 2,
+    "totalPage": 1
+}

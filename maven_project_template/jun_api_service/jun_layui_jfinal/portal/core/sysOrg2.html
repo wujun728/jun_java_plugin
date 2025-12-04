@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>主从表格展示</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="/static/libs/layui/css/layui.css?t=2024-12-30" media="all" />
+	<link rel="stylesheet" href="/static/css/global.css?t=2024-12-30" media="all">
+	<link rel="stylesheet" href="/static/libs/font-awesome/css/font-awesome.min.css?t=2024-12-30">
+	<link rel="stylesheet" href="/static/libs/dwallslider/css/lightbox.min.css?t=2024-12-30">
+	<link href="/static/libs/ddlsql/codemirror.min.css" rel="stylesheet">
+	<script src="/static/libs/jquery/jquery-2.1.4.min.js?t=2024-12-30" type="text/javascript" ></script>
+	<script src="/static/libs/jquery/jquery.form.js?t=2024-12-30" type="text/javascript" ></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+	<script src="/static/libs/jquery/jquery-ui.min.js?t=2024-12-30" type="text/javascript" ></script>
+    <script src="/static/libs/layui/layui.js?t=2024-12-30" type="text/javascript" ></script>
+    <link rel="stylesheet" href="/static/css/theme/theme-default.css?t=2024-12-30" media="all">
+     <link rel="stylesheet" href="/static/css/theme/theme-black.css?t=2024-12-30" media="all" /> 
+    <link rel="stylesheet" href="/static/css/layui_extend.css?t=2024-12-30" media="all">
+    <link rel="stylesheet" href="/static/libs/ckplayer/css/ckplayer.css?t=2024-12-30" media="all">
+    <link rel="stylesheet" href="/static/libs/ckplayer/css/ckplayer.ixigua.css?t=2024-12-30" media="all">
+    <link rel="stylesheet" href="/static/libs/ckplayer/css/ckplayer.red.css?t=2024-12-30" media="all">
+    <script src="/static/libs/ckplayer/flv.js/flv.js" type="text/javascript" ></script>
+    <script src="/static/libs/ckplayer/js/ckplayer.js" type="text/javascript" ></script>
+<style type="text/css">
+#searchForm .layui-inline:nth-child(2){
+	border:1px solid #e6e6e6;
+} 
+#searchForm .layui-inline:nth-child(2) .layui-input-block{
+	min-height: 28px;
+}
+#searchForm .layui-inline:nth-child(2) label{
+	height:28px;
+	padding-top:6px;
+	background: none;
+	border:none;
+}
+#searchForm .layui-inline:nth-child(2) .layui-form-radio{
+	margin-top:0;
+}
+</style>
+<script type="text/javascript">
+	
+	//获取业务字典数据 
+	function getOption(code,type,value,name,isSql,disabled){		
+		var url='/portal/core/dictionary/value/getOption';
+		if(isSql){
+			url='/portal/form/sql/getOption';
+		}
+		var checkboxValue=value.split(',');
+		$.ajax({
+			url:url,
+			data:{
+				"code":code
+			},
+			type:"post",
+			success:function(data){
+				var option="";
+				for(var i=0;i<data.length;i++){
+					if(type=="radio"){
+						if(data[i].value==value){
+							option+='<input type="radio" lay-filter="'+name+'" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'" checked="checked"'+disabled+'/>';
+						}else{
+							option+='<input type="radio" lay-filter="'+name+'" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'" '+disabled+'/>';
+						}
+					}else if(type=="checkbox"){
+						if(checkboxValue.length>0){
+							var isCheck=false;
+							$.each(checkboxValue,function(key,val){
+								if(data[i].value==val){
+									isCheck=true;
+								}								
+							});	
+							
+							if(isCheck){
+								option+='<input type="checkbox" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'" checked="checked"'+disabled+'/>';
+							}else{
+								option+='<input type="checkbox" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'"'+disabled+' />';
+							}				
+						}else{
+							option+='<input type="checkbox" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'"'+disabled+' />';
+						}
+					}else{
+						if(data[i].value==value){
+						    option+='<option value="'+data[i].value+'" selected="selected">'+data[i].name+'</option>';
+						}else{
+							option+='<option value="'+data[i].value+'">'+data[i].name+'</option>';
+						}
+					}	
+				}					
+				name=name.replace(/\./g,"_");
+				$('#'+type+"_"+code+"_"+name).append(option);
+				//立即渲染元素，防止有些情况渲染不成功
+				layui.use('form', function() {
+					var form = layui.form;
+					form.render();
+				});
+			}			
+		});
+	}
+
+  </script>
+</head>
+<body>
+	<div class="layui-container-fluid">
+<div class="container-wrap">
+<form class="layui-form layui-form-pane f-form layui-hide-xs" id='searchForm' lay-filter='searchForm' action="javascript:;">
+	<div class='layui-row layui-col-space1 task-row search-model'>
+		<div class='layui-col-xs12 layui-col-sm12 layui-col-md12'> 
+			<div class="layui-form-item">
+		<div class="layui-inline" style="">
+		   <input type="search" name="orgName" autocomplete="off" class="layui-input" placeholder="部门名称"/>
+		</div>
+		
+		<div class="layui-inline" style="">
+			<label class="layui-form-label" for="显示下级部门">显示下级部门</label>
+			<div class="layui-input-block">
+		   <!-- <input type="checkbox" name="showSubOrg" checked="" lay-skin="switch" lay-text="是|否"> -->
+		   <input type="radio" name="showSubOrg" value="1" title="是">
+      	   <input type="radio" name="showSubOrg" value="0" title="否" checked>
+			 </div>
+		</div>
+				<div class="layui-inline">
+					<div class="layui-btn-group">
+						<button class="layui-btn layui-btn-disabled " disabled id="searchBtn_">
+							<i class="layui-icon">&#xe615;</i>查询
+						</button>
+						<button class="layui-btn layui-hide" type="reset" id="resetBtn" style="margin-left: 5px!important;">
+							<i class="layui-icon layui-icon-close"></i>重置
+						</button>
+						<button class="layui-btn " type="reset" onclick="$('#resetBtn').click();$('#searchBtn_').click()" style="margin-left: 5px!important;">
+							<i class="layui-icon layui-icon-close"></i>清空
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+	
+	<!-- 主表数据 -->
+	<div class="layui-row  f-index-toolbar">
+			<div class="layui-col-xs12">
+   				<table id="maingrid" lay-filter="maingrid"></table>
+   			</div>
+   	</div>
+   	   	
+   	<!-- 表头工具栏 -->
+   	<script type="text/html" id="table_toolbar">
+  		<div class="layui-btn-group">
+				<button class="layui-btn layui-btn-normal layui-btn-sm" lay-event="add">
+				  <i class="layui-icon">&#xe608;</i> 新增
+				</button>
+				<button class="layui-btn layui-btn-normal layui-btn-sm" lay-event="update">
+				  <i class="layui-icon">&#xe642;</i> 编辑
+				</button>
+				<button class="layui-btn  layui-btn-normal layui-btn-sm" lay-event="delete">
+				  <i class="layui-icon">&#xe640;</i> 删除
+				</button>		
+				<button class="layui-btn layui-btn-normal layui-btn-sm" lay-event="refresh">
+				  <i class="layui-icon">&#xe669;</i> 刷新
+				</button>
+		</div>
+	</script>
+   	<!-- 	每行的操作按钮 -->
+	<script type="text/html" id="bar_maingrid">
+  		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+
+  		<a class="layui-btn layui-btn-xs layui-btn-danger lay-event="del">删除</a>
+	</script>
+	
+	<!-- 从表数据 -->
+	<div class="layui-tab layui-tab-card">
+		  <ul class="layui-tab-title">
+			    <li  class="layui-this" >用户管理</li>
+			    <li >用户管理2</li>
+		  </ul>
+		  <div class="layui-tab-content" style="min-height: 200px">
+		  		<!-- 内容1-->
+			    <div class="layui-tab-item  layui-show ">	   	
+				   	<table class="layui-hide" id="tab_item_1" lay-filter="tab_item_1"></table>  
+				   	<!-- 表头工具栏 -->
+				   	<script type="text/html" id="table_toolbar_1">
+  						<div class="layui-btn-group">
+							<button class="layui-btn layui-btn-normal layui-btn-sm" id="add_btn_1" type="button">
+				  				<i class="layui-icon">&#xe608;</i> 新增
+							</button>
+							<button class="layui-btn layui-btn-normal layui-btn-sm" id="save_btn_1" type="button">
+				  				<i class="layui-icon">&#xe605;</i> 保存
+							</button>
+							<button class="layui-btn layui-btn-normal layui-btn-sm" id="del_btn_1" type="button">
+				  				<i class="layui-icon">&#xe640;</i> 删除
+							</button>
+						</div>
+					</script>
+					<!-- 	每行的操作按钮 -->
+					<script type="text/html" id="table_rowbar_1">
+  						<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del_btn_1">删除</a>
+					</script>	
+			    </div>
+		  		<!-- 内容2-->
+			    <div class="layui-tab-item ">	   	
+				   	<table class="layui-hide" id="tab_item_2" lay-filter="tab_item_2"></table>  
+				   	<!-- 表头工具栏 -->
+				   	<script type="text/html" id="table_toolbar_2">
+  						<div class="layui-btn-group">
+							<button class="layui-btn layui-btn-normal layui-btn-sm" id="add_btn_2" type="button">
+				  				<i class="layui-icon">&#xe608;</i> 新增
+							</button>
+							<button class="layui-btn layui-btn-normal layui-btn-sm" id="save_btn_2" type="button">
+				  				<i class="layui-icon">&#xe605;</i> 保存
+							</button>
+							<button class="layui-btn layui-btn-normal layui-btn-sm" id="del_btn_2" type="button">
+				  				<i class="layui-icon">&#xe640;</i> 删除
+							</button>
+						</div>
+					</script>
+					<!-- 	每行的操作按钮 -->
+					<script type="text/html" id="table_rowbar_2">
+  						<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del_btn_2">删除</a>
+					</script>	
+			    </div>
+		  </div>
+	</div>
+
+</div>	
+	</div>
+	<script src="/static/libs/common/alert.js?t=2024-12-30" type="text/javascript" ></script>
+	<script src="/static/libs/common/common.js?t=2024-12-30" type="text/javascript" ></script>
+	<script src="/static/libs/common/form-functions.js?t=2024-12-30" type="text/javascript" ></script>
+	<script src="/static/libs/common/ui.tool.js?t=2024-12-30" type="text/javascript" ></script>
+	<script src="/static/libs/common/grid-init.js?t=2024-12-30" type="text/javascript" ></script>
+	<script src="/static/libs/dwallslider/js/lightbox.min.js?t=2024-12-30" type="text/javascript"></script>
+	<script src="/static/libs/xtree/layui_xtree.js?t=2024-12-30" type="text/javascript"></script>
+	<script src="/static/libs/ddlsql/codemirror.min.js?t=2024-12-30" type="text/javascript"></script>
+	<script src="/static/libs/ddlsql/sql.min.js?t=2024-12-30" type="text/javascript"></script>
+	<script src="/static/libs/xm-select/xm-select.js?t=2024-12-30" type="text/javascript"></script>
+	<script src="/static/libs/ueditor/ueditor.config.js" type="text/javascript" ></script>
+	<script src="/static/libs/ueditor/ueditor.all.min.js" type="text/javascript" ></script>
+	<script src="/static/libs/ext/base64.min.js" type="text/javascript" ></script>
+<script type="text/javascript">
+	var ddlSqlId=document.getElementById("ddlSql");
+	if(ddlSqlId){
+		/**
+	    * 初始化 table sql 3
+	    */
+	   var ddlSql = CodeMirror.fromTextArea(ddlSqlId, {
+	       lineNumbers: true,
+	       matchBrackets: true,
+	       mode: "text/x-sql",
+	       lineWrapping:false,
+	       readOnly:false,
+	       foldGutter: true,
+	       gutters:["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+	   });
+	   ddlSql.setSize('auto','auto');		
+	}
+
+//	ddlSql.getValue();//取文本域值
+//	ddlSql.setValue(...);//给文本域赋值
+</script>
+	<script src="/static/portal/core/sysOrg/tab-item.js?t=2024-12-30" type="text/javascript" ></script>
+<script type="text/javascript">
+$(document).on('keydown','.layui-input',function(e){
+	var td=$(this).parent('td')
+		,tr=td.parent('tr')
+		,trs=tr.parent().parent().find("tr")
+		,tr_index=tr.index()
+		,td_index=td.index()
+		,td_last_index=tr.find('[data-edit="true"]:last').index()
+		,td_first_index=tr.find('[data-edit="true"]:first').index();
+	switch(e.keyCode){
+		case 13:
+		case 39:
+			td.nextAll('[data-edit="true"]:first').click();
+		if(td_index==td_last_index){
+			tr.next().find('td').eq(td_first_index).click();
+			if(tr_index==trs.length-1)
+				trs.eq(0).find('td').eq(td_first_index).click();
+		}
+		setTimeout(function(){$('.layui-table').select()},0);
+		break;
+		case 37:
+			td.prevAll('[data-edit="true"]:first').click();
+			setTimeout(function(){$('.layui-table').select()},0);
+			break;
+		case 38:
+			tr.prev().find('td').eq(td_index).click();
+			setTimeout(function(){$('.layui-table').select()},0);
+			break;
+		case 40:
+			tr.next().find('td').eq(td_index).click();
+			setTimeout(function(){$('.layui-table').select()},0);
+			break;
+	}
+});
+</script>
+<!-- 分页表格 -->
+<script>
+	/**主表js代码**/
+	gridArgs.title='部门';
+	gridArgs.dataId='id';
+	gridArgs.deleteUrl='/portal/core/sysOrg/delete';
+	gridArgs.updateUrl='/portal/core/sysOrg/edit/';
+	gridArgs.addUrl='/portal/core/sysOrg/addOrgUser';
+	gridArgs.resetUrl='/portal/core/sysOrg/resetPassword';
+	gridArgs.gridDivId ='maingrid';
+	gridArgs.heightDiff=440;//调整表格高度
+	initGrid({id : 'maingrid'
+			,elem : '#maingrid'
+			,cellMinWidth: 80
+			,toolbar:'#table_toolbar'			
+			,cols : [ [
+					{title: '主键',field : 'id',width : 35,checkbox : true},						
+					{title:'序号',type:'numbers',width:35},
+	        		{title: '部门名称', field: 'org_name'},
+        			{title: '上级部门', field: 'parentid_name'},
+        			{title: '负责人姓名', field: 'chief'},
+        			{title: '电话', field: 'phone'},
+        			{title: '手机号码', field: 'mobile'},
+        			{title: '邮箱', field: 'email'},
+        			{title: '是否停用', field: 'isstop',templet:'#numToStr' },																		
+					{title: '操作',fixed:'right',width : 160,align : 'left',toolbar : '#bar_maingrid'} // 这里的toolbar值是模板元素的选择器
+			] ]
+			,url:"/portal/core/sysOrg/list"
+			,searchForm : 'searchForm'
+		});
+
+	/** 从表表格js代码**/
+	var params_sex=[{value:0,name:"女"},{value:1,name:"男"}];
+	var params_yesno=[{value:0,name:"是"},{value:1,name:"否"}];
+	var params = [{value:1,name:"张三1"},{value:2,name:"张三2"},{value:3,name:"张三3"},{value:4,name:"张三4"},{value:5,name:"张三5"}];
+
+	/*=====表格1=====*/
+	function renderSubTable1(orgId){
+		//获取默认配置
+		var config=editTable.config;
+		//查询数据接口
+		config.queryUrl="/portal/core/sysUser/list";
+		config.params={"type":"org","orgId":orgId};
+		//保存数据接口
+		config.saveUrl="/portal/core/sysOrg/saveTableTata?type=formTable&orgId="+orgId;
+		//删除接口
+		config.deleteUrl="/portal/core/sysUser/delete";
+		//添加行数据参数，可以给默认值
+		config.rowData={
+				"user_code":"test",
+				"user_name":"托尔斯泰",
+				"org_name":null,
+				"sex":"1",
+				"mobile":null,
+				"tel":null,
+				"email":null,
+				"allow_login":0
+		};
+		
+		//表格列表设置
+		editTable.render(config,{
+			  elem: '#'+config.tableId
+		      ,height: '300'
+		      ,toolbar:'#'+config.toolbar
+		      ,cols: [[ 
+		      		 {field : 'id',type:'checkbox'}
+		             ,{title:'序号',type:'numbers',width:35}
+		             ,{field:'user_code',title: '用户名',edit:true}
+		             ,{field:'user_name',align:'center', title: '姓名',width:120,edit:true}               
+		             ,{field:'sex', title: '性别',event:'sex'
+		                 ,config:{type:'select',data:params_sex},templet:function(d){
+		                 	if(d.sex&&d.sex.name){
+		                          return  d.sex.name; 
+		                     }
+		                     return d.sex == 0 ? '女' : '男';
+		                 }
+		             }
+		             ,{field:'mobile', title: '手机 ',edit:true}
+		             ,{field:'tel', title: '电话',edit:true}
+		             ,{field:'email', title: '邮箱',edit:true}
+		             ,{field:'allow_login', title: '允许登录',event:'allow_login'
+		                 ,config:{type:'select',data:params_yesno},templet:function (d) {
+		                    if(d.allow_login&&d.allow_login.name){
+		                        return  d.allow_login.name;
+		                    }
+		                     return d.allow_login == 0 ? '是' : '否';
+		             	  }
+		            }
+				,{fixed: 'right', title:'操作', toolbar: '#'+config.rowbar,width:100 }
+			]]
+		});
+		
+	}
+
+	/**========表格2=========*/
+	function renderSubTable2(orgId){
+		var editTable=new EditTable();
+		var config=editTable.config;
+		//除了第一个用默认配置,其他表格都要配置自己的参数
+		config.tableId='tab_item_2';//表Id
+		config.addBtnId='add_btn_2';//添加按钮ID
+		config.delEvent='del_btn_2';//删除按钮Even值
+		config.delBtnId='del_btn_2';
+		config.toolbar='table_toolbar_2';//表头工具ID
+		config.rowbar='table_rowbar_2';//行按钮ID
+		config.saveBtnId="save_btn_2";//保存表格接口
+		config.queryUrl="/portal/core/sysUser/list";
+		config.params={"type":"org","orgId":orgId};
+		config.saveUrl="/portal/core/sysOrg/saveTableTata?orgId="+orgId;
+		config.deleteUrl="/portal/core/sysUser/delete";
+		config.rowData={
+				"user_code":"test2",
+				"user_name":"托尔斯泰2",
+				"org_name":null,
+				"sex":0,
+				"mobile":null,
+				"tel":null,
+				"email":null,
+				"allow_login":1
+		};
+		editTable.render(config,{
+			 elem: '#'+config.tableId
+		     ,height: '300'
+		     ,toolbar:'#'+config.toolbar
+		     ,cols: [[ 
+		     		{field:'id',type:'checkbox'}
+		             ,{title:'序号',type:'numbers',width:35}
+		             ,{field:'user_code',title: '用户名',edit:true}
+		             ,{field:'user_name',align:'center', title: '姓名',width:120,edit:true}      
+		             ,{field:'sex', title: '性别',event:'sex'
+		                 ,config:{type:'select',data:params_sex},templet:function(d){
+		                 	if(d.sex&&d.sex.name){
+		                          return  d.sex.name; 
+		                     }
+		                     return d.sex == 0 ? '女' : '男';
+		                 }
+		             } 	                
+		             ,{field:'mobile', title: '手机 ',edit:true}
+		             ,{field:'tel', title: '电话',edit:true}
+		             ,{field:'email', title: '邮箱',edit:true}
+		             ,{field:'allow_login', title: '允许登录',event:'allow_login'
+		                 ,config:{type:'select',data:params_yesno},templet:function (d) {
+		                    if(d.allow_login&&d.allow_login.name){
+		                        return  d.allow_login.name;
+		                    }
+		                     return d.allow_login == 0 ? '是' : '否';
+		             }}
+					,{fixed: 'right', title:'操作', toolbar: '#'+config.rowbar,width:100 }
+				]]
+		});
+	}	
+</script>
+
+<script type="text/html" id="numToStr">
+    <input type="checkbox" name="isstop" value="{{d.id}}" 
+		lay-skin="switch" lay-text="是|否" lay-filter="allowLoginFilter" {{ d.isstop == 0 ? 'checked' : '' }}>               
+</script>
+<script>
+	layui.use([ 'table', 'form', 'jquery','laydate','element'], function() {
+		var table = layui.table;
+		var form = layui.form;
+		var layer = layui.layer;
+		var $ = layui.$;
+		var laydate = layui.laydate;
+		var element = layui.element; 
+		//执行一个laydate日期选择控件实例
+		lay('.layui-date').each(function(){
+			laydate.render({
+			    elem: this
+			    ,trigger:'click'
+			});		  
+		});
+		
+		//执行一个laydate日期时间控件实例
+		lay('.layui-date-time').each(function(){
+			laydate.render({
+			    elem: this
+			    ,type:'datetime'
+			    ,trigger:'click'
+			});
+		});
+		
+		//layui相关语法函数
+  //监听行单击事件（双击事件为：rowDouble）
+  table.on('row(maingrid)', function(obj){
+    var data = obj.data;
+    var orgId=data.id;
+    //渲染从表数据
+    renderSubTable1(orgId);
+    renderSubTable2(orgId);
+     //标注选中样式
+    obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+  });
+
+		//表单提交监听
+		form.on('submit(saveForm)', function(data) {
+			$(this).ajaxSubmit({
+				type : 'post', 
+				url : saveUrl, 
+				success : function(data) { 
+					if (data.state == 'ok') {
+						parent.success(data.msg);
+						$('#closeWinBtn').click();
+					} else {	
+						warn(data.msg);
+						$('#submitBtn').attr("disabled",false);
+					}
+				}
+			});		
+		 });	
+		 
+		form.render();
+	});
+
+    //预览文件方法,url为file_uploaded表中的url字段内容
+	function previewFile(url,fileName){
+		var fileType=fileName.substring(fileName.lastIndexOf(".")+1).toLowerCase()
+		var protocol=window.location.protocol;
+		var host=window.location.host;
+		var port=window.location.port;
+		var location=protocol+"//"+host;
+		var fileUrl = location+'/portal/download/'+url+'?fullfilename='+fileName;
+		//文件在线预览服务地址
+        var onlinePreviewUrl='http://localhost:8012/onlinePreview?url='+encodeURIComponent(Base64.encode(fileUrl));
+        var onlinePreview=false;
+        if(!onlinePreview){
+        	onlinePreviewUrl='/portal/view/'+url;
+        }
+        openDialog(fileName,onlinePreviewUrl,false,null,null,null);
+	}
+	//附件删除
+	function deleteFile(url,fileName,num){
+		var url='/portal/delete/'+url;
+		layer.confirm('确定要删除 '+fileName+' 吗',{icon: 3, title:'提示'},function(index){
+			$.post(url,function(data){
+				if(data.state=='ok'){
+					$('#upload-'+num).addClass('layui-hide');	
+				   layer.msg("删除成功",{icon:1});
+				}else{
+					layer.msg(data.msg||"附件不存在",{icon:2});
+				}
+			});
+		});
+	}
+	//附件下载
+	function downloadFile(url){
+		window.location.href='/portal/download/'+url;
+	}
+
+	//调取用户选择器,dataType:0单选，1多选
+	function getUser(inputId,dataType){
+    	sessionStorage.setItem('inputId',inputId);
+    	var userIds=$('#'+inputId).val();
+    	var url='/portal/core/sysOrg/getUser?userIds='+userIds+'&dataType='+dataType;
+    	openDialog('选择用户',url,false,840,460,null);
+    }
+
+    //确定按钮回调函数
+    function getUserData(userDataList,dataType){
+    	var resultValue=new Array();
+    	var resultTitle=new Array();
+    	$.each(userDataList,function(index,value){
+        		if(dataType=='0'&&index>0){
+					return
+            	}
+               resultValue.push(value.id);
+               resultTitle.push(value.user_name);
+        });
+        
+        var inputId=sessionStorage.getItem('inputId');
+        $('#'+inputId).val(resultValue.join(',')); 
+        $('#'+inputId+'_name').val(resultTitle.join(','));        
+              
+        if(inputId!=null)
+        	sessionStorage.removeItem('inputId');
+    }
+
+</script>
+<script type="text/javascript">
+//部门下拉树
+function getOrgOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled){
+	var url='/portal/core/sysOrg/getXmSelectData';
+	getXmSelectOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled,url);
+}
+//功能下拉树
+function getFuncOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled){
+	var url='/portal/core/sysFunc/getXmSelectData';
+	getXmSelectOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled,url);
+}
+function getXmSelectOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled,url){
+	var xmSelectRender = xmSelect.render({
+		el: '#'+divId, 
+		model: { label: { type: 'text' } },
+		radio: radio,
+		clickClose: radio,		
+		name:inputName,				//表单提交名称
+		tree: {
+			show: true,
+			strict: false, 
+			expandedKeys: ['sys','frame'],//默认展开节点
+		},
+		height: 'auto',
+		disabled:disabled,			//禁用属性：true/false
+		tips:tips,					//默认提示, 类似于placeholder
+		filterable:filterable,		//搜索开关：true/false
+		layVerify:layVerify,		//表单验证, 同layui的lay-verify
+		size:size 					//控件大小：large / medium / small / mini
+	})
+	
+	$.ajax({
+		url:url,
+		type:"POST",
+		data:{
+			"selectData":selectData,
+			"disabledData":disabledData
+		},
+		success:function(ret){
+			if(ret.state=='ok'){
+				var data=ret.data;
+				xmSelectRender.update({
+					data: data,
+					autoRow: true,
+				})
+			}
+		}
+	})
+}
+</script>
+</body>
+</html>
+
+ 
+<!-- 监听主表点击事件 --> 
+ 
+
+
+
+

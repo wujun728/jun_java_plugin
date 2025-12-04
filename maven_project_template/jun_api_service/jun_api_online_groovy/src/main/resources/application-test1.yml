@@ -1,0 +1,117 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: api-web-server
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://127.0.0.1:3306/api_server?useUnicode=true&useSSL=false&characterEncoding=utf-8&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      username: root
+      password: root123456
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      filters: stat,wall
+      initial-size: 5
+      maxActive: 20
+      maxPoolPreparedStatementPerConnectionSize: 20
+      maxWait: 60000
+      min-idle: 5
+      minEvictableIdleTimeMillis: 300000
+      poolPreparedStatements: true
+      stat-view-servlet:
+        reset-enable: false
+      testOnBorrow: false
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 60000
+      validationQuery: 'SELECT 1 '
+      web-stat-filter:
+        enabled: true
+        exclusions: '*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*'
+        url-pattern: /*
+  messages:
+    basename: static.i18n.messages
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 500MB
+  thymeleaf:
+    cache: false
+
+logging:
+  level:
+    cn:
+      daikin: debug
+    io:
+      netty:
+        util:
+          internal:
+            PlatformDependent: error
+      swagger:
+        models:
+          parameters:
+            AbstractSerializableParameter: error
+    org:
+      apache:
+        http:
+          impl:
+            conn: error
+      crazycake:
+        shiro: error
+      redisson:
+        command: error
+      springframework:
+        boot:
+          autoconfigure: error
+        data:
+          redis: error
+
+knife4j:
+  enable: true
+  setting:
+    language: zh-CN
+    enable-swagger-models: true
+    enable-document-manage: true
+    swagger-model-name: 实体类列表
+    enable-version: true
+    enable-reload-cache-parameter: false
+    enable-request-cache: true
+    enable-host: false
+    enable-host-text: http://127.0.0.1:8080
+    enable-home-custom: false
+    home-custom-location: classpath:markdown/home.md
+    enable-search: true
+    enable-footer: true
+    enable-footer-custom: true
+    footer-custom-content: admin@admin.com
+    enable-after-script: true
+    enable-group: true
+    enable-open-api: true
+    enable-debug: true
+    enable-dynamic-parameter: true
+    enable-filter-multipart-apis: false
+    enable-filter-multipart-api-method-type: POST
+    enable-response-code: true
+  production: false
+  basic:
+    enable: true
+    username: knife4j
+    password: knife4j
+
+lowcode:
+  page: true
+  config:
+    projectName: lowcodeAdmin
+    tokenName: Authorization
+    serverUrl: http://127.0.0.1:8090
+    apiPathPrefix: /lowcode/api/
+    templateDir: D:\\admin\\project\\jun_lowcode_api\\template\\
+    outputDir: D:\\admin\\project\\lowcode-output\\
+    outputFolder: lowcodeAdmin

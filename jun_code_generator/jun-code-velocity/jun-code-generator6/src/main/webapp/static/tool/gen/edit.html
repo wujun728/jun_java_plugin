@@ -1,0 +1,489 @@
+<html lang="zh">
+
+<head>
+    <!-- <th:block th:include="include :: header('修改生成配置')"/> -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title text="修改生成配置"></title>
+    <link rel="shortcut icon"  href="/favicon.ico">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" />
+    <link rel="stylesheet" href="/assets/module/admin.css">
+    <link rel="stylesheet" href="/assets/css/common.css">
+    <!-- <link rel="stylesheet" href="/assets/css/gougu.css"> -->
+
+    <style>
+        layui-table-body,
+        .layui-table-box,
+        .layui-table-cell {
+            overflow: visible;
+        }
+
+        /* 设置下拉框的高度与表格单元相同 */
+        td .layui-table-cell .layui-form-select,
+        td .layui-table-cell>input.layui-input {
+            margin-top: -10px;
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+
+        .layui-form-checkbox i {
+            border-left: 1px solid #d2d2d2;
+        }
+
+        .layui-input {
+            height: 38px;
+            line-height: 38px;
+        }
+
+        .layui-input[type=text]:focus {
+            border-color: #5FB878 !important
+        }
+
+        .layui-form-item .layui-input[readonly] {
+            background-color: #e6e6e6;
+            opacity: 1;
+        }
+
+        .menuTree {
+            max-height: 300px;
+            display: none;
+            position: absolute;
+            border-top: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-layout layui-layout-iframe">
+        <div class="layui-fluid">
+            <div class="layui-card" style="padding-top:0">
+                <form  id="form-genset"  class="layui-form" lay-filter="form-genset" >
+                    <div class="layui-tab layui-tab-card" lay-filter="gen_tab">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this" data-id="gen_basic_tab">基本信息</li>
+                            <li data-id="gen_column_tab">字段信息</li>
+                            <li data-id="gen_create_tab">生成信息</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <input name="tableId" type="hidden"  />
+                            <!--基本信息-->
+                            <div class="layui-tab-item mt20 layui-show" id="gen_basic_tab">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label"><span class="required-msg ">*</span>表名称：</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input" type="text" name="tableName" lay-verify="required"
+                                            lay-verType="tips" placeholder="请输入表名称" maxlength="200"  />
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label"><span class="required-msg ">*</span>表描述：</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input" type="text" name="tableComment" lay-verify="required"
+                                            lay-verType="tips" placeholder="请输入表描述" maxlength="500"  />
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label"><span class="required-msg ">*</span>实体类名称：</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input" type="text" name="className" lay-verify="required"
+                                            lay-verType="tips" placeholder="请输入实体类名称" maxlength="100"  />
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label"><span class="required-msg ">*</span>作者：</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input" type="text" name="functionAuthor"
+                                            lay-verify="required" lay-verType="tips" placeholder="请输入作者" maxlength="50"  />
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">备注：</label>
+                                    <div class="layui-input-block">
+                                        <textarea class="layui-textarea" rows="5" name="remark" maxlength="500"
+                                            autocomplete="off"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--表格字段-->
+                            <div class="layui-tab-item mt20" id="gen_column_tab">
+                                <table id="table_gen_column"></table>
+                            </div>
+                            <!--生成信息-->
+                            <div class="layui-tab-item mt20" id="gen_create_tab">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label"><span class="required-msg ">*</span>生成模板：</label>
+                                    <div class="layui-input-block">
+                                        <select id="tplCategory" name='tplCategory'>
+                                            <option value="crud"  >单表（增删改查）</option>
+                                            <option value="tree"  >树表（增删改查）</option>
+                                            <option value="sub"  >主子表（增删改查）</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label"
+                                        title="生成在哪个java包下，例如 com.ruoyi.project.system"><span
+                                            class=" required-msg ">*</span>生成包路径：</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input" type="text" name="packageName" lay-verify="required"
+                                            lay-verType="tips" placeholder="请输入生成包路径" maxlength="100" />
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label" title="可理解为子系统名，例如 system"><span
+                                            class="required-msg ">*</span>生成模块名：</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input" type="text" name="moduleName" lay-verify="required"
+                                            lay-verType="tips" placeholder="请输入生成模块名" maxlength="30"  />
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label" title="可理解为功能英文名，例如 user"><span
+                                            class="required-msg ">*</span>生成业务名：</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input" type="text" name="businessName" lay-verify="required"
+                                            lay-verType="tips" placeholder="请输入生成业务名" maxlength="50"  />
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label" title="用作类描述，例如 用户"><span
+                                            class="required-msg ">*</span>生成功能名：</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input" type="text" name="functionName" lay-verify="required"
+                                            lay-verType="tips" placeholder="请输入生成功能名" maxlength="50"  />
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label" title="分配到指定菜单下，例如 系统管理"><span
+                                            class="required-msg ">*</span>上级菜单：</label>
+                                    <div class="layui-input-block">
+                                        <input id="parentMenuId" name="params[parentMenuId]" type="hidden"  />
+                                        <input class="layui-input" type="text" name="params[parentMenuName]"
+                                            lay-verType="tips" readonly >  <!-- lay-verify="required" -->
+                                        <div class="eleTree menuTree" lay-filter="menuTree" id="menuTrees"></div>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label" title="默认为zip压缩包下载，也可以自定义生成路径"><span
+                                            class="required-msg ">*</span>生成代码方式：</label>
+                                    <div class="layui-input-block">
+                                        <input type="radio" name="genType" value="0"  title="zip压缩包" />
+                                        <input type="radio" name="genType" value="1"  title="自定义路径" />
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label" title="填写磁盘绝对路径，若不填写，则生成到当前Web项目下"><span
+                                            class="required-msg ">*</span>生成基础路径：</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input" id="genPath" name="genPath" type="text"  placeholder="请输入项目路径" maxlength="200">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item" style="margin-top:30px;text-align:center;">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="btn-save" id="btn-save">保存</button>
+                            <button type="button" class="layui-btn layui-btn-primary" onclick="closeItem()">关闭</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- <th:block th:include="include :: footer"/> -->
+    <!-- js部分 -->
+    <script src="/assets/libs/layui/layui.js"></script>
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/core.util.js"></script>
+    <script lang="javascript"></script>
+    <script lang="javascript">
+        var ctx = "/dev-api/";
+        var editFlag = true;//[[${@permission.hasPermi('system:user:edit')}]];
+        var removeFlag = true;// [[${@permission.hasPermi('system:user:remove')}]];
+    </script>
+
+    <script>
+        var prefix = ctx + "gen";
+        var menuTree;
+        layui.use(['eleTree', 'common', 'index', 'admin'], function () {
+            selectMenu(ctx + "gen");//菜单选中
+            var $ = layui.jquery,
+                common = layui.common,
+                element = layui.element,
+                form = layui.form,
+                eleTree = layui.eleTree,
+                index = layui.index,
+                table = layui.table;
+            var admin = layui.admin;
+            
+            var codeGenId = admin.getTempData('codeGenId');
+            //debugger;
+
+            CoreUtil.sendGet('/dev-api/gen/'+codeGenId, {}, function (res) {
+                console.log(res); 
+                form.val('form-genset', res.data.info);
+                //form.render();
+                /* postDataRenderIns = xmSelect.render({
+                    el: '#posIdListBox',
+                    name: 'postIds',
+                    data: res.posts,
+                    layVerify: 'required',
+                    layVerType: 'tips',
+                    radio: false,
+                    prop: {
+                        name: 'postName',
+                        value: 'postId'
+                    },
+                    tips: '请选择职位'
+                }); */
+                //tab切换
+                element.on('tab(gen_tab)', function (data) {
+                    var tablId = $.trim($(this).data('id'));
+                    setFormValid(tablId);
+                });
+                //表单
+                //form.render(null, 'form-genset');
+                form.on('submit(btn-save)', function (data) {
+                    var tableData = table.cache['table_gen_column']; // 获取表格里的所有数据
+                    data.field.columns = tableData;
+                    $.ajax({
+                        cache: false,
+                        type: "put",
+                        headers: {"Authorization": localStorage.getItem("Authorization")},
+                        url: prefix + "",
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        data: JSON.stringify(data.field) ,
+                        async: false,
+                        error: function (res) {
+                            layui.layer.alert("系统错误");
+                        },
+                        success: function (data) {
+                            layui.layer.alert(data.msg);
+                            if (data.code == 0 || data.code == 200) {
+                                window.location.href = '/tool/gen/index.html';
+                            }
+                        }
+                    });
+                    return false;
+                });
+                //菜单tree
+                $("[name='params[parentMenuName]']").on("click", function (e) {
+                    e.stopPropagation();
+                    if (!menuTree) {
+                        menuTree = eleTree.render({
+                            elem: '.menuTree',
+                            url: ctx + "system/menu/roleMenuTreeData2",
+                            request: {
+                                name: "name",
+                                key: "id",
+                                children: "children",
+                                checked: "checked",
+                                disabled: "disabled",
+                                isLeaf: "isLeaf"
+                            },
+                            response: {
+                                statusName: "code",
+                                statusCode: 0,
+                                dataName: "data"
+                            },
+                            defaultExpandAll: true,
+                            expandOnClickNode: false,
+                            highlightCurrent: true
+                        });
+                    }
+                    $(".menuTree").toggle();
+                });
+                eleTree.on("nodeClick(menuTree)", function (d) {
+                    $("[name='params[parentMenuId]']").val(d.data.currentData.id);
+                    $("[name='params[parentMenuName]']").val(d.data.currentData.name.replace(/<font.*\/font>/ig, ''));
+                    $(".menuTree").hide();
+                });
+                //表格初始化
+                table.render({
+                    elem: '#table_gen_column'
+                    , method: 'post'
+                    , data: res.data.rows //数据接口
+                    // , url: prefix + "/column/list" //数据接口
+                    , where: { tableId: $.trim($('#tableId').val()) }
+                    , defaultToolbar: []
+                    , page: false
+                    , done: function () {
+                        form.render('select');
+                        $('.layui-table-cell>input.layui-input[type="text"]').parent().css('padding', '0px 5px');
+                    }
+                    , cols: new Array([
+                        {
+                            title: '序号', width: 50, templet: function (row) {
+                                var index = row.LAY_INDEX - 1;
+                                // 编号隐藏域
+                                var columnIdHtml = common.sprintf("<input type='hidden' name='columns[%s].columnId' value='%s'>", index, row.columnId);
+                                // 排序隐藏域
+                                var sortHtml = common.sprintf("<input type='hidden' name='columns[%s].sort' value='%s' id='columns_sort_%s'>", index, row.sort, row.columnId);
+                                return columnIdHtml + sortHtml + (index++);
+                            }
+                        }
+                        , { field: 'columnName', title: '字段列名' }
+                        , {
+                            field: 'columnComment', title: '字段描述', align: 'center', templet: function (row) {
+                                var index = row.LAY_INDEX - 1;
+                                var html = common.sprintf("<input class='layui-input' type='text' name='columns[%s].columnComment' value='%s'>", index, row.columnComment);
+                                return html;
+                            }
+                        }
+                        , { field: 'columnType', title: '物理类型', width: 120 }
+                        , {
+                            field: 'javaType', title: 'Java类型', align: 'center', width: 100, templet: function (row) {
+                                var index = row.LAY_INDEX - 1;
+                                var javaType = row.javaType;
+                                var html = '<select name="columns[' + index + '].javaType">'
+                                    + '<option value="Long" ' + (javaType === "Long" ? ' selected' : '') + '>Long</option>'
+                                    + '<option value="String" ' + (javaType === "String" ? ' selected' : '') + '>String</option>'
+                                    + '<option value="Integer" ' + (javaType === "Integer" ? ' selected' : '') + '>Integer</option>'
+                                    + '<option value="Double" ' + (javaType === "Double" ? ' selected' : '') + '>Double</option>'
+                                    + '<option value="BigDecimal" ' + (javaType === "BigDecimal" ? ' selected' : '') + '>BigDecimal</option>'
+                                    + '<option value="Date" ' + (javaType === "Date" ? ' selected' : '') + '>Date</option>'
+                                    + '</select>';
+                                return html;
+                            }
+                        }
+                        , {
+                            field: 'javaField', title: 'Java属性', align: 'center', width: 150, templet: function (row) {
+                                var index = row.LAY_INDEX - 1;
+                                var html = common.sprintf("<input class='layui-input' type='text' name='columns[%s].javaField' value='%s' lay-verify='required' lay-verType='tips'>", index, row.javaField);
+                                return html;
+                            }
+                        }
+                        , {
+                            field: 'isInsert', title: '插入', align: 'center', width: 60, templet: function (row) {
+                                var index = row.LAY_INDEX - 1;
+                                var isCheck = row.isInsert == 1 ? 'checked' : '';
+                                var html = common.sprintf("<input type='checkbox' name='columns[%s].isInsert' value='1' %s>", index, isCheck);
+                                return html;
+                            }
+                        }
+                        , {
+                            field: 'isEdit', title: '编辑', align: 'center', width: 60, templet: function (row) {
+                                var index = row.LAY_INDEX - 1;
+                                var isCheck = row.isEdit == 1 ? 'checked' : '';
+                                var html = common.sprintf("<input type='checkbox' name='columns[%s].isEdit' value='1' %s>", index, isCheck);
+                                return html;
+                            }
+                        }
+                        , {
+                            field: 'isQuery', title: '查询', align: 'center', width: 60, templet: function (row) {
+                                var index = row.LAY_INDEX - 1;
+                                var isCheck = row.isQuery == 1 ? 'checked' : '';
+                                var html = common.sprintf("<input type='checkbox' name='columns[%s].isQuery' value='1' %s>", index, isCheck);
+                                return html;
+                            }
+                        }
+                        , {
+                            field: 'isList', title: '列表', align: 'center', width: 60, templet: function (row) {
+                                var index = row.LAY_INDEX - 1;
+                                var isCheck = row.isList == 1 ? 'checked' : '';
+                                var html = common.sprintf("<input type='checkbox' name='columns[%s].isList' value='1' %s>", index, isCheck);
+                                return html;
+                            }
+                        }
+                        , {
+                            field: 'queryType', title: '查询方式', align: 'center', width: 80, templet: function (row) {
+                                var index = row.LAY_INDEX - 1;
+                                var queryType = row.queryType;
+                                var html = '<select name=\'columns[' + index + '].queryType\'>\n' +
+                                    '<option value="EQ" ' + (queryType === "EQ" ? ' selected' : '') + '>=</option>\n' +
+                                    '<option value="NE" ' + (queryType === "NE" ? ' selected' : '') + '>!=</option>\n' +
+                                    '<option value="GT" ' + (queryType === "GT" ? ' selected' : '') + '>></option>\n' +
+                                    '<option value="GTE" ' + (queryType === "GTE" ? ' selected' : '') + '>>=</option>\n' +
+                                    '<option value="LT" ' + (queryType === "LT" ? ' selected' : '') + '><</option>\n' +
+                                    '<option value="LTE" ' + (queryType === "LTE" ? ' selected' : '') + '><=</option>\n' +
+                                    '<option value="LIKE" ' + (queryType === "LIKE" ? ' selected' : '') + '>Like</option>\n' +
+                                    '<option value="BETWEEN" ' + (queryType === "BETWEEN" ? ' selected' : '') + '>Between</option>\n' +
+                                    '</select>';
+                                return html;
+                            }
+                        }
+                        , {
+                            field: 'isRequired', title: '必填', align: 'center', width: 60, templet: function (row) {
+                                var index = row.LAY_INDEX - 1;
+                                var isCheck = row.isRequired == 1 ? 'checked' : '';
+                                var html = common.sprintf("<input type='checkbox' name='columns[%s].isRequired' value='1' %s>", index, isCheck);
+                                return html;
+                            }
+                        }
+                        , {
+                            field: 'htmlType', title: '显示类型', align: 'center', width: 100, templet: function (row) {
+                                var index = row.LAY_INDEX - 1;
+                                var htmlType = row.htmlType;
+                                var html = '<select name=\'columns[' + index + '].htmlType\'>\n' +
+                                    '<option value="input" ' + (htmlType === "input" ? ' selected' : '') + '>文本框</option>\n' +
+                                    '<option value="textarea" ' + (htmlType === "textarea" ? ' selected' : '') + '>文本域</option>\n' +
+                                    '<option value="select" ' + (htmlType === "select" ? ' selected' : '') + '>下拉框</option>\n' +
+                                    '<option value="radio" ' + (htmlType === "radio" ? ' selected' : '') + '>单选框</option>\n' +
+                                    '<option value="checkbox" ' + (htmlType === "checkbox" ? ' selected' : '') + '>复选框</option>\n' +
+                                    '<option value="datetime" ' + (htmlType === "datetime" ? ' selected' : '') + '>日期控件</option>\n' +
+                                    '<option value="upload" ' + (htmlType === "upload" ? ' selected' : '') + '>上传控件</option>\n' +
+                                    '</select>';
+                                return html;
+                            }
+                        }
+                        , {
+                            field: 'dictType', title: '字典类型', align: 'center', width: 100, templet: function (row) {
+                                var index = row.LAY_INDEX - 1;
+                                var dictType = row.dictType;
+                                var html = common.sprintf("<select name='columns[%s].dictType' value='%s' id='columns_dict_%s'>", index, row.dictType, row.columnId);
+                                $.ajax({
+                                    type: 'get',
+                                    url: ctx + 'system/dict/listall',
+                                    async: false,
+                                    dataType: 'json',
+                                    success: function (res) {
+                                        if (res.code == 0) {
+                                            $.each(res.data, function (i, item) {
+                                                html += '<option value="input" ' + (dictType === item.dictType ? ' selected' : '') + '>' + item.dictName + '</option>\n';
+                                            });
+                                        }
+                                    }
+                                });
+                                html += '</select>';
+                                return html;
+                            }
+                        }
+                    ])
+                });
+            });
+
+            
+        });
+
+        function closeItem() {
+            var url = '/tool/gen/edit.html';
+            window.location.href = getProjectUrl() + '/tool/gen/index.html';
+            return false;
+        }
+        //设置表单校验
+        function setFormValid(tabId) {
+            $('input[lay-verify="required"]').attr('lay-verify', 'normal');
+            switch (tabId) {
+                case 'gen_basic_tab':
+                    $('#gen_basic_tab input[lay-verify="normal"]').attr('lay-verify', 'required');
+                    break;
+                case 'gen_column_tab':
+                    $('#table_gen_column input[lay-verify="normal"]').attr('lay-verify', 'required');
+                    break;
+                case 'gen_create_tab':
+                    $('#gen_create_tab input[lay-verify="normal"]').attr('lay-verify', 'required');
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>

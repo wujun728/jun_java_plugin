@@ -1,0 +1,32 @@
+{
+    "code": 0,
+    "endIndex": 0,
+    "intIds": [],
+    "list": [
+        {
+            "code": "query_org",
+            "create_time": "2019-09-02 20:53:41",
+            "tree_id": "4028830c6b5fcc89016b5fd976fc005a",
+            "name": "部门下拉sql",
+            "id": "4028832c6cf20578016cf209c0300013",
+            "content": "select id value,org_name name from sys_org"
+        },
+        {
+            "code": "query_user",
+            "create_time": "2019-06-16 19:02:18",
+            "tree_id": "4028830c6b5fcc89016b5fd976fc005a",
+            "name": "查询用户",
+            "id": "4028830c6b5feeb4016b5ff3bee9000c",
+            "content": "select a.*,b.org_name from sys_user a,sys_org b where a.org_id=b.id group by a.id order by a.id desc ",
+            "descp": "test"
+        }
+    ],
+    "longIds": [],
+    "msg": "获取成功",
+    "pageNumber": 1,
+    "pageSize": 20,
+    "startIndex": 0,
+    "total": 2,
+    "totalCount": 2,
+    "totalPage": 1
+}

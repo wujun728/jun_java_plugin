@@ -1,0 +1,31 @@
+{
+    "code": 0,
+    "endIndex": 0,
+    "intIds": [],
+    "list": [
+        {
+            "user_code": "admin",
+            "user_name": "管理员",
+            "sex": 1,
+            "id": "admin",
+            "org_name": "绘宇智能",
+            "allow_login": 0
+        },
+        {
+            "user_code": "superadmin",
+            "user_name": "超级管理员",
+            "sex": 1,
+            "id": "superadmin",
+            "org_name": "绘宇智能",
+            "allow_login": 0
+        }
+    ],
+    "longIds": [],
+    "msg": "获取成功",
+    "pageNumber": 1,
+    "pageSize": 20,
+    "startIndex": 0,
+    "total": 2,
+    "totalCount": 2,
+    "totalPage": 1
+}

@@ -1,0 +1,565 @@
+{
+    "success": true,
+    "code": 200,
+    "message": "请求成功",
+    "data": [
+        {
+            "tableName": "act_de_databasechangelog",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_de_databasechangeloglock",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_de_model",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_de_model_history",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_de_model_relation",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_evt_log",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ge_bytearray",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ge_property",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_hi_actinst",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_hi_attachment",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_hi_comment",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_hi_detail",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_hi_entitylink",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_hi_identitylink",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_hi_procinst",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_hi_taskinst",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_hi_tsk_log",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_hi_varinst",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_id_bytearray",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_id_group",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_id_info",
+            "createTime": "2022-01-18 14:56:50",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_id_membership",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_id_priv",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_id_priv_mapping",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_id_property",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_id_token",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_id_user",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_procdef_info",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_re_deployment",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_re_model",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_re_procdef",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ru_actinst",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ru_deadletter_job",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ru_entitylink",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ru_event_subscr",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ru_execution",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ru_history_job",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ru_identitylink",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ru_job",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ru_suspended_job",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ru_task",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ru_timer_job",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "act_ru_variable",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "flw_button",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": "流程节点按钮表"
+        },
+        {
+            "tableName": "flw_category",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": "流程分类表"
+        },
+        {
+            "tableName": "flw_channel_definition",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "flw_draft",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": "申请草稿表"
+        },
+        {
+            "tableName": "flw_ev_databasechangelog",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "flw_ev_databasechangeloglock",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "flw_event",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": "流程事件配置表"
+        },
+        {
+            "tableName": "flw_event_definition",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "flw_event_deployment",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "flw_event_resource",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "flw_form",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": "流程表单配置表"
+        },
+        {
+            "tableName": "flw_form_resource",
+            "createTime": "2022-01-18 14:56:51",
+            "updateTime": null,
+            "tableComment": "流程脚本表"
+        },
+        {
+            "tableName": "flw_option",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "流程选项配置表"
+        },
+        {
+            "tableName": "flw_ru_batch",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "flw_ru_batch_part",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "flw_script",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "流程脚本表"
+        },
+        {
+            "tableName": "flw_shortcut",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "流程申请入口表"
+        },
+        {
+            "tableName": "pay_ali_trade_history",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": "2024-07-12 08:32:29",
+            "tableComment": ""
+        },
+        {
+            "tableName": "sys_app",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "系统应用表"
+        },
+        {
+            "tableName": "sys_area",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "中国行政地区表"
+        },
+        {
+            "tableName": "sys_code_generate",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "代码生成基础配置"
+        },
+        {
+            "tableName": "sys_code_generate_config",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "代码生成详细配置"
+        },
+        {
+            "tableName": "sys_config",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "系统参数配置表"
+        },
+        {
+            "tableName": "sys_database_info",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "数据库信息表"
+        },
+        {
+            "tableName": "sys_demo_leave",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": ""
+        },
+        {
+            "tableName": "sys_dict_data",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "系统字典值表"
+        },
+        {
+            "tableName": "sys_dict_type",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "系统字典类型表"
+        },
+        {
+            "tableName": "sys_emp",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "员工表"
+        },
+        {
+            "tableName": "sys_emp_ext_org_pos",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "员工附属机构岗位表"
+        },
+        {
+            "tableName": "sys_emp_pos",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "员工职位关联表"
+        },
+        {
+            "tableName": "sys_file_info",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": "2024-07-15 16:27:49",
+            "tableComment": "文件信息表"
+        },
+        {
+            "tableName": "sys_menu",
+            "createTime": "2022-01-18 14:56:52",
+            "updateTime": null,
+            "tableComment": "系统菜单表"
+        },
+        {
+            "tableName": "sys_message",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "消息表"
+        },
+        {
+            "tableName": "sys_message_user",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "消息人员关联表"
+        },
+        {
+            "tableName": "sys_notice",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "通知表"
+        },
+        {
+            "tableName": "sys_notice_user",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "系统用户数据范围表"
+        },
+        {
+            "tableName": "sys_oauth_user",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "第三方认证用户信息表"
+        },
+        {
+            "tableName": "sys_op_log",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "系统操作日志表"
+        },
+        {
+            "tableName": "sys_org",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "系统组织机构表"
+        },
+        {
+            "tableName": "sys_pos",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "系统职位表"
+        },
+        {
+            "tableName": "sys_role",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "系统角色表"
+        },
+        {
+            "tableName": "sys_role_data_scope",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "系统角色数据范围表"
+        },
+        {
+            "tableName": "sys_role_menu",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "系统角色菜单表"
+        },
+        {
+            "tableName": "sys_sms",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "短信信息发送表"
+        },
+        {
+            "tableName": "sys_tenant_info",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "租户表"
+        },
+        {
+            "tableName": "sys_timers",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "定时任务"
+        },
+        {
+            "tableName": "sys_user",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": "2024-07-15 16:25:41",
+            "tableComment": "系统用户表"
+        },
+        {
+            "tableName": "sys_user_data_scope",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "系统用户数据范围表"
+        },
+        {
+            "tableName": "sys_user_role",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "系统用户角色表"
+        },
+        {
+            "tableName": "sys_vis_log",
+            "createTime": "2022-01-18 14:56:53",
+            "updateTime": null,
+            "tableComment": "系统访问日志表"
+        }
+    ]
+}

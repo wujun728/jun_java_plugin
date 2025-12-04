@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>表格编辑</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="/static/libs/layui/css/layui.css?t=2024-12-31" media="all" />
+	<link rel="stylesheet" href="/static/css/global.css?t=2024-12-31" media="all">
+	<link rel="stylesheet" href="/static/libs/font-awesome/css/font-awesome.min.css?t=2024-12-31">
+	<link rel="stylesheet" href="/static/libs/dwallslider/css/lightbox.min.css?t=2024-12-31">
+	<link href="/static/libs/ddlsql/codemirror.min.css" rel="stylesheet">
+	<script src="/static/libs/jquery/jquery-2.1.4.min.js?t=2024-12-31" type="text/javascript" ></script>
+	<script src="/static/libs/jquery/jquery.form.js?t=2024-12-31" type="text/javascript" ></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+	<script src="/static/libs/jquery/jquery-ui.min.js?t=2024-12-31" type="text/javascript" ></script>
+    <script src="/static/libs/layui/layui.js?t=2024-12-31" type="text/javascript" ></script>
+    <link rel="stylesheet" href="/static/css/theme/theme-default.css?t=2024-12-31" media="all">
+     <link rel="stylesheet" href="/static/css/theme/theme-black.css?t=2024-12-31" media="all" /> 
+    <link rel="stylesheet" href="/static/css/layui_extend.css?t=2024-12-31" media="all">
+    <link rel="stylesheet" href="/static/libs/ckplayer/css/ckplayer.css?t=2024-12-31" media="all">
+    <link rel="stylesheet" href="/static/libs/ckplayer/css/ckplayer.ixigua.css?t=2024-12-31" media="all">
+    <link rel="stylesheet" href="/static/libs/ckplayer/css/ckplayer.red.css?t=2024-12-31" media="all">
+    <script src="/static/libs/ckplayer/flv.js/flv.js" type="text/javascript" ></script>
+    <script src="/static/libs/ckplayer/js/ckplayer.js" type="text/javascript" ></script>
+<script type="text/javascript">
+	
+	//获取业务字典数据 
+	function getOption(code,type,value,name,isSql,disabled){		
+		var url='/portal/core/dictionary/value/getOption';
+		if(isSql){
+			url='/portal/form/sql/getOption';
+		}
+		var checkboxValue=value.split(',');
+		$.ajax({
+			url:url,
+			data:{
+				"code":code
+			},
+			type:"post",
+			success:function(data){
+				var option="";
+				for(var i=0;i<data.length;i++){
+					if(type=="radio"){
+						if(data[i].value==value){
+							option+='<input type="radio" lay-filter="'+name+'" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'" checked="checked"'+disabled+'/>';
+						}else{
+							option+='<input type="radio" lay-filter="'+name+'" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'" '+disabled+'/>';
+						}
+					}else if(type=="checkbox"){
+						if(checkboxValue.length>0){
+							var isCheck=false;
+							$.each(checkboxValue,function(key,val){
+								if(data[i].value==val){
+									isCheck=true;
+								}								
+							});	
+							
+							if(isCheck){
+								option+='<input type="checkbox" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'" checked="checked"'+disabled+'/>';
+							}else{
+								option+='<input type="checkbox" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'"'+disabled+' />';
+							}				
+						}else{
+							option+='<input type="checkbox" name="'+name+'" value="'+data[i].value+'" title="'+data[i].name+'"'+disabled+' />';
+						}
+					}else{
+						if(data[i].value==value){
+						    option+='<option value="'+data[i].value+'" selected="selected">'+data[i].name+'</option>';
+						}else{
+							option+='<option value="'+data[i].value+'">'+data[i].name+'</option>';
+						}
+					}	
+				}					
+				name=name.replace(/\./g,"_");
+				$('#'+type+"_"+code+"_"+name).append(option);
+				//立即渲染元素，防止有些情况渲染不成功
+				layui.use('form', function() {
+					var form = layui.form;
+					form.render();
+				});
+			}			
+		});
+	}
+
+  </script>
+</head>
+<body>
+	<div class="layui-container-fluid">
+<div class="container-wrap">
+	<table class="layui-hide" id="tableId" lay-filter="tableEvent"></table>
+	<!-- 表头工具栏 -->
+   	<script type="text/html" id="table_toolbar_1">
+		<div class="layui-btn-group">
+			<button class="layui-btn layui-btn-normal layui-btn-sm" id="add_btn_1" type="button">
+	 				<i class="layui-icon">&#xe608;</i> 新增
+			</button>
+			<button class="layui-btn layui-btn-normal layui-btn-sm" id="save_btn_1" type="button">
+	 				<i class="layui-icon">&#xe605;</i> 保存
+			</button>
+		</div>
+	</script>
+	<!-- 	每行的操作按钮 -->
+	<script type="text/html" id="table_rowbar_1">
+  		<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del_btn_1">删除</a>
+		<a class="layui-btn layui-btn-xs layui-btn-danger rowmoreBtn" lay-events="viewinfo,neworder,recycle" data-id="{{d.id}}">更多</a>
+	</script>
+</div>	
+	</div>
+	<script src="/static/libs/common/alert.js?t=2024-12-31" type="text/javascript" ></script>
+	<script src="/static/libs/common/common.js?t=2024-12-31" type="text/javascript" ></script>
+	<script src="/static/libs/common/form-functions.js?t=2024-12-31" type="text/javascript" ></script>
+	<script src="/static/libs/common/ui.tool.js?t=2024-12-31" type="text/javascript" ></script>
+	<script src="/static/libs/common/grid-init.js?t=2024-12-31" type="text/javascript" ></script>
+	<script src="/static/libs/dwallslider/js/lightbox.min.js?t=2024-12-31" type="text/javascript"></script>
+	<script src="/static/libs/xtree/layui_xtree.js?t=2024-12-31" type="text/javascript"></script>
+	<script src="/static/libs/ddlsql/codemirror.min.js?t=2024-12-31" type="text/javascript"></script>
+	<script src="/static/libs/ddlsql/sql.min.js?t=2024-12-31" type="text/javascript"></script>
+	<script src="/static/libs/xm-select/xm-select.js?t=2024-12-31" type="text/javascript"></script>
+	<script src="/static/libs/ueditor/ueditor.config.js" type="text/javascript" ></script>
+	<script src="/static/libs/ueditor/ueditor.all.min.js" type="text/javascript" ></script>
+	<script src="/static/libs/ext/base64.min.js" type="text/javascript" ></script>
+<script type="text/javascript">
+	var ddlSqlId=document.getElementById("ddlSql");
+	if(ddlSqlId){
+		/**
+	    * 初始化 table sql 3
+	    */
+	   var ddlSql = CodeMirror.fromTextArea(ddlSqlId, {
+	       lineNumbers: true,
+	       matchBrackets: true,
+	       mode: "text/x-sql",
+	       lineWrapping:false,
+	       readOnly:false,
+	       foldGutter: true,
+	       gutters:["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+	   });
+	   ddlSql.setSize('auto','auto');		
+	}
+
+//	ddlSql.getValue();//取文本域值
+//	ddlSql.setValue(...);//给文本域赋值
+</script>
+<script>
+//查询初始化表格数据
+function getTableData(table){
+	$.ajax({
+		url: '/static/libs/ext/tableEditData.json',
+	    type:"GET", 
+	    data: {},
+	    dataType : 'json', 
+	    success:function(res){
+		    console.log(res)
+		    table.reload('tableId',{
+				data:res.data 
+			});
+	    }	
+	});
+}
+
+layui.extend({
+	tableEdit: '/static/libs/ext/tableEdit'
+}).use(['table','tableEdit','layer','dropdown'], function () {
+        var table = layui.table,tableEdit = layui.tableEdit,$ = layui.$,dropdown=layui.dropdown;
+        var params = [{value:1,name:"张三1"},{value:2,name:"张三2"},{value:3,name:"张三3"},{value:4,name:"张三4"},{value:5,name:"张三5"}];
+      	//初始化表格数据
+        getTableData(table);
+        
+         var cols = table.render({
+            elem: '#tableId'
+            //,url:'/static/libs/ext/data.json'
+            ,height: 'full-90'
+            ,toolbar:'#table_toolbar_1'
+            ,page: true
+            ,limit:20
+            ,cols: [[
+                {type:'checkbox'}
+                ,{title:'序号',type:'numbers',width:35}
+                //type的类型值：select（下拉框）date（时间选择框）input(输入框)
+                //input为输入框，失去焦点会触发回调，aopTable.on()中触发的回调
+                ,{field:'name',title: '输入框',width:120,event:'name',config:{type:'input'}}
+                //data 为下拉框数据
+                ,{field:'danxuan',align:'center', title: '单选',width:120
+                    ,event:'danxuan',config:{type:'select',data:params}
+                    ,templet:function (d) {
+                        if(d.danxuan){
+                            if(d.danxuan.name){
+                                return  d.danxuan.name;
+                            }
+                            return  d.danxuan;
+                        }
+                        return ''
+                    }
+                }
+                //  enabled => true：多选，false：单选。默认为false
+                ,{field:'duoxuan', title: '多选',width:120,event:'duoxuan'
+                    ,config:{type:'select',data:params,enabled:true}
+                    ,templet:function (d) {
+                        var str = [];
+                        d.duoxuan.forEach(function (e) {
+                            str.push(e.name)
+                        });
+                        return str.join(' || ');
+                    }
+                }
+                //dateType表示日期时间格式，date为“yyyy-MM-dd”
+                // ，datetime为“yyyy-MM-dd HH:ss:mm”
+                ,{field:'birthday', title: '生日',width:120,event:'birthday'
+                    ,config:{type:'date',dateType:'date'}}
+                //cascadeSelectField字段为级联开关字段(存在该字段则级联，否则不级联)
+                ,{field:'xlkjl', title: '下拉框联动(上级)',width:150,event:'xlkjl',
+                    config:{type:'select',data:params,cascadeSelectField:'xialaxiaji'}
+                    ,templet:function (d) {
+                    return d.xlkjl && d.xlkjl.name ? d.xlkjl.name : '';
+                }}
+                ,{field:'xialaxiaji', title: '下拉框联动(下级)',width:150,event:'xiaji'
+                    ,config:{type:'select',data:params},templet:function (d) {
+                    return d.xialaxiaji && d.xialaxiaji.name ? d.xialaxiaji.name : '';
+                }}
+                ,{field:'rqjl', title: '日期联动(上级)',width:150,event:'rqjl'
+                    ,config:{type:'date',dateType:'date',cascadeSelectField:'rqxiaji'}}
+                ,{field:'rqxiaji', title: '日期框联动(下级)',width:150,event:'rqxiaji'
+                    ,config:{type:'select',data:params},templet:function (d) {
+                    return d.rqxiaji && d.rqxiaji.name ? d.rqxiaji.name : '';
+                }}
+                ,{fixed: 'right', title:'操作', toolbar: '#table_rowbar_1',width:150 }
+            ]]
+        	,done: function (res, curr, count) {
+				var editTableData = res.data;
+
+				// 添加一行
+				$("#add_btn_1").unbind("click");
+				$("#add_btn_1").click(function (){
+					var rowData={
+							"id":1,
+							"name":"张三1",
+							"danxuan":null,
+							"duoxuan":[{"value":1,"name": "张三1"},{"value":2,"name": "张三2"}],
+							"birthday":"",
+							"xlkjl": null, 
+							"rqjl": "",
+							"xialaxiaji":null,
+							"rqxiaji":null
+					};
+					editTableData.push(rowData);
+					console.log(editTableData)
+					table.reload("tableId",{
+					    data:editTableData   // 将新数据重新载入表格		    
+					});
+				});	
+				// 保存数据
+				$("#save_btn_1").unbind("click");
+				$("#save_btn_1").click(function (){
+					console.log(editTableData)
+					var saveUrl="";//TODO
+					submitData(saveUrl,{"tableList":JSON.stringify(editTableData)});
+				});	
+
+			  //下拉菜单
+			  dropdown.render({
+			    elem: '.rowmoreBtn'
+			    ,data: [{
+			      title: 'menu item11'
+			      ,id: 100
+			    },{
+			      title: 'menu item22'
+			      ,id: 101
+			    },{
+			      title: 'menu item33'
+			      ,id: 102
+			    }]
+			    ,click: function(data,othis){
+			    	 var elem = $(this.elem)
+			         ,listId = elem.data('id'); //表格列表的预埋数据
+			         layer.msg('得到表格列表的 id：'+ listId +'，下拉菜单 id：'+ data.id);
+			    }
+			  });
+			  				
+	        }
+        }).config.cols;  
+
+       
+                
+        /**
+         * 参数cols是table.render({})中的cols属性值
+         * aop代理是基于event点击事件进行操作的，
+         * 因此cols中务必开启event点击事件！
+         **/
+        var aopTable = tableEdit.aopObj(cols); //获取一个aop对象
+        /**
+         * 注意：
+         * 1、 aopTable.on('tool(xxx)',function (obj) {})
+         * 2、 table.on('tool(yyy)',function (obj) {})
+         * 如果1中的xxx与2中的yyy字符串相同时，
+         * 不能同时用，用了会造成后调用者覆盖前调用者。
+         * 应该直接用1来代替2，因为1中包含了2中的事件。
+         * 如果不相同，则可以同时使用。
+         **/
+        aopTable.on('tool(tableEvent)',function (obj) {
+            var field = obj.field; //单元格字段
+            var value = obj.value; //修改后的值
+            var data = obj.data; //当前行旧数据
+            var event = obj.event; //当前单元格事件属性值
+            var update = {};
+            update[field] = value;
+            //把value更新到行中
+            obj.update(update);
+            /**
+             *说白了，此obj与table.on('tool(tableEvent)',function (obj) {})
+             *中的obj对象是同一个，所以可以如此操作。
+             *
+             * */
+
+          //2、删除监听
+ 	    	// 当前操作的数据的索引
+ 	    	var nowIndex = parseInt(getQuotationVal(obj.tr.selector)[0]);
+ 	    	if(obj.event === "del_btn_1"){
+ 	        	var confirmIndex = layer.confirm('您确定要删除吗?',{btn: ['确定', '取消'],title:"提示"}, function(){
+ 		       		var editTableData=layui.table.cache["tableId"].deleteOne(nowIndex);
+ 			 		table.reload("tableId",{data:editTableData}); // 重新渲染表格
+ 			 		layer.close(confirmIndex); // 关闭弹窗
+ 				});
+ 	        } 	
+    });
+
+        /**
+         * 级联下拉框 => 点击事件生成下拉框之前的回调函数
+         * 主要用于 => 动态获取单元格下拉数据
+         * tableEvent => table的lay-filter属性值
+         * 如示例代码所示
+         */
+        tableEdit.on('clickBefore(tableEvent)',function (obj) {
+            var cascadeSelectData = obj.data; //级联数据
+            var cascadeSelectField = obj.field; //级联字段
+            if(Array.isArray(cascadeSelectData)){
+                cascadeSelectData = cascadeSelectData[0];
+            }
+            var result = {
+                data:[{name:1,value:'语文'},{name:2,value:'数学'},{name:3,value:'英语'},{name:4,value:'物理'},{name:5,value:'化学'}],
+                enabled:false //单选 true为多选
+            };
+            var result1 = {
+                data:[{name:6,value:'政治'},{name:7,value:'地理'},{name:8,value:'历史'},{name:9,value:'生物'},{name:10,value:'音乐'}],
+                enabled:false //单选 true为多选
+            };
+            //这里用定时器来模拟异步操作，同步操作直接return即可。
+            setTimeout(function () {
+                if(cascadeSelectField === 'rqjl'){
+                    tableEdit.callbackFn("async(tableEvent)",result1);
+                }else {
+                    tableEdit.callbackFn("async(tableEvent)",result);
+                }
+            },500);
+        });
+    });
+
+	//提交数据
+	function submitData(url,tableTata){
+			$.ajax({
+				url: url,  
+			    type:"post", 
+			    data: tableTata,
+			    success:function(res){
+			    	layer.msg(res.msg||"保存成功")    
+			    }	
+			});
+	}
+
+	// 给数组添加一个方法，delete方法接受一个参数，根据参数删除数组的一个元素，返回一个删除对应索引元素的新数组，不改变原有数组
+ 	Array.prototype.deleteOne=function(delIndex){
+ 		var temArray=[];
+ 		for(var i=0;i<this.length;i++){
+ 			if(i!=delIndex){
+ 	    		temArray.push(this[i]);
+ 			}
+ 		}
+ 		return temArray;
+ 	}
+ 	
+ 	// 获取双引号""中的值
+ 	function getQuotationVal(str) {
+ 	    var result = str.match(/\"\w*\"/g);
+ 	    return result.map(function(element){
+ 	        return element.replace(/\"/g, '');
+ 	    });
+ 	}
+
+ 	
+</script>
+<script>
+	layui.use([ 'table', 'form', 'jquery','laydate','element'], function() {
+		var table = layui.table;
+		var form = layui.form;
+		var layer = layui.layer;
+		var $ = layui.$;
+		var laydate = layui.laydate;
+		var element = layui.element; 
+		//执行一个laydate日期选择控件实例
+		lay('.layui-date').each(function(){
+			laydate.render({
+			    elem: this
+			    ,trigger:'click'
+			});		  
+		});
+		
+		//执行一个laydate日期时间控件实例
+		lay('.layui-date-time').each(function(){
+			laydate.render({
+			    elem: this
+			    ,type:'datetime'
+			    ,trigger:'click'
+			});
+		});
+		
+		//layui相关语法函数
+
+		//表单提交监听
+		form.on('submit(saveForm)', function(data) {
+			$(this).ajaxSubmit({
+				type : 'post', 
+				url : saveUrl, 
+				success : function(data) { 
+					if (data.state == 'ok') {
+						parent.success(data.msg);
+						$('#closeWinBtn').click();
+					} else {	
+						warn(data.msg);
+						$('#submitBtn').attr("disabled",false);
+					}
+				}
+			});		
+		 });	
+		 
+		form.render();
+	});
+
+    //预览文件方法,url为file_uploaded表中的url字段内容
+	function previewFile(url,fileName){
+		var fileType=fileName.substring(fileName.lastIndexOf(".")+1).toLowerCase()
+		var protocol=window.location.protocol;
+		var host=window.location.host;
+		var port=window.location.port;
+		var location=protocol+"//"+host;
+		var fileUrl = location+'/portal/download/'+url+'?fullfilename='+fileName;
+		//文件在线预览服务地址
+        var onlinePreviewUrl='http://localhost:8012/onlinePreview?url='+encodeURIComponent(Base64.encode(fileUrl));
+        var onlinePreview=false;
+        if(!onlinePreview){
+        	onlinePreviewUrl='/portal/view/'+url;
+        }
+        openDialog(fileName,onlinePreviewUrl,false,null,null,null);
+	}
+	//附件删除
+	function deleteFile(url,fileName,num){
+		var url='/portal/delete/'+url;
+		layer.confirm('确定要删除 '+fileName+' 吗',{icon: 3, title:'提示'},function(index){
+			$.post(url,function(data){
+				if(data.state=='ok'){
+					$('#upload-'+num).addClass('layui-hide');	
+				   layer.msg("删除成功",{icon:1});
+				}else{
+					layer.msg(data.msg||"附件不存在",{icon:2});
+				}
+			});
+		});
+	}
+	//附件下载
+	function downloadFile(url){
+		window.location.href='/portal/download/'+url;
+	}
+
+	//调取用户选择器,dataType:0单选，1多选
+	function getUser(inputId,dataType){
+    	sessionStorage.setItem('inputId',inputId);
+    	var userIds=$('#'+inputId).val();
+    	var url='/portal/core/sysOrg/getUser?userIds='+userIds+'&dataType='+dataType;
+    	openDialog('选择用户',url,false,840,460,null);
+    }
+
+    //确定按钮回调函数
+    function getUserData(userDataList,dataType){
+    	var resultValue=new Array();
+    	var resultTitle=new Array();
+    	$.each(userDataList,function(index,value){
+        		if(dataType=='0'&&index>0){
+					return
+            	}
+               resultValue.push(value.id);
+               resultTitle.push(value.user_name);
+        });
+        
+        var inputId=sessionStorage.getItem('inputId');
+        $('#'+inputId).val(resultValue.join(',')); 
+        $('#'+inputId+'_name').val(resultTitle.join(','));        
+              
+        if(inputId!=null)
+        	sessionStorage.removeItem('inputId');
+    }
+
+</script>
+<script type="text/javascript">
+//部门下拉树
+function getOrgOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled){
+	var url='/portal/core/sysOrg/getXmSelectData';
+	getXmSelectOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled,url);
+}
+//功能下拉树
+function getFuncOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled){
+	var url='/portal/core/sysFunc/getXmSelectData';
+	getXmSelectOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled,url);
+}
+function getXmSelectOption(divId,inputName,selectData,disabledData,radio,filterable,layVerify,size,tips,disabled,url){
+	var xmSelectRender = xmSelect.render({
+		el: '#'+divId, 
+		model: { label: { type: 'text' } },
+		radio: radio,
+		clickClose: radio,		
+		name:inputName,				//表单提交名称
+		tree: {
+			show: true,
+			strict: false, 
+			expandedKeys: ['sys','frame'],//默认展开节点
+		},
+		height: 'auto',
+		disabled:disabled,			//禁用属性：true/false
+		tips:tips,					//默认提示, 类似于placeholder
+		filterable:filterable,		//搜索开关：true/false
+		layVerify:layVerify,		//表单验证, 同layui的lay-verify
+		size:size 					//控件大小：large / medium / small / mini
+	})
+	
+	$.ajax({
+		url:url,
+		type:"POST",
+		data:{
+			"selectData":selectData,
+			"disabledData":disabledData
+		},
+		success:function(ret){
+			if(ret.state=='ok'){
+				var data=ret.data;
+				xmSelectRender.update({
+					data: data,
+					autoRow: true,
+				})
+			}
+		}
+	})
+}
+</script>
+</body>
+</html>
+

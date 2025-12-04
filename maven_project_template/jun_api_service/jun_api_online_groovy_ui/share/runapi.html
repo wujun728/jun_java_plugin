@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="edge">
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+		<meta http-equiv="Cache" content="no-cache">
+		<link rel="icon" href="https://jfinal.com/assets/img/favicon.ico">
+		<title>后台管理首页 JFinal-RunApi</title>
+		<meta name="keywords" content="在线API文档 技术文档 开发工具 在线手册">
+		<meta name="description" content="一个非常适合IT团队的在线API文档、技术文档工具。JFinal-RunApi是集swagger和postman于一身的接口文档开发工具。">
+		<link type="text/css" rel="stylesheet" href="/assets/css/runapi/doc-index.css">
+		<link href="/assets/css/runapi/doc-app.css" rel="stylesheet">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="/assets/lib/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/assets/css/common/global.css" media="all">
+    <link rel="stylesheet" href="/assets/css/common/theme-default.css" media="all">
+    <link rel="stylesheet" href="/assets/css/common/layui_extend.css" media="all">
+    <link rel="stylesheet" href="/assets/css/runapi/doc-index.css">
+	<link rel="stylesheet" href="/assets/css/runapi/doc-app.css" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/lib/layui_exts/mouseRightMenu/mouseRightMenu.css" />
+	<script src="/assets/lib/jquery/jquery-2.1.4.min.js" type="text/javascript" ></script>
+	<script src="/assets/lib/jquery/jquery.form.js" type="text/javascript" ></script>
+    <script src="/assets/lib/layui/layui.js" type="text/javascript" ></script>
+    <script src="/assets/lib/xm-select/xm-select.js" type="text/javascript" ></script>
+    <!-- jquery 表格移动需要 -->
+	<script src="/assets/lib/jquery/jquery-migrate-1.2.1.js"></script>
+	<script src="/assets/lib/jquery/jquery-ui.min.js" type="text/javascript" ></script>
+	
+		<style type="text/css">
+			.td-max{
+				width: 152px;
+			}
+			.td-max-left{
+				width: 150px;
+				text-align: left;
+			}
+			.hide{
+				display:none;
+			}
+			.td-wit-1{
+				width:195px;
+			}
+			.td-wit-2{
+				width:261px;
+			}
+						.left-menu-bottom-bar[data-v-1e6f9205] {
+			    height: 50px;
+			    position: fixed;
+			    bottom: 0;
+			    width: 300px;
+			    margin-left: -323px;
+			    background-color: #fafafa;
+			}
+			.left-menu-bottom-bar .bottom-bar-item-icon[data-v-1e6f9205] {
+			    width: calc(25% - 4px);
+			    height: 50px;
+			    font-size: 20px;
+			    -webkit-box-pack: center;
+			    -ms-flex-pack: center;
+			    justify-content: center;
+			    -webkit-box-align: center;
+			    -ms-flex-align: center;
+			    align-items: center;
+			    display: -webkit-inline-box;
+			    display: -ms-inline-flexbox;
+			    display: inline-flex;
+			    cursor: pointer;
+			}
+
+			.header-project{
+				width:250px;
+				height:30px;
+				margin-left: 20px;
+			    margin-bottom: 10px;
+			    border-color: #ccc;
+			    color: #409eff;
+			}
+			.json{
+				max-height:600px;
+			}
+		</style>
+	</head>
+	<body class="grey-bg">
+		<div id="app">
+			<div  class="hello">
+				<div data-v-2eba7a07=""  class="hello">
+					<div data-v-168051ae="" data-v-2eba7a07=""></div>
+					<div data-v-2eba7a07="" id="header"></div>
+					<div data-v-2eba7a07="" id="doc-container" class="md container doc-container">
+						<div data-v-2eba7a07="" id="left-side">
+							<div data-v-005611ed="" data-v-2eba7a07="" class="hide-scrollbar">
+								<i data-v-005611ed="" id="header-left-btn" class="el-icon-menu header-left-btn hide"></i>
+								<!---->
+								<aside data-v-005611ed="" class="el-aside menu-margin-left2" id="left-side-menu" style="width: 300px;">
+									<ul data-v-005611ed="" id="menuList" role="menubar" class="el-menu" style="background-color: rgb(250, 250, 250);">
+										<div data-v-005611ed="" class="search-box el-input el-input--small el-input--suffix">
+											<input type="text" autocomplete="off" id="keyword" placeholder="输入关键字后按回车以搜索" value="" onkeydown="search(event)" class="el-input__inner">
+										</div>
+										<i data-v-005611ed="" class="el-tooltip el-icon-s-fold cursor-pointer hide" aria-describedby="el-tooltip-485" tabindex="0"></i>
+										<li data-v-005611ed="" role="menuitem" tabindex="0" class="el-menu-item is-active" style="padding-left: 20px; background-color: rgb(250, 250, 250);">
+											<i data-v-005611ed="" class="el-icon-document"></i>1
+											<a data-v-005611ed="" href="/share/runapi/c59c83a157294fb093b6dd3f692a7bb8-16b39d66e64b43e5ac90839decd83f18" title="后台管理首页" id="left_page_16b39d66e64b43e5ac90839decd83f18">后台管理首页</a>
+										</li>
+									</ul>
+								</aside>
+							</div>
+							<!-- 底部菜单 -->
+							<div data-v-1e6f9205="" data-v-380220c1="">
+								<div data-v-1e6f9205="" id="left-menu-bottom-bar" class="left-menu-bottom-bar">
+									<div data-v-1e6f9205="" class="bottom-bar-item-icon">
+										<i data-v-1e6f9205="" class="el-tooltip el-icon-circle-plus-outline" aria-describedby="el-tooltip-9273" tabindex="0" onclick="menuApi()"></i>
+									</div>
+									<div data-v-1e6f9205="" class="bottom-bar-item-icon"><i data-v-1e6f9205="" class="el-tooltip el-icon-folder-add" aria-describedby="el-tooltip-1479" tabindex="0" onclick="addMenu()"></i></div> 
+									<div data-v-1e6f9205="" class="bottom-bar-item-icon"><i data-v-1e6f9205="" class="el-tooltip el-icon-sort" aria-describedby="el-tooltip-3806" tabindex="0" onclick="sort()"></i></div> 
+								</div>
+							</div>
+						</div>
+						<div data-v-2eba7a07="" id="right-side">
+							<div data-v-2eba7a07="" id="p-content">
+								<div data-v-2eba7a07="" id="doc-title-box" class="doc-title-box">
+									<span data-v-2eba7a07="" id="doc-title-span" class="dn"></span>
+									<h2 data-v-2eba7a07="" id="doc-title">后台管理首页</h2>
+									<i data-v-2eba7a07="" id="full-page" class="el-icon-full-screen hide"></i>
+									<!---->
+								</div>
+								<div data-v-2eba7a07="" id="doc-body">
+									<div data-v-2eba7a07="" id="page_md_content" class="page_content_main">
+										<div data-v-2eba7a07="" id="editor-md" class="main-editor markdown-body editormd-html-preview">
+											<!---->
+											<div class="markdown-toc editormd-markdown-toc open-list">
+												<ul class="markdown-toc-list">
+													<li>
+														<a class="toc-level-5" href="/share/runapi/c59c83a157294fb093b6dd3f692a7bb8-16b39d66e64b43e5ac90839decd83f18#请求URL" >请求URL</a>
+													</li>
+													<li>
+														<a class="toc-level-5" href="/share/runapi/c59c83a157294fb093b6dd3f692a7bb8-16b39d66e64b43e5ac90839decd83f18#请求方式" >请求方式</a>
+													</li>
+													<li>
+														<a class="toc-level-5" href="/share/runapi/c59c83a157294fb093b6dd3f692a7bb8-16b39d66e64b43e5ac90839decd83f18#备注" >备注</a>
+													</li>
+												</ul>
+											</div>
+											<h5 id="h5--url">
+												<a name="请求URL" class="reference-link"></a>
+												<span class="header-link octicon octicon-link"></span>请求URL
+											</h5>
+											<ul>
+												<li>
+													<code>http://runapi.qinhaisenlin.com/home</code>
+												</li>
+											</ul>
+											<h5 id="h5-u8BF7u6C42u65B9u5F0F">
+												<a name="请求方式" class="reference-link"></a>
+												<span class="header-link octicon octicon-link"></span>请求方式
+											</h5>
+											<ul>
+												<li>POST</li>
+											</ul>
+											<h5 id="h5-u5907u6CE8">
+												<a name="备注" class="reference-link"></a>
+												<span class="header-link octicon octicon-link"></span>备注
+											</h5>
+											<p></p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-v-3ef1cbf4="" data-v-2eba7a07="" class="hello">
+								<!---->
+								<div data-v-3ef1cbf4="" class="op-bar">
+									<!---->
+									<span data-v-3ef1cbf4="">
+										<!-- <a data-v-3ef1cbf4="" href="/portal/core/sysPermission/item/index" class="el-tooltip item" aria-describedby="el-tooltip-7122" tabindex="0">
+											<i data-v-3ef1cbf4="" class="el-icon-back"></i>
+										</a> -->
+										<i data-v-3ef1cbf4="" class="el-tooltip el-icon-share item" aria-describedby="el-tooltip-3750" tabindex="0" onclick="share()"></i>
+										<i data-v-3ef1cbf4="" class="el-tooltip el-icon-info item" aria-describedby="el-tooltip-591" tabindex="0"></i>
+										<a data-v-3ef1cbf4="" href="javascript:download()" class="el-tooltip   item" aria-describedby="el-tooltip-2357" tabindex="0">
+											<i data-v-3ef1cbf4="" class="el-icon-download"></i>
+										</a>
+									</span>
+									<!---->
+								</div>
+								<div data-v-3ef1cbf4="" class="el-dialog__wrapper" style="z-index: 2061;display:none;background-color: #202020a6;">
+									<div role="dialog" aria-modal="true" aria-label="分享页面" class="el-dialog" style="margin-top: 15vh; width: 600px;">
+										<div class="el-dialog__header">
+											<span class="el-dialog__title">分享页面</span>
+											<button type="button" aria-label="Close" class="el-dialog__headerbtn">
+												<i class="el-dialog__close el-icon el-icon-close" onclick="ok()"></i>
+											</button>
+										</div>
+										<div class="el-dialog__body">
+											<p data-v-3ef1cbf4="">
+												项目页面地址 :
+												<code data-v-3ef1cbf4="" id="share_url">http://runapi.qinhaisenlin.com/share/runapi/c59c83a157294fb093b6dd3f692a7bb8</code>
+												<i data-v-3ef1cbf4="" class="el-icon-document-copy" onclick="copy('share_url')"></i>
+											</p>
+										<div class="el-dialog__footer">
+											<span data-v-3ef1cbf4="" class="dialog-footer">
+												<button data-v-3ef1cbf4="" onclick="ok()" type="button" class="el-button el-button--primary">
+													<span>确定</span>
+												</button>
+											</span>
+										</div>
+									</div>
+								</div>
+								<!---->
+								<!---->
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<textarea id="copy_value" rows="" cols="" style="left: -200px;position: fixed;"></textarea>
+	</body>
+	<script src="/assets/js/common/alert.js" type="text/javascript" ></script>
+	<script src="/assets/js/common/ui.tool.js" type="text/javascript" ></script>
+	<script src="/assets/js/common/grid-init.js" type="text/javascript" ></script>
+	<script type="text/javascript">
+		var _path='';
+		//执行一个laydate日期选择控件实例
+		lay('.layui-date').each(function(){
+			layui.laydate.render({
+			    elem: this
+			    ,trigger:'click'
+			});		  
+		});
+		
+		//执行一个laydate日期时间控件实例
+		lay('.layui-date-time').each(function(){
+			layui.laydate.render({
+			    elem: this
+			    ,type:'datetime'
+			    ,trigger:'click'
+			});
+		});
+
+		//调取用户选择器,dataType:0单选，1多选
+		function getUser(inputId,dataType){
+	    	sessionStorage.setItem('inputId',inputId);
+	    	var userIds=$('#'+inputId).val();
+	    	var url='/portal/core/sysOrg/getUser?userIds='+userIds+'&dataType='+dataType;
+	    	openDialog('选择用户',url,false,840,460,null);
+	    }
+
+	    //确定按钮回调函数
+	    function getUserData(userDataList,dataType){
+	    	var resultValue=new Array();
+	    	var resultTitle=new Array();
+	    	$.each(userDataList,function(index,value){
+	        		if(dataType=='0'&&index>0){
+						return
+	            	}
+	               resultValue.push(value.id);
+	               resultTitle.push(value.user_name);
+	        });
+	        
+	        var inputId=sessionStorage.getItem('inputId');
+	        $('#'+inputId).val(resultValue.join(',')); 
+	        $('#'+inputId+'_name').val(resultTitle.join(','));        
+	              
+	        if(inputId!=null)
+	        	sessionStorage.removeItem('inputId');
+	    }
+	</script>
+	<script src="/assets/lib/jquery/jquery-2.1.4.min.js" type="text/javascript" ></script>
+	 <script src="/assets/lib/layui/layui.js" type="text/javascript" ></script>
+	 <!-- jquery 表格移动需要 -->
+	<script src="/assets/lib/jquery/jquery-migrate-1.2.1.js"></script>
+	<script src="/assets/lib/jquery/jquery-ui.min.js" type="text/javascript" ></script>
+	<script type="text/javascript">
+		var dataMapCache = {};
+
+		$(function(){
+			var map=sessionStorage.getItem("shareMenuMap");
+		    if(map){
+		    	dataMapCache=JSON.parse(map);
+		    	for(var key in dataMapCache){		    	
+		    		var id=key;
+		    		if(dataMapCache[key]=='show'){
+		    			$("li[tabindex="+id+"]").addClass("is-opened"); 			
+	    				$("li[tabindex="+id+"]").children('ul').removeClass("layui-hide");
+	    				$("li[tabindex="+id+"]").children('li').removeClass("layui-hide");
+		    		}
+		    	}
+			 }
+		});
+		function share(){
+			$('.el-dialog__wrapper').show();
+		}
+		function ok(){
+			$('.el-dialog__wrapper').hide();
+		}
+
+		//复制代码
+		function copy(id){
+			const codeElement = document.getElementById(id);
+			var text=codeElement.innerText;
+			const inputElement = document.querySelector('#copy_value');
+			inputElement.value=text;
+			inputElement.select();
+			try{
+				document.execCommand('copy');
+				layer.msg("复制成功")
+			}catch(e){
+				layer.msg("复制失败")
+			}
+		}
+
+		// 搜索
+		function search(e){
+			if(e.keyCode===13){
+				var keyword=$("#keyword").val();
+				var url='/share/runapi/c59c83a157294fb093b6dd3f692a7bb8';
+				if(keyword)
+					url+='?keyword='+keyword;
+				window.location.href=url;
+			  }
+		}
+
+		//下载文档，可以搜索下载，默认下载全部
+		function download(){
+			var keyword=$("#keyword").val();
+			var url='/share/download/c59c83a157294fb093b6dd3f692a7bb8';
+			if(keyword)
+				url+='?keyword='+encodeURIComponent(keyword);
+			window.location.href=url;
+		}
+		
+		$('.el-icon-download').hover(function(){
+	        var index;
+	        var title="导出文档，支持搜索导出单个文档";
+	        this.index=layer.tips(title, this,{
+	            tips:1,
+	        });
+	    },function(){
+	        layer.close(this.index);
+	    })
+	    $('.el-icon-info').hover(function(){
+	        var index;
+	        var title="由JFinal-RunApi倾情打造";
+	        this.index=layer.tips(title, this,{
+	            tips:1,
+	        });
+	    },function(){
+	        layer.close(this.index);
+	    })
+	    $('.el-icon-share').hover(function(){
+	        var index;
+	        var title="分享";
+	        this.index=layer.tips(title, this,{
+	            tips:1,
+	        });
+	    },function(){
+	        layer.close(this.index);
+	    })
+	    
+	var currentLayer;
+	function menuApi(){
+    	 var url="/shareRunApi/add?shareId=c59c83a157294fb093b6dd3f692a7bb8";
+ 		openDialog("新建接口文档",url,false,865,null,{
+ 			end:function(){
+ 				location.reload();
+ 			}
+ 		},false);
+    }
+	function addMenu(){
+        var url="/menu?objectId=c59c83a157294fb093b6dd3f692a7bb8";
+		openDialog("添加目录",url,false,700,660,{
+			end:function(){
+				location.reload();
+			},
+			resize:false
+		},false);
+    }
+
+	function sort(){
+        var url="/share/sort";
+        var shareId="c59c83a157294fb093b6dd3f692a7bb8";
+        if(shareId)
+            url+="?shareId="+shareId;
+        	currentLayer=openDialog("排序",url,false,900,680,{
+				end:function(){
+					location.reload();
+				},
+				resize:false
+			},false);
+    }
+
+	// 目录点击事件
+    function opened(id){
+		 event.stopPropagation();
+		if(dataMapCache[id]=='show'){
+			$("li[tabindex="+id+"]").children('ul').addClass("layui-hide");
+			$("li[tabindex="+id+"]").children('li').addClass("layui-hide");
+			$("li[tabindex="+id+"]").removeClass("is-opened");
+			dataMapCache[id]='hide';
+		}else{				
+			$("li[tabindex="+id+"]").addClass("is-opened"); 			
+			$("li[tabindex="+id+"]").children('ul').removeClass("layui-hide");
+			$("li[tabindex="+id+"]").children('li').removeClass("layui-hide");
+			dataMapCache[id]='show';
+		}
+		sessionStorage.setItem("shareMenuMap",JSON.stringify(dataMapCache));	
+   }
+	
+	    
+	    //moveTableLi('menuList');
+	     //鼠标拖拉tr上下移动
+    function moveTableLi(tableBodyId) {
+        $("#"+tableBodyId).sortable({
+            cursor: "move",
+            items: "li",//只是tr可以拖动
+            opacity: 1.0,//拖动时，透明度为0.6
+            revert: false,//释放时，增加动画
+            start: function(event, ui) {//开始移动
+                let str = event.srcElement.innerHTML;//鼠标点击移动时获取的html内容
+            },
+            update: function(event, ui) {//移动之后更新排序之后
+                let str = event.srcElement.innerHTML;
+                // 服务端排序，分享文档页面，允许用户前端排序即可
+                //updateSort();
+            }
+        });
+        $("#"+tableBodyId).disableSelection();
+    }
+
+	 // 拖拽排序
+    function updateSort(){
+        var ids=[];
+		$('#menuList').find('li').each(function(){
+			var id=$(this).children().eq(1).attr("id");
+			id=id.replace("left_page_","");
+			ids.push(id);
+		});
+
+		var body={
+			"ids":ids,
+			"shareId":"c59c83a157294fb093b6dd3f692a7bb8"
+		};
+		$.ajax({
+			type: 'post',
+            url: '/runapi/sort',
+            data:JSON.stringify(body),
+            dataType:'json',
+            contentType:"application/json",
+            success:function(data){
+            }
+		});
+    }
+	</script>
+</html>

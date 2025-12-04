@@ -1,0 +1,185 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>JFinal极速开发企业应用管理系统</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON" />
+<script type="text/javascript"
+	src="/static/libs/jquery/jquery-2.1.4.min.js"></script>
+
+<!--页面改版 -->
+<link rel="stylesheet" href="/static/libs/layui/css/layui.css "
+	media="all" />
+<link rel="stylesheet"
+	href="/static/libs/font-awesome/css/font-awesome.min.css ">
+<link rel="stylesheet" type="text/css"
+	href="/static/pub/login/css/login.css" />
+
+<!-- 背景图滚动 -->
+<style type="text/css">
+@-webkit-keyframes animate-cloud {
+  from {
+    background-position: 1700px 100%;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+@-moz-keyframes animate-cloud {
+  from {
+    background-position: 1700px 100%;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+@-ms-keyframes animate-cloud {
+  from {
+    background-position: 1700px 100%;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+@-o-keyframes animate-cloud {
+  from {
+    background-position: 1700px 100%;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+
+body{
+  -webkit-animation: animate-cloud 60s linear infinite;
+  -moz-animation: animate-cloud 60s linear infinite;
+  -ms-animation: animate-cloud 60s linear infinite;
+  -o-animation: animate-cloud 60s linear infinite;
+  animation: animate-cloud 60s linear infinite;
+  width: 100%;
+  height: auto;
+}
+</style>
+
+</head>
+<body onkeypress="_loginKeyPress(event);"
+	style="background: url('/static/img/login_bg.png'); background-size: cover; background-position:center center;">
+
+
+	<div class="layadmin-user-login layadmin-user-display-show"
+		id="LAY-user-login">
+
+		<div class="layadmin-user-login-main"
+			style="background: #ffffff; border-radius: 3px; margin-top: 13%;">
+			<div
+				style="text-align: center; padding: 20px 10px 10px 10px; font-size: 23px;">JFinal极速开发企业应用管理系统</div>
+			<div
+				class="layadmin-user-login-box layadmin-user-login-body layui-form">
+				<form class="layui-form" class="signup_form_form" id="signup_form"
+					action="/pub/login/submit?returnUrl=/"
+					method="post" autocomplete="off">
+					<input type='hidden' name='_jfinal_token' id='_jfinal_token' value='9134735492969131944' />
+					<div class="layui-form-item">
+						<label
+							class="layadmin-user-login-icon layui-icon layui-icon-username"
+							for="signup_code"></label> <input type="text" name="userCode"
+							placeholder="输入登录账号" id="signup_code" lay-verify="userCode"
+							lay-verType="tips" placeholder="用户名" class="layui-input" value="">
+					</div>
+					<div class="layui-form-item">
+						<label
+							class="layadmin-user-login-icon layui-icon layui-icon-password"
+							for="signup_password"></label> <input type="password"
+							name="password" placeholder="输入登录密码" id="signup_password"
+							lay-verType="tips" lay-verify="password" placeholder="密码"
+							class="layui-input" value="">
+					</div>
+					<div class="layui-form-item" id="show_verifyCode" >
+						<div class="layui-row">
+							<div class="layui-col-xs7">
+								<label
+									class="layadmin-user-login-icon layui-icon layui-icon-vercode"
+									for="signup_verifyCode"></label> <input type="text"
+									name="verifyCode" placeholder="验证码" id="signup_verifyCode"
+									
+									placeholder="图形验证码" class="layui-input">
+							</div>
+							<div class="layui-col-xs5">
+								<div style="margin-left: 10px;">
+									<img id="imageId" title='点击图片更换验证码' onClick="reloadImage()"
+										src="/pub/verify?t=2024-12-30" class="layadmin-user-login-codeimg">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<button class="layui-btn layui-btn-fluid" type="button" lay-submit="" lay-filter="LAY-user-login-submit">登 录</button>
+					</div>
+					<div class="layui-form-item">
+						<input type="checkbox" name="keepLogin" lay-skin="primary" value="1" title="保持登录 (请勿在公用电脑上使用)">
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		
+		
+	</div>
+
+    <div class="layui-trans layadmin-user-login-footer">
+         <p>技术支持 琴海森林(中国)科技有限公司 <a href="https://www.qinhaisenlin.com/" target="_blank">琴海森林</a></p>
+    </div>
+
+
+</body>
+<script src="/static/libs/layui/layui.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var vc = "", _path = "";
+	//解决360浏览器记住密码登录失败问题
+	$(function() {
+		getPublicKey();
+		changeType('text');
+		setTimeout("changeType('password')", 100);
+	});
+
+	function changeType(type) {
+		$("#signup_password").attr("type", type);
+	}
+
+	layui.use([ 'layer', 'form' ], function() {
+		var $ = layui.jquery, layer = layui.layer;
+		var form = layui.form;
+		
+		//登陆失败，返回登录页面提示内容
+
+		//登陆验证
+		form.verify({
+			userCode : function(value) {
+				if (value == "") {
+					return '用户名不能为空';
+				}
+			},
+			password : function(value) {
+				if (value == "") {
+					return '用户密码不能为空';
+				}
+			}
+			//验证码出现后,增加验证码空判断
+		});
+        
+		
+		
+		//监听提交
+		form.on('submit(LAY-user-login-submit)', function(data) {
+			login();
+			return false;
+		});
+	});
+
+
+</script>
+<script src="/static/libs/jsencrypt/3.3.2/jsencrypt.min.js" type="text/javascript"></script>
+<script src="/static/pub/login/login.js" type="text/javascript"></script>
+</html>

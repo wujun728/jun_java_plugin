@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:include="include :: header('数据源选择')" />
+</head>
+<body class="gray-bg">
+	<div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="type-form">
+					<div class="select-list">
+						<ul>
+							<li>
+								数据库名称：<input type="text" name="name"/>
+							</li>
+							<li>
+								数据库类型：<select name="dbType" th:with="type=${@dict.getType('sys_db_type')}">
+									<option value="">所有</option>
+									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+								</select>
+							</li>
+							<li>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+							    <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+	        
+	        <div class="col-sm-12 select-table table-striped">
+			    <table id="bootstrap-table"></table>
+			</div>
+		</div>
+	</div>
+	<th:block th:include="include :: footer" />
+	<script th:inline="javascript">
+		var datas = [[${@dict.getType('sys_db_type')}]];
+		var prefix = ctx + "system/dataSource";
+
+		$(function() {
+		    var options = {
+		        url: prefix + "/list",
+		        createUrl: prefix + "/add",
+		        updateUrl: prefix + "/edit/{id}",
+		        removeUrl: prefix + "/remove",
+		        exportUrl: prefix + "/export",
+		        singleSelect: true,
+		        queryParams: queryParams,
+		        clickToSelect: true,
+		        showSearch: false,
+	            showRefresh: false,
+	            showToggle: false,
+	            showColumns: false,
+		        modalName: "数据源",
+		        rememberSelected:true,
+		        columns: [{
+		        	field: 'state',
+		            radio: true
+		        },
+		        {
+		            field: 'id',
+		            title: '数据源主键'
+		        },
+		        {
+		            field: 'name',
+		            title: '数据库名称',
+		            sortable: true
+		        },
+		        {
+		            field: 'dbType',
+		            title: '数据库类型',
+		            formatter: function(value, row, index) {
+		            	return $.table.selectDictLabel(datas, value);
+		            }
+		        },
+		        {
+		            field: 'host',
+		            title: '主机'
+		        },
+		        {
+		            field: 'port',
+		            title: '端口'
+		        },
+		        {
+		            field: 'username',
+		            title: '用户名'
+		        },
+		        {
+		            field: 'password',
+		            title: '密码'
+		        }]
+		    };
+		    $.table.init(options);
+		});
+		function queryParams(params) {
+			var search = $.table.queryParams(params);
+			search.status = '0';//只查询正常的数据源
+			return search;
+		}
+		function getSelections(){
+	    	return $.table.selectColumns("id");
+	    }
+	</script>
+</body>
+</html>

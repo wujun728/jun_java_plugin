@@ -1,0 +1,53 @@
+[
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "id": "40288ae767ee75f70167ee7bae0a0001",
+                        "pid": "ff808081616e1efd01616e2c89af0000",
+                        "text": "人事部",
+                        "title": "人事部"
+                    },
+                    {
+                        "children": [],
+                        "id": "40288ae767ee75f70167ee7c06ba0002",
+                        "pid": "ff808081616e1efd01616e2c89af0000",
+                        "text": "财务部",
+                        "title": "财务部"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "id": "40288ae767ee75f70167ee7c94220003",
+                                "pid": "ff80808161e4629f0161e49ac1d30001",
+                                "text": "研发部",
+                                "title": "研发部"
+                            },
+                            {
+                                "children": [],
+                                "id": "40288ae767ee75f70167ee7cb5120004",
+                                "pid": "ff80808161e4629f0161e49ac1d30001",
+                                "text": "项目部",
+                                "title": "项目部"
+                            }
+                        ],
+                        "id": "ff80808161e4629f0161e49ac1d30001",
+                        "pid": "ff808081616e1efd01616e2c89af0000",
+                        "text": "系统集成部",
+                        "title": "系统集成部"
+                    }
+                ],
+                "id": "ff808081616e1efd01616e2c89af0000",
+                "pid": "sys",
+                "text": "绘宇智能",
+                "title": "绘宇智能"
+            }
+        ],
+        "id": "sys",
+        "text": "组织机构",
+        "title": "组织机构"
+    }
+]

@@ -1,0 +1,57 @@
+[
+    {
+        "legend": [
+            "女生",
+            "男生"
+        ],
+        "legend_x": "left",
+        "legend_y": "top",
+        "markLineNum": 0.0,
+        "series": [
+            {
+                "data": [
+                    0.0
+                ],
+                "name": "女生",
+                "type": "bar"
+            },
+            {
+                "data": [
+                    2.0
+                ],
+                "name": "男生",
+                "type": "bar"
+            }
+        ],
+        "seriesData": [
+            2.0
+        ],
+        "seriesName": "男生",
+        "seriesNameList": [],
+        "seriesPieData": [
+            {
+                "name": "绘宇智能",
+                "value": 2.0
+            }
+        ],
+        "seriesPieDataList": [
+            [
+                {
+                    "$ref": "$[0].seriesPieData[0]"
+                }
+            ]
+        ],
+        "subtitle": "部门人数统计",
+        "title": "ECharts入门示例",
+        "tooltipText": "",
+        "type": "bar",
+        "xAxis": [
+            "绘宇智能"
+        ],
+        "xName": "部门",
+        "xyAxisMap": {
+            "绘宇智能": 2.0
+        },
+        "yName": "人数（人）"
+    }
+]

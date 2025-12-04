@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.flying.cattle</groupId>
+		<artifactId>springboot-mybatis</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>springboot-mybatis-web</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- 配置提示等 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency>
+		<!-- 【本地包】 -->
+		<dependency>
+			<groupId>com.flying.cattle</groupId>
+			<artifactId>springboot-mybatis-biz</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.flying-cattle</groupId>
+			<artifactId>mybatis-dsc-generator</artifactId>
+			<version>3.0.3.RELEASE</version>
+		</dependency>
+	</dependencies>
+	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<includeEmptyDirs>true</includeEmptyDirs>
+					<!-- 不添加此节点，编译时会修改损坏字体的二进制文件 -->
+					<resources>
+						<resource>
+							<directory>src/main/resources</directory>
+							<filtering>true</filtering>
+							<excludes>
+								<exclude>**/*.woff</exclude>
+								<exclude>**/*.eot</exclude>
+								<exclude>**/*.ttf</exclude>
+							</excludes>
+						</resource>
+						<resource>
+							<directory>src/main/resources</directory>
+							<filtering>false</filtering>
+							<includes>
+								<include>**/*.woff</include>
+								<include>**/*.eot</include>
+								<include>**/*.ttf</include>
+							</includes>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,239 @@
+.layui-layout-admin .layui-side {
+    background-color: #20222A !important
+}
+.layui-body {
+    background-color: #f5f5f5;
+}
+.layui-body-header{
+    padding: 10px;
+    background-color: #fff;
+}
+.layui-side-menu .layui-nav .layui-nav-item a{
+    height: 40px;
+    line-height: 40px;
+    padding-left: 45px;
+    padding-right: 30px;
+}
+.layui-card {
+    background-color: #fff;
+    padding-top: 5px;
+    padding-bottom: 13px;
+}
+.mr {
+    margin-right: 5px !important;
+}
+.mt5 {
+    margin-top: 5px !important;
+}
+.mt10 {
+    margin-top: 10px !important;
+}
+.mt20 {
+    margin-top: 20px !important;
+}
+.pr10 {
+    padding-right: 10px !important;
+}
+.pl10 {
+    padding-left: 10px !important;
+}
+.min-input, .min-select .layui-unselect.layui-form-select {
+    width: 92% !important;
+}
+.layui-fluid {
+    padding: 0 10px !important;
+}
+.required-msg {
+    color: #ff0000;
+    margin-right: 3px;
+}
+.layui-card-header.layuiadmin-card-header-auto {
+    padding-top: 10px;
+    height: auto;
+}
+.layui-card-header {
+    padding: 0;
+}
+.search-form .layui-form-label {
+    width: auto;
+}
+.layui-card-body {
+    padding: 5px 10px;
+}
+.layui-input, .layui-select, .layui-textarea, .layui-btn {
+    height: 36px;
+    line-height: 36px;
+}
+.layui-btn.layui-btn-xs {
+    height: 22px;
+    line-height: 22px;
+}
+.layui-btn.layui-btn-sm {
+    height: 30px;
+    line-height: 30px;
+}
+.layui-form-item .layui-inline {
+    margin-bottom: 5px;
+    margin-right: 0px;
+}
+.layui-form-label {
+    padding: 8px 10px;
+}
+.splitor {
+    padding: 0px 2px;
+}
+a {
+    color: #009688
+}
+a:hover, a:visited {
+    color: #1E9FFF
+}
+.input-sm {
+    width: 100px !important;
+}
+.form-tip {
+    color: #999;
+    padding: 5px 0 0 0;
+}
+.form-tip i {
+    padding: 0px 2px;
+}
+.eleTree {
+    border: 1px solid #e6e6e6;
+    overflow-x: hidden;
+    overflow-y:scroll;
+    background-color: #fff;
+}
+.search-form button[lay-filter='form-search'] {
+    padding: 0px 10px;
+}
+.user-dept-tree-toolbar{
+    display: inline-block;
+    float: right;
+    margin-right: 3px;
+}
+.user-dept-tree-toolbar i{
+    padding: 0 2px;
+}
+.readonly{
+    background-color: #e6e6e6 !important;
+}
+.layui-tab {
+    margin: 0
+}
+.layui-tab-title {
+    background-color: #fff;
+}
+.layui-fluid {
+    padding: 10px !important;
+}
+
+.layui-tab-content {
+    padding: 0 10px;
+}
+.layadmin-iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.layui-layout.layui-layout-iframe {
+    margin-top: 40px;
+}
+.layui-form-item{
+    margin-bottom: 10px;
+}
+
+.pagetabs {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 80px 0 40px;
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    left: 200px;
+    position: fixed;
+    z-index: 999;
+    right: 0;
+    transition: all .3s;
+}
+.pagetabs .tabs-control {
+    position: absolute;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    box-sizing: border-box;
+    border-left: 1px solid #f6f6f6;
+}
+.pagetabs .layui-icon-prev {
+    left: 0;
+    border-left: none;
+    border-right: 1px solid #f6f6f6;
+}
+.pagetabs .layui-icon-next {
+    right: 40px;
+}
+.pagetabs .layui-icon-down {
+    right: 0;
+}
+.tabs-select.layui-nav {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: 0 0;
+}
+.tabs-select.layui-nav .layui-nav-item {
+    line-height: 40px;
+}
+.tabs-select.layui-nav .layui-nav-child {
+    top: 20px;
+    left: auto;
+    right: 0;
+}
+[lay-href], [lay-tips], [layadmin-event] {
+    cursor: pointer;
+}
+.pagetabs .layui-tab-title li:first-child, .tabs-select.layui-nav .layui-nav-bar, .tabs-select.layui-nav .layui-nav-more {
+    display: none;
+}
+.pagetabs .layui-tab-title li.layui-this, .pagetabs .layui-tab-title li:hover {
+    background-color: #f6f6f6;
+}
+.pagetabs .layui-tab {
+    margin: 0;
+    overflow: hidden;
+}
+.pagetabs .layui-tab-title {
+    height: 40px;
+    border: none;
+}
+.pagetabs .layui-tab-title li {
+    min-width: 0;
+    line-height: 40px;
+    max-width: 160px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border-right: 1px solid #f6f6f6;
+    vertical-align: top;
+}
+.layui-body .tabsbody-item {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+.tabsbody-item, [template] {
+    display: none;
+}

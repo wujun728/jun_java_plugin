@@ -1,0 +1,21 @@
+{
+    "code": 0,
+    "endIndex": 0,
+    "intIds": [],
+    "list": [
+        {
+            "visit_type": 0,
+            "id": "c59c83a157294fb093b6dd3f692a7bb8",
+            "state": 0,
+            "title": "test"
+        }
+    ],
+    "longIds": [],
+    "msg": "获取成功",
+    "pageNumber": 1,
+    "pageSize": 20,
+    "startIndex": 0,
+    "total": 1,
+    "totalCount": 1,
+    "totalPage": 1
+}

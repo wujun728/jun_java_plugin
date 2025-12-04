@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <style type="text/css">
+        .layui-disabled {
+            background-color: #f5f7fa;
+            border-color: #dfe4ed;
+            color: #c0c4cc;
+        }
+        .panel-heading{
+            padding:10px 10px;
+            border-bottom:1px solid transparent;
+            border-radius:2px 2px 0 0;
+            font-size:14px;
+            background: #eeeeee
+        }
+    </style>
+</head>
+<body>
+<div class="table_div">
+    <!--</div>-->
+    <table class="layui-table" id="showTable" lay-filter="showTable"></table>
+</div>
+</body>
+</html>
+<script src="./layui/layui.js"></script>
+<script src="./js/activiti.manager.core.util.js"></script>
+<script>
+    var table;
+    function child(iceEditMenus){
+        layui.use(['table'], function () {
+            table = layui.table;
+            //加载table
+            var tableIns1 = table.render({
+                elem: '#showTable',
+                data:iceEditMenus,
+                limit:30
+                , cols: [
+                    [
+                        {type: 'checkbox', fixed: 'left'},
+                        {field: 'text', title: '菜单名称'},
+                        {field: 'value', title: '菜单key',}
+                    ]
+                ]
+            });
+        });
+    }
+
+    function getCheckData() { //获取选中数据
+        var checkStatus = table.checkStatus('showTable')
+            ,data = checkStatus.data;
+        var result = [];
+        for (var i = 0; i < data.length; i++) {
+            result.push(data[i].value);
+        }
+        return result;
+    }
+
+</script>

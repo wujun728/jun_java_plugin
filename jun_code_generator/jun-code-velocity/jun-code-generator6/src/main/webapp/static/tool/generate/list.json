@@ -1,0 +1,51 @@
+{
+    "success": true,
+    "code": 200,
+    "message": "请求成功",
+    "data": [
+        {
+            "createTime": "2020-03-25 19:07:00",
+            "createUser": "1265476890672672808",
+            "updateTime": "2020-11-24 17:45:28",
+            "updateUser": "1265476890672672808",
+            "id": "1265476890672672821",
+            "name": "系统应用",
+            "code": "system",
+            "active": "Y",
+            "status": 0
+        },
+        {
+            "createTime": "2020-04-02 15:48:43",
+            "createUser": "1265476890672672808",
+            "updateTime": "2020-11-24 17:45:28",
+            "updateUser": "1265476890672672808",
+            "id": "1265476890672672823",
+            "name": "在线办公",
+            "code": "office",
+            "active": "N",
+            "status": 0
+        },
+        {
+            "createTime": "2020-08-03 20:25:20",
+            "createUser": "1265476890672672808",
+            "updateTime": "2020-08-15 15:46:12",
+            "updateUser": "1265476890672672808",
+            "id": "1290262474351808514",
+            "name": "高级体验",
+            "code": "experience",
+            "active": "N",
+            "status": 0
+        },
+        {
+            "createTime": "2020-12-15 23:08:51",
+            "createUser": "1265476890672672808",
+            "updateTime": null,
+            "updateUser": null,
+            "id": "1338863594871304193",
+            "name": "系统工具",
+            "code": "systool",
+            "active": "N",
+            "status": 0
+        }
+    ]
+}

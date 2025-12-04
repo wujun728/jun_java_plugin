@@ -1,0 +1,382 @@
+<link rel="stylesheet" href="../../assets/css/gougu.css?v=1.0.24" media="all">
+
+<form id="addOrUpdateForm" lay-filter="addOrUpdateForm" class="layui-form model-form  p-4">
+    <h3 class="pb-3">代码生成配置</h3>
+    <input name="id" type="hidden"/>
+    <div class="layui-row">
+        <div class="layui-col-md6">
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-form-required">选择表<i class="layui-icon layui-icon-tips"
+                        lay-tips="选择要生成代码的数据库表"
+                        lay-direction="1" lay-offset="0,-10px" style="margin-left: 5px"></i></label>
+                <div class="layui-input-block">
+                    <div id="tableName" name ="tableName"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-form-required layui-td-gray">移除前缀</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="tablePrefix" lay-filter="tablePrefixFilter" value="Y" title="是" checked="">
+                    <input type="radio" name="tablePrefix" lay-filter="tablePrefixFilter" value="N" title="否">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-md6">
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-form-required">功能名<i class="layui-icon layui-icon-tips"
+                         lay-tips="功能名称，一般与表注释一致" lay-direction="1" lay-offset="0,-10px" style="margin-left: 5px"></i></label>
+                <div class="layui-input-block">
+                    <input name="tableComment" class="layui-input" placeholder="请输入功能名" lay-verType="tips" lay-verify="required" required/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-form-required">类名<i class="layui-icon layui-icon-tips"
+                                                                         lay-tips="实体类名称以及其他功能名称前缀命名"
+                                                                         lay-direction="1" lay-offset="0,-10px" style="margin-left: 5px"></i></label>
+                <div class="layui-input-block">
+                    <input name="className" class="layui-input" placeholder="请输入类名" lay-verType="tips" lay-verify="required" required/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-md6">
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-form-required">业务名<i class="layui-icon layui-icon-tips"
+                                                                         lay-tips="模块下包含controller、service等代码包的上层包，全为小写"
+                                                                         lay-direction="1" lay-offset="0,-10px" style="margin-left: 5px"></i></label>
+                <div class="layui-input-block">
+                    <input name="busName" class="layui-input" placeholder="请输入业务名" lay-verType="tips" lay-verify="required" required/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-form-required">生成方式</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="generateType" lay-filter="generateTypeFilter" value="1" title="下载压缩包" checked="">
+                    <input type="radio" name="generateType" lay-filter="generateTypeFilter"value="2" title="生成到本项目">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-row">
+        <div class="layui-col-md6">
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-form-required" style="width: 100px">所属应用<i class="layui-icon layui-icon-tips"
+                                                                                                lay-tips="用户登录后菜单会以所属应用分类，在最上方导航栏显示，用以切换"
+                                                                                                lay-direction="1" lay-offset="0,-10px" style="margin-left: 5px"></i></label>
+                <div class="layui-input-block" style="margin-left: 130px">
+                    <div id="menuApplicationBox"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-form-required">上级菜单</label>
+                <div class="layui-input-block">
+                    <div id="menuSelectBox" class="ew-xmselect-tree"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-row">
+        <div class="layui-col-md6">
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-form-required">作者姓名</label>
+                <div class="layui-input-block">
+                    <input name="authorName" class="layui-input" placeholder="请输入作者姓名" lay-verType="tips" lay-verify="required" required/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6" id="packageNameMd">
+            <div class="layui-form-item">
+                <label class="layui-form-label layui-form-required">代码包名</label>
+                <div class="layui-input-block">
+                    <div id="packageName">
+                        <input name="packageName" class="layui-input" placeholder="（包名）例:com.jun.plugin.app" value="com.jun.plugin.app" lay-verType="tips" lay-verify="required" required/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="layui-form-item text-right">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        <button class="layui-btn" lay-filter="formSubmitBtn" lay-submit>保存</button>
+    </div> -->
+    <div class="py-3">
+		<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="formSubmitBtn">立即提交</button>
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+		<!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+	</div>
+</form>
+
+
+<!-- 脚本 -->
+<!-- <script type="text/javascript"  src="../../assets/js/jquery.js"></script> -->
+<script type="text/javascript"  src="../../assets/layui/layui.js"></script>
+<script type="text/javascript"  src="../../assets/gouguInit.js"></script>
+<script type="text/javascript"  src="../../assets/js/core.util.js"></script>
+<script>
+    var token = CoreUtil.getData("access_token");
+	var tokenQuery = "";
+// 	console.log(token);
+	if(token == undefined){
+		//window.location = 'login.html';
+	}else{
+	   tokenQuery = token.replace("#", "%23");
+	} 
+
+    layui.use(['layer', 'form', 'admin','xmSelect'/* , 'xnUtil' */], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var admin = layui.admin;
+        // var xnUtil = layui.xnUtil;
+        // var xmSelect = layui.xmSelect;
+
+        form.render('radio');
+        // 渲染远程数据下拉
+        var remoteDataRenderIns = {};
+        
+        var data1 = [
+    {
+        "tableName": "sys_app",
+        "createTime": "2023-06-12 15:32:40",
+        "updateTime": null,
+        "tableComment": "系统应用表"
+    },
+    {
+        "tableName": "sys_area",
+        "createTime": "2023-06-12 15:32:40",
+        "updateTime": null,
+        "tableComment": "中国行政地区表"
+    },
+    {
+        "tableName": "sys_code_generate",
+        "createTime": "2023-06-12 15:32:40",
+        "updateTime": null,
+        "tableComment": "代码生成基础配置1"
+    } 
+];
+
+        CoreUtil.sendGet('/sys/generate/InformationList.json?authorization=' + tokenQuery, {}, function (res) {
+            console.log("1111");
+            remoteDataRenderIns = xmSelect.render({
+                el: '#tableName',
+                name: 'tableName',
+                data: res.data,
+                // data: data1,
+                layVerify: 'required',
+                layVerType: 'tips',
+                radio: true,
+                clickClose: true,
+                filterable: true,
+                model: { icon:'hidden', label: { type: 'text' }},
+                prop: {
+                    name: 'tableName',
+                    value: 'tableName'
+                },
+                tips: '请选择数据库表',
+                on: function (data) {
+                    if(data.arr.length !== 0) {
+                        $('input[name="className"]').val(onTableName(data.arr[0].tableName));
+                        $('input[name="tableComment"]').val(data.arr[0].tableComment);
+                        $('input[name="busName"]').val(onTableName(data.arr[0].tableName).toLowerCase());
+                    }
+                }
+            });
+        });
+
+
+        // admin.req(getProjectUrl() + 'codeGenerate/InformationList', function(res){
+        // admin.req(/* getProjectUrl() + */ '/sys/generate/InformationList.json', function(res){
+        //     remoteDataRenderIns = xmSelect.render({
+        //         el: '#tableName',
+        //         name: 'tableName',
+        //         data: res.data,
+        //         layVerify: 'required',
+        //         layVerType: 'tips',
+        //         radio: true,
+        //         clickClose: true,
+        //         filterable: true,
+        //         model: { icon:'hidden', label: { type: 'text' }},
+        //         prop: {
+        //             name: 'tableName',
+        //             value: 'tableName'
+        //         },
+        //         tips: '请选择数据库表',
+        //         on: function (data) {
+        //             if(data.arr.length !== 0) {
+        //                 $('input[name="className"]').val(onTableName(data.arr[0].tableName));
+        //                 $('input[name="tableComment"]').val(data.arr[0].tableComment);
+        //                 $('input[name="busName"]').val(onTableName(data.arr[0].tableName).toLowerCase());
+        //             }
+        //         }
+        //     });
+        // }, {async: false});
+            
+        var editData = CoreUtil.getData('#addOrUpdateForm');
+        /* var editData = admin.getLayerData('#addOrUpdateForm').data;
+        if(editData !== null && editData !== undefined) {
+            form.val('addOrUpdateForm', editData);
+            remoteDataRenderIns.setValue([editData.tableName]);
+            showGenerateType(editData.generateType)
+            if ( editData.appCode !== null || editData.appCode !== undefined) {
+                getMenu(editData.appCode)
+            }
+        } */
+
+        // 渲染应用下拉
+        var menuApplicationDataRenderIns = {};
+        // admin.req(getProjectUrl() + 'sysApp/list', function(res) {
+        CoreUtil.sendAJAX('/sys/generate/json/addList.json?authorization=' + tokenQuery, null, function (res) {
+        // admin.req(getProjectUrl() + '/generator/generate/addList.json', function(res) {
+            console.log("11112222");
+            menuApplicationDataRenderIns = xmSelect.render({
+                el: '#menuApplicationBox',
+                name: 'appCode',
+                data: res.data,
+                layVerify: 'required',
+                layVerType: 'tips',
+                radio: true,
+                clickClose: true,
+                initValue: editData ? [editData.appCode] : [],
+                model: {icon: 'hidden', label: {type: 'text'}},
+                prop: {
+                    name: 'name',
+                    value: 'code'
+                },
+                tips: '请选择所属应用',
+                on: function (data) {
+                    getMenu(data.change[0].code)
+                }
+            })
+        }, 'GET');
+
+        /**
+         * 通过应用code加载菜单树
+         */
+        function getMenu (application) {
+            var params = {
+                application: application
+            }
+            CoreUtil.sendGet('/sys/generate/json/addTree.json?authorization=' + tokenQuery, params, function (res) {
+            // admin.req(getProjectUrl() + '/generator/generate/addTree.json',params, function(res){
+                // 渲染下拉树
+                console.log("11112222");
+                xmSelect.render({
+                    el: '#menuSelectBox',
+                    name: 'menuPid',
+                    height: '250px',
+                    layVerify: 'required',
+                    layVerType: 'tips',
+                    data: CoreUtil.handleZtreeDataRootNode(res.data),
+                    initValue: editData ? [editData.menuPid] : [],
+                    model: {label: {type: 'text'}},
+                    prop: {
+                        name: 'title',
+                        value: 'id'
+                    },
+                    radio: true,
+                    clickClose: true,
+                    tree: {
+                        show: true,
+                        indent: 15,
+                        strict: false,
+                        expandedKeys: true
+                    },
+                    tips: '请选择上级菜单'
+                });
+            }, {async: false});
+        }
+
+        /**
+         * 移除前缀监听
+         */
+        form.on('radio(tablePrefixFilter)', function(data){
+            var formParam = {};
+            var t = $('#addOrUpdateForm [name]').serializeArray();
+            $.each(t, function() {
+                formParam[this.name] = this.value;
+            });
+            $('input[name="className"]').val(classNameToHump(formParam.tableName, data.value));
+            $('input[name="busName"]').val(classNameToHump(formParam.tableName, data.value).toLowerCase());
+        });
+
+        /**
+         * 生成代码方式监听
+         */
+        form.on('radio(generateTypeFilter)', function(data){
+            showGenerateType(data.value)
+        });
+
+        /**
+         * 表单提交事件
+         */
+        form.on('submit(formSubmitBtn)', function (data) {
+            layer.load(2);
+            debugger;
+            var url = editData ? '/api/rest/sysCodeGenerate/update' :  '/api/rest/sysCodeGenerate/save';
+            CoreUtil.sendPost(url, JSON.stringify(data.field), function(res){
+                debugger;
+                layer.msg(res.message, {icon: 1, time: 1000}, function () {
+                    admin.putLayerData('formOk', true, '#addOrUpdateForm');
+                    admin.closeDialog('#addOrUpdateForm');
+                });
+            });
+            return false;
+        });
+
+        /**
+         * 选择数据库表下拉选中事件
+         */
+        function onTableName (tableName) {
+            var formParam = {};
+            var t = $('#addOrUpdateForm [name]').serializeArray();
+            $.each(t, function() {
+                formParam[this.name] = this.value;
+            });
+            return classNameToHump(tableName, formParam.tablePrefix)
+        }
+
+        /**
+         * 设置类名为数据库表的驼峰命名
+         */
+        function classNameToHump (tableName, tablePrefix){
+            var arr = tableName.toLowerCase().split("_");
+            if (tablePrefix === 'Y') {
+                arr.splice(0,1)
+            }
+            for(var i = 0; i < arr.length; i++){
+                // charAt()方法得到第一个字母，slice()得到第二个字母以后的字符串
+                arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+            }
+            return arr.join("");
+        }
+
+        /**
+         * 处理包名
+         */
+        function showGenerateType (generateType) {
+            if (generateType === '1') {
+                $("#packageNameMd").show()
+                $("#packageName").html('<input name="packageName" class="layui-input" placeholder="（包名）例:com.jun.plugin.app" value="com.jun.plugin.app" lay-verType="tips" lay-verify="required" required/>')
+            } else {
+                $("#packageNameMd").hide()
+                $("#packageName").html('<input name="packageName" style="display: none" value="com.jun.plugin.app"/>')
+            }
+        }
+    });
+</script>
+</body>
+</html>

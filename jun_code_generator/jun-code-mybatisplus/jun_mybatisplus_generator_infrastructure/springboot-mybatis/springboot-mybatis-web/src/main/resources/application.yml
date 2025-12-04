@@ -1,0 +1,32 @@
+server:
+  port: 8900
+spring:
+  application:
+    name: springboot-mybatis
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver 
+    url: jdbc:mysql://192.168.9.246:3306/buybit_wallet?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=true&serverTimezone=Hongkong
+    username: buybit_wallet
+    password: 'buybit_wallet3M!'
+
+
+mybatis-plus:
+  mapper-locations: classpath:com/flying/cattle/dao/impl/*Mapper.xml #不同了解“,”分割
+  typeAliasesPackage: com.flying.cattle.entity #不同了解“,”分割
+  global-config:
+    #刷新mapper 调试神器
+    db-config:
+      id-type: AUTO
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      db-type: mysql
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    
+#日志级别
+logging:
+  level:
+    com.buybit.wm.dao: debug
+

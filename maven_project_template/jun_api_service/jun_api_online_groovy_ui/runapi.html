@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="edge">
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+		<meta http-equiv="Cache" content="no-cache">
+		<link rel="icon" href="https://jfinal.com/assets/img/favicon.ico">
+		<title>JFinal-RunApi</title>
+		<meta name="keywords" content="在线API文档 技术文档 开发工具 在线手册">
+		<meta name="description" content="一个非常适合IT团队的在线API文档、技术文档工具。JFinal-RunApi是集swagger和postman于一身的接口文档开发工具。">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="/assets/lib/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/assets/css/common/global.css" media="all">
+    <link rel="stylesheet" href="/assets/css/common/theme-default.css" media="all">
+    <link rel="stylesheet" href="/assets/css/common/layui_extend.css" media="all">
+    <link rel="stylesheet" href="/assets/css/runapi/doc-index.css">
+	<link rel="stylesheet" href="/assets/css/runapi/doc-app.css" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/lib/layui_exts/mouseRightMenu/mouseRightMenu.css" />
+	<script src="/assets/lib/jquery/jquery-2.1.4.min.js" type="text/javascript" ></script>
+	<script src="/assets/lib/jquery/jquery.form.js" type="text/javascript" ></script>
+    <script src="/assets/lib/layui/layui.js" type="text/javascript" ></script>
+    <script src="/assets/lib/xm-select/xm-select.js" type="text/javascript" ></script>
+    <!-- jquery 表格移动需要 -->
+	<script src="/assets/lib/jquery/jquery-migrate-1.2.1.js"></script>
+	<script src="/assets/lib/jquery/jquery-ui.min.js" type="text/javascript" ></script>
+	
+		<style type="text/css">
+			.td-max{
+				width: 152px;
+			}
+			.td-max-left{
+				width: 150px;
+				text-align: left;
+			}
+			.hide{
+				display:none;
+			}
+			.td-wit-1{
+				width:195px;
+			}
+			.td-wit-2{
+				width:261px;
+			}
+			.left-menu-bottom-bar[data-v-1e6f9205] {
+			    height: 50px;
+			    position: fixed;
+			    bottom: 0;
+			    width: 300px;
+			    margin-left: -323px;
+			    background-color: #fafafa;
+			}
+			.left-menu-bottom-bar .bottom-bar-item-icon[data-v-1e6f9205] {
+			    width: calc(25% - 4px);
+			    height: 50px;
+			    font-size: 20px;
+			    -webkit-box-pack: center;
+			    -ms-flex-pack: center;
+			    justify-content: center;
+			    -webkit-box-align: center;
+			    -ms-flex-align: center;
+			    align-items: center;
+			    display: -webkit-inline-box;
+			    display: -ms-inline-flexbox;
+			    display: inline-flex;
+			    cursor: pointer;
+			}
+			.json{
+				max-height:600px;
+			}
+		</style>
+	</head>
+	<body class="grey-bg">
+		<div id="app">
+			<div  class="hello">
+				<div data-v-2eba7a07=""  class="hello">
+					<div data-v-168051ae="" data-v-2eba7a07=""></div>
+					<div data-v-2eba7a07="" id="header"></div>
+					<div data-v-2eba7a07="" id="doc-container" class="md container doc-container">
+						<div data-v-2eba7a07="" id="left-side">
+							<div data-v-005611ed="" data-v-2eba7a07="" class="hide-scrollbar">
+								<i data-v-005611ed="" id="header-left-btn" class="el-icon-menu header-left-btn hide"></i>
+								<!---->
+								<aside data-v-005611ed="" class="el-aside menu-margin-left2" id="left-side-menu" style="width: 300px;">
+									<ul data-v-005611ed="" id="menuList" role="menubar" class="el-menu" style="background-color: rgb(250, 250, 250);">
+										<div data-v-005611ed="" class="search-box el-input el-input--small el-input--suffix">
+											<input type="text" autocomplete="off" id="keyword" placeholder="输入关键字后按回车以搜索" value="" onkeydown="search(event)" class="el-input__inner">
+										</div>
+										<i data-v-005611ed="" class="el-tooltip el-icon-s-fold cursor-pointer hide" aria-describedby="el-tooltip-485" tabindex="0"></i>
+		<li data-v-005611ed="" role="menuitem" aria-haspopup="true" tabindex="42" onclick="opened(42)" class="el-submenu" >
+			<div class="el-submenu__title" style="padding-left: 20px; background-color: rgb(250, 250, 250);">
+				<i data-v-005611ed="" class="el-icon-folder"></i>
+				项目（2）
+				<i class="el-submenu__icon-arrow el-icon-arrow-down"></i>
+			</div>
+			<ul role="menu" class="el-menu el-menu--inline layui-hide " style="background-color: rgb(250, 250, 250); " data-old-padding-top="" data-old-padding-bottom="" data-old-overflow="">  
+				<li data-v-005611ed="" role="menuitem" tabindex="70aa50354e2142e09ec9474a856ac074" onclick='event.stopPropagation()' class="el-menu-item " style="padding-left: 40px; background-color: rgb(250, 250, 250);">
+					<i data-v-005611ed="" class="el-icon-document"></i>1
+					<a data-v-005611ed="" href="/runapi/1-70aa50354e2142e09ec9474a856ac074" title="项目权限查询列表接口" id="left_page_70aa50354e2142e09ec9474a856ac074">项目权限查询列表接口</a>
+				</li>
+				<li data-v-005611ed="" role="menuitem" tabindex="d4d64405bbc747a5bd82a065afc40534" onclick='event.stopPropagation()' class="el-menu-item " style="padding-left: 40px; background-color: rgb(250, 250, 250);">
+					<i data-v-005611ed="" class="el-icon-document"></i>2
+					<a data-v-005611ed="" href="/runapi/1-d4d64405bbc747a5bd82a065afc40534" title="项目编辑页" id="left_page_d4d64405bbc747a5bd82a065afc40534">项目编辑页</a>
+				</li>
+			</ul>				
+			
+		</li>
+		<li data-v-005611ed="" role="menuitem" aria-haspopup="true" tabindex="43" onclick="opened(43)" class="el-submenu" >
+			<div class="el-submenu__title" style="padding-left: 20px; background-color: rgb(250, 250, 250);">
+				<i data-v-005611ed="" class="el-icon-folder"></i>
+				分享（2）
+				<i class="el-submenu__icon-arrow el-icon-arrow-down"></i>
+			</div>
+			<ul role="menu" class="el-menu el-menu--inline layui-hide " style="background-color: rgb(250, 250, 250); " data-old-padding-top="" data-old-padding-bottom="" data-old-overflow="">  
+				<li data-v-005611ed="" role="menuitem" tabindex="431d49b6bb09416e84ba82a0fee860bd" onclick='event.stopPropagation()' class="el-menu-item " style="padding-left: 40px; background-color: rgb(250, 250, 250);">
+					<i data-v-005611ed="" class="el-icon-document"></i>1
+					<a data-v-005611ed="" href="/runapi/1-431d49b6bb09416e84ba82a0fee860bd" title="分享列表" id="left_page_431d49b6bb09416e84ba82a0fee860bd">分享列表</a>
+				</li>
+				<li data-v-005611ed="" role="menuitem" tabindex="eefe018f85444d4e8e171c78ca74672b" onclick='event.stopPropagation()' class="el-menu-item " style="padding-left: 40px; background-color: rgb(250, 250, 250);">
+					<i data-v-005611ed="" class="el-icon-document"></i>2
+					<a data-v-005611ed="" href="/runapi/1-eefe018f85444d4e8e171c78ca74672b" title="分享接口关系列表" id="left_page_eefe018f85444d4e8e171c78ca74672b">分享接口关系列表</a>
+				</li>
+			</ul>				
+			
+		</li>
+		<li data-v-005611ed="" role="menuitem" aria-haspopup="true" tabindex="44" onclick="opened(44)" class="el-submenu" >
+			<div class="el-submenu__title" style="padding-left: 20px; background-color: rgb(250, 250, 250);">
+				<i data-v-005611ed="" class="el-icon-folder"></i>
+				接口（1）
+				<i class="el-submenu__icon-arrow el-icon-arrow-down"></i>
+			</div>
+			<ul role="menu" class="el-menu el-menu--inline layui-hide " style="background-color: rgb(250, 250, 250); " data-old-padding-top="" data-old-padding-bottom="" data-old-overflow="">  
+				<li data-v-005611ed="" role="menuitem" tabindex="297311810f124b028939583d342abf1c" onclick='event.stopPropagation()' class="el-menu-item " style="padding-left: 40px; background-color: rgb(250, 250, 250);">
+					<i data-v-005611ed="" class="el-icon-document"></i>1
+					<a data-v-005611ed="" href="/runapi/1-297311810f124b028939583d342abf1c" title="接口列表" id="left_page_297311810f124b028939583d342abf1c">接口列表</a>
+				</li>
+			</ul>				
+			
+		</li>
+		<li data-v-005611ed="" role="menuitem" aria-haspopup="true" tabindex="47" onclick="opened(47)" class="el-submenu" >
+			<div class="el-submenu__title" style="padding-left: 20px; background-color: rgb(250, 250, 250);">
+				<i data-v-005611ed="" class="el-icon-folder"></i>
+				用户（0）
+				<i class="el-submenu__icon-arrow el-icon-arrow-down"></i>
+			</div>
+			
+		</li>
+		<li data-v-005611ed="" role="menuitem" aria-haspopup="true" tabindex="48" onclick="opened(48)" class="el-submenu" >
+			<div class="el-submenu__title" style="padding-left: 20px; background-color: rgb(250, 250, 250);">
+				<i data-v-005611ed="" class="el-icon-folder"></i>
+				角色（0）
+				<i class="el-submenu__icon-arrow el-icon-arrow-down"></i>
+			</div>
+			
+		</li>
+		<li data-v-005611ed="" role="menuitem" aria-haspopup="true" tabindex="49" onclick="opened(49)" class="el-submenu" >
+			<div class="el-submenu__title" style="padding-left: 20px; background-color: rgb(250, 250, 250);">
+				<i data-v-005611ed="" class="el-icon-folder"></i>
+				团队（0）
+				<i class="el-submenu__icon-arrow el-icon-arrow-down"></i>
+			</div>
+			
+		</li>
+		<li data-v-005611ed="" role="menuitem" aria-haspopup="true" tabindex="67" onclick="opened(67)" class="el-submenu" >
+			<div class="el-submenu__title" style="padding-left: 20px; background-color: rgb(250, 250, 250);">
+				<i data-v-005611ed="" class="el-icon-folder"></i>
+				目录（0）
+				<i class="el-submenu__icon-arrow el-icon-arrow-down"></i>
+			</div>
+			
+		</li>
+										<li data-v-005611ed="" role="menuitem" tabindex="0" class="el-menu-item is-active" style="padding-left: 20px; background-color: rgb(250, 250, 250);">
+											<i data-v-005611ed="" class="el-icon-document"></i>1
+											<a data-v-005611ed="" href="/runapi/1-16b39d66e64b43e5ac90839decd83f18" title="后台管理首页" id="left_page_16b39d66e64b43e5ac90839decd83f18">后台管理首页</a>
+										</li>
+										<li data-v-005611ed="" role="menuitem" tabindex="1" class="el-menu-item " style="padding-left: 20px; background-color: rgb(250, 250, 250);">
+											<i data-v-005611ed="" class="el-icon-document"></i>2
+											<a data-v-005611ed="" href="/runapi/1-ca6425891af04fbb993e8090cca8377b" title="项目列表" id="left_page_ca6425891af04fbb993e8090cca8377b">项目列表</a>
+										</li>
+									</ul>
+								</aside>
+							</div>
+							<!-- 底部菜单 -->
+							<div data-v-1e6f9205="" data-v-380220c1="">
+								<div data-v-1e6f9205="" id="left-menu-bottom-bar" class="left-menu-bottom-bar">
+			
+								</div>
+							</div>
+						</div>
+						<div data-v-2eba7a07="" id="right-side">
+							<div data-v-2eba7a07="" id="p-content">
+								<div data-v-2eba7a07="" id="doc-title-box" class="doc-title-box">
+									<span data-v-2eba7a07="" id="doc-title-span" class="dn"></span>
+									<h2 data-v-2eba7a07="" id="doc-title">后台管理首页</h2>
+									<i data-v-2eba7a07="" id="full-page" class="el-icon-full-screen hide"></i>
+									<!---->
+								</div>
+								<div data-v-2eba7a07="" id="doc-body">
+									<div data-v-2eba7a07="" id="page_md_content" class="page_content_main">
+										<div data-v-2eba7a07="" id="editor-md" class="main-editor markdown-body editormd-html-preview">
+											<!---->
+											<div class="markdown-toc editormd-markdown-toc open-list">
+												<ul class="markdown-toc-list">
+													<li>
+														<a class="toc-level-5" href="/runapi/1-16b39d66e64b43e5ac90839decd83f18#请求URL" >请求URL</a>
+													</li>
+													<li>
+														<a class="toc-level-5" href="/runapi/1-16b39d66e64b43e5ac90839decd83f18#请求方式" >请求方式</a>
+													</li>
+													<li>
+														<a class="toc-level-5" href="/runapi/1-16b39d66e64b43e5ac90839decd83f18#备注" >备注</a>
+													</li>
+												</ul>
+											</div>
+											<h5 id="h5--url">
+												<a name="请求URL" class="reference-link"></a>
+												<span class="header-link octicon octicon-link"></span>请求URL
+											</h5>
+											<ul>
+												<li>
+													<code>http://runapi.qinhaisenlin.com/home</code>
+												</li>
+											</ul>
+											<h5 id="h5-u8BF7u6C42u65B9u5F0F">
+												<a name="请求方式" class="reference-link"></a>
+												<span class="header-link octicon octicon-link"></span>请求方式
+											</h5>
+											<ul>
+												<li>POST</li>
+											</ul>
+											<h5 id="h5-u5907u6CE8">
+												<a name="备注" class="reference-link"></a>
+												<span class="header-link octicon octicon-link"></span>备注
+											</h5>
+											<p></p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-v-3ef1cbf4="" data-v-2eba7a07="" class="hello">
+								<!---->
+								<div data-v-3ef1cbf4="" class="op-bar">
+									<!---->
+									<span data-v-3ef1cbf4="">
+										<!-- <a data-v-3ef1cbf4="" href="/portal/core/sysPermission/item/index" class="el-tooltip item" aria-describedby="el-tooltip-7122" tabindex="0">
+											<i data-v-3ef1cbf4="" class="el-icon-back"></i>
+										</a> -->
+										<i data-v-3ef1cbf4="" class="el-tooltip el-icon-share item" aria-describedby="el-tooltip-3750" tabindex="0" onclick="share()"></i>
+										<i data-v-3ef1cbf4="" class="el-tooltip el-icon-info item" aria-describedby="el-tooltip-591" tabindex="0"></i>
+										<a data-v-3ef1cbf4="" href="javascript:download()" class="el-tooltip   item" aria-describedby="el-tooltip-2357" tabindex="0">
+											<i data-v-3ef1cbf4="" class="el-icon-download"></i>
+										</a>
+									</span>
+									<!---->
+								</div>
+								<div data-v-3ef1cbf4="" class="el-dialog__wrapper" style="z-index: 2061;display:none;background-color: #202020a6;">
+									<div role="dialog" aria-modal="true" aria-label="分享页面" class="el-dialog" style="margin-top: 15vh; width: 700px;">
+										<div class="el-dialog__header">
+											<span class="el-dialog__title">分享页面</span>
+											<button type="button" aria-label="Close" class="el-dialog__headerbtn">
+												<i class="el-dialog__close el-icon el-icon-close" onclick="ok()"></i>
+											</button>
+										</div>
+										<div class="el-dialog__body">
+											<p data-v-3ef1cbf4="">
+												项目页面地址 :
+												<code data-v-3ef1cbf4="" id="share_url">http://runapi.qinhaisenlin.com/runapi/1</code>
+												<i data-v-3ef1cbf4="" class="el-icon-document-copy" onclick="copy('share_url')"></i>
+											</p>
+										<div class="el-dialog__footer">
+											<span data-v-3ef1cbf4="" class="dialog-footer">
+												<button data-v-3ef1cbf4="" onclick="ok()" type="button" class="el-button el-button--primary">
+													<span>确定</span>
+												</button>
+											</span>
+										</div>
+									</div>
+								</div>
+								<!---->
+								<!---->
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<textarea id="copy_value" rows="" cols="" style="left: -200px;position: fixed;"></textarea></div>
+	</body>
+	
+	<script src="/assets/lib/jquery/jquery-2.1.4.min.js" type="text/javascript" ></script>
+	<script src="/assets/lib/layui/layui.js" type="text/javascript" ></script>
+	<script src="/assets/js/common/alert.js" type="text/javascript" ></script>
+	<!-- jquery 表格移动需要 -->
+	<script src="/assets/lib/jquery/jquery-migrate-1.2.1.js"></script>
+	<script src="/assets/lib/jquery/jquery-ui.min.js" type="text/javascript" ></script>
+	<script type="text/javascript">
+
+	var dataMapCache = {};
+	
+	$(function(){
+	    //moveTableTr('menuList','li');
+	    var map=sessionStorage.getItem("menuMap");
+	    if(map){
+	    	dataMapCache=JSON.parse(map);
+	    	for(var key in dataMapCache){		    	
+	    		if(dataMapCache[key]=='show'){
+	    			$("li[tabindex="+key+"]").addClass("is-opened"); 			
+    				$("li[tabindex="+key+"]").children('ul').removeClass("layui-hide");
+    				$("li[tabindex="+key+"]").children('li').removeClass("layui-hide");
+	    		}
+	    	}
+		 }
+	})
+	
+		function share(){
+			$('.el-dialog__wrapper').show();
+		}
+	
+		function ok(){
+			$('.el-dialog__wrapper').hide();
+		}
+
+		//复制代码
+		function copy(id){
+			const codeElement = document.getElementById(id);
+			var text=codeElement.innerText;
+			const inputElement = document.querySelector('#copy_value');
+			inputElement.value=text;
+			inputElement.select();
+			try{
+				document.execCommand('copy');
+				layer.msg("复制成功")
+			}catch(e){
+				layer.msg("复制失败")
+			}
+		}
+
+		// 搜索
+		function search(e){
+			if(e.keyCode===13){
+				var keyword=$("#keyword").val();
+				var url='/runapi/doc';
+				var projectId="1";
+				
+				if(projectId){
+					url+='/'+projectId;
+					if(keyword)
+						url+='?keyword='+keyword;
+				}else if(keyword){
+					url+="?keyword="+keyword;
+				}
+				window.location.href=url;
+			  }
+		}
+
+		//下载文档，可以搜索下载，默认下载全部
+		function download(){
+			var keyword=$("#keyword").val();
+			var url='/runapi/download?projectId=1';
+			if(keyword)
+				url+='&keyword='+encodeURIComponent(keyword);
+			window.location.href=url;
+		}
+		
+		$('.el-icon-download').hover(function(){
+	        var index;
+	        var title="导出文档，支持搜索导出单个文档";
+	        this.index=layer.tips(title, this,{
+	            tips:1,
+	        });
+	    },function(){
+	        layer.close(this.index);
+	    });
+	    
+	    $('.el-icon-info').hover(function(){
+	        var index;
+	        var title="由JFinal-RunApi倾情打造";
+	        this.index=layer.tips(title, this,{
+	            tips:1,
+	        });
+	    },function(){
+	        layer.close(this.index);
+	    });
+	    
+	    $('.el-icon-share').hover(function(){
+	        var index;
+	        var title="分享";
+	        this.index=layer.tips(title, this,{
+	            tips:1,
+	        });
+	    },function(){
+	        layer.close(this.index);
+	    });
+
+	//鼠标拖拉tr上下移动
+    function moveTableTr(docId,item) {
+        $("#"+docId).sortable({
+            cursor: "move",
+            items: item,//只是tr可以拖动
+            opacity: 0.6,//拖动时，透明度为0.6
+            revert: false,//释放时，增加动画
+            start: function(event, ui) {//开始移动
+                let str = event.srcElement.innerHTML;//鼠标点击移动时获取的html内容
+            },
+            update: function(event, ui) {//移动之后更新排序之后
+                let str = event.srcElement.innerHTML;
+            }
+        });
+        $("#"+docId).disableSelection();
+    }
+	
+    
+	// 目录点击事件
+    function opened(id){
+		 event.stopPropagation();
+		 if(dataMapCache[id]=='show'){
+			$("li[tabindex="+id+"]").children('ul').addClass("layui-hide");
+			$("li[tabindex="+id+"]").children('li').addClass("layui-hide");
+			$("li[tabindex="+id+"]").removeClass("is-opened");
+			dataMapCache[id]='hide';
+		}else{				
+			$("li[tabindex="+id+"]").addClass("is-opened"); 			
+			$("li[tabindex="+id+"]").children('ul').removeClass("layui-hide");
+			$("li[tabindex="+id+"]").children('li').removeClass("layui-hide");
+			dataMapCache[id]='show';
+		}
+		sessionStorage.setItem("menuMap",JSON.stringify(dataMapCache));	
+   }
+	</script>
+</html>

@@ -1,0 +1,684 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>JFinal-RunApi-极速开发接口文档</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="icon" href="https://jfinal.com/assets/img/favicon.ico">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="/assets/lib/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/assets/css/common/global.css" media="all">
+    <link rel="stylesheet" href="/assets/css/common/theme-default.css" media="all">
+    <link rel="stylesheet" href="/assets/css/common/layui_extend.css" media="all">
+    <link rel="stylesheet" href="/assets/css/runapi/doc-index.css">
+	<link rel="stylesheet" href="/assets/css/runapi/doc-app.css" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/lib/layui_exts/mouseRightMenu/mouseRightMenu.css" />
+	<script src="/assets/lib/jquery/jquery-2.1.4.min.js" type="text/javascript" ></script>
+	<script src="/assets/lib/jquery/jquery.form.js" type="text/javascript" ></script>
+    <script src="/assets/lib/layui/layui.js" type="text/javascript" ></script>
+    <script src="/assets/lib/xm-select/xm-select.js" type="text/javascript" ></script>
+    <!-- jquery 表格移动需要 -->
+	<script src="/assets/lib/jquery/jquery-migrate-1.2.1.js"></script>
+	<script src="/assets/lib/jquery/jquery-ui.min.js" type="text/javascript" ></script>
+	
+<link rel="stylesheet" href="/assets/css/runapi/debug.css" />
+</head>
+<body>
+	<div class="layui-container-fluid">
+  <form action="javascript:void(0)" class="layui-form layui-form-pane f-form" method="post" autocomplete="off">
+      
+      <div class="layui-row layui-col-space1 task-row">
+ 		<div class="layui-col-xs12 layui-col-sm4 layui-col-md4" id="接口标题">
+			<div class="layui-form-item">
+				<label class="layui-form-label"  style="width:0px;display:none " title="接口标题" >接口标题</label>
+				<div class="layui-input-block"   style="margin-left:0px" >
+          <input type="text" class="layui-input" title="接口标题" placeholder="接口标题" name="title" value="用户管理"   />
+				</div>
+			</div>
+		</div>
+ 		<div class="layui-col-xs12 layui-col-sm4 layui-col-md4" id="接口描述">
+			<div class="layui-form-item">
+				<label class="layui-form-label"  style="width:0px;display:none " title="接口描述" >接口描述</label>
+				<div class="layui-input-block"   style="margin-left:0px" >
+          <input type="text" class="layui-input" title="接口描述" placeholder="可选。接口描述" name="description" value="" />
+				</div>
+			</div>
+		</div>
+ 		<div class="layui-col-xs12 layui-col-sm4 layui-col-md4" id="接口状态">
+			<div class="layui-form-item">
+				<label class="layui-form-label"  style="width:0px;display:none " title="接口状态" >接口状态</label>
+				<div class="layui-input-block"   style="margin-left:0px" >
+          <div style="width:105px;float:left">
+            <select name="interfaceStatus" class="status" >
+                <option value="">接口状态</option>
+                <option value="开发中" >开发中</option>
+                <option value="测试中" >测试中</option>
+                <option value="已完成" >已完成</option>
+                <option value="需修改" >需修改</option>
+                <option value="已废弃" >已废弃</option>
+            </select>
+         </div>
+          <div class="layui-input doc-link" style="width:100px;"><a target="_blank" href="/runapi/doc/1-74081af430714ab680602740d67ad47a" class="layui-text">文档链接</a></div>
+				</div>
+			</div>
+		</div>
+      </div>
+      <br/>
+      <div class="layui-row layui-col-space1 task-row">
+ 		<div class="layui-col-xs12 layui-col-sm2 layui-col-md2" id="请求方式">
+			<div class="layui-form-item">
+				<label class="layui-form-label"  style="width:0px;display:none " title="请求方式" >请求方式</label>
+				<div class="layui-input-block"   style="margin-left:0px" >
+              <select name="requestMode" class=" status" lay-filter="requestMode">
+                  <option value="POST" >POST</option>
+                  <option value="GET" >GET</option>
+                  <option value="PULL" >PULL</option>
+                  <option value="DELETE" >DELETE</option>
+                  <option value="HEAD" >HEAD</option>
+                  <option value="CONNECT" >CONNECT</option>
+                  <option value="OPTIONS" >OPTIONS</option>
+                  <option value="TRACE" >TRACE<option>
+                  <option value="PATCH" >PATCH</option>
+              </select>
+				</div>
+			</div>
+		</div>
+ 		<div class="layui-col-xs12 layui-col-sm6 layui-col-md6" id="请求路径">
+			<div class="layui-form-item">
+				<label class="layui-form-label"  style="width:0px;display:none " title="请求路径" >请求路径</label>
+				<div class="layui-input-block"   style="margin-left:0px" >
+          <input type="text" id="requestUrl" class="layui-input" placeholder="url" name="requestUrl" value="http://runapi.qinhaisenlin.com/account" oninput="createQueryDataRow()" onporpertychange="createQueryDataRow()"  lay-verType='tips'/>
+				</div>
+			</div>
+		</div>
+ 		<div class="layui-col-xs12 layui-col-sm4 layui-col-md4" id="发送">
+			<div class="layui-form-item">
+				<label class="layui-form-label"  style="width:0px;display:none " title="发送" >发送</label>
+				<div class="layui-input-block"   style="margin-left:0px" >
+            <button class="layui-btn btn-send layui-btn-normal" type="button" onclick="sendRequest()">发送</button>
+            <button class="layui-btn btn-save layui-btn-normal" type="button" onclick="saveApi()">保存</button>
+				</div>
+			</div>
+		</div>
+      </div>
+
+      <div class="layui-row layui-col-space1 task-row">
+
+          <div class="layui-tab layui-tab-brief">
+              <ul class="layui-tab-title" id="tab_data">
+                  <li class="layui-this">Body</li>
+                  <li>Query</li>
+                  <li>Headers</li>
+                  <li>Cookies</li>
+              </ul>
+              <div class="layui-tab-content" style="height: auto;overflow-y: auto;">
+                  <div class="layui-tab-item layui-show">
+                      <select id="body_type" name="requestBodyType" lay-ignore>
+                          <option value="x-www-form-urlencoded">x-www-form-urlencoded</option>
+                          <option value="form-data" >form-data</option>
+                          <option value="json" >json</option>
+                      </select>
+                      <span id="getMsg" class="layui-hide">GET请求请切换到上方的Query标签页进行操作。Body参数列表将在GET请求中被忽略。如果你需要同时传递Query和Body参数，建议使用POST方式请求
+                      </span>
+                      <a id="formatBodyJson" href="javascript:formatBodyJson()" class="body-type-json json-format layui-hide">
+                          <i class="layui-icon layui-icon-download-circle"></i>json极速美化</a>
+                      <br/>
+                      <div class="body-type-json layui-hide"><br/>
+                          <textarea name="bodyJson" onkeyup="autoHeight(this, 30)" class="layui-textarea"></textarea>
+                          <br/>
+                          json字段说明
+                          <a id="createBodyPara" href="javascript:createBodyPara()" class="json-format">
+                              <i class="layui-icon layui-icon-download-circle"></i>极速生成</a>
+                      </div>
+                      <br/>
+
+                      <div class="layui-row task-row body-type-form-data">
+
+                          <table class="body-type-json layui-hide">
+                              <tbody id="body_data_list">
+                                <tr>
+                                    <td><input type="text" class="form-data-param input-max"  name="name" value="" placeholder="参数名"/></td>
+                                    <td class="td-min">
+                                        <select name="type" class="form-data-param input-max" lay-ignore>
+                                            <option value="string">string</option>
+                                            <option value="number">number</option>
+                                            <option value="file">file</option>
+                                            <option value="array">array</option>
+                                            <option value="object">object</option>
+                                            <option value="int">int</option>
+                                            <option value="long">long</option>
+                                            <option value="date">date</option>
+                                            <option value="boolean">boolean</option>
+                                        </select>
+                                    </td>
+                                    <td class="td-min1">
+                                        <select name="require" class="form-data-param input-max" lay-ignore>
+                                            <option value="1">必填</option>
+                                            <option value="0">选填</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="form-data-param input-max"  name="remark" value="" placeholder="选填。参数描述，便于生成文档"/></td>
+                                    <td><button class="remove-btn" onclick="javascript:removeTr(this)" type="button"><i class="layui-icon layui-icon-close"></i></button></td>
+                                </tr>
+                              </tbody>
+                          </table>
+                          <div class="add-row body-type-json layui-hide">
+                              <a href="javascript:addBodyDataRow('','','','')"><i class="layui-icon layui-icon-add-circle"></i>增加一行</a>
+                          </div>
+                          <table>
+                              <tbody id="form_data_list" class="form-data">
+                                <tr>
+                                    <td class="move-row"><input type="checkbox" class="" lay-ignore  name="disable" value=""/></td>
+                                    <td><input type="text" class="form-data-param input-max"  name="name" value="" placeholder="参数名"/></td>
+                                    <td class="td-min">
+                                        <select name="type" class="form-data-param input-max" lay-ignore>
+                                            <option value="string">string</option>
+                                            <option value="number">number</option>
+                                            <option value="file">file</option>
+                                            <option value="array">array</option>
+                                            <option value="object">object</option>
+                                            <option value="int">int</option>
+                                            <option value="long">long</option>
+                                            <option value="date">date</option>
+                                            <option value="boolean">boolean</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="form-data-param input-max"  name="value" value="" placeholder="参数值"/></td>
+                                    <td class="td-min">
+                                        <select name="require" class="form-data-param input-max" lay-ignore>
+                                            <option value="1">必填</option>
+                                            <option value="0">选填</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="form-data-param input-max"  name="remark" value="" placeholder="选填。参数描述，便于生成文档"/></td>
+                                    <td><button class="remove-btn" onclick="javascript:removeTr(this)" type="button"><i class="layui-icon layui-icon-close"></i></button></td>
+                                </tr>
+                              </tbody>
+                          </table>
+                          <div class="add-row form-data">
+                              <a href="javascript:addFormDataRow(true,'','','','','')"><i class="layui-icon layui-icon-add-circle"></i>增加一行</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="layui-tab-item">
+                      <table>
+                          <tbody id="query_data_list">
+                              <tr>
+                                  <td><input type="text" class="form-data-param input-max" oninput="appendParaUrl()" onporpertychange="appendParaUrl()" name="name" value="" placeholder="参数名"/></td>
+                                  <td class="td-min">
+                                      <select name="type" class="form-data-param input-max" lay-ignore>
+                                          <option value="string">string</option>
+                                          <option value="number">number</option>
+                                          <option value="int">int</option>
+                                          <option value="long">long</option>
+                                          <option value="date">date</option>
+                                          <option value="boolean">boolean</option>
+                                      </select>
+                                  </td>
+                                  <td><input type="text" class="form-data-param input-max" oninput="appendParaUrl()" onporpertychange="appendParaUrl()" name="value" value="" placeholder="参数值"/></td>
+                                  <td class="td-min">
+                                      <select name="require" class="form-data-param input-max" lay-ignore>
+                                          <option value="1">必填</option>
+                                          <option value="0">选填</option>
+                                      </select>
+                                  </td>
+                                  <td><input type="text" class="form-data-param input-max"  name="remark" value="" placeholder="选填。参数描述，便于生成文档"/></td>
+                                  <td><button class="remove-btn" onclick="javascript:removeTr(this),appendParaUrl()" type="button"><i class="layui-icon layui-icon-close"></i></button></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <div class="add-row">
+                          <a href="javascript:addQueryDataRow('','','','','')"><i class="layui-icon layui-icon-add-circle"></i>增加一行</a>
+                      </div>
+                  </div>
+                  <div class="layui-tab-item">
+                      <table>
+                          <tbody id="headers_data_list">
+                              <tr>
+                                  <td><input type="checkbox" class="" lay-ignore  name="disable" value=""/></td>
+                                  <td><input type="text" class="form-data-param input-max"  name="name" value="" placeholder="Headers名"/></td>
+                                  <td class="td-min">
+                                      <select name="type" class="form-data-param input-max" lay-ignore>
+                                          <option value="string">string</option>
+                                          <option value="number">number</option>
+                                      </select>
+                                  </td>
+                                  <td><input type="text" class="form-data-param input-max"  name="value" value="" placeholder="Headers值"/></td>
+                                  <td class="td-min">
+                                      <select name="require" class="form-data-param input-max" lay-ignore>
+                                          <option value="1">必填</option>
+                                          <option value="0">选填</option>
+                                      </select>
+                                  </td>
+                                  <td><input type="text" class="form-data-param input-max"  name="remark" value="" placeholder="选填。Headers描述，便于生成文档"/></td>
+                                  <td><button class="remove-btn" onclick="javascript:removeTr(this)" type="button"><i class="layui-icon layui-icon-close"></i></button></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <div class="add-row">
+                          <a href="javascript:addHeadersDataRow(true,'','','','','')"><i class="layui-icon layui-icon-add-circle"></i>增加一行</a>
+                      </div>
+                  </div>
+                  <div class="layui-tab-item">
+                      <table id="cookies_data_table">
+                          <tbody id="cookies_data_list">
+                              <tr>
+                                  <td><input type="text" class="form-data-param input-max"  name="name" value="" placeholder="cookies名"/></td>
+                                  <td><input type="text" class="form-data-param input-max"  name="value" value="" placeholder="cookies值"/></td>
+                                  <td><button class="remove-btn" onclick="removeTr(this)"><i class="layui-icon layui-icon-close"></i></button></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <div class="add-row">
+                          <a href="javascript:addCookiesDataRow()"><i class="layui-icon layui-icon-add-circle"></i>增加一行</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+      
+      <div class="layui-row layui-col-space1 task-row">
+
+          <div class="layui-tab layui-tab-brief">
+              <ul class="layui-tab-title">
+                  <li class="layui-this">响应体</li>
+                  <li>响应头</li>
+                  <li>成功返回示例</li>
+                  <li>失败返回示例</li>
+                  <li>备注</li>
+              </ul>
+              <div class="layui-tab-content" style="height: auto;">
+                  <!--响应体 -->
+                  <div class="layui-tab-item layui-show">
+                  
+                      <div class="layui-tab layui-tab-brief">
+                          <ul class="layui-tab-title">
+                              <li class="layui-this">美化</li>
+                              <li>原生</li>
+                              <li onclick="reviewData()">预览</li>                          
+                          </ul>
+                          <ul class="layui-tab-title response-info layui-hide">
+	                          <li>响应码：<span id="status"></span></li>
+	                      	  <li>耗时：<span id="time"></span></li>
+	                      	  <li class="size layui-hide">大小：<span id="size"></span></li>
+                      	  </ul>
+                          <div class="layui-tab-content" style="min-height: 200px;">
+                              <!--美化-->
+                              <div class="layui-tab-item layui-show">
+                              	  <div id="responseBodyJson"></div>
+                                  <textarea class="layui-textarea" id="responseBody1" style="min-height:200px"></textarea>
+                              </div>
+                              <!--原生-->
+                              <div class="layui-tab-item">
+                                  <textarea class="layui-textarea" id="responseBody2" name="requestResult" style="height:200px"></textarea>
+                              </div>
+                              <!--预览-->
+                              <div class="layui-tab-item">
+                                  <iframe id="response_frame" srcdoc='<div id="responseBody3"></div>' width="100%" height="200px;"></iframe>
+                              </div>
+                          </div>
+                      </div>
+                      
+                  </div>
+                  <!--响应头 -->
+                  <div class="layui-tab-item">
+                          <textarea class="layui-textarea" id="responseHeaders" name="responseHeaders"></textarea>
+                  </div>
+                  <!--成功返回示例 -->
+                  <div class="layui-tab-item">
+                      <a id="copySuccessJson" href="javascript:copySuccessJson()" class="json-format"><i class="layui-icon layui-icon-templeate-1"></i>复制到这里</a>
+                      <a id="formatSuccessJson" href="javascript:formatSuccessJson()" class="json-format"><i class="layui-icon layui-icon-download-circle"></i>json极速美化</a>
+                      <br/>
+                      <div class="success-data-json"><br/>
+                          <textarea name="successDataJson" class="layui-textarea"></textarea>
+                      </div>
+                      <br/>
+                      返回参数说明
+                      <a id="createSuccessPara" href="javascript:createSuccessPara()" class="json-format"><i class="layui-icon layui-icon-download-circle"></i>极速生成</a>
+                      <a id="removeSuccessPara" href="javascript:removeTrAll('success_data_list')" class="json-format"><i class="layui-icon layui-icon-delete"></i>一键清空</a>
+                      <br/><br/>
+                      <table>
+                          <tbody id="success_data_list">
+                              <tr>
+                                  <td class="move-row"><i class="layui-icon layui-icon-template-1"></i></td>
+                                  <td><input type="text" class="form-data-param input-max"  name="name" value="" placeholder="参数名"/></td>
+                                  <td class="td-min">
+                                      <select name="type" class="form-data-param input-max" lay-ignore>
+                                          <option value="string">string</option>
+                                          <option value="number">number</option>
+                                          <option value="array">array</option>
+                                          <option value="object">object</option>
+                                          <option value="int">int</option>
+                                          <option value="long">long</option>
+                                          <option value="date">date</option>
+                                          <option value="boolean">boolean</option>
+                                      </select>
+                                  </td>
+                                  <td><input type="text" class="form-data-param input-max"  name="remark" value="" placeholder="选填。参数描述，便于生成文档"/></td>
+                                  <td><button class="remove-btn" onclick="javascript:removeTr(this)" type="button"><i class="layui-icon layui-icon-close"></i></button></td>
+                              </tr>
+                          </tbody>
+                      </table>
+
+                      <div class="add-row">
+                          <a href="javascript:addSuccessDataRow('','','')"><i class="layui-icon layui-icon-add-circle"></i>增加一行</a>
+                      </div>
+                  </div>
+                  <!--失败返回示例 -->
+                  <div class="layui-tab-item">
+                      <a id="copyFailuerJson" href="javascript:copyFailuerJson()" class="json-format"><i class="layui-icon layui-icon-templeate-1"></i>复制到这里</a>
+                      <a id="formatFailuerJson"href="javascript:formatFailuerJson()" class="json-format"><i class="layui-icon layui-icon-download-circle"></i>json极速美化</a>
+                      <br/>
+                      <div class="failuer-data-json"><br/>
+                          <textarea name="failuerDataJson" class="layui-textarea"></textarea>
+                      </div>
+                      <br/>
+                      返回参数说明
+                      <a id="createFailuerPara" href="javascript:createFailuerPara()" class="json-format"><i class="layui-icon layui-icon-download-circle"></i>极速生成</a>
+                      <a id="removeFailuerPara" href="javascript:removeTrAll('failuer_data_list')" class="json-format"><i class="layui-icon layui-icon-delete"></i>一键清空</a>
+                      <br/><br/>
+                      <table>
+                          <tbody id="failuer_data_list">
+                              <tr>
+                                  <td class="move-row"><i class="layui-icon layui-icon-template-1"></i></td>
+                                  <td><input type="text" class="form-data-param input-max"  name="name" value="" placeholder="参数名"/></td>
+                                  <td class="td-min">
+                                      <select name="type" class="form-data-param input-max" lay-ignore>
+                                          <option value="string">string</option>
+                                          <option value="number">number</option>
+                                          <option value="array">array</option>
+                                          <option value="object">object</option>
+                                          <option value="int">int</option>
+                                          <option value="long">long</option>
+                                          <option value="date">date</option>
+                                          <option value="boolean">boolean</option>
+                                      </select>
+                                  </td>
+                                  <td><input type="text" class="form-data-param input-max"  name="remark" value="" placeholder="选填。参数描述，便于生成文档"/></td>
+                                  <td><button class="remove-btn" onclick="removeTr(this)" type="button"><i class="layui-icon layui-icon-close"></i></button></td>
+                              </tr>
+                          </tbody>
+                      </table>
+
+                      <div class="add-row">
+                          <a href="javascript:addFailuerDataRow('','','')"><i class="layui-icon layui-icon-add-circle"></i>增加一行</a>
+                      </div>
+                  </div>
+                  <!--备注 -->
+                  <div class="layui-tab-item">
+                      <textarea class="layui-textarea" name="requestRemark" placeholder="可选。备注信息，会自动生成到文档末尾"></textarea>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </form>
+	</div>
+	<script src="/assets/js/common/alert.js" type="text/javascript" ></script>
+	<script src="/assets/js/common/ui.tool.js" type="text/javascript" ></script>
+	<script src="/assets/js/common/grid-init.js" type="text/javascript" ></script>
+	<script type="text/javascript">
+		var _path='';
+		//执行一个laydate日期选择控件实例
+		lay('.layui-date').each(function(){
+			layui.laydate.render({
+			    elem: this
+			    ,trigger:'click'
+			});		  
+		});
+		
+		//执行一个laydate日期时间控件实例
+		lay('.layui-date-time').each(function(){
+			layui.laydate.render({
+			    elem: this
+			    ,type:'datetime'
+			    ,trigger:'click'
+			});
+		});
+
+		//调取用户选择器,dataType:0单选，1多选
+		function getUser(inputId,dataType){
+	    	sessionStorage.setItem('inputId',inputId);
+	    	var userIds=$('#'+inputId).val();
+	    	var url='/portal/core/sysOrg/getUser?userIds='+userIds+'&dataType='+dataType;
+	    	openDialog('选择用户',url,false,840,460,null);
+	    }
+
+	    //确定按钮回调函数
+	    function getUserData(userDataList,dataType){
+	    	var resultValue=new Array();
+	    	var resultTitle=new Array();
+	    	$.each(userDataList,function(index,value){
+	        		if(dataType=='0'&&index>0){
+						return
+	            	}
+	               resultValue.push(value.id);
+	               resultTitle.push(value.user_name);
+	        });
+	        
+	        var inputId=sessionStorage.getItem('inputId');
+	        $('#'+inputId).val(resultValue.join(',')); 
+	        $('#'+inputId+'_name').val(resultTitle.join(','));        
+	              
+	        if(inputId!=null)
+	        	sessionStorage.removeItem('inputId');
+	    }
+	</script>
+	<!-- jquery 表格移动需要 -->
+	<script src="/assets/lib/jquery/jquery-migrate-1.2.1.js"></script>
+	<script src="/assets/lib/jquery/jquery-ui.min.js" type="text/javascript" ></script>
+	<!-- jquery json美化插件 -->
+	<script src="/assets/lib/jquery/jquery.json-viewer.min.js"></script>
+	<link rel="stylesheet" href="/assets/lib/jquery/jquery.json-viewer.min.css"/>
+	<!-- debug 业务代码 -->
+	<script src="/assets/js/runapi/debug.js"></script>
+<script>
+
+$(function(){
+	
+    init();
+
+   //移动表格行排序
+    moveTableTr("success_data_list");
+    
+    moveTableTr("failuer_data_list");
+    layui.form.on('select(requestMode)',function(data){
+        if(data.value=='GET'){
+    		$('#body_type').addClass('layui-hide');
+    		$('#getMsg').removeClass('layui-hide');
+    	}else{
+    		$('#body_type').removeClass('layui-hide');
+    		$('#getMsg').addClass('layui-hide');
+    	}
+    });
+})
+
+	function init(){
+	    var bodyType='';
+	    if(bodyType=='json'){
+	    	$('.body-type-json').removeClass('layui-hide');
+	        $('.form-data').addClass('layui-hide');
+	    }
+	    //回显数据
+	    var requestResult=$('textarea[name=requestResult]').val();
+		if(requestResult){
+		    try{
+			    var resJson=JSON.parse(requestResult);
+			    $('#responseBodyJson').jsonViewer(resJson);
+			    $('#responseBody1').addClass('layui-hide');
+			    $('#responseBody1').val(JSON.stringify(resJson,null,4));
+			 }catch(e){
+
+	    		$('#responseBody1').val(requestResult);
+			}
+		}
+		var requestBodyExplain='';
+		var requestFormData='';
+		var requestHeaders='';
+		var requestParamExplain='';
+		var successDemoExplain='';
+		var failuerDemoExplain='';
+		
+		createTableRow('body_data_list',requestBodyExplain);
+		createTableRow('form_data_list',requestFormData);
+		createTableRow('headers_data_list',requestHeaders);
+		createTableRow('query_data_list',requestParamExplain);
+		createTableRow('success_data_list',successDemoExplain);
+		createTableRow('failuer_data_list',failuerDemoExplain);	
+	}
+
+	//保存接口参数
+	function saveApi(){
+	    var id="74081af430714ab680602740d67ad47a";
+	    var actionKey="/account";
+	    var controller="com.jfinal.app.runapi.account.ctrl.AccountController";
+		var remark="用户管理";
+		var title=$('input[name=title]').val();
+		if(title==''){
+			layer.msg("请输入接口标题！")
+			return;
+		}
+			
+		var description=$('input[name=description]').val();
+		var requestUrl=$('input[name=requestUrl]').val();
+		var requestMode=$('select[name=requestMode]').val();
+		var requestHeaders=getTableJson('headers_data_list');
+		var requestParam=requestUrl.split("?")[1]||'';
+		var requestParamExplain=getTableJson('query_data_list');
+		var requestResult=$('textarea[name=requestResult]').val();
+		var requestBody=$('textarea[name=bodyJson]').val();
+		var requestBodyExplain=getTableJson('body_data_list');
+		var requestFormData=getTableJson('form_data_list');
+		var successDemo=$('textarea[name=successDataJson]').val();
+		var successDemoExplain=getTableJson('success_data_list');
+		var failuerDemo=$('textarea[name=failuerDataJson]').val();
+		var failuerDemoExplain=getTableJson('failuer_data_list');
+		var requestRemark=$('textarea[name=requestRemark]').val();
+		var interfaceStatus=$('select[name=interfaceStatus]').val();
+		var requestBodyType=$('select[name=requestBodyType]').val();
+		var responseHeaders=$('textarea[name=responseHeaders]').val();
+	    var formData={};
+		formData['id']=id;
+		formData['action_key']=actionKey;
+		formData['controller']=controller;
+		formData['remark']=remark;
+		formData['title']=title;
+		formData['description']=description;
+		formData['request_url']=requestUrl;
+		formData['request_mode']=requestMode;
+		formData['request_headers']=requestHeaders;
+		formData['request_param']=requestParam;
+		formData['request_param_explain']=requestParamExplain;
+		formData['request_result']=requestResult;
+		formData['request_body']=requestBody;
+		formData['request_body_explain']=requestBodyExplain;
+		formData['request_form_data']=requestFormData;
+		formData['success_demo']=successDemo;
+		formData['success_demo_explain']=successDemoExplain;
+		formData['failuer_demo']=failuerDemo;
+		formData['failuer_demo_explain']=failuerDemoExplain;
+		formData['request_remark']=requestRemark;
+		formData['interface_status']=interfaceStatus;
+		formData['request_body_type']=requestBodyType;
+		formData['response_headers']=responseHeaders;
+		var jsonText=JSON.stringify(formData);
+	
+		var url='/runapi/saveApi'
+		$.ajax({
+	        type: 'POST',
+	        url: url,
+	        data:jsonText,
+	        contentType:'application/json;charset=UTF-8',
+			dataType:"json" ,    
+	        success: function(ret){
+	            layer.msg(ret.msg);
+	        }
+	    });
+	}
+
+	   // 一键生成body json参数列表
+    function createBodyPara(){
+		var jsonText=$('textarea[name=bodyJson]').val();
+		var jsonText2='{}';
+		try {
+            var json=JSON.parse(jsonText);
+            var json2=JSON.parse(jsonText2);
+        }catch(e){
+            layer.tips(e, '#formatBodyJson',{
+                time:4000,
+                tips:3
+            });
+        }
+        var id='body_data_list';
+		$("#"+id).children('tr').remove();
+		clearRowData();
+		for (var key in json) {
+			if(typeof(json[key])=='object'){
+				loadObjectPara(json[key],key,id,json2);
+			}else{
+				addOrUpdateDataRow(id,json2,key,typeof(json[key]));
+			}
+		}
+    }
+    // 一键生成成功示例参数列表
+    function createSuccessPara(){
+		var jsonText=$('textarea[name=successDataJson]').val();
+		var jsonText2='{}';
+		try {
+            var json=JSON.parse(jsonText);
+            var json2=JSON.parse(jsonText2);
+            var id='success_data_list';
+            $("#"+id).children('tr').remove();
+            clearRowData();
+    		for (var key in json) {
+    			if(json[key]!=null && (typeof(json[key])=='object'||typeof(json[key])=='array')){
+    				loadObjectPara(json[key],key,id,json2);
+    			}else{    				
+    				addOrUpdateDataRow(id,json2,key,typeof(json[key]));
+    			}
+    		}
+        }catch(e){
+            layer.tips(e, '#createSuccessPara',{
+                time:4000,
+                tips:3
+            });
+        }
+		
+    }
+
+ 	// 一键生成失败示例参数列表
+    function createFailuerPara(){
+		var jsonText=$('textarea[name=failuerDataJson]').val();
+		var jsonText2='{}';
+		try {
+            var json=JSON.parse(jsonText);
+            var json2=JSON.parse(jsonText2);
+            var id='failuer_data_list';
+            $("#"+id).children('tr').remove();
+            clearRowData();
+    		for (var key in json) {
+    			if(json[key]!=null && (typeof(json[key])=='object'||typeof(json[key])=='array')){
+    				loadObjectPara(json[key],key,id,json2);
+    			}else{
+    				addOrUpdateDataRow(id,json2,key,typeof(json[key]));
+    			}
+    		}
+        }catch(e){
+            layer.tips(e, '#createFailuerPara',{
+                time:4000,
+                tips:3
+            });
+        }
+		
+    }
+
+</script>
+
+</body>
+</html>
+

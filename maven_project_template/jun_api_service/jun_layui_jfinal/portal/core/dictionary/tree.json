@@ -1,0 +1,15 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "id": "logType",
+                "text": "日志类型",
+                "title": "日志类型"
+            }
+        ],
+        "id": "frame",
+        "text": "业务字典",
+        "title": "业务字典"
+    }
+]

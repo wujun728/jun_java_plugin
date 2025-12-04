@@ -1,0 +1,103 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.item</groupId>
+	<artifactId>item-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>item-parent</name>
+	<description>Demo project for Spring Boot</description>
+
+	<!-- parent用于对所以项目的包版本控制 -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.3.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>Finchley.SR2</spring-cloud.version>
+		<!-- 私有包版本 -->
+		<mybatis-spring-boot-starter.version>2.0.0</mybatis-spring-boot-starter.version>
+		<mybatis-plus.version>3.1.0</mybatis-plus.version>
+		<druid-spring-boot-starter.version>1.1.14</druid-spring-boot-starter.version>
+		<springfox-swagger2>2.8.0</springfox-swagger2>
+		<pagehelper-spring-boot-starter.version>1.2.10</pagehelper-spring-boot-starter.version>
+		<fastjson.version>1.2.57</fastjson.version>
+		<oauth.version>2.3.5.RELEASE</oauth.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- 把SpringCloud的版本引入 -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- *************************私有的包************************* -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis-spring-boot-starter.version}</version>
+			</dependency>
+			<!-- 3.0.3以后就的独立加生成的包 -->
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybatis-plus.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>com.baomidou</groupId>
+			    <artifactId>mybatis-plus-generator</artifactId>
+			    <version>${mybatis-plus.version}</version>
+			</dependency>
+			<dependency>
+			  <groupId>com.alibaba</groupId>
+			  <artifactId>druid-spring-boot-starter</artifactId>
+			  <version>${druid-spring-boot-starter.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security.oauth</groupId>
+				<artifactId>spring-security-oauth2</artifactId>
+				<version>${oauth.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+			<!-- swagger2与swagger-ui同一版本 -->
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${springfox-swagger2}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${springfox-swagger2}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+</project>

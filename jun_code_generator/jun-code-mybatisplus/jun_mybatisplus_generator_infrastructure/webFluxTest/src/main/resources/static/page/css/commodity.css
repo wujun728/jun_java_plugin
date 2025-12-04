@@ -1,0 +1,39 @@
+@charset "UTF-8";
+body,div ,p{
+    padding:0px;
+    margin:0px
+}
+#content
+{
+    padding:0px;
+    margin:0px auto;/* 左右居中 上下为0*/
+    width:80%;/*宽为80% */
+}
+#content .note
+{
+    column-gap:20px;// 列之间的间隔
+    column-width:100%; //列的宽
+    column-count:4;//分为几列
+    padding-top:50px;
+}
+#content .note .pubu
+{
+    margin-bottom:10px;
+    border:1px solid #cccccc;
+    -moz-page-break-inside: avoid;/* 避免元素内部插入分页符 */
+    -webkit-column-break-inside: avoid;/* 避免元素内部插入分页符 */
+    break-inside: avoid;/* 避免元素内部插入分页符 */
+    text-align: left;
+    padding: 15px;
+    font-size: 13px;
+    box-shadow:0px 0px 10px rgba(102, 102, 102, 0.66);// 这个是四周散步的阴影 
+}
+#content .note .pubu:hover
+{
+    border:1px solid #a9a9a9;
+    background-color: #fef6ff;
+}
+.note img
+{
+    width:20px;
+}

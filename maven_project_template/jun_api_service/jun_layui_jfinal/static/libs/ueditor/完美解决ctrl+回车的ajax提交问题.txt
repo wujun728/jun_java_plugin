@@ -1,0 +1,68 @@
+
+
+首先注意两个问题：
+1：var ue = UE.getEditor('container'...) 初始化 ueditor 代码不要写在 $(document).ready(...)
+方法之中，否则后续的操作都将不起作用
+
+2：UE.plugin.register('jfajaxsubmit'..) 方法中的 pluginName 参数必须全部为小写字母，否则不起作用
+
+3：与本文档无关但一定要注意：ueditor的 script安放编辑的代码要写在同一行之中，否则每次保存时会在
+      内容的前后多出一对 <p></p> 标记，因其将 script 内的换行转成了 p 标记造成的
+
+----------------------------------------------------------------------------------------
+
+ueditor 默认的 autosubmit plugin 占用了 ctrl + 13 快捷键，并且该快捷键会跳过
+
+jquery form 的 ajaxForm 方法，自己去提交表单，从而让 ajaxForm 的 ajax 提交
+
+变为了普通的表单提交，如下两种方式可以让 ueditor 的 ctrl+13 失效
+
+1：$(document).ready(function() {ue.shortcutkeys["autosubmit"] = "";});
+   此方法是为 UE.plugin.register('autosubmit' ...) 注册的 autosubmit 插件最终的
+   shortcutkeys 值重新赋为了 "" 值，所以快捷键会失效，该方法必须要使用
+   $(document).ready(function() 这样的写法，代码量稍多，不建议使用
+
+2：UE.plugin.register('autosubmit',function(){});
+   此方法是注册同名的 autosubmit 插件，覆盖掉了原插件的值，通过查看源码，是
+   非常彻底的覆盖，所以非常简单而且无任何副作用，建议使用
+
+
+最后，仍然希望 ctrl+13 这个快捷键是有效的，但希望仍然是 ajax 提交，下面的代码完美解决：
+
+UE.plugin.register('jfajaxsubmit',function(){
+	return {
+		shortcutkey:{
+			"jfajaxsubmit":"ctrl+13" //手动提交
+		},
+		commands:{
+			'jfajaxsubmit':{
+				execCommand:function () {
+					var me=this;
+					if(me.fireEvent("beforesubmit")===false){
+						return;
+					}
+					me.sync();
+					$("#myArticleForm").submit();
+				}
+			}
+		}
+	}
+});
+
+经测试 $("#myArticleForm").submit(); 这样的提交代码仍然会被 jquery form 所接管
+注意此用法必须配合前面的 UE.plugin.register('autosubmit',function(){}); 一起来使用
+
+
+
+补充说明：
+经测试 document.getElementById("myArticleForm").submit(); 这种纯 js 表单提交可以
+越过 jquery 提交表单
+
+ueditor 中的 form.submit() 表单提交用的是纯 js 提交，逃离了 jquery 接管的
+范围，而 jquery form 的 ajaxForm(...) 则是接管的 jquery 的表单提交，所以
+ueditor 越过了 jquery form 的 ajaxForm(...) 直接提交了表单
+
+
+
+
+

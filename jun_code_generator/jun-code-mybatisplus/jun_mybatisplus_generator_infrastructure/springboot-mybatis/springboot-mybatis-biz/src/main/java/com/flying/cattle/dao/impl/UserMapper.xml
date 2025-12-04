@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flying.cattle.dao.UserDao">
+
+	<resultMap id="BaseResultMap" type="com.flying.cattle.entity.User">
+		<id column="id" property="id" />
+		<id column="login_name" property="loginName" />
+		<id column="password" property="password" />
+		<id column="nickname" property="nickname" />
+		<id column="type" property="type" />
+		<id column="state" property="state" />
+		<id column="note" property="note" />
+		<id column="apply" property="apply" />
+		<id column="create_time" property="createTime" />
+		<id column="update_time" property="updateTime" />
+		<id column="update_uid" property="updateUid" />
+		<id column="login_ip" property="loginIp" />
+		<id column="login_addr" property="loginAddr" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, login_name, password, nickname, type, state, note, apply, create_time, update_time, update_uid, login_ip, login_addr
+	</sql>
+	
+</mapper>

@@ -1,0 +1,17 @@
+
+<html>
+<head>
+<title>HTML显示json字符串并且进行格式化</title>
+</head>
+ 
+<body>
+<p id="show_p"style="display: none"></p>
+<pre id="out_pre"></pre>
+ 
+</body>
+<script type="text/javascript"> 
+　 var text = document.getElementById('show_p').innerText; //获取json格式内容
+   var result = JSON.stringify(JSON.parse(text), null, 4);//将字符串转换成json对象 
+   document.getElementById('out_pre').innerText= result ;
+</script>
+</html>

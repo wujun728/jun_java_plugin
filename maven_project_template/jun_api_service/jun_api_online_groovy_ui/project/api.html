@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>JFinal-RunApi接口文档开发工具</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="icon" href="https://jfinal.com/assets/img/favicon.ico">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="/assets/lib/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/assets/css/common/global.css" media="all">
+    <link rel="stylesheet" href="/assets/css/common/theme-default.css" media="all">
+    <link rel="stylesheet" href="/assets/css/common/layui_extend.css" media="all">
+    <link rel="stylesheet" href="/assets/css/runapi/doc-index.css">
+	<link rel="stylesheet" href="/assets/css/runapi/doc-app.css" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/lib/layui_exts/mouseRightMenu/mouseRightMenu.css" />
+	<script src="/assets/lib/jquery/jquery-2.1.4.min.js" type="text/javascript" ></script>
+	<script src="/assets/lib/jquery/jquery.form.js" type="text/javascript" ></script>
+    <script src="/assets/lib/layui/layui.js" type="text/javascript" ></script>
+    <script src="/assets/lib/xm-select/xm-select.js" type="text/javascript" ></script>
+    <!-- jquery 表格移动需要 -->
+	<script src="/assets/lib/jquery/jquery-migrate-1.2.1.js"></script>
+	<script src="/assets/lib/jquery/jquery-ui.min.js" type="text/javascript" ></script>
+	
+</head>
+<body>
+	<div class="layui-container-fluid">
+<div class="container-wrap">
+<form class="layui-form layui-form-pane f-form layui-hide-xs" id='searchForm' lay-filter='searchForm' action="javascript:;">
+	<div class='layui-row layui-col-space1 task-row search-model'>
+		<div class='layui-col-xs12 layui-col-sm12 layui-col-md12'> 
+			<div class="layui-form-item">
+		<div class="layui-inline" style="">
+	   <input type="search" name="keyword" autocomplete="off" class="layui-input" placeholder="接口路径" style="padding-left:20px"/>
+	   <i class="layui-icon layui-icon-search" style="position: absolute;top:7px;left:2px"></i>
+		</div>
+		<div class="layui-inline" style="">
+	   <input type="search" name="controller" autocomplete="off" class="layui-input" placeholder="控制器" />
+		</div>
+		<div class="layui-inline" style="">
+	   <input type="search" name="remark" autocomplete="off" class="layui-input" placeholder="备注" style="padding-left:20px"/>
+	   <i class="layui-icon layui-icon-search" style="position: absolute;top:7px;left:2px"></i>
+		</div>
+      
+      <!-- 		<div class="layui-inline" style="">
+
+      	<select id="projectId" name="projectId" class="layui-select" lay-filter="projectId" >
+			<option value="">--所属项目--</option>
+		</select>
+      		</div>
+  -->
+      
+		<div class="layui-inline" style="">
+			<label class="layui-form-label" for="接口标题过滤">接口标题过滤</label>
+			<div class="layui-input-block">
+		<input type="checkbox" class="layui-input-checkbox" name="state" value="1" lay-skin="switch" lay-text="是|否" lay-filter="stateFilter">
+			 </div>
+		</div>
+      
+				<div class="layui-inline">
+					<div class="layui-btn-group">
+						<button class="layui-btn layui-btn-disabled " disabled id="searchBtn_">
+							<i class="layui-icon">&#xe615;</i>查询
+						</button>
+						<button class="layui-btn layui-hide" type="reset" id="resetBtn" style="margin-left: 5px!important;">
+							<i class="layui-icon layui-icon-close"></i>重置
+						</button>
+						<button class="layui-btn " type="reset" onclick="$('#resetBtn').click();$('#searchBtn_').click()" style="margin-left: 5px!important;">
+							<i class="layui-icon layui-icon-close"></i>清空
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+	
+	
+	<script type="text/html" id="table_toolbar">
+		<div class="layui-btn-group ">
+			<button class="layui-btn layui-btn-normal layui-btn-sm " lay-event="add">
+				<i class="layui-icon">&#xe608;</i> 新增
+			</button>				
+			<button class="layui-btn  layui-btn-normal layui-btn-sm layui-hide" lay-event="delete">
+				<i class="layui-icon">&#xe640;</i> 删除
+			</button>
+			<button class="layui-btn layui-btn-normal layui-btn-sm layui-hide" lay-event="refresh">
+				<i class="layui-icon">&#xe669;</i> 刷新
+			</button>
+		</div>					
+	</script>
+
+	<div class="layui-row  f-index-table">
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+			<!-- 默认列表 -->
+ 			<table id="maingrid" lay-filter="maingrid"></table>
+		</div>
+   	</div>
+   	<!-- 	每行的操作按钮 -->
+	<script type="text/html" id="bar_maingrid">
+  	<a class="layui-btn layui-btn-xs " lay-event="edit">编辑</a>
+   <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="debug">调试</a>
+   <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="review">预览</a>
+  	<a class="layui-btn layui-btn-xs layui-btn-danger layui-hide" lay-event="del">删除</a>
+	</script>
+</div>
+	</div>
+	<script src="/assets/js/common/alert.js" type="text/javascript" ></script>
+	<script src="/assets/js/common/ui.tool.js" type="text/javascript" ></script>
+	<script src="/assets/js/common/grid-init.js" type="text/javascript" ></script>
+	<script type="text/javascript">
+		var _path='';
+		//执行一个laydate日期选择控件实例
+		lay('.layui-date').each(function(){
+			layui.laydate.render({
+			    elem: this
+			    ,trigger:'click'
+			});		  
+		});
+		
+		//执行一个laydate日期时间控件实例
+		lay('.layui-date-time').each(function(){
+			layui.laydate.render({
+			    elem: this
+			    ,type:'datetime'
+			    ,trigger:'click'
+			});
+		});
+
+		//调取用户选择器,dataType:0单选，1多选
+		function getUser(inputId,dataType){
+	    	sessionStorage.setItem('inputId',inputId);
+	    	var userIds=$('#'+inputId).val();
+	    	var url='/portal/core/sysOrg/getUser?userIds='+userIds+'&dataType='+dataType;
+	    	openDialog('选择用户',url,false,840,460,null);
+	    }
+
+	    //确定按钮回调函数
+	    function getUserData(userDataList,dataType){
+	    	var resultValue=new Array();
+	    	var resultTitle=new Array();
+	    	$.each(userDataList,function(index,value){
+	        		if(dataType=='0'&&index>0){
+						return
+	            	}
+	               resultValue.push(value.id);
+	               resultTitle.push(value.user_name);
+	        });
+	        
+	        var inputId=sessionStorage.getItem('inputId');
+	        $('#'+inputId).val(resultValue.join(',')); 
+	        $('#'+inputId+'_name').val(resultTitle.join(','));        
+	              
+	        if(inputId!=null)
+	        	sessionStorage.removeItem('inputId');
+	    }
+	</script>
+<!-- 分页表格 -->
+<script>
+
+	layui.form.on('select(configName)', function(data){
+		$('#searchBtn_').click();
+	});
+	
+	layui.form.on('select(projectId)', function(data){
+		$('#searchBtn_').click();
+	});
+	
+	layui.form.on('switch(stateFilter)', function(data){
+		console.log(data)
+		$('#searchBtn_').click();
+	});
+	
+	
+   function docFunc(){
+		var href="/runapi/doc.html?/1";
+		//window.open(href,"_blank");    
+		openDialog('RunApi项目文档管理',href,true,null,null,null);              
+	}
+   
+   function debugFunc(obj){
+      var data=obj.data;
+      var debugUrl="/runapi/debug.html?/"+data.id;
+      openDialog(data.remark+"【调试】",debugUrl,false,null,null, {
+         end:function(){
+            refreshData();
+         }
+      })
+   }
+
+   function reviewFunc(obj){
+	   var data=obj.data;
+	   if(data.title){
+	      var debugUrl="/runapi/doc.html?/"+data.project_id+'-'+data.id;
+	      openDialog(data.title+"【文档预览】",debugUrl,false,null,null, {
+	         end:function(){
+	            refreshData();
+	         }
+	      })	
+	   }else{
+			layer.msg("没用生成接口文档");
+	  }
+   }
+
+    gridArgs.title='系统接口';
+    gridArgs.dataId='id';
+    gridArgs.deleteUrl='/runapi/delete.json';
+    gridArgs.updateUrl='/runapi/edit.html?/';
+    gridArgs.addUrl='/runapi/add.html';
+    gridArgs.gridDivId ='maingrid';
+    gridArgs.width=800;
+    gridArgs.height=500;
+    initGrid({id : 'maingrid'
+        ,elem : '#maingrid'
+        ,toolbar:'#table_toolbar'//开启头部工具栏，并为其绑定左侧模板
+        ,cellMinWidth: 100
+        ,cols : [ [
+				 {title: '主键',field : 'id',width : 35,checkbox : true},
+				 {title:'序号',type:'numbers',width:35},
+				 {title:'接口路径',field:'action_key',sort:true},
+				 {title:'控制器',field:'controller',width:500,sort:true},
+				 {title:'备注',field:'remark'},
+				 {title:'接口标题',field:'title',sort:true},
+				 {title:'项目',field:'project_name',hide:true},
+				 {title:'接口描述',field:'describe',hide:true},
+				 {title:'请求方式',field:'request_mode',hide:true},
+				 {title:'请求路径',field:'request_url',hide:true},
+				 {title:'请求参数',field:'request_param',hide:true},
+				 {title:'请求参数说明',field:'request_param_explain',hide:true},
+				 {title:'请求成功返回示例',field:'success_demo',hide:true},
+				 {title:'请求失败返回示例',field:'failuer_demo',hide:true},
+				 {title:'请求成功返回示例参数说明',field:'success_demo_explain',hide:true},
+				 {title:'创建时间',field:'create_time',hide:true},
+				 {title:'创建人',field:'create_by',hide:true},
+				 {title:'修改时间',field:'update_time',hide:true},
+				 {title:'修改人',field:'update_by',hide:true},
+
+            {title:'操作',fixed:'right',width : 220,align : 'left',toolbar : '#bar_maingrid'}
+            ] ]
+        ,url:"/runapi/list.json?projectId=1"
+        ,searchForm : 'searchForm'
+    },{doc:docFunc,debug:debugFunc,review:reviewFunc});
+
+</script>
+</body>
+</html>
+
+
+
+

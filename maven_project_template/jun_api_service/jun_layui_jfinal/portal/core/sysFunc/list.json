@@ -1,0 +1,52 @@
+{
+    "code": 0,
+    "endIndex": 0,
+    "intIds": [],
+    "list": [
+        {
+            "parent_name": "JFinal极速开发企业应用管理系统",
+            "order_no": 0,
+            "icon": "layui-icon-home",
+            "link_page": "/portal/go/home",
+            "parent_code": "frame",
+            "func_type": 0,
+            "is_window_open": 0,
+            "id": "frame_main_view",
+            "is_stop": 0,
+            "func_name": "主页",
+            "spread": 1
+        },
+        {
+            "parent_name": "JFinal极速开发企业应用管理系统",
+            "order_no": 1,
+            "parent_code": "frame",
+            "func_type": 0,
+            "is_window_open": 0,
+            "id": "sys",
+            "is_stop": 0,
+            "func_name": "网站后台管理111",
+            "spread": 1
+        },
+        {
+            "parent_name": "JFinal极速开发企业应用管理系统",
+            "order_no": 10,
+            "icon": "layui-icon-video",
+            "link_page": "https://www.qinhaisenlin.com/video",
+            "parent_code": "frame",
+            "func_type": 0,
+            "is_window_open": 0,
+            "id": "video",
+            "is_stop": 0,
+            "func_name": "视频教程1",
+            "spread": 1
+        }
+    ],
+    "longIds": [],
+    "msg": "获取成功",
+    "pageNumber": 1,
+    "pageSize": 20,
+    "startIndex": 0,
+    "total": 3,
+    "totalCount": 3,
+    "totalPage": 1
+}

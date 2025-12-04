@@ -1,0 +1,26 @@
+[
+    {
+        "dictionary_code": "logType",
+        "name": "操作日志",
+        "remark": "字典编号：logType",
+        "id": "40288ae76812ae55016812bcc5060037",
+        "order_num": 1,
+        "value": "操作日志"
+    },
+    {
+        "dictionary_code": "logType",
+        "name": "数据日志",
+        "remark": "字典编号：logType",
+        "id": "40288ae76812ae55016812bcfc740039",
+        "order_num": 2,
+        "value": "数据日志"
+    },
+    {
+        "dictionary_code": "logType",
+        "name": "登录日志",
+        "remark": "字典编号：logType",
+        "id": "40288ae76812ae55016812bd288b003b",
+        "order_num": 3,
+        "value": "登录日志"
+    }
+]

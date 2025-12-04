@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>用户列表</title>
+<script src="/js/jquery-2.1.1.min.js"></script>
+<script>
+	$(function() {
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', '/usermg/findAll');
+		xhr.send(null);
+		xhr.onreadystatechange = function() {
+			//2是空响应，3是响应一部分，4是响应完成
+			if (xhr.readyState > 2) {
+				//这儿可以使用response与responseText，因为我接口返回的就是String数据，所以选择responseText
+				var newData = xhr.response.substr(xhr.seenBytes);
+				newData = newData.replace(/\n/g, "#");
+				newData = newData.substring(0, newData.length - 1);
+				var data = newData.split("#");
+				//console.log(data);
+				for (var i = 0; i < data.length; i++) {
+					 const obj = JSON.parse(data[i])
+					 $("#atext").append(obj.id+"<br/>");
+				}
+				xhr.seenBytes = xhr.response.length;
+			}
+		}
+	})
+</script>
+</head>
+
+<body>
+	<div id="atext"></div>
+</body>
+</html>

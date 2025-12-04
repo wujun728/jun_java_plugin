@@ -1,0 +1,8 @@
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+target
+dependency-reduced-pom.xml

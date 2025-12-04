@@ -1,0 +1,295 @@
+[{
+  "group": "ui",
+  "templates": [{
+    "id": "10",
+    "name": "swagger-ui",
+    "description": "swagger-ui"
+  },
+    {
+      "id": "11",
+      "name": "element-ui",
+      "description": "element-ui"
+    },
+    {
+      "id": "12",
+      "name": "bootstrap-ui",
+      "description": "bootstrap-ui"
+    },
+    {
+      "id": "13",
+      "name": "layui-edit",
+      "description": "layui-edit"
+    },
+    {
+      "id": "14",
+      "name": "layui-list",
+      "description": "layui-list"
+    }
+  ]
+},
+  {
+    "group": "mybatis",
+    "templates": [{
+      "id": "20",
+      "name": "controller",
+      "description": "controller"
+    },
+      {
+        "id": "21",
+        "name": "service",
+        "description": "service"
+      },
+      {
+        "id": "22",
+        "name": "service_impl",
+        "description": "service_impl"
+      },
+      {
+        "id": "23",
+        "name": "mapper",
+        "description": "mapper"
+      },
+      {
+        "id": "24",
+        "name": "mybatis",
+        "description": "mybatis"
+      },
+      {
+        "id": "25",
+        "name": "model",
+        "description": "model"
+      },
+      {
+        "id": "26",
+        "name": "mapper2",
+        "description": "mapper annotation"
+      }
+    ]
+  },
+  {
+    "group": "jpa",
+    "templates": [{
+      "id": "30",
+      "name": "entity",
+      "description": "entity"
+    },
+      {
+        "id": "31",
+        "name": "repository",
+        "description": "repository"
+      },
+      {
+        "id": "32",
+        "name": "jpacontroller",
+        "description": "jpacontroller"
+      }
+    ]
+  },
+
+  {
+    "group": "jdbc-template",
+    "templates": [{
+      "id": "40",
+      "name": "jtdao",
+      "description": "jtdao"
+    },
+      {
+        "id": "41",
+        "name": "jtdaoimpl",
+        "description": "jtdaoimpl"
+      }
+    ]
+  },
+
+  {
+    "group": "beetlsql",
+    "templates": [{
+      "id": "50",
+      "name": "beetlmd",
+      "description": "beetlmd"
+    },
+      {
+        "id": "51",
+        "name": "beetlentity",
+        "description": "beetlentity"
+      },
+      {
+        "id": "52",
+        "name": "beetlcontroller",
+        "description": "beetlcontroller"
+      }
+    ]
+  },
+
+  {
+    "group": "mybatis-plus",
+    "templates": [{
+      "id": "60",
+      "name": "pluscontroller",
+      "description": "pluscontroller"
+    },
+      {
+        "id": "61",
+        "name": "plusservice",
+        "description": "plusservice"
+      },
+      {
+        "id": "62",
+        "name": "plusmapper",
+        "description": "plusmapper"
+      },
+      {
+        "id": "63",
+        "name": "plusentity",
+        "description": "plusentity"
+      }
+    ]
+  },
+
+  {
+    "group": "util",
+    "templates": [{
+      "id": "70",
+      "name": "beanutil",
+      "description": "beanutil"
+    },
+      {
+        "id": "71",
+        "name": "json",
+        "description": "json"
+      },
+      {
+        "id": "72",
+        "name": "xml",
+        "description": "xml"
+      },
+      {
+        "id": "73",
+        "name": "sql",
+        "description": "sql"
+      },
+      {
+        "id": "74",
+        "name": "swagger-yml",
+        "description": "swagger-yml"
+      }
+    ]
+  },
+
+  {
+    "group": "common-mapper",
+    "templates": [{
+      "id": "81",
+      "name": "tkentity",
+      "description": "tkentity"
+    },
+      {
+        "id": "82",
+        "name": "tkmapper",
+        "description": "tkmapper"
+      }
+    ]
+  },
+
+  {
+    "group": "renren-fast",
+    "templates": [{
+      "id": "91",
+      "name": "menu-sql",
+      "description": "menu-sql"
+    },
+      {
+        "id": "92",
+        "name": "vue-list",
+        "description": "vue-list"
+      },
+      {
+        "id": "93",
+        "name": "vue-edit",
+        "description": "vue-edit"
+      },
+      {
+        "id": "94",
+        "name": "rr-controller",
+        "description": "rr-controller"
+      },
+      {
+        "id": "95",
+        "name": "rr-dao",
+        "description": "rr-dao"
+      },
+      {
+        "id": "96",
+        "name": "rr-daoxml",
+        "description": "rr-daoxml"
+      },
+      {
+        "id": "97",
+        "name": "rr-service",
+        "description": "rr-service"
+      }
+    ]
+  },
+  {
+    "group": "jpa-starp",
+    "templates": [{
+      "id": "101",
+      "name": "starp-entity",
+      "description": "entity"
+    },
+      {
+        "id": "102",
+        "name": "starp-repository",
+        "description": "repository"
+      },
+      {
+        "id": "103",
+        "name": "starp-jpa-controller",
+        "description": "jpacontroller"
+      }
+    ]
+  },
+  {
+    "group": "bi",
+    "templates": [{
+      "id": "201",
+      "name": "qliksense",
+      "description": "qlik sense"
+    }]
+  },
+  {
+    "group": "cloud",
+    "templates": [
+      {
+      "id": "301",
+      "name": "bigquery",
+      "description": "GCP BigQuery"
+     },
+      {
+        "id": "302",
+        "name": "dataflowjjs",
+        "description": "GCP Dataflow JJS"
+      }
+    ]
+  },
+  {
+    "group": "tk-mybatis",
+    "templates": [
+      {
+        "id": "401",
+        "name": "tk-entity",
+        "description": "tk-entity"
+      },
+      {
+        "id": "402",
+        "name": "tk-mapper",
+        "description": "tk-mapper"
+      },
+      {
+        "id": "403",
+        "name": "tk-controller",
+        "description": "tk-controller"
+      }
+    ]
+  }
+]

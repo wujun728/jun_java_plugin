@@ -1,0 +1,39 @@
+{
+    "code": 0,
+    "endIndex": 0,
+    "intIds": [],
+    "list": [
+        {
+            "password": "60a25cc0bf143028ad579d49fc406f96",
+            "create_time": "2024-04-23 16:17:56",
+            "user_name": "dev",
+            "nickname": "开发者",
+            "id": 5,
+            "status": 1
+        },
+        {
+            "password": "65970ae1195331af980724e11973eb56",
+            "create_time": "2024-04-23 18:43:44",
+            "user_name": "app",
+            "nickname": "前端开发",
+            "id": 7,
+            "status": 1
+        },
+        {
+            "password": "5b8df4e4aed8794cc02c4d80f817a3b2",
+            "create_time": "2024-04-23 18:44:09",
+            "user_name": "projectAdmin",
+            "nickname": "项目管理员",
+            "id": 8,
+            "status": 1
+        }
+    ],
+    "longIds": [],
+    "msg": "获取成功",
+    "pageNumber": 1,
+    "pageSize": 20,
+    "startIndex": 0,
+    "total": 3,
+    "totalCount": 3,
+    "totalPage": 1
+}
