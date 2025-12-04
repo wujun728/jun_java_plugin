@@ -45,7 +45,8 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.18</version>
+            <version>1.18.20</version> <!-- 1.8.x 最佳兼容版本 -->
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -55,7 +56,23 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-        </plugins>
-    </build>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <!-- 降级到 3.8.0 或 3.1 -->
+            <version>3.8.0</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+                <encoding>UTF-8</encoding>
+                <!-- 移除 Java 9+ 的 compilerArgs（JDK 1.8 不需要） -->
+                <!-- <compilerArgs>
+                    <arg>- - add-modules</arg>
+                    <arg>java.xml.ws,java.xml.bind</arg>
+                </compilerArgs> -->
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 
 </project>

@@ -1,7 +1,5 @@
 package com.jun.plugin.mybatis.pojo;
 
-import com.sun.javafx.collections.MappingChange;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

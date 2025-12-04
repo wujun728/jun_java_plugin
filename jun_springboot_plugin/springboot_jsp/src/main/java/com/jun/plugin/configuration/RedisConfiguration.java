@@ -24,16 +24,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 @EnableCaching
 public class RedisConfiguration {
-	@Bean
-	public CacheManager cacheManager(RedisTemplate<?, ?> redisTemplate) {
-		CacheManager cacheManager = new RedisCacheManager(redisTemplate);
-		return cacheManager;
-		/*
-		 * RedisCacheManager rcm = new RedisCacheManager(redisTemplate); // 多个缓存的名称,目前只定义了一个
-		 * rcm.setCacheNames(Arrays.asList("thisredis")); //设置缓存默认过期时间(秒)
-		 * rcm.setDefaultExpiration(600); return rcm;
-		 */
-	}
+//	@Bean
+//	public CacheManager cacheManager(RedisTemplate<?, ?> redisTemplate) {
+//		CacheManager cacheManager = new RedisCacheManager(redisTemplate);
+//		return cacheManager;
+//		/*
+//		 * RedisCacheManager rcm = new RedisCacheManager(redisTemplate); // 多个缓存的名称,目前只定义了一个
+//		 * rcm.setCacheNames(Arrays.asList("thisredis")); //设置缓存默认过期时间(秒)
+//		 * rcm.setDefaultExpiration(600); return rcm;
+//		 */
+//	}
+
+
 	@Bean
 	public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
 		Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(

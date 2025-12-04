@@ -48,6 +48,43 @@
             <artifactId>hutool-all</artifactId>
             <version>4.0.9</version>
         </dependency>
+
+        <!-- 1. JAX-WS API 核心（包含 Endpoint 类） -->
+        <dependency>
+            <groupId>javax.xml.ws</groupId>
+            <artifactId>jaxws-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
+        <!-- 2. JAX-WS 运行时实现（必须，否则发布服务时报错） -->
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>2.3.5</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- 3. 依赖补充（解决类加载缺失） -->
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.3.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.jws</groupId>
+            <artifactId>javax.jws-api</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <!-- Spring Boot 热部署核心依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>2.5.15</version>
+            <scope>runtime</scope>
+            <optional>true</optional> <!-- 避免依赖传递 -->
+        </dependency>
+
     </dependencies>
     <build>
         <!-- 指定jar名称 -->
@@ -56,14 +93,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <dependencies>
-                    <!-- 动态部署，开发 改动不同重启 -->
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>springloaded</artifactId>
-                        <version>1.2.5.RELEASE</version>
-                    </dependency>
-                </dependencies>
+                <version>1.5.6.RELEASE</version>
+                <configuration>
+                    <!-- 开启热部署（可选，devtools 自动生效） -->
+                    <fork>true</fork>
+                    <addResources>true</addResources> <!-- 静态资源热加载 -->
+                </configuration>
+                <!-- 无需再添加 springloaded 依赖 -->
             </plugin>
             <!-- 跳过测试 -->
             <plugin>

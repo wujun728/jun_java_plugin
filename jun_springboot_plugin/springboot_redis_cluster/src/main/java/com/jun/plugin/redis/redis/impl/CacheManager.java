@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.jun.plugin.redis.redis.ICacheManager;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +22,6 @@ public final class CacheManager {
     private static final Logger logger = Logger.getLogger(CacheManager.class);
     // 超时时间，单位为秒
     private final int expiration = 3600;
-    @Resource
     private ICacheManager iCacheManager;
 
     public Object getCache(String cacheKey) {

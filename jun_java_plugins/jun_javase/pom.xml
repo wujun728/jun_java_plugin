@@ -6,5 +6,18 @@
 	<groupId>io.github.wujun728</groupId>
 	<artifactId>jun_javase</artifactId>
 	<version>1.0</version>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>8</source> <!-- 对应你的JDK版本 -->
+                    <target>8</target>
+                    <encoding>UTF-8</encoding> <!-- 强制编译编码为UTF-8 -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

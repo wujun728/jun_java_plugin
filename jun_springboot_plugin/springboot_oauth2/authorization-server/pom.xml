@@ -44,7 +44,8 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.14</version>
+            <version>1.18.20</version> <!-- 1.8.x 最佳兼容版本 -->
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

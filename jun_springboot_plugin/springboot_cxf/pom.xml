@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.4.RELEASE</version>
+        <version>2.5.14</version>
         <relativePath></relativePath>
     </parent>
 
@@ -47,6 +47,44 @@
             <version>3.2.4</version>
         </dependency>
         <!-- CXF webservice -->
+
+
+        <!-- 1. JAX-WS API 核心依赖 -->
+        <dependency>
+            <groupId>javax.xml.ws</groupId>
+            <artifactId>jaxws-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
+        <!-- 2. JSR-181 (javax.jws.* 注解) -->
+        <dependency>
+            <groupId>javax.jws</groupId>
+            <artifactId>javax.jws-api</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <!-- 3. JAXB API (javax.xml.bind.*，XmlSeeAlso 依赖) -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
+        <!-- 4. 可选：JAX-WS 实现（如果需要运行时调用/发布服务） -->
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>2.3.5</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- 5. 可选：JAXB 实现（Java 9+ 需显式引入） -->
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.3.5</version>
+            <scope>runtime</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -3,7 +3,7 @@ package com.jun.plugin;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
@@ -18,7 +18,7 @@ public class AppApplication extends SpringBootServletInitializer {
 	}
 
 	public static void main(String[] args) {
-		new SpringApplicationBuilder(AppApplication.class).web(true).run(args);
+		new SpringApplicationBuilder(AppApplication.class).run(args);
 	}
 
 }

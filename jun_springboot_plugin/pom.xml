@@ -48,7 +48,6 @@
         <module>springboot_hibernate</module>
         <module>springboot_hibernate_validator</module>
         <module>springboot_https</module>
-        <module>springboot_upload_h2db</module>
         <module>springboot_jasypt</module>
         <module>springboot_jackson2</module>
         <module>springboot_jdbctemplate_multidatasource</module>

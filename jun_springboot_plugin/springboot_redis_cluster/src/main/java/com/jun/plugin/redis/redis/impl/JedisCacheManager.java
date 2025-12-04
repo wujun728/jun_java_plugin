@@ -8,7 +8,6 @@ import com.jun.plugin.redis.util.SerializingUtil;
 
 import redis.clients.jedis.JedisCluster;
 
-import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +28,6 @@ public class JedisCacheManager implements ICacheManager {
 
     private static final String JEDIS_SET_RETURN_OK = "OK";
 
-    @Resource
     private JedisCluster jedisCluster;
 
     @Override
