@@ -40,12 +40,12 @@ public class CodeUtil {
         String username = "root";
         String password = "mysqladmin";
         String driver = "com.mysql.cj.jdbc.Driver";
-        DataSource ds = DataSourcePool.init("main",url,username,password,driver);
+        DataSource ds = DataSourcePool.init("main", url, username, password, driver);
 //        genCode(ds,"pj_customer",CodeUtil.UI_LAYUI_LIST);
 //        genCode(ds,"pj_customer",CodeUtil.UI_LAYUI_EDIT2);
 //        genCodeFile(ds,"paas_holiday","D:/test1122",CodeUtil.GROUP_MYBATIS_PLUG_NO1);
 //        genCodeFile(ds,"paas_component_object_duplicate_check","D:/test1122",CodeUtil.GROUP_MYBATIS_PLUG_NO1);
-        genCodeFile(ds,"paas_component_object_duplicate_keyword","D:/test1122",CodeUtil.GROUP_MYBATIS_PLUG_NO1);
+        genCodeFile(ds, "paas_component_object_duplicate_keyword", "D:/test1122", CodeUtil.GROUP_MYBATIS_PLUG_ZD1);
         //genCodeFile(ds,"paas_component_tag","D:/test1122",CodeUtil.GROUP_MYBATIS_PLUG_NO1);
     }
 
@@ -76,7 +76,6 @@ public class CodeUtil {
     public static String JDBCTEMPLATE_JTDAOIMPL = "/jdbctemplate/${classInfo.className}DaoImpl.java.ftl";
 
 
-
     public static String JPA_ENTITY = "/jpa/${classInfo.className}.java.ftl";
     public static String JPA_JPACONTROLLER = "/jpa/${classInfo.className}Controller.java.ftl";
     public static String JPA_REPOSITORY = "/jpa/${classInfo.className}Repository.java.ftl";
@@ -104,7 +103,6 @@ public class CodeUtil {
     public static String UI_SWAGGER_UI = "/ui/${classInfo.className}swagger.json.ftl";
 
 
-
     public static String UTIL_BEANUTIL = "/util/${classInfo.className}beanutil.java.ftl";
     public static String UTIL_JSON = "/util/${classInfo.className}json.json.ftl";
     public static String UTIL_SQL = "/util/${classInfo.className}sql.sql.ftl";
@@ -112,49 +110,61 @@ public class CodeUtil {
     public static String UTIL_XML = "/util/${classInfo.className}xml.xml.ftl";
 
 
-    public  static List<String> GROUP_MYBATIS_PLUG_NO1 = Lists.newArrayList(MYBATIS_PLUG_SINGLE_VO_JAVA,MYBATIS_PLUG_SINGLE_CONTROLLER_JAVA,MYBATIS_PLUG_SINGLE_DTO_JAVA,
-            MYBATIS_PLUG_SINGLE_ENTITY_JAVA, MYBATIS_PLUG_SINGLE_MAPPER_JAVA,MYBATIS_PLUG_SINGLE_SERVICE_JAVA,MYBATIS_PLUG_SINGLE_SERVICE_IMPL_JAVA,MYBATIS_PLUG_SINGLE_EDIT_HTML,
+    public static List<String> GROUP_MYBATIS_PLUG_ZD1 = Lists.newArrayList(
+            "/mybatis-plus-single-zd/${classInfo.className}Vo.java.ftl",
+            "/mybatis-plus-single-zd/${classInfo.className}Controller.java.ftl",
+            "/mybatis-plus-single-zd/${classInfo.className}Dto.java.ftl",
+            "/mybatis-plus-single-zd/edit.html.ftl",
+            "/mybatis-plus-single-zd/list.html.ftl",
+            "/mybatis-plus-single-zd/${classInfo.className}Entity.java.ftl",
+            "/mybatis-plus-single-zd/${classInfo.className}Mapper.java.ftl",
+            "/mybatis-plus-single-zd/${classInfo.className}Service.java.ftl",
+            "/mybatis-plus-single-zd/${classInfo.className}ServiceImpl.java.ftl");
+    public static List<String> GROUP_MYBATIS_PLUG_NO1 = Lists.newArrayList(MYBATIS_PLUG_SINGLE_VO_JAVA, MYBATIS_PLUG_SINGLE_CONTROLLER_JAVA, MYBATIS_PLUG_SINGLE_DTO_JAVA,
+            MYBATIS_PLUG_SINGLE_ENTITY_JAVA, MYBATIS_PLUG_SINGLE_MAPPER_JAVA, MYBATIS_PLUG_SINGLE_SERVICE_JAVA, MYBATIS_PLUG_SINGLE_SERVICE_IMPL_JAVA, MYBATIS_PLUG_SINGLE_EDIT_HTML,
             MYBATIS_PLUG_SINGLE_LIST_HTML);
-    public  static List<String> GROUP_BEETLSQL = Lists.newArrayList(BEETLSQL_BEETLMD,BEETLSQL_BEETLENTITY,BEETLSQL_BEETLCONTROLLER);
-    public  static List<String> GROUP_DB_RECORD = Lists.newArrayList(Db_RECORD_CONTROLLER,Db_RECORD_ENTITY);
-    public  static List<String> GROUP_JDBCTEMPLATE = Lists.newArrayList(JDBCTEMPLATE_JTDAO,JDBCTEMPLATE_JTDAOIMPL);
-    public  static List<String> GROUP_JPA = Lists.newArrayList(JPA_ENTITY,JPA_REPOSITORY,JPA_JPACONTROLLER);
-    public  static List<String> GROUP_MYBATISPLUS = Lists.newArrayList(MYBATISPLUS_PLUSCONTROLLER,MYBATISPLUS_PLUSENTITY,MYBATISPLUS_PLUSMAPPER,MYBATISPLUS_PLUSSERVICE);
-    public  static List<String> GROUP_MYBATIS = Lists.newArrayList(MYBATIS_CONTROLLER,MYBATIS_MAPPER,MYBATIS_MAPPER2,MYBATIS_MODEL,MYBATIS_MYBATIS_XML,
-            MYBATIS_SERVICE,MYBATIS_SERVICE_IMPL);
-    public  static List<String> GROUP_UI = Lists.newArrayList(UI_BOOTSTRAP_UI,UI_ELEMENT_UI,UI_LAYUI_EDIT,UI_LAYUI_LIST,UI_SWAGGER_UI);
-    public  static List<String> GROUP_UTIL = Lists.newArrayList(UTIL_BEANUTIL,UTIL_JSON,UTIL_SQL,UTIL_SWAGGER_YML,UTIL_XML);
+    public static List<String> GROUP_BEETLSQL = Lists.newArrayList(BEETLSQL_BEETLMD, BEETLSQL_BEETLENTITY, BEETLSQL_BEETLCONTROLLER);
+    public static List<String> GROUP_DB_RECORD = Lists.newArrayList(Db_RECORD_CONTROLLER, Db_RECORD_ENTITY);
+    public static List<String> GROUP_JDBCTEMPLATE = Lists.newArrayList(JDBCTEMPLATE_JTDAO, JDBCTEMPLATE_JTDAOIMPL);
+    public static List<String> GROUP_JPA = Lists.newArrayList(JPA_ENTITY, JPA_REPOSITORY, JPA_JPACONTROLLER);
+    public static List<String> GROUP_MYBATISPLUS = Lists.newArrayList(MYBATISPLUS_PLUSCONTROLLER, MYBATISPLUS_PLUSENTITY, MYBATISPLUS_PLUSMAPPER, MYBATISPLUS_PLUSSERVICE);
+    public static List<String> GROUP_MYBATIS = Lists.newArrayList(MYBATIS_CONTROLLER, MYBATIS_MAPPER, MYBATIS_MAPPER2, MYBATIS_MODEL, MYBATIS_MYBATIS_XML,
+            MYBATIS_SERVICE, MYBATIS_SERVICE_IMPL);
+    public static List<String> GROUP_UI = Lists.newArrayList(UI_BOOTSTRAP_UI, UI_ELEMENT_UI, UI_LAYUI_EDIT, UI_LAYUI_LIST, UI_SWAGGER_UI);
+    public static List<String> GROUP_UTIL = Lists.newArrayList(UTIL_BEANUTIL, UTIL_JSON, UTIL_SQL, UTIL_SWAGGER_YML, UTIL_XML);
     static Map<String, Object> params = new HashMap<String, Object>();
     public static Map<String, Object> customeConfig = new HashMap<String, Object>();
 
 
-
-
-
-    public static void genCodeCustom(DataSource dataSource,String tableName,String templatePath,String templateFileName) {
-        genCodeV1(true,dataSource,tableName,templatePath,templateFileName);
+    public static void genCodeCustom(DataSource dataSource, String tableName, String templatePath, String templateFileName) {
+        genCodeV1(true, dataSource, tableName, templatePath, templateFileName);
     }
-    public static void genCode(DataSource dataSource,String tableName,String templateFileName) {
-        genCodeV1(false,dataSource,tableName,null,templateFileName);
+
+    public static void genCode(DataSource dataSource, String tableName, String templateFileName) {
+        genCodeV1(false, dataSource, tableName, null, templateFileName);
     }
+
     /*public static void genCodeFile(DataSource dataSource, String tableName, List<String> templateFileName, String filePath) {
 
     }*/
     public static void genCodeFile(DataSource dataSource, String tableName, String filePath, List<String> templateFileName) {
-        for(String template : templateFileName){
-            String content = genCodeV1(false, dataSource, tableName, null, template,filePath);
+        for (String template : templateFileName) {
+            String content = genCodeV1(false, dataSource, tableName, null, template, filePath);
         }
     }
+
     public static void genCodeFile(DataSource dataSource, String tableName, String filePath, String templateFileName) {
-        String content = genCodeV1(false, dataSource, tableName, null, templateFileName,filePath);
+        String content = genCodeV1(false, dataSource, tableName, null, templateFileName, filePath);
     }
+
     private static String genCodeV1(Boolean isCustom, DataSource dataSource, String tableName, String templatePath, String templateFileName) {
-        return genCodeV1(isCustom, dataSource, tableName, templatePath, templateFileName,null);
+        return genCodeV1(isCustom, dataSource, tableName, templatePath, templateFileName, null);
     }
-    private static String genCodeV1(Boolean isCustom, DataSource dataSource, String tableName, String templatePath, String templateFileName,String filePath) {
+
+    private static String genCodeV1(Boolean isCustom, DataSource dataSource, String tableName, String templatePath, String templateFileName, String filePath) {
 
         try {
-            ClassInfo classInfo = getClassInfo(dataSource,tableName);
+            ClassInfo classInfo = getClassInfo(dataSource, tableName);
             params = new HashMap<>();
             params.put("classInfo", classInfo);
             params.put("ClassName", classInfo.getClassName());
@@ -162,11 +172,12 @@ public class CodeUtil {
             params.put(packageName, PACKAGE_NAME);
             params.put("isAutoImport", true);
             params.put("isSwagger", true);
+            params.put("isLombok", true);
             params.putAll(customeConfig);
             Map<String, String> result = new HashMap<String, String>();
-            if(isCustom){
+            if (isCustom) {
                 FreemarkerUtil.init2DirectoryForTemplateLoading(templatePath);
-            }else{
+            } else {
                 FreemarkerUtil.init2ClassForTemplateLoading("/templates");
             }
             //result.put("service_code", FreemarkerUtil.processString("service.ftl", params));
@@ -174,28 +185,28 @@ public class CodeUtil {
             result.put(templateFileName, templateContent);
             // 计算,生成代码行数
             int lineNum = 0;
-            for (Map.Entry<String, String> item: result.entrySet()) {
+            for (Map.Entry<String, String> item : result.entrySet()) {
                 if (item.getValue() != null) {
                     lineNum += StringUtils.countMatches(item.getValue(), "\n");
                 }
             }
 
-            if(StrUtil.isNotEmpty(filePath)){
+            if (StrUtil.isNotEmpty(filePath)) {
                 String content = templateContent;
-                String path_tmep = templateFileName.replace(".ftl","");
+                String path_tmep = templateFileName.replace(".ftl", "");
                 String path_tmep2 = removeFirstFloderPath(path_tmep);
-                String fileName = FreemarkerUtil.processStringTemplate(path_tmep2,params);
-                String fulllPahtName = filePath+File.separator+fileName;
-                if(StrUtil.isNotEmpty(MapUtil.getStr(params,packageName))){
-                    String floder1= StrUtil.replace(MapUtil.getStr(params,packageName),".",File.separator);
-                    fulllPahtName = filePath+File.separator+floder1+fileName;
+                String fileName = FreemarkerUtil.processStringTemplate(path_tmep2, params);
+                String fulllPahtName = filePath + File.separator + fileName;
+                if (StrUtil.isNotEmpty(MapUtil.getStr(params, packageName))) {
+                    String floder1 = StrUtil.replace(MapUtil.getStr(params, packageName), ".", File.separator);
+                    fulllPahtName = filePath + File.separator + floder1 + fileName;
                 }
-                FileUtil.writeString(content,fulllPahtName, Charset.defaultCharset());
+                FileUtil.writeString(content, fulllPahtName, Charset.defaultCharset());
                 StaticLog.info("生成代码{}，生成代码行数：{}", fulllPahtName, lineNum);
-            }else {
-                result.keySet().forEach(key->{
-                    StaticLog.info("key="+key);
-                    StaticLog.info("val="+result.get(key));
+            } else {
+                result.keySet().forEach(key -> {
+                    StaticLog.info("key=" + key);
+                    StaticLog.info("val=" + result.get(key));
                 });
                 StaticLog.info("生成代码{}，生成代码行数：{}", templateFileName, lineNum);
             }
@@ -207,12 +218,12 @@ public class CodeUtil {
         return tableName;
     }
 
-    public static ClassInfo getClassInfo(DataSource dataSource,String tableName) {
+    public static ClassInfo getClassInfo(DataSource dataSource, String tableName) {
         Table table = MetaUtil.getTableMeta(dataSource, tableName);
         // V1 初始化数据及对象 模板V1 field List
         List<FieldInfo> fieldList = new ArrayList<FieldInfo>();
         List<FieldInfo> pkfieldList = new ArrayList<FieldInfo>();
-        if(CollUtil.isEmpty(table.getColumns())){
+        if (CollUtil.isEmpty(table.getColumns())) {
             throw new RuntimeException("表不存在&表信息不全");
         }
         for (Column column : table.getColumns()) {
@@ -238,7 +249,7 @@ public class CodeUtil {
             fieldInfo.setFieldType(javaType);
             fieldInfo.setIsPrimaryKey(isPk);
             fieldList.add(fieldInfo);
-            if(isPk){
+            if (isPk) {
                 pkfieldList.add(fieldInfo);
             }
         }
@@ -248,9 +259,9 @@ public class CodeUtil {
             String className = replace_(replaceRowPreStr(table.getTableName())); // 名字操作,去掉tab_,tb_，去掉_并转驼峰
             String classNameFirstUpper = firstUpper(className); // 大写对象
             classInfo.setClassName(classNameFirstUpper);
-            if(table.getComment().contains("表")){
-                classInfo.setClassComment(table.getComment().replace("表",""));
-            }else{
+            if (table.getComment().contains("表")) {
+                classInfo.setClassComment(table.getComment().replace("表", ""));
+            } else {
                 classInfo.setClassComment(table.getComment());
             }
             classInfo.setFieldList(fieldList);
@@ -262,9 +273,9 @@ public class CodeUtil {
     }
 
     public static String replaceRowPreStr(String str) {
-		//str = str.toLowerCase().replaceFirst("tab_", "").replaceFirst("tb_", "").replaceFirst("t_", "");
+        //str = str.toLowerCase().replaceFirst("tab_", "").replaceFirst("tb_", "").replaceFirst("t_", "");
         for (String x : namePreRemove.split(",")) {
-            if(str.startsWith(x.toLowerCase())){
+            if (str.startsWith(x.toLowerCase())) {
                 str = str.replaceFirst(x.toLowerCase(), "");
             }
         }
@@ -299,9 +310,9 @@ public class CodeUtil {
 
     private static String removeFirstFloderPath(String str) {
         String strPath = new String(str.getBytes(StandardCharsets.UTF_8));
-        if(StrUtil.isNotEmpty(strPath) && strPath.contains("/") && strPath.split("/").length>1){
-            List<String> strs = StrUtil.split(strPath,"/");
-            String newFloderPath = strPath.replaceFirst("/"+strs.get(1),"");
+        if (StrUtil.isNotEmpty(strPath) && strPath.contains("/") && strPath.split("/").length > 1) {
+            List<String> strs = StrUtil.split(strPath, "/");
+            String newFloderPath = strPath.replaceFirst("/" + strs.get(1), "");
             System.out.println(newFloderPath);
             return newFloderPath;
         }
@@ -341,8 +352,6 @@ public class CodeUtil {
                 return "java.lang.String";
         }
     }
-
-
 
 
 }

@@ -2,7 +2,7 @@ package com.jun.plugin.codegenerator;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import io.github.wujun728.common.generator.GeneratorUtil;
+import io.github.wujun728.generator.utils.GeneratorUtil;
 //import com.jun.plugin.common.generator.GeneratorUtil;
 
 import java.util.List;

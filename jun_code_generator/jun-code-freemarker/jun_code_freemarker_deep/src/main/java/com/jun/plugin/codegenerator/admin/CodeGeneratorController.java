@@ -2,10 +2,8 @@ package com.jun.plugin.codegenerator.admin;
 
 import freemarker.template.TemplateException;
 import io.github.wujun728.common.Result;
-import io.github.wujun728.common.generator.ClassInfo;
-import io.github.wujun728.common.generator.util.FreemarkerTool;
-import io.github.wujun728.common.generator.util.StringUtils;
-import io.github.wujun728.common.generator.util.TableParseUtil;
+import io.github.wujun728.generator.entity.ClassInfo;
+import io.github.wujun728.generator.util.TableParseUtil;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,13 +20,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+import io.github.wujun728.generator.util.FreemarkerUtil ;
 
 @Controller
 public class CodeGeneratorController {
     private static final Logger logger = LoggerFactory.getLogger(CodeGeneratorController.class);
 
     @Resource
-    private FreemarkerTool freemarkerTool;
+    private FreemarkerUtil freemarkerTool;
 
     @RequestMapping("/")
     public String index() {

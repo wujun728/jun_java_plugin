@@ -20,7 +20,7 @@
 		<module>jun_springcloud_starter</module>
 		<module>jun_springboot_plugin</module>
 		<module>jun_springcloud_plugin</module>
-		<module>maven_project_template</module>
+		<module>java_project_template</module>
 	</modules>
 
 	<dependencies>
