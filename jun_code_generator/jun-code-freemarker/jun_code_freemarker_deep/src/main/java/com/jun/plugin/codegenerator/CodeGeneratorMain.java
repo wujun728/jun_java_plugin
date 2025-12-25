@@ -20,12 +20,12 @@ public class CodeGeneratorMain {
         Map config = Maps.newHashMap();
         config.put("authorName","Wujun");
         config.put("packageName","com.jun.plugin.app1");
-        config.put("template_path","D:\\workspace\\github\\jun_code_generator\\jun_code_freemarker\\src\\main\\resources\\mybatis-plus-single-v3");
+        config.put("template_path","D:\\workspace\\github-new\\jun_java_plugin\\jun_code_generator\\jun-code-freemarker\\jun_code_freemarker_deep\\src\\main\\resources\\templates\\code-generator\\mybatis-plus-single-v3");
         config.put("output_path","D:\\workspace\\github\\jun_code_generator\\jun_code_freemarker");
         config.put("userDefaultTemplate","false");
-        config.put("jdbc.url","jdbc:mysql://localhost:3306/db_qixing_bk?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC&useInformationSchema=true");
+        config.put("jdbc.url","jdbc:mysql://localhost:3307/db_test?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC&useInformationSchema=true");
         config.put("jdbc.username","root");
-        config.put("jdbc.password","");
+        config.put("jdbc.password","mysqladmin");
         config.put("jdbc.driver","com.mysql.cj.jdbc.Driver");
         config.put("userDefaultTemplate","false");
         config.put("isLombok","true");

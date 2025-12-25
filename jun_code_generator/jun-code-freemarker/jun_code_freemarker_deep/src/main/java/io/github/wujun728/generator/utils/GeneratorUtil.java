@@ -49,8 +49,8 @@ public class GeneratorUtil {
 		if(CollectionUtils.isEmpty(config)){
 			//PropertiesUtil.loadProps("config-v2.properties");
 			config = new HashMap<>();
-			config.put("template_path","D:\\");
-			config.put("output_path","D:\\");
+			config.put("template_path","D:\\workspace\\github-new\\jun_java_plugin\\jun_code_generator\\jun-code-freemarker\\jun_code_freemarker_deep\\src\\main\\resources\\templates\\code-generator\\mybatis-plus-single-v3");
+			config.put("output_path","D:\\111");
 			config.put("jdbc.url","");
 			config.put("jdbc.username","root");
 			config.put("jdbc.password","");

@@ -3,7 +3,9 @@ package com.jun.plugin.codegenerator.admin;
 import freemarker.template.TemplateException;
 import io.github.wujun728.common.Result;
 import io.github.wujun728.generator.entity.ClassInfo;
+import io.github.wujun728.generator.util.StringUtils;
 import io.github.wujun728.generator.util.TableParseUtil;
+import io.github.wujun728.generator.util.TableParseUtil2;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +52,7 @@ public class CodeGeneratorController {
             }
 
             // parse table
-            ClassInfo classInfo = TableParseUtil.processTableIntoClassInfo(tableSql);
+            ClassInfo classInfo = TableParseUtil2.processTableIntoClassInfo(tableSql);
             // code genarete
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("classInfo", classInfo);
@@ -110,7 +112,7 @@ public class CodeGeneratorController {
                     ")  ENGINE=InnoDB  DEFAULT  CHARSET=utf8  COMMENT='用户信息'  ";
 
             // parse table
-            ClassInfo classInfo = TableParseUtil.processTableIntoClassInfo(tableSql);
+            ClassInfo classInfo = TableParseUtil2.processTableIntoClassInfo(tableSql);
             // code genarete
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("classInfo", classInfo);
