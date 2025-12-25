@@ -56,7 +56,7 @@
     <nav class="navbar navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="${request.contextPath}/" class="navbar-brand"><b>XXL Code Generator</b></a>
+                <a href="${request.contextPath}/" class="navbar-brand"><b>Java Code Generator</b></a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
@@ -65,13 +65,15 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <li class="dropdown user user-menu">
-                        <a target="_blank" href="https://www.xuxueli.com/xxl-deep/">官方文档</a>
-                        <#--<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="hidden-xs">表结构</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="${request.contextPath}/">XXX</a></li>
-                        </ul>-->
+	                     <a target="_blank" href="https://www.xxx.com/xxx/">文档</a>
+                        <#--
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	                            <span class="hidden-xs">表结构</span>
+	                        </a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="${request.contextPath}/">XXX</a></li>
+	                        </ul>
+                        -->
                     </li>
                 </ul>
             </div>
@@ -88,8 +90,10 @@
         Powered by <b>XXL Code Generator</b> v0.0.2
         <div class="pull-right hidden-xs">
             <strong>Copyright &copy; 2018-${.now?string('yyyy')} &nbsp;
-                <a href="https://www.xuxueli.com/" target="_blank" >xuxueli</a>
-                <a href="https://github.com/xuxueli/xxl-deep" target="_blank" >github</a>
+            <#--
+                <a href="#" target="_blank" >xuxueli</a>
+                <a href="https://github.com/wujun728/jun_code_generator" target="_blank" >github</a>
+              -->
             </strong><!-- All rights reserved. -->
         </div>
     </div>

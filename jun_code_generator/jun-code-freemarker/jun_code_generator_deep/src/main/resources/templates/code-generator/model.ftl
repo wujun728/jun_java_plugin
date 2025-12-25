@@ -1,3 +1,5 @@
+package ${packageModel};
+
 <#if classInfo.fieldList?exists && classInfo.fieldList?size gt 0>
     <#list classInfo.fieldList as fieldItem >
         <#if fieldItem.fieldClass == "Date">
@@ -13,7 +15,7 @@ import java.util.Date;
 /**
 *  ${classInfo.classComment}
 *
-*  Created by xuxueli on '${.now?string('yyyy-MM-dd HH:mm:ss')}'.
+*  Created by wujun on '${.now?string('yyyy-MM-dd HH:mm:ss')}'.
 */
 public class ${classInfo.className} implements Serializable {
     private static final long serialVersionUID = 42L;

@@ -16,7 +16,6 @@
 
 	<modules> 
 		<module>jun_code_generator_deep</module>
-		<module>jun_code_freemarker_deep</module>
     </modules>
 
 	<dependencies>

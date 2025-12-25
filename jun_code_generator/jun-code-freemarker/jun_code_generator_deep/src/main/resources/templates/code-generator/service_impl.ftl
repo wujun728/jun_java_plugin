@@ -1,4 +1,11 @@
+package ${packageServiceImpl};
+
 import org.springframework.stereotype.Service;
+
+import com.jun.plugin.biz.dao.${classInfo.className}Dao;
+import ${packageModel}.${classInfo.className};
+import ${packageService}.${classInfo.className}Service;
+import com.jun.plugin.codegenerator.admin.model.ReturnT;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -9,7 +16,7 @@ import java.util.Map;
 /**
 * ${classInfo.classComment}
 *
-* Created by xuxueli on '${.now?string('yyyy-MM-dd HH:mm:ss')}'.
+* Created by wujun on '${.now?string('yyyy-MM-dd HH:mm:ss')}'.
 */
 @Service
 public class ${classInfo.className}ServiceImpl implements ${classInfo.className}Service {
@@ -69,8 +76,8 @@ public class ${classInfo.className}ServiceImpl implements ${classInfo.className}
 
 		// result
 		Map<String, Object> result = new HashMap<String, Object>();
-		maps.put("pageList", pageList);
-		maps.put("totalCount", totalCount);
+		result.put("pageList", pageList);
+		result.put("totalCount", totalCount);
 
 		return result;
 	}

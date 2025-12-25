@@ -1,9 +1,13 @@
+package ${packageService};
 import java.util.Map;
+
+import ${packageModel}.${classInfo.className};
+import com.jun.plugin.codegenerator.admin.model.ReturnT;
 
 /**
 * ${classInfo.classComment}
 *
-* Created by xuxueli on '${.now?string('yyyy-MM-dd HH:mm:ss')}'.
+* Created by wujun on '${.now?string('yyyy-MM-dd HH:mm:ss')}'.
 */
 public interface ${classInfo.className}Service {
 
