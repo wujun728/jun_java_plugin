@@ -70,6 +70,11 @@
             <artifactId>guava</artifactId>
             <version>33.2.1-jre</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.wujun728</groupId>
+            <artifactId>jun-db-activerecord</artifactId>
+            <version>1.0.25</version>
+        </dependency>
 
     </dependencies>
 

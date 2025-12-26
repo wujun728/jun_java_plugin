@@ -4,6 +4,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Column;
 import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
@@ -17,7 +18,6 @@ import freemarker.template.TemplateExceptionHandler;
 import io.github.wujun728.generator.entity.ClassInfo;
 import io.github.wujun728.generator.entity.FieldInfo;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
@@ -373,14 +373,16 @@ public class GeneratorUtil {
 			} catch (TemplateException e) {
 				e.printStackTrace();
 			}
-			// 计算,生成代码行数
-			int lineNum = 0;
-			for (Map.Entry<String, String> item : result.entrySet()) {
-				if (item.getValue() != null) {
-					lineNum += StringUtils.countMatches(item.getValue(), "\n");
-				}
-			}
-			logger.info("生成代码行数：{}", lineNum);
+            // 计算、生成代码行数
+            int lineNum = 0;
+            for (Map.Entry<String, String> item : result.entrySet()) {
+                // 使用Hutool的StrUtil判断字符串非空（更健壮，能处理null值）
+                if (StrUtil.isNotEmpty(item.getValue())) {
+                    // 替换Apache的StringUtils.countMatches，使用Hutool的StrUtil.count
+                    lineNum += StrUtil.count(item.getValue(), "\n");
+                }
+            }
+            logger.info("生成代码行数：{}", lineNum);
 		});
 		if (CollectionUtils.isEmpty(classInfos)) {
 			logger.error("找不到当前表的元数据classInfos.size()：{}", classInfos.size());

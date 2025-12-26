@@ -23,6 +23,7 @@ import java.util.Map;
  * @author xuxueli 2017-08-01 21:39:47
  */
 @Controller
+@RequestMapping("/")
 public class IndexController {
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 

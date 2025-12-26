@@ -1,4 +1,4 @@
-package io.github.wujun728.codegenerator.admin;//package com.jun.plugin.common.generator.controller;
+package io.github.wujun728.generator.controller;//package com.jun.plugin.common.generator.controller;
 //
 //import com.jun.plugin.common.Result;
 //import com.jun.plugin.common.generator.ClassInfo;

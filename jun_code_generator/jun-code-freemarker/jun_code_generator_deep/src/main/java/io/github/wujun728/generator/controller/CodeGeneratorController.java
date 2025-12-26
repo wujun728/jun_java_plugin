@@ -1,11 +1,13 @@
-package io.github.wujun728.codegenerator.admin;
+package io.github.wujun728.generator.controller;
 
+import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.util.CharsetUtil;
+import com.xxl.codegenerator.admin.util.FreemarkerTool;
 import freemarker.template.TemplateException;
 import io.github.wujun728.common.Result;
 import io.github.wujun728.generator.entity.ClassInfo;
 import io.github.wujun728.generator.util.StringUtils;
 import io.github.wujun728.generator.util.TableParseUtil2;
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -21,19 +23,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import io.github.wujun728.generator.util.FreemarkerUtil ;
 
 @Controller
+@RequestMapping("/code-generator")
 public class CodeGeneratorController {
     private static final Logger logger = LoggerFactory.getLogger(CodeGeneratorController.class);
 
     @Resource
-    private FreemarkerUtil freemarkerTool;
+    private FreemarkerTool freemarkerTool;
 
-    @RequestMapping("/")
-    public String index() {
-        return "index" ;
-    }
+//    @RequestMapping("/")
+//    public String index() {
+//        return "index" ;
+//    }
 
     @RequestMapping("/generate")
     public String generate() {
@@ -139,7 +141,7 @@ public class CodeGeneratorController {
             result.entrySet().stream().forEach(i -> {
                 zipOutputStream(i.getValue(), i.getKey()+"/"+i.getKey()+".java", zipOutputStream);
             });
-            IOUtils.closeQuietly(zipOutputStream);
+            IoUtil.close(zipOutputStream);
             outputStream.toByteArray();
             try {
                 byte[] bytes = outputStream.toByteArray();
@@ -147,7 +149,7 @@ public class CodeGeneratorController {
                 response.setHeader("Content-Disposition", "attachment; filename=\"CodeGenerator111.zip\"");
                 response.addHeader("Content-Length", "" + bytes.length);
                 response.setContentType("application/octet-stream; charset=UTF-8");
-                IOUtils.write(bytes, response.getOutputStream());
+                IoUtil.write(response.getOutputStream(),true, bytes);
             } catch (Exception e) {
                 throw new RuntimeException();
             }
@@ -158,14 +160,16 @@ public class CodeGeneratorController {
 
     private void zipOutputStream(String codeContent, String fileBaseName, ZipOutputStream zipOutputStream) {
         try {
-            // 添加到zip
+            // 添加zip条目
             zipOutputStream.putNextEntry(new ZipEntry(fileBaseName));
-            IOUtils.write(codeContent, zipOutputStream, "UTF-8");
-//            IOUtils.closeQuietly(sw);
+            // 使用Hutool的IoUtil写入内容，指定UTF-8编码
+            IoUtil.write(zipOutputStream, true, codeContent.getBytes(CharsetUtil.UTF_8));
+            // 刷新并关闭当前条目
             zipOutputStream.flush();
             zipOutputStream.closeEntry();
         } catch (IOException e) {
-            throw new RuntimeException();
+            // 保持原有异常抛出逻辑
+            throw new RuntimeException("写入ZIP文件失败", e);
         }
     }
 

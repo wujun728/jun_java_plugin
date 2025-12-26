@@ -1,4 +1,4 @@
-package io.github.wujun728.codegenerator;
+package com.xxl.codegenerator.admin.gen;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

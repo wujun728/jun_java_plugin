@@ -1,5 +1,7 @@
 package io.github.wujun728.generator.util;
 
+import cn.hutool.core.util.StrUtil;
+
 /**
  * string tool
  *
@@ -125,7 +127,7 @@ public class StringUtils {
     }
 
     public static boolean isNotNull(String str) {
-        return org.apache.commons.lang3.StringUtils.isNotEmpty(str);
+        return StrUtil.isNotEmpty(str);
     }
 	
 
