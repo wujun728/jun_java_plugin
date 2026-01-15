@@ -22,21 +22,9 @@
 		<module>jun_api_service_main</module>
 		<module>jun_api_service_simple</module>
 	  
-		<module>maven_account_parent</module>
 		<module>maven_javaproject</module>
-		<module>maven_spring4_multi_modules</module>
-		<module>maven_spring5_multi_modules</module>
-		<module>maven_spring5template</module>
-		<module>maven_springboot_jpa_jsp</module>
 
-
-		<module>springboot-api-jpa</module>
-		<module>springboot-api-jwt</module>
-		<module>springboot-api-session</module>
 		<module>springboot-api-v2</module>
-		<module>springboot_api_simple</module>
-		<module>springboot-manager</module>
-		<module>springboot_jfinal_activerecord</module>
 	</modules>
 
 	<dependencies>

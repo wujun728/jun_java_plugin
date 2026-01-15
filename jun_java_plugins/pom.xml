@@ -50,7 +50,7 @@
 		<module>jun_mongodb</module>
 		<module>jun_multicluster</module>
 		<module>jun_mybatis</module>
-		<module>jun_mybatis_mate</module>
+<!--		<module>jun_mybatis_mate</module>-->
 		<module>jun_mybatisplus</module>
 		<module>jun_mycat</module>
 		<module>jun_mysql</module>
