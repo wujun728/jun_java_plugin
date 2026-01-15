@@ -1,0 +1,17 @@
+spring:
+  # 静态资源配置
+  resources:
+    static-locations: classpath:/static/
+    # 启用静态资源缓存
+    cache:
+      period: 3600
+  # MVC配置
+  mvc:
+    # 静态资源映射
+    static-path-pattern: /**
+
+# 服务器配置
+server:
+  port: 8080
+  servlet:
+    context-path: /

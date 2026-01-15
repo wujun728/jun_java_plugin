@@ -1,0 +1,20 @@
+server:
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 100
+    accept-count: 100
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/db_test666?useSSL=false&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    password:
+uid:
+  gen:
+    boostPower: 3
+    epochStr: '2023-11-27'
+    scheduleInterval: 60
+    seqBits: 12  #单机4096并发'
+    timeBits: 31 #运行时长约68年'
+    workerBits: 20 #1048576次机器启动  整个配置支持5个节点，重启频率6/天，以4000并发持续运行68年，id用尽后会重复，必须调整epochStr及重启服务'

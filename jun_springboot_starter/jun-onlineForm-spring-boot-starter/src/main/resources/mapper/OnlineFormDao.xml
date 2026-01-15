@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.github.wujun728.online.dao.OnlineFormDao">
+    
+    <select id="getList" resultType="map">
+        select * from ${tableName}
+        <where>
+            <foreach collection="params.entrySet()" separator="and" index="key" item="val">
+                ${key} #{val}
+            </foreach>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="getById" resultType="map">
+        select * from ${tableName} where id = #{id}
+    </select>
+
+    <select id="save">
+        insert into ${tableName}
+        <foreach collection="columns.entrySet()" open="(" separator="," close=")" index="key">
+            ${key}
+        </foreach>
+        values
+        <foreach collection="columns.entrySet()" open="(" separator="," close=")" item="val">
+            #{val}
+        </foreach>
+    </select>
+
+    <select id="update">
+        update ${tableName} set
+        <foreach collection="columns.entrySet()" separator="," index="key" item="val">
+            ${key} = #{val}
+        </foreach>
+        where id = #{id}
+    </select>
+
+    <select id="delete">
+        delete from ${tableName} where id in
+        <foreach collection="list" open="(" separator="," close=")" item="val">
+            #{val}
+        </foreach>
+    </select>
+
+</mapper>

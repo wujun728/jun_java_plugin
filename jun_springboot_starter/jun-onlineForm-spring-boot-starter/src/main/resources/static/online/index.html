@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线表单开发工具</title>
+    <!-- 引入layui CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/layui@2.6.8/dist/css/layui.css">
+    <style>
+        body {
+            margin: 20px;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #333;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .btn-group .layui-btn {
+            margin: 0 10px;
+        }
+        .table-list {
+            margin-top: 20px;
+        }
+        .table-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .table-item:hover {
+            background-color: #f0f0f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .table-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        .table-desc {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .empty-tip {
+            text-align: center;
+            padding: 50px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">在线表单开发工具</h1>
+        
+        <div class="btn-group">
+            <button class="layui-btn layui-btn-primary" id="refreshBtn">刷新列表</button>
+            <button class="layui-btn layui-btn-warm" id="createTableBtn">创建数据表</button>
+        </div>
+        
+        <div class="table-list" id="tableList">
+            <div class="empty-tip">正在加载数据表...</div>
+        </div>
+    </div>
+    
+    <!-- 引入jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <!-- 引入layui JS -->
+    <script src="https://cdn.jsdelivr.net/npm/layui@2.6.8/dist/layui.js"></script>
+    
+    <script>
+        layui.use(['layer', 'table'], function() {
+            var layer = layui.layer;
+            var table = layui.table;
+            
+            // 加载数据表列表
+            function loadTableList() {
+                $.ajax({
+                    url: '/sys/online/table/page',
+                    type: 'POST',
+                    data: JSON.stringify({page: 1, limit: 100}),
+                    contentType: 'application/json',
+                    success: function(res) {
+                        if (res.code === 0 && res.data && res.data.list) {
+                            var tableList = res.data.list;
+                            var html = '';
+                            
+                            if (tableList.length > 0) {
+                                $.each(tableList, function(index, item) {
+                                    html += '<div class="table-item" data-id="' + item.id + '">
+                                                <div class="table-name">' + (item.name || '未命名表') + '</div>
+                                                <div class="table-desc">' + (item.comments || '无描述') + '</div>
+                                             </div>';
+                                });
+                            } else {
+                                html = '<div class="empty-tip">暂无数据表，请创建</div>';
+                            }
+                            
+                            $('#tableList').html(html);
+                            
+                            // 绑定点击事件
+                            $('.table-item').click(function() {
+                                var tableId = $(this).attr('data-id');
+                                window.location.href = 'form.html?tableId=' + tableId;
+                            });
+                        } else {
+                            layer.msg('加载数据表失败：' + res.msg, {icon: 5});
+                            $('#tableList').html('<div class="empty-tip">加载失败，请重试</div>');
+                        }
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查接口连接', {icon: 5});
+                        $('#tableList').html('<div class="empty-tip">加载失败，请检查网络连接</div>');
+                    }
+                });
+            }
+            
+            // 刷新按钮事件
+            $('#refreshBtn').click(function() {
+                loadTableList();
+            });
+            
+            // 创建数据表按钮事件
+            $('#createTableBtn').click(function() {
+                layer.alert('创建数据表功能开发中...', {icon: 6});
+            });
+            
+            // 初始加载
+            loadTableList();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<process displayName="办公用品领用流程" name="office">
+    <start displayName="start1" layout="24,124,-1,-1" name="start1">
+        <transition g="" name="transition1" offset="0,0" to="apply"/>
+    </start>
+    <end displayName="end1" layout="445,124,-1,-1" name="end1"/>
+    <task assignee="step1" displayName="办公用品领用" layout="117,122,-1,-1" name="apply" performType="ANY">
+        <transition g="" name="transition2" offset="0,0" to="approveDept"/>
+    </task>
+    <task assignee="step2" displayName="办公用品负责人审批" layout="265,121,132,52" name="approveDept" performType="ANY">
+        <transition g="" name="transition3" offset="0,0" to="end1"/>
+    </task>
+</process>

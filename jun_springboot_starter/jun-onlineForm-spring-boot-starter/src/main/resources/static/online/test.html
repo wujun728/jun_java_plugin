@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线表单测试页面</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <script src="../layui/layui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">在线表单测试</div>
+        </div>
+        <div class="layui-body">
+            <div class="layui-container">
+                <div class="layui-card">
+                    <div class="layui-card-header">表单配置测试</div>
+                    <div class="layui-card-body">
+                        <div class="layui-form">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">表名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" id="tableName" name="tableName" value="biz_test_online_form" placeholder="请输入表名" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" id="loadConfigBtn">加载配置</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="layui-card" id="configResult" style="display: none;">
+                    <div class="layui-card-header">配置结果</div>
+                    <div class="layui-card-body">
+                        <div class="layui-tab">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this">JSON数据</li>
+                                <li>渲染表单</li>
+                                <li>渲染表格</li>
+                            </ul>
+                            <div class="layui-tab-content">
+                                <div class="layui-tab-item layui-show">
+                                    <pre id="jsonContent" style="max-height: 400px; overflow-y: auto;"></pre>
+                                </div>
+                                <div class="layui-tab-item">
+                                    <div id="formContainer" class="layui-form"></div>
+                                </div>
+                                <div class="layui-tab-item">
+                                    <table id="dataTable" class="layui-table"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        layui.use(['form', 'element', 'table'], function() {
+            var form = layui.form;
+            var element = layui.element;
+            var table = layui.table;
+            var $ = layui.jquery;
+            
+            // 加载配置按钮点击事件
+            $('#loadConfigBtn').on('click', function() {
+                var tableName = $('#tableName').val();
+                if (!tableName) {
+                    layer.msg('请输入表名', {icon: 2});
+                    return;
+                }
+                
+                // 显示加载中
+                layer.load();
+                
+                // 调用后端接口获取配置
+                $.ajax({
+                    url: '/sys/online/form/getJSON',
+                    type: 'get',
+                    data: {tableName: tableName},
+                    success: function(res) {
+                        // 隐藏加载中
+                        layer.closeAll('loading');
+                        
+                        if (res.code === 0 && res.data) {
+                            // 显示配置结果
+                            $('#configResult').show();
+                            
+                            // 格式化显示JSON数据
+                            $('#jsonContent').text(JSON.stringify(res.data, null, 2));
+                            
+                            // 渲染表单
+                            renderForm(res.data.form);
+                            
+                            // 渲染表格
+                            renderTable(res.data.table);
+                        } else {
+                            layer.msg(res.msg || '获取配置失败', {icon: 2});
+                        }
+                    },
+                    error: function() {
+                        layer.closeAll('loading');
+                        layer.msg('请求失败，请检查网络连接', {icon: 2});
+                    }
+                });
+            });
+            
+            // 渲染表单函数
+            function renderForm(formConfig) {
+                if (!formConfig || !formConfig.list || formConfig.list.length === 0) {
+                    $('#formContainer').html('<div class="layui-text">暂无表单配置</div>');
+                    return;
+                }
+                
+                var formHtml = '';
+                
+                // 根据配置设置表单属性
+                if (formConfig.config) {
+                    var config = formConfig.config;
+                    if (config.size) {
+                        $('#formContainer').addClass('layui-form-' + config.size);
+                    }
+                    if (config.labelPosition) {
+                        $('#formContainer').attr('lay-filter', 'test-form');
+                    }
+                }
+                
+                // 遍历组件列表生成表单HTML
+                formConfig.list.forEach(function(component) {
+                    if (!component.field) return;
+                    
+                    var field = component.field;
+                    var title = component.title || field;
+                    var type = component.type || 'text';
+                    var required = component.required ? 'lay-verify="required"' : '';
+                    var placeholder = component.placeholder || '请输入' + title;
+                    
+                    formHtml += '<div class="layui-form-item">';
+                    formHtml += '    <label class="layui-form-label">' + title + (component.required ? '<span class="layui-form-must">*</span>' : '') + '</label>';
+                    formHtml += '    <div class="layui-input-block">';
+                    
+                    // 根据组件类型生成不同的表单控件
+                    switch (type) {
+                        case 'text':
+                        case 'number':
+                        case 'password':
+                            formHtml += '        <input type="' + type + '" name="' + field + '" lay-verify="' + (component.required ? 'required|' : '') + '" placeholder="' + placeholder + '" autocomplete="off" class="layui-input">';
+                            break;
+                        case 'textarea':
+                            formHtml += '        <textarea name="' + field + '" lay-verify="' + (component.required ? 'required|' : '') + '" placeholder="' + placeholder + '" class="layui-textarea"></textarea>';
+                            break;
+                        case 'select':
+                            formHtml += '        <select name="' + field + '" lay-verify="' + (component.required ? 'required|' : '') + '" lay-search>';
+                            formHtml += '            <option value="">请选择' + title + '</option>';
+                            if (component.options && component.options.length > 0) {
+                                component.options.forEach(function(option) {
+                                    formHtml += '            <option value="' + option.value + '">' + option.label + '</option>';
+                                });
+                            }
+                            formHtml += '        </select>';
+                            break;
+                        case 'radio':
+                            if (component.options && component.options.length > 0) {
+                                component.options.forEach(function(option, index) {
+                                    formHtml += '        <input type="radio" name="' + field + '" value="' + option.value + '" title="' + option.label + '"' + (index === 0 ? ' checked' : '') + '>';
+                                });
+                            }
+                            break;
+                        case 'checkbox':
+                            if (component.options && component.options.length > 0) {
+                                component.options.forEach(function(option) {
+                                    formHtml += '        <input type="checkbox" name="' + field + '" title="' + option.label + '" value="' + option.value + '">';
+                                });
+                            }
+                            break;
+                        default:
+                            formHtml += '        <input type="text" name="' + field + '" lay-verify="' + (component.required ? 'required|' : '') + '" placeholder="' + placeholder + '" autocomplete="off" class="layui-input">';
+                    }
+                    
+                    formHtml += '    </div>';
+                    formHtml += '</div>';
+                });
+                
+                // 添加提交按钮
+                formHtml += '<div class="layui-form-item">';
+                formHtml += '    <div class="layui-input-block">';
+                formHtml += '        <button class="layui-btn" lay-submit lay-filter="formSubmit">提交</button>';
+                formHtml += '        <button type="reset" class="layui-btn layui-btn-primary">重置</button>';
+                formHtml += '    </div>';
+                formHtml += '</div>';
+                
+                // 更新表单内容
+                $('#formContainer').html(formHtml);
+                
+                // 重新渲染表单
+                form.render();
+                
+                // 添加表单提交事件
+                form.on('submit(formSubmit)', function(data) {
+                    layer.msg('表单数据：' + JSON.stringify(data.field));
+                    return false;
+                });
+            }
+            
+            // 渲染表格函数
+            function renderTable(tableConfig) {
+                if (!tableConfig || tableConfig.length === 0) {
+                    $('#dataTable').html('<div class="layui-text">暂无表格配置</div>');
+                    return;
+                }
+                
+                // 准备表格列配置
+                var cols = [[
+                    {type: 'checkbox', fixed: 'left'},
+                    {field: 'id', title: 'ID', width: 80, fixed: 'left', sort: true}
+                ]];
+                
+                // 添加配置的列
+                tableConfig.forEach(function(column) {
+                    var col = {
+                        field: column.field,
+                        title: column.title || column.field,
+                        width: column.width || 150,
+                        sort: column.sort === true
+                    };
+                    
+                    // 如果有字典配置，添加templet
+                    if (column.dictType) {
+                        col.templet = function(d) {
+                            var value = d[column.field];
+                            // 这里可以根据实际情况从字典中获取显示值
+                            return value || '';
+                        };
+                    }
+                    
+                    cols[0].push(col);
+                });
+                
+                // 添加操作列
+                cols[0].push({
+                    fixed: 'right',
+                    title: '操作',
+                    width: 150,
+                    toolbar: '#tableBar'
+                });
+                
+                // 渲染表格
+                table.render({
+                    elem: '#dataTable',
+                    height: 400,
+                    url: '/sys/online/form/page', // 实际项目中替换为真实的数据源
+                    where: {
+                        tableName: $('#tableName').val()
+                    },
+                    page: true,
+                    cols: cols,
+                    parseData: function(res) {
+                        // 模拟数据，实际项目中应该根据后端返回的数据结构进行调整
+                        return {
+                            "code": 0,
+                            "msg": "",
+                            "count": 100,
+                            "data": []
+                        };
+                    }
+                });
+                
+                // 添加表格工具栏模板
+                if ($('#tableBar').length === 0) {
+                    $('body').append('<script type="text/html" id="tableBar">\n' +
+                        '  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>\n' +
+                        '  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>\n' +
+                        '</script>');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<process displayName="项目立项流程" name="project">
+    <start displayName="start1" layout="24,124,-1,-1" name="start1">
+        <transition g="" name="transition1" offset="0,0" to="apply"/>
+    </start>
+    <end displayName="end1" layout="678,127,-1,-1" name="end1"/>
+    <task assignee="step1" displayName="项目承接人" layout="117,122,-1,-1" name="apply" performType="ANY">
+        <transition g="" name="transition2" offset="0,0" to="approveDept"/>
+    </task>
+    <task assignee="step2" displayName="部门经理审批" layout="246,123,-1,-1" name="approveDept" performType="ANY">
+        <transition g="" name="transition3" offset="0,0" to="approveBoss"/>
+    </task>
+    <task assignee="step3" displayName="董事长审批" layout="376,126,-1,-1" name="approveBoss" performType="ANY">
+        <transition g="" name="transition6" offset="0,0" to="approveStep4"/>
+    </task>
+    <task assignee="step2" autoExecute="Y" displayName="部门经理审批" layout="518,125,-1,-1" name="approveStep4" performType="ANY" taskType="Major">
+        <transition g="" name="transition4" offset="0,0" to="end1"/>
+    </task>
+</process>
