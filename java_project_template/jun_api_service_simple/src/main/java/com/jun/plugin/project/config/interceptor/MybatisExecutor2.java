@@ -2,7 +2,6 @@ package com.jun.plugin.project.config.interceptor;
 
 //import com.fen.dou.entity.BaseEntity;
 //import com.fen.dou.entity.User;
-import io.github.wujun728.common.base.BaseEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -39,37 +38,17 @@ public class MybatisExecutor2 implements Interceptor {
 		// 默认测试参数值
 		int creator = 2, updater = 3;
 
-		if (parameter instanceof BaseEntity) {
-			// 4. 实体类
-			BaseEntity entity = (BaseEntity) parameter;
-//			if (user != null) {
-//                creator = entity.getCreateIds();
-//                updater = entity.getUpdater();
-//			}
-			if (methodName.equals("update")) {
-				if (commandType.equals(SqlCommandType.INSERT)) {
-//                    entity.setCreator(creator);
-//                    entity.setUpdater(updater);
-//                    entity.setCreateTime(System.currentTimeMillis());
-//                    entity.setUpdateTime(System.currentTimeMillis());
-				} else if (commandType.equals(SqlCommandType.UPDATE)) {
-//                    entity.setUpdater(updater);
-//                    entity.setUpdateTime(System.currentTimeMillis());
-				}
+		// 5. @Param 等包装类
+		// 更新时指定某些字段的最新数据值
+		if (parameter instanceof Map && commandType.equals(SqlCommandType.UPDATE)) {
+			// 遍历参数类型, 检查目标参数值是否存在对象中, 该方式需要应用编写有一些统一的规范
+			// 否则均统一为实体对象, 就免去该重复操作
+			Map map = (Map) parameter;
+			if (map.containsKey("creator")) {
+				map.put("creator", creator);
 			}
-		} else if (parameter instanceof Map) {
-			// 5. @Param 等包装类
-			// 更新时指定某些字段的最新数据值
-			if (commandType.equals(SqlCommandType.UPDATE)) {
-				// 遍历参数类型, 检查目标参数值是否存在对象中, 该方式需要应用编写有一些统一的规范
-				// 否则均统一为实体对象, 就免去该重复操作
-				Map map = (Map) parameter;
-				if (map.containsKey("creator")) {
-					map.put("creator", creator);
-				}
-				if (map.containsKey("updateTime")) {
-					map.put("updateTime", System.currentTimeMillis());
-				}
+			if (map.containsKey("updateTime")) {
+				map.put("updateTime", System.currentTimeMillis());
 			}
 		}
 		// 6. 均不是需要被拦截的类型, 不做操作
