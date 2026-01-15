@@ -1,4 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.github.wujun728.db.config.TenantAutoConfigure,\
-io.github.wujun728.db.config.MybatisPlusAutoConfigure,\
-io.github.wujun728.quartz.config.QuartzAutoConfig
