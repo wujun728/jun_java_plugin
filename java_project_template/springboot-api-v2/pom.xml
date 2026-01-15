@@ -112,6 +112,12 @@
             <artifactId>knife4j-spring-boot-starter</artifactId>
             <version>2.0.2</version>
         </dependency>
+        <!-- JWT依赖 -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
     </dependencies>
 
     <build>
