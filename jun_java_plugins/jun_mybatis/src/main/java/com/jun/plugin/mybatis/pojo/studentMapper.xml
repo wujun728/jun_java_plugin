@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--该mapper.xml映射文件的唯一标识-->
-<mapper namespace="nuc.yznl.pojo.studentMapper">
+<mapper namespace="com.jun.plugin.mybatis.pojo.studentMapper">
 
     <!--    一对多   -->
     <select id="querystudentAndClass" parameterType="int" resultMap="collectionQuery">

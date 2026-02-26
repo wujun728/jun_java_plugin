@@ -15,7 +15,6 @@
 		<maven.javadoc.skip>true</maven.javadoc.skip>
 	</properties>
 	<modules>
-		<module>jun_code_generator</module>
 		<module>jun_java_plugins</module>
 		<module>jun_springboot_starter</module>
 		<module>jun_springboot_plugin</module>

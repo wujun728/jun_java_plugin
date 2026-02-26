@@ -3,11 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--该mapper.xml映射文件的唯一标识-->
-<mapper namespace="nuc.yznl.pojo.blogMapper">
+<mapper namespace="com.jun.plugin.mybatis.pojo.blogMapper">
 
 
 <!--    输入参数是基本类型 占位符号可以是任意的-->
-    <select id="selectBlogById" resultType="nuc.yznl.pojo.blog" parameterType="int">
+    <select id="selectBlogById" resultType="com.jun.plugin.mybatis.pojo.blog" parameterType="int">
       select * from blog where id = #{id}
     </select>
 
@@ -15,12 +15,12 @@
       select create_time from blog where id = #{id}
     </select>
 
-    <select id="queryAll" resultType="nuc.yznl.pojo.blog">
+    <select id="queryAll" resultType="com.jun.plugin.mybatis.pojo.blog">
       select * from blog
     </select>
 
 
-    <insert id="addBlog" parameterType="nuc.yznl.pojo.blog">
+    <insert id="addBlog" parameterType="com.jun.plugin.mybatis.pojo.blog">
        insert into blog(id,title,author,create_time,views) values(#{id},#{title},#{authOr},#{create_time},#{views})
     </insert>
 
@@ -29,7 +29,7 @@
         delete from blog where id =#{id}
     </delete>
 
-    <update id="updateBlog" parameterType="nuc.yznl.pojo.blog">
+    <update id="updateBlog" parameterType="com.jun.plugin.mybatis.pojo.blog">
         update blog set title=#{title},authoR=#{authOr},create_time=#{create_time},views=#{views} where id =#{id}
     </update>
 

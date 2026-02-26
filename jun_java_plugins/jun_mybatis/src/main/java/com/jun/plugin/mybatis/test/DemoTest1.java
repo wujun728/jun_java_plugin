@@ -42,7 +42,7 @@ public class DemoTest1 {
             inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             sqlSession = sqlSessionFactory.openSession();
-            String statement = "nuc.yznl.pojo.blogMapper.updateBlog";
+            String statement = "com.jun.plugin.mybatis.pojo.blogMapper.updateBlog";
             blog blog =new blog("99","测试","yznl2","2020-12-22 15.52.22",1,true);
             int count = sqlSession.delete(statement,blog);
             //JDBC 方式 需要手动commit
@@ -63,7 +63,7 @@ public class DemoTest1 {
             inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             sqlSession = sqlSessionFactory.openSession();
-            String statement = "nuc.yznl.pojo.blogMapper.deleteBlogById";
+            String statement = "com.jun.plugin.mybatis.pojo.blogMapper.deleteBlogById";
             int id = 99;
             int count = sqlSession.delete(statement,id);
             //JDBC 方式 需要手动commit
@@ -84,7 +84,7 @@ public class DemoTest1 {
             inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             sqlSession = sqlSessionFactory.openSession();
-            String statement = "nuc.yznl.pojo.blogMapper.addBlog";
+            String statement = "com.jun.plugin.mybatis.pojo.blogMapper.addBlog";
            blog blog =new blog("99","测试","yznl","2020-12-22 15.52.22",1,true);
             int count = sqlSession.insert(statement,blog);
             //JDBC 方式 需要手动commit
@@ -105,7 +105,7 @@ public class DemoTest1 {
             inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             sqlSession = sqlSessionFactory.openSession();
-            String statement = "nuc.yznl.pojo.blogMapper.queryAll";
+            String statement = "com.jun.plugin.mybatis.pojo.blogMapper.queryAll";
             //动态代理 动态的将Object转换为blog
             List<blog> blogs = sqlSession.selectList(statement);
             System.out.println(blogs.size());
@@ -124,8 +124,8 @@ public class DemoTest1 {
             inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             sqlSession = sqlSessionFactory.openSession();
-            String statement = "nuc.yznl.pojo.blogMapper.selectBlogById";
-            String statement2 = "nuc.yznl.pojo.blogMapper.time";
+            String statement = "com.jun.plugin.mybatis.pojo.blogMapper.selectBlogById";
+            String statement2 = "com.jun.plugin.mybatis.pojo.blogMapper.time";
             //动态代理 动态的将Object转换为blog
             blog blog = sqlSession.selectOne(statement,1);
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

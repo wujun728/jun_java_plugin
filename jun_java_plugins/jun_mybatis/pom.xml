@@ -35,6 +35,11 @@
             <artifactId>lombok</artifactId>
             <version>1.18.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.24</version>
+        </dependency>
     </dependencies>
 <!--    Maven默认不编译src目录下的xml文件-->
     <build>

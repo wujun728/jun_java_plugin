@@ -3,11 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
+    <!--<parent>
         <groupId>io.github.wujun728</groupId>
         <artifactId>jun_springboot_starter</artifactId>
         <version>1.0.25</version>
-    </parent>
+    </parent>-->
+    <groupId>io.github.wujun728</groupId>
+    <version>1.0.25</version>
     <artifactId>jun-mybatis-sql-engine</artifactId>
     <name>jun-mybatis-sql-engine</name>
     <description>dynamic sql engine tool</description>
@@ -115,10 +117,12 @@
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
         </dependency>
         <dependency>
             <groupId>ognl</groupId>
             <artifactId>ognl</artifactId>
+            <version>3.0.12</version>
         </dependency>
 
         <dependency>

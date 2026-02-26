@@ -1,21 +1,13 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : 127.0.0.1_3306
- Source Server Type    : MySQL
- Source Server Version : 80019
- Source Host           : 127.0.0.1:3306
- Source Schema         : mybatis
-
- Target Server Type    : MySQL
- Target Server Version : 80019
- File Encoding         : 65001
-
- Date: 24/12/2020 14:37:21
-*/
-
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `user_name` varchar(50) NOT NULL COMMENT '用户名',
+  `age` int(3) DEFAULT NULL COMMENT '年龄',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
 -- ----------------------------
 -- Table structure for blog
