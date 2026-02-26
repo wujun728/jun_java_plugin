@@ -1,3 +1,6 @@
+// This file is commented out — part of image spider, dependent on SimpleSpider.
+// See jun_crawler or jun_jsoup for web scraping functionality.
+/*
 package com.jun.plugin.httpclient.base.imagedown2;
 
 import java.io.File;
@@ -10,8 +13,7 @@ public class JianDanImageCreator implements Runnable {
 	private static int count = 0;
 	private String imageUrl;
 	private int page;
-	 //�洢·�����Զ���
-	private static final String basePath = "E:/pic12"; 
+	private static final String basePath = "E:/pic12";
 	public JianDanImageCreator(String imageUrl,int page) {
 		this.imageUrl = imageUrl;
 		this.page = page;
@@ -21,7 +23,6 @@ public class JianDanImageCreator implements Runnable {
 		File dir = new File(basePath);
 		if(!dir.exists()){
 			dir.mkdirs();
-			System.out.println("ͼƬ�����"+basePath+"Ŀ¼��");
 		}
 		String imageName = imageUrl.substring(imageUrl.lastIndexOf("/")+1);
 		try {
@@ -37,14 +38,13 @@ public class JianDanImageCreator implements Runnable {
 				}
 				byte[] temp = new byte[readed];
 				System.arraycopy(buff, 0, temp, 0, readed);
-				//д���ļ�
 				os.write(temp);
 			}
-			System.out.println("��"+(count++)+"������:"+file.getAbsolutePath());
-			is.close(); 
+			is.close();
 			os.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 }
+*/

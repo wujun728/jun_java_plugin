@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp.callback;
 
 import java.io.IOException;
@@ -7,10 +9,10 @@ import com.jun.plugin.okhttp.Response;
 import okhttp3.Call;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public abstract class StringCallback extends Callback{
 	//
 	@Override
@@ -23,6 +25,7 @@ public abstract class StringCallback extends Callback{
 	}
 	//
 	public void onSuccess(Call call,String response,int id) {
-		
+
 	}
 }
+*/

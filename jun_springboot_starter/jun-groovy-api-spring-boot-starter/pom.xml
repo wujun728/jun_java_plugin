@@ -22,20 +22,24 @@
 		<dependency>
 			<groupId>io.github.wujun728</groupId>
 			<artifactId>jun-common-base</artifactId>
+            <version>1.0.25</version>
 		</dependency>
 		<dependency>
 			<groupId>io.github.wujun728</groupId>
 			<artifactId>jun-db-activerecord</artifactId>
+            <version>1.0.25</version>
 		</dependency>
 		<dependency>
 			<groupId>io.github.wujun728</groupId>
 			<artifactId>jun-mybatis-sql-engine</artifactId>
+            <version>1.0.25</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
+            <version>19.0</version>
 		</dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -55,10 +59,49 @@
 		 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
+		</dependency>-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.3.39</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.3.39</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.39</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>5.3.39</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.3.39</version>
+        </dependency>
+        <!-- 插件内的 dependencies 节点修改如下，其他配置和方式1一致 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>2.5.14</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>2.5.14</version>
+            <scope>provided</scope>
+        </dependency>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy</artifactId>
+            <version>2.5.4</version>
 		</dependency>
 		<!--<dependency>
 			<groupId>com.alibaba.fastjson2</groupId>
@@ -68,14 +111,22 @@
 		<dependency>
 			<groupId>net.dreamlu</groupId>
 			<artifactId>mica-auto</artifactId>
+            <version>2.3.3</version>
 		</dependency>
 		<dependency>
 			<groupId>cn.hutool</groupId>
 			<artifactId>hutool-all</artifactId>
+            <version>5.8.41</version>
 		</dependency>
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
+            <version>2.3.32</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
         </dependency>
     </dependencies>
 	

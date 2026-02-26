@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp.callback;
 
 import java.io.File;
@@ -13,10 +15,10 @@ import com.jun.plugin.okhttp.util.FileUtil;
 import okhttp3.Call;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public abstract class DownloadFileCallback extends Callback{
 	//
 	public static Logger logger = LoggerFactory.getLogger(DownloadFileCallback.class);
@@ -46,10 +48,11 @@ public abstract class DownloadFileCallback extends Callback{
 	}
 	//
 	public void onSuccess(Call call,File file, int id) {
-		
+
 	}
 	//
 	public void onSuccess(Call call,InputStream fileStream, int id) {
-		
+
 	}
 }
+*/

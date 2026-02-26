@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp;
 
 import java.io.UnsupportedEncodingException;
@@ -18,15 +20,15 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public class PostRequest extends OkHttpRequest {
 	//
 	public static Logger logger = LoggerFactory.getLogger(PostRequest.class);
 	//
-	public PostRequest(String url, Object tag, Map<String, String> params, 
+	public PostRequest(String url, Object tag, Map<String, String> params,
 			Map<String, String> headers,List<FileInfo> fileInfos,String postBody,int id) {
 		super(url, tag, params, headers, fileInfos,postBody,id);
 	}
@@ -95,3 +97,4 @@ public class PostRequest extends OkHttpRequest {
 		return contentTypeFor;
 	}
 }
+*/

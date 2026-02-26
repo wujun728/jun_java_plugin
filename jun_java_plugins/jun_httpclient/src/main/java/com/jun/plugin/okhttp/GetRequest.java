@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp;
 
 import java.util.Map;
@@ -6,13 +8,13 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public class GetRequest extends OkHttpRequest {
 	//
-	public GetRequest(String url, Object tag, Map<String, String> params, 
+	public GetRequest(String url, Object tag, Map<String, String> params,
 			Map<String, String> headers, int id) {
 		super(url,tag,params,headers,null,null,id);
 	}
@@ -27,3 +29,4 @@ public class GetRequest extends OkHttpRequest {
 		return builder.get().build();
 	}
 }
+*/

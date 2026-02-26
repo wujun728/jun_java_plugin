@@ -1,3 +1,6 @@
+// This file is commented out — uses Jedis which is now removed.
+// See jun_redis module for Redis client functionality.
+/*
 package com.jun.plugin.commons.util.apiext;
 
 import java.util.Map;
@@ -11,17 +14,9 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 public class RedisClient {
-	private static JedisPool jedisPool;// 非切片连接池
-
+	private static JedisPool jedisPool;
 	private final static Object lockObj = new Object();
 
-	/****
-	 * 通过配置得到 Jedis
-	 * 
-	 * @param connProp
-	 * @return
-	 * @throws ProjectException
-	 */
 	public static Jedis getConnection(Properties connProp) {
 		if (connProp == null || connProp.size() == 0) {
 			return null;
@@ -45,11 +40,6 @@ public class RedisClient {
 		return jedisPool.getResource();
 	}
 
-	/***
-	 * 放资源
-	 * 
-	 * @param jedis
-	 */
 	public static void returnResource(Jedis jedis) {
 		jedis.close();
 		if (jedisPool != null) {
@@ -58,3 +48,4 @@ public class RedisClient {
 	}
 
 }
+*/

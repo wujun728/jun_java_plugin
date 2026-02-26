@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp.ssl;
 
 import java.security.cert.CertificateException;
@@ -6,17 +8,17 @@ import java.security.cert.X509Certificate;
 import javax.net.ssl.X509TrustManager;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public class X509TrustManagerImpl implements X509TrustManager{
 	@Override
 	public void checkClientTrusted(X509Certificate[] chain, String authType)
 	throws CertificateException {
 	}
 	@Override
-	public void checkServerTrusted(X509Certificate[] chain, String authType) 
+	public void checkServerTrusted(X509Certificate[] chain, String authType)
 	throws CertificateException {
 	}
 	@Override
@@ -24,3 +26,4 @@ public class X509TrustManagerImpl implements X509TrustManager{
 		return new X509Certificate[0];
 	}
 }
+*/

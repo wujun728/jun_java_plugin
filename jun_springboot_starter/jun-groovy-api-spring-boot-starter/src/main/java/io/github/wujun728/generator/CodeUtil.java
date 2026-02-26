@@ -35,9 +35,9 @@ import java.util.Map;
 public class CodeUtil {
 
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/db_test?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC&useInformationSchema=true";
+        String url = "jdbc:mysql://localhost:3307/db_qixing_v2?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC&useInformationSchema=true";
         String username = "root";
-        String password = "";
+        String password = "mysqladmin";
         String driver = "com.mysql.cj.jdbc.Driver";
         DataSource ds = DataSourcePool.init("main",url,username,password,driver);
 //        genCode(ds,"pj_customer",CodeUtil.UI_LAYUI_LIST);

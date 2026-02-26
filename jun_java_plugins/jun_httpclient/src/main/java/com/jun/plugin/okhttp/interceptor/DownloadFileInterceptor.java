@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp.interceptor;
 
 import java.io.IOException;
@@ -13,10 +15,10 @@ import okio.Okio;
 import okio.Source;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public abstract class DownloadFileInterceptor implements Interceptor,DownloadFileProgressListener{
 	//
 	@Override
@@ -38,7 +40,7 @@ public abstract class DownloadFileInterceptor implements Interceptor,DownloadFil
             this.body = body;
             this.progressListener = progressListener;
         }
-	    
+
 		@Override
 		public MediaType contentType() {
 			return body.contentType();
@@ -56,7 +58,7 @@ public abstract class DownloadFileInterceptor implements Interceptor,DownloadFil
             }
             return bufferedSource;
 		}
-		
+
 		private Source source(Source source) {
             return new ForwardingSource(source) {
                 long downloadLenth = 0L;
@@ -74,3 +76,4 @@ public abstract class DownloadFileInterceptor implements Interceptor,DownloadFil
         }
 	}
 }
+*/

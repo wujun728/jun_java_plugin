@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp;
 
 import java.io.IOException;
@@ -23,10 +25,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public class RequestCall {
 	//
 	private static Logger logger=LoggerFactory.getLogger(RequestCall.class);
@@ -61,12 +63,12 @@ public class RequestCall {
 		this.connTimeOut = connTimeOut;
 		return this;
 	}
-	
+
 	public RequestCall addNetworkInterceptor(Interceptor networkInterceptor){
 		networkInterceptors.add(networkInterceptor);
 		return this;
 	}
-	
+
 	public RequestCall sslContext(SSLContext sslContext){
 		this.sslContext=sslContext;
 		return this;
@@ -88,7 +90,7 @@ public class RequestCall {
 			}
 		});
 	}
-	
+
 	public Call buildCall(Callback callback) {
 		OkHttpClient client=FastHttpClient.okHttpClient;
 		if (readTimeOut>0||writeTimeOut>0||connTimeOut>0||
@@ -111,7 +113,7 @@ public class RequestCall {
 		}
 		return buildCall(callback,client);
 	}
-	
+
 	public Call buildCall(Callback callback,OkHttpClient okHttpClient) {
 		request=createRequest(callback);
 		call = okHttpClient.newCall(request);
@@ -121,7 +123,7 @@ public class RequestCall {
 	private Request createRequest(Callback callback) {
 		return okHttpRequest.createRequest(callback);
 	}
-	
+
 	public Response execute() throws IOException {
 		buildCall(null);
 		return new Response(call.execute());
@@ -131,7 +133,7 @@ public class RequestCall {
 		buildCall(callback);
 		execute(this,callback);
 	}
-	
+
 	public Response execute(OkHttpClient client) throws IOException {
 		buildCall(null,client);
 		return new Response(call.execute());
@@ -160,7 +162,7 @@ public class RequestCall {
 			}
 		});
 	}
-	
+
 	public Call getCall() {
 		return call;
 	}
@@ -179,3 +181,4 @@ public class RequestCall {
 		}
 	}
 }
+*/

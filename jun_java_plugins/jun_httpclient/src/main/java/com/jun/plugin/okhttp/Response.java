@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp;
 
 import java.io.IOException;
@@ -11,10 +13,10 @@ import okhttp3.Request;
 import okhttp3.ResponseBody;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public class Response {
 	//
 	public okhttp3.Response response;
@@ -30,12 +32,12 @@ public class Response {
 	/**
 	 * Returns the HTTP protocol, such as {@link Protocol#HTTP_1_1} or
 	 * {@link Protocol#HTTP_1_0}.
-	 */
+	 * /
 	public Protocol protocol() {
 		return response.protocol();
 	}
 
-	/** Returns the HTTP status code. */
+	/** Returns the HTTP status code. * /
 	public int code() {
 		return response.code();
 	}
@@ -43,12 +45,12 @@ public class Response {
 	/**
 	 * Returns true if the code is in [200..300), which means the request was
 	 * successfully received, understood, and accepted.
-	 */
+	 * /
 	public boolean isSuccessful() {
 		return response.isSuccessful();
 	}
 
-	/** Returns the HTTP status message or null if it is unknown. */
+	/** Returns the HTTP status message or null if it is unknown. * /
 	public String message() {
 		return response.message();
 	}
@@ -56,7 +58,7 @@ public class Response {
 	/**
 	 * Returns the TLS handshake of the connection that carried this response,
 	 * or null if the response was received without TLS.
-	 */
+	 * /
 	public Handshake handshake() {
 		return response.handshake();
 	}
@@ -91,7 +93,7 @@ public class Response {
 	 * <strong>Warning:</strong> this method loads the requested bytes into
 	 * memory. Most applications should set a modest limit on {@code byteCount},
 	 * such as 1 MiB.
-	 */
+	 * /
 	public ResponseBody peekBody(long byteCount) throws IOException {
 		return response.peekBody(byteCount);
 	}
@@ -99,7 +101,7 @@ public class Response {
 	/**
 	 * Never {@code null}, must be closed after consumption, can be consumed
 	 * only once.
-	 */
+	 * /
 	public ResponseBody body() {
 		return response.body();
 	}
@@ -109,7 +111,7 @@ public class Response {
 	 * Returns the response as a string decoded with the charset of the
 	 * Content-Type header. If that header is either absent or lacks a charset,
 	 * this will attempt to decode the response body as UTF-8.
-	 */
+	 * /
 	public final String string() throws IOException {
 		return body().string();
 	}
@@ -118,7 +120,7 @@ public class Response {
 	 * Returns the response as a string decoded with the charset of the
 	 * Content-Type header. If that header is either absent or lacks a charset,
 	 * this will attempt to decode the response body as UTF-8.
-	 */
+	 * /
 	public final String string(String charset) throws IOException {
 		return new String(body().bytes(),charset);
 	}
@@ -131,3 +133,4 @@ public class Response {
 	    return body().source().inputStream();
 	  }
 }
+*/

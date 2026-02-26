@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp.test;
 
 import java.io.IOException;
@@ -12,17 +14,17 @@ import com.jun.plugin.okhttp.Response;
  * http://lbs.qq.com/webservice_v1/guide-gcoder.html
  * @author Wujun
  *
- */
+ * /
 public class QQMapService {
 	//
 	static Logger logger=LoggerFactory.getLogger(QQMapService.class);
 	//
 	String key;
-	
+
 	public QQMapService() {
 		key="ZXRBZ-HX5KJ-M25F3-KZOTJ-BKHAQ-OABTC";
 	}
-	
+
 	public void searchLocation(String region,String keyword){
 		String url="http://apis.map.qq.com/ws/place/v1/suggestion?keyword="+keyword+
 				"&key="+key;
@@ -42,3 +44,4 @@ public class QQMapService {
 		service.searchLocation(null,"深圳市南山区飞亚达大厦");
 	}
 }
+*/

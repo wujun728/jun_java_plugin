@@ -8,6 +8,7 @@
 	<artifactId>jun_threadpool</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
+	<description>Thread pool examples, Netty networking, Socket/NIO/AIO/BIO demos, and RPC framework samples</description>
 
 
 	<properties>

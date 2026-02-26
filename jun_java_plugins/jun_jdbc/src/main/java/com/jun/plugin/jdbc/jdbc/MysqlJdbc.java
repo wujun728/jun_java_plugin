@@ -216,6 +216,9 @@ public abstract class MysqlJdbc implements Jdbc {
 		return this.queryUniqueResult(sql, null, clazz);
 	}
 
+	// NOTE: This uses raw DriverManager.getConnection() without connection pooling.
+	// For production use, consider using jun_datasource module which provides
+	// connection pools (C3P0, Druid, HikariCP).
 	@Override
 	public Connection getConnection() throws SQLException {
 		if (conn == null) {

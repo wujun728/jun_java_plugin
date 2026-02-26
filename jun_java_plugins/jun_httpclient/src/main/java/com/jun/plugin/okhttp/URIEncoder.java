@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp;
 
 import java.io.UnsupportedEncodingException;
@@ -7,10 +9,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.charset.UnsupportedCharsetException;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public final class URIEncoder {
 
 	public static String encodeUTF8(String input) {
@@ -33,3 +35,4 @@ public final class URIEncoder {
 		}
 	}
 }
+*/

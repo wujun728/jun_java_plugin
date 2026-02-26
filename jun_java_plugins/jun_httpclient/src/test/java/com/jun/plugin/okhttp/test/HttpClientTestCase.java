@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp.test;
 
 import java.io.File;
@@ -20,10 +22,10 @@ import junit.framework.TestCase;
 import okhttp3.Call;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public class HttpClientTestCase extends TestCase{
 	//
 	private static Logger logger=LoggerFactory.getLogger(HttpClientTestCase.class);
@@ -141,3 +143,4 @@ public class HttpClientTestCase extends TestCase{
 	}
 	//
 }
+*/

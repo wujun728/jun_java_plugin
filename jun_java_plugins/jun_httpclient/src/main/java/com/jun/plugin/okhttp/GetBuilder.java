@@ -1,12 +1,14 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp;
 
 import java.util.Map;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public class GetBuilder extends OkHttpRequestBuilder<GetBuilder> {
 	@Override
 	public RequestCall build() {
@@ -44,3 +46,4 @@ public class GetBuilder extends OkHttpRequestBuilder<GetBuilder> {
 	}
 
 }
+*/

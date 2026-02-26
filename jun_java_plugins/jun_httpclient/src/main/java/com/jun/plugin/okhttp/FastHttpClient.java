@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp;
 
 import java.security.SecureRandom;
@@ -17,10 +19,10 @@ import com.jun.plugin.okhttp.ssl.X509TrustManagerImpl;
 import okhttp3.OkHttpClient;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public class FastHttpClient {
 	//
 	public static Logger logger = LoggerFactory.getLogger(FastHttpClient.class);
@@ -55,3 +57,4 @@ public class FastHttpClient {
 		return new PostBuilder();
 	}
 }
+*/

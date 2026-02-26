@@ -15,81 +15,105 @@
 	</properties>
 
 	<modules>
+		<!-- ==================== JDK / 语言基础 ==================== -->
+		<module>jun_jdk</module>
+		<module>jun_javase</module>
 		<module>jun_algorithm</module>
-		<module>jun_aliyun_sms</module>
-		<module>jun_apache_commons</module>
-		<module>jun_compiler</module>
-		<module>jun_config_resources</module>
-		<module>jun_crawler</module>
-		<module>jun_datasource</module>
-		<module>jun_dbutil</module>
 		<module>jun_designpattern</module>
-		<!-- empty shell: placeholder, README says TODO -->
-		<!-- <module>jun_drools</module> -->
-		<module>jun_easycaptcha</module>
-		<module>jun_ehcache</module>
-		<module>jun_email</module>
-		<module>jun_excel</module>
-		<module>jun_fileupload</module>
-		<module>jun_freemarker</module>
-		<module>jun_guava</module>
-		<module>jun_guice</module>
-		<module>jun_gzip</module>
-		<module>jun_hibernate</module>
-		<module>jun_httpclient</module>
-		<module>jun_j2cache</module>
-		<module>jun_jar2maven</module>
+		<module>jun_compiler</module>
 		<!-- duplicate of jun_compiler (same purpose, less complete) -->
 		<!-- <module>jun_java_compiler</module> -->
-		<module>jun_javase</module>
-		<!-- empty shell: empty dirs + pom.xml only -->
-		<!-- <module>jun_jbpm</module> -->
-		<module>jun_jdbc</module>
-		<module>jun_jdk</module>
-		<module>jun_jgit</module>
+		<module>jun_online_java_complier</module>
+		<module>jun_guice</module>
+		<module>jun_serialization</module>
+		<module>jun_gzip</module>
+		<module>jun_uid</module>
+		<module>jun_config_resources</module>
+
+		<!-- ==================== Apache Commons / 工具库 ==================== -->
+		<module>jun_apache_commons</module>
+		<module>jun_guava</module>
 		<module>jun_json</module>
-		<module>jun_jsoup</module>
-		<!-- empty shell: empty dirs + pom.xml only -->
-		<!-- <module>jun_memcached</module> -->
-		<module>jun_mongodb</module>
-		<!-- empty shell: empty dirs + pom.xml only -->
-		<!-- <module>jun_multicluster</module> -->
+		<module>jun_xml</module>
+		<module>jun_freemarker</module>
+
+		<!-- ==================== 数据库 / ORM ==================== -->
+		<module>jun_jdbc</module>
+		<module>jun_dbutil</module>
+		<module>jun_datasource</module>
+		<module>jun_hibernate</module>
 		<module>jun_mybatis</module>
 <!--		<module>jun_mybatis_mate</module>-->
 		<module>jun_mybatisplus</module>
+		<module>jun_db_document</module>
+		<module>jun_mongodb</module>
+		<module>jun_solr</module>
 		<!-- empty shell: empty dirs + pom.xml only -->
 		<!-- <module>jun_mycat</module> -->
 		<!-- empty shell: docs/SQL only, no Java code -->
 		<!-- <module>jun_mysql</module> -->
-		<module>jun_okhttp</module>
-		<module>jun_online_java_complier</module>
 		<!-- empty shell: docs/SQL only, no Java code -->
 		<!-- <module>jun_oracle</module> -->
-		<!-- empty shell: empty submodules -->
-		<!-- <module>jun_pay</module> -->
-		<module>jun_pdf</module>
+
+		<!-- ==================== 缓存 / Redis ==================== -->
+		<module>jun_redis</module>
+		<module>jun_j2cache</module>
+		<!-- redundant: only 1 test file (23 lines), fully covered by jun_j2cache -->
+		<!-- <module>jun_ehcache</module> -->
+		<!-- empty shell: empty dirs + pom.xml only -->
+		<!-- <module>jun_memcached</module> -->
+
+		<!-- ==================== HTTP / 网络 ==================== -->
+		<module>jun_httpclient</module>
+		<module>jun_okhttp</module>
+		<module>jun_jsoup</module>
+		<module>jun_crawler</module>
+		<module>jun_webmagic</module>
+
+		<!-- ==================== 文档 / Excel / PDF ==================== -->
 		<module>jun_poi</module>
 		<module>jun_poi_tl_word_export</module>
-		<module>jun_qrcode</module>
-		<module>jun_quartz</module>
-		<module>jun_redis</module>
-		<module>jun_serialization</module>
-		<!-- empty shell: empty dirs + pom.xml only -->
-		<!-- <module>jun_shiro</module> -->
-		<module>jun_solr</module>
-		<module>jun_threadpool</module>
-		<module>jun_uid</module>
+		<module>jun_pdf</module>
+		<!-- redundant: functionality covered by jun_poi; easyexcel dep migrated to jun_poi -->
+		<!-- <module>jun_excel</module> -->
+
+		<!-- ==================== Web / Servlet / WebSocket ==================== -->
+		<module>jun_webservlet</module>
+		<module>jun_websocket</module>
+		<module>jun_fileupload</module>
 		<!-- duplicate of jun_fileupload (subset, 2 files vs 24) -->
 		<!-- <module>jun_upload_jsp_servlet</module> -->
-		<module>jun_webmagic</module>
 		<!-- duplicate of jun_websocket (copy-pasted POM, non-standard dir) -->
 		<!-- <module>jun_webservice</module> -->
-		<module>jun_webservlet</module>
 		<!-- duplicate of jun_webservlet (niche subset) -->
 		<!-- <module>jun_webservlet_guice_dbutil</module> -->
-		<module>jun_websocket</module>
-		<module>jun_xml</module>
-		<module>jun_db_document</module>
+
+		<!-- ==================== 消息 / 定时 / 线程 ==================== -->
+		<module>jun_quartz</module>
+		<module>jun_threadpool</module>
+		<module>jun_email</module>
+
+		<!-- ==================== 云服务 / 二维码 / 验证码 ==================== -->
+		<module>jun_aliyun_sms</module>
+		<module>jun_qrcode</module>
+		<module>jun_easycaptcha</module>
+		<module>jun_jgit</module>
+
+		<!-- ==================== 空壳 / 不兼容 / 无源码 ==================== -->
+		<!-- Java 17 incompatible, artifactId incorrectly set to jun_test -->
+		<!-- <module>jun_minio</module> -->
+		<!-- no Java source files -->
+		<!-- <module>jun_jar2maven</module> -->
+		<!-- empty shell: placeholder, README says TODO -->
+		<!-- <module>jun_drools</module> -->
+		<!-- empty shell: empty dirs + pom.xml only -->
+		<!-- <module>jun_jbpm</module> -->
+		<!-- empty shell: empty dirs + pom.xml only -->
+		<!-- <module>jun_multicluster</module> -->
+		<!-- empty shell: empty submodules -->
+		<!-- <module>jun_pay</module> -->
+		<!-- empty shell: empty dirs + pom.xml only -->
+		<!-- <module>jun_shiro</module> -->
 
 	</modules>
 
@@ -97,7 +121,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

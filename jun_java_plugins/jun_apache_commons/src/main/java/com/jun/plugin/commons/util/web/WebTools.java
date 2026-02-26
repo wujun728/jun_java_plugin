@@ -1,3 +1,6 @@
+// This file is commented out — uses POI + JExcelApi (jxl) which are now removed.
+// For POI-based Excel export, see jun_poi module.
+/*
 package com.jun.plugin.commons.util.web;
 
 import java.io.ByteArrayOutputStream;
@@ -35,19 +38,8 @@ import com.jun.plugin.commons.util.exception.ProjectException;
 
 public abstract class WebTools {
 	private static Logger logger = LoggerFactory.getLogger(WebTools.class);
-	public final static File tempDir=new File(Conf.utilProperties.getProperty("file.tempDir"));//临时文件夹目录
-	
+	public final static File tempDir=new File(Conf.utilProperties.getProperty("file.tempDir"));
 
-	/**
-	 * 
-	 * @param response
-	 *            返回响应
-	 * @param workbook
-	 *            要返回的excel文件
-	 * @param fileName
-	 *            要保存的文件名
-	 * @return void
-	 * */
 	public static void returnExcelStreamResponse(HttpServletResponse response,
 			Workbook workbook, String fileName) throws ProjectException {
 		ByteArrayOutputStream file = new ByteArrayOutputStream();
@@ -56,7 +48,7 @@ public abstract class WebTools {
 			final byte[] dataFile = file.toByteArray();
 			response.setHeader("Content-Disposition", "attachment; filename=\""
 					+ new String(fileName.getBytes("GBK"), "iso8859-1")
-					+ ".xls\"");// 中文文件名问题
+					+ ".xls\"");
 			response.setContentLength(dataFile.length);
 			ServletOutputStream resStream = response.getOutputStream();
 			resStream.write(dataFile);
@@ -66,35 +58,20 @@ public abstract class WebTools {
 					"返回excle输出流错误");
 		}
 	}
-	
-	/*****
-	 * 导出Excel文件,文件内容格式如下:
-	 * 标题1,标题2\r\n
-	 * aaa,bbb\r\n
-	 * ccc,ccc
-	 * 
-	 * exshow[0]:文件名
-	 * exshow[1]:sheet名
-	 * @param response
-	 * @param context
-	 * @param exshow
-	 * @return
-	 */
+
 	public static OperateResult exportExcel(HttpServletResponse response,
 			String context, String... exshow) {
 		OperateResult retObj = new OperateResult(0);
 		try {
-			
 			String fileName=ArrayUtils.isEmpty(exshow)?"fileName":exshow[0];
 			String sheetTitle = ArrayUtils.isEmpty(exshow)||exshow.length<2?"sheet1":exshow[1];
-			
-			OutputStream os = response.getOutputStream();// 取得输出流
-			response.reset();// 清空输出流
+			OutputStream os = response.getOutputStream();
+			response.reset();
 			response.setHeader("Content-disposition", "attachment; filename="
-					+ fileName + ".xls");// 设定输出文件头
-			response.setContentType("application/msexcel");// 定义输出类型
-			WritableWorkbook wbook = jxl.Workbook.createWorkbook(os); // 建立excel文件
-			WritableSheet wsheet = wbook.createSheet(sheetTitle, 0); // sheet名称
+					+ fileName + ".xls");
+			response.setContentType("application/msexcel");
+			WritableWorkbook wbook = jxl.Workbook.createWorkbook(os);
+			WritableSheet wsheet = wbook.createSheet(sheetTitle, 0);
 			WritableFont wfont = new WritableFont(WritableFont.ARIAL, 16,
 					WritableFont.BOLD, false, UnderlineStyle.NO_UNDERLINE,
 					Colour.BLACK);
@@ -105,7 +82,6 @@ public abstract class WebTools {
 					WritableFont.BOLD, false, UnderlineStyle.NO_UNDERLINE,
 					Colour.BLACK);
 			wcfFC = new WritableCellFormat(wfont);
-			// 开始生成主体内容
 			String[] rows = context.split("\r\n");
 			for (int i = 0; i < rows.length; i++) {
 				String rowString = rows[i];
@@ -114,10 +90,9 @@ public abstract class WebTools {
 					wsheet.addCell(new Label(j, i, rowAry[j]));
 				}
 			}
-			// 主体内容生成结束
-			wbook.write(); // 写入文件
+			wbook.write();
 			wbook.close();
-			os.close(); // 关闭
+			os.close();
 			retObj.setResult(1);
 			retObj.setMessage("success");
 		} catch (Exception e) {
@@ -126,12 +101,6 @@ public abstract class WebTools {
 		return retObj;
 	}
 
-	/***
-	 * 返回json数据
-	 * 
-	 * @param response
-	 * @param jsonMsg
-	 */
 	public static void returnJsonResponse(HttpServletResponse response,
 			String jsonMsg) {
 		response.setContentType("text/html");
@@ -145,33 +114,20 @@ public abstract class WebTools {
 		}
 	}
 
-	/***
-	 * 返回json数据
-	 * 
-	 * @param response
-	 * @param operateResult
-	 *            要返回的结果封装
-	 */
 	public static void returnJsonResponse(HttpServletResponse response,
 			OperateResult operateResult) {
 		returnJsonResponse(response, operateResult.getJsonMsg(null));
 	}
 
-	/*****
-	 * 把requesty请求组装为Map返回,支持enctype属性为multipart/form-data的form提交
-	 * 
-	 * @param request
-	 * @return
-	 */
 	public static Map<String, String> paseReqestParam(HttpServletRequest request) {
 		Map<String, String> retMap = new HashMap<String, String>();
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		if (isMultipart) {
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			ServletFileUpload upload = new ServletFileUpload(factory);
-			upload.setSizeMax(Long.parseLong(Conf.utilProperties.getProperty("file.sizeMax"))); // 设置上传内容的大小限制（单位：字节）
-			factory.setSizeThreshold(Integer.parseInt(Conf.utilProperties.getProperty("file.sizeThreshold"))); // 2M
-			factory.setRepository(tempDir); // 与上一个结合使用，设置临时文件的路径（绝对路径）
+			upload.setSizeMax(Long.parseLong(Conf.utilProperties.getProperty("file.sizeMax")));
+			factory.setSizeThreshold(Integer.parseInt(Conf.utilProperties.getProperty("file.sizeThreshold")));
+			factory.setRepository(tempDir);
 			try {
 				List<FileItem> items = upload.parseRequest(request);
 				for (FileItem fileItem : items) {
@@ -192,3 +148,4 @@ public abstract class WebTools {
 	}
 
 }
+*/

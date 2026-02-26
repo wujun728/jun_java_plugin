@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp.util;
 
 import java.io.BufferedInputStream;
@@ -31,10 +33,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public class IOUtil {
 	private static Logger logger = LoggerFactory.getLogger(IOUtil.class);
 	private static final int CACHE_SIZE = 512;
@@ -95,7 +97,7 @@ public class IOUtil {
 
 	//
 	/**
-	 */
+	 * /
 	public static void closeQuietly(OutputStream output) {
 		try {
 			if (output != null) {
@@ -109,7 +111,7 @@ public class IOUtil {
 
 	//
 	/**
-	 */
+	 * /
 	public static void closeQuietly(InputStream input) {
 		try {
 			if (input != null) {
@@ -123,7 +125,7 @@ public class IOUtil {
 	//
 	/**
 	 * copy inputstream data to output stream
-	 */
+	 * /
 	public static long copy(InputStream input, OutputStream output)
 			throws IOException {
 		byte[] buffer = new byte[4096];
@@ -137,11 +139,11 @@ public class IOUtil {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param file
 	 * @return
 	 * @throws IOException
-	 */
+	 * /
 	public static String getContent(InputStream in) throws IOException {
 		try (InputStreamReader isr = new InputStreamReader(in);
 				BufferedReader br = new BufferedReader(isr);) {
@@ -196,14 +198,14 @@ public class IOUtil {
 		zipfile.close();
 	}
 	/**
-	 * copy file from source file to dest file 
-	 */
+	 * copy file from source file to dest file
+	 * /
 	public static void copyFile(File sourceFile,File destFile)throws Exception{
 		copy(new FileInputStream(sourceFile),new FileOutputStream(destFile));
 	}
 	/**
 	 * copy file from source url to destfile
-	 */
+	 * /
 	public static void copyFile(
 			String sourceURL,
 			String destFilePath,
@@ -231,7 +233,7 @@ public class IOUtil {
 	/**
 	 *  if we use file.delete to delete a none empty directory,delete action will
 	 *  fail,we need to delete all file under this directory first.
-	 */
+	 * /
 	public static boolean deleteDirectory(File directory) {
 		if(!directory.exists()){
 			return true;
@@ -242,13 +244,13 @@ public class IOUtil {
 			} else {
 				file.delete();
 			}
-		});	
+		});
 		return (directory.delete());
 	}
 
 	/**
-	 *convert input stream to byte array 
-	 */
+	 *convert input stream to byte array
+	 * /
 	public static byte[] toByteArray(InputStream input) throws IOException {
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		byte[] buf = new byte[1024];
@@ -260,7 +262,7 @@ public class IOUtil {
 
 	/**
 	 * convert inputstream to string
-	 */
+	 * /
 	public static String toString(InputStream input) throws IOException {
 		StringWriter sw = new StringWriter();
 		copy(input, sw);
@@ -268,15 +270,15 @@ public class IOUtil {
 	}
 	/**
 	 * copy input stream to writer
-	 */
+	 * /
 	public static void copy(InputStream input, Writer output)
 			throws IOException {
 		InputStreamReader in = new InputStreamReader(input); // NOSONAR
 		copy(in, output);
 	}
 	/**
-	 *copy input reader to output writer 
-	 */
+	 *copy input reader to output writer
+	 * /
 	public static int copy(Reader input, Writer output) throws IOException {
 		long count = copyLarge(input, output);
 		if (count > Integer.MAX_VALUE) {
@@ -297,3 +299,4 @@ public class IOUtil {
 		return count;
 	}
 }
+*/

@@ -9,7 +9,7 @@
 
 
 	<properties>
-		<poi.version>3.7</poi.version>
+		<poi.version>3.14</poi.version>
 		<spel.version>4.1.6.RELEASE</spel.version>
 		<slf4j.version>1.7.12</slf4j.version>
 		<logback.version>1.1.2</logback.version>
@@ -40,6 +40,28 @@
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>${poi.version}</version>
+		</dependency>
+
+		<!-- EasyExcel (migrated from jun_excel module) -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>easyexcel</artifactId>
+			<version>1.1.2-beta4</version>
+			<exclusions>
+				<!-- Exclude transitive POI 3.17 to avoid conflict with ${poi.version} -->
+				<exclusion>
+					<groupId>org.apache.poi</groupId>
+					<artifactId>poi</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.poi</groupId>
+					<artifactId>poi-ooxml</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.poi</groupId>
+					<artifactId>poi-ooxml-schemas</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -120,21 +142,16 @@
 			<artifactId>guava</artifactId>
 			<version>29.0-jre</version>
 		</dependency>
-		<!-- POI -->
+		<!-- POI (unified to ${poi.version}=3.14; removed duplicate declarations) -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>3.14</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.14</version>
+			<version>${poi.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-scratchpad</artifactId>
-			<version>3.14</version>
+			<version>${poi.version}</version>
 		</dependency>
 
 		<dependency>

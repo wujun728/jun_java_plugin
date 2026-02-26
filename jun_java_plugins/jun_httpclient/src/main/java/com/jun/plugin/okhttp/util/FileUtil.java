@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp.util;
 
 import java.io.BufferedInputStream;
@@ -16,10 +18,10 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public class FileUtil {
 	//
 	private static final int BUFFER = 2048;
@@ -130,11 +132,11 @@ public class FileUtil {
 
 	/**
 	 * get content from file
-	 * 
+	 *
 	 * @param filePath
 	 * @return
 	 * @throws IOException
-	 */
+	 * /
 	public static byte[] getBytes(String filePath) throws IOException {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		IOUtil.copy(new FileInputStream(filePath), bos);
@@ -143,22 +145,22 @@ public class FileUtil {
 
 	/**
 	 * get content from file
-	 * 
+	 *
 	 * @param filePath
 	 * @return
 	 * @throws IOException
-	 */
+	 * /
 	public static String getContent(String filePath) throws IOException {
 		return getContent(new File(filePath));
 	}
 
 	/**
 	 * get content from file
-	 * 
+	 *
 	 * @param filePath
 	 * @return
 	 * @throws IOException
-	 */
+	 * /
 	public static String getContent(File file) throws IOException {
 		return new String(Files.readAllBytes(file.toPath()),
 				StandardCharsets.UTF_8);
@@ -181,3 +183,4 @@ public class FileUtil {
 		}
 	}
 }
+*/

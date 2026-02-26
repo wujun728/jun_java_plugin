@@ -118,20 +118,22 @@
 
 
 
-		<!--Excel表格 相关jar -->
+		<!-- POI → see jun_poi module -->
+		<!--
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
 			<version>3.9</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.17</version>
 		</dependency>
+		-->
 
-		<!-- 二维码工具jar包 -->
+		<!-- ZXing → see jun_qrcode module -->
+		<!--
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>core</artifactId>
@@ -142,6 +144,7 @@
 			<artifactId>javase</artifactId>
 			<version>3.0.0</version>
 		</dependency>
+		-->
 
 
 		<!--pagehelper分页工具类 -->
@@ -174,18 +177,19 @@
 		</dependency>
 
 
-		<!--quartz定时器 -->
+		<!-- Quartz → see jun_quartz module -->
+		<!--
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<version>2.3.0</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz-jobs</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+		-->
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -193,12 +197,14 @@
 			<version>5.2.1.RELEASE</version>
 		</dependency>
 
-		<!-- 谷歌的工具包 -->
+		<!-- duplicate guava removed (keeping 29.0-jre above) -->
+		<!--
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>27.1-jre</version>
 		</dependency>
+		-->
 
 		<!-- 工具包 end -->
 
@@ -206,19 +212,23 @@
 
 		<!-- 数据库相关jar start -->
 
-		<!--redis 相关jar -->
+		<!-- Jedis → see jun_redis module -->
+		<!--
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
 			<version>2.9.0</version>
 		</dependency>
+		-->
 
-		<!--mysql驱动包 -->
+		<!-- duplicate mysql-connector removed (already in parent POM as 5.1.40) -->
+		<!--
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.41</version>
 		</dependency>
+		-->
 
 		<!--sqlite相关jar -->
 		<dependency>

@@ -5,6 +5,9 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
+import cn.hutool.json.JSON;
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
 import io.github.wujun728.common.base.Result;
@@ -331,6 +334,72 @@ public class RestApiController {
 
 
 
+    /**
+     * 接收多层级 JSON 数据并解析
+     * @param json Hutool JSON 对象（自动接收前端传递的 JSON 数据）
+     * @return 解析后的结果
+     */
+    @PostMapping("/api/query")
+    public String query(@RequestBody JSON json) {
+        // ================ 1. 基础多层级取值（核心场景） ================
+        // 示例前端传递的 JSON 数据结构：
+        // {
+        //   "user": {
+        //     "basicInfo": {
+        //       "name": "张三",
+        //       "age": 25,
+        //       "address": {
+        //         "province": "广东省",
+        //         "city": "深圳市"
+        //       }
+        //     },
+        //     "hobbies": ["篮球", "编程", "阅读"]
+        //   },
+        //   "page": {
+        //     "pageNum": 1,
+        //     "pageSize": 10
+        //   }
+        // }
 
+        // 关键步骤：将顶层 JSON 接口强转为 JSONObject（核心修正）
+        JSONObject rootObj = json instanceof JSONObject ? (JSONObject) json : new JSONObject();
 
+        // ================ 1. 逐层获取多层级数据 ================
+        // 第一层：获取 user 节点（JSONObject）
+        JSONObject userObj = rootObj.getJSONObject("user");
+        // 第二层：获取 user.basicInfo 节点
+        JSONObject basicInfoObj = userObj == null ? new JSONObject() : userObj.getJSONObject("basicInfo");
+        // 第三层：获取基础信息字段（带默认值，避免空指针）
+        String name = basicInfoObj.getStr("name", "未知");
+        Integer age = basicInfoObj.getInt("age", 0);
+
+        // 第四层：获取 user.basicInfo.address 节点
+        JSONObject addressObj = basicInfoObj.getJSONObject("address");
+        String province = addressObj == null ? "未知" : addressObj.getStr("province", "未知");
+        String city = addressObj == null ? "未知" : addressObj.getStr("city", "未知");
+
+        // 方式2：链式取值（简洁，推荐空值时加默认值）
+        Integer pageNum = json.getByPath("page.pageNum", Integer.class); // 路径取值，默认值1
+        Integer pageSize = json.getByPath("page.pageSize", Integer.class);
+
+        // ================ 2. 集合/数组取值 ================
+        JSONArray hobbiesArray = userObj.getJSONArray("hobbies"); // 获取数组
+        // 遍历数组
+        StringBuilder hobbies = new StringBuilder();
+        for (int i = 0; i < hobbiesArray.size(); i++) {
+            hobbies.append(hobbiesArray.getStr(i)).append(",");
+        }
+
+        // ================ 3. 空值安全处理（避免空指针） ================
+        // 取值时指定默认值，防止字段不存在时报错
+        String email = basicInfoObj.getStr("email", "未填写"); // 字段不存在时返回"未填写"
+        Long phone = basicInfoObj.getLong("phone", 0L); // 字段不存在时返回0L
+
+        // ================ 4. 结果拼接（示例） ================
+        return String.format(
+                "姓名：%s，年龄：%d，地址：%s-%s，页码：%d，每页条数：%d，爱好：%s，邮箱：%s，手机号：%d",
+                name, age, province, city, pageNum, pageSize, hobbies.toString().replaceAll(",$", ""),
+                email, phone
+        );
+    }
 }

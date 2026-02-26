@@ -1,3 +1,5 @@
+// This file is commented out — OkHttp wrapper moved to jun_okhttp module.
+/*
 package com.jun.plugin.okhttp;
 
 import java.util.List;
@@ -11,10 +13,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 
 /**
- * 
+ *
  * @author Wujun
  *
- */
+ * /
 public abstract class OkHttpRequest {
 	protected int id;
 	protected String url;
@@ -40,7 +42,7 @@ public abstract class OkHttpRequest {
 	}
 
 	protected abstract RequestBody buildRequestBody();
-	
+
 	protected abstract Request buildRequest(RequestBody requestBody);
 
 	public RequestCall build() {
@@ -69,3 +71,4 @@ public abstract class OkHttpRequest {
 	}
 
 }
+*/

@@ -121,36 +121,44 @@
 			<artifactId>tapestry5-annotations</artifactId>
 			<version>5.6.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+		<!-- Jedis → see jun_redis module -->
+		<!--
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
 			<version>3.3.0</version>
 		</dependency>
+		-->
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20200518</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<!-- HttpClient → see jun_httpclient module -->
+		<!--
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.13</version>
 		</dependency>
+		-->
+		<!-- JExcelApi → redundant with POI; see jun_poi module -->
+		<!--
 		<dependency>
 			<groupId>net.sourceforge.jexcelapi</groupId>
 			<artifactId>jxl</artifactId>
 			<version>2.6.12</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		-->
+		<!-- POI → see jun_poi module -->
+		<!--
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
 			<version>4.1.2</version>
 		</dependency>
+		-->
 
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>

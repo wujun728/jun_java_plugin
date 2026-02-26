@@ -7,8 +7,11 @@
 		import org.apache.commons.dbutils.QueryRunner;
 		import com.mchange.v2.c3p0.ComboPooledDataSource;
 		
+		// NOTE: This class uses hardcoded C3P0 configuration.
+		// For a more flexible connection pool setup, consider using jun_datasource module
+		// which provides DataSourceC3p0 with configurable properties.
 		public class JdbcUtils{
-			
+
 			//读取c3p0-config.xml文件的默认配置
 			private static ComboPooledDataSource  datasource =new ComboPooledDataSource();
 			

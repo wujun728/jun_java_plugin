@@ -1,3 +1,6 @@
+// This file is commented out — part of image spider, dependent on SimpleSpider.
+// See jun_crawler or jun_jsoup for web scraping functionality.
+/*
 package com.jun.plugin.httpclient.base.imagedown2;
 
 import java.util.ArrayList;
@@ -12,7 +15,6 @@ public class JianDanHtmlParser implements Runnable {
 	}
 	@Override
 	public void run() {
-		System.out.println("==========��"+page+"ҳ============");
 		List<String> list = new ArrayList<String>();
 		html = html.substring(html.indexOf("commentlist"));
 		String[] images = html.split("li>");
@@ -36,3 +38,4 @@ public class JianDanHtmlParser implements Runnable {
 		}
 	}
 }
+*/

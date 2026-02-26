@@ -143,6 +143,18 @@
             <groupId>net.dreamlu</groupId>
             <artifactId>mica-auto</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.41</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.41</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 

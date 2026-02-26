@@ -1,3 +1,6 @@
+// This file is commented out — uses Apache HttpClient which is now removed.
+// See jun_httpclient module for HTTP client functionality.
+/*
 package com.jun.plugin.commons.util.network;
 
 import java.io.IOException;
@@ -26,13 +29,6 @@ import com.jun.plugin.commons.util.exception.ProjectException;
 public abstract class HttpClientUtils {
 	protected static Log log = LogFactory.getLog(HttpClientUtils.class);
 
-	/**
-	 * 发送Get请求
-	 * 
-	 * @param url
-	 *            发送请求地址
-	 * @return 返回内容
-	 * */
 	public static String sendGet(String url, String ecode)
 			throws ProjectException {
 		String result = null;
@@ -77,15 +73,6 @@ public abstract class HttpClientUtils {
 		return sendGet(url, "utf-8");
 	}
 
-	/**
-	 * 发送带参数的Get请求
-	 * 
-	 * @param url
-	 *            发送请求地址
-	 * @param params
-	 *            发送请求的参数
-	 * @return 返回内容
-	 * */
 	public static String sendGet(String url, Map<String, String> params)
 			throws ProjectException {
 		Set<String> keys = params.keySet();
@@ -98,35 +85,22 @@ public abstract class HttpClientUtils {
 		return sendGet(urlBuilder.toString());
 	}
 
-	/**
-	 * 发送带参数的post请求
-	 * 
-	 * @param url
-	 *            发送请求地址
-	 * @param params
-	 *            发送请求的参数
-	 * @return 返回内容
-	 * */
 	public static String sendPost(String url, Map<String, String> params)
 			throws ProjectException {
 		String result = null;
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpPost get = new HttpPost(url);
-		// 创建表单参数列表
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
 		Set<String> keys = params.keySet();
 		for (String key : keys) {
 			qparams.add(new BasicNameValuePair(key, params.get(key)));
 		}
 		try {
-			// 填充表单
 			get.setEntity(new UrlEncodedFormEntity(qparams, "utf-8"));
-
 			HttpResponse response = httpClient.execute(get);
 			HttpEntity entity = response.getEntity();
 			if (entity != null) {
 				entity = new BufferedHttpEntity(entity);
-
 				InputStream in = entity.getContent();
 				byte[] read = new byte[1024];
 				byte[] all = new byte[0];
@@ -143,12 +117,11 @@ public abstract class HttpClientUtils {
 				}
 			}
 			get.abort();
-
 			return result;
 		} catch (Exception e) {
 			throw new ProjectException(ExceptAll.default_Project, "请求错误");
 		}
-
 	}
 
 }
+*/

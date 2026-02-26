@@ -60,12 +60,14 @@
 			<version>2.6</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+		<!-- Jsoup → see jun_jsoup module -->
+		<!--
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>1.13.1</version>
 		</dependency>
+		-->
 
 
 		<!-- 目标数据库，这里采用mysql -->
@@ -74,11 +76,14 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.40</version>
 		</dependency>
+		<!-- OkHttp → see jun_okhttp module -->
+		<!--
 		<dependency>
 			<groupId>com.squareup.okhttp3</groupId>
 			<artifactId>okhttp</artifactId>
 			<version>4.5.0</version>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
