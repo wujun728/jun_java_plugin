@@ -2,10 +2,11 @@ package io.github.wujun728.sql;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.log.StaticLog;
-import com.alibaba.druid.pool.DruidDataSource;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.sql.DataSource;
+import java.io.Closeable;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,8 +22,81 @@ public class DataSourcePool {
     public static final String oracleDriver6 = "oracle.jdbc.driver.OracleDriver";
     public static final String sqlserverDriver6 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 
-    // 所有数据源的连接池存在map里
     private static final ConcurrentHashMap<String, DataSource> dataSourceMap = new ConcurrentHashMap<>();
+
+    /**
+     * 连接池工厂实例，启动时按优先级自动检测：Druid > HikariCP。
+     * 使用独立内部类隔离类引用，未引入的连接池 jar 不会触发 NoClassDefFoundError。
+     */
+    private static final PoolFactory poolFactory = detectPoolFactory();
+
+    // ==================== 连接池工厂抽象 ====================
+
+    private interface PoolFactory {
+        DataSource create(String name, String url, String username, String password, String driver);
+        String type();
+    }
+
+    /** Druid 连接池工厂 */
+    private static class DruidPoolFactory implements PoolFactory {
+        @Override
+        public DataSource create(String name, String url, String username, String password, String driver) {
+            com.alibaba.druid.pool.DruidDataSource ds = new com.alibaba.druid.pool.DruidDataSource();
+            ds.setName(name);
+            ds.setUrl(url);
+            ds.setUsername(username);
+            ds.setPassword(password);
+            ds.setDriverClassName(driver);
+            ds.setConnectionErrorRetryAttempts(3);
+            ds.setBreakAfterAcquireFailure(true);
+            return ds;
+        }
+
+        @Override
+        public String type() {
+            return "Druid";
+        }
+    }
+
+    /** HikariCP 连接池工厂 */
+    private static class HikariPoolFactory implements PoolFactory {
+        @Override
+        public DataSource create(String name, String url, String username, String password, String driver) {
+            com.zaxxer.hikari.HikariConfig config = new com.zaxxer.hikari.HikariConfig();
+            config.setPoolName(name);
+            config.setJdbcUrl(url);
+            config.setUsername(username);
+            config.setPassword(password);
+            config.setDriverClassName(driver);
+            config.setConnectionTimeout(30000);
+            config.setMaximumPoolSize(10);
+            return new com.zaxxer.hikari.HikariDataSource(config);
+        }
+
+        @Override
+        public String type() {
+            return "HikariCP";
+        }
+    }
+
+    private static PoolFactory detectPoolFactory() {
+        // 优先级：Druid > HikariCP
+        try {
+            Class.forName("com.alibaba.druid.pool.DruidDataSource");
+            StaticLog.info("检测到 Druid 连接池依赖，使用 Druid");
+            return new DruidPoolFactory();
+        } catch (ClassNotFoundException ignored) {
+        }
+        try {
+            Class.forName("com.zaxxer.hikari.HikariDataSource");
+            StaticLog.info("检测到 HikariCP 连接池依赖，使用 HikariCP");
+            return new HikariPoolFactory();
+        } catch (ClassNotFoundException ignored) {
+        }
+        throw new RuntimeException("未找到可用的数据库连接池依赖，请引入 druid 或 HikariCP");
+    }
+
+    // ==================== 公开 API ====================
 
     public static DataSource init(String dsname, String url, String username, String password) {
         return init(dsname, url, username, password, identifyDatabaseTypeFromJdbcUrl(url));
@@ -48,16 +122,9 @@ public class DataSourcePool {
      */
     public static DataSource init(String dsname, String url, String username, String password, String driver) {
         return dataSourceMap.computeIfAbsent(dsname, key -> {
-            DruidDataSource druidDataSource = new DruidDataSource();
-            druidDataSource.setName(key);
-            druidDataSource.setUrl(url);
-            druidDataSource.setUsername(username);
-            druidDataSource.setPassword(password);
-            druidDataSource.setDriverClassName(driver);
-            druidDataSource.setConnectionErrorRetryAttempts(3);
-            druidDataSource.setBreakAfterAcquireFailure(true);
-            StaticLog.info("创建Druid连接池成功：{}", key);
-            return druidDataSource;
+            DataSource ds = poolFactory.create(key, url, username, password, driver);
+            StaticLog.info("创建{}连接池成功：{}", poolFactory.type(), key);
+            return ds;
         });
     }
 
@@ -76,19 +143,22 @@ public class DataSourcePool {
     }
 
     /**
-     * 删除数据库连接池。
-     * 使用 ConcurrentHashMap.remove 原子移除，避免 get+remove 的竞态条件。
+     * 删除并关闭数据库连接池。
+     * 通过 Closeable 接口统一关闭，兼容 Druid、HikariCP 及其他实现。
      */
     public static void remove(String dsname) {
         DataSource removed = dataSourceMap.remove(dsname);
-        if (removed instanceof DruidDataSource) {
+        if (removed == null) {
+            return;
+        }
+        if (removed instanceof Closeable) {
             try {
-                ((DruidDataSource) removed).close();
-                StaticLog.info("关闭并移除连接池：{}", dsname);
-            } catch (Exception e) {
+                ((Closeable) removed).close();
+            } catch (IOException e) {
                 StaticLog.error("关闭连接池失败：{}, {}", dsname, e.getMessage());
             }
         }
+        StaticLog.info("关闭并移除连接池：{}", dsname);
     }
 
     public static Connection getConnection(String dsname) throws SQLException {
@@ -99,10 +169,12 @@ public class DataSourcePool {
         return dataSource.getConnection();
     }
 
-    /**
-     * 获取当前所有数据源的只读快照（用于监控等场景）。
-     */
     public static ConcurrentHashMap<String, DataSource> getDataSourceMap() {
         return dataSourceMap;
+    }
+
+    /** 获取当前使用的连接池类型名称 */
+    public static String getPoolType() {
+        return poolFactory.type();
     }
 }
