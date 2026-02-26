@@ -11,7 +11,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.0.6.RELEASE</spring.version>
+		<spring.version>5.0.8.RELEASE</spring.version>
 		<jackson.version>1.9.13</jackson.version>
 		<jackson-databind.version>2.5.1</jackson-databind.version>
 		<druid.version>1.0.18</druid.version>
@@ -24,17 +24,9 @@
 		<quartz-version>2.2.3</quartz-version>
 		<druid-version>1.1.9</druid-version>
 		<fastjson-version>1.2.17</fastjson-version>
-		<spring-version>5.0.8.RELEASE</spring-version>
 	</properties>
 
 	<dependencies>
-		<!-- test -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
-			<scope>test</scope>
-		</dependency>
 		<!-- log -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -42,11 +34,6 @@
 			<version>1.6.1</version>
 		</dependency>
 		<!-- spring -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -87,19 +74,12 @@
 			<artifactId>spring-oxm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<!-- sqlserver -->
-		<!-- <dependency> <groupId>com.qdexam.sqlserver</groupId> <artifactId>sqlserver2005</artifactId> 
-			<version>1.0</version> </dependency> -->
 		<!-- mysql -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.39</version>
 		</dependency>
-		<!-- quartz -->
-		<!-- <dependency> <groupId>org.quartz-scheduler</groupId> <artifactId>quartz</artifactId> 
-			<version>1.8.3</version> </dependency> -->
-
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -162,13 +142,6 @@
 			<version>${fastjson-version}</version>
 		</dependency>
 
-		<!-- mysql驱动 -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.39</version>
-		</dependency>
-
 		<!-- oracle驱动 -->
 
 		<!-- servlet -->
@@ -188,31 +161,32 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${spring-version}</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>${spring-version}</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>${spring-version}</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>${spring-version}</version>
+			<version>${spring.version}</version>
 		</dependency>
 
+		<!-- test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>${spring-version}</version>
+			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
