@@ -52,9 +52,10 @@ public class DbPro {
     static final Object[] NULL_PARA_ARRAY = new Object[0];
 
     // 缓存池
-    public volatile static ConcurrentHashMap<String, DbPro> cache = new ConcurrentHashMap<>(32, 0.25F);
-    public volatile static ConcurrentHashMap<String, DataSource> dataSourceMap = new ConcurrentHashMap<>(32);
-    private static final Map<String, String> TABLE_PK_MAP = new HashMap<>();
+    public static final ConcurrentHashMap<String, DbPro> cache = new ConcurrentHashMap<>(32, 0.25F);
+    public static final ConcurrentHashMap<String, DataSource> dataSourceMap = new ConcurrentHashMap<>(32);
+    private static final ConcurrentHashMap<String, String> TABLE_PK_MAP = new ConcurrentHashMap<>();
+    private static final Object INIT_LOCK = new Object();
 
     public DbPro() {
     }
@@ -66,24 +67,32 @@ public class DbPro {
     }
 
     static DbPro init(String configName, DataSource dataSource, Boolean force) {
-        DbPro dbPro = DbPro.cache.get(configName);
-        if (dbPro == null || force) {
-            dbPro = new DbPro();
-            JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-            TransactionTemplate transactionTemplate = new TransactionTemplate();
-            DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
-            transactionManager.setDataSource(dataSource);
-            transactionTemplate.setTransactionManager(transactionManager);
+        DbPro existing = DbPro.cache.get(configName);
+        if (existing != null && !force) {
+            return existing;
+        }
+        synchronized (INIT_LOCK) {
+            existing = DbPro.cache.get(configName);
+            if (existing != null && !force) {
+                return existing;
+            }
+            DbPro dbPro = new DbPro();
+            JdbcTemplate jt = new JdbcTemplate(dataSource);
+            jt.setFetchSize(DEFAULT_FETCHSIZE);
+            TransactionTemplate tt = new TransactionTemplate();
+            DataSourceTransactionManager tm = new DataSourceTransactionManager();
+            tm.setDataSource(dataSource);
+            tt.setTransactionManager(tm);
             dbPro.configName = configName;
-            dbPro.jdbcTemplate = jdbcTemplate;
-            dbPro.transactionTemplate = transactionTemplate;
+            dbPro.jdbcTemplate = jt;
+            dbPro.transactionTemplate = tt;
             dbPro.dataSource = dataSource;
             dbPro.dialect = detectDialect(dataSource);
             dataSourceMap.put(configName, dataSource);
             registerTablePrimaryKeys(dataSource);
             DbPro.cache.put(configName, dbPro);
+            return dbPro;
         }
-        return dbPro;
     }
 
     private static Dialect detectDialect(DataSource dataSource) {
@@ -145,10 +154,14 @@ public class DbPro {
     }
 
     public static String getPkNames(String tableName) {
-        if (CollectionUtil.isEmpty(DbPro.TABLE_PK_MAP)) {
-            DataSource ds = DbPro.dataSourceMap.get(main);
-            if (ds != null) {
-                DbPro.registerTablePrimaryKeys(ds);
+        if (TABLE_PK_MAP.isEmpty()) {
+            synchronized (INIT_LOCK) {
+                if (TABLE_PK_MAP.isEmpty()) {
+                    DataSource ds = dataSourceMap.get(main);
+                    if (ds != null) {
+                        registerTablePrimaryKeys(ds);
+                    }
+                }
             }
         }
         String primaryKey = DbPro.TABLE_PK_MAP.get(tableName);
@@ -202,18 +215,20 @@ public class DbPro {
                 return ps;
             }
         }, keyHolder);
-        // Handle case where multiple keys are returned (e.g., H2 with DEFAULT columns)
         List<Map<String, Object>> keyList = keyHolder.getKeyList();
         if (keyList != null && !keyList.isEmpty()) {
             Map<String, Object> keys = keyList.get(0);
-            // Return the first numeric key value
             for (Object val : keys.values()) {
                 if (val instanceof Number) {
                     return ((Number) val).longValue();
                 }
             }
         }
-        return keyHolder.getKey().longValue();
+        Number key = keyHolder.getKey();
+        if (key != null) {
+            return key.longValue();
+        }
+        throw new DbException("无法获取自增主键值");
     }
 
     /**
@@ -238,8 +253,8 @@ public class DbPro {
             });
             return 1;
         } catch (DataAccessException e) {
-            StaticLog.error(e.getMessage());
-            return 0;
+            StaticLog.error(e.getMessage() + "\n" + sql);
+            throw new DbException(e.getMessage() + "\n" + sql);
         }
     }
 
@@ -255,7 +270,6 @@ public class DbPro {
     public List<Map<String, Object>> queryList(String sql, Object[] params) {
         StaticLog.info(sql);
         try {
-            jdbcTemplate.setFetchSize(DEFAULT_FETCHSIZE);
             if (params != null && params.length > 0) {
                 return jdbcTemplate.queryForList(sql, params);
             } else {
@@ -459,7 +473,7 @@ public class DbPro {
             List<Map<String, Object>> resultMap = queryList(sql, columnValues);
             return RecordUtil.mapToRecords(resultMap);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return new ArrayList<>();
         }
     }
 

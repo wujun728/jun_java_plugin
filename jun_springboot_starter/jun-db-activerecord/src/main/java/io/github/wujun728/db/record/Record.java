@@ -63,15 +63,20 @@ public class Record implements Serializable{
     }
 
     public String getStr(String column) {
-        return (String)this.getColumns().get(column);
+        Object val = this.getColumns().get(column);
+        return val != null ? val.toString() : null;
     }
 
     public Integer getInt(String column) {
-        return (Integer)this.getColumns().get(column);
+        Object val = this.getColumns().get(column);
+        if (val == null) return null;
+        return (val instanceof Number) ? ((Number) val).intValue() : Integer.parseInt(val.toString());
     }
 
     public Long getLong(String column) {
-        return (Long)this.getColumns().get(column);
+        Object val = this.getColumns().get(column);
+        if (val == null) return null;
+        return (val instanceof Number) ? ((Number) val).longValue() : Long.parseLong(val.toString());
     }
 
     public BigInteger getBigInteger(String column) {
@@ -91,11 +96,15 @@ public class Record implements Serializable{
     }
 
     public Double getDouble(String column) {
-        return (Double)this.getColumns().get(column);
+        Object val = this.getColumns().get(column);
+        if (val == null) return null;
+        return (val instanceof Number) ? ((Number) val).doubleValue() : Double.parseDouble(val.toString());
     }
 
     public Float getFloat(String column) {
-        return (Float)this.getColumns().get(column);
+        Object val = this.getColumns().get(column);
+        if (val == null) return null;
+        return (val instanceof Number) ? ((Number) val).floatValue() : Float.parseFloat(val.toString());
     }
 
     public Boolean getBoolean(String column) {
@@ -107,7 +116,7 @@ public class Record implements Serializable{
     }
 
     public byte[] getBytes(String column) {
-        return (byte[])((byte[])this.getColumns().get(column));
+        return (byte[]) this.getColumns().get(column);
     }
 
     public Number getNumber(String column) {
@@ -148,25 +157,23 @@ public class Record implements Serializable{
     }
 
     public Record removeNullValueColumns() {
-        Iterator it = this.getColumns().entrySet().iterator();
-
-        while(it.hasNext()) {
-            Map.Entry e = (Map.Entry)it.next();
-            if(e.getValue() == null) {
+        Iterator<Map.Entry<String, Object>> it = this.getColumns().entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, Object> e = it.next();
+            if (e.getValue() == null) {
                 it.remove();
             }
         }
-
         return this;
     }
 
     public String[] getColumnNames() {
-        Set attrNameSet = this.getColumns().keySet();
-        return (String[])attrNameSet.toArray(new String[attrNameSet.size()]);
+        Set<String> attrNameSet = this.getColumns().keySet();
+        return attrNameSet.toArray(new String[0]);
     }
 
     public Object[] getColumnValues() {
-        Collection attrValueCollection = this.getColumns().values();
-        return attrValueCollection.toArray(new Object[attrValueCollection.size()]);
+        Collection<Object> attrValueCollection = this.getColumns().values();
+        return attrValueCollection.toArray(new Object[0]);
     }
 }

@@ -17,6 +17,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.sql.*;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 /**
@@ -32,6 +33,41 @@ import java.util.function.Function;
 public class RecordUtil {
 
     private static final char UNDERLINE = '_';
+
+    // ==================== 反射元数据缓存 ====================
+
+    /** 缓存: Class -> (Field, ColumnName) 列表，避免重复反射 */
+    private static final ConcurrentHashMap<Class<?>, List<FieldMeta>> FIELD_META_CACHE = new ConcurrentHashMap<>();
+
+    /** 字段元数据：持有 Field 引用和预解析的列名 */
+    public static class FieldMeta {
+        public final Field field;
+        public final String columnName; // null 表示该字段应跳过（@Transient等）
+
+        FieldMeta(Field field, String columnName) {
+            this.field = field;
+            this.columnName = columnName;
+        }
+    }
+
+    /**
+     * 获取类的字段元数据（含缓存），首次调用后缓存结果
+     */
+    public static List<FieldMeta> getFieldMetas(Class<?> clazz) {
+        return FIELD_META_CACHE.computeIfAbsent(clazz, c -> {
+            List<Field> fields = allFields(c);
+            List<FieldMeta> metas = new ArrayList<>(fields.size());
+            for (Field field : fields) {
+                if (Modifier.isStatic(field.getModifiers())) {
+                    continue;
+                }
+                field.setAccessible(true);
+                String columnName = getColumnName(field);
+                metas.add(new FieldMeta(field, columnName));
+            }
+            return Collections.unmodifiableList(metas);
+        });
+    }
 
     // ==================== 字段名转换 (原FieldUtils) ====================
 
@@ -101,14 +137,15 @@ public class RecordUtil {
     }
 
     /**
-     * 获取类的所有字段（含父类）
+     * 获取类的所有字段（遍历完整继承链，不含 Object）
      */
     public static List<Field> allFields(Class<?> clazz) {
         ArrayList<Field> fields = new ArrayList<>();
-        if (clazz.getSuperclass() != null && clazz.getSuperclass() != Object.class) {
-            fields.addAll(Arrays.asList(clazz.getSuperclass().getDeclaredFields()));
+        Class<?> current = clazz;
+        while (current != null && current != Object.class) {
+            fields.addAll(Arrays.asList(current.getDeclaredFields()));
+            current = current.getSuperclass();
         }
-        fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
         return fields;
     }
 
@@ -204,21 +241,16 @@ public class RecordUtil {
     }
 
     /**
-     * Bean转Map（字段名转驼峰作为key）
+     * Bean转Map（字段名转驼峰作为key，使用缓存元数据）
      */
     public static Map<String, Object> beanToMap(Object bean) {
         Map<String, Object> map = new HashMap<>();
         try {
-            Class<?> cls = bean.getClass();
-            for (Field field : cls.getDeclaredFields()) {
-                field.setAccessible(true);
-                Object val = field.get(bean);
+            for (FieldMeta meta : getFieldMetas(bean.getClass())) {
+                if (meta.columnName == null) continue;
+                Object val = meta.field.get(bean);
                 if (val != null) {
-                    String columnName = getColumnName(field);
-                    if (columnName == null) {
-                        continue;
-                    }
-                    map.put(toCamelCase(columnName), val);
+                    map.put(toCamelCase(meta.columnName), val);
                 }
             }
         } catch (IllegalAccessException e) {
@@ -333,21 +365,16 @@ public class RecordUtil {
     }
 
     /**
-     * Bean转Record（字段名根据注解解析为数据库列名）
+     * Bean转Record（字段名根据注解解析为数据库列名，使用缓存元数据）
      */
     public static Record beanToRecord(Object bean) {
         Record record = new Record();
         try {
-            Class<?> cls = bean.getClass();
-            for (Field field : cls.getDeclaredFields()) {
-                field.setAccessible(true);
-                Object val = field.get(bean);
+            for (FieldMeta meta : getFieldMetas(bean.getClass())) {
+                if (meta.columnName == null) continue;
+                Object val = meta.field.get(bean);
                 if (val != null) {
-                    String columnName = getColumnName(field);
-                    if (columnName == null) {
-                        continue;
-                    }
-                    record.put(columnName, val);
+                    record.put(meta.columnName, val);
                 }
             }
         } catch (IllegalAccessException e) {
@@ -430,14 +457,20 @@ public class RecordUtil {
         try {
             is = blob.getBinaryStream();
             if (is == null) return null;
-            byte[] data = new byte[(int) blob.length()];
-            if (data.length == 0) return null;
-            is.read(data);
+            int total = (int) blob.length();
+            if (total == 0) return null;
+            byte[] data = new byte[total];
+            int offset = 0;
+            while (offset < total) {
+                int read = is.read(data, offset, total - offset);
+                if (read == -1) break;
+                offset += read;
+            }
             return data;
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            if (is != null) try { is.close(); } catch (IOException e) { throw new RuntimeException(e); }
+            if (is != null) try { is.close(); } catch (IOException e) { /* ignore close error */ }
         }
     }
 
@@ -447,14 +480,20 @@ public class RecordUtil {
         try {
             reader = clob.getCharacterStream();
             if (reader == null) return null;
-            char[] buffer = new char[(int) clob.length()];
-            if (buffer.length == 0) return null;
-            reader.read(buffer);
-            return new String(buffer);
+            int total = (int) clob.length();
+            if (total == 0) return null;
+            char[] buffer = new char[total];
+            int offset = 0;
+            while (offset < total) {
+                int read = reader.read(buffer, offset, total - offset);
+                if (read == -1) break;
+                offset += read;
+            }
+            return new String(buffer, 0, offset);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            if (reader != null) try { reader.close(); } catch (IOException e) { throw new RuntimeException(e); }
+            if (reader != null) try { reader.close(); } catch (IOException e) { /* ignore close error */ }
         }
     }
 

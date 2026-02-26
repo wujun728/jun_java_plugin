@@ -12,24 +12,24 @@ public class DbException extends RuntimeException {
 	public DbException(String message, Throwable cause) {
 		super(message, cause);
 	}
+
 	public DbException(Throwable cause) {
 		super(cause);
 	}
+
 	public DbException(String message) {
 		super(message);
 	}
 
 	public DbException(Exception e, String sql) {
-		super("数据库运行期异常");
-		e.printStackTrace();
+		super("数据库运行期异常, SQL: " + sql, e);
 		if (loger.isErrorEnabled()) {
-			loger.error("数据库运行期异常，相关sql语句为" + sql);
-			loger.error(e);
+			loger.error("数据库运行期异常，相关sql语句为" + sql, e);
 		}
 	}
 
 	public DbException(String message, String sql) {
-		super(message);
+		super(message + ", SQL: " + sql);
 		if (loger.isErrorEnabled()) {
 			loger.error(message + "，相关sql语句为" + sql);
 		}

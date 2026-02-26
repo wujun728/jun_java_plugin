@@ -65,6 +65,21 @@ public abstract class Model<M extends Model<M>> implements Serializable {
      */
     private transient String configName;
 
+    /**
+     * 缓存: 实际 Model 子类 Class（避免每次调用 _getUsefulClass() 做字符串匹配）
+     */
+    private transient volatile Class<? extends M> usefulClassCache;
+
+    /**
+     * 缓存: 表名（避免每次 CRUD 操作重复解析注解）
+     */
+    private transient volatile String tableNameCache;
+
+    /**
+     * 缓存: 主键名（避免每次 CRUD 操作重复反射）
+     */
+    private transient volatile String primaryKeyCache;
+
     // ==================== 配置方法 ====================
 
     /**
@@ -104,55 +119,67 @@ public abstract class Model<M extends Model<M>> implements Serializable {
     }
 
     /**
-     * 获取实际 Model 子类的 Class（跳过 CGLIB 等代理类）
+     * 获取实际 Model 子类的 Class（跳过 CGLIB 等代理类，结果缓存）
      */
+    @SuppressWarnings("rawtypes")
     protected Class<? extends M> _getUsefulClass() {
+        if (usefulClassCache != null) {
+            return usefulClassCache;
+        }
         Class c = getClass();
-        return (c.getName().indexOf("$$EnhancerBy") == -1
+        Class<? extends M> result = (c.getName().indexOf("$$EnhancerBy") == -1
                 && c.getName().indexOf("$$FastClassBy") == -1
                 && c.getName().indexOf("_$$_") == -1) ? c : c.getSuperclass();
+        usefulClassCache = result;
+        return result;
     }
 
     // ==================== 表名与主键 ====================
 
     /**
-     * 获取表名，优先级：@Table(JPA) > @TableName(MyBatis-Plus) > 类名转下划线
+     * 获取表名，优先级：@Table(JPA) > @TableName(MyBatis-Plus) > 类名转下划线（结果缓存）
      */
     protected String _getTableName() {
+        if (tableNameCache != null) {
+            return tableNameCache;
+        }
         Class<?> clazz = _getUsefulClass();
+        String result = null;
         if (AnnotationUtil.hasAnnotation(clazz, Table.class)) {
-            String name = AnnotationUtil.getAnnotationValue(clazz, Table.class, "name");
-            if (StrUtil.isNotEmpty(name)) {
-                return name;
-            }
+            result = AnnotationUtil.getAnnotationValue(clazz, Table.class, "name");
         }
-        if (AnnotationUtil.hasAnnotation(clazz, TableName.class)) {
-            String name = AnnotationUtil.getAnnotationValue(clazz, TableName.class, "value");
-            if (StrUtil.isNotEmpty(name)) {
-                return name;
-            }
+        if (StrUtil.isEmpty(result) && AnnotationUtil.hasAnnotation(clazz, TableName.class)) {
+            result = AnnotationUtil.getAnnotationValue(clazz, TableName.class, "value");
         }
-        return RecordUtil.toUnderlineCase(clazz.getSimpleName());
+        if (StrUtil.isEmpty(result)) {
+            result = RecordUtil.toUnderlineCase(clazz.getSimpleName());
+        }
+        tableNameCache = result;
+        return result;
     }
 
     /**
-     * 获取主键名，优先级：@Id 注解字段 > TABLE_PK_MAP > 默认 "id"
+     * 获取主键名，优先级：@Id 注解字段 > TABLE_PK_MAP > 默认 "id"（结果缓存）
      */
     protected String _getPrimaryKey() {
+        if (primaryKeyCache != null) {
+            return primaryKeyCache;
+        }
         Class<?> clazz = _getUsefulClass();
         List<String> pkNames = new ArrayList<>();
-        for (Field field : RecordUtil.allFields(clazz)) {
-            if (field.isAnnotationPresent(Id.class)) {
-                String columnName = RecordUtil.getColumnName(field);
-                if (columnName != null) {
-                    pkNames.add(columnName);
-                }
+        for (RecordUtil.FieldMeta meta : RecordUtil.getFieldMetas(clazz)) {
+            if (meta.field.isAnnotationPresent(Id.class) && meta.columnName != null) {
+                pkNames.add(meta.columnName);
             }
         }
+        String result;
         if (!pkNames.isEmpty()) {
-            return String.join(",", pkNames);
+            result = String.join(",", pkNames);
+        } else {
+            result = DbPro.getPkNames(_getTableName());
         }
-        return DbPro.getPkNames(_getTableName());
+        primaryKeyCache = result;
+        return result;
     }
 
     // ==================== 属性操作（链式） ====================

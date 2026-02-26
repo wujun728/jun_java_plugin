@@ -8,8 +8,7 @@ import java.util.Map;
 public class BatchSql {
 	private List<Map<String, Object>> sqlList = new ArrayList<Map<String, Object>>();
 
-	@SuppressWarnings("rawtypes")
-	public void addBatch(String sql, List paramList) {
+	public void addBatch(String sql, List<?> paramList) {
 		this.addBatch(sql, paramList.toArray());
 	}
 

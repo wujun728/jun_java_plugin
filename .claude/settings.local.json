@@ -33,7 +33,9 @@
       "Bash(mvn test -Dtest=\"io.github.wujun728.generator.CodeGeneratorTest\")",
       "Bash(mvn clean compile test-compile)",
       "Bash(mvn test -Dtest=ModelTest -pl .)",
-      "Bash(mvn test)"
+      "Bash(mvn test)",
+      "Bash(mvn clean compile test-compile -q)",
+      "Bash(mvn clean test)"
     ]
   }
 }

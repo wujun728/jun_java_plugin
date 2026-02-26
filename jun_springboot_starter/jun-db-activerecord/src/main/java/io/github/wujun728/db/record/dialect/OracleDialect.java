@@ -20,7 +20,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import io.github.wujun728.db.record.Record;
 
@@ -97,21 +96,17 @@ public class OracleDialect extends Dialect {
 	public void forDbUpdate(String tableName, String[] pKeys, Object[] ids, Record record, StringBuilder sql, List<Object> paras) {
 		tableName = tableName.trim();
 		trimPrimaryKeys(pKeys);
-		
-		// Record 新增支持 modifyFlag
-//		Set<String> modifyFlag = CPI.getModifyFlag(record);
-//		Set<String> modifyFlag = record._getModifyFlag();
-		
+
 		sql.append("update ").append(tableName).append(" set ");
 		for (Entry<String, Object> e: record.getColumns().entrySet()) {
 			String colName = e.getKey();
-//			if (modifyFlag.contains(colName) && !isPrimaryKey(colName, pKeys)) {
+			if (!isPrimaryKey(colName, pKeys)) {
 				if (paras.size() > 0) {
 					sql.append(", ");
 				}
 				sql.append(colName).append(" = ? ");
 				paras.add(e.getValue());
-//			}
+			}
 		}
 		sql.append(" where ");
 		for (int i=0; i<pKeys.length; i++) {

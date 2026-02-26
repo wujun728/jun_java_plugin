@@ -29,7 +29,7 @@ import java.util.Map;
 public class Db {
 
     public static final String main = "main";
-    private static DbPro MAIN;
+    private static volatile DbPro MAIN;
 
     @Value("${db.main.enable:false}")
     private String mainEnable;
@@ -349,7 +349,7 @@ public class Db {
 
     static String identifyDriver(String jdbcUrl) {
         if (jdbcUrl.startsWith("jdbc:mysql:")) {
-            return "com.mysql.jdbc.Driver";
+            return "com.mysql.cj.jdbc.Driver";
         } else if (jdbcUrl.startsWith("jdbc:postgresql:")) {
             return "org.postgresql.Driver";
         } else if (jdbcUrl.startsWith("jdbc:oracle:")) {
@@ -361,6 +361,6 @@ public class Db {
         } else if (jdbcUrl.startsWith("jdbc:sqlite:")) {
             return "org.sqlite.JDBC";
         }
-        return "com.mysql.jdbc.Driver";
+        return "com.mysql.cj.jdbc.Driver";
     }
 }
