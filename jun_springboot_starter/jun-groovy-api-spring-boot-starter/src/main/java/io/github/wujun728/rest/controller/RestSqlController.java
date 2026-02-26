@@ -10,7 +10,7 @@ import io.github.wujun728.common.base.Result;
 import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
-import io.github.wujun728.db.utils.DataSourcePool;
+import io.github.wujun728.sql.DataSourcePool;
 import io.github.wujun728.db.utils.RecordUtil;
 import io.github.wujun728.rest.service.RestSqlService;
 import io.github.wujun728.rest.util.HttpRequestUtil;

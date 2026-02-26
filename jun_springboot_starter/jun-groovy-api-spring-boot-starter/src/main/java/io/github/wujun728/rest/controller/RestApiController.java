@@ -15,7 +15,7 @@ import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
-import io.github.wujun728.db.utils.DataSourcePool;
+import io.github.wujun728.sql.DataSourcePool;
 import io.github.wujun728.db.utils.RecordUtil;
 import io.github.wujun728.rest.service.RestApiService;
 import io.github.wujun728.rest.util.HttpRequestUtil;
@@ -80,7 +80,7 @@ public class RestApiController {
             parameters.put("entityName" , entityName);
             parameters.put("tableName" , tableName);
             Page<Record> pages = restApiService.getPage(tableName,parameters);
-            List<Map<String, Object>> datas = RecordUtil.recordToMaps(pages.getList(),isUnderLine);
+            List<Map<String, Object>> datas = RecordUtil.recordToMaps(pages.getList());
             return Result.success(datas).put("count", pages.getTotalRow()).put("pageSize", pages.getPageSize()).put("totalPage", pages.getTotalPage()).put("pageNumber", pages.getPageNumber());
         } catch (Exception e) {
             String message = ExceptionUtils.getMessage(e);
@@ -128,7 +128,7 @@ public class RestApiController {
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
             Record record = Db.findById(tableName, primaryKey, args.toArray());
             if (ObjectUtil.isNotNull(record)) {
-                Map data = RecordUtil.recordToMap(record,isUnderLine);
+                Map data = RecordUtil.recordToMap(record);
                 return Result.success(data);
             } else {
                 return Result.fail("无此ID对应的记录！");

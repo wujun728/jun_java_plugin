@@ -27,7 +27,6 @@ import io.github.wujun728.groovy.interfaces.IRun;
 import io.github.wujun728.rest.service.RestSqlService;
 import io.github.wujun728.rest.util.HttpRequestUtil;
 import io.github.wujun728.groovy.cache.ApiConfigCache;
-import io.github.wujun728.groovy.cache.IApiConfigCache;
 import io.github.wujun728.common.exception.BusinessException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -49,13 +48,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class RequestMappingExecutor implements IMappingExecutor,ApplicationListener<ContextRefreshedEvent> {
+public class RequestMappingExecutor implements ApplicationListener<ContextRefreshedEvent> {
 
 	@Autowired
 	private GroovyApiService groovyApiService;
-
-	@Autowired
-	private IApiConfigCache apiInfoCache;
 
 	@Autowired
 	private ServerProperties serverProperties;
@@ -77,7 +73,6 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 	 */
 	@RequestMapping
 	@ResponseBody
-	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		Class<? extends RequestMappingExecutor> cls = this.getClass();
 		// 使用方法
@@ -88,9 +83,8 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 			method.invoke(this, request, response);
 		} catch (NoSuchMethodException e) {
 			log.warn("当前子类未实现自定义方法[process]，走默认Bean定义的逻辑[无自定义执行逻辑]");
-			IMappingExecutor executor = null;
 			try {
-				executor = SpringUtil.getBean("HttpMappingExecutor");
+				RequestMappingExecutor executor = SpringUtil.getBean("HttpMappingExecutor");
 				executor.execute(request, response);
 			} catch (NoSuchBeanDefinitionException ex ) {
 				//log.warn("找不到默认执行Bean[HttpMappingExecutor],No bean named 'HttpMappingExecutor' available，走系统默认执行逻辑[无自定义执行逻辑]");
@@ -212,7 +206,7 @@ public class RequestMappingExecutor implements IMappingExecutor,ApplicationListe
 		try {
 			//  执行SQL逻辑  *****************************************************************************************************
 			// 校验接口是否存在
-			ApiConfig config = apiInfoCache.get(servletPath);
+			ApiConfig config = ApiConfigCache.get(servletPath);
 			if (config == null) {
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 				response.setContentType(request.getContentType());

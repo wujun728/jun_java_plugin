@@ -5,7 +5,6 @@ import cn.hutool.core.lang.Console;
 //import io.github.wujun728.db.record.Db;
 //import io.github.wujun728.db.record.kit.DbKit;
 import cn.hutool.log.StaticLog;
-import io.github.wujun728.groovy.cache.IApiConfigCache;
 import io.github.wujun728.sql.entity.ApiConfig;
 import io.github.wujun728.groovy.service.GroovyApiService;
 import io.github.wujun728.groovy.cache.ApiConfigCache;
@@ -58,9 +57,6 @@ public class GroovyDynamicLoader implements ApplicationContextAware, Initializin
 	private GroovyApiService groovyApiService;
 
 	@Resource
-	private IApiConfigCache apiInfoCache;
-
-	@Resource
 	private RequestMappingService requestMappingService;
 
 	public static final String main = "main";
@@ -82,7 +78,7 @@ public class GroovyDynamicLoader implements ApplicationContextAware, Initializin
 
 			List<ApiConfig> groovyScripts = groovyApiService.queryApiConfigList();
 
-			apiInfoCache.putAll(groovyScripts);
+			ApiConfigCache.putAll(groovyScripts);
 
 
 			initNew(groovyScripts);
@@ -153,7 +149,7 @@ public class GroovyDynamicLoader implements ApplicationContextAware, Initializin
 
 		List<ApiConfig> groovyInfos = groovyApiService.queryApiConfigList();
 
-		apiInfoCache.putAll(groovyInfos);
+		ApiConfigCache.putAll(groovyInfos);
 
 		if (CollectionUtils.isEmpty(groovyInfos)) {
 			return;
@@ -201,13 +197,13 @@ public class GroovyDynamicLoader implements ApplicationContextAware, Initializin
 				// 取消历史注册
 				if (apiInfo != null) {
 					requestMappingService.unregisterMappingForApiConfig(apiInfo);
-					apiInfoCache.remove(apiInfo);
+					ApiConfigCache.remove(apiInfo);
 				}
 
 				// 重新注册mapping
 				if (apiInfo != null) {
 					requestMappingService.registerMappingForApiConfig(apiInfo);
-					apiInfoCache.put(apiInfo);
+					ApiConfigCache.put(apiInfo);
 				}
 			}
 		} catch (NoSuchMethodException e) {

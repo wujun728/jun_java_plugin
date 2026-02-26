@@ -51,7 +51,7 @@ public class GroovyApiService {
 
 	public Integer queryCountSql() {
 		//Long aLong = jdbcTemplate.queryForObject("select count(*) from test ", Long.class);
-		Integer count = Db.use("main").queryInt("select count(*) from  "+"api_config"+"  ");
+		Integer count = Db.use("main").queryForInt("select count(*) from  "+"api_config"+"  ");
 		return count;
 	}
 
@@ -59,7 +59,7 @@ public class GroovyApiService {
 	public List<ApiDataSource> queryDatasourceList() {
 		Page<Record> lists = Db.use("main").paginate(1,2,"select * "," from  "+"api_datasource"+"  where id <> ? ");
 		//Console.log(JSON.toJSONString(lists));
-		Console.log(JSON.toJSONString(RecordUtil.pageRecordToPageMap(lists,false)));
+		Console.log(JSON.toJSONString(RecordUtil.pageRecordToPageMap(lists)));
 
 		String from = "from  "+"api_datasource"+"  where id > ?";
 		String totalRowSql = "select count(*) " + from;
@@ -75,7 +75,7 @@ public class GroovyApiService {
 		List<Record> lists = Db.use("main").find("select * from  "+"api_config"+"  ");
 		// List<Map<String, Object>> lists = jdbcTemplate.queryForList("select * from api_sql where api_id = "+apiId);
 		List<ApiSql> datas = RecordUtil.recordToBeans(lists,ApiSql.class);
-		List<Map<String, Object>> datas2 = RecordUtil.recordToMaps(lists,false);
+		List<Map<String, Object>> datas2 = RecordUtil.recordToMaps(lists);
 //		List<ApiSql> datas = RecordUtil.mapToBeans(lists,ApiSql.class);
 		//log.info(JSON.toJSONString(datas));
 		return datas2;

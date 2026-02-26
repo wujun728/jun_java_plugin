@@ -1,7 +1,7 @@
 package io.github.wujun728.code;
 
 import cn.hutool.core.map.MapUtil;
-import io.github.wujun728.db.utils.DataSourcePool;
+import io.github.wujun728.sql.DataSourcePool;
 import io.github.wujun728.generator.CodeUtil;
 import lombok.extern.slf4j.Slf4j;
 

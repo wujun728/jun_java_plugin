@@ -14,10 +14,13 @@ import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.common.utils.IdGenerator15;
 import io.github.wujun728.db.record.Record;
 //import io.github.wujun728.db.record.interfaces.IRecordHandler;
-import io.github.wujun728.db.utils.FieldUtils;
+import cn.hutool.core.util.StrUtil;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.util.CollectionUtils;
 import javax.sql.DataSource;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -34,7 +37,7 @@ public class RestUtil {
             if (ObjectUtil.isNotEmpty(paramValue)) {//非空值，直接设置
                 record.set(column.getName(), (paramValue));
             } else {
-                String fieldName = FieldUtils.columnNameToFieldName(column.getName());
+                String fieldName = StrUtil.toCamelCase(column.getName());
                 if (ObjectUtil.isNotEmpty(RestUtil.getDefaultValue(fieldName))) {//设置默认值的字段
                     record.set(column.getName(), RestUtil.getDefaultValue(fieldName));
                 } else {
@@ -311,6 +314,23 @@ public class RestUtil {
 
     public static String columnNameToFieldName(String name){
         return underlineToCamel(name);
+    }
+
+    /**
+     * 获取对象中值为null的属性名（从 JUNUtil 迁移）
+     */
+    public static String[] getNullPropertyNames(Object source) {
+        final BeanWrapper src = new BeanWrapperImpl(source);
+        java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
+        Set<String> emptyNames = new HashSet<>();
+        for (java.beans.PropertyDescriptor pd : pds) {
+            Object srcValue = src.getPropertyValue(pd.getName());
+            if (srcValue == null) {
+                emptyNames.add(pd.getName());
+            }
+        }
+        String[] result = new String[emptyNames.size()];
+        return emptyNames.toArray(result);
     }
 
     public static String underlineToCamel(String name){

@@ -11,7 +11,7 @@ import com.google.common.collect.Lists;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import io.github.wujun728.db.utils.DataSourcePool;
+import io.github.wujun728.sql.DataSourcePool;
 import io.github.wujun728.generator.entity.ClassInfo;
 import io.github.wujun728.generator.entity.FieldInfo;
 import io.github.wujun728.generator.util.FreemarkerUtil;
@@ -302,6 +302,34 @@ public class CodeUtil {
         return strPath;
     }
 
+
+    /**
+     * 批量生成代码（多表 + 多模板），返回生成结果 Map&lt;tableName, Map&lt;templateFileName, codeContent&gt;&gt;
+     */
+    public static Map<String, Map<String, String>> genCodeForTables(DataSource dataSource, List<String> tableNames, List<String> templateFileNames) {
+        Map<String, Map<String, String>> result = new HashMap<>();
+        for (String tableName : tableNames) {
+            Map<String, String> codeMap = new HashMap<>();
+            for (String template : templateFileNames) {
+                String content = genCodeV1(false, dataSource, tableName, null, template, null);
+                codeMap.put(template, content);
+            }
+            result.put(tableName, codeMap);
+        }
+        return result;
+    }
+
+    /**
+     * 生成代码返回内容 Map（不写文件），用于 REST 接口返回
+     */
+    public static Map<String, String> genCodeReturnMap(DataSource dataSource, String tableName, List<String> templateFileNames) {
+        Map<String, String> codeMap = new HashMap<>();
+        for (String template : templateFileNames) {
+            String content = genCodeV1(false, dataSource, tableName, null, template, null);
+            codeMap.put(template, content);
+        }
+        return codeMap;
+    }
 
     public static String getType(int value) {
         switch (value) {

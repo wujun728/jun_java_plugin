@@ -15,6 +15,9 @@ public class Result extends HashMap<String, Object>
     /** 状态码 */
     public static final String CODE_TAG = "code";
 
+    /** amis兼容状态码（status=0表示成功，与code同步） */
+    public static final String STATUS_TAG = "status";
+
     /** 返回内容 */
     public static final String MSG_TAG = "msg";
 
@@ -50,6 +53,7 @@ public class Result extends HashMap<String, Object>
     public Result(int code, String msg)
     {
         super.put(CODE_TAG, code);
+        super.put(STATUS_TAG, code);
         super.put(MSG_TAG, msg);
     }
 
@@ -63,6 +67,7 @@ public class Result extends HashMap<String, Object>
     public Result(int code, String msg, Object data)
     {
         super.put(CODE_TAG, code);
+        super.put(STATUS_TAG, code);
         super.put(MSG_TAG, msg);
         super.put(DATA_TAG, data);
     }

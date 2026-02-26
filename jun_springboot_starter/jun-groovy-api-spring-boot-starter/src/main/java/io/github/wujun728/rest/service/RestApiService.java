@@ -12,11 +12,10 @@ import io.github.wujun728.common.exception.BusinessException;
 import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
-import io.github.wujun728.db.utils.FieldUtils;
 import io.github.wujun728.db.utils.RecordUtil;
-import io.github.wujun728.db.utils.TreeBuildUtil;
 import io.github.wujun728.generator.util.MapUtil;
 import io.github.wujun728.rest.util.RestUtil;
+import io.github.wujun728.rest.util.TreeBuildUtil;
 import io.github.wujun728.sql.SqlMeta;
 import io.github.wujun728.sql.utils.JdbcUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +56,7 @@ public class RestApiService {
         }
         sql.append(from);
         List<Record> datas1 = Db.find(sql.toString());
-        List<Map<String, Object>> datas = RecordUtil.recordToMaps(datas1,isUnderLine);
+        List<Map<String, Object>> datas = RecordUtil.recordToMaps(datas1);
         return datas;
     }
     public Page<Record> getPage(String tableName, Map<String, Object> parameters){
@@ -100,7 +99,7 @@ public class RestApiService {
         }
         Boolean isTree = url.contains("tree") ?true:false;
         List<Record> datas1 = Db.find(sql.toString());
-        List<Map<String, Object>> datas = RecordUtil.recordToMaps(datas1,isUnderLine);
+        List<Map<String, Object>> datas = RecordUtil.recordToMaps(datas1);
         //是否构建树 begin
         if(isTree){
             String treeId = cn.hutool.core.map.MapUtil.getStr(parameters, "id") == null ? "id" : cn.hutool.core.map.MapUtil.getStr(parameters, "id");
@@ -176,7 +175,7 @@ public class RestApiService {
             if (ObjectUtil.isNotEmpty(paramValue)) {//非空值，直接设置
                 record.set(column.getName(), (paramValue));
             } else {
-                String fieldName = FieldUtils.columnNameToFieldName(column.getName());
+                String fieldName = StrUtil.toCamelCase(column.getName());
                 if (ObjectUtil.isNotEmpty(RestUtil.getDefaultValue(fieldName))) {//设置默认值的字段
                     record.set(column.getName(), RestUtil.getDefaultValue(fieldName));
                 } else {

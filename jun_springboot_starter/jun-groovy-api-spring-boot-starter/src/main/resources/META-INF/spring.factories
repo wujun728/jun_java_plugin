@@ -1,0 +1,16 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  io.github.wujun728.groovy.ApiAutoConfig,\
+  io.github.wujun728.groovy.groovy.GroovyDynamicLoader,\
+  io.github.wujun728.groovy.service.GroovyApiService,\
+  io.github.wujun728.groovy.controller.GroovyScriptController,\
+  io.github.wujun728.groovy.mapping.http.RequestMappingExecutor,\
+  io.github.wujun728.groovy.mapping.http.RequestMappingService,\
+  io.github.wujun728.groovy.util.MappingRegisterUtil,\
+  io.github.wujun728.rest.controller.RestApiController,\
+  io.github.wujun728.rest.controller.RestSqlController,\
+  io.github.wujun728.rest.service.RestApiService,\
+  io.github.wujun728.rest.service.RestSqlService,\
+  io.github.wujun728.rest.util.HttpRequestUtil,\
+  io.github.wujun728.sql.ApiEngineConfiguration,\
+  io.github.wujun728.generator.service.GeneratorServiceImpl,\
+  io.github.wujun728.generator.controller.CodeGeneratorController

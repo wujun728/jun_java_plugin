@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn compile -q)",
+      "Bash(mvn test -Dtest=io.github.wujun728.db.DbActiveRecordTest)",
+      "Bash(ls -d \"D:\\\\workspace\\\\github-new\\\\jun_java_plugin\\\\jun_java_plugins\"*/)",
+      "Bash(ls -d \"D:\\\\workspace\\\\github-new\\\\jun_java_plugin\\\\jun_java_plugins\"jun_*/)",
+      "Bash(ls -d \"D:\\\\workspace\\\\github-new\\\\jun_java_plugin\\\\jun_java_plugins\"/jun_*/)",
+      "Bash(mvn compile -T 4 --fail-at-end)",
+      "Bash(git add jun_java_plugins/pom.xml jun_java_plugins/jun_mybatisplus/pom.xml jun_java_plugins/jun_redis/pom.xml jun_java_plugins/jun_email/pom.xml jun_java_plugins/jun_serialization/pom.xml jun_java_plugins/jun_quartz/pom.xml jun_java_plugins/jun_jdk/pom.xml)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\ncleanup: remove empty/duplicate modules and fix dependency issues in jun_java_plugins\n\n- Comment out 9 empty shell modules \\(no Java source files\\) from parent POM\n- Comment out 4 redundant/duplicate modules from parent POM\n- Fix 12 duplicate dependencies across 5 POMs, including 4 version-mismatch bugs:\n  - jun_mybatisplus: spring-context was hardcoded 4.3.10 instead of $spring.version 5.1.9\n  - jun_redis: jedis duplicated with 2.9.0 vs 2.2.1\n  - jun_quartz: two spring version properties \\(4.0.6 vs 5.0.8\\) unified to 5.0.8\n- Remove unused spark-core, spark-sql, hadoop-client from jun_jdk \\(zero imports\\)\nEOF\n\\)\")",
+      "Bash(ls -d \"D:\\\\workspace\\\\github-new\\\\jun_java_plugin\\\\jun_java_plugins\"/*/)",
+      "Bash(xargs -I{} basename \"{}\")",
+      "Bash(ls -d D:/workspace/github-new/jun_java_plugin/jun_java_plugins/*/)",
+      "Bash(mvn compile -T 4)",
+      "Bash(mvn clean package -q)",
+      "Bash(cmd.exe /c \"cd /d D:\\\\workspace\\\\github-new\\\\jun_java_plugin\\\\jun_springboot_starter\\\\jun-mybatis-sql-engine && mvn clean package -q 2>&1\")",
+      "Bash(cmd.exe /c \"cd /d D:\\\\workspace\\\\github-new\\\\jun_java_plugin\\\\jun_springboot_starter\\\\jun-mybatis-sql-engine && mvn clean package 2>&1\")",
+      "Bash(cmd.exe /c \"D: && cd D:\\\\workspace\\\\github-new\\\\jun_java_plugin\\\\jun_springboot_starter\\\\jun-mybatis-sql-engine && mvn clean package\")",
+      "Bash(powershell.exe -Command \"Set-Location ''D:\\\\workspace\\\\github-new\\\\jun_java_plugin\\\\jun_springboot_starter\\\\jun-mybatis-sql-engine''; mvn clean package 2>&1\")",
+      "Bash(powershell.exe -Command \"Set-Location ''D:\\\\workspace\\\\github-new\\\\jun_java_plugin\\\\jun_springboot_starter\\\\jun-mybatis-sql-engine''; mvn clean package -Dmaven.javadoc.skip=true 2>&1\")",
+      "Bash(mvn clean compile -q)",
+      "Bash(mvn install -pl jun-db-activerecord -q -DskipTests)",
+      "Bash(mvn install -pl jun-mybatis-sql-engine -q -DskipTests)",
+      "Bash(dir \"C:\\\\Users\\\\Administrator\\\\.m2\\\\repository\\\\io\\\\github\\\\wujun728\\\\jun-db-activerecord\\\\1.0.25\"\")",
+      "Bash(mvn install -pl jun-common-base,jun-db-activerecord,jun-mybatis-sql-engine -DskipTests -am)",
+      "Bash(mvn clean compile)",
+      "Bash(jar tf \"D:\\\\Java\\\\.m2\\\\repository\\\\io\\\\github\\\\wujun728\\\\jun-db-activerecord\\\\1.0.25\\\\jun-db-activerecord-1.0.25.jar\")",
+      "Bash(mvn compile -pl jun-db-activerecord)",
+      "Bash(mvn install -pl jun-db-activerecord -DskipTests)",
+      "Bash(jar tf \"D:\\\\Java\\\\.m2\\\\repository\\\\io\\\\github\\\\wujun728\\\\jun-mybatis-sql-engine\\\\1.0.25\\\\jun-mybatis-sql-engine-1.0.25.jar\")",
+      "Bash(mvn test -Dtest=\"io.github.wujun728.groovy.GroovyScriptTest,io.github.wujun728.rest.RestApiTest,io.github.wujun728.sql.SqlEngineTest,io.github.wujun728.generator.CodeGeneratorTest\")",
+      "Bash(mvn test -Dtest=\"io.github.wujun728.generator.CodeGeneratorTest\")",
+      "Bash(mvn clean compile test-compile)"
+    ]
+  }
+}
