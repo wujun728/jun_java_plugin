@@ -16,15 +16,22 @@ public class Record implements Serializable{
 
     private Map<String, Object> columns = new HashMap<>();
 
-    /*public Model toModel(Class<? extends Model> modelClass) {
+    /**
+     * 将 Record 转换为指定 Model 类型
+     *
+     * @param modelClass Model 子类的 Class
+     * @return Model 实例，包含 Record 中的所有列数据
+     */
+    @SuppressWarnings("unchecked")
+    public <M extends Model<M>> M toModel(Class<M> modelClass) {
         try {
-            Model model = modelClass.newInstance();
-            return (Model)model.mapping(this.getColumns());
+            M model = modelClass.newInstance();
+            model.put(this.getColumns());
+            return model;
         } catch (InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Record转Model失败", e);
         }
-        return null;
-    }*/
+    }
 
     public Record put(Map<String, Object> map) {
         getColumns().putAll(map);

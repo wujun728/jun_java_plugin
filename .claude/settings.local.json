@@ -31,7 +31,9 @@
       "Bash(jar tf \"D:\\\\Java\\\\.m2\\\\repository\\\\io\\\\github\\\\wujun728\\\\jun-mybatis-sql-engine\\\\1.0.25\\\\jun-mybatis-sql-engine-1.0.25.jar\")",
       "Bash(mvn test -Dtest=\"io.github.wujun728.groovy.GroovyScriptTest,io.github.wujun728.rest.RestApiTest,io.github.wujun728.sql.SqlEngineTest,io.github.wujun728.generator.CodeGeneratorTest\")",
       "Bash(mvn test -Dtest=\"io.github.wujun728.generator.CodeGeneratorTest\")",
-      "Bash(mvn clean compile test-compile)"
+      "Bash(mvn clean compile test-compile)",
+      "Bash(mvn test -Dtest=ModelTest -pl .)",
+      "Bash(mvn test)"
     ]
   }
 }
