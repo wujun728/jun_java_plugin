@@ -4,19 +4,16 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.log.StaticLog;
 import com.alibaba.druid.pool.DruidDataSource;
 import lombok.extern.slf4j.Slf4j;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 @Slf4j
 public class DataSourcePool {
 
     public static final String main = "main";
-    private static Lock lock = new ReentrantLock();
-    private static Lock deleteLock = new ReentrantLock();
 
     public static final String mysqlDriver5 = "com.mysql.jdbc.Driver";
     public static final String mysqlDriver6 = "com.mysql.cj.jdbc.Driver";
@@ -24,109 +21,88 @@ public class DataSourcePool {
     public static final String oracleDriver6 = "oracle.jdbc.driver.OracleDriver";
     public static final String sqlserverDriver6 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 
-    //所有数据源的连接池存在map里
-    public volatile static ConcurrentHashMap<String, DataSource> dataSourceMap = new ConcurrentHashMap<>();
+    // 所有数据源的连接池存在map里
+    private static final ConcurrentHashMap<String, DataSource> dataSourceMap = new ConcurrentHashMap<>();
 
-    public static DataSource init(String dsname,String url,String username,String password) {
-        String driverName = mysqlDriver5;
-        driverName = identifyDatabaseTypeFromJdbcUrl(url);
-        return init(dsname,url,username,password,driverName);
+    public static DataSource init(String dsname, String url, String username, String password) {
+        return init(dsname, url, username, password, identifyDatabaseTypeFromJdbcUrl(url));
     }
+
     public static String identifyDatabaseTypeFromJdbcUrl(String jdbcUrl) {
         if (jdbcUrl.startsWith("jdbc:mysql:")) {
-            return mysqlDriver5;//            return "MySQL";
+            return mysqlDriver5;
         } else if (jdbcUrl.startsWith("jdbc:postgresql:")) {
-            return postgresqlDriver6;//            return "PostgreSQL";
+            return postgresqlDriver6;
         } else if (jdbcUrl.startsWith("jdbc:oracle:")) {
-            return oracleDriver6;//            return "Oracle";
+            return oracleDriver6;
         } else if (jdbcUrl.startsWith("jdbc:sqlserver:")) {
-            return sqlserverDriver6;//            return "SQL Server";
+            return sqlserverDriver6;
         } else {
             return "Unknown";
         }
     }
-    public static DataSource init(String dsname,String url,String username,String password,String driver) {
-        if (dataSourceMap.containsKey(dsname)) {
-            return dataSourceMap.get(dsname);
-        } else {
-            lock.lock();
-            try {
-                //StaticLog.info(Thread.currentThread().getName() + "获取锁");
-                if (!dataSourceMap.containsKey(dsname)) {
-                    DruidDataSource druidDataSource = new DruidDataSource();
-                    druidDataSource.setName(dsname);
-                    druidDataSource.setUrl(url);
-                    druidDataSource.setUsername(username);
-                    druidDataSource.setPassword(password);
-                    druidDataSource.setDriverClassName(driver);
-                    druidDataSource.setConnectionErrorRetryAttempts(3);       //失败后重连次数
-                    druidDataSource.setBreakAfterAcquireFailure(true);
-                    dataSourceMap.put(dsname, druidDataSource);
-                    StaticLog.info("创建Druid连接池成功：{}", dsname);
 
-                }
-                return dataSourceMap.get(dsname);
-            } catch (Exception e) {
-                return null;
-            } finally {
-                lock.unlock();
-            }
-        }
+    /**
+     * 初始化数据源，如果已存在则直接返回。
+     * 使用 computeIfAbsent 保证同一 key 的原子性创建，不同 key 之间互不阻塞。
+     */
+    public static DataSource init(String dsname, String url, String username, String password, String driver) {
+        return dataSourceMap.computeIfAbsent(dsname, key -> {
+            DruidDataSource druidDataSource = new DruidDataSource();
+            druidDataSource.setName(key);
+            druidDataSource.setUrl(url);
+            druidDataSource.setUsername(username);
+            druidDataSource.setPassword(password);
+            druidDataSource.setDriverClassName(driver);
+            druidDataSource.setConnectionErrorRetryAttempts(3);
+            druidDataSource.setBreakAfterAcquireFailure(true);
+            StaticLog.info("创建Druid连接池成功：{}", key);
+            return druidDataSource;
+        });
     }
-    public static void init(String dsname,DataSource dataSource) {
-        add(dsname,dataSource);
-        if(main.equalsIgnoreCase(dsname)){
-            //Db.init(dsname,dataSource);
-        }
-    }
-    private static void add(String dsname, DataSource dataSource) {
-        lock.lock();
-        try {
-            StaticLog.info(Thread.currentThread().getName() + "获取锁");
-            dataSourceMap.put(dsname, dataSource);
-            if(main.equalsIgnoreCase(dsname)){
-                //Db.init(dsname,dataSource);
-            }
+
+    public static void init(String dsname, DataSource dataSource) {
+        DataSource existing = dataSourceMap.putIfAbsent(dsname, dataSource);
+        if (existing == null) {
             StaticLog.info("添加连接池成功：{}", dsname);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            lock.unlock();
-        }
-    }
-    public static DataSource get(String dsname) {
-        if(StrUtil.isEmpty(dsname)){
-            return null;
-        }
-        if (dataSourceMap.containsKey(dsname)) {
-            return dataSourceMap.get(dsname);
-        } else {
-            return null;
         }
     }
 
-    //删除数据库连接池
+    public static DataSource get(String dsname) {
+        if (StrUtil.isEmpty(dsname)) {
+            return null;
+        }
+        return dataSourceMap.get(dsname);
+    }
+
+    /**
+     * 删除数据库连接池。
+     * 使用 ConcurrentHashMap.remove 原子移除，避免 get+remove 的竞态条件。
+     */
     public static void remove(String dsname) {
-        deleteLock.lock();
-        try {
-            DataSource druidDataSource = dataSourceMap.get(dsname);
-            if (druidDataSource != null) {
-                //druidDataSource.close();
-                if(druidDataSource instanceof  DruidDataSource){
-                    ((DruidDataSource)druidDataSource).close();
-                }
-                dataSourceMap.remove(dsname);
+        DataSource removed = dataSourceMap.remove(dsname);
+        if (removed instanceof DruidDataSource) {
+            try {
+                ((DruidDataSource) removed).close();
+                StaticLog.info("关闭并移除连接池：{}", dsname);
+            } catch (Exception e) {
+                StaticLog.error("关闭连接池失败：{}, {}", dsname, e.getMessage());
             }
-        } catch (Exception e) {
-            StaticLog.error(e.toString());
-        } finally {
-            deleteLock.unlock();
         }
     }
 
     public static Connection getConnection(String dsname) throws SQLException {
-        return DataSourcePool.get(dsname).getConnection();
+        DataSource dataSource = get(dsname);
+        if (dataSource == null) {
+            throw new SQLException("数据源不存在：" + dsname);
+        }
+        return dataSource.getConnection();
     }
 
-
+    /**
+     * 获取当前所有数据源的只读快照（用于监控等场景）。
+     */
+    public static ConcurrentHashMap<String, DataSource> getDataSourceMap() {
+        return dataSourceMap;
+    }
 }
