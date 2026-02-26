@@ -1,3 +1,5 @@
+// 功能已合并到RecordUtil.java
+/*
 package io.github.wujun728.db.utils;
 
 import cn.hutool.core.annotation.AnnotationUtil;
@@ -22,7 +24,7 @@ import java.util.Map;
 /**
  * @ClassName: RecordUtils
  * @Description: Record相关工具类
- */
+ * /
 public class MapKit {
 
 
@@ -179,10 +181,7 @@ public class MapKit {
         } else if (AnnotationUtil.hasAnnotation(field, Column.class)) {
             columndName = AnnotationUtil.getAnnotationValue(field, Column.class, "name");
             columndNameNew = DYH + columndName + DYH;
-        }/*else if(AnnotationUtil.hasAnnotation(field, io.github.wujun728.db.orm.annotation.Column.class)){
-            columndName = AnnotationUtil.getAnnotationValue(field, io.github.wujun728.db.orm.annotation.Column.class,"name");
-            columndNameNew = DYH+columndName+DYH;
-        }*/
+        }
         return columndNameNew;
     }
 
@@ -196,20 +195,17 @@ public class MapKit {
                 tableName = AnnotationUtil.getAnnotationValue(clazz, Table.class, "name");
             } else if (AnnotationUtil.hasAnnotation(clazz, TableName.class)) {
                 tableName = AnnotationUtil.getAnnotationValue(clazz, TableName.class, "value");
-            }/*else if(AnnotationUtil.hasAnnotation(clazz,Entity.class)){
-				tableName = AnnotationUtil.getAnnotationValue(clazz, Entity.class,"table");
-			}*/
+            }
         } else {
             tableName = FieldUtils.getUnderlineName(bean.getClass().getSimpleName());
             if (AnnotationUtil.hasAnnotation(bean.getClass(), Table.class)) {
                 tableName = AnnotationUtil.getAnnotationValue(bean.getClass(), Table.class, "name");
             } else if (AnnotationUtil.hasAnnotation(bean.getClass(), TableName.class)) {
                 tableName = AnnotationUtil.getAnnotationValue(bean.getClass(), TableName.class, "value");
-            }/*else if(AnnotationUtil.hasAnnotation(bean.getClass(),Entity.class)){
-				tableName = AnnotationUtil.getAnnotationValue(bean.getClass(), Entity.class,"table");
-			}*/
+            }
         }
         return tableName;
     }
 
 }
+*/

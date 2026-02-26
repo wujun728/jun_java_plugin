@@ -1,3 +1,5 @@
+// 非ORM核心功能，已移除
+/*
 package io.github.wujun728.db.utils;
 
 import cn.hutool.core.bean.BeanUtil;
@@ -16,7 +18,7 @@ public class TreeBuildUtil {
      * @param idField id,主键名称
      * @param parentIdField  parentId,父级字段名称
      * @return
-     */
+     * /
     public static List<Map<String, Object>> buildTree(List<Map<String, Object>> entityList, String rootValue, String idField, String parentIdField) {
         return listToTree(entityList, rootValue, idField, parentIdField);
     }
@@ -32,7 +34,7 @@ public class TreeBuildUtil {
         listMap.forEach(map -> entityMap.put(map.get(idField).toString(), map));
         listMap.forEach(map -> {
             Object pid = map.get(parentIdField);
-            if (pid == null ||/* StrUtil.equals(pid.toString(), "0") ||*/ StrUtil.equals(pid.toString(), rootValue)) {
+            if (pid == null || StrUtil.equals(pid.toString(), rootValue)) {
                 treeMap.add(map);
             } else {
                 Map<String, Object> parentMap = entityMap.get(pid.toString());
@@ -55,3 +57,4 @@ public class TreeBuildUtil {
     }
 
 }
+*/

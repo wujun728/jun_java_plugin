@@ -1,3 +1,5 @@
+// 已移除，随BaseRowMapper一起移除
+/*
 package io.github.wujun728.db.record.mapper;
 
 public enum RowType {
@@ -19,3 +21,4 @@ public enum RowType {
         return this.value;
     }
 }
+*/

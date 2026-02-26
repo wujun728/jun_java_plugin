@@ -1,3 +1,5 @@
+// 已移除，使用RecordUtil.mapToBean替代
+/*
 package io.github.wujun728.db.record.mapper;
 
 import cn.hutool.core.date.DateUtil;
@@ -12,7 +14,7 @@ import java.sql.SQLException;
 
 /**
  * SpringJdbcTemplate字段映射类
- */
+ * /
 public class BaseRowMapper<T> implements RowMapper<T> {
 
 	private Class<T> clazz;
@@ -82,3 +84,4 @@ public class BaseRowMapper<T> implements RowMapper<T> {
 		return t;
 	}
 }
+*/

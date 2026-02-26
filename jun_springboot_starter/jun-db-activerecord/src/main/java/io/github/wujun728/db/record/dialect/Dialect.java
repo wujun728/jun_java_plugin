@@ -16,11 +16,9 @@
 
 package io.github.wujun728.db.record.dialect;
 
-import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.RecordUtil;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,18 +33,10 @@ public abstract class Dialect {
 	
 	// 指示 Generator、ModelBuilder、RecordBuilder 是否保持住 Byte、Short 类型
 	protected boolean keepByteAndShort = false;
-//	protected ModelBuilder modelBuilder = ModelBuilder.me;
-//	protected RecordBuilder recordBuilder = RecordBuilder.me;
-	
+
 	// Methods for common
 	public abstract String forTableBuilderDoBuild(String tableName);
 	public abstract String forPaginate(int pageNumber, int pageSize, StringBuilder findSql);
-	
-	// Methods for Model
-//	public abstract String forModelFindById(Table table, String columns);
-//	public abstract String forModelDeleteById(Table table);
-//	public abstract void forModelSave(Table table, Map<String, Object> attrs, StringBuilder sql, List<Object> paras);
-//	public abstract void forModelUpdate(Table table, Map<String, Object> attrs, Set<String> modifyFlag, StringBuilder sql, List<Object> paras);
 	
 	// Methods for DbPro. Do not delete the String[] pKeys parameter, the element of pKeys needs to trim()
 	public abstract String forDbFindById(String tableName, String[] pKeys);
@@ -59,33 +49,6 @@ public abstract class Dialect {
 	}
 	
 	/**
-	 * 指示 Generator、ModelBuilder、RecordBuilder 是否保持住 Byte、Short 类型
-	 */
-//	public Dialect setKeepByteAndShort(boolean keepByteAndShort) {
-//		this.keepByteAndShort = keepByteAndShort;
-//		/**
-//		 * 内部的 4 个 if 判断是为了避免替换掉用户通过 setModelBuilder(...)
-//		 * setRecordBuilder(...) 配置的自定义 builder
-//		 */
-//		if (keepByteAndShort) {
-//			if (modelBuilder.getClass() == ModelBuilder.class) {
-//				modelBuilder = KeepByteAndShortModelBuilder.me;
-//			}
-//			if (recordBuilder.getClass() == RecordBuilder.class) {
-//				recordBuilder = KeepByteAndShortRecordBuilder.me;
-//			}
-//		} else {
-//			if (modelBuilder.getClass() == KeepByteAndShortModelBuilder.class) {
-//				modelBuilder = ModelBuilder.me;
-//			}
-//			if (recordBuilder.getClass() == KeepByteAndShortRecordBuilder.class) {
-//				recordBuilder = RecordBuilder.me;
-//			}
-//		}
-//		return this;
-//	}
-	
-	/**
 	 * 指示 MetaBuilder 生成的 ColumnMeta.javaType 是否保持住 Byte、Short 类型
 	 * 进而 BaseModelBuilder 生成针对 Byte、Short 类型的获取方法： 
 	 * getByte(String)、getShort(String)
@@ -94,44 +57,6 @@ public abstract class Dialect {
 		return keepByteAndShort;
 	}
 	
-	/**
-	 * 配置自定义 ModelBuilder
-	 * 
-	 * 通过继承扩展 ModelBuilder 可以对 JDBC 到 java 数据类型进行定制化转换
-	 * 不同数据库从 JDBC 到 java 数据类型的映射关系有所不同
-	 * 
-	 * 此外，还可以通过改变 ModelBuilder.buildLabelNamesAndTypes()
-	 * 方法逻辑，实现下划线字段名转驼峰变量名的功能
-	 */
-//	public Dialect setModelBuilder(ModelBuilder modelBuilder) {
-//		this.modelBuilder = modelBuilder;
-//		return this;
-//	}
-	
-	/**
-	 * 配置自定义 RecordBuilder
-	 * 
-	 * 通过继承扩展 RecordBuilder 可以对 JDBC 到 java 数据类型进行定制化转换
-	 * 不同数据库从 JDBC 到 java 数据类型的映射关系有所不同
-	 * 
-	 * 此外，还可以通过改变 RecordBuilder.buildLabelNamesAndTypes()
-	 * 方法逻辑，实现下划线字段名转驼峰变量名的功能
-	 */
-	/*public Dialect setRecordBuilder(RecordBuilder recordBuilder) {
-		this.recordBuilder = recordBuilder;
-		return this;
-	}*/
-	
-	/*@SuppressWarnings("rawtypes")
-	public <T> List<T> buildModelList(ResultSet rs, Class<? extends Model> modelClass) throws SQLException, ReflectiveOperationException {
-		return modelBuilder.build(rs, modelClass);
-	}
-
-	@SuppressWarnings("rawtypes")
-	public <T> void eachModel(ResultSet rs, Class<? extends Model> modelClass, Function<T, Boolean> func) throws SQLException, ReflectiveOperationException {
-		modelBuilder.build(rs, modelClass, func);
-	}*/
-	
 	public List<Record> buildRecordList(ResultSet rs) throws SQLException {
 		return RecordUtil.build(rs);
 	}
@@ -139,50 +64,6 @@ public abstract class Dialect {
 	public void eachRecord(ResultSet rs, Function<Record, Boolean> func) throws SQLException {
 		RecordUtil.build(rs, func);
 	}
-	
-	/**
-	 * 用于获取 Model.save() 以后自动生成的主键值，可通过覆盖此方法实现更精细的控制
-	 * 目前只有 PostgreSqlDialect，覆盖过此方法
-	 */
-//	public void getModelGeneratedKey(Model<?> model, PreparedStatement pst, Table table) throws SQLException {
-//		String[] pKeys = table.getPrimaryKey();
-//		ResultSet rs = pst.getGeneratedKeys();
-//		for (String pKey : pKeys) {
-//			if (model.get(pKey) == null || isOracle()) {
-//				if (rs.next()) {
-//					Class<?> colType = table.getColumnType(pKey);
-//					if (colType != null) {	// 支持没有主键的用法，有人将 model 改造成了支持无主键:济南-费小哥
-//						if (colType == Integer.class || colType == int.class) {
-//							model.set(pKey, rs.getInt(1));
-//						} else if (colType == Long.class || colType == long.class) {
-//							model.set(pKey, rs.getLong(1));
-//						} else if (colType == BigInteger.class) {
-//							processGeneratedBigIntegerKey(model, pKey, rs.getObject(1));
-//						} else {
-//							model.set(pKey, rs.getObject(1));	// It returns Long for int colType for mysql
-//						}
-//					}
-//				}
-//			}
-//		}
-//		rs.close();
-//	}
-	
-	/**
-	 * mysql 数据库的  bigint unsigned 对应的 java 类型为 BigInteger
-	 * 但是 rs.getObject(1) 返回值为 Long 型，造成 model.save() 以后
-	 * model.getId() 时的类型转换异常 
-	 */
-//	protected void processGeneratedBigIntegerKey(Model<?> model, String pKey, Object v) {
-//		if (v instanceof BigInteger) {
-//			model.set(pKey, (BigInteger)v);
-//		} else if (v instanceof Number) {
-//			Number n = (Number)v;
-//			model.set(pKey, BigInteger.valueOf(n.longValue()));
-//		} else {
-//			model.set(pKey, v);
-//		}
-//	}
 	
 	/**
 	 * 用于获取 Db.save(tableName, record) 以后自动生成的主键值，可通过覆盖此方法实现更精细的控制
@@ -204,22 +85,9 @@ public abstract class Dialect {
 		return false;
 	}
 	
-//	public boolean isTakeOverDbPaginate() {
-//		return false;
-//	}
-	
-	/*public Page<Record> takeOverDbPaginate(Connection conn, int pageNumber, int pageSize, Boolean isGroupBySql, String totalRowSql, StringBuilder findSql, Object... paras) throws SQLException {
-		throw new RuntimeException("You should implements this method in " + getClass().getName());
-	}*/
-	
 	public boolean isTakeOverModelPaginate() {
 		return false;
 	}
-	
-	@SuppressWarnings("rawtypes")
-//	public Page takeOverModelPaginate(Connection conn, Class<? extends Model> modelClass, int pageNumber, int pageSize, Boolean isGroupBySql, String totalRowSql, StringBuilder findSql, Object... paras) throws Exception {
-//		throw new RuntimeException("You should implements this method in " + getClass().getName());
-//	}
 	
 	public void fillStatement(PreparedStatement pst, List<Object> paras) throws SQLException {
 		for (int i=0, size=paras.size(); i<size; i++) {
@@ -326,80 +194,6 @@ public abstract class Dialect {
 		return "select count(*) " + replaceOrderBy(sqlExceptSelect);
 	}
 
-	private static final String SELECT = "SELECT * FROM ";
-	private static final String SELECTCOUNT = "SELECT COUNT(*) ";
-	private static final String INSERT = "INSERT INTO ";
-	private static final String UPDATE = "UPDATE ";
-	private static final String SET = " SET ";
-	private static final String WHERE = " WHERE ";
-	private static final String WHEREOK = " WHERE 1=1";
-	private static final String WHERENO = " WHERE 1=2";
-	private static final String DELETE = "DELETE FROM ";
-	private static final String LEFT = "(";
-	private static final String VALUES = ") VALUES (";
-	private static final String RIGHT = ")";
-	private static final String AND = " AND ";
-	private static final String OR = " OR ";
-	private static final String LINK = ",";
-	private static final String OCCUPY = "?,";
-	private static final String EQUAL = "=?";
-	private static final String EQUAL_LINK = "=?,";
-	private static final String EQUAL_AND = "=? AND ";
-	private static final String FROM = "FROM";
-	private static final String ORDER = "ORDER BY";
-	private static final String LIMIT = " LIMIT ";
-	private static final String order = "order by";
-	private static final String limit = " limit ";
-	private static final String from = "from";
-	private static final String EMPTY = "";
-	private static final String R_ORDER = "ORDER.*";
-	private static final String R_LIMIT = "LIMIT.*";
-
-	public static String getCount(String sql) {
-		int num = 0;
-		String xing = "*";
-		StringBuilder sb = new StringBuilder();
-		for (char cr : sql.toCharArray()) {
-			if (')' == cr) {
-				num++;
-			}
-			if (num == 0) {
-				sb.append(cr);
-			} else {
-				sb.append(xing);
-			}
-			if ('(' == cr) {
-				num--;
-			}
-		}
-		int i = sb.toString().replace(from, FROM).indexOf(FROM);
-		sql = sql.substring(i);
-		sql = sql.replace(order, ORDER).replace(limit, LIMIT).replaceAll(R_ORDER, EMPTY).replaceAll(R_LIMIT, EMPTY);
-		return SELECTCOUNT.concat(sql);
-	}
-
-	public static String getSelect(String sql, int page, int rows) {
-		StringBuilder pageSql = new StringBuilder(sql);
-		pageSql.append(LIMIT);
-		pageSql.append((page - 1) * rows);
-		pageSql.append(LINK);
-		pageSql.append(rows);
-		return pageSql.toString();
-	}
-
-	public static String getMySQlPageSQL(String sqlStr, int page, int rows) {
-		StringBuilder sql = new StringBuilder(sqlStr);
-		sql.append(LIMIT);
-		sql.append((page - 1) * rows);
-		sql.append(LINK);
-		sql.append(rows);
-		return sql.toString();
-	}
-
 }
-
-
-
-
 
 

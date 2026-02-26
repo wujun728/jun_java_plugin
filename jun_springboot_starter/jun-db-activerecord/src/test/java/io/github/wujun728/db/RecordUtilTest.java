@@ -1,3 +1,4 @@
+/* 已移除 - 功能已合并到DbActiveRecordTest.java，MapKit已合并到RecordUtil
 package io.github.wujun728.db;
 
 import cn.hutool.json.JSONConfig;
@@ -75,3 +76,4 @@ public class RecordUtilTest {
                 JSONConfig.create().setDateFormat("yyyy-MM-dd HH:mm:ss").setIgnoreNullValue(false))));
     }
 }
+*/

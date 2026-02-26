@@ -1,3 +1,4 @@
+/* 已移除 - DataSourcePool功能已合并到Db.java，测试已迁移到DbActiveRecordTest.java
 package io.github.wujun728.db.test;
 
 import cn.hutool.json.JSONUtil;
@@ -19,7 +20,6 @@ public class TestDb {
         String password = "";
         String driver = "com.mysql.cj.jdbc.Driver";
         DataSource ds = DataSourcePool.init("main",url,username,password,driver);
-        //Db.init(main,ds);
         Db.init(main,ds);
         Record record = Db.use().findById("biz_mail",2);
         Record record2 = Db.use().findById("api_sql","id,sql_id","getBizTests");
@@ -32,19 +32,9 @@ public class TestDb {
         String password = "";
         String driver = "com.mysql.cj.jdbc.Driver";
         DataSource dataSource = DataSourcePool.init("main",url,username,password);
-        //registerRecord("db_qixing_bk");
         Db.init(main,dataSource);
-        //查询数据并返回单条Record
         Record record = Db.use().findById("biz_mail",new Object[]{2,"getBizTests"});
-//        record.set()
         StaticLog.info(JSONUtil.toJsonPrettyStr(record));
-
-//        List data1 = Db.use(main).queryAll(ApiSql.class);
-//
-//        //查询数据并转为Bean清单
-//        List<ApiSql> data2 = Db.queryForBeanList(" SELECT * FROM api_sql ", ApiSql.class,null);
-//
-//        Page<Record> data3 = Db.paginate(1,10," SELECT * "," FROM api_sql ");
-//        StaticLog.info(JSONUtil.toJsonPrettyStr(data3));
     }
 }
+*/

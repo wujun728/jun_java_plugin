@@ -1,3 +1,5 @@
+// 功能已合并到RecordUtil.java
+/*
 package io.github.wujun728.db.utils;
 
 import java.lang.reflect.Field;
@@ -68,7 +70,7 @@ public class FieldUtils {
             return null;
         } else {
             String name2 = name.toString();
-            if (/*StrUtil.contains(name2, symbol)*/name2.indexOf(symbol)>-1) {
+            if (name2.indexOf(symbol)>-1) {
                 int length = name2.length();
                 StringBuilder sb = new StringBuilder(length);
                 boolean upperCase = false;
@@ -110,7 +112,7 @@ public class FieldUtils {
         fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
         return fields;
     }
-    
+
     public static String columnNameToFieldName(String name){
     	return getCamelName(name);
     }
@@ -119,3 +121,4 @@ public class FieldUtils {
     }
 
 }
+*/
