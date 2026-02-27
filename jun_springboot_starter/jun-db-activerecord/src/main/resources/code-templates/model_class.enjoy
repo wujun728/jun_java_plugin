@@ -1,0 +1,36 @@
+package #(packageName).model;
+
+import io.github.wujun728.db.record.Model;
+import javax.persistence.Table;
+import javax.persistence.Id;
+
+/**
+ * #(className) - Model模式(ActiveRecord)
+ * 表名: #(tableName)
+ * @author #(authorName)
+ * @date #(dateStr)
+ *
+ * 使用方式:
+ *   #(className) item = #(className).dao.findById(1);
+ *   new #(className)().set("name", "value").save();
+ *   item.set("name", "newValue").update();
+ *   item.delete();
+ */
+@Table(name = "#(tableName)")
+public class #(className) extends Model<#(className)> {
+
+    public static final #(className) dao = new #(className)().dao();
+
+    // ==================== 列名常量 ====================
+#for(col : columns)
+    public static final String #(col.columnNameUpper) = "#(col.columnName)";
+#end
+
+    // ==================== 便捷getter方法 ====================
+#for(col : columns)
+
+    public #(col.javaType) get#(col.fieldNameUpper)() {
+        return get(#(col.columnNameUpper));
+    }
+#end
+}

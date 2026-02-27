@@ -1,0 +1,77 @@
+package #(packageName).controller;
+
+import #(packageName).entity.#(className);
+import #(packageName).service.#(className)Service;
+import io.github.wujun728.db.record.Page;
+import org.springframework.web.bind.annotation.*;
+import java.util.*;
+
+/**
+ * #(className)Controller - Bean模式
+ * @author #(authorName)
+ * @date #(dateStr)
+ */
+@RestController
+@RequestMapping("/#(classNameLower)")
+public class #(className)Controller {
+
+    private final #(className)Service #(classNameLower)Service = new #(className)Service();
+
+    @PostMapping("/save")
+    public Map<String, Object> save(@RequestBody #(className) entity) {
+        boolean ok = #(classNameLower)Service.save(entity);
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", ok ? 0 : -1);
+        result.put("msg", ok ? "success" : "fail");
+        return result;
+    }
+
+    @PostMapping("/update")
+    public Map<String, Object> update(@RequestBody #(className) entity) {
+        boolean ok = #(classNameLower)Service.update(entity);
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", ok ? 0 : -1);
+        result.put("msg", ok ? "success" : "fail");
+        return result;
+    }
+
+    @PostMapping("/delete")
+    public Map<String, Object> delete(@RequestBody #(className) entity) {
+        boolean ok = #(classNameLower)Service.delete(entity);
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", ok ? 0 : -1);
+        result.put("msg", ok ? "success" : "fail");
+        return result;
+    }
+
+    @GetMapping("/detail")
+    public Map<String, Object> detail(@RequestParam Object #(pkFieldName)) {
+        #(className) entity = #(classNameLower)Service.findById(#(pkFieldName));
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", 0);
+        result.put("msg", "success");
+        result.put("data", entity);
+        return result;
+    }
+
+    @GetMapping("/list")
+    public Map<String, Object> list() {
+        List<#(className)> data = #(classNameLower)Service.findAll();
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", 0);
+        result.put("msg", "success");
+        result.put("data", data);
+        return result;
+    }
+
+    @GetMapping("/page")
+    public Map<String, Object> page(@RequestParam(defaultValue = "1") int pageNumber,
+                                     @RequestParam(defaultValue = "10") int pageSize) {
+        Page<#(className)> page = #(classNameLower)Service.findPage(pageNumber, pageSize);
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", 0);
+        result.put("msg", "success");
+        result.put("data", page);
+        return result;
+    }
+}

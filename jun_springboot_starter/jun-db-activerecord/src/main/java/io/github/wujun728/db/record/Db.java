@@ -331,6 +331,78 @@ public class Db {
         return use().tx(atom);
     }
 
+    // ==================== 代码生成 ====================
+
+    /**
+     * SQL模式代码生成（默认包名 com.example）
+     */
+    public static Map<String, String> generatorCodeSQL(String tableName) {
+        return use().generatorCodeSQL(tableName, "com.example");
+    }
+
+    /**
+     * SQL模式代码生成 - 生成基于Db.execute/queryList/insert的Service和Controller
+     */
+    public static Map<String, String> generatorCodeSQL(String tableName, String packageName) {
+        return use().generatorCodeSQL(tableName, packageName);
+    }
+
+    /**
+     * Record模式代码生成（默认包名 com.example）
+     */
+    public static Map<String, String> generatorCodeRecord(String tableName) {
+        return use().generatorCodeRecord(tableName, "com.example");
+    }
+
+    /**
+     * Record模式代码生成 - 生成基于Db.save/find/update/delete的Service和Controller
+     */
+    public static Map<String, String> generatorCodeRecord(String tableName, String packageName) {
+        return use().generatorCodeRecord(tableName, packageName);
+    }
+
+    /**
+     * Bean JPA模式代码生成（默认包名 com.example）
+     */
+    public static Map<String, String> generatorCodeSQLBeanJPA(String tableName) {
+        return use().generatorCodeSQLBeanJPA(tableName, "com.example");
+    }
+
+    /**
+     * Bean JPA模式代码生成 - 生成JPA注解Entity + Bean模式Service和Controller
+     */
+    public static Map<String, String> generatorCodeSQLBeanJPA(String tableName, String packageName) {
+        return use().generatorCodeSQLBeanJPA(tableName, packageName);
+    }
+
+    /**
+     * Bean MyBatis-Plus模式代码生成（默认包名 com.example）
+     */
+    public static Map<String, String> generatorCodeSQLBeanMybatis(String tableName) {
+        return use().generatorCodeSQLBeanMybatis(tableName, "com.example");
+    }
+
+    /**
+     * Bean MyBatis-Plus模式代码生成 - 生成MyBatis-Plus注解Entity + Bean模式Service和Controller
+     */
+    public static Map<String, String> generatorCodeSQLBeanMybatis(String tableName, String packageName) {
+        return use().generatorCodeSQLBeanMybatis(tableName, packageName);
+    }
+
+    /**
+     * Model模式代码生成（默认包名 com.example）
+     */
+    public static Map<String, String> generatorCodeModel(String tableName) {
+        return use().generatorCodeModel(tableName, "com.example");
+    }
+
+    /**
+     * Model模式代码生成 - 生成Model子类 + Model模式Service和Controller
+     */
+    public static Map<String, String> generatorCodeModel(String tableName, String packageName) {
+        return use().generatorCodeModel(tableName, packageName);
+    }
+
     // ==================== 内部方法 ====================
 
     static DataSource createDataSource(String url, String username, String password, String driver) {

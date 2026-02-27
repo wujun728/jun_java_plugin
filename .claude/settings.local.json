@@ -36,7 +36,9 @@
       "Bash(mvn test)",
       "Bash(mvn clean compile test-compile -q)",
       "Bash(mvn clean test)",
-      "Bash(dir /s /b \"D:\\\\workspace\\\\github-new\\\\jun_java_plugin\\\\jun_springboot_starter\\\\jun-db-activerecord\\\\src\\\\main\\\\java\\\\io\\\\github\\\\wujun728\\\\db\\\\*.java\")"
+      "Bash(dir /s /b \"D:\\\\workspace\\\\github-new\\\\jun_java_plugin\\\\jun_springboot_starter\\\\jun-db-activerecord\\\\src\\\\main\\\\java\\\\io\\\\github\\\\wujun728\\\\db\\\\*.java\")",
+      "Bash(mvn test -Dtest=CodeGeneratorTest -pl .)",
+      "Bash(mvn test -pl .)"
     ]
   }
 }

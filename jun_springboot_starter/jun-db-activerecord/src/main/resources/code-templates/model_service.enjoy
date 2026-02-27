@@ -1,0 +1,77 @@
+package #(packageName).service;
+
+import #(packageName).model.#(className);
+import io.github.wujun728.db.record.Page;
+import java.util.*;
+
+/**
+ * #(className)Service - Model模式
+ * 表名: #(tableName)
+ * @author #(authorName)
+ * @date #(dateStr)
+ */
+public class #(className)Service {
+
+    /**
+     * 保存Model
+     */
+    public boolean save(#(className) model) {
+        return model.save();
+    }
+
+    /**
+     * 更新Model
+     */
+    public boolean update(#(className) model) {
+        return model.update();
+    }
+
+    /**
+     * 删除Model
+     */
+    public boolean delete(#(className) model) {
+        return model.delete();
+    }
+
+    /**
+     * 根据主键删除
+     */
+    public boolean deleteById(Object #(pkFieldName)) {
+        return #(className).dao.deleteById(#(pkFieldName));
+    }
+
+    /**
+     * 根据主键查询
+     */
+    public #(className) findById(Object #(pkFieldName)) {
+        return #(className).dao.findById(#(pkFieldName));
+    }
+
+    /**
+     * 查询全部
+     */
+    public List<#(className)> findAll() {
+        return #(className).dao.findAll();
+    }
+
+    /**
+     * 自定义SQL查询
+     */
+    public List<#(className)> find(String sql, Object... paras) {
+        return #(className).dao.find(sql, paras);
+    }
+
+    /**
+     * 查询第一条
+     */
+    public #(className) findFirst(String sql, Object... paras) {
+        return #(className).dao.findFirst(sql, paras);
+    }
+
+    /**
+     * 分页查询
+     */
+    public Page<#(className)> paginate(int pageNumber, int pageSize) {
+        return #(className).dao.paginate(pageNumber, pageSize, "SELECT *", "FROM #(tableName)");
+    }
+}

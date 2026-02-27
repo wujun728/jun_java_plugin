@@ -1,0 +1,46 @@
+package #(packageName).entity;
+
+import com.baomidou.mybatisplus.annotation.*;
+import java.io.Serializable;
+#if(hasDate)
+import java.util.Date;
+#end
+#if(hasBigDecimal)
+import java.math.BigDecimal;
+#end
+
+/**
+ * #(className) - MyBatis-Plus实体
+ * 表名: #(tableName)
+ * @author #(authorName)
+ * @date #(dateStr)
+ */
+@TableName("#(tableName)")
+public class #(className) implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+#for(col : columns)
+
+    /** #if(col.comment)#(col.comment)#else#(col.columnName)#end */
+#if(col.pk)
+#if(col.autoIncrement)
+    @TableId(value = "#(col.columnName)", type = IdType.AUTO)
+#else
+    @TableId(value = "#(col.columnName)", type = IdType.ASSIGN_ID)
+#end
+#else
+    @TableField("#(col.columnName)")
+#end
+    private #(col.javaType) #(col.fieldName);
+#end
+#for(col : columns)
+
+    public #(col.javaType) get#(col.fieldNameUpper)() {
+        return #(col.fieldName);
+    }
+
+    public void set#(col.fieldNameUpper)(#(col.javaType) #(col.fieldName)) {
+        this.#(col.fieldName) = #(col.fieldName);
+    }
+#end
+}

@@ -7,6 +7,7 @@ import cn.hutool.db.meta.Table;
 import cn.hutool.log.StaticLog;
 import io.github.wujun728.db.record.dialect.*;
 import io.github.wujun728.db.record.mapper.BatchSql;
+import io.github.wujun728.db.utils.CodeGenerator;
 import io.github.wujun728.db.utils.RecordUtil;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
@@ -809,6 +810,43 @@ public class DbPro {
             }
         });
         return Boolean.TRUE.equals(res);
+    }
+
+    // ==================== 代码生成 ====================
+
+    /**
+     * SQL模式代码生成 - 生成基于Db.execute/queryList/insert的Service和Controller
+     */
+    public Map<String, String> generatorCodeSQL(String tableName, String packageName) {
+        return CodeGenerator.generatorCodeSQL(this.dataSource, tableName, packageName);
+    }
+
+    /**
+     * Record模式代码生成 - 生成基于Db.save/find/update/delete的Service和Controller
+     */
+    public Map<String, String> generatorCodeRecord(String tableName, String packageName) {
+        return CodeGenerator.generatorCodeRecord(this.dataSource, tableName, packageName);
+    }
+
+    /**
+     * Bean JPA模式代码生成 - 生成JPA注解Entity + Bean模式Service和Controller
+     */
+    public Map<String, String> generatorCodeSQLBeanJPA(String tableName, String packageName) {
+        return CodeGenerator.generatorCodeSQLBeanJPA(this.dataSource, tableName, packageName);
+    }
+
+    /**
+     * Bean MyBatis-Plus模式代码生成 - 生成MyBatis-Plus注解Entity + Bean模式Service和Controller
+     */
+    public Map<String, String> generatorCodeSQLBeanMybatis(String tableName, String packageName) {
+        return CodeGenerator.generatorCodeSQLBeanMybatis(this.dataSource, tableName, packageName);
+    }
+
+    /**
+     * Model模式代码生成 - 生成Model子类 + Model模式Service和Controller
+     */
+    public Map<String, String> generatorCodeModel(String tableName, String packageName) {
+        return CodeGenerator.generatorCodeModel(this.dataSource, tableName, packageName);
     }
 
     // ==================== 内部工具方法 ====================

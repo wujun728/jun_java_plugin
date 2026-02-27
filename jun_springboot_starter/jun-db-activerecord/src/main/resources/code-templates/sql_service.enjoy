@@ -1,0 +1,89 @@
+package #(packageName).service;
+
+import io.github.wujun728.db.record.Db;
+import io.github.wujun728.db.record.Page;
+import java.util.*;
+
+/**
+ * #(className)Service - SQL模式
+ * 表名: #(tableName)
+ * @author #(authorName)
+ * @date #(dateStr)
+ */
+public class #(className)Service {
+
+    /**
+     * 新增（动态列）
+     */
+    public long save(Map<String, Object> data) {
+        StringBuilder cols = new StringBuilder();
+        StringBuilder holders = new StringBuilder();
+        List<Object> params = new ArrayList<>();
+        for (Map.Entry<String, Object> e : data.entrySet()) {
+            if (cols.length() > 0) { cols.append(", "); holders.append(", "); }
+            cols.append(e.getKey());
+            holders.append("?");
+            params.add(e.getValue());
+        }
+        String sql = "INSERT INTO #(tableName) (" + cols + ") VALUES (" + holders + ")";
+        return Db.insert(sql, params.toArray());
+    }
+
+    /**
+     * 更新
+     */
+    public int update(#(pkJavaType) #(pkFieldName), Map<String, Object> data) {
+        StringBuilder sets = new StringBuilder();
+        List<Object> params = new ArrayList<>();
+        for (Map.Entry<String, Object> e : data.entrySet()) {
+            if (sets.length() > 0) sets.append(", ");
+            sets.append(e.getKey()).append(" = ?");
+            params.add(e.getValue());
+        }
+        params.add(#(pkFieldName));
+        String sql = "UPDATE #(tableName) SET " + sets + " WHERE #(pkColumnName) = ?";
+        return Db.execute(sql, params.toArray());
+    }
+
+    /**
+     * 删除
+     */
+    public int deleteById(#(pkJavaType) #(pkFieldName)) {
+        return Db.execute("DELETE FROM #(tableName) WHERE #(pkColumnName) = ?", new Object[]{#(pkFieldName)});
+    }
+
+    /**
+     * 根据主键查询
+     */
+    public Map<String, Object> findById(#(pkJavaType) #(pkFieldName)) {
+        return Db.queryForMap("SELECT * FROM #(tableName) WHERE #(pkColumnName) = ?", #(pkFieldName));
+    }
+
+    /**
+     * 查询全部
+     */
+    public List<Map<String, Object>> findAll() {
+        return Db.queryList("SELECT * FROM #(tableName)");
+    }
+
+    /**
+     * 条件查询
+     */
+    public List<Map<String, Object>> findByCondition(String whereSql, Object... params) {
+        return Db.queryList("SELECT * FROM #(tableName) " + whereSql, params);
+    }
+
+    /**
+     * 统计总数
+     */
+    public int count() {
+        return Db.queryForInt("SELECT COUNT(*) FROM #(tableName)");
+    }
+
+    /**
+     * 分页查询
+     */
+    public Page<Map<String, Object>> findPage(int pageNumber, int pageSize) {
+        return Db.queryMapPages("SELECT * FROM #(tableName)", pageNumber, pageSize, null);
+    }
+}

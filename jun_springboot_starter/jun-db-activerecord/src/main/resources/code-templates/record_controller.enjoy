@@ -1,0 +1,81 @@
+package #(packageName).controller;
+
+import #(packageName).service.#(className)Service;
+import io.github.wujun728.db.record.Page;
+import io.github.wujun728.db.record.Record;
+import org.springframework.web.bind.annotation.*;
+import java.util.*;
+
+/**
+ * #(className)Controller - Record模式
+ * @author #(authorName)
+ * @date #(dateStr)
+ */
+@RestController
+@RequestMapping("/#(classNameLower)")
+public class #(className)Controller {
+
+    private final #(className)Service #(classNameLower)Service = new #(className)Service();
+
+    @PostMapping("/save")
+    public Map<String, Object> save(@RequestBody Map<String, Object> data) {
+        Record record = new Record();
+        record.setColumns(data);
+        boolean ok = #(classNameLower)Service.save(record);
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", ok ? 0 : -1);
+        result.put("msg", ok ? "success" : "fail");
+        return result;
+    }
+
+    @PostMapping("/update")
+    public Map<String, Object> update(@RequestBody Map<String, Object> data) {
+        Record record = new Record();
+        record.setColumns(data);
+        boolean ok = #(classNameLower)Service.update(record);
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", ok ? 0 : -1);
+        result.put("msg", ok ? "success" : "fail");
+        return result;
+    }
+
+    @DeleteMapping("/delete")
+    public Map<String, Object> delete(@RequestParam Object #(pkFieldName)) {
+        boolean ok = #(classNameLower)Service.deleteById(#(pkFieldName));
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", ok ? 0 : -1);
+        result.put("msg", ok ? "success" : "fail");
+        return result;
+    }
+
+    @GetMapping("/detail")
+    public Map<String, Object> detail(@RequestParam Object #(pkFieldName)) {
+        Record record = #(classNameLower)Service.findById(#(pkFieldName));
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", 0);
+        result.put("msg", "success");
+        result.put("data", record != null ? record.getColumns() : null);
+        return result;
+    }
+
+    @GetMapping("/list")
+    public Map<String, Object> list() {
+        List<Record> records = #(classNameLower)Service.findAll();
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", 0);
+        result.put("msg", "success");
+        result.put("data", records);
+        return result;
+    }
+
+    @GetMapping("/page")
+    public Map<String, Object> page(@RequestParam(defaultValue = "1") int pageNumber,
+                                     @RequestParam(defaultValue = "10") int pageSize) {
+        Page<Record> page = #(classNameLower)Service.paginate(pageNumber, pageSize);
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", 0);
+        result.put("msg", "success");
+        result.put("data", page);
+        return result;
+    }
+}

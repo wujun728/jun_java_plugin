@@ -1,0 +1,64 @@
+package #(packageName).service;
+
+import #(packageName).entity.#(className);
+import io.github.wujun728.db.record.Db;
+import io.github.wujun728.db.record.Page;
+import java.util.*;
+
+/**
+ * #(className)Service - Bean模式
+ * 表名: #(tableName)
+ * @author #(authorName)
+ * @date #(dateStr)
+ */
+public class #(className)Service {
+
+    /**
+     * 保存实体
+     */
+    public boolean save(#(className) entity) {
+        return Db.saveBean(entity);
+    }
+
+    /**
+     * 更新实体
+     */
+    public boolean update(#(className) entity) {
+        return Db.updateBean(entity);
+    }
+
+    /**
+     * 删除实体
+     */
+    public boolean delete(#(className) entity) {
+        return Db.deleteBean(entity);
+    }
+
+    /**
+     * 根据主键查询
+     */
+    public #(className) findById(Object #(pkFieldName)) {
+        return Db.findBeanById(#(className).class, #(pkFieldName));
+    }
+
+    /**
+     * 查询全部
+     */
+    public List<#(className)> findAll() {
+        return Db.findBeanList(#(className).class, "SELECT * FROM #(tableName)");
+    }
+
+    /**
+     * 条件查询
+     */
+    public List<#(className)> findByCondition(String sql, Object... params) {
+        return Db.findBeanList(#(className).class, sql, params);
+    }
+
+    /**
+     * 分页查询
+     */
+    public Page<#(className)> findPage(int pageNumber, int pageSize) {
+        return Db.findBeanPages(#(className).class, pageNumber, pageSize);
+    }
+}
