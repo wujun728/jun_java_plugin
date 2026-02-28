@@ -38,7 +38,10 @@
       "Bash(mvn clean test)",
       "Bash(dir /s /b \"D:\\\\workspace\\\\github-new\\\\jun_java_plugin\\\\jun_springboot_starter\\\\jun-db-activerecord\\\\src\\\\main\\\\java\\\\io\\\\github\\\\wujun728\\\\db\\\\*.java\")",
       "Bash(mvn test -Dtest=CodeGeneratorTest -pl .)",
-      "Bash(mvn test -pl .)"
+      "Bash(mvn test -pl .)",
+      "Bash(git add VERSION_CONSTANTS.md)",
+      "Bash(git add */pom.xml)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nrefactor: 重构 jun_springboot_starter 模块 - 移除所有 Parent 依赖\n\n- 创建 VERSION_CONSTANTS.md 文档，统一记录所有版本号\n- 移除16个模块的parent POM引用，使其可以独立编译\n- 添加显式的groupId和version到所有模块\n- 为每个模块添加完整的properties和dependencyManagement配置\n- 统一所有内部模块版本号为1.0.25\n- 更新所有模块间依赖，明确指定版本号\n- 修正4个模块的错误parent引用（从jun_springcloud_starter改正）\n- 编译验证：jun-common-base、jun-swagger2、jun-groovy-api-spring-boot-starter等模块编译成功\n\n重构范围：\n- 新增模块：VERSION_CONSTANTS.md\n- 修改模块：16个pom.xml文件\n  - 正确parent改为无parent：jun-activerecord、jun-db-spring-boot-starter、\n    jun-groovy-api、jun-groovy-api-spring-boot-starter、jun-swagger2-spring-boot-starter、\n    jun-uidgenerator-spring-boot-starter、jun-sentinel-spring-boot-starter、\n    jun-job-spring-boot-starter、jun-snakerflow-spring-boot-starter、\n    jun-minio-spring-boot-starter、jun-encrypt-body-spring-boot-starter\n  - 错误parent改为无parent：jun-log-spring-boot-starter、\n    jun-redis-spring-boot-starter、jun-onlineForm-spring-boot-starter、\n    jun-db-activerecord2、jun-oss-spring-boot-starter\n\n预期结果：\n✓ 所有模块都可以独立使用 mvn clean compile 编译\n✓ 模块间依赖关系清晰明确，版本号统一\n✓ 第三方用户可以独立引用任何模块而无需关心parent POM\nEOF\n\\)\")"
     ]
   }
 }
