@@ -2,24 +2,55 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>io.github.wujun728</groupId>
-        <artifactId>jun_springcloud_starter</artifactId>
-        <version>1.0.25</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>jar</packaging>
+    <groupId>io.github.wujun728</groupId>
     <artifactId>jun-log-spring-boot-starter</artifactId>
+    <version>1.0.25</version>
+    <packaging>jar</packaging>
     <description>日志通用组件</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <jun.version>1.0.25</jun.version>
+        <spring-boot.version>2.5.14</spring-boot.version>
+        <spring-cloud.version>2020.0.6</spring-cloud.version>
+        <hutool.version>5.8.25</hutool.version>
+        <transmittable.version>2.12.1</transmittable.version>
+        <mica-auto.version>2.3.2</mica-auto.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>io.github.wujun728</groupId>
             <artifactId>jun-db-spring-boot-starter</artifactId>
+            <version>${jun.version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.wujun728</groupId>
             <artifactId>jun-swagger2-spring-boot-starter</artifactId>
+            <version>${jun.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -38,6 +69,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>transmittable-thread-local</artifactId>
+            <version>${transmittable.version}</version>
         </dependency>
 
         <dependency>
@@ -53,6 +85,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
 
         <dependency>

@@ -4,14 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>io.github.wujun728</groupId>
-        <artifactId>jun_springcloud_starter</artifactId>
-        <version>1.0.25</version>
-    </parent>
+    <groupId>io.github.wujun728</groupId>
+    <artifactId>jun-db-activerecord2</artifactId>
+    <version>1.0.25</version>
     <packaging>jar</packaging>
-    <artifactId>jun-db-activerecord</artifactId>
-    <name>jun-db-activerecord</name>
+    <name>jun-db-activerecord2</name>
     <description>dynamic sql engine tool</description>
     <url>https://github.com/wujun728/jun-spring-boot-starter/jun-db-activerecord</url>
     
@@ -19,7 +16,45 @@
    	<properties>
 		<java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <jun.version>1.0.25</jun.version>
+        <spring-boot.version>2.5.14</spring-boot.version>
+        <spring-cloud.version>2020.0.6</spring-cloud.version>
+        <lombok.version>1.18.30</lombok.version>
+        <hutool.version>5.8.25</hutool.version>
+        <jackson.version>2.13.4</jackson.version>
+        <druid.version>1.2.24</druid.version>
+        <commons-lang3.version>3.13.0</commons-lang3.version>
+        <jfinal.version>5.1.2</jfinal.version>
+        <fastjson2.version>2.0.37</fastjson2.version>
+        <ehcache.version>2.10.9.2</ehcache.version>
+        <mysql-connector.version>8.0.33</mysql-connector.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <logback.version>1.2.3</logback.version>
+        <mybatis-plus.version>3.5.9</mybatis-plus.version>
+        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+        <mica-auto.version>2.3.2</mica-auto.version>
 	</properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>

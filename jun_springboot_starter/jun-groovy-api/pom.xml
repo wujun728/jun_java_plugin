@@ -3,12 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>io.github.wujun728</groupId>
-		<artifactId>jun_springboot_starter</artifactId>
-		<version>1.0.25</version>
-	</parent>
+	<groupId>io.github.wujun728</groupId>
 	<artifactId>jun-groovy-api</artifactId>
+	<version>1.0.25</version>
 	<name>jun-groovy-api</name>
 	<description>jun-groovy-api 动态API生成开发，可动态生成API并执行API</description>
 	<url>https://github.com/wujun728/jun-spring-boot-starter/jun-groovy-api</url>
@@ -16,6 +13,16 @@
 	<properties>
 		<java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <jun.version>1.0.25</jun.version>
+        <spring-boot.version>2.5.14</spring-boot.version>
+        <spring-cloud.version>2020.0.6</spring-cloud.version>
+        <groovy.version>2.5.4</groovy.version>
+        <hutool.version>5.8.41</hutool.version>
+        <freemarker.version>2.3.32</freemarker.version>
+        <commons-io.version>2.11.0</commons-io.version>
+        <mica-auto.version>2.3.3</mica-auto.version>
 	</properties>
 
 	<dependencies>
@@ -137,8 +144,14 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                  	<!-- <version>2.6.9</version> -->
                		<version>2.5.14</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
