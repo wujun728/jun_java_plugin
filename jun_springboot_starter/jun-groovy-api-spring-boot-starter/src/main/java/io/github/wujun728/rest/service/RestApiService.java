@@ -13,7 +13,7 @@ import io.github.wujun728.db.record.Db;
 import io.github.wujun728.db.record.Page;
 import io.github.wujun728.db.record.Record;
 import io.github.wujun728.db.utils.RecordUtil;
-import io.github.wujun728.generator.util.MapUtil;
+import cn.hutool.core.map.MapUtil;
 import io.github.wujun728.rest.util.RestUtil;
 import io.github.wujun728.rest.util.TreeBuildUtil;
 import io.github.wujun728.sql.SqlMeta;
@@ -42,7 +42,7 @@ import static io.github.wujun728.rest.util.RestUtil.setPkValue;
 public class RestApiService {
 
     public List<Map<String, Object>> getList(String tableName, Map<String, Object> parameters){
-        String entityName = MapUtil.getString(parameters,"entityName");
+        String entityName = MapUtil.getStr(parameters,"entityName");
         //String tableName = StrUtil.toUnderlineCase(entityName);
         Boolean isUnderLine = entityName.equals(tableName);
         Table table = getTableMeta(tableName, main);
@@ -83,8 +83,8 @@ public class RestApiService {
     }
 
     public List<Map<String, Object>> getTree(String tableName, Map<String, Object> parameters){
-        String entityName = MapUtil.getString(parameters,"entityName");
-        String url = MapUtil.getString(parameters,"url");
+        String entityName = MapUtil.getStr(parameters,"entityName");
+        String url = MapUtil.getStr(parameters,"url");
         //String tableName = StrUtil.toUnderlineCase(entityName);
         Boolean isUnderLine = entityName.equals(tableName);
         Table table = getTableMeta(tableName, main);

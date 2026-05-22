@@ -1,0 +1,124 @@
+OpenJDK 64-Bit Server VM warning: Ignoring option MaxPermSize; support was removed in 8.0
+[INFO] Scanning for projects...
+[ERROR] [ERROR] Some problems were encountered while processing the POMs:
+[FATAL] Non-parseable POM D:\workspace_github_v2\10技术基础层\jun_java_plugin\jun_springboot_starter\jun-onlineForm-spring-boot-starter\pom.xml: Unrecognised tag: 'scope' (position: START_TAG seen ...</dependency>\r\n            <scope>... @69:20)  @ line 69, column 20
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 44, column 12
+[WARNING] 'build.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin org.springframework.boot:spring-boot-maven-plugin @ line 108, column 21
+[WARNING] 'build.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin org.apache.maven.plugins:maven-compiler-plugin @ line 99, column 21
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 74, column 21
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-surefire-plugin is missing. @ line 82, column 21
+[WARNING] 'dependencies.dependency.version' for org.junit.jupiter:junit-jupiter-api:jar is either LATEST or RELEASE (both of them are being deprecated) @ line 60, column 13
+[WARNING] 'dependencies.dependency.version' for org.junit.jupiter:junit-jupiter-api:jar is either LATEST or RELEASE (both of them are being deprecated) @ line 66, column 13
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.junit.jupiter:junit-jupiter-api:jar -> duplicate declaration of version RELEASE @ line 63, column 15
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-surefire-plugin is missing. @ line 127, column 12
+[WARNING] 'build.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin org.apache.maven.plugins:maven-compiler-plugin @ line 127, column 21
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-source-plugin is missing. @ line 105, column 21
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-javadoc-plugin is missing. @ line 100, column 21
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: us.codecraft:webmagic-extension:jar -> duplicate declaration of version 1.0.0 @ line 41, column 15
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: com.google.guava:guava:jar -> version ${guava.version} vs 29.0-jre @ line 140, column 15
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.commons:commons-lang3:jar -> version ${commons.lang3.version} vs 3.1 @ line 157, column 15
+[WARNING] 'build.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin org.apache.maven.plugins:maven-compiler-plugin @ line 128, column 21
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: junit:junit:jar -> version 3.8.1 vs 4.12 @ line 138, column 15
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: mysql:mysql-connector-java:jar -> version 5.1.40 vs 5.1.46 @ line 215, column 15
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 85, column 12
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 12, column 21
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: com.jfinal:enjoy:jar -> duplicate declaration of version 5.1.2 @ line 125, column 21
+[ERROR] 'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 155, column 21
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: junit:junit:jar -> version ${junit.version} vs (?) @ line 161, column 21
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-source-plugin is missing. @ line 153, column 28
+[ERROR] 'dependencies.dependency.version' for cn.hutool:hutool-all:jar is missing. @ line 85, column 21
+[ERROR] 'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 90, column 21
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: com.baomidou:mybatis-plus-boot-starter:jar -> duplicate declaration of version (?) @ line 90, column 21
+[ERROR] 'dependencies.dependency.version' for com.baomidou:mybatis-plus-boot-starter:jar is missing. @ line 90, column 21
+[ERROR] 'dependencies.dependency.version' for com.alibaba:druid-spring-boot-starter:jar is missing. @ line 61, column 21
+[ERROR] 'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 94, column 21
+[ERROR] 'dependencies.dependency.version' for org.apache.dubbo:dubbo:jar is missing. @ line 106, column 21
+[ERROR] 'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 116, column 21
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.springframework.boot:spring-boot-configuration-processor:jar -> duplicate declaration of version (?) @ line 160, column 15
+[ERROR] 'dependencies.dependency.version' for com.github.tobato:fastdfs-client:jar is missing. @ line 44, column 21
+[ERROR] 'dependencies.dependency.version' for com.amazonaws:aws-java-sdk-s3:jar is missing. @ line 50, column 21
+[ERROR] 'dependencies.dependency.version' for com.baomidou:mybatis-plus-boot-starter:jar is missing. @ line 165, column 21
+[ERROR] 'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 173, column 15
+[ERROR] 'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 85, column 21
+[ERROR] 'dependencies.dependency.version' for com.baomidou:mybatis-plus-boot-starter:jar is missing. @ line 56, column 21
+[ERROR] 'dependencies.dependency.version' for com.alibaba:druid-spring-boot-starter:jar is missing. @ line 61, column 21
+[ERROR] 'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 91, column 21
+[WARNING] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: cn.hutool:hutool-all:jar -> version ${hutool.version} vs 5.8.21 @ line 530, column 25
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 93, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 39, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 61, column 15
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 58, column 15
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 49, column 15
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 56, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 65, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 36, column 15
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.springframework.boot:spring-boot-starter-web:jar -> duplicate declaration of version (?) @ line 110, column 15
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 211, column 12
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-war-plugin is missing. @ line 236, column 12
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 45, column 12
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 66, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 66, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 73, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 73, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ io.github.wujun728:springboot_oauth2:1.0, D:\workspace_github_v2\10技术基础层\jun_java_plugin\jun_springboot_plugin\springboot_oauth2\pom.xml, line 48, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 48, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 63, column 12
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 64, column 15
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 69, column 15
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 106, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 93, column 21
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-javadoc-plugin is missing. @ line 58, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 68, column 21
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.projectlombok:lombok:jar -> duplicate declaration of version (?) @ line 96, column 21
+[WARNING] The expression ${artifactId} is deprecated. Please use ${project.artifactId} instead. @ 
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 77, column 15
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 55, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 58, column 12
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 58, column 12
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 64, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 33, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 51, column 12
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 66, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 72, column 21
+ @ 
+[ERROR] The build could not read 8 projects -> [Help 1]
+[ERROR]   
+[ERROR]   The project  (D:\workspace_github_v2\10技术基础层\jun_java_plugin\jun_springboot_starter\jun-onlineForm-spring-boot-starter\pom.xml) has 1 error
+[ERROR]     Non-parseable POM D:\workspace_github_v2\10技术基础层\jun_java_plugin\jun_springboot_starter\jun-onlineForm-spring-boot-starter\pom.xml: Unrecognised tag: 'scope' (position: START_TAG seen ...</dependency>\r\n            <scope>... @69:20)  @ line 69, column 20 -> [Help 2]
+[ERROR]   
+[ERROR]   The project io.github.wujun728:jun-activerecord:1.0.25 (D:\workspace_github_v2\10技术基础层\jun_java_plugin\jun_springboot_starter\jun-activerecord\pom.xml) has 1 error
+[ERROR]     'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 155, column 21
+[ERROR]   
+[ERROR]   The project io.github.wujun728:jun-uidgenerator-spring-boot-starter:1.0.25 (D:\workspace_github_v2\10技术基础层\jun_java_plugin\jun_springboot_starter\jun-uidgenerator-spring-boot-starter\pom.xml) has 2 errors
+[ERROR]     'dependencies.dependency.version' for cn.hutool:hutool-all:jar is missing. @ line 85, column 21
+[ERROR]     'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 90, column 21
+[ERROR]   
+[ERROR]   The project io.github.wujun728:jun-snakerflow-spring-boot-starter:1.0.25 (D:\workspace_github_v2\10技术基础层\jun_java_plugin\jun_springboot_starter\jun-snakerflow-spring-boot-starter\pom.xml) has 3 errors
+[ERROR]     'dependencies.dependency.version' for com.baomidou:mybatis-plus-boot-starter:jar is missing. @ line 90, column 21
+[ERROR]     'dependencies.dependency.version' for com.alibaba:druid-spring-boot-starter:jar is missing. @ line 61, column 21
+[ERROR]     'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 94, column 21
+[ERROR]   
+[ERROR]   The project io.github.wujun728:jun-log-spring-boot-starter:1.0.25 (D:\workspace_github_v2\10技术基础层\jun_java_plugin\jun_springboot_starter\jun-log-spring-boot-starter\pom.xml) has 2 errors
+[ERROR]     'dependencies.dependency.version' for org.apache.dubbo:dubbo:jar is missing. @ line 106, column 21
+[ERROR]     'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 116, column 21
+[ERROR]   
+[ERROR]   The project io.github.wujun728:jun-oss-spring-boot-starter:1.0.25 (D:\workspace_github_v2\10技术基础层\jun_java_plugin\jun_springboot_starter\jun-oss-spring-boot-starter\pom.xml) has 4 errors
+[ERROR]     'dependencies.dependency.version' for com.github.tobato:fastdfs-client:jar is missing. @ line 44, column 21
+[ERROR]     'dependencies.dependency.version' for com.amazonaws:aws-java-sdk-s3:jar is missing. @ line 50, column 21
+[ERROR]     'dependencies.dependency.version' for com.baomidou:mybatis-plus-boot-starter:jar is missing. @ line 165, column 21
+[ERROR]     'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 173, column 15
+[ERROR]   
+[ERROR]   The project io.github.wujun728:jun-sentinel-spring-boot-starter:1.0.25 (D:\workspace_github_v2\10技术基础层\jun_java_plugin\jun_springboot_starter\jun-sentinel-spring-boot-starter\pom.xml) has 1 error
+[ERROR]     'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 85, column 21
+[ERROR]   
+[ERROR]   The project io.github.wujun728:jun-job-spring-boot-starter:1.0.25 (D:\workspace_github_v2\10技术基础层\jun_java_plugin\jun_springboot_starter\jun-job-spring-boot-starter\pom.xml) has 3 errors
+[ERROR]     'dependencies.dependency.version' for com.baomidou:mybatis-plus-boot-starter:jar is missing. @ line 56, column 21
+[ERROR]     'dependencies.dependency.version' for com.alibaba:druid-spring-boot-starter:jar is missing. @ line 61, column 21
+[ERROR]     'dependencies.dependency.version' for net.dreamlu:mica-auto:jar is missing. @ line 91, column 21
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
+[ERROR] [Help 2] http://cwiki.apache.org/confluence/display/MAVEN/ModelParseException

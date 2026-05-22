@@ -1,0 +1,1156 @@
+{
+  "meta": {
+    "project_name": "jun_java_plugin",
+    "created_at": "2026-04-13T00:00:00Z",
+    "user_task": "完善整个 jun_java_plugin 仓库，使其成为完整的Java技术栈参考仓库。包括：1) 遍历分析所有模块 2) 评估技术栈覆盖度 3) 编译测试所有模块 4) 找出冗余和缺失 5) 生成完整文档 6) 修复问题和补充缺失功能",
+    "total_tasks": 45
+  },
+  "tasks": [
+    {
+      "id": "T001",
+      "category": "setup",
+      "title": "创建项目分析工具和脚本",
+      "description": "创建用于分析项目结构的辅助脚本，包括：1) 模块统计脚本 2) 依赖分析脚本 3) 编译状态检查脚本 4) 测试覆盖率统计脚本",
+      "verification_steps": [
+        "运行 ls scripts/*.sh 确认脚本已创建",
+        "运行各个脚本确保无语法错误",
+        "验证脚本输出格式正确"
+      ],
+      "status": "skipped",
+      "priority": 1,
+      "dependencies": [],
+      "attempts": 3,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": {
+        "passed": false,
+        "score": 0,
+        "feedback": "无法解析评估结果，请检查 Evaluator 输出日志",
+        "checks": []
+      },
+      "error_history": [
+        {
+          "attempt": 1,
+          "feedback": "无法解析评估结果，请检查 Evaluator 输出日志",
+          "ts": "2026-04-13T00:58:44"
+        },
+        {
+          "attempt": 2,
+          "feedback": "无法解析评估结果，请检查 Evaluator 输出日志",
+          "ts": "2026-04-13T01:13:06"
+        },
+        {
+          "attempt": 3,
+          "feedback": "无法解析评估结果，请检查 Evaluator 输出日志",
+          "ts": "2026-04-13T01:21:27"
+        }
+      ],
+      "started_at": "2026-04-13T01:13:11",
+      "completed_at": null
+    },
+    {
+      "id": "T002",
+      "category": "setup",
+      "title": "分析 jun_java_plugins 模块结构",
+      "description": "遍历并分析 jun_java_plugins 目录下所有65个模块，记录：1) 模块名称和功能 2) pom.xml 依赖 3) 主要类和接口 4) README 文档状态 5) 示例代码完整性",
+      "verification_steps": [
+        "生成 jun_java_plugins_analysis.md 文档",
+        "文档包含所有65个模块的分析",
+        "每个模块至少包含：名称、功能、依赖、文档状态"
+      ],
+      "status": "pending",
+      "priority": 1,
+      "dependencies": [
+        "T001"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T003",
+      "category": "setup",
+      "title": "分析 jun_springboot_plugin 模块结构",
+      "description": "遍历并分析 jun_springboot_plugin 目录下所有100个模块，记录：1) 模块名称和功能 2) Spring Boot 版本 3) 核心依赖 4) 示例完整性 5) API 文档状态",
+      "verification_steps": [
+        "生成 jun_springboot_plugin_analysis.md 文档",
+        "文档包含所有100个模块的分析",
+        "识别出使用不同 Spring Boot 版本的模块"
+      ],
+      "status": "pending",
+      "priority": 1,
+      "dependencies": [
+        "T001"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T004",
+      "category": "setup",
+      "title": "分析 jun_springboot_starter 自定义启动器",
+      "description": "分析所有25个自定义 Spring Boot Starter，记录：1) Starter 功能和用途 2) 自动配置类 3) 配置属性 4) 使用示例 5) 文档完整性",
+      "verification_steps": [
+        "生成 jun_springboot_starter_analysis.md 文档",
+        "文档包含所有25个 starter 的分析",
+        "列出每个 starter 的核心自动配置类"
+      ],
+      "status": "pending",
+      "priority": 1,
+      "dependencies": [
+        "T001"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T005",
+      "category": "setup",
+      "title": "分析 jun_springcloud_plugin 和项目模板",
+      "description": "分析 jun_springcloud_plugin 和 java_project_template，记录：1) SpringCloud 组件覆盖 2) 项目模板类型和结构 3) 文档完整性",
+      "verification_steps": [
+        "生成 jun_springcloud_and_templates_analysis.md 文档",
+        "包含 SpringCloud 各组件分析",
+        "包含所有11个项目模板的分析"
+      ],
+      "status": "pending",
+      "priority": 1,
+      "dependencies": [
+        "T001"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T006",
+      "category": "testing",
+      "title": "编译测试 jun_java_plugins 模块",
+      "description": "逐个编译 jun_java_plugins 下的所有模块，记录编译结果：1) 成功编译的模块 2) 编译失败的模块及错误信息 3) 依赖冲突问题 4) 缺失依赖",
+      "verification_steps": [
+        "运行 cd jun_java_plugins && mvn clean compile -DskipTests",
+        "生成 jun_java_plugins_build_report.md",
+        "报告包含所有模块的编译状态",
+        "识别出所有编译错误和警告"
+      ],
+      "status": "pending",
+      "priority": 2,
+      "dependencies": [
+        "T002"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T007",
+      "category": "testing",
+      "title": "编译测试 jun_springboot_plugin 模块",
+      "description": "编译 jun_springboot_plugin 所有模块，使用增加的 JVM 内存。记录：1) 编译成功率 2) 内存溢出问题 3) 依赖版本冲突 4) Spring Boot 版本兼容性问题",
+      "verification_steps": [
+        "运行 export MAVEN_OPTS=\"-Xmx2048m\" && cd jun_springboot_plugin && mvn clean compile -DskipTests",
+        "生成 jun_springboot_plugin_build_report.md",
+        "报告包含所有模块编译状态和错误详情",
+        "识别需要修复的模块"
+      ],
+      "status": "pending",
+      "priority": 2,
+      "dependencies": [
+        "T003"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T008",
+      "category": "testing",
+      "title": "编译测试 jun_springboot_starter 模块",
+      "description": "编译所有自定义 Spring Boot Starter，验证自动配置类是否正确。记录：1) 编译状态 2) 自动配置加载问题 3) META-INF/spring.factories 配置",
+      "verification_steps": [
+        "运行 cd jun_springboot_starter && mvn clean compile -DskipTests",
+        "生成 jun_springboot_starter_build_report.md",
+        "验证每个 starter 的 spring.factories 文件存在",
+        "确认自动配置类可以正确编译"
+      ],
+      "status": "pending",
+      "priority": 2,
+      "dependencies": [
+        "T004"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T009",
+      "category": "testing",
+      "title": "编译测试其他模块",
+      "description": "编译 jun_springcloud_plugin 和 java_project_template，记录编译状态和问题",
+      "verification_steps": [
+        "编译 jun_springcloud_plugin 模块",
+        "编译 java_project_template 各个模板",
+        "生成 other_modules_build_report.md",
+        "记录所有编译问题和依赖缺失"
+      ],
+      "status": "pending",
+      "priority": 2,
+      "dependencies": [
+        "T005"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T010",
+      "category": "functional",
+      "title": "评估 Java 基础技术栈覆盖度",
+      "description": "评估项目对 Java 基础技术栈的覆盖，包括：1) JDK 核心 API 2) 集合框架 3) 并发编程 4) I/O 和 NIO 5) 网络编程 6) 反射和注解 7) 设计模式。找出缺失的技术点",
+      "verification_steps": [
+        "生成 java_core_coverage_report.md",
+        "列出已覆盖的技术点和对应模块",
+        "列出缺失的技术点和建议补充的内容",
+        "提供技术栈覆盖率百分比"
+      ],
+      "status": "pending",
+      "priority": 2,
+      "dependencies": [
+        "T002",
+        "T006"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T011",
+      "category": "functional",
+      "title": "评估数据库和持久化技术覆盖度",
+      "description": "评估数据库相关技术：1) JDBC 2) MyBatis/MyBatis-Plus 3) Hibernate/JPA 4) 数据源管理 5) 分库分表 6) 事务管理 7) NoSQL (Redis/MongoDB)。识别缺失技术",
+      "verification_steps": [
+        "生成 database_coverage_report.md",
+        "列出所有数据库相关模块及其技术点",
+        "识别缺失的数据库技术(如 ElasticSearch, Neo4j 等)",
+        "评估示例代码的完整性"
+      ],
+      "status": "pending",
+      "priority": 2,
+      "dependencies": [
+        "T002",
+        "T003"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T012",
+      "category": "functional",
+      "title": "评估 Web 和微服务技术覆盖度",
+      "description": "评估 Web 技术栈：1) Servlet/JSP 2) Spring MVC 3) Spring Boot 4) RESTful API 5) WebSocket 6) GraphQL 7) gRPC 8) Spring Cloud 组件。找出缺失部分",
+      "verification_steps": [
+        "生成 web_microservice_coverage_report.md",
+        "列出已实现的 Web 技术和微服务组件",
+        "识别缺失技术(如 gRPC, WebFlux 响应式编程等)",
+        "评估微服务治理组件的完整性"
+      ],
+      "status": "pending",
+      "priority": 2,
+      "dependencies": [
+        "T003",
+        "T005"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T013",
+      "category": "functional",
+      "title": "评估安全和认证技术覆盖度",
+      "description": "评估安全技术：1) Spring Security 2) Shiro 3) OAuth2 4) JWT 5) SSO 6) RBAC 7) 加密解密 8) HTTPS/SSL。识别安全技术缺口",
+      "verification_steps": [
+        "生成 security_coverage_report.md",
+        "列出现有安全相关模块",
+        "评估认证授权方案的完整性",
+        "识别缺失的安全技术点"
+      ],
+      "status": "pending",
+      "priority": 2,
+      "dependencies": [
+        "T003"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T014",
+      "category": "functional",
+      "title": "评估消息队列和任务调度覆盖度",
+      "description": "评估：1) RabbitMQ 2) RocketMQ 3) Kafka 4) ActiveMQ 5) Quartz 6) XXL-Job 7) Elastic-Job 8) Spring Task。找出缺失组件",
+      "verification_steps": [
+        "生成 messaging_scheduling_coverage_report.md",
+        "列出消息队列和任务调度相关模块",
+        "评估示例代码的实用性",
+        "识别需要补充的组件"
+      ],
+      "status": "pending",
+      "priority": 2,
+      "dependencies": [
+        "T002",
+        "T003"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T015",
+      "category": "functional",
+      "title": "评估工具类库和第三方集成覆盖度",
+      "description": "评估工具类库：1) Apache Commons 2) Guava 3) Hutool 4) MapStruct 5) Lombok 6) FastJson/Jackson 7) 文件处理 8) PDF/Excel 9) 二维码 10) 短信邮件 11) 支付。找出缺失工具",
+      "verification_steps": [
+        "生成 utilities_integrations_coverage_report.md",
+        "列出所有工具类和第三方集成模块",
+        "评估常用工具库的覆盖度",
+        "识别需要补充的实用工具"
+      ],
+      "status": "pending",
+      "priority": 2,
+      "dependencies": [
+        "T002"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T016",
+      "category": "functional",
+      "title": "识别重复和冗余模块",
+      "description": "分析项目中的重复模块：1) 功能相同但实现不同的模块 2) 技术栈相同但版本不同的模块 3) 可以合并的相似模块。生成合并或删除建议",
+      "verification_steps": [
+        "生成 redundancy_analysis_report.md",
+        "列出所有重复或相似的模块对",
+        "提供合并或删除建议",
+        "估算合并后的模块数量"
+      ],
+      "status": "pending",
+      "priority": 3,
+      "dependencies": [
+        "T002",
+        "T003",
+        "T004",
+        "T005"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T017",
+      "category": "functional",
+      "title": "识别缺失的核心技术模块",
+      "description": "基于前面的覆盖度评估，汇总所有缺失的核心技术模块。优先级排序：1) Java 生态必备技术 2) 企业开发常用技术 3) 新兴技术趋势",
+      "verification_steps": [
+        "生成 missing_modules_report.md",
+        "按优先级列出所有缺失模块",
+        "每个缺失模块包含：技术名称、用途、优先级、建议实现方案",
+        "估算补充工作量"
+      ],
+      "status": "pending",
+      "priority": 3,
+      "dependencies": [
+        "T010",
+        "T011",
+        "T012",
+        "T013",
+        "T014",
+        "T015"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T018",
+      "category": "functional",
+      "title": "评估文档完整性",
+      "description": "评估所有模块的文档状态：1) README.md 存在性 2) 文档内容完整性 3) 使用示例清晰度 4) API 文档 5) 配置说明。识别文档缺失的模块",
+      "verification_steps": [
+        "运行脚本检查所有模块的 README.md",
+        "生成 documentation_status_report.md",
+        "列出文档缺失或不完整的模块",
+        "提供文档改进建议"
+      ],
+      "status": "pending",
+      "priority": 3,
+      "dependencies": [
+        "T002",
+        "T003",
+        "T004",
+        "T005"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T019",
+      "category": "functional",
+      "title": "评估测试覆盖率",
+      "description": "评估项目的测试覆盖情况：1) 单元测试存在性 2) 集成测试 3) 测试用例质量 4) 测试覆盖率。识别缺少测试的模块",
+      "verification_steps": [
+        "运行脚本统计各模块的测试类",
+        "生成 test_coverage_report.md",
+        "列出缺少测试的模块",
+        "提供测试改进建议"
+      ],
+      "status": "pending",
+      "priority": 3,
+      "dependencies": [
+        "T006",
+        "T007",
+        "T008",
+        "T009"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T020",
+      "category": "database",
+      "title": "创建项目全局技术栈清单",
+      "description": "基于所有分析报告，创建完整的技术栈清单。分类：1) Java 基础 2) 数据库 3) Web 框架 4) 微服务 5) 安全 6) 消息队列 7) 缓存 8) 工具库 9) 测试 10) 部署运维",
+      "verification_steps": [
+        "生成 technology_stack_inventory.md",
+        "清单包含所有10大分类",
+        "每个技术点标注：已实现/部分实现/缺失",
+        "提供技术栈可视化图表(如 Markdown 表格)"
+      ],
+      "status": "pending",
+      "priority": 3,
+      "dependencies": [
+        "T010",
+        "T011",
+        "T012",
+        "T013",
+        "T014",
+        "T015"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T021",
+      "category": "database",
+      "title": "创建模块索引和导航文档",
+      "description": "创建友好的导航文档，帮助用户快速找到所需模块。包括：1) 按技术分类索引 2) 按场景分类索引 3) 快速查找表 4) 模块依赖关系图",
+      "verification_steps": [
+        "生成 MODULE_INDEX.md",
+        "包含多种索引方式",
+        "提供快速搜索和定位功能",
+        "文档清晰易读"
+      ],
+      "status": "pending",
+      "priority": 3,
+      "dependencies": [
+        "T020"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T022",
+      "category": "database",
+      "title": "创建快速开始指南",
+      "description": "为不同角色的用户创建快速开始指南：1) Java 初学者 2) Spring Boot 开发者 3) 微服务架构师 4) 企业应用开发者。包含推荐学习路径",
+      "verification_steps": [
+        "生成 QUICK_START_GUIDE.md",
+        "包含4种不同角色的指南",
+        "每个指南有清晰的学习路径",
+        "提供示例项目推荐"
+      ],
+      "status": "pending",
+      "priority": 3,
+      "dependencies": [
+        "T021"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T023",
+      "category": "functional",
+      "title": "修复 jun_java_plugins 编译错误",
+      "description": "基于编译报告，修复 jun_java_plugins 中的编译错误。优先处理：1) 依赖缺失 2) 版本冲突 3) 语法错误 4) 资源文件问题",
+      "verification_steps": [
+        "修复所有高优先级编译错误",
+        "重新编译验证修复效果",
+        "更新 jun_java_plugins_build_report.md",
+        "确保至少 90% 的模块可以编译通过"
+      ],
+      "status": "pending",
+      "priority": 4,
+      "dependencies": [
+        "T006"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T024",
+      "category": "functional",
+      "title": "修复 jun_springboot_plugin 编译错误",
+      "description": "修复 jun_springboot_plugin 模块的编译问题。重点：1) Spring Boot 版本兼容性 2) 依赖版本冲突 3) 自动配置问题 4) 内存溢出优化",
+      "verification_steps": [
+        "修复关键编译错误",
+        "优化 Maven 编译配置",
+        "重新编译验证",
+        "更新 jun_springboot_plugin_build_report.md"
+      ],
+      "status": "pending",
+      "priority": 4,
+      "dependencies": [
+        "T007"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T025",
+      "category": "functional",
+      "title": "修复 jun_springboot_starter 配置问题",
+      "description": "修复自定义 Starter 的配置问题：1) spring.factories 配置 2) 自动配置类加载 3) 条件注解正确性 4) 配置属性绑定",
+      "verification_steps": [
+        "检查所有 starter 的 spring.factories",
+        "验证自动配置类可以正常加载",
+        "编译测试通过",
+        "更新 jun_springboot_starter_build_report.md"
+      ],
+      "status": "pending",
+      "priority": 4,
+      "dependencies": [
+        "T008"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T026",
+      "category": "functional",
+      "title": "补充缺失的 Java 基础模块",
+      "description": "根据缺失模块报告，补充高优先级的 Java 基础技术模块。重点：1) NIO 2.0 示例 2) Lambda 和 Stream API 3) CompletableFuture 4) JUC 并发工具",
+      "verification_steps": [
+        "创建新模块目录和 pom.xml",
+        "实现核心示例代码",
+        "添加 README 文档",
+        "编译测试通过"
+      ],
+      "status": "pending",
+      "priority": 4,
+      "dependencies": [
+        "T017",
+        "T023"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T027",
+      "category": "functional",
+      "title": "补充缺失的数据库技术模块",
+      "description": "补充缺失的数据库相关模块。重点：1) ElasticSearch 集成 2) ClickHouse 示例 3) TiDB 使用 4) 数据库连接池优化",
+      "verification_steps": [
+        "创建数据库模块目录",
+        "实现核心集成代码",
+        "添加使用文档",
+        "提供配置示例"
+      ],
+      "status": "pending",
+      "priority": 4,
+      "dependencies": [
+        "T017",
+        "T024"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T028",
+      "category": "functional",
+      "title": "补充缺失的微服务技术模块",
+      "description": "补充微服务相关技术。重点：1) gRPC 集成 2) Service Mesh (Istio) 示例 3) 分布式追踪 (SkyWalking/Zipkin) 4) 服务熔断降级完善",
+      "verification_steps": [
+        "创建微服务模块",
+        "实现核心功能",
+        "提供完整示例",
+        "添加使用文档"
+      ],
+      "status": "pending",
+      "priority": 4,
+      "dependencies": [
+        "T017",
+        "T024"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T029",
+      "category": "functional",
+      "title": "补充缺失的新技术模块",
+      "description": "补充新兴技术模块。重点：1) Docker/Kubernetes 集成 2) CI/CD 示例 3) 云原生应用 4) Serverless 框架",
+      "verification_steps": [
+        "创建新技术模块",
+        "提供可运行示例",
+        "编写详细文档",
+        "添加最佳实践说明"
+      ],
+      "status": "pending",
+      "priority": 5,
+      "dependencies": [
+        "T017"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T030",
+      "category": "functional",
+      "title": "完善模块 README 文档",
+      "description": "为文档缺失或不完整的模块补充 README。内容包括：1) 模块功能介绍 2) 技术栈说明 3) 快速开始 4) 核心代码示例 5) 配置说明 6) 常见问题",
+      "verification_steps": [
+        "所有模块都有 README.md",
+        "README 包含必需的6个部分",
+        "代码示例可以正常运行",
+        "更新 documentation_status_report.md"
+      ],
+      "status": "pending",
+      "priority": 4,
+      "dependencies": [
+        "T018"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T031",
+      "category": "api",
+      "title": "为核心模块添加 Swagger API 文档",
+      "description": "为所有提供 REST API 的模块添加 Swagger 文档。使用 Knife4j 增强。包括：1) API 接口注解 2) 请求响应示例 3) 错误码说明",
+      "verification_steps": [
+        "识别所有 REST API 模块",
+        "添加 Swagger 配置和注解",
+        "启动应用验证 Swagger UI",
+        "文档清晰完整"
+      ],
+      "status": "pending",
+      "priority": 4,
+      "dependencies": [
+        "T024",
+        "T030"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T032",
+      "category": "testing",
+      "title": "为核心模块添加单元测试",
+      "description": "为缺少测试的核心模块补充单元测试。重点：1) Service 层测试 2) Repository 层测试 3) 工具类测试 4) 使用 JUnit 5 和 Mockito",
+      "verification_steps": [
+        "识别缺少测试的核心模块",
+        "添加单元测试类",
+        "运行测试确保通过",
+        "测试覆盖率至少达到 60%"
+      ],
+      "status": "pending",
+      "priority": 4,
+      "dependencies": [
+        "T019",
+        "T023",
+        "T024"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T033",
+      "category": "testing",
+      "title": "添加集成测试示例",
+      "description": "为关键模块添加集成测试示例。包括：1) Spring Boot Test 2) TestContainers 3) 端到端测试 4) 性能测试基础",
+      "verification_steps": [
+        "创建集成测试模块或目录",
+        "实现集成测试用例",
+        "提供测试配置文档",
+        "测试可以正常运行"
+      ],
+      "status": "pending",
+      "priority": 5,
+      "dependencies": [
+        "T032"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T034",
+      "category": "functional",
+      "title": "清理和合并冗余模块",
+      "description": "根据冗余分析报告，清理或合并重复模块。谨慎操作：1) 备份原模块 2) 合并相似功能 3) 更新依赖关系 4) 更新文档",
+      "verification_steps": [
+        "创建模块备份",
+        "执行合并或删除操作",
+        "更新父 pom.xml",
+        "重新编译验证",
+        "更新 MODULE_INDEX.md"
+      ],
+      "status": "pending",
+      "priority": 5,
+      "dependencies": [
+        "T016",
+        "T023",
+        "T024",
+        "T025"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T035",
+      "category": "functional",
+      "title": "统一代码风格和规范",
+      "description": "使用 Checkstyle 和阿里巴巴 Java 开发手册规范统一代码风格。包括：1) 配置 Checkstyle 2) 代码格式化 3) 导入优化 4) 命名规范检查",
+      "verification_steps": [
+        "在父 pom.xml 中配置 Checkstyle 插件",
+        "创建 checkstyle.xml 规则文件",
+        "运行 mvn checkstyle:check",
+        "修复关键代码风格问题"
+      ],
+      "status": "pending",
+      "priority": 5,
+      "dependencies": [
+        "T023",
+        "T024",
+        "T025"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T036",
+      "category": "functional",
+      "title": "优化依赖管理",
+      "description": "优化项目的依赖管理。包括：1) 在父 pom 中统一版本管理 2) 移除未使用依赖 3) 解决依赖冲突 4) 使用 dependencyManagement",
+      "verification_steps": [
+        "更新父 pom.xml 添加 dependencyManagement",
+        "各模块使用统一版本",
+        "运行 mvn dependency:analyze 检查未使用依赖",
+        "编译测试通过"
+      ],
+      "status": "pending",
+      "priority": 4,
+      "dependencies": [
+        "T023",
+        "T024",
+        "T025"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T037",
+      "category": "integration",
+      "title": "创建示例应用集合",
+      "description": "创建综合示例应用，展示多个模块的集成使用。包括：1) 简单的博客系统 2) 电商后台管理 3) 微服务示例 4) 各模块的最佳实践集成",
+      "verification_steps": [
+        "创建 examples 目录",
+        "实现至少3个综合示例",
+        "每个示例有完整的 README",
+        "示例可以正常运行"
+      ],
+      "status": "pending",
+      "priority": 5,
+      "dependencies": [
+        "T030",
+        "T031"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T038",
+      "category": "integration",
+      "title": "创建在线演示环境",
+      "description": "为关键模块创建在线演示环境。使用 Docker Compose 一键启动。包括：1) Dockerfile 2) docker-compose.yml 3) 环境配置 4) 演示数据",
+      "verification_steps": [
+        "创建 Docker 配置文件",
+        "构建 Docker 镜像",
+        "运行 docker-compose up 测试",
+        "提供访问文档"
+      ],
+      "status": "pending",
+      "priority": 5,
+      "dependencies": [
+        "T037"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T039",
+      "category": "database",
+      "title": "更新主 README 文档",
+      "description": "更新项目根目录的 README.md，使其更加友好和完整。包括：1) 项目介绍 2) 核心特性 3) 技术栈清单 4) 快速开始 5) 模块导航 6) 贡献指南",
+      "verification_steps": [
+        "更新 README.md",
+        "添加项目徽章(Maven、License 等)",
+        "添加目录和导航链接",
+        "文档清晰专业"
+      ],
+      "status": "pending",
+      "priority": 3,
+      "dependencies": [
+        "T020",
+        "T021",
+        "T022"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T040",
+      "category": "database",
+      "title": "创建贡献指南",
+      "description": "创建 CONTRIBUTING.md 文档，指导其他开发者如何为项目贡献。包括：1) 代码规范 2) 提交规范 3) PR 流程 4) 模块开发指南",
+      "verification_steps": [
+        "创建 CONTRIBUTING.md",
+        "包含完整的贡献指南",
+        "提供代码模板",
+        "说明清晰易懂"
+      ],
+      "status": "pending",
+      "priority": 5,
+      "dependencies": [
+        "T035"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T041",
+      "category": "database",
+      "title": "创建最佳实践文档",
+      "description": "创建 BEST_PRACTICES.md，总结各技术栈的最佳实践。包括：1) 数据库设计 2) API 设计 3) 性能优化 4) 安全实践 5) 代码质量",
+      "verification_steps": [
+        "创建 BEST_PRACTICES.md",
+        "包含至少5大类最佳实践",
+        "提供代码示例和反例",
+        "内容实用有价值"
+      ],
+      "status": "pending",
+      "priority": 5,
+      "dependencies": [
+        "T030",
+        "T035"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T042",
+      "category": "database",
+      "title": "创建技术选型指南",
+      "description": "创建 TECH_SELECTION_GUIDE.md，帮助开发者选择合适的技术。包括：1) 场景分析 2) 技术对比 3) 选型建议 4) 决策树",
+      "verification_steps": [
+        "创建 TECH_SELECTION_GUIDE.md",
+        "包含常见场景的技术选型",
+        "提供决策依据",
+        "内容客观实用"
+      ],
+      "status": "pending",
+      "priority": 5,
+      "dependencies": [
+        "T020"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T043",
+      "category": "deployment",
+      "title": "创建 CI/CD 配置",
+      "description": "添加持续集成配置，自动化编译和测试。包括：1) GitHub Actions 配置 2) Maven 编译 3) 测试运行 4) 代码质量检查",
+      "verification_steps": [
+        "创建 .github/workflows/ci.yml",
+        "配置编译和测试流程",
+        "推送代码触发自动构建",
+        "CI 流程正常运行"
+      ],
+      "status": "pending",
+      "priority": 5,
+      "dependencies": [
+        "T032",
+        "T035"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T044",
+      "category": "deployment",
+      "title": "生成项目统计报告",
+      "description": "生成项目的最终统计报告。包括：1) 模块总数 2) 代码行数 3) 技术栈覆盖率 4) 文档完整度 5) 测试覆盖率 6) 编译成功率",
+      "verification_steps": [
+        "运行统计脚本",
+        "生成 PROJECT_STATISTICS.md",
+        "包含所有关键指标",
+        "提供可视化图表"
+      ],
+      "status": "pending",
+      "priority": 5,
+      "dependencies": [
+        "T023",
+        "T024",
+        "T025",
+        "T030",
+        "T032",
+        "T034"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "T045",
+      "category": "deployment",
+      "title": "生成完整项目文档汇总",
+      "description": "汇总所有生成的文档，创建文档索引。包括：1) 所有分析报告 2) 技术文档 3) 使用指南 4) 最佳实践 5) 常见问题。生成 docs 目录组织所有文档",
+      "verification_steps": [
+        "创建 docs 目录",
+        "移动所有文档到 docs",
+        "创建 docs/INDEX.md 文档索引",
+        "更新主 README 中的文档链接",
+        "所有文档链接正确"
+      ],
+      "status": "pending",
+      "priority": 5,
+      "dependencies": [
+        "T039",
+        "T040",
+        "T041",
+        "T042",
+        "T044"
+      ],
+      "attempts": 0,
+      "max_attempts": 3,
+      "result": null,
+      "evaluation": null,
+      "error_history": [],
+      "started_at": null,
+      "completed_at": null
+    }
+  ]
+}

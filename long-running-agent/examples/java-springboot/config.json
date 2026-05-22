@@ -1,0 +1,41 @@
+{
+  "project_name": "my-springboot-app",
+  "project_type": "java-springboot",
+  "project_description": "一个基于 SpringBoot 的 Web 应用，包含用户管理、权限控制和数据展示功能",
+  "work_directory": ".",
+  "user_requirements": "构建一个用户管理系统，包含：\n1. 用户注册和登录（JWT认证）\n2. 用户信息CRUD\n3. 角色权限管理\n4. 操作日志记录\n5. RESTful API 接口\n6. Swagger API 文档",
+
+  "agent": {
+    "model": "opus",
+    "max_turns": 200,
+    "max_sessions": 30,
+    "allowed_tools": "Bash,Read,Write,Edit,Glob,Grep"
+  },
+
+  "git": {
+    "auto_commit": true,
+    "branch_prefix": "agent/",
+    "main_branch": "main"
+  },
+
+  "paths": {
+    "feature_list": "feature_list.json",
+    "progress_file": "claude-progress.txt",
+    "init_script": "init.sh"
+  },
+
+  "java": {
+    "build_tool": "maven",
+    "build_command": "mvn clean compile -DskipTests",
+    "test_command": "mvn test",
+    "run_command": "mvn spring-boot:run",
+    "java_version": "17"
+  },
+
+  "frontend": {
+    "package_manager": "npm",
+    "build_command": "echo 'no frontend'",
+    "test_command": "echo 'no frontend test'",
+    "dev_command": "echo 'no frontend'"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /b \"D:\\\\workspace\\\\scrm-paas\\\\scrm-paas-runtime\\\\scrm-paas-runtime-server\\\\src\\\\main\\\\java\\\\net\\\\trueland\\\\scrm\\\\paas\\\\runtime\\\\service\\\\selector\")",
+      "Bash(git init)",
+      "Bash(find /d \"D:/workspace/scrm-paas\" -name \"*.sql\" -type f -exec grep -l \"INSERT INTO paas_component_instance\" {} ;)",
+      "Bash(xxd \"D:\\\\workspace\\\\scrm-paas\\\\scrm-paas-metadata\\\\paas-metadata-server\\\\src\\\\main\\\\java\\\\net\\\\trueland\\\\scrm\\\\paas\\\\metadata\\\\service\\\\selector\\\\paas\\\\user\\\\OneSelfAndSubUser.java\")",
+      "WebSearch",
+      "WebFetch(domain:developer.work.weixin.qq.com)",
+      "WebFetch(domain:open.work.weixin.qq.com)",
+      "Bash(xargs cat)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:blog.csdn.net)"
+    ]
+  }
+}

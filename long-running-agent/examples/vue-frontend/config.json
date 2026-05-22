@@ -1,0 +1,41 @@
+{
+  "project_name": "my-vue-app",
+  "project_type": "vue-frontend",
+  "project_description": "一个基于 Vue.js + Element-UI 的管理后台前端",
+  "work_directory": ".",
+  "user_requirements": "构建管理后台前端：\n1. 登录页面\n2. 主布局（侧边栏 + 顶栏 + 内容区）\n3. 用户管理页面（列表、新增、编辑、删除）\n4. 角色管理页面\n5. 系统设置页面\n6. 数据看板页面",
+
+  "agent": {
+    "model": "opus",
+    "max_turns": 200,
+    "max_sessions": 30,
+    "allowed_tools": "Bash,Read,Write,Edit,Glob,Grep"
+  },
+
+  "git": {
+    "auto_commit": true,
+    "branch_prefix": "agent/",
+    "main_branch": "main"
+  },
+
+  "paths": {
+    "feature_list": "feature_list.json",
+    "progress_file": "claude-progress.txt",
+    "init_script": "init.sh"
+  },
+
+  "java": {
+    "build_tool": "none",
+    "build_command": "npm run build",
+    "test_command": "npm run test",
+    "run_command": "npm run serve",
+    "java_version": "none"
+  },
+
+  "frontend": {
+    "package_manager": "npm",
+    "build_command": "npm run build",
+    "test_command": "npm run test:unit",
+    "dev_command": "npm run serve"
+  }
+}

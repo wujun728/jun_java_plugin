@@ -1,0 +1,41 @@
+{
+  "project_name": "my-fullstack-app",
+  "project_type": "fullstack",
+  "project_description": "全栈应用：Java SpringBoot 后端 + Vue.js 前端",
+  "work_directory": ".",
+  "user_requirements": "构建一个全栈应用：\n后端(SpringBoot):\n1. 用户认证API\n2. 业务数据CRUD API\n3. 文件上传API\n\n前端(Vue.js):\n1. 登录页面\n2. 数据管理页面\n3. 文件管理页面",
+
+  "agent": {
+    "model": "opus",
+    "max_turns": 200,
+    "max_sessions": 50,
+    "allowed_tools": "Bash,Read,Write,Edit,Glob,Grep"
+  },
+
+  "git": {
+    "auto_commit": true,
+    "branch_prefix": "agent/",
+    "main_branch": "main"
+  },
+
+  "paths": {
+    "feature_list": "feature_list.json",
+    "progress_file": "claude-progress.txt",
+    "init_script": "init.sh"
+  },
+
+  "java": {
+    "build_tool": "maven",
+    "build_command": "mvn clean compile -DskipTests",
+    "test_command": "mvn test",
+    "run_command": "mvn spring-boot:run",
+    "java_version": "17"
+  },
+
+  "frontend": {
+    "package_manager": "npm",
+    "build_command": "npm run build",
+    "test_command": "npm run test:unit",
+    "dev_command": "npm run serve"
+  }
+}

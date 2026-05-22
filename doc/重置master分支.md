@@ -73,6 +73,10 @@ du -d 1 -h
 
 
 
+git branch -r | grep -v 'main' | grep -v 'HEAD' | sed 's/origin\///'
+
+git branch -r | grep -v 'main' | grep -v 'HEAD' | sed 's/origin\///' | xargs -I {} git push origin --delete {}
+
 
 
 
@@ -124,3 +128,15 @@ git push origin HEAD --force
                             本文是博主原创文章，未经许可不准转载！
                         
 原文链接：https://blog.csdn.net/u012783994/article/details/126339284
+
+
+
+
+
+
+
+git remote add origin https://github.com/wujun728/jun_product_center_private.git
+
+# 3. 推送到远程指定分支（例如叫 temp-test）
+git push origin master:2026
+

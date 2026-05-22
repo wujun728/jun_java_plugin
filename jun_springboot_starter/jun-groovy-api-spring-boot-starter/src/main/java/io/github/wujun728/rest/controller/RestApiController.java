@@ -39,25 +39,19 @@ import java.util.Map;
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping({"${platform.path:}/bizrest", "${platform.path:}/public/bizrest"})
 //@Api(value = "实体公共增删改查接口")
-public class RestApiController {
+public class RestApiController extends BaseRestController {
 
     @Resource
     RestApiService restApiService;
 
-    private String main = "main";
-
     @GetMapping(path = {"/{entityName}/list"}, produces = "application/json")
     //@ApiOperation(value = "返回实体数据列表", notes = "page与size同时大于零时返回分页实体数据列表,否则返回全部数据列表;
     public Result list(@PathVariable("entityName") String entityName, HttpServletRequest request) throws Exception {
-        Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
-        main = MapUtil.getStr(parameters, "ds","main");
-        String tableName = StrUtil.toUnderlineCase(entityName);
-        Boolean isUnderLine = entityName.equals(tableName);
+        Map<String, Object> parameters = initCommonParameters(entityName, request);
         try {
             String url = request.getRequestURI();
             StaticLog.info("url = "+ url);
-            parameters.put("entityName" , entityName);
-            parameters.put("tableName" , tableName);
+            String tableName = getTableName(parameters);
             List<Map<String, Object>> datas = restApiService.getList(tableName,parameters);
             return Result.success(datas);
         } catch (Exception e) {
@@ -70,15 +64,11 @@ public class RestApiController {
     @GetMapping(path = {  "/{entityName}/page" }, produces = "application/json")
     //@ApiOperation(value = "返回实体数据列表", notes = "page与size同时大于零时返回分页实体数据列表,否则返回全部数据列表;
     public Result page(@PathVariable("entityName") String entityName, HttpServletRequest request) throws Exception {
-        Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
-        main = MapUtil.getStr(parameters, "ds","main");
-        String tableName = StrUtil.toUnderlineCase(entityName);
-        Boolean isUnderLine = entityName.equals(tableName);
+        Map<String, Object> parameters = initCommonParameters(entityName, request);
         try {
             String url = request.getRequestURI();
             StaticLog.info("url = "+ url);
-            parameters.put("entityName" , entityName);
-            parameters.put("tableName" , tableName);
+            String tableName = getTableName(parameters);
             Page<Record> pages = restApiService.getPage(tableName,parameters);
             List<Map<String, Object>> datas = RecordUtil.recordToMaps(pages.getList());
             return Result.success(datas).put("count", pages.getTotalRow()).put("pageSize", pages.getPageSize()).put("totalPage", pages.getTotalPage()).put("pageNumber", pages.getPageNumber());
@@ -93,16 +83,12 @@ public class RestApiController {
     @GetMapping(path = {"/{entityName}/tree"}, produces = "application/json")
     //@ApiOperation(value = "返回实体数据列表", notes = "page与size同时大于零时返回分页实体数据列表,否则返回全部数据列表;
     public Result tree(@PathVariable("entityName") String entityName, HttpServletRequest request) throws Exception {
-        Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
-        main = MapUtil.getStr(parameters, "ds","main");
-        String tableName = StrUtil.toUnderlineCase(entityName);
-        Boolean isUnderLine = entityName.equals(tableName);
+        Map<String, Object> parameters = initCommonParameters(entityName, request);
         try {
             String url = request.getRequestURI();
             StaticLog.info("url = "+ url);
-            parameters.put("entityName" , entityName);
-            parameters.put("tableName" , tableName);
             parameters.put("url" , url);
+            String tableName = getTableName(parameters);
             List<Map<String, Object>> datas = restApiService.getTree(tableName,parameters);
             return Result.success(datas);
             //是否构建树 end
@@ -116,14 +102,10 @@ public class RestApiController {
     @GetMapping(path = {"/{entityName}/findOne","/{entityName}/getOne","/{entityName}/record","/{entityName}/row"}, produces = "application/json")
     //@ApiOperation(value = "根据ID返回单个实体数据")
     public Result findOne(@PathVariable("entityName") String entityName, HttpServletRequest request) throws Exception {
-        Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
-        main = MapUtil.getStr(parameters, "ds","main");
-        String tableName = StrUtil.toUnderlineCase(entityName);
-        Boolean isUnderLine = entityName.equals(tableName);
+        Map<String, Object> parameters = initCommonParameters(entityName, request);
         try {
-            parameters.put("entityName" , entityName);
-            parameters.put("tableName" , tableName);
-            Table table = getTableMeta(tableName,main);
+            String tableName = getTableName(parameters);
+            Table table = getTableMeta(tableName, getCurrentDs());
             String primaryKey = RestUtil.getTablePrimaryKes(table);
             List args = RestUtil.getPrimaryKeyArgs(parameters, table);
             Record record = Db.findById(tableName, primaryKey, args.toArray());
@@ -148,13 +130,10 @@ public class RestApiController {
     @RequestMapping(path = "/{entityName}/delete/{ids}", produces = "application/json")
     //@ApiOperation(value = "根据id删除实体数据" )
     public Result delete(@PathVariable("entityName") String entityName,@PathVariable("ids") String ids, HttpServletRequest request) throws Exception {
-        Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
-        main = MapUtil.getStr(parameters, "ds","main");
-        String tableName = StrUtil.toUnderlineCase(entityName);
+        Map<String, Object> parameters = initCommonParameters(entityName, request);
         try {
-            parameters.put("entityName" , entityName);
-            parameters.put("tableName" , tableName);
-            Table table = getTableMeta(tableName,main);
+            String tableName = getTableName(parameters);
+            Table table = getTableMeta(tableName, getCurrentDs());
             String primaryKey = "id";
             Object[] argsDelete = new Object[]{} ;
             if(StrUtil.isNotEmpty(ids)){
@@ -194,16 +173,12 @@ public class RestApiController {
     }
     @RequestMapping(path = {"/{entityName}/save","/{entityName}/add"}, produces = "application/json")
     public Result create(@PathVariable("entityName") String entityName, HttpServletRequest request) {
-        Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
-        main = MapUtil.getStr(parameters, "ds","main");
+        Map<String, Object> parameters = initCommonParameters(entityName, request);
         try {
             //return saveOrUpdate(entityName, parameters, true);
             //Step1,校验表信息，并获取表定义及主键信息
-            String tableName = StrUtil.toUnderlineCase(entityName);
-            main = MapUtil.getStr(parameters, "ds","main");
-            parameters.put("entityName" , entityName);
-            parameters.put("tableName" , tableName);
-            Table table = getTableMeta(tableName,main);
+            String tableName = getTableName(parameters);
+            Table table = getTableMeta(tableName, getCurrentDs());
             //Step2,根据表定义，获取表主键，并根据新增及修改，生成主键或者判断主键数据是否存在
             //Step3,根据表定义，新增必填字段信息校验，并将默认或者内置字段生成默认值
             //String primaryKey = RestUtil.getTablePrimaryKes(table);
@@ -244,16 +219,12 @@ public class RestApiController {
     @RequestMapping(path = {"/{entityName}/update","/{entityName}/edit"}, produces = "application/json")
     //@ApiOperation(value = "更新实体数据", notes = "不需要更新的字段不设置或设置为空,{\"name\":\"tom\",\"args\":1}")
     public Result update(@PathVariable("entityName") String entityName, HttpServletRequest request) {
-        Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
-        main = MapUtil.getStr(parameters, "ds","main");
+        Map<String, Object> parameters = initCommonParameters(entityName, request);
         try {
             //return saveOrUpdate(entityName, parameters, false);
             //Step1,校验表信息，并获取表定义及主键信息
-            String tableName = StrUtil.toUnderlineCase(entityName);
-            main = MapUtil.getStr(parameters, "ds","main");
-            parameters.put("entityName" , entityName);
-            parameters.put("tableName" , tableName);
-            Table table = getTableMeta(tableName,main);
+            String tableName = getTableName(parameters);
+            Table table = getTableMeta(tableName, getCurrentDs());
             //Step2,根据表定义，获取表主键，并根据新增及修改，生成主键或者判断主键数据是否存在
             //Step3,根据表定义，新增必填字段信息校验，并将默认或者内置字段生成默认值
             String primaryKey = RestUtil.getTablePrimaryKes(table);
@@ -312,7 +283,7 @@ public class RestApiController {
     @RequestMapping(path = {"/cache/clear"}, produces = "application/json")
     public Result cacheClear(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> parameters = HttpRequestUtil.getAllParameters(request);
-        main = MapUtil.getStr(parameters, "ds","main");
+        this.ds = MapUtil.getStr(parameters, "ds","main");
         //tableCache.set(new HashMap<>());
         return Result.success("缓存清理成功！");
     }

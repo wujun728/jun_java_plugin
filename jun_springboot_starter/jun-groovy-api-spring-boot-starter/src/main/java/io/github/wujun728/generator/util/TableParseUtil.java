@@ -1,5 +1,7 @@
 package io.github.wujun728.generator.util;
 
+import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
@@ -31,8 +33,9 @@ public class TableParseUtil {
             throws IOException {
         //process the param
         NonCaseString tableSql = NonCaseString.of(paramInfo.getTableSql());
-        String nameCaseType = MapUtil.getString(paramInfo.getOptions(),"nameCaseType");
-        Boolean isPackageType = MapUtil.getBoolean(paramInfo.getOptions(),"isPackageType");
+        String nameCaseType = MapUtil.getStr(paramInfo.getOptions(),"nameCaseType");
+        Object packageTypeObj = paramInfo.getOptions() != null ? paramInfo.getOptions().get("isPackageType") : null;
+        Boolean isPackageType = packageTypeObj instanceof Boolean ? (Boolean) packageTypeObj : false;
 
         if (tableSql == null || tableSql.trim().length() == 0) {
             throw new CodeGenerateException("Table structure can not be empty. 表结构不能为空。");
@@ -76,11 +79,11 @@ public class TableParseUtil {
         }
         String originTableName = tableName;
         //ignore prefix
-        if(tableName!=null && StringUtils.isNotNull(MapUtil.getString(paramInfo.getOptions(),"ignorePrefix"))){
-            tableName = tableName.replaceAll(MapUtil.getString(paramInfo.getOptions(),"ignorePrefix"),"");
+        if(tableName!=null && StrUtil.isNotEmpty(MapUtil.getStr(paramInfo.getOptions(),"ignorePrefix"))){
+            tableName = tableName.replaceAll(MapUtil.getStr(paramInfo.getOptions(),"ignorePrefix"),"");
         }
         // class Name
-        String className = StringUtils.upperCaseFirst(StringUtils.underlineToCamelCase(tableName));
+        String className = StrUtil.upperFirst(StrUtil.toCamelCase(tableName));
         if (className.contains("_")) {
             className = className.replaceAll("_", "");
         }
@@ -187,11 +190,11 @@ public class TableParseUtil {
                     String fieldName = null;
                     if (ParamInfo.NAME_CASE_TYPE.CAMEL_CASE.equals(nameCaseType)) {
                         // 2024-1-27 L&J 适配任意(maybe)原始风格转小写驼峰
-                        fieldName = StringUtils.toLowerCamel(columnName);
+                        fieldName = StrUtil.lowerFirst(StrUtil.toCamelCase(columnName));
                     } else if (ParamInfo.NAME_CASE_TYPE.UNDER_SCORE_CASE.equals(nameCaseType)) {
-                        fieldName = StringUtils.toUnderline(columnName, false);
+                        fieldName = StrUtil.toUnderlineCase(columnName);
                     } else if (ParamInfo.NAME_CASE_TYPE.UPPER_UNDER_SCORE_CASE.equals(nameCaseType)) {
-                        fieldName = StringUtils.toUnderline(columnName.toUpperCase(), true);
+                        fieldName = StrUtil.toUnderlineCase(columnName).toUpperCase();
                     } else {
                         fieldName = columnName;
                     }

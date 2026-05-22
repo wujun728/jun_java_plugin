@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import freemarker.template.TemplateException;
 import io.github.wujun728.generator.util.FreemarkerUtil;
-import io.github.wujun728.generator.util.MapUtil;
+import cn.hutool.core.map.MapUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +52,7 @@ public class GeneratorServiceImpl implements GeneratorService {
     @Override
     public Map<String, String> getResultByParams(Map<String, Object> params) throws IOException, TemplateException {
         Map<String, String> result = new HashMap<>(32);
-        result.put("tableName", MapUtil.getString(params,"tableName"));
+        result.put("tableName", MapUtil.getStr(params,"tableName"));
         JSONArray parentTemplates = JSONArray.parseArray(getTemplateConfig());
         for (int i = 0; i <parentTemplates.size() ; i++) {
             JSONObject parentTemplateObj = parentTemplates.getJSONObject(i);

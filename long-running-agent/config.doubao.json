@@ -1,0 +1,46 @@
+{
+  "project_name": "my-project",
+  "project_type": "java-springboot",
+  "project_description": "项目描述，用于智能体理解项目上下文",
+  "work_directory": ".",
+  "user_task": "在此填写你的完整任务描述...",
+
+  "agent": {
+    "model_provider": "doubao",
+    "model": "doubao-pro-32k",
+    "planner_max_turns": 200,
+    "worker_max_turns": 150,
+    "evaluator_max_turns": 50,
+    "max_sessions": 50,
+    "cooldown_seconds": 5,
+    "task_timeout_seconds": 600,
+    "doubao_config": {
+      "api_key": "YOUR_DOUBAO_API_KEY",
+      "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+      "temperature": 0.7,
+      "max_tokens": 8000
+    }
+  },
+
+  "retry": {
+    "max_attempts": 3
+  },
+
+  "git": {
+    "auto_commit": true,
+    "branch_prefix": "agent/"
+  },
+
+  "paths": {
+    "task_list": "task_list.json",
+    "progress_file": "claude-progress.txt",
+    "execution_log": "execution_log.jsonl",
+    "log_dir": "logs"
+  },
+
+  "build": {
+    "compile_command": "mvn clean compile -DskipTests",
+    "test_command": "mvn test",
+    "run_command": "mvn spring-boot:run"
+  }
+}

@@ -15,7 +15,6 @@ import io.github.wujun728.sql.DataSourcePool;
 import io.github.wujun728.generator.entity.ClassInfo;
 import io.github.wujun728.generator.entity.FieldInfo;
 import io.github.wujun728.generator.util.FreemarkerUtil;
-import io.github.wujun728.generator.util.StringUtils;
 //import io.github.wujun728.generator.utils.GeneratorUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -173,7 +172,7 @@ public class CodeUtil {
             int lineNum = 0;
             for (Map.Entry<String, String> item: result.entrySet()) {
                 if (item.getValue() != null) {
-                    lineNum += StringUtils.countMatches(item.getValue(), "\n");
+                    lineNum += StrUtil.count(item.getValue(), "\n");
                 }
             }
 
